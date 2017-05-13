@@ -3,7 +3,7 @@ import LoginForm from './LoginForm';
 
 const LoginScene = () => (
   <div>
-    {LoginForm()}
+    <LoginForm/>
   </div>
 
 );
