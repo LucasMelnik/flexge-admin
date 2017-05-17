@@ -1,9 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Routes from './Routes';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import Theme from './core/layout/Theme';
 import './index.css';
 
+injectTapEventPlugin();
+
 ReactDOM.render(
-  <App />,
+  <Theme>
+    <Routes />
+  </Theme>,
   document.getElementById('root')
 );
