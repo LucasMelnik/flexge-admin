@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Block from 'jsxstyle/Block';
 import Header from '../../core/layout/Header';
 
 const MainScene = props => (
@@ -12,8 +13,8 @@ const MainScene = props => (
           url: '/',
         },
         {
-          label: 'Users',
-          url: '/users',
+          label: 'Companies',
+          url: '/company',
         },
         {
           label: 'Schools',
@@ -21,7 +22,9 @@ const MainScene = props => (
         },
       ]}
     />
-    {props.children}
+    <Block padding={15}>
+      {props.children}
+    </Block>
   </div>
 );
 
