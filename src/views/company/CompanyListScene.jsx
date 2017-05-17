@@ -16,6 +16,7 @@ const CompanyListScene = () => (
     <CompanyListFilter />
     <Separator size="sm" />
     <CompanyList
+      fetching={false}
       companies={[
         {
           id: 1,
@@ -28,7 +29,10 @@ const CompanyListScene = () => (
       ]}
     />
     <Separator size="sm" />
-    <CompanyListPagination />
+    <CompanyListPagination
+      pageCount={1}
+      onPageChange={() => alert('page changed')}
+    />
     <Separator size="sm" />
   </div>
 );
