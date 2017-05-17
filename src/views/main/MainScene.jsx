@@ -14,7 +14,7 @@ const MainScene = props => (
         },
         {
           label: 'Companies',
-          url: '/company',
+          url: '/companies',
         },
         {
           label: 'Schools',
