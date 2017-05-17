@@ -1,0 +1,15 @@
+.detail-list {
+  margin: 0;
+  padding: 0;
+}
+
+.detail-list dd {
+  height: 36px;
+  font-size: 14px;
+  margin: 0;
+}
+
+.detail-list dd span {
+  color: #3f51b5;
+  font-weight: bold;
+}

@@ -1,0 +1,24 @@
+button i.material-icons {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.mini-button {
+  min-width: 0px !important;
+  font-size: 12px;
+}
+
+.mini-button button {
+  height: 30px !important;
+  line-height: 30px !important;
+}
+
+.mini-button button > div > div {
+  height: 30px !important;
+}
+
+.mini-button button > div > div span:last-child {
+  font-size: 12px !important;
+  padding-left: 0px !important;
+  padding-right: 8px !important;
+}
