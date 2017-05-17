@@ -25,7 +25,11 @@ Separator.propTypes = {
     'xl',
     'xxl',
     'xxxl',
-  ]).isRequired,
+  ]),
+};
+
+Separator.defaultProps = {
+  size: 'sm',
 };
 
 export default Separator;

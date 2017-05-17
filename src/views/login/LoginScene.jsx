@@ -1,6 +1,6 @@
 import React from 'react';
 import Flex from 'jsxstyle/Flex';
-import Card from '../../core/layout/Card';
+import LoginFormContainer from './LoginFormContainer';
 
 const LoginScene = () => (
   <Flex
@@ -9,9 +9,7 @@ const LoginScene = () => (
     height="100%"
     width="100%"
   >
-    <Card style={{ width: 300 }}>
-      <div>Login scene</div>
-    </Card>
+    <LoginFormContainer />
   </Flex>
 );
 
