@@ -1,17 +1,32 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
+import InlineBlock from 'jsxstyle/InlineBlock';
 import Title from '../../core/content/Title';
 import Separator from '../../core/layout/Separator';
 import CompanyListFilter from './CompanyListFilter';
 import CompanyList from './CompanyList';
 import CompanyListPagination from './CompanyListPagination';
+import Button from '../../core/form/Button';
 
 const CompanyListScene = () => (
   <div>
-    <div>
+    <InlineBlock>
       <Title>
         Company list
       </Title>
-    </div>
+    </InlineBlock>
+    <InlineBlock
+      marginLeft={10}
+      verticalAlign="top"
+    >
+      <Button
+        primary
+        label="New Company"
+        onClick={() => browserHistory.push('/companies/new')}
+        icon="add"
+      />
+    </InlineBlock>
+
     <Separator size="sm" />
     <CompanyListFilter />
     <Separator size="sm" />

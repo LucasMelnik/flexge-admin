@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Block from 'jsxstyle/Block';
 import {
   Card as MUICard,
   CardMedia,
@@ -44,7 +45,9 @@ const Card = props => (
         {props.text}
       </CardText>
     )}
-    {props.children}
+    <Block padding={15}>
+      {props.children}
+    </Block>
     {props.actions && (
       <CardActions>
         {props.actions}
