@@ -24,7 +24,7 @@ class Notification extends Component {
       <Snackbar
         open={this.props.isOpen}
         message={this.props.notification.message || ''}
-        autoHideDuration={4000}
+        autoHideDuration={5000}
         onRequestClose={this.props.onClose}
         action={this.props.notification.action}
         onActionTouchTap={this.props.notification.onClick}

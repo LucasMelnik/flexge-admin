@@ -52,9 +52,9 @@ export default class Table extends Component {
 
   render() {
     return (
-      <MaterialTable className={`table ${this.props.selectable ? 'selectable' : ''}`}
+      <MaterialTable
+        className={`table ${this.props.selectable ? 'selectable' : ''}`}
         selectable={this.props.selectable}
-        onRowSelection={row => this.props.onSelect && this.props.onSelect(row)}
       >
         <TableHeader
           displaySelectAll={false}
@@ -80,7 +80,10 @@ export default class Table extends Component {
           showRowHover
         >
           {this.props.rows && this.props.rows.length > 0 ? this.props.rows.map(row => (
-            <TableRow key={row.id}>
+            <TableRow
+              key={row.id}
+              onMouseDown={() => this.props.onSelect && this.props.onSelect(row)}
+            >
               {this.props.actionComponent && (
                 <TableRowColumn className="action-column">
                   {this.props.actionComponent(row)}

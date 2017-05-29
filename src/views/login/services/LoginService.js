@@ -32,7 +32,7 @@ class LoginService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        localStorage.setItem('accessToken', this.fetch.data.key);
+        localStorage.setItem('accessToken', this.fetch.data.accessToken);
         browserHistory.push('/');
       }
       if (this.fetch.error) {

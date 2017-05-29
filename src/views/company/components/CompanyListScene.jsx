@@ -1,12 +1,12 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import InlineBlock from 'jsxstyle/InlineBlock';
-import Title from '../../core/content/Title';
-import Separator from '../../core/layout/Separator';
+import Title from '../../../core/content/Title';
+import Separator from '../../../core/layout/Separator';
 import CompanyListFilter from './CompanyListFilter';
-import CompanyList from './CompanyList';
-import CompanyListPagination from './CompanyListPagination';
-import Button from '../../core/form/Button';
+import CompanyListContainer from './CompanyListContainer';
+import CompanyListContainerPagination from './CompanyListPagination';
+import Button from '../../../core/form/Button';
 
 const CompanyListScene = () => (
   <div>
@@ -29,21 +29,9 @@ const CompanyListScene = () => (
     <Separator size="sm" />
     <CompanyListFilter />
     <Separator size="sm" />
-    <CompanyList
-      fetching={false}
-      companies={[
-        {
-          id: 1,
-          name: 'Bertoni',
-        },
-        {
-          id: 2,
-          name: 'Uniamérica',
-        },
-      ]}
-    />
+    <CompanyListContainer />
     <Separator size="sm" />
-    <CompanyListPagination
+    <CompanyListContainerPagination
       pageCount={1}
       onPageChange={() => alert('page changed')}
     />

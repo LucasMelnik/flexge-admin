@@ -3,8 +3,8 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import LoginScene from './views/login/components/LoginScene';
 import MainScene from './views/main/components/MainScene';
 import DashboardScene from './views/dashboard/DashboardScene';
-import CompanyListScene from './views/company/CompanyListScene';
-import CompanyFormScene from './views/company/CompanyFormScene';
+import CompanyListScene from './views/company/components/CompanyListScene';
+import CompanyFormSceneContainer from './views/company/components/CompanyFormSceneContainer';
 import SchoolListScene from './views/school/SchoolListScene';
 import SchoolFormScene from './views/school/SchoolFormScene';
 import StudentListScene from './views/student/StudentListScene';
@@ -23,7 +23,8 @@ const Routes = () => (
     <Route path="/" component={MainScene} onEnter={authRequired}>
       <IndexRoute component={DashboardScene} />
       <Route path="/companies" component={CompanyListScene} />
-      <Route path="/companies/new" component={CompanyFormScene} />
+      <Route path="/companies/new" component={CompanyFormSceneContainer} />
+      <Route path="/companies/:companyId" component={CompanyFormSceneContainer} />
       <Route path="/schools" component={SchoolListScene} />
       <Route path="/schools/new" component={SchoolFormScene} />
       <Route path="/students" component={StudentListScene} />
