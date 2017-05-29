@@ -20,6 +20,10 @@ const MainScene = props => (
           label: 'Schools',
           url: '/schools',
         },
+        {
+          label: 'Students',
+          url: '/students',
+        },
       ]}
     />
     <Block padding={15}>
