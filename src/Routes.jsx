@@ -5,7 +5,7 @@ import MainScene from './views/main/MainScene';
 import DashboardScene from './views/dashboard/DashboardScene';
 import CompanyListScene from './views/company/CompanyListScene';
 import CompanyFormScene from './views/company/CompanyFormScene';
-import SchoolListScene from './views/school/SchoolListScene';
+import SchoolFormScene from './views/school/SchoolFormScene';
 import NotFoundScene from './views/not-found/NotFoundScene';
 
 
@@ -22,7 +22,8 @@ const Routes = () => (
       <IndexRoute component={DashboardScene} />
       <Route path="/companies" component={CompanyListScene} />
       <Route path="/companies/new" component={CompanyFormScene} />
-      <Route path="/schools" component={SchoolListScene} />
+      <Route path="/schools" component={SchoolFormScene} />
+      <Route path="/schools/new" component={SchoolFormScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
   </Router>

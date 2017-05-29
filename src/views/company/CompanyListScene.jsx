@@ -26,7 +26,6 @@ const CompanyListScene = () => (
         icon="add"
       />
     </InlineBlock>
-
     <Separator size="sm" />
     <CompanyListFilter />
     <Separator size="sm" />
