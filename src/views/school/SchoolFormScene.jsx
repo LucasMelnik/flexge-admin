@@ -1,18 +1,30 @@
 import React from 'react';
-import Block from 'jsxstyle/Block';
 import Title from '../../core/content/Title';
 import SchoolForm from './SchoolForm';
 import SchoolClassScene from '../school-class/SchoolClassScene';
+import Tabs from '../../core/navigation/Tabs';
 
 const SchoolFormScene = () => (
   <div>
     <Title>
-      Create School
+      School
     </Title>
-    <SchoolForm />
-    <Block marginTop={20}>
-      <SchoolClassScene />
-    </Block>
+    <Tabs
+      tabs={[
+        {
+          label: 'School information',
+          content: <SchoolForm />,
+        },
+        {
+          label: 'Teachers',
+          content: <div>Teachers</div>,
+        },
+        {
+          label: 'Classes',
+          content: <SchoolClassScene />,
+        },
+      ]}
+    />
   </div>
 );
 
