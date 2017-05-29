@@ -20,7 +20,7 @@ const SchoolListScene = () => (
       verticalAlign="top"
     >
       <Button
-        primary
+        secondary
         label="New School"
         onClick={() => browserHistory.push('/schools/new')}
         icon="add"

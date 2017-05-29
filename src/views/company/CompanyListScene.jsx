@@ -20,7 +20,7 @@ const CompanyListScene = () => (
       verticalAlign="top"
     >
       <Button
-        primary
+        secondary
         label="New Company"
         onClick={() => browserHistory.push('/companies/new')}
         icon="add"
