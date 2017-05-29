@@ -1,7 +1,8 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import Block from 'jsxstyle/Block';
 import Title from '../../core/content/Title';
 import CompanyForm from './CompanyForm';
+import CompanyManagerScene from '../company-manager/CompanyManagerScene';
 
 const CompanyFormScene = () => (
   <div>
@@ -9,6 +10,9 @@ const CompanyFormScene = () => (
       Create company
     </Title>
     <CompanyForm />
+    <Block marginTop={20}>
+      <CompanyManagerScene />
+    </Block>
   </div>
 );
 

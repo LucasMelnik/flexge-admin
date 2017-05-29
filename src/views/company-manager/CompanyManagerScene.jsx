@@ -4,7 +4,7 @@ import SubTitle from '../../core/content/SubTitle';
 import CompanyManagerList from './CompanyManagerList';
 import CompanyManagerForm from './CompanyManagerForm';
 
-const CompanyManager = () => (
+const CompanyManagerScene = () => (
   <div>
     <SubTitle>Company Managers</SubTitle>
     <Paper>
@@ -14,4 +14,4 @@ const CompanyManager = () => (
   </div>
 );
 
-export default CompanyManager;
+export default CompanyManagerScene;
