@@ -1,8 +1,9 @@
 import React from 'react';
 import Title from '../../core/content/Title';
+import Tabs from '../../core/navigation/Tabs';
 import SchoolForm from './SchoolForm';
 import SchoolClassScene from '../school-class/SchoolClassScene';
-import Tabs from '../../core/navigation/Tabs';
+import TeacherScene from '../teacher/TeacherScene';
 
 const SchoolFormScene = () => (
   <div>
@@ -17,7 +18,7 @@ const SchoolFormScene = () => (
         },
         {
           label: 'Teachers',
-          content: <div>Teachers</div>,
+          content: <TeacherScene />,
         },
         {
           label: 'Classes',
