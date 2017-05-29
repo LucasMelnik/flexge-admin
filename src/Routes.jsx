@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import LoginScene from './views/login/LoginScene';
-import MainScene from './views/main/MainScene';
+import LoginScene from './views/login/components/LoginScene';
+import MainScene from './views/main/components/MainScene';
 import DashboardScene from './views/dashboard/DashboardScene';
 import CompanyListScene from './views/company/CompanyListScene';
 import CompanyFormScene from './views/company/CompanyFormScene';
@@ -12,7 +12,7 @@ import StudentFormScene from './views/student/StudentFormScene';
 import NotFoundScene from './views/not-found/NotFoundScene';
 
 function authRequired(nextState, replace) {
-  if (!localStorage.token) {
+  if (!localStorage.accessToken) {
     replace('/login');
   }
 }

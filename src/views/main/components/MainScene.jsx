@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Block from 'jsxstyle/Block';
-import Header from '../../core/layout/Header';
+import Header from '../../../core/layout/Header';
+import NotificationContainer from './NotificationContainer';
 
 const MainScene = props => (
   <div>
@@ -29,6 +30,7 @@ const MainScene = props => (
     <Block padding={15}>
       {props.children}
     </Block>
+    <NotificationContainer />
   </div>
 );
 

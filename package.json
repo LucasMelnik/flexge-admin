@@ -3,15 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.1",
     "jsxstyle": "^1.0.2",
     "lodash": "^4.17.4",
     "material-ui": "^0.18.1",
+    "mobx": "^3.1.10",
+    "mobx-react": "^4.2.1",
     "prop-types": "^15.5.10",
+    "qs": "^6.4.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-paginate": "^4.4.2",
     "react-router": "3.0.5",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^2.0.1",
+    "validator": "^7.0.0"
   },
   "devDependencies": {
     "eslint": "3.19.0",

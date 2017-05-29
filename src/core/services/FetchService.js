@@ -30,8 +30,9 @@ class FetchService {
       data: params.body,
       headers: {
         ...params.headers,
-        ...localStorage.idToken && { Authorization: `Bearer ${localStorage.idToken}` },
+        ...localStorage.accessToken && { Authorization: `Bearer ${localStorage.accessToken}` },
       },
+      ...params.auth && { auth: params.auth },
     }).then(action((response) => {
       this.fetching = false;
       this.response = response;
@@ -40,12 +41,12 @@ class FetchService {
       return response.data;
     })).catch(action((error) => {
       if (error.response && error.response.status === 401) {
-        localStorage.clear()
-        browserHistory.push('/')
+        localStorage.clear();
+        browserHistory.push('/login');
       }
       this.fetching = false;
       this.response = error.response || error;
-      this.error = get(error, 'response.data.message') || 'An error occurred. Please try again later.'
+      this.error = get(error, 'response.data.message') || 'An error occurred. Please try again later.';
     }));
   })
 }
