@@ -54,7 +54,7 @@ export default class Table extends Component {
     return (
       <MaterialTable className={`table ${this.props.selectable ? 'selectable' : ''}`}
         selectable={this.props.selectable}
-        onRowSelection={row => this.props.selectable && this.props.onSelect(row)}
+        onRowSelection={row => this.props.onSelect && this.props.onSelect(row)}
       >
         <TableHeader
           displaySelectAll={false}
