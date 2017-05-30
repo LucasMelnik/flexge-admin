@@ -5,7 +5,7 @@ import Title from '../../../core/content/Title';
 import Separator from '../../../core/layout/Separator';
 import CompanyListFilter from './CompanyListFilter';
 import CompanyListContainer from './CompanyListContainer';
-import CompanyListContainerPagination from './CompanyListPagination';
+import CompanyListPaginationContainer from './CompanyListPaginationContainer';
 import Button from '../../../core/form/Button';
 
 const CompanyListScene = () => (
@@ -31,10 +31,7 @@ const CompanyListScene = () => (
     <Separator size="sm" />
     <CompanyListContainer />
     <Separator size="sm" />
-    <CompanyListContainerPagination
-      pageCount={1}
-      onPageChange={() => alert('page changed')}
-    />
+    <CompanyListPaginationContainer />
     <Separator size="sm" />
   </div>
 );

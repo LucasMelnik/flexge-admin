@@ -19,10 +19,7 @@ const CompanyList = props => (
         ]}
         rows={props.companies}
         selectable
-        onSelect={row => {
-          console.log('row', row);
-          browserHistory.push(`/companies/${row.id}`)
-        }}
+        onSelect={row => browserHistory.push(`/companies/${row.id}`)}
       />
     </Async>
   </Card>

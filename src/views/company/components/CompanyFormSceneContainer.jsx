@@ -13,12 +13,10 @@ class CompanyFormSceneContainer extends Component {
   }
 
   componentWillMount() {
-    console.log('this.props', this.props);
     CompanyFormService.handleLoad(this.props.params.companyId);
   }
 
   render() {
-    console.log('CompanyFormService.companyId', CompanyFormService.companyId)
     return (
       <CompanyFormScene
         companyId={CompanyFormService.companyId}

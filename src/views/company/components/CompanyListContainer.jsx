@@ -5,17 +5,16 @@ import CompanyList from './CompanyList';
 import CompanyListService from '../services/CompanyListService';
 
 class CompanyListContainer extends Component {
-  companyListService = new CompanyListService();
 
   componentDidMount() {
-    this.companyListService.load();
+    CompanyListService.load();
   }
 
   render() {
     return (
       <CompanyList
-        companies={toJS(this.companyListService.companies)}
-        fetching={this.companyListService.fetch.fetching}
+        companies={toJS(CompanyListService.companies)}
+        fetching={CompanyListService.fetch.fetching}
       />
     );
   }
