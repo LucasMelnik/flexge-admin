@@ -1,9 +1,17 @@
 import React from 'react';
+import Block from 'jsxstyle/Block';
 import PropTypes from 'prop-types';
-import './Title.css';
 
 const Title = props => (
-  <h1 className="title">{props.children}</h1>
+  <Block
+    component="h1"
+    color="#303f9f"
+    margin={0}
+    fontSize={28}
+    fontWeight={500}
+  >
+    {props.children}
+  </Block>
 );
 
 Title.propTypes = {
