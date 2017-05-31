@@ -10,7 +10,7 @@ const CompanyFormContainer = () => (
     values={CompanyFormService.form.getValues()}
     errors={CompanyFormService.form.errors}
     submitting={CompanyFormService.fetch.fetching}
-    error={CompanyFormService.fetch.error}
+    error={CompanyFormService.submit.error}
     isDirty={CompanyFormService.form.isDirty}
   />
 );

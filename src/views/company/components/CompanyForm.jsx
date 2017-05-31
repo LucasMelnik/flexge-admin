@@ -22,7 +22,7 @@ const CompanyForm = props => (
         label="Company Name"
         value={get(props.values, 'name', '')}
         onChange={value => props.onChange('name', value)}
-        error={get(props.errors, 'name', '')}
+        errorText={get(props.errors, 'name', '')}
       />
       <Separator size="xs" />
       <Button

@@ -11,15 +11,10 @@ class FetchService {
       response: null,
       data: null,
       error: null,
-      userId: null,
     });
   }
 
   fetch = action((params) => {
-    if (!this.userId && localStorage.profile) {
-      const profile = JSON.parse(localStorage.profile);
-      this.userId = profile.user_id;
-    }
     this.data = null;
     this.fetching = true;
     return axios.request({
