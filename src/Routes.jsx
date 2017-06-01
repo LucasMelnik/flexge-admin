@@ -7,8 +7,8 @@ import CompanyListScene from './views/company/components/CompanyListScene';
 import CompanyFormSceneContainer from './views/company/components/CompanyFormSceneContainer';
 import SchoolListScene from './views/school/SchoolListScene';
 import SchoolFormScene from './views/school/SchoolFormScene';
-import StudentListScene from './views/student/StudentListScene';
-import StudentFormScene from './views/student/StudentFormScene';
+import StudentListScene from './views/student/components/StudentListScene';
+import StudentFormScene from './views/student/components/StudentFormScene';
 import NotFoundScene from './views/not-found/NotFoundScene';
 
 function authRequired(nextState, replace) {

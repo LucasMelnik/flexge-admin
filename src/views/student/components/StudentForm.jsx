@@ -2,10 +2,10 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Card from '../../core/layout/Card';
-import TextInput from '../../core/form/TextInput';
-import Button from '../../core/form/Button';
-import Separator from '../../core/layout/Separator';
+import Card from '../../../core/layout/Card';
+import TextInput from '../../../core/form/TextInput';
+import Button from '../../../core/form/Button';
+import Separator from '../../../core/layout/Separator';
 
 const StudentForm = props => (
   <Card>

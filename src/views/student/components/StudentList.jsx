@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../core/layout/Card';
-import Spinner from '../../core/content/Spinner';
-import Table from '../../core/content/Table';
+import Card from '../../../core/layout/Card';
+import Spinner from '../../../core/content/Spinner';
+import Table from '../../../core/content/Table';
 
 const StudentList = props => (
   <Card
@@ -18,7 +18,7 @@ const StudentList = props => (
             path: 'name',
           },
         ]}
-        rows={props.companies}
+        rows={props.students}
         selectable
       />
     )}
@@ -26,7 +26,7 @@ const StudentList = props => (
 );
 
 StudentList.propTypes = {
-  companies: PropTypes.arrayOf(PropTypes.shape({
+  students: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
