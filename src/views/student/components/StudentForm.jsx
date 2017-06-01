@@ -24,10 +24,19 @@ const StudentForm = props => (
         onChange={value => props.onChange('name', value)}
         error={get(props.errors, 'name', '')}
       />
+      <TextInput
+        floatingLabel
+        fullWidth
+        disabled={props.submitting}
+        label="Student Email"
+        value={get(props.values, 'email', '')}
+        onChange={value => props.onChange('email', value)}
+        error={get(props.errors, 'email', '')}
+      />
       <Separator size="xs" />
       <Button
         icon="done"
-        colored
+        primary
         fullWidth
         disabled={props.submitting || !props.isDirty()}
         type="submit"

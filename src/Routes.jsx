@@ -8,7 +8,7 @@ import CompanyFormSceneContainer from './views/company/components/CompanyFormSce
 import SchoolListScene from './views/school/SchoolListScene';
 import SchoolFormScene from './views/school/SchoolFormScene';
 import StudentListScene from './views/student/components/StudentListScene';
-import StudentFormScene from './views/student/components/StudentFormScene';
+import StudentFormSceneContainer from './views/student/components/StudentFormSceneContainer';
 import NotFoundScene from './views/not-found/NotFoundScene';
 
 function authRequired(nextState, replace) {
@@ -28,7 +28,8 @@ const Routes = () => (
       <Route path="/schools" component={SchoolListScene} />
       <Route path="/schools/new" component={SchoolFormScene} />
       <Route path="/students" component={StudentListScene} />
-      <Route path="/students/new" component={StudentFormScene} />
+      <Route path="/students/new" component={StudentFormSceneContainer} />
+      <Route path="/students/:studentId" component={StudentFormSceneContainer} />
     </Route>
     <Route path="*" component={NotFoundScene} />
   </Router>

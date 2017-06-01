@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
-import { isRequired } from '../../../core/validations';
+import { isRequired, isValidEmail } from '../../../core/validations';
 
 class StudentFormService {
   fetch = new FetchService()
@@ -16,6 +16,7 @@ class StudentFormService {
     });
     this.form.validations = {
       name: [isRequired],
+      email: [isRequired, isValidEmail],
     };
   }
 
