@@ -2,11 +2,11 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Paper from '../../core/layout/Paper';
-import TextInput from '../../core/form/TextInput';
-import Select from '../../core/form/Select';
-import Button from '../../core/form/Button';
-import Separator from '../../core/layout/Separator';
+import Paper from '../../../core/layout/Paper';
+import TextInput from '../../../core/form/TextInput';
+import Select from '../../../core/form/Select';
+import Button from '../../../core/form/Button';
+import Separator from '../../../core/layout/Separator';
 
 const SchoolForm = props => (
   <Paper>

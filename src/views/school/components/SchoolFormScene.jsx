@@ -1,9 +1,9 @@
 import React from 'react';
-import Title from '../../core/content/Title';
-import Tabs from '../../core/navigation/Tabs';
+import Title from '../../../core/content/Title';
+import Tabs from '../../../core/navigation/Tabs';
 import SchoolForm from './SchoolForm';
-import SchoolClassScene from '../school-class/SchoolClassScene';
-import TeacherScene from '../teacher/TeacherScene';
+import SchoolClassScene from '../../school-class/SchoolClassScene';
+import TeacherScene from '../../teacher/TeacherScene';
 
 const SchoolFormScene = () => (
   <div>

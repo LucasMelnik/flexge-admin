@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../core/layout/Card';
-import Spinner from '../../core/content/Spinner';
-import Table from '../../core/content/Table';
+import { browserHistory } from 'react-router';
+import Card from '../../../core/layout/Card';
+import Async from '../../../core/content/Async';
+import Table from '../../../core/content/Table';
 
 const SchoolList = props => (
   <Card
     flexible
   >
-    {props.fetching ? (
-      <Spinner />
-    ) : (
+    <Async fetching={props.fetching}>
       <Table
         columns={[
           {
@@ -24,8 +23,9 @@ const SchoolList = props => (
         ]}
         rows={props.schools}
         selectable
+        onSelect={row => browserHistory.push(`/schools/${row.id}`)}
       />
-    )}
+    </Async>
   </Card>
 );
 
