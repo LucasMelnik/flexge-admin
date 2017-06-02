@@ -19,10 +19,10 @@ const CompanyListScene = () => (
       secondary
       icon="add"
       style={{ position: 'relative',
-               float: 'right',
-               top: 20,
-               right: 20
-             }}
+        float: 'right',
+        top: 20,
+        right: 20,
+      }}
       onClick={() => browserHistory.push('/companies/new')}
     />
     <Separator size="sm" />

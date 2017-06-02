@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../core/layout/Card';
-import Paginator from '../../core/navigation/Paginator';
+import Card from '../../../core/layout/Card';
+import Paginator from '../../../core/navigation/Paginator';
 
-const StudentListPagination = props => (
+const DistributorListPagination = props => (
   <Card
     flexible
     style={{
@@ -20,9 +20,9 @@ const StudentListPagination = props => (
   </Card>
 );
 
-StudentListPagination.propTypes = {
+DistributorListPagination.propTypes = {
   pageCount: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
 };
 
-export default StudentListPagination;
+export default DistributorListPagination;

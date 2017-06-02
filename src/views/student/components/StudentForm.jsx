@@ -7,7 +7,7 @@ import TextInput from '../../../core/form/TextInput';
 import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
 
-const CompanyForm = props => (
+const StudentForm = props => (
   <Card>
     <form
       onSubmit={(event) => {
@@ -19,33 +19,42 @@ const CompanyForm = props => (
         floatingLabel
         fullWidth
         disabled={props.submitting}
-        label="Company Name"
+        label="Student Name"
         value={get(props.values, 'name', '')}
         onChange={value => props.onChange('name', value)}
-        errorText={get(props.errors, 'name', '')}
+        error={get(props.errors, 'name', '')}
+      />
+      <TextInput
+        floatingLabel
+        fullWidth
+        disabled={props.submitting}
+        label="Student Email"
+        value={get(props.values, 'email', '')}
+        onChange={value => props.onChange('email', value)}
+        error={get(props.errors, 'email', '')}
       />
       <Separator size="xs" />
       <Button
         icon="done"
-        secondary
+        primary
         fullWidth
         disabled={props.submitting || !props.isDirty()}
         type="submit"
-        label={props.values.id ? 'Update Company' : 'Create Company'}
+        label={props.values.id ? 'Update Student' : 'Create Student'}
       />
       <Separator size="xs" />
       <Button
         icon="clear"
         fullWidth
         disabled={props.submitting}
-        onClick={() => browserHistory.push('/companies')}
+        onClick={() => browserHistory.push('/students')}
         label="Cancel"
       />
     </form>
   </Card>
 );
 
-CompanyForm.propTypes = {
+StudentForm.propTypes = {
   onSubmit: PropTypes.func,
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
@@ -54,7 +63,7 @@ CompanyForm.propTypes = {
   isDirty: PropTypes.func,
 };
 
-CompanyForm.defaultProps = {
+StudentForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
@@ -63,4 +72,4 @@ CompanyForm.defaultProps = {
   onChange: () => false,
 };
 
-export default CompanyForm;
+export default StudentForm;
