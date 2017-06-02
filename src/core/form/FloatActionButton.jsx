@@ -3,30 +3,25 @@ import PropTypes from 'prop-types';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import FontIcon from 'material-ui/FontIcon';
 
-const FloatActionButton = (props) => {
-  const buttonProps = {
-    secondary: props.secondary,
-    icon: <FontIcon
+const FloatActionButton = props => (
+  <FloatingActionButton
+    secondary = {props.secondary}
+    style = {props.style}
+    onClick = {props.onClick}
+    disabled = {props.disabled}
+  >
+    <FontIcon
       className="material-icons"
       style={{ fontSize: 18 }}
-           >
+    >
       {props.icon}
-    </FontIcon>,
-    onClick: () => props.onClick && props.onClick(),
-    style: props.style,
-    disabled: props.disabled,
-  };
-
-  return (<FloatingActionButton {...buttonProps}>
-            {buttonProps.icon}
-          </FloatingActionButton>)
-};
+    </FontIcon>
+  </FloatingActionButton>
+)
 
 FloatActionButton.propTypes = {
-  raised: PropTypes.bool,
   position: PropTypes.string,
   secondary: PropTypes.bool,
-  mini: PropTypes.bool,
   disabled: PropTypes.bool,
   icon: PropTypes.string,
   style: PropTypes.object,
@@ -34,9 +29,7 @@ FloatActionButton.propTypes = {
 };
 
 FloatActionButton.defaultProps = {
-  raised: true,
   secondary: false,
-  mini: false,
   disabled: false,
   icon: null,
   style: null,

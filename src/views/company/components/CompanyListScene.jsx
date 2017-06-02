@@ -6,7 +6,6 @@ import Separator from '../../../core/layout/Separator';
 import CompanyListFilter from './CompanyListFilter';
 import CompanyListContainer from './CompanyListContainer';
 import CompanyListPaginationContainer from './CompanyListPaginationContainer';
-import Button from '../../../core/form/Button';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 
 const CompanyListScene = () => (
