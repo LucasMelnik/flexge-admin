@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from '../../core/layout/Card';
-import TextInput from '../../core/form/TextInput';
+import Card from '../../../core/layout/Card';
+import TextInput from '../../../core/form/TextInput';
 
 const StudentListFilter = () => (
   <Card

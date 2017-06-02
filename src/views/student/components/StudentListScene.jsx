@@ -1,12 +1,12 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import InlineBlock from 'jsxstyle/InlineBlock';
-import Title from '../../core/content/Title';
-import Separator from '../../core/layout/Separator';
+import Title from '../../../core/content/Title';
+import Separator from '../../../core/layout/Separator';
 import StudentListFilter from './StudentListFilter';
-import StudentList from './StudentList';
-import StudentListPagination from './StudentListPagination';
-import Button from '../../core/form/Button';
+import StudentListContainer from './StudentListContainer';
+import StudentListPaginationContainer from './StudentListPaginationContainer';
+import Button from '../../../core/form/Button';
 
 const StudentListScene = () => (
   <div>
@@ -29,24 +29,9 @@ const StudentListScene = () => (
     <Separator size="sm" />
     <StudentListFilter />
     <Separator size="sm" />
-    <StudentList
-      fetching={false}
-      students={[
-        {
-          id: 1,
-          name: 'Bertoni',
-        },
-        {
-          id: 2,
-          name: 'Uniamérica',
-        },
-      ]}
-    />
+    <StudentListContainer />
     <Separator size="sm" />
-    <StudentListPagination
-      pageCount={1}
-      onPageChange={() => alert('page changed')}
-    />
+    <StudentListPaginationContainer />
     <Separator size="sm" />
   </div>
 );

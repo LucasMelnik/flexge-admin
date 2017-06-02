@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../core/layout/Card';
-import Spinner from '../../core/content/Spinner';
-import Table from '../../core/content/Table';
+import Card from '../../../core/layout/Card';
+import Spinner from '../../../core/content/Spinner';
+import Table from '../../../core/content/Table';
 
-const SchoolList = props => (
+const StudentList = props => (
   <Card
     flexible
   >
@@ -17,25 +17,20 @@ const SchoolList = props => (
             label: 'Name',
             path: 'name',
           },
-          {
-            label: 'Company',
-            path: 'company',
-          },
         ]}
-        rows={props.schools}
+        rows={props.students}
         selectable
       />
     )}
   </Card>
 );
 
-SchoolList.propTypes = {
-  schools: PropTypes.arrayOf(PropTypes.shape({
+StudentList.propTypes = {
+  students: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    company: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
 };
 
-export default SchoolList;
+export default StudentList;
