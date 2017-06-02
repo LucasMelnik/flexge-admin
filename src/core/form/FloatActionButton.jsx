@@ -5,10 +5,10 @@ import FontIcon from 'material-ui/FontIcon';
 
 const FloatActionButton = props => (
   <FloatingActionButton
-    secondary = {props.secondary}
-    style = {props.style}
-    onClick = {props.onClick}
-    disabled = {props.disabled}
+    secondary={props.secondary}
+    style={props.style}
+    onClick={props.onClick}
+    disabled={props.disabled}
   >
     <FontIcon
       className="material-icons"
