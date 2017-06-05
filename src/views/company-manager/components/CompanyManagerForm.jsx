@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import TextInput from '../../../core/form/TextInput';
 import Button from '../../../core/form/Button';
+import Separator from '../../../core/layout/Separator';
 
 const CompanyManagerForm = props => (
   <form
@@ -29,6 +30,7 @@ const CompanyManagerForm = props => (
       onChange={value => props.onChange('email', value)}
       error={get(props.errors, 'email', '')}
     />
+    <Separator size="xs" />
     <Button
       icon="done"
       primary

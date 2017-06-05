@@ -11,7 +11,7 @@ class CompanyManagerListService {
       total: 0,
       page: 1,
       rowsByPage: 10,
-      pageCount: computed(() => Math.ceil(this.total / this.rowsByPage)),
+      pageCount: 1,
     });
   }
 
@@ -28,6 +28,7 @@ class CompanyManagerListService {
         this.managers = this.fetch.data.docs;
         this.total = this.fetch.data.total;
         this.limit = this.fetch.data.limit;
+        this.pageCount = this.fetch.data.pages;
       } else {
         this.managers = [];
         this.total = 0;

@@ -13,18 +13,20 @@ class CompanyManagerFormService {
   constructor() {
     extendObservable(this, {
       managerId: null,
+      successCallback: null,
     });
     this.form.validations = {
       name: [isRequired],
       email: [isRequired, isValidEmail],
-      distributor: [isRequired],
+      company: [isRequired],
     };
   }
 
-  setInitialValues = action((companyId) => {
+  setInitialValues = action((companyId, successCallback) => {
     this.form.reset();
-    this.form.setInitialValues({ distributor: companyId });
+    this.form.setInitialValues({ company: companyId });
     this.companyId = companyId;
+    this.successCallback = successCallback;
   });
 
   handleSubmit = action(() => {
@@ -39,15 +41,18 @@ class CompanyManagerFormService {
       body: this.form.getValues(),
     }).then(() => {
       if (this.submit.data) {
-        CompanyManagerListService.load(this.companyId);
         this.form.reset();
-        this.form.setInitialValues({ distributor: this.companyId });
+        this.form.setInitialValues({ company: this.companyId });
         NotificationService.addNotification(
           `Manager ${managerId ? 'updated' : 'created'} successfully.`,
           null,
           null,
           'success',
         );
+
+        if (this.successCallback) {
+          this.successCallback();
+        }
       }
       if (this.submit.error) {
         NotificationService.addNotification(
@@ -61,6 +66,6 @@ class CompanyManagerFormService {
   })
 }
 
-const distributorFormService = new CompanyManagerFormService();
+const companyFormService = new CompanyManagerFormService();
 
-export default distributorFormService;
+export default companyFormService;

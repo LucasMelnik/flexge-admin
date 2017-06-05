@@ -3,28 +3,65 @@ import PropTypes from 'prop-types';
 import InlineBlock from 'jsxstyle/InlineBlock';
 import Paper from '../../../core/layout/Paper';
 import SubTitle from '../../../core/content/SubTitle';
+import FloatActionButton from '../../../core/form/FloatActionButton';
 import CompanyManagerListContainer from './CompanyManagerListContainer';
 import CompanyManagerFormContainer from './CompanyManagerFormContainer';
 import CompanyManagerListPaginationContainer from './CompanyManagerListPaginationContainer';
 
 const CompanyManagerScene = props => (
   <div>
-    <SubTitle>Company Managers</SubTitle>
+    <InlineBlock>
+      <SubTitle>Company Managers</SubTitle>
+    </InlineBlock>
+    {props.actualScene === 'LIST' && (
+      <FloatActionButton
+        secondary
+        icon="add"
+        style={{
+          position: 'relative',
+          float: 'right',
+          top: 20,
+          right: 20,
+        }}
+        onClick={() => props.changeToForm()}
+      />
+    )}
+    {props.actualScene === 'FORM' && (
+      <FloatActionButton
+        secondary
+        icon="arrow_back"
+        style={{
+          position: 'relative',
+          float: 'right',
+          top: 20,
+          right: 20,
+        }}
+        onClick={() => props.changeToList()}
+      />
+    )}
     <Paper>
-      <CompanyManagerFormContainer companyId={props.companyId} />
-      <CompanyManagerListContainer companyId={props.companyId} />
-      <InlineBlock
-        width="100%"
-        textAlign="center"
-      >
-        <CompanyManagerListPaginationContainer />
-      </InlineBlock>
+      {props.actualScene === 'LIST' && (
+        <div>
+          <CompanyManagerListContainer />
+          <InlineBlock
+            width="100%"
+            textAlign="center"
+          >
+            <CompanyManagerListPaginationContainer />
+          </InlineBlock>
+        </div>
+      )}
+      {props.actualScene === 'FORM' && (
+        <CompanyManagerFormContainer />
+      )}
     </Paper>
   </div>
 );
 
 CompanyManagerScene.propTypes = {
-  companyId: PropTypes.string.isRequired,
+  actualScene: PropTypes.string.isRequired,
+  changeToList: PropTypes.func.isRequired,
+  changeToForm: PropTypes.func.isRequired,
 };
 
 export default CompanyManagerScene;
