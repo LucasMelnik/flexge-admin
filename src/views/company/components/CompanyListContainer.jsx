@@ -15,6 +15,7 @@ class CompanyListContainer extends Component {
       <CompanyList
         companies={toJS(CompanyListService.companies)}
         fetching={CompanyListService.fetch.fetching}
+        onDelete={CompanyListService.handleRemove}
       />
     );
   }

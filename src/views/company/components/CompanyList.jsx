@@ -20,6 +20,7 @@ const CompanyList = props => (
         rows={props.companies}
         selectable
         onSelect={row => browserHistory.push(`/companies/${row.id}`)}
+        onDelete={row => props.onDelete(row.id)}
       />
     </Async>
   </Card>
@@ -31,6 +32,7 @@ CompanyList.propTypes = {
     name: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default CompanyList;

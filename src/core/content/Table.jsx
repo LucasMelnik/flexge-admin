@@ -9,6 +9,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import IconButton from 'material-ui/IconButton';
 import './Table.css';
 
 export default class Table extends Component {
@@ -20,12 +21,14 @@ export default class Table extends Component {
     })),
     actionComponent: PropTypes.func,
     onSelect: PropTypes.func,
+    onDelete: PropTypes.func,
     rows: PropTypes.arrayOf(PropTypes.object),
   }
 
   static defaultProps = {
     actionComponent: null,
     onSelect: null,
+    onDelete: null,
     selectable: false,
     columns: [],
     rows: [],
@@ -73,6 +76,12 @@ export default class Table extends Component {
                 {column.label}
               </TableHeaderColumn>
             ))}
+            {this.props.onDelete && (
+              <TableHeaderColumn
+                key="delete"
+                style={{ width: 30 }}
+              />
+            )}
           </TableRow>
         </TableHeader>
         <TableBody
@@ -82,7 +91,6 @@ export default class Table extends Component {
           {this.props.rows && this.props.rows.length > 0 ? this.props.rows.map(row => (
             <TableRow
               key={row.id}
-              onMouseDown={() => this.props.onSelect && this.props.onSelect(row)}
             >
               {this.props.actionComponent && (
                 <TableRowColumn className="action-column">
@@ -92,10 +100,24 @@ export default class Table extends Component {
               {this.props.columns.map(column => (
                 <TableRowColumn
                   key={column.path}
+                  onMouseDown={() => this.props.onSelect && this.props.onSelect(row)}
                 >
                   {get(row, column.path, '').toString()}
                 </TableRowColumn>
               ))}
+              {this.props.onDelete && (
+                <TableRowColumn
+                  key={`delete${row.id}`}
+                  style={{ width: 60 }}
+                >
+                  <IconButton
+                    onClick={() => this.props.onDelete(row)}
+                    iconClassName="material-icons"
+                  >
+                    delete
+                  </IconButton>
+                </TableRowColumn>
+              )}
             </TableRow>
           )) : (
             <TableRow>

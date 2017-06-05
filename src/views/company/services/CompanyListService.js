@@ -58,6 +58,15 @@ class CompanyListService {
     this.filter = value;
     this.load();
   });
+
+  handleRemove = action((companyId) => {
+    this.fetch.fetch({
+      url: `/companies/${companyId}`,
+      method: 'delete',
+    }).then(() => {
+      this.load();
+    });
+  });
 }
 
 const companyListService = new CompanyListService();
