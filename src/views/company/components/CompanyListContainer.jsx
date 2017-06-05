@@ -7,7 +7,7 @@ import CompanyListService from '../services/CompanyListService';
 class CompanyListContainer extends Component {
 
   componentDidMount() {
-    CompanyListService.load();
+    CompanyListService.init();
   }
 
   render() {

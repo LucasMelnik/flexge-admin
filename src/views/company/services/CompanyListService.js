@@ -15,6 +15,12 @@ class CompanyListService {
     });
   }
 
+  init = action(() => {
+    this.page = 1;
+    this.filter = '';
+    this.load();
+  });
+
   load = action(() => {
     this.fetch.fetch({
       url: '/companies',
