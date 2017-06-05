@@ -7,7 +7,7 @@ import Separator from '../../../core/layout/Separator';
 import Title from '../../../core/content/Title';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import CompanyFormContainer from './CompanyFormContainer';
-import CompanyManagerScene from '../../company-manager/CompanyManagerScene';
+import CompanyManagerScene from '../../company-manager/components/CompanyManagerScene';
 
 const CompanyFormScene = props => (
   <div>
@@ -31,7 +31,7 @@ const CompanyFormScene = props => (
     <CompanyFormContainer />
     {props.companyId && (
       <Block marginTop={20}>
-        <CompanyManagerScene />
+        <CompanyManagerScene companyId={props.companyId} />
       </Block>
     )}
   </div>

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import TextInput from '../../core/form/TextInput';
-import Button from '../../core/form/Button';
+import TextInput from '../../../core/form/TextInput';
+import Button from '../../../core/form/Button';
 
 const CompanyManagerForm = props => (
   <form
@@ -20,9 +20,18 @@ const CompanyManagerForm = props => (
       onChange={value => props.onChange('name', value)}
       error={get(props.errors, 'name', '')}
     />
+    <TextInput
+      floatingLabel
+      fullWidth
+      disabled={props.submitting}
+      label="Manager Email"
+      value={get(props.values, 'email', '')}
+      onChange={value => props.onChange('email', value)}
+      error={get(props.errors, 'email', '')}
+    />
     <Button
       icon="done"
-      colored
+      primary
       fullWidth
       disabled={props.submitting || !props.isDirty()}
       type="submit"
