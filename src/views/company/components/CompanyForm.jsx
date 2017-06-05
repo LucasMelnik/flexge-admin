@@ -37,9 +37,9 @@ const CompanyForm = props => (
       <Button
         icon="clear"
         fullWidth
-        disabled={props.submitting}
-        onClick={() => browserHistory.push('/companies')}
-        label="Cancel"
+        disabled={props.submitting || !props.isDirty()}
+        onClick={props.onReset}
+        label="Discard changes"
       />
     </form>
   </Card>
@@ -47,6 +47,7 @@ const CompanyForm = props => (
 
 CompanyForm.propTypes = {
   onSubmit: PropTypes.func,
+  onReset: PropTypes.func,
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
@@ -61,6 +62,7 @@ CompanyForm.defaultProps = {
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
   onChange: () => false,
+  onReset: () => false,
 };
 
 export default CompanyForm;

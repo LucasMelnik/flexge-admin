@@ -7,6 +7,7 @@ class FormService {
   constructor() {
     extendObservable(this, {
       values: {},
+      initialValues: null,
       dirtyValues: [],
       validations: {},
       // TODO: improve readability
@@ -43,45 +44,46 @@ class FormService {
   }
 
   isDirty = path => {
-    return path ? this.dirtyValues.filter(dirtyValue => dirtyValue === path).length > 0 : this.dirtyValues.length > 0
+    return path ? this.dirtyValues.filter(dirtyValue => dirtyValue === path).length > 0 : this.dirtyValues.length > 0;
   }
 
-  setInitialValues = action(values => {
-    this.values = values
+  setInitialValues = action((values) => {
+    this.initialValues = values;
+    this.values = values;
   })
 
   setValue = action((path, value) => {
-    const values = {...this.values }
-    const newValues = set(values, path, value)
-    this.values = newValues
-    this.setDirty(path)
+    const values = { ...this.values };
+    const newValues = set(values, path, value);
+    this.values = newValues;
+    this.setDirty(path);
   })
 
-  setDirty = action(path => {
+  setDirty = action((path) => {
     if (this.isDirty(path)) {
-      return
+      return;
     }
-    const nextDirtyValues = [...this.dirtyValues, path]
-    this.dirtyValues = nextDirtyValues
+    const nextDirtyValues = [...this.dirtyValues, path];
+    this.dirtyValues = nextDirtyValues;
   })
 
-  setPristine = action(path => {
+  setPristine = action((path) => {
     if (!this.isDirty(path)) {
-      return
+      return;
     }
-    const nextDirtyValues = this.dirtyValues.filter(dirtyValue => dirtyValue !== path)
-    this.dirtyValues = nextDirtyValues
+    const nextDirtyValues = this.dirtyValues.filter(dirtyValue => dirtyValue !== path);
+    this.dirtyValues = nextDirtyValues;
   })
 
   setSubmitted = action(() => {
-    this.submitted = true
+    this.submitted = true;
   })
 
   reset = action(() => {
-    this.values = {}
-    this.dirtyValues = []
-    this.submitted = false
+    this.values = this.initialValues || {};
+    this.dirtyValues = [];
+    this.submitted = false;
   })
 }
 
-export default FormService
+export default FormService;

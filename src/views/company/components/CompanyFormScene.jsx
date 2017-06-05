@@ -1,15 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Block from 'jsxstyle/Block';
+import InlineBlock from 'jsxstyle/InlineBlock';
+import { browserHistory } from 'react-router';
+import Separator from '../../../core/layout/Separator';
 import Title from '../../../core/content/Title';
+import FloatActionButton from '../../../core/form/FloatActionButton';
 import CompanyFormContainer from './CompanyFormContainer';
 import CompanyManagerScene from '../../company-manager/CompanyManagerScene';
 
 const CompanyFormScene = props => (
   <div>
-    <Title>
-      Company
-    </Title>
+    <InlineBlock>
+      <Title>
+        Company
+      </Title>
+    </InlineBlock>
+    <FloatActionButton
+      secondary
+      icon="arrow_back"
+      style={{
+        position: 'relative',
+        float: 'right',
+        top: 20,
+        right: 20,
+      }}
+      onClick={() => browserHistory.push('/companies')}
+    />
+    <Separator size="sm" />
     <CompanyFormContainer />
     {props.companyId && (
       <Block marginTop={20}>

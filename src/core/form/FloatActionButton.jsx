@@ -17,7 +17,7 @@ const FloatActionButton = props => (
       {props.icon}
     </FontIcon>
   </FloatingActionButton>
-)
+);
 
 FloatActionButton.propTypes = {
   position: PropTypes.string,

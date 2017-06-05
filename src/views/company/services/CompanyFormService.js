@@ -66,7 +66,7 @@ class CompanyFormService {
         );
       }
     });
-  })
+  });
 }
 
 const companyFormService = new CompanyFormService();

@@ -7,6 +7,7 @@ const CompanyFormContainer = () => (
   <CompanyForm
     onSubmit={CompanyFormService.handleSubmit}
     onChange={CompanyFormService.form.setValue}
+    onReset={CompanyFormService.form.reset}
     values={CompanyFormService.form.getValues()}
     errors={CompanyFormService.form.errors}
     submitting={CompanyFormService.fetch.fetching}
