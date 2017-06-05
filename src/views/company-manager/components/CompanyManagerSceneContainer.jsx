@@ -13,7 +13,6 @@ class CompanyManagerSceneContainer extends Component {
   state = { actualScene: 'LIST' }
 
   componentDidMount() {
-    CompanyManagerFormService.setInitialValues(this.props.companyId, this.handleChangeToList);
     CompanyManagerListService.load(this.props.companyId);
   }
 
@@ -25,6 +24,16 @@ class CompanyManagerSceneContainer extends Component {
   };
 
   handleChangeToForm = () => {
+    CompanyManagerFormService.setInitialValues({
+      company: this.props.companyId,
+    }, this.handleChangeToList);
+    this.setState({
+      actualScene: 'FORM',
+    });
+  };
+
+  handleChangeToEdit = (manager) => {
+    CompanyManagerFormService.setInitialValues(manager, this.handleChangeToList);
     this.setState({
       actualScene: 'FORM',
     });
@@ -36,6 +45,7 @@ class CompanyManagerSceneContainer extends Component {
         actualScene={this.state.actualScene}
         changeToForm={this.handleChangeToForm}
         changeToList={this.handleChangeToList}
+        onRowClick={this.handleChangeToEdit}
       />
     );
   }

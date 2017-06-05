@@ -42,7 +42,9 @@ const CompanyManagerScene = props => (
     <Paper>
       {props.actualScene === 'LIST' && (
         <div>
-          <CompanyManagerListContainer />
+          <CompanyManagerListContainer
+            onRowClick={props.onRowClick}
+          />
           <InlineBlock
             width="100%"
             textAlign="center"
@@ -62,6 +64,7 @@ CompanyManagerScene.propTypes = {
   actualScene: PropTypes.string.isRequired,
   changeToList: PropTypes.func.isRequired,
   changeToForm: PropTypes.func.isRequired,
+  onRowClick: PropTypes.func.isRequired,
 };
 
 export default CompanyManagerScene;

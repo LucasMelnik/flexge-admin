@@ -17,6 +17,7 @@ const CompanyManagerList = props => (
         },
       ]}
       rows={props.managers}
+      onSelect={props.onRowClick}
     />
   </Async>
 );
@@ -27,6 +28,7 @@ CompanyManagerList.propTypes = {
     name: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
+  onRowClick: PropTypes.func.isRequired,
 };
 
 export default CompanyManagerList;

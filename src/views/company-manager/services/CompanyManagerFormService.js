@@ -3,7 +3,6 @@ import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired, isValidEmail } from '../../../core/validations';
-import CompanyManagerListService from './CompanyManagerListService';
 
 class CompanyManagerFormService {
   fetch = new FetchService()
@@ -22,10 +21,10 @@ class CompanyManagerFormService {
     };
   }
 
-  setInitialValues = action((companyId, successCallback) => {
+  setInitialValues = action((manager, successCallback) => {
     this.form.reset();
-    this.form.setInitialValues({ company: companyId });
-    this.companyId = companyId;
+    this.form.setInitialValues(manager);
+    this.companyId = manager.company;
     this.successCallback = successCallback;
   });
 
