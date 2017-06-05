@@ -242,7 +242,7 @@ aws4@^1.2.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
-axios@^0.16.1:
+axios@0.16.1:
   version "0.16.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.16.1.tgz#c0b6d26600842384b8f509e57111f0d2df8223ca"
   dependencies:
@@ -3321,7 +3321,7 @@ jsx-ast-utils@^1.0.0, jsx-ast-utils@^1.3.1, jsx-ast-utils@^1.3.4:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-1.4.1.tgz#3867213e8dd79bf1e8f2300c0cfc1efb182c0df1"
 
-jsxstyle@^1.0.2:
+jsxstyle@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/jsxstyle/-/jsxstyle-1.0.2.tgz#10ccc3a229a89f6b04c581200ba7c699f76a3344"
   dependencies:
@@ -3496,7 +3496,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-"lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.4, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0:
+lodash@4.17.4, "lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.4, lodash@^4.17.2, lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -3545,7 +3545,7 @@ marked@^0.3.6:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.6.tgz#b2c6c618fccece4ef86c4fc6cb8a7cbf5aeda8d7"
 
-material-ui@^0.18.1:
+material-ui@0.18.1:
   version "0.18.1"
   resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.18.1.tgz#1c8a47d7e930ff0b07064dd8633035984a5a3569"
   dependencies:
@@ -3669,13 +3669,13 @@ mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
   dependencies:
     minimist "0.0.8"
 
-mobx-react@^4.2.1:
+mobx-react@4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-4.2.1.tgz#35324834b71ae27a7553d76ad413e5f96ba40db5"
   dependencies:
     hoist-non-react-statics "^1.2.0"
 
-mobx@^3.1.10:
+mobx@3.1.10:
   version "3.1.10"
   resolved "https://registry.yarnpkg.com/mobx/-/mobx-3.1.10.tgz#61171f8b347e6c15e8a671100f6ef887fe52e80e"
 
@@ -4385,7 +4385,7 @@ promise@7.1.1, promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@~15.5.7:
+prop-types@15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@~15.5.7:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -4419,7 +4419,7 @@ q@^1.1.2:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.0.tgz#dd01bac9d06d30e6f219aecb8253ee9ebdc308f1"
 
-qs@6.4.0, qs@^6.4.0, qs@~6.4.0:
+qs@6.4.0, qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
 
@@ -4493,7 +4493,7 @@ react-dev-utils@^0.5.2:
     sockjs-client "1.0.1"
     strip-ansi "3.0.1"
 
-react-dom@^15.5.4:
+react-dom@15.5.4:
   version "15.5.4"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.5.4.tgz#ba0c28786fd52ed7e4f2135fe0288d462aef93da"
   dependencies:
@@ -4511,7 +4511,7 @@ react-event-listener@^0.4.5:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-paginate@^4.4.2:
+react-paginate@4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/react-paginate/-/react-paginate-4.4.2.tgz#ca1a34c518b99f171e04234b5c62f4ac98568d40"
   dependencies:
@@ -4577,7 +4577,7 @@ react-scripts@0.9.5:
   optionalDependencies:
     fsevents "1.0.17"
 
-react-tap-event-plugin@^2.0.1:
+react-tap-event-plugin@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-tap-event-plugin/-/react-tap-event-plugin-2.0.1.tgz#316beb3bc6556e29ec869a7293e89c826a9074d2"
   dependencies:
@@ -4592,7 +4592,7 @@ react-transition-group@^1.1.2:
     prop-types "^15.5.6"
     warning "^3.0.0"
 
-react@^15.0.0, react@^15.5.4:
+react@15.5.4, react@^15.0.0:
   version "15.5.4"
   resolved "https://registry.yarnpkg.com/react/-/react-15.5.4.tgz#fa83eb01506ab237cdc1c8c3b1cea8de012bf047"
   dependencies:
@@ -5464,7 +5464,7 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
 
-validator@^7.0.0:
+validator@7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/validator/-/validator-7.0.0.tgz#c74deb8063512fac35547938e6f0b1504a282fd2"
 
