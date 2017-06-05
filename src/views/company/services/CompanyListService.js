@@ -1,4 +1,4 @@
-import { action, extendObservable, computed } from 'mobx';
+import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
 class CompanyListService {
@@ -10,7 +10,8 @@ class CompanyListService {
       total: 0,
       page: 1,
       rowsByPage: 10,
-      pageCount: computed(() => Math.ceil(this.total / this.rowsByPage)),
+      pageCount: 1,
+      filter: '',
     });
   }
 
@@ -20,21 +21,35 @@ class CompanyListService {
       query: {
         page: this.page,
         size: this.rowsByPage,
+        query: this.filter && {
+          name: {
+            $regex: this.filter,
+          },
+        },
       },
     }).then(() => {
       if (this.fetch.data) {
         this.companies = this.fetch.data.docs;
         this.total = this.fetch.data.total;
         this.limit = this.fetch.data.limit;
+        this.page = this.fetch.data.page;
+        this.pageCount = this.fetch.data.pages;
       } else {
         this.companies = [];
         this.total = 0;
+        this.page = 1;
+        this.pageCount = 1;
       }
     });
   });
 
   handlePageChange = action((page) => {
     this.page = page.selected + 1;
+    this.load();
+  });
+
+  handleFilterChange = action((value) => {
+    this.filter = value;
     this.load();
   });
 }
