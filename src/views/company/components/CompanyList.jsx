@@ -16,6 +16,14 @@ const CompanyList = props => (
             label: 'Name',
             path: 'name',
           },
+          {
+            label: 'Social Reason',
+            path: 'socialReason',
+          },
+          {
+            label: 'Phone',
+            path: 'phone',
+          },
         ]}
         rows={props.companies}
         selectable

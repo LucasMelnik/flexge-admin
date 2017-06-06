@@ -16,6 +16,7 @@ class CompanyFormService {
     });
     this.form.validations = {
       name: [isRequired],
+      cnpj: [isRequired],
     };
   }
 
@@ -26,9 +27,15 @@ class CompanyFormService {
         url: `/companies/${companyId}`,
       }).then(() => {
         if (this.fetch.data) {
-          this.form.setInitialValues(this.fetch.data);
+          const initialValues = this.fetch.data;
+          if (initialValues.contractFrom) {
+            initialValues.contractFrom = new Date(initialValues.contractFrom);
+          }
+          this.form.setInitialValues(initialValues);
         }
       });
+    } else {
+      this.form.setInitialValues({ country: 'Brazil' });
     }
     this.companyId = companyId;
   });

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Card from '../../../core/layout/Card';
 import TextInput from '../../../core/form/TextInput';
+import Select from '../../../core/form/Select';
+import DatePicker from '../../../core/form/DatePicker';
 import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
 
@@ -23,6 +25,197 @@ const CompanyForm = props => (
         onChange={value => props.onChange('name', value)}
         errorText={get(props.errors, 'name', '')}
       />
+      <div className="row">
+        <div className="col-lg-4">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="CNPJ"
+            value={get(props.values, 'cnpj', '')}
+            onChange={value => props.onChange('cnpj', value)}
+            errorText={get(props.errors, 'cnpj', '')}
+          />
+        </div>
+        <div className="col-lg-6">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="Social Reason"
+            value={get(props.values, 'socialReason', '')}
+            onChange={value => props.onChange('socialReason', value)}
+            errorText={get(props.errors, 'socialReason', '')}
+          />
+        </div>
+        <div className="col-lg-2">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="Year of Foundation"
+            value={get(props.values, 'foundationYear', '')}
+            onChange={value => props.onChange('foundationYear', value)}
+            errorText={get(props.errors, 'foundationYear', '')}
+          />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-lg-3">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled
+            label="Country"
+            value={get(props.values, 'country', '')}
+            onChange={value => props.onChange('country', value)}
+            errorText={get(props.errors, 'country', '')}
+          />
+        </div>
+        <div className="col-lg-3">
+          <Select
+            fullWidth
+            disabled={props.submitting}
+            label="State"
+            value={get(props.values, 'state', '')}
+            onChange={value => props.onChange('state', value)}
+            errorText={get(props.errors, 'state', '')}
+            options={[
+              { label: 'Acre', value: 'AC' },
+              { label: 'Alagoas', value: 'AL' },
+              { label: 'Amapá', value: 'AP' },
+              { label: 'Amazonas', value: 'AM' },
+              { label: 'Bahia', value: 'BA' },
+              { label: 'Ceará', value: 'CE' },
+              { label: 'Distrito Federal', value: 'DF' },
+              { label: 'Espiríto Santo', value: 'ES' },
+              { label: 'Goiás', value: 'GO' },
+              { label: 'Maranhão', value: 'MA' },
+              { label: 'Mato Grosso', value: 'MT' },
+              { label: 'Mato Grosso do Sul', value: 'MS' },
+              { label: 'Minas Gerais', value: 'MG' },
+              { label: 'Pará', value: 'PA' },
+              { label: 'Paraíba', value: 'PB' },
+              { label: 'Paraná', value: 'PR' },
+              { label: 'Pernambuco', value: 'PE' },
+              { label: 'Piauí', value: 'PI' },
+              { label: 'Rio de Janeiro', value: 'RJ' },
+              { label: 'Rio Grande do Norte', value: 'RN' },
+              { label: 'Rio Grande do Sul', value: 'RS' },
+              { label: 'Rondônia', value: 'RO' },
+              { label: 'Roraima', value: 'RR' },
+              { label: 'Santa Catarina', value: 'SC' },
+              { label: 'São Pualo', value: 'SP' },
+              { label: 'Sergipe', value: 'SE' },
+              { label: 'Tocantins', value: 'TO' },
+            ]}
+          />
+        </div>
+        <div className="col-lg-6">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="City"
+            value={get(props.values, 'city', '')}
+            onChange={value => props.onChange('city', value)}
+            errorText={get(props.errors, 'city', '')}
+          />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-lg-9">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="Address"
+            value={get(props.values, 'address', '')}
+            onChange={value => props.onChange('address', value)}
+            errorText={get(props.errors, 'address', '')}
+          />
+        </div>
+        <div className="col-lg-3">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="Phone"
+            value={get(props.values, 'phone', '')}
+            onChange={value => props.onChange('phone', value)}
+            errorText={get(props.errors, 'phone', '')}
+          />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-lg-3">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="License Quantity per Package"
+            value={get(props.values, 'licenseQuantityPackage', '')}
+            onChange={value => props.onChange('licenseQuantityPackage', value)}
+            errorText={get(props.errors, 'licenseQuantityPackage', '')}
+          />
+        </div>
+        <div className="col-lg-3">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="License Package Price"
+            value={get(props.values, 'licensePricePackage', '')}
+            onChange={value => props.onChange('licensePricePackage', value)}
+            errorText={get(props.errors, 'licensePricePackage', '')}
+          />
+        </div>
+        <div className="col-lg-3">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="Price per Extra License"
+            value={get(props.values, 'licensePriceExtra', '')}
+            onChange={value => props.onChange('licensePriceExtra', value)}
+            errorText={get(props.errors, 'licensePriceExtra', '')}
+          />
+        </div>
+        <div className="col-lg-3">
+          <DatePicker
+            fullWidth
+            disabled={props.submitting}
+            label="Contract Starts in"
+            value={get(props.values, 'contractFrom', null)}
+            onChange={value => props.onChange('contractFrom', value)}
+            errorText={get(props.errors, 'contractFrom', '')}
+          />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-lg-8">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="Subscriber Name"
+            value={get(props.values, 'subscriberName', '')}
+            onChange={value => props.onChange('subscriberName', value)}
+            errorText={get(props.errors, 'subscriberName', '')}
+          />
+        </div>
+        <div className="col-lg-4">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="Subscriber Post"
+            value={get(props.values, 'subscriberPost', '')}
+            onChange={value => props.onChange('subscriberPost', value)}
+            errorText={get(props.errors, 'subscriberPost', '')}
+          />
+        </div>
+      </div>
       <Separator size="xs" />
       <Button
         icon="done"
