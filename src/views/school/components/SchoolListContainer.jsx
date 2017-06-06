@@ -7,7 +7,7 @@ import SchoolListService from '../services/SchoolListService';
 class SchoolListContainer extends Component {
 
   componentDidMount() {
-    SchoolListService.load();
+    SchoolListService.init();
   }
 
   render() {
@@ -15,6 +15,7 @@ class SchoolListContainer extends Component {
       <SchoolList
         schools={toJS(SchoolListService.schools)}
         fetching={SchoolListService.fetch.fetching}
+        onDelete={SchoolListService.handleRemove}
       />
     );
   }
