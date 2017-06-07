@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import TextInput from '../../core/form/TextInput';
-import Button from '../../core/form/Button';
+import TextInput from '../../../core/form/TextInput';
+import Button from '../../../core/form/Button';
 
 const TeacherForm = props => (
   <form
