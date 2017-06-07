@@ -56,9 +56,9 @@ class StudentListService {
     this.load();
   });
 
-  handleRemove = action((schoolId) => {
+  handleRemove = action((studentId) => {
     this.fetch.fetch({
-      url: `/schools/${schoolId}`,
+      url: `/students/${studentId}`,
       method: 'delete',
     }).then(() => {
       this.load();

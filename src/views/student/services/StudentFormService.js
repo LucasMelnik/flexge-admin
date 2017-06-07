@@ -30,6 +30,8 @@ class StudentFormService {
           this.form.setInitialValues(this.fetch.data);
         }
       });
+    } else {
+      this.form.setInitialValues({});
     }
     this.studentId = studentId;
   });

@@ -15,6 +15,7 @@ class StudentListContainer extends Component {
       <StudentList
         students={toJS(StudentListService.students)}
         fetching={StudentListService.fetch.fetching}
+        onDelete={StudentListService.handleRemove}
       />
     );
   }
