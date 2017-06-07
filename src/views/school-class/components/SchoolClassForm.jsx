@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import TextInput from '../../../core/form/TextInput';
 import Separator from '../../../core/layout/Separator';
 import Button from '../../../core/form/Button';
+import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
 
 const SchoolClassForm = props => (
   <form
@@ -12,15 +13,34 @@ const SchoolClassForm = props => (
       props.onSubmit();
     }}
   >
-    <TextInput
-      floatingLabel
-      fullWidth
-      disabled={props.submitting}
-      label="Class Name"
-      value={get(props.values, 'name', '')}
-      onChange={value => props.onChange('name', value)}
-      error={get(props.errors, 'name', '')}
-    />
+    <div className="row">
+      <div className="col-lg-6">
+        <TextInput
+          floatingLabel
+          fullWidth
+          disabled={props.submitting}
+          label="Class Name"
+          value={get(props.values, 'name', '')}
+          onChange={value => props.onChange('name', value)}
+          error={get(props.errors, 'name', '')}
+        />
+      </div>
+      <div className="col-lg-6">
+        <FetchAutoComplete
+          url="teachers?page=1&size=100"
+          fullWidth
+          disabled={props.submitting}
+          label="Teacher"
+          value={get(props.values, 'teacher', '')}
+          onSelect={teacher => props.onChange('teacher', teacher.id)}
+          error={get(props.errors, 'teacher', '')}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </div>
+    </div>
     <Separator size="xs" />
     <Button
       icon="done"
