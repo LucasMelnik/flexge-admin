@@ -3,31 +3,30 @@ import { browserHistory } from 'react-router';
 import InlineBlock from 'jsxstyle/InlineBlock';
 import Title from '../../../core/content/Title';
 import Separator from '../../../core/layout/Separator';
-import StudentListFilter from './StudentListFilter';
+import FloatActionButton from '../../../core/form/FloatActionButton';
+import StudentListFilterContainer from './StudentListFilterContainer';
 import StudentListContainer from './StudentListContainer';
 import StudentListPaginationContainer from './StudentListPaginationContainer';
-import Button from '../../../core/form/Button';
 
 const StudentListScene = () => (
   <div>
     <InlineBlock>
       <Title>
-        Student list
+        Students
       </Title>
     </InlineBlock>
-    <InlineBlock
-      marginLeft={10}
-      verticalAlign="top"
-    >
-      <Button
-        secondary
-        label="New Student"
-        onClick={() => browserHistory.push('/students/new')}
-        icon="add"
-      />
-    </InlineBlock>
+    <FloatActionButton
+      secondary
+      icon="add"
+      style={{ position: 'relative',
+        float: 'right',
+        top: 20,
+        right: 20,
+      }}
+      onClick={() => browserHistory.push('/students/new')}
+    />
     <Separator size="sm" />
-    <StudentListFilter />
+    <StudentListFilterContainer />
     <Separator size="sm" />
     <StudentListContainer />
     <Separator size="sm" />

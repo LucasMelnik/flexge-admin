@@ -7,7 +7,7 @@ import StudentListService from '../services/StudentListService';
 class StudentListContainer extends Component {
 
   componentDidMount() {
-    StudentListService.load();
+    StudentListService.init();
   }
 
   render() {
