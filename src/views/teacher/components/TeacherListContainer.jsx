@@ -13,7 +13,7 @@ class TeacherListContainer extends Component {
   render() {
     return (
       <TeacherList
-        companies={toJS(TeacherListService.companies)}
+        teachers={toJS(TeacherListService.teachers)}
         fetching={TeacherListService.fetch.fetching}
         onDelete={TeacherListService.handleRemove}
       />
