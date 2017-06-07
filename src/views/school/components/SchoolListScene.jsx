@@ -3,8 +3,8 @@ import { browserHistory } from 'react-router';
 import InlineBlock from 'jsxstyle/InlineBlock';
 import Title from '../../../core/content/Title';
 import Separator from '../../../core/layout/Separator';
-import Button from '../../../core/form/Button';
-import SchoolListFilter from './SchoolListFilter';
+import FloatActionButton from '../../../core/form/FloatActionButton';
+import SchoolListFilterContainer from './SchoolListFilterContainer';
 import SchoolListContainer from './SchoolListContainer';
 import SchoolListPaginationContainer from './SchoolListPaginationContainer';
 
@@ -15,19 +15,18 @@ const SchoolListScene = () => (
         School list
       </Title>
     </InlineBlock>
-    <InlineBlock
-      marginLeft={10}
-      verticalAlign="top"
-    >
-      <Button
-        secondary
-        label="New School"
-        onClick={() => browserHistory.push('/schools/new')}
-        icon="add"
-      />
-    </InlineBlock>
+    <FloatActionButton
+      secondary
+      icon="add"
+      style={{ position: 'relative',
+        float: 'right',
+        top: 20,
+        right: 20,
+      }}
+      onClick={() => browserHistory.push('/schools/new')}
+    />
     <Separator size="sm" />
-    <SchoolListFilter />
+    <SchoolListFilterContainer />
     <Separator size="sm" />
     <SchoolListContainer />
     <Separator size="sm" />

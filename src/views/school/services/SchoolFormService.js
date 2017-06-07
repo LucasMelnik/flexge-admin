@@ -16,6 +16,7 @@ class ScoolFormService {
     });
     this.form.validations = {
       name: [isRequired],
+      company: [isRequired],
     };
   }
 
@@ -29,6 +30,8 @@ class ScoolFormService {
           this.form.setInitialValues(this.fetch.data);
         }
       });
+    } else {
+      this.form.setInitialValues({ country: 'Brazil' });
     }
     this.schoolId = schoolId;
   });

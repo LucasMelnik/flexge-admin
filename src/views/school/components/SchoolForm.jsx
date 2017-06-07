@@ -1,10 +1,10 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Paper from '../../../core/layout/Paper';
 import TextInput from '../../../core/form/TextInput';
 import Select from '../../../core/form/Select';
+import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
 import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
 
@@ -16,42 +16,108 @@ const SchoolForm = props => (
         props.onSubmit();
       }}
     >
-      <TextInput
-        floatingLabel
-        fullWidth
-        disabled={props.submitting}
-        label="School Name"
-        value={get(props.values, 'name', '')}
-        onChange={value => props.onChange('name', value)}
-        error={get(props.errors, 'name', '')}
-      />
-      <Separator size="xs" />
-      <Select
-        fullWidth
-        disabled={props.submitting}
-        label="Company"
-        value={get(props.values, 'company.id', '')}
-        onChange={value => props.onChange('company.id', value)}
-        error={get(props.errors, 'company.id', '')}
-        options={[
-          {
-            label: 'Bertoni',
-            value: 1,
-          },
-          {
-            label: 'UDC',
-            value: 2,
-          },
-          {
-            label: 'Uniamérica',
-            value: 3,
-          },
-        ]}
-      />
+      <div className="row">
+        <div className="col-lg-6">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="School Name"
+            value={get(props.values, 'name', '')}
+            onChange={value => props.onChange('name', value)}
+            error={get(props.errors, 'name', '')}
+          />
+        </div>
+        <div className="col-lg-4">
+          <FetchAutoComplete
+            url="companies?page=1&size=100"
+            fullWidth
+            disabled={props.submitting}
+            label="Company"
+            value={get(props.values, 'company', '')}
+            onSelect={company => props.onChange('company', company.id)}
+            error={get(props.errors, 'company', '')}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </div>
+        <div className="col-lg-2">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="Foundantion Year"
+            value={get(props.values, 'foundationYear', '')}
+            onChange={value => props.onChange('foundationYear', value)}
+            error={get(props.errors, 'foundationYear', '')}
+          />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-lg-3">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled
+            label="Country"
+            value={get(props.values, 'country', '')}
+            onChange={value => props.onChange('country', value)}
+            errorText={get(props.errors, 'country', '')}
+          />
+        </div>
+        <div className="col-lg-3">
+          <Select
+            fullWidth
+            disabled={props.submitting}
+            label="State"
+            value={get(props.values, 'state', '')}
+            onChange={value => props.onChange('state', value)}
+            errorText={get(props.errors, 'state', '')}
+            options={props.states}
+          />
+        </div>
+        <div className="col-lg-6">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="City"
+            value={get(props.values, 'city', '')}
+            onChange={value => props.onChange('city', value)}
+            errorText={get(props.errors, 'city', '')}
+          />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-lg-9">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="Address"
+            value={get(props.values, 'address', '')}
+            onChange={value => props.onChange('address', value)}
+            errorText={get(props.errors, 'address', '')}
+          />
+        </div>
+        <div className="col-lg-3">
+          <TextInput
+            floatingLabel
+            fullWidth
+            disabled={props.submitting}
+            label="Phone"
+            value={get(props.values, 'phone', '')}
+            onChange={value => props.onChange('phone', value)}
+            errorText={get(props.errors, 'phone', '')}
+          />
+        </div>
+      </div>
       <Separator size="xs" />
       <Button
         icon="done"
-        colored
+        secondary
         fullWidth
         disabled={props.submitting || !props.isDirty()}
         type="submit"
@@ -61,9 +127,9 @@ const SchoolForm = props => (
       <Button
         icon="clear"
         fullWidth
-        disabled={props.submitting}
-        onClick={() => browserHistory.push('/companies')}
-        label="Cancel"
+        disabled={props.submitting || !props.isDirty()}
+        onClick={props.onReset}
+        label="Discard changes"
       />
     </form>
   </Paper>
@@ -71,11 +137,13 @@ const SchoolForm = props => (
 
 SchoolForm.propTypes = {
   onSubmit: PropTypes.func,
+  onReset: PropTypes.func,
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
+  states: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 SchoolForm.defaultProps = {
@@ -84,6 +152,7 @@ SchoolForm.defaultProps = {
   submitting: false,
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
+  onReset: () => false,
   onChange: () => false,
 };
 

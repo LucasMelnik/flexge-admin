@@ -8,7 +8,7 @@ import CompanyFormSceneContainer from './views/company/components/CompanyFormSce
 import DistributorListScene from './views/distributor/components/DistributorListScene';
 import DistributorFormSceneContainer from './views/distributor/components/DistributorFormSceneContainer';
 import SchoolListScene from './views/school/components/SchoolListScene';
-import SchoolFormScene from './views/school/components/SchoolFormScene';
+import SchoolFormSceneContainer from './views/school/components/SchoolFormSceneContainer';
 import StudentListScene from './views/student/components/StudentListScene';
 import StudentFormSceneContainer from './views/student/components/StudentFormSceneContainer';
 import NotFoundScene from './views/not-found/NotFoundScene';
@@ -31,7 +31,8 @@ const Routes = () => (
       <Route path="/distributors/new" component={DistributorFormSceneContainer} />
       <Route path="/distributors/:distributorId" component={DistributorFormSceneContainer} />
       <Route path="/schools" component={SchoolListScene} />
-      <Route path="/schools/new" component={SchoolFormScene} />
+      <Route path="/schools/new" component={SchoolFormSceneContainer} />
+      <Route path="/schools/:schoolId" component={SchoolFormSceneContainer} />
       <Route path="/students" component={StudentListScene} />
       <Route path="/students/new" component={StudentFormSceneContainer} />
       <Route path="/students/:studentId" component={StudentFormSceneContainer} />

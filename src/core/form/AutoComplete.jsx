@@ -28,7 +28,7 @@ AutoComplete.propTypes = {
   label: PropTypes.string,
   fullWidth: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,
-  onUpdateInput: PropTypes.func.isRequired,
+  onUpdateInput: PropTypes.func,
   open: PropTypes.bool,
   style: PropTypes.object,
   underlineShow: PropTypes.bool,
@@ -44,6 +44,7 @@ AutoComplete.defaultProps = {
   style: null,
   underlineShow: true,
   value: '',
+  onUpdateInput: null,
 };
 
 export default AutoComplete;
