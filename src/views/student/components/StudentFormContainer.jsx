@@ -7,6 +7,7 @@ const StudentFormContainer = () => (
   <StudentForm
     onSubmit={StudentFormService.handleSubmit}
     onChange={StudentFormService.form.setValue}
+    onReset={StudentFormService.form.reset}
     values={StudentFormService.form.getValues()}
     errors={StudentFormService.form.errors}
     submitting={StudentFormService.fetch.fetching}
