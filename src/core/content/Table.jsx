@@ -18,6 +18,7 @@ export default class Table extends Component {
     columns: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string.isRequired,
       path: PropTypes.string.isRequried,
+      labelWhenNull: PropTypes.string,
     })),
     actionComponent: PropTypes.func,
     onSelect: PropTypes.func,
@@ -79,7 +80,7 @@ export default class Table extends Component {
             {this.props.onDelete && (
               <TableHeaderColumn
                 key="delete"
-                style={{ width: 30 }}
+                style={{ width: 90 }}
               />
             )}
           </TableRow>
@@ -102,13 +103,13 @@ export default class Table extends Component {
                   key={column.path}
                   onMouseDown={() => this.props.onSelect && this.props.onSelect(row)}
                 >
-                  {get(row, column.path, '').toString()}
+                  {get(row, column.path, column.labelWhenNull || '').toString()}
                 </TableRowColumn>
               ))}
               {this.props.onDelete && (
                 <TableRowColumn
                   key={`delete${row.id}`}
-                  style={{ width: 60 }}
+                  style={{ width: 90 }}
                 >
                   <IconButton
                     onClick={() => this.props.onDelete(row)}

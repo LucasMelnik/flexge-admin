@@ -1,5 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { toJS } from 'mobx';
 import SchoolForm from './SchoolForm';
 import SchoolFormService from '../services/SchoolFormService';
 import StateService from '../../../core/services/StateService';
@@ -14,7 +15,7 @@ const SchoolFormContainer = () => (
     submitting={SchoolFormService.fetch.fetching}
     error={SchoolFormService.submit.error}
     isDirty={SchoolFormService.form.isDirty}
-    states={StateService.states}
+    states={toJS(StateService.states)}
   />
 );
 

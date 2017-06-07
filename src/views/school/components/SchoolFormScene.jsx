@@ -7,8 +7,7 @@ import Title from '../../../core/content/Title';
 import Tabs from '../../../core/navigation/Tabs';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import SchoolFormContainer from './SchoolFormContainer';
-import SchoolClassScene from '../../school-class/SchoolClassScene';
-import TeacherScene from '../../teacher/TeacherScene';
+import SchoolClassSceneContainer from '../../school-class/components/SchoolClassSceneContainer';
 
 const SchoolFormScene = props => (
   <div>
@@ -34,13 +33,13 @@ const SchoolFormScene = props => (
     {props.schoolId && (
       <Tabs
         tabs={[
+          // {
+          //   label: 'Teachers',
+          //     content: <TeacherScene />,
+          // },
           {
-            label: 'Teachers',
-              content: <TeacherScene />,
-          },
-          {
+            content: <SchoolClassSceneContainer schoolId={props.schoolId} />,
             label: 'Classes',
-            content: <SchoolClassScene />,
           },
         ]}
       />
