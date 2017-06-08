@@ -34,8 +34,8 @@ const SchoolForm = props => (
             fullWidth
             disabled={props.submitting || props.values.id}
             label="Company"
-            value={get(props.values, 'company', '')}
-            onSelect={company => props.onChange('company', company.id)}
+            value={get(props.values, 'company.name', '')}
+            onSelect={company => props.onChange('company', company)}
             errorText={get(props.errors, 'company', '')}
             resultTransformer={{
               text: 'name',

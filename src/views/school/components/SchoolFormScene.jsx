@@ -9,6 +9,7 @@ import Tabs from '../../../core/navigation/Tabs';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import SchoolFormContainer from './SchoolFormContainer';
 import SchoolClassSceneContainer from '../../school-class/components/SchoolClassSceneContainer';
+import SchoolManagerSceneContainer from '../../school-manager/components/SchoolManagerSceneContainer';
 
 const SchoolFormScene = props => (
   <Block position="relative">
@@ -33,13 +34,13 @@ const SchoolFormScene = props => (
     {props.schoolId && (
       <Tabs
         tabs={[
-          // {
-          //   label: 'Teachers',
-          //     content: <TeacherScene />,
-          // },
           {
             content: <SchoolClassSceneContainer schoolId={props.schoolId} />,
             label: 'Classes',
+          },
+          {
+            content: <SchoolManagerSceneContainer schoolId={props.schoolId} />,
+            label: 'Managers',
           },
         ]}
       />
