@@ -25,7 +25,7 @@ const SchoolForm = props => (
             label="School Name"
             value={get(props.values, 'name', '')}
             onChange={value => props.onChange('name', value)}
-            error={get(props.errors, 'name', '')}
+            errorText={get(props.errors, 'name', '')}
           />
         </div>
         <div className="col-lg-4">
@@ -36,7 +36,7 @@ const SchoolForm = props => (
             label="Company"
             value={get(props.values, 'company', '')}
             onSelect={company => props.onChange('company', company.id)}
-            error={get(props.errors, 'company', '')}
+            errorText={get(props.errors, 'company', '')}
             resultTransformer={{
               text: 'name',
               value: 'id',
@@ -51,7 +51,7 @@ const SchoolForm = props => (
             label="Foundantion Year"
             value={get(props.values, 'foundationYear', '')}
             onChange={value => props.onChange('foundationYear', value)}
-            error={get(props.errors, 'foundationYear', '')}
+            errorText={get(props.errors, 'foundationYear', '')}
           />
         </div>
       </div>

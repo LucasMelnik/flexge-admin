@@ -1,4 +1,4 @@
-import { action, extendObservable, computed } from 'mobx';
+import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
 class CompanyManagerListService {
