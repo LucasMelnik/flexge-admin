@@ -13,8 +13,6 @@ injectTapEventPlugin();
 ReactDOM.render(
   <Theme>
     <Routes />
-    {/* <ModuleList/> */}
-    {/* <ModuleFormScene /> */}
   </Theme>,
   document.getElementById('root')
 );
