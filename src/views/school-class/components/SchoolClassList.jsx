@@ -18,7 +18,7 @@ const SchoolClassList = props => (
         },
       ]}
       rows={props.classes}
-      onSelect={row => props.onSelect(row)}
+      onSelect={row => props.onSelect(row.id)}
       onDelete={row => props.onDelete(row.id)}
       selectable
     />

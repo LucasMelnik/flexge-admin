@@ -24,9 +24,15 @@ class ScoolClassFormService {
     this.successCallback = successCallback;
   });
 
-  setInitialValues = action((classe) => {
-    this.form.reset();
-    this.form.setInitialValues(classe);
+  handleLoad = action((classId) => {
+    this.fetch.fetch({
+      url: `/schools/${this.schoolId}/classes/${classId}`,
+    }).then(() => {
+      if (this.fetch.data) {
+        this.form.reset();
+        this.form.setInitialValues(this.fetch.data);
+      }
+    });
   });
 
   handleSubmit = action(() => {
@@ -65,6 +71,56 @@ class ScoolClassFormService {
       }
     });
   })
+
+  handleAddStudent = action((studentId) => {
+    const classId = this.form.getValue('id');
+    this.submit.fetch({
+      method: 'put',
+      url: `/schools/${this.schoolId}/classes/${classId}/students/${studentId}`,
+    }).then(() => {
+      if (this.submit.data) {
+        NotificationService.addNotification(
+          'Student added to Class successfully.',
+          null,
+          null,
+          'success',
+        );
+      }
+      if (this.submit.error) {
+        NotificationService.addNotification(
+          'Error trying to add Student to Class.',
+          null,
+          null,
+          'danger',
+        );
+      }
+    });
+  });
+
+  handleRemoveStudent = action((studentId) => {
+    const classId = this.form.getValue('id');
+    this.submit.fetch({
+      method: 'delete',
+      url: `/schools/${this.schoolId}/classes/${classId}/students/${studentId}`,
+    }).then(() => {
+      if (this.submit.data) {
+        NotificationService.addNotification(
+          'Student removed from Class successfully.',
+          null,
+          null,
+          'success',
+        );
+      }
+      if (this.submit.error) {
+        NotificationService.addNotification(
+          'Error trying to remove Student to Class.',
+          null,
+          null,
+          'danger',
+        );
+      }
+    });
+  });
 }
 
 const schoolClassFormService = new ScoolClassFormService();

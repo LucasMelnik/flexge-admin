@@ -25,14 +25,14 @@ export default class SchoolClassSceneContainer extends Component {
   }
 
   handleChangeToNew = () => {
-    schoolClassFormService.setInitialValues({});
+    schoolClassFormService.form.setInitialValues({});
     this.setState({
       actualScene: 'FORM',
     });
   }
 
-  handleChangeToEdit = (classe) => {
-    schoolClassFormService.setInitialValues(classe);
+  handleChangeToEdit = (classId) => {
+    schoolClassFormService.handleLoad(classId);
     this.setState({
       actualScene: 'FORM',
     });

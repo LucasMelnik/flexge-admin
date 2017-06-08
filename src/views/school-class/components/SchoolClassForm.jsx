@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Flex from 'jsxstyle/Flex';
 import get from 'lodash/get';
+import Chip from 'material-ui/Chip';
+import Subheader from 'material-ui/Subheader';
+import { List, ListItem } from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import IconButton from 'material-ui/IconButton';
+import AccountIcon from 'material-ui/svg-icons/action/perm-identity';
 import TextInput from '../../../core/form/TextInput';
 import Separator from '../../../core/layout/Separator';
 import Button from '../../../core/form/Button';
@@ -58,6 +65,71 @@ const SchoolClassForm = props => (
       onClick={props.onReset}
       label="Discard Changes"
     />
+    <Separator size="xs" />
+    <div className="row">
+      <div className="col-lg-5">
+        <Subheader>Available students</Subheader>
+        <List>
+          {props.students.filter(student => !get(props.values, 'students', []).find(linkedStudent => linkedStudent._id === student.id))
+            .map(student => (
+              <ListItem
+                primaryText={student.name}
+                leftAvatar={
+                  <Avatar
+                    size={40}
+                    icon={<AccountIcon />}
+                  />
+                }
+                rightIconButton={
+                  <IconButton
+                    onClick={() => props.onAddStudent(student.id)}
+                    iconClassName="material-icons"
+                    iconStyle={{
+                      fontSize: 32,
+                    }}
+                    style={{
+                      padding: 8,
+                    }}
+                  >
+                    add_circle
+                  </IconButton>
+                }
+              />
+            ))}
+        </List>
+      </div>
+      <div className="col-lg-2" />
+      <div className="col-lg-5">
+        <Subheader>Students in Class</Subheader>
+        <List>
+          {get(props.values, 'students', []).map(student => (
+            <ListItem
+              primaryText={student.name}
+              leftAvatar={
+                <Avatar
+                  size={40}
+                  icon={<AccountIcon />}
+                />
+              }
+              rightIconButton={
+                <IconButton
+                  onClick={() => props.onRemoveStudent(student._id)}
+                  iconClassName="material-icons"
+                  iconStyle={{
+                    fontSize: 32,
+                  }}
+                  style={{
+                    padding: 8,
+                  }}
+                >
+                  cancel
+                </IconButton>
+              }
+            />
+          ))}
+        </List>
+      </div>
+    </div>
   </form>
 );
 
@@ -69,6 +141,9 @@ SchoolClassForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
+  onAddStudent: PropTypes.func,
+  onRemoveStudent: PropTypes.func,
+  students: PropTypes.arrayOf(PropTypes.object),
 };
 
 SchoolClassForm.defaultProps = {
@@ -79,6 +154,9 @@ SchoolClassForm.defaultProps = {
   onSubmit: () => alert('submitted'),
   onChange: () => false,
   onReset: () => false,
+  onAddStudent: () => false,
+  onRemoveStudent: () => false,
+  students: [],
 };
 
 export default SchoolClassForm;
