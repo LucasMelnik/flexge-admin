@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InlineBlock from 'jsxstyle/InlineBlock';
+import Block from 'jsxstyle/Block';
 import { browserHistory } from 'react-router';
 import Separator from '../../../core/layout/Separator';
 import Title from '../../../core/content/Title';
@@ -10,7 +11,7 @@ import SchoolFormContainer from './SchoolFormContainer';
 import SchoolClassSceneContainer from '../../school-class/components/SchoolClassSceneContainer';
 
 const SchoolFormScene = props => (
-  <div>
+  <Block position="relative">
     <InlineBlock>
       <Title>
         School
@@ -20,8 +21,7 @@ const SchoolFormScene = props => (
       secondary
       icon="arrow_back"
       style={{
-        position: 'relative',
-        float: 'right',
+        position: 'absolute',
         top: 20,
         right: 20,
       }}
@@ -44,7 +44,7 @@ const SchoolFormScene = props => (
         ]}
       />
     )}
-  </div>
+  </Block>
 );
 
 SchoolFormScene.propTypes = {
