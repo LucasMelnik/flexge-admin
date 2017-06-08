@@ -27,7 +27,7 @@ const SchoolClassForm = props => (
           label="Class Name"
           value={get(props.values, 'name', '')}
           onChange={value => props.onChange('name', value)}
-          error={get(props.errors, 'name', '')}
+          errorText={get(props.errors, 'name', '')}
         />
       </div>
       <div className="col-lg-6">
@@ -38,7 +38,7 @@ const SchoolClassForm = props => (
           label="Teacher"
           value={get(props.values, 'teacher', '')}
           onSelect={teacher => props.onChange('teacher', teacher.id)}
-          error={get(props.errors, 'teacher', '')}
+          errorText={get(props.errors, 'teacher', '')}
           resultTransformer={{
             text: 'name',
             value: 'id',

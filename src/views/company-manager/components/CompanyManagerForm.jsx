@@ -19,7 +19,7 @@ const CompanyManagerForm = props => (
       label="Manager Name"
       value={get(props.values, 'name', '')}
       onChange={value => props.onChange('name', value)}
-      error={get(props.errors, 'name', '')}
+      errorText={get(props.errors, 'name', '')}
     />
     <TextInput
       floatingLabel
@@ -28,7 +28,7 @@ const CompanyManagerForm = props => (
       label="Manager Email"
       value={get(props.values, 'email', '')}
       onChange={value => props.onChange('email', value)}
-      error={get(props.errors, 'email', '')}
+      errorText={get(props.errors, 'email', '')}
     />
     <Separator size="xs" />
     <Button
