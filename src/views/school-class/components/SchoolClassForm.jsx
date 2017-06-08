@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Flex from 'jsxstyle/Flex';
 import get from 'lodash/get';
-import Chip from 'material-ui/Chip';
 import Subheader from 'material-ui/Subheader';
 import { List, ListItem } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
@@ -70,7 +68,7 @@ const SchoolClassForm = props => (
       <div className="col-lg-5">
         <Subheader>Available students</Subheader>
         <List>
-          {props.students.filter(student => !get(props.values, 'students', []).find(linkedStudent => linkedStudent._id === student.id))
+          {props.students.filter(student => !get(props.values, 'students', []).find(linkedStudent => linkedStudent.id === student.id))
             .map(student => (
               <ListItem
                 primaryText={student.name}
@@ -113,7 +111,7 @@ const SchoolClassForm = props => (
               }
               rightIconButton={
                 <IconButton
-                  onClick={() => props.onRemoveStudent(student._id)}
+                  onClick={() => props.onRemoveStudent(student.id)}
                   iconClassName="material-icons"
                   iconStyle={{
                     fontSize: 32,

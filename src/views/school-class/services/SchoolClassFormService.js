@@ -79,6 +79,7 @@ class ScoolClassFormService {
       url: `/schools/${this.schoolId}/classes/${classId}/students/${studentId}`,
     }).then(() => {
       if (this.submit.data) {
+        this.handleLoad(classId);
         NotificationService.addNotification(
           'Student added to Class successfully.',
           null,
@@ -104,6 +105,7 @@ class ScoolClassFormService {
       url: `/schools/${this.schoolId}/classes/${classId}/students/${studentId}`,
     }).then(() => {
       if (this.submit.data) {
+        this.handleLoad(classId);
         NotificationService.addNotification(
           'Student removed from Class successfully.',
           null,
