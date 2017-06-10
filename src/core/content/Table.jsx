@@ -13,11 +13,12 @@ import IconButton from 'material-ui/IconButton';
 import './Table.css';
 
 export default class Table extends Component {
+
   static propTypes = {
     selectable: PropTypes.bool,
     columns: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string.isRequired,
-      path: PropTypes.string.isRequried,
+      path: PropTypes.string.isRequired,
       labelWhenNull: PropTypes.string,
     })),
     actionComponent: PropTypes.func,
@@ -65,7 +66,7 @@ export default class Table extends Component {
           adjustForCheckbox={false}
         >
           <TableRow>
-            {this.props.actionComponent && <TableHeaderColumn className="action-column" />}
+            {this.props.actionComponent && <TableHeaderColumn />}
             {this.props.columns.map(column => (
               <TableHeaderColumn
                 key={column.label}
@@ -94,7 +95,7 @@ export default class Table extends Component {
               key={row.id}
             >
               {this.props.actionComponent && (
-                <TableRowColumn className="action-column">
+                <TableRowColumn>
                   {this.props.actionComponent(row)}
                 </TableRowColumn>
               )}

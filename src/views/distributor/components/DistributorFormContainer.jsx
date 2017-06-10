@@ -7,6 +7,7 @@ const DistributorFormContainer = () => (
   <DistributorForm
     onSubmit={DistributorFormService.handleSubmit}
     onChange={DistributorFormService.form.setValue}
+    onReset={DistributorFormService.form.reset}
     values={DistributorFormService.form.getValues()}
     errors={DistributorFormService.form.errors}
     submitting={DistributorFormService.fetch.fetching}

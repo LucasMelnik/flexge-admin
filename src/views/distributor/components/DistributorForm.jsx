@@ -22,7 +22,7 @@ const DistributorForm = props => (
         label="Distributor Name"
         value={get(props.values, 'name', '')}
         onChange={value => props.onChange('name', value)}
-        error={get(props.errors, 'name', '')}
+        errorText={get(props.errors, 'name', '')}
       />
       <Separator size="xs" />
       <Button
@@ -37,9 +37,9 @@ const DistributorForm = props => (
       <Button
         icon="clear"
         fullWidth
-        disabled={props.submitting}
-        onClick={() => browserHistory.push('/distributors')}
-        label="Cancel"
+        disabled={props.submitting || !props.isDirty()}
+        onClick={props.onReset}
+        label="Discard Changes"
       />
     </form>
   </Card>
@@ -47,6 +47,7 @@ const DistributorForm = props => (
 
 DistributorForm.propTypes = {
   onSubmit: PropTypes.func,
+  onReset: PropTypes.func,
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
@@ -60,6 +61,7 @@ DistributorForm.defaultProps = {
   submitting: false,
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
+  onReset: () => false,
   onChange: () => false,
 };
 
