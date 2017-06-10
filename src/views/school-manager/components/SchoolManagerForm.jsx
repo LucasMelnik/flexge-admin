@@ -38,7 +38,8 @@ const SchoolManagerForm = props => (
       disabled={props.submitting || !props.isDirty()}
       type="submit"
       label={props.values.id ? 'Update Manager' : 'Create Manager'}
-    /><Separator size="xs" />
+    />
+    <Separator size="xs" />
     <Button
       icon="clear"
       fullWidth

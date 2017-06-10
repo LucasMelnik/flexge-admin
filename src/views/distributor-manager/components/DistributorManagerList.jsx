@@ -17,6 +17,8 @@ const DistributorManagerList = props => (
         },
       ]}
       rows={props.managers}
+      onSelect={row => props.onRowClick(row)}
+      onDelete={row => props.onDelete(row.id)}
     />
   </Async>
 );
@@ -27,6 +29,8 @@ DistributorManagerList.propTypes = {
     name: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
+  onRowClick: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default DistributorManagerList;

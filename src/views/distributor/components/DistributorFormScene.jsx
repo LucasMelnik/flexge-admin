@@ -7,7 +7,7 @@ import Title from '../../../core/content/Title';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import Separator from '../../../core/layout/Separator';
 import DistributorFormContainer from './DistributorFormContainer';
-import DistributorManagerScene from '../../distributor-manager/components/DistributorManagerScene';
+import DistributorManagerSceneContainer from '../../distributor-manager/components/DistributorManagerSceneContainer';
 
 const DistributorFormScene = props => (
   <div>
@@ -35,7 +35,7 @@ const DistributorFormScene = props => (
     <DistributorFormContainer />
     {props.distributorId && (
       <Block marginTop={20}>
-        <DistributorManagerScene distributorId={props.distributorId} />
+        <DistributorManagerSceneContainer distributorId={props.distributorId} />
       </Block>
     )}
   </div>

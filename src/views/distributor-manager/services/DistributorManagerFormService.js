@@ -13,18 +13,22 @@ class DistributorManagerFormService {
   constructor() {
     extendObservable(this, {
       managerId: null,
+      successCallback: null,
     });
     this.form.validations = {
       name: [isRequired],
       email: [isRequired, isValidEmail],
-      distributor: [isRequired],
     };
   }
 
-  setInitialValues = action((distributorId) => {
+  init = action((schoolId, successCallback) => {
+    this.distributorId = schoolId;
+    this.successCallback = successCallback;
+  });
+
+  setInitialValues = action((manager) => {
     this.form.reset();
-    this.form.setInitialValues({ distributor: distributorId });
-    this.distributorId = distributorId;
+    this.form.setInitialValues(manager);
   });
 
   handleSubmit = action(() => {
@@ -48,6 +52,9 @@ class DistributorManagerFormService {
           null,
           'success',
         );
+        if (this.successCallback) {
+          this.successCallback();
+        }
       }
       if (this.submit.error) {
         NotificationService.addNotification(
