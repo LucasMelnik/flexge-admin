@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import PermissionValidator from '../../core/content/PermissionValidator';
 
 export default class Header extends Component {
 
@@ -12,6 +13,7 @@ export default class Header extends Component {
     menuItems: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
+      requiredRoles: PropTypes.arrayOf(PropTypes.string),
     })),
   };
 
@@ -36,18 +38,28 @@ export default class Header extends Component {
           onLeftIconButtonTouchTap={() => this.toggleMenu()}
         />
         <Drawer open={this.state.openMenu}>
-          {this.props.menuItems.map(menuItem => (
-            <MenuItem
-              key={menuItem.url}
-              onClick={() => {
-                this.toggleMenu();
-                browserHistory.push(menuItem.url);
-              }}
-              style={{ cursor: 'pointer' }}
-            >
-              {menuItem.label}
-            </MenuItem>
-          ))}
+          {this.props.menuItems.map(menuItem => {
+            const menuItemComponent = (
+              <MenuItem
+                key={menuItem.url}
+                onClick={() => {
+                  this.toggleMenu();
+                  browserHistory.push(menuItem.url);
+                }}
+                style={{cursor: 'pointer'}}
+              >
+                {menuItem.label}
+              </MenuItem>
+            );
+            return menuItem.requiredRoles ? (
+              <PermissionValidator
+                key={`validator-for-${menuItem.url}`}
+                allowedFor={menuItem.requiredRoles}
+              >
+                {menuItemComponent}
+              </PermissionValidator>
+            ) : menuItemComponent;
+          })}
         </Drawer>
       </div>
     );
