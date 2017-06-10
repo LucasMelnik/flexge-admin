@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Card from '../../../core/layout/Card';
+import Paper from '../../../core/layout/Paper';
 import TextInput from '../../../core/form/TextInput';
 import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
 
 const DistributorForm = props => (
-  <Card>
+  <Paper>
     <form
       onSubmit={(event) => {
         event.preventDefault();
@@ -41,7 +41,7 @@ const DistributorForm = props => (
         label="Discard Changes"
       />
     </form>
-  </Card>
+  </Paper>
 );
 
 DistributorForm.propTypes = {

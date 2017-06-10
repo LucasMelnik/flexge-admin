@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../../core/layout/Card';
+import Paper from '../../../core/layout/Paper';
 import Paginator from '../../../core/navigation/Paginator';
 
 const SchoolListPagination = props => (
-  <Card
-    flexible
+  <Paper
     style={{
       padding: 10,
       textAlign: 'center',
@@ -17,7 +16,7 @@ const SchoolListPagination = props => (
       marginPagesDisplayed={2}
       onPageChange={props.onPageChange}
     />
-  </Card>
+  </Paper>
 );
 
 SchoolListPagination.propTypes = {

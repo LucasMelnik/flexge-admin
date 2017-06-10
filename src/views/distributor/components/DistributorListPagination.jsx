@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../../core/layout/Card';
+import Paper from '../../../core/layout/Paper';
 import Paginator from '../../../core/navigation/Paginator';
 
 const DistributorListPagination = props => (
-  <Card
+  <Paper
     flexible
     style={{
       padding: 10,
@@ -17,7 +17,7 @@ const DistributorListPagination = props => (
       marginPagesDisplayed={2}
       onPageChange={props.onPageChange}
     />
-  </Card>
+  </Paper>
 );
 
 DistributorListPagination.propTypes = {

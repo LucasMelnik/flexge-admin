@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../../core/layout/Card';
+import Paper from '../../../core/layout/Paper';
 import TextInput from '../../../core/form/TextInput';
 
 const CompanyListFilter = props => (
-  <Card>
+  <Paper>
     <TextInput
       label="Search companies"
       value={props.value}
       onChange={props.onChange}
     />
-  </Card>
+  </Paper>
 );
 
 CompanyListFilter.propTypes = {

@@ -16,26 +16,32 @@ const MainScene = props => (
         {
           label: 'Distributors',
           url: '/distributors',
+          requiredRoles: ['ADMIN'],
         },
         {
           label: 'Companies',
           url: '/companies',
+          requiredRoles: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
         },
         {
           label: 'Teachers',
           url: '/teachers',
+          requiredRoles: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
         },
         {
           label: 'Schools',
           url: '/schools',
+          requiredRoles: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
         },
         {
           label: 'Students',
           url: '/students',
+          requiredRoles: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
         },
         {
           label: 'Modules',
           url: '/modules',
+          requiredRoles: ['ADMIN'],
         },
       ]}
     />

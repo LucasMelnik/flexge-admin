@@ -5,7 +5,7 @@ import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
-class ScoolFormService {
+class SchoolFormService {
   fetch = new FetchService()
   submit = new FetchService()
   form = new FormService()
@@ -75,6 +75,6 @@ class ScoolFormService {
   })
 }
 
-const schoolFormService = new ScoolFormService();
+const schoolFormService = new SchoolFormService();
 
 export default schoolFormService;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Card from '../../../core/layout/Card';
+import Paper from '../../../core/layout/Paper';
 import TextInput from '../../../core/form/TextInput';
 import Select from '../../../core/form/Select';
 import DatePicker from '../../../core/form/DatePicker';
@@ -9,7 +9,7 @@ import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
 
 const CompanyForm = props => (
-  <Card>
+  <Paper>
     <form
       onSubmit={(event) => {
         event.preventDefault();
@@ -206,7 +206,7 @@ const CompanyForm = props => (
         label="Discard changes"
       />
     </form>
-  </Card>
+  </Paper>
 );
 
 CompanyForm.propTypes = {

@@ -1,12 +1,12 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import Card from '../../../core/layout/Card';
+import Paper from '../../../core/layout/Paper';
 import Async from '../../../core/content/Async';
 import Table from '../../../core/content/Table';
 
 const CompanyList = props => (
-  <Card
+  <Paper
     flexible
   >
     <Async fetching={props.fetching}>
@@ -31,7 +31,7 @@ const CompanyList = props => (
         onDelete={row => props.onDelete(row.id)}
       />
     </Async>
-  </Card>
+  </Paper>
 );
 
 CompanyList.propTypes = {
