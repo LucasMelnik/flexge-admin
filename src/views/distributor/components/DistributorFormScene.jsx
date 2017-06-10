@@ -14,9 +14,9 @@ const DistributorFormScene = props => (
     <InlineBlock>
       <Title>
         {props.distributorId ? (
-          'New Distributor'
-        ) : (
           'Distributor Informations'
+        ) : (
+          'New Distributor'
         )}
       </Title>
     </InlineBlock>
