@@ -12,7 +12,7 @@ const SchoolListScene = () => (
   <div>
     <InlineBlock>
       <Title>
-        School list
+        Schools
       </Title>
     </InlineBlock>
     <FloatActionButton

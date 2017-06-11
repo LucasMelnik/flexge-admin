@@ -31,7 +31,8 @@ const SchoolForm = props => (
         </div>
         <PermissionValidator
           allowedFor={[
-            'ADMIN'
+            'ADMIN',
+            'DISTRIBUTOR_MANAGER'
           ]}
         >
           <div className="col-lg-4">
@@ -55,7 +56,7 @@ const SchoolForm = props => (
             floatingLabel
             fullWidth
             disabled={props.submitting}
-            label="Foundantion Year"
+            label="Foundation Year"
             value={get(props.values, 'foundationYear', '')}
             onChange={value => props.onChange('foundationYear', value)}
             errorText={get(props.errors, 'foundationYear', '')}

@@ -30,6 +30,7 @@ class SchoolListService {
         query: this.filter && {
           name: {
             $regex: this.filter,
+            $options : 'i',
           },
         },
       },

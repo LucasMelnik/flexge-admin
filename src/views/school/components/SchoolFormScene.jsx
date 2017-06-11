@@ -15,7 +15,11 @@ const SchoolFormScene = props => (
   <Block position="relative">
     <InlineBlock>
       <Title>
-        School
+        {props.schoolId ? (
+          'School Informations'
+        ) : (
+          'New School'
+        )}
       </Title>
     </InlineBlock>
     <FloatActionButton

@@ -16,7 +16,7 @@ const SchoolList = props => (
           },
           {
             label: 'Company',
-            path: 'company',
+            path: 'company.name',
           },
         ]}
         rows={props.schools}
@@ -30,9 +30,11 @@ const SchoolList = props => (
 
 SchoolList.propTypes = {
   schools: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    company: PropTypes.string.isRequired,
+    company: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }).isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,

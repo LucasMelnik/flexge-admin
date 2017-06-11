@@ -16,7 +16,7 @@ class SchoolFormService {
     });
     this.form.validations = {
       name: [isRequired],
-      company: [isRequired],
+      company: localStorage.role === 'COMPANY_MANAGER' ? [] : [isRequired],
     };
   }
 
