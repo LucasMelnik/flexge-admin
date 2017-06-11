@@ -17,6 +17,7 @@ class StudentFormService {
     this.form.validations = {
       name: [isRequired],
       email: [isRequired, isValidEmail],
+      company: localStorage.role === 'COMPANY_MANAGER' ? [] : [isRequired],
     };
   }
 
@@ -45,7 +46,10 @@ class StudentFormService {
     this.submit.fetch({
       method: studentId ? 'put' : 'post',
       url: studentId ? `/students/${studentId}` : '/students',
-      body: this.form.getValues(),
+      body: {
+        ...this.form.getValues(),
+        company: this.form.getValue('company').id,
+      },
     }).then(() => {
       if (this.submit.data) {
         const student = this.submit.data;

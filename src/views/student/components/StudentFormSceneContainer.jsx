@@ -18,7 +18,7 @@ class StudentFormSceneContainer extends Component {
 
   render() {
     return (
-      <StudentFormScene />
+      <StudentFormScene studentId={this.props.params.studentId} />
     );
   }
 }
