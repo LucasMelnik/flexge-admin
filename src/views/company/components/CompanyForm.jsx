@@ -217,7 +217,7 @@ CompanyForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
-  states: PropTypes.arrayOf(PropTypes.Object).isRequired,
+  states: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 CompanyForm.defaultProps = {

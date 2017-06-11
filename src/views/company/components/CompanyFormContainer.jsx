@@ -1,5 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { toJS } from 'mobx';
 import CompanyForm from './CompanyForm';
 import CompanyFormService from '../services/CompanyFormService';
 import StateService from '../../../core/services/StateService';
@@ -14,7 +15,7 @@ const CompanyFormContainer = () => (
     submitting={CompanyFormService.fetch.fetching}
     error={CompanyFormService.submit.error}
     isDirty={CompanyFormService.form.isDirty}
-    states={StateService.states}
+    states={toJS(StateService.states)}
   />
 );
 

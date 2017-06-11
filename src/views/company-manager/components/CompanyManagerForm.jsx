@@ -33,17 +33,26 @@ const CompanyManagerForm = props => (
     <Separator size="xs" />
     <Button
       icon="done"
-      primary
+      secondary
       fullWidth
       disabled={props.submitting || !props.isDirty()}
       type="submit"
       label={props.values.id ? 'Update Manager' : 'Create Manager'}
+    />
+    <Separator size="xs" />
+    <Button
+      icon="done"
+      fullWidth
+      onClick={props.onReset}
+      disabled={props.submitting || !props.isDirty()}
+      label="Discard Changes"
     />
   </form>
 );
 
 CompanyManagerForm.propTypes = {
   onSubmit: PropTypes.func,
+  onReset: PropTypes.func,
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
@@ -58,6 +67,7 @@ CompanyManagerForm.defaultProps = {
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
   onChange: () => false,
+  onReset: () => false,
 };
 
 export default CompanyManagerForm;
