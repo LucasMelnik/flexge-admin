@@ -34,7 +34,10 @@ class LoginService {
     }).then(() => {
       if (this.fetch.data) {
         localStorage.setItem('accessToken', this.fetch.data.accessToken);
-        localStorage.setItem('role', jwtDecode(this.fetch.data.accessToken).role);
+        const decodedToken = jwtDecode(this.fetch.data.accessToken);
+        localStorage.setItem('role', decodedToken.role);
+        localStorage.setItem('company', decodedToken.company);
+        localStorage.setItem('distributor', decodedToken.distributor);
         browserHistory.push('/');
       }
       if (this.fetch.error) {
