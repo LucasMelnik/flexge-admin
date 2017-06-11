@@ -39,7 +39,7 @@ const SchoolForm = props => (
             <FetchAutoComplete
               url="companies?page=1&size=100"
               fullWidth
-              disabled={props.submitting || props.values.id}
+              disabled={props.submitting || !!props.values.id}
               label="Company"
               value={get(props.values, 'company.name', '')}
               onSelect={company => props.onChange('company', company)}
