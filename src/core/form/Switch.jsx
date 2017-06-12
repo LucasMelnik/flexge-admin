@@ -8,6 +8,7 @@ const Switch = props => (
     label={props.label}
     onToggle={(event, isInputChecked) => props.onChange(isInputChecked)}
     disabled={props.disabled}
+    labelPosition={props.labelPosition}
     labelStyle={{
       width: 'auto',
     }}
@@ -18,6 +19,7 @@ const Switch = props => (
 Switch.propTypes = {
   toggled: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
+  labelPosition: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   style: PropTypes.object,
