@@ -12,7 +12,7 @@ const SchoolFormContainer = () => (
     onReset={SchoolFormService.form.reset}
     values={SchoolFormService.form.getValues()}
     errors={SchoolFormService.form.errors}
-    submitting={SchoolFormService.fetch.fetching}
+    submitting={SchoolFormService.submit.fetching}
     error={SchoolFormService.submit.error}
     isDirty={SchoolFormService.form.isDirty}
     states={toJS(StateService.states)}

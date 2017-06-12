@@ -7,7 +7,7 @@ import DistributorListService from '../services/DistributorListService';
 class DistributorListContainer extends Component {
 
   componentDidMount() {
-    DistributorListService.load();
+    DistributorListService.init();
   }
 
   render() {
@@ -15,6 +15,7 @@ class DistributorListContainer extends Component {
       <DistributorList
         distributors={toJS(DistributorListService.distributors)}
         fetching={DistributorListService.fetch.fetching}
+        onDelete={DistributorListService.handleRemove}
       />
     );
   }

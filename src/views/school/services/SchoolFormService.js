@@ -5,7 +5,7 @@ import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
-class ScoolFormService {
+class SchoolFormService {
   fetch = new FetchService()
   submit = new FetchService()
   form = new FormService()
@@ -16,7 +16,7 @@ class ScoolFormService {
     });
     this.form.validations = {
       name: [isRequired],
-      company: [isRequired],
+      company: localStorage.role === 'COMPANY_MANAGER' ? [] : [isRequired],
     };
   }
 
@@ -45,7 +45,10 @@ class ScoolFormService {
     this.submit.fetch({
       method: schoolId ? 'put' : 'post',
       url: schoolId ? `/schools/${schoolId}` : '/schools',
-      body: this.form.getValues(),
+      body: {
+        ...this.form.getValues(),
+        company: this.form.getValue('company').id,
+      },
     }).then(() => {
       if (this.submit.data) {
         const school = this.submit.data;
@@ -72,6 +75,6 @@ class ScoolFormService {
   })
 }
 
-const schoolFormService = new ScoolFormService();
+const schoolFormService = new SchoolFormService();
 
 export default schoolFormService;

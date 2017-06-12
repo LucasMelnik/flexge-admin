@@ -29,6 +29,8 @@ class DistributorFormService {
           this.form.setInitialValues(this.fetch.data);
         }
       });
+    } else {
+      this.form.setInitialValues({});
     }
     this.distributorId = distributorId;
   });

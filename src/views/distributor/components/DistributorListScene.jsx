@@ -3,31 +3,30 @@ import { browserHistory } from 'react-router';
 import InlineBlock from 'jsxstyle/InlineBlock';
 import Title from '../../../core/content/Title';
 import Separator from '../../../core/layout/Separator';
-import DistributorListFilter from './DistributorListFilter';
+import FloatActionButton from '../../../core/form/FloatActionButton';
+import DistributorListFilterContainer from './DistributorListFilterContainer';
 import DistributorListContainer from './DistributorListContainer';
 import DistributorListPaginationContainer from './DistributorListPaginationContainer';
-import Button from '../../../core/form/Button';
 
 const DistributorListScene = () => (
   <div>
     <InlineBlock>
       <Title>
-        Distributor list
+        Distributors
       </Title>
     </InlineBlock>
-    <InlineBlock
-      marginLeft={10}
-      verticalAlign="top"
-    >
-      <Button
-        secondary
-        label="New Distributor"
-        onClick={() => browserHistory.push('/distributors/new')}
-        icon="add"
+      <FloatActionButton
+          secondary
+          icon="add"
+          style={{ position: 'relative',
+              float: 'right',
+              top: 20,
+              right: 20,
+          }}
+          onClick={() => browserHistory.push('/distributors/new')}
       />
-    </InlineBlock>
     <Separator size="sm" />
-    <DistributorListFilter />
+    <DistributorListFilterContainer />
     <Separator size="sm" />
     <DistributorListContainer />
     <Separator size="sm" />

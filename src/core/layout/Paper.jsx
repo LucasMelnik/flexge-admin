@@ -24,7 +24,7 @@ Paper.propTypes = {
 
 Paper.defaultProps = {
   style: {},
-  zDepth: 2,
+  zDepth: 1,
   rounded: false,
 };
 

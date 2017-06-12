@@ -19,7 +19,7 @@ class SchoolClassFormContainer extends Component {
         onReset={SchoolClassFormService.form.reset}
         values={SchoolClassFormService.form.getValues()}
         errors={SchoolClassFormService.form.errors}
-        submitting={SchoolClassFormService.fetch.fetching}
+        submitting={SchoolClassFormService.submit.fetching}
         error={SchoolClassFormService.submit.error}
         isDirty={SchoolClassFormService.form.isDirty}
         students={toJS(StudentListService.students)}

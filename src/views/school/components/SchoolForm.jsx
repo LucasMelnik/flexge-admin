@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import PermissionValidator from '../../../core/content/PermissionValidator';
 import Paper from '../../../core/layout/Paper';
 import TextInput from '../../../core/form/TextInput';
 import Select from '../../../core/form/Select';
@@ -28,27 +29,34 @@ const SchoolForm = props => (
             errorText={get(props.errors, 'name', '')}
           />
         </div>
-        <div className="col-lg-4">
-          <FetchAutoComplete
-            url="companies?page=1&size=100"
-            fullWidth
-            disabled={props.submitting || props.values.id}
-            label="Company"
-            value={get(props.values, 'company', '')}
-            onSelect={company => props.onChange('company', company.id)}
-            errorText={get(props.errors, 'company', '')}
-            resultTransformer={{
-              text: 'name',
-              value: 'id',
-            }}
-          />
-        </div>
+        <PermissionValidator
+          allowedFor={[
+            'ADMIN',
+            'DISTRIBUTOR_MANAGER'
+          ]}
+        >
+          <div className="col-lg-4">
+            <FetchAutoComplete
+              url="companies?page=1&size=100"
+              fullWidth
+              disabled={props.submitting || !!props.values.id}
+              label="Company"
+              value={get(props.values, 'company.name', '')}
+              onSelect={company => props.onChange('company', company)}
+              errorText={get(props.errors, 'company', '')}
+              resultTransformer={{
+                text: 'name',
+                value: 'id',
+              }}
+            />
+          </div>
+        </PermissionValidator>
         <div className="col-lg-2">
           <TextInput
             floatingLabel
             fullWidth
             disabled={props.submitting}
-            label="Foundantion Year"
+            label="Foundation Year"
             value={get(props.values, 'foundationYear', '')}
             onChange={value => props.onChange('foundationYear', value)}
             errorText={get(props.errors, 'foundationYear', '')}

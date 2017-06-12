@@ -1,5 +1,6 @@
 import { action } from 'mobx';
 import { browserHistory } from 'react-router';
+import jwtDecode from 'jwt-decode';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -33,6 +34,10 @@ class LoginService {
     }).then(() => {
       if (this.fetch.data) {
         localStorage.setItem('accessToken', this.fetch.data.accessToken);
+        const decodedToken = jwtDecode(this.fetch.data.accessToken);
+        localStorage.setItem('role', decodedToken.role);
+        localStorage.setItem('company', decodedToken.company);
+        localStorage.setItem('distributor', decodedToken.distributor);
         browserHistory.push('/');
       }
       if (this.fetch.error) {

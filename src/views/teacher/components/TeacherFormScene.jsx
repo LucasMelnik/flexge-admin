@@ -7,11 +7,15 @@ import Title from '../../../core/content/Title';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import TeacherFormContainer from './TeacherFormContainer';
 
-const TeacherFormScene = () => (
+const TeacherFormScene = props => (
   <div>
     <InlineBlock>
       <Title>
-        Teacher infos
+        {props.teacherId ? (
+          'Teacher Informations'
+        ) : (
+          'New Teacher'
+        )}
       </Title>
     </InlineBlock>
     <FloatActionButton
@@ -31,11 +35,11 @@ const TeacherFormScene = () => (
 );
 
 TeacherFormScene.propTypes = {
-  schoolId: PropTypes.string,
+  teacherId: PropTypes.string,
 };
 
 TeacherFormScene.defaultProps = {
-  schoolId: null,
+  teacherId: null,
 };
 
 export default TeacherFormScene;

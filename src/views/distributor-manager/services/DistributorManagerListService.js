@@ -1,4 +1,4 @@
-import { action, extendObservable, computed } from 'mobx';
+import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
 class DistributorManagerListService {
@@ -11,14 +11,20 @@ class DistributorManagerListService {
       total: 0,
       page: 1,
       rowsByPage: 10,
-      pageCount: computed(() => Math.ceil(this.total / this.rowsByPage)),
+      pageCount: 1,
     });
   }
 
-  load = action((distributorId) => {
+  init = action((distributorId) => {
     this.distributorId = distributorId;
+    this.page = 1;
+    this.filter = '';
+    this.load();
+  });
+
+  load = action(() => {
     this.fetch.fetch({
-      url: `/distributors/${distributorId}/managers`,
+      url: `/distributors/${this.distributorId}/managers`,
       query: {
         page: this.page,
         size: this.rowsByPage,
@@ -28,6 +34,7 @@ class DistributorManagerListService {
         this.managers = this.fetch.data.docs;
         this.total = this.fetch.data.total;
         this.limit = this.fetch.data.limit;
+        this.pageCount = this.fetch.data.pages;
       } else {
         this.managers = [];
         this.total = 0;
@@ -39,8 +46,17 @@ class DistributorManagerListService {
     this.page = page.selected + 1;
     this.load();
   });
+
+  handleDelete = action((managerId) => {
+    this.fetch.fetch({
+      url: `/distributors/${this.distributorId}/managers/${managerId}`,
+      method: 'delete',
+    }).then(() => {
+      this.load();
+    });
+  });
 }
 
-const companyListService = new DistributorManagerListService();
+const distributorManagerListService = new DistributorManagerListService();
 
-export default companyListService;
+export default distributorManagerListService;

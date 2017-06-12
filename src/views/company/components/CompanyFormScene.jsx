@@ -13,7 +13,11 @@ const CompanyFormScene = props => (
   <div>
     <InlineBlock>
       <Title>
-        Company
+        {props.companyId ? (
+          'Company Informations'
+        ) : (
+          'New Company'
+        )}
       </Title>
     </InlineBlock>
     <FloatActionButton
