@@ -5,8 +5,10 @@ import TeacherListFilter from './TeacherListFilter';
 
 const TeacherListFilterContainer = () => (
   <TeacherListFilter
-    value={TeacherListService.filter}
-    onChange={TeacherListService.handleFilterChange}
+    values={TeacherListService.form.getValues()}
+    onChange={TeacherListService.form.setValue}
+    fetching={TeacherListService.fetch.fetching}
+    onSearch={TeacherListService.load}
   />
 );
 
