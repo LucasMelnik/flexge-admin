@@ -17,6 +17,7 @@ class ModuleFormService {
     this.form.validations = {
       name: [isRequired],
       course: [isRequired],
+      academicPlan: [isRequired],
     };
   }
 

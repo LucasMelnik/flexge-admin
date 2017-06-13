@@ -18,6 +18,10 @@ const TeacherList = props => (
             label: 'Email',
             path: 'email',
           },
+          {
+            label: 'Company',
+            path: 'company',
+          },
         ]}
         rows={props.teachers}
         selectable
