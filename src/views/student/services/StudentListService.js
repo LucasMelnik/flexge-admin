@@ -1,8 +1,10 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import FormService from '../../../core/services/FormService';
 
 class StudentListService {
   fetch = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -49,11 +51,6 @@ class StudentListService {
 
   handlePageChange = action((page) => {
     this.page = page.selected + 1;
-    this.load();
-  });
-
-  handleFilterChange = action((value) => {
-    this.filter = value;
     this.load();
   });
 

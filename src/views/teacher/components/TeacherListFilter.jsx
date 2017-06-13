@@ -19,7 +19,6 @@ const TeacherListFilter = props => (
     <FetchAutoComplete
       url="/companies"
       disabled={props.fetching}
-      errorText={props.error}
       label="Company"
       fullWidth={false}
       onSelect={value => props.onChange('company', value)}
@@ -42,14 +41,12 @@ const TeacherListFilter = props => (
 TeacherListFilter.propTypes = {
   values: PropTypes.object.isRequired,
   fetching: PropTypes.bool,
-  error: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
 };
 
 TeacherListFilter.defaultProps = {
   fetching: false,
-  error: null,
 };
 
 export default TeacherListFilter;
