@@ -46,6 +46,7 @@ class ModuleFormService {
       body: {
         ...this.form.getValues(),
         course: this.form.getValue('course.id'),
+        academicPlan: this.form.getValue('academicPlan.id'),
       },
     }).then(() => {
       if (this.submit.data) {

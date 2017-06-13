@@ -24,6 +24,10 @@ const ModuleList = props => (
             label: 'Course',
             path: 'course.name',
           },
+          {
+            label: 'Academic Plan',
+            path: 'academicPlan.name',
+          },
         ]}
         rows={props.modules}
         selectable
