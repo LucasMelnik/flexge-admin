@@ -16,7 +16,7 @@ const ModuleForm = props => (
       }}
     >
       <div className="row">
-        <div className="col-lg-4">
+        <div className="col-lg-3">
           <TextInput
             floatingLabel
             fullWidth
@@ -27,7 +27,7 @@ const ModuleForm = props => (
             error={get(props.errors, 'name', '')}
           />
         </div>
-        <div className="col-lg-4">
+        <div className="col-lg-3">
           <TextInput
             floatingLabel
             fullWidth
@@ -38,7 +38,7 @@ const ModuleForm = props => (
             error={get(props.errors, 'description', '')}
           />
         </div>
-        <div className="col-lg-4">
+        <div className="col-lg-3">
           <FetchAutoComplete
             url="courses?page=1&size=100"
             fullWidth
@@ -46,7 +46,22 @@ const ModuleForm = props => (
             label="Course"
             value={get(props.values, 'course.name', '')}
             onSelect={course => props.onChange('course', course)}
-            error={get(props.errors, 'coursecourse', '')}
+            error={get(props.errors, 'course', '')}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </div>
+        <div className="col-lg-3">
+          <FetchAutoComplete
+            url="academic-plans?page=1&size=100"
+            fullWidth
+            disabled={props.submitting}
+            label="Academic Plan"
+            value={get(props.values, 'academicPlan.name', '')}
+            onSelect={academicPlan => props.onChange('academicPlan', academicPlan)}
+            error={get(props.errors, 'academicPlan', '')}
             resultTransformer={{
               text: 'name',
               value: 'id',

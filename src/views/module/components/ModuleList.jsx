@@ -24,6 +24,10 @@ const ModuleList = props => (
             label: 'Course',
             path: 'course.name',
           },
+          {
+            label: 'Academic Plan',
+            path: 'academicPlan.name',
+          },
         ]}
         rows={props.modules}
         selectable
@@ -39,7 +43,7 @@ ModuleList.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.string,
-    course: PropTypes.string.isRequired,
+    course: PropTypes.object.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,

@@ -7,8 +7,9 @@ import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
 import Switch from '../../../core/form/Switch';
 import Select from '../../../core/form/Select';
-
-import MenuItem from 'material-ui/MenuItem';
+import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
+import Async from '../../../core/content/Async';
+import Table from '../../../core/content/Table';
 
 const UnitForm = props => (
   <Paper>
@@ -106,13 +107,13 @@ const UnitForm = props => (
               { label: 'Dictation', value: 1 },
               { label: 'Gap Fill', value: 2 },
               { label: 'Grammar', value: 3 },
-              { label: 'Movie', value: 1 },
-              { label: 'Multiple Complete Phrase', value: 1 },
-              { label: 'Presentation', value: 1 },
-              { label: 'Pronunciation', value: 1 },
-              { label: 'Speech Practice', value: 1 },
-              { label: 'True / False', value: 1 },
-              { label: 'Unscramble Phrase Drag and Drop', value: 1 },
+              { label: 'Movie', value: 4 },
+              { label: 'Multiple Complete Phrase', value: 5 },
+              { label: 'Presentation', value: 6 },
+              { label: 'Pronunciation', value: 7 },
+              { label: 'Speech Practice', value: 8 },
+              { label: 'True / False', value: 9 },
+              { label: 'Unscramble Phrase Drag and Drop', value: 10 },
             ]}
             disabled={props.submitting}
             label="Unit Type"
@@ -121,6 +122,39 @@ const UnitForm = props => (
             error={get(props.errors, 'scoreToPass', '')}
           />
         </div>
+        <div className="col-lg-4">
+          <FetchAutoComplete
+            url="modules?page=1&size=100"
+            fullWidth
+            disabled={props.submitting}
+            label="Module"
+            value={get(props.values, 'module.name', '')}
+            onSelect={module => props.onChange('module', module)}
+            error={get(props.errors, 'module', '')}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </div>
+      </div>
+      <div className="row">
+        <Table
+          columns={[
+            {
+              label: 'Order',
+              path: 'order',
+            },
+            {
+              label: 'Text',
+              path: 'text',
+            },
+            {
+              label: 'Translation',
+              path: 'translation',
+            },
+          ]}
+        />
       </div>
       <Separator size="xs" />
       <Button
