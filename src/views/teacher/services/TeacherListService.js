@@ -1,8 +1,10 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import FormService from '../../../core/services/FormService';
 
 class TeacherListService {
   fetch = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -27,12 +29,16 @@ class TeacherListService {
       query: {
         page: this.page,
         size: this.rowsByPage,
-        query: this.filter && {
-          name: {
-            $regex: this.filter,
-            $options : 'i',
-          },
-        },
+        // query: {
+        //   name: {
+        //     $regex: this.form.getValue('filter'),
+        //     $options: 'i',
+        //   },
+        //   company: {
+        //     $regex: this.form.getValue('company'),
+        //     $options: 'i',
+        //   },
+        // },
       },
     }).then(() => {
       if (this.fetch.data) {
@@ -52,11 +58,6 @@ class TeacherListService {
 
   handlePageChange = action((page) => {
     this.page = page.selected + 1;
-    this.load();
-  });
-
-  handleFilterChange = action((value) => {
-    this.filter = value;
     this.load();
   });
 
