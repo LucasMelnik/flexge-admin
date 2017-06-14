@@ -1,5 +1,6 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
 class DistributorManagerListService {
   fetch = new FetchService();
@@ -47,13 +48,18 @@ class DistributorManagerListService {
     this.load();
   });
 
-  handleDelete = action((managerId) => {
-    this.fetch.fetch({
-      url: `/distributors/${this.distributorId}/managers/${managerId}`,
-      method: 'delete',
-    }).then(() => {
-      this.load();
-    });
+  handleDelete = action((manager) => {
+    ConfirmationDialogService.show(
+      'Delete Distributor Manager',
+      `You are about to delete the manager "${manager.name}", Do you want to continue ?`,
+      () => {
+        this.fetch.fetch({
+          url: `/distributors/${this.distributorId}/managers/${manager.id}`,
+          method: 'delete',
+        }).then(() => {
+          this.load();
+        });
+      });
   });
 }
 

@@ -1,5 +1,6 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
 class CompanyListService {
   fetch = new FetchService();
@@ -60,13 +61,18 @@ class CompanyListService {
     this.load();
   });
 
-  handleRemove = action((companyId) => {
-    this.fetch.fetch({
-      url: `/companies/${companyId}`,
-      method: 'delete',
-    }).then(() => {
-      this.load();
-    });
+  handleRemove = action((company) => {
+    ConfirmationDialogService.show(
+      'Delete Company',
+      `You are about to delete the company "${company.name}", Do you want to continue ?`,
+      () => {
+        this.fetch.fetch({
+          url: `/companies/${company.id}`,
+          method: 'delete',
+        }).then(() => {
+          this.load();
+        });
+      });
   });
 }
 

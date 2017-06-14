@@ -32,7 +32,7 @@ const ModuleList = props => (
         rows={props.modules}
         selectable
         onSelect={row => browserHistory.push(`/modules/${row.id}`)}
-        onDelete={row => props.onDelete(row.id)}
+        onDelete={row => props.onDelete(row)}
       />
     </Async>
   </Paper>

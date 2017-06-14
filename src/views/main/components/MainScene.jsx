@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Block from 'jsxstyle/Block';
 import Header from '../../../core/layout/Header';
 import NotificationContainer from './NotificationContainer';
+import ConfirmDialogContainer from './ConfirmDialogContainer';
 
 const MainScene = props => (
   <div>
@@ -49,6 +50,7 @@ const MainScene = props => (
       {props.children}
     </Block>
     <NotificationContainer />
+    <ConfirmDialogContainer />
   </div>
 );
 

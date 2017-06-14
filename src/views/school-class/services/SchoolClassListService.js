@@ -1,5 +1,6 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
 class SchoolClassListService {
   fetch = new FetchService();
@@ -47,13 +48,18 @@ class SchoolClassListService {
     this.load();
   });
 
-  handleDelete = action((classId) => {
-    this.fetch.fetch({
-      url: `/schools/${this.schoolId}/classes/${classId}`,
-      method: 'delete',
-    }).then(() => {
-      this.load();
-    });
+  handleDelete = action((classe) => {
+    ConfirmationDialogService.show(
+      'Delete School Class',
+      `You are about to delete the school class "${classe.name}", Do you want to continue ?`,
+      () => {
+        this.fetch.fetch({
+          url: `/schools/${this.schoolId}/classes/${classe.id}`,
+          method: 'delete',
+        }).then(() => {
+          this.load();
+        });
+      });
   });
 }
 

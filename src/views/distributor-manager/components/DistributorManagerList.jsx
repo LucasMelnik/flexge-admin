@@ -18,7 +18,7 @@ const DistributorManagerList = props => (
       ]}
       rows={props.managers}
       onSelect={row => props.onRowClick(row)}
-      onDelete={row => props.onDelete(row.id)}
+      onDelete={row => props.onDelete(row)}
     />
   </Async>
 );
