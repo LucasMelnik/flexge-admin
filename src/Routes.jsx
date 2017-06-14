@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import LoginScene from './views/login/components/LoginScene';
 import MainScene from './views/main/components/MainScene';
-import DashboardScene from './views/dashboard/DashboardScene';
+import DashboardScene from './views/dashboard/components/DashboardScene';
 import CompanyListScene from './views/company/components/CompanyListScene';
 import CompanyFormSceneContainer from './views/company/components/CompanyFormSceneContainer';
 import DistributorListScene from './views/distributor/components/DistributorListScene';
