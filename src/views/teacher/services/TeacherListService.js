@@ -29,16 +29,13 @@ class TeacherListService {
       query: {
         page: this.page,
         size: this.rowsByPage,
-        // query: {
-        //   name: {
-        //     $regex: this.form.getValue('filter'),
-        //     $options: 'i',
-        //   },
-        //   company: {
-        //     $regex: this.form.getValue('company'),
-        //     $options: 'i',
-        //   },
-        // },
+        query: {
+          name: {
+            $regex: this.form.getValue('filter'),
+            $options: 'i',
+          },
+          company: this.form.getValue('company').id,
+        },
       },
     }).then(() => {
       if (this.fetch.data) {
