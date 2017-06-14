@@ -8,7 +8,7 @@ const DistributorListFilter = props => (
     <TextInput
       label="Search distributors"
       value={props.value}
-      onchange={props.onChange}
+      onChange={props.onChange}
     />
   </Paper>
 );

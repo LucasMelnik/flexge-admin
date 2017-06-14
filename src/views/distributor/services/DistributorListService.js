@@ -31,6 +31,7 @@ class DistributorListService {
         query: this.filter && {
           name: {
             $regex: this.filter,
+            $options : 'i',
           },
         },
       },
@@ -57,6 +58,7 @@ class DistributorListService {
 
   handleFilterChange = action((value) => {
     this.filter = value;
+    console.log(value)
     this.load();
   });
 
