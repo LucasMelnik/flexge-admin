@@ -20,7 +20,7 @@ const TeacherList = props => (
           },
           {
             label: 'Company',
-            path: 'company',
+            path: 'company.name',
           },
         ]}
         rows={props.teachers}
