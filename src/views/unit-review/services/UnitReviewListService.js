@@ -6,19 +6,15 @@ class UnitReviewListService {
 
   constructor() {
     extendObservable(this, {
-      units: [],
+      myUnits: [],
+      unitsToReview: [],
       total: 0,
       page: 1,
       rowsByPage: 10,
       pageCount: 1,
-      toReview: false,
     });
   }
 
-  isReview = action((toReview) => {
-    this.toReview = toReview;
-    this.load();
-  });
 
   load = action(() => {
     this.fetch.fetch({
@@ -26,12 +22,12 @@ class UnitReviewListService {
       query: {
         page: this.page,
         size: this.rowsByPage,
-        createdBy: !this.toReview,
-        reviewedBy: this.toReview,
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.units = this.fetch.data.docs;
+        const user = localStorage.getItem('id');
+        this.myUnits = this.fetch.data.docs.filter(review => review.createdBy === user);
+        this.unitsToReview = this.fetch.data.docs.filter(review => review.reviewedBy === user);
         this.total = this.fetch.data.total;
         this.limit = this.fetch.data.limit;
         this.pageCount = this.fetch.data.pages;
@@ -49,6 +45,6 @@ class UnitReviewListService {
   });
 }
 
-// const unitReviewListService = new UnitReviewListService();
+const unitReviewListService = new UnitReviewListService();
 
-export default UnitReviewListService;
+export default unitReviewListService;

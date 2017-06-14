@@ -35,6 +35,7 @@ class LoginService {
       if (this.fetch.data) {
         localStorage.setItem('accessToken', this.fetch.data.accessToken);
         const decodedToken = jwtDecode(this.fetch.data.accessToken);
+        localStorage.setItem('id', decodedToken.sub);
         localStorage.setItem('role', decodedToken.role);
         localStorage.setItem('company', decodedToken.company);
         localStorage.setItem('distributor', decodedToken.distributor);

@@ -5,17 +5,16 @@ import UnitReviewList from './UnitReviewList';
 import UnitReviewListService from '../services/UnitReviewListService';
 
 class MyUnitReviewListContainer extends Component {
-  unitReviewsService = new UnitReviewListService();
 
   componentDidMount() {
-    this.unitReviewsService.isReview(false);
+    UnitReviewListService.load();
   }
 
   render() {
     return (
       <UnitReviewList
-        units={toJS(this.unitReviewsService.units)}
-        fetching={this.unitReviewsService.fetch.fetching}
+        units={toJS(UnitReviewListService.myUnits)}
+        fetching={UnitReviewListService.fetch.fetching}
       />
     );
   }

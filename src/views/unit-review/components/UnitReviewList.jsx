@@ -12,11 +12,7 @@ const UnitReviewList = props => (
         columns={[
           {
             label: 'Name',
-            path: 'name',
-          },
-          {
-            label: 'Module',
-            path: 'module.name',
+            path: 'unit.name',
           },
         ]}
         rows={props.units}
@@ -29,10 +25,7 @@ const UnitReviewList = props => (
 
 UnitReviewList.propTypes = {
   units: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    module: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    }).isRequired,
+    name: PropTypes.string,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
 }
