@@ -6,6 +6,8 @@ import { List, ListItem } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 import AccountIcon from 'material-ui/svg-icons/action/perm-identity';
+import Row from '../../../core/layout/Row';
+import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
 import Separator from '../../../core/layout/Separator';
 import Button from '../../../core/form/Button';
@@ -18,8 +20,8 @@ const SchoolClassForm = props => (
       props.onSubmit();
     }}
   >
-    <div className="row">
-      <div className="col-lg-6">
+    <Row>
+      <Column lgSize={6}>
         <TextInput
           floatingLabel
           fullWidth
@@ -29,8 +31,8 @@ const SchoolClassForm = props => (
           onChange={value => props.onChange('name', value)}
           errorText={get(props.errors, 'name', '')}
         />
-      </div>
-      <div className="col-lg-6">
+      </Column>
+      <Column lgSize={6}>
         <FetchAutoComplete
           url="teachers?page=1&size=100"
           fullWidth
@@ -44,8 +46,8 @@ const SchoolClassForm = props => (
             value: 'id',
           }}
         />
-      </div>
-    </div>
+      </Column>
+    </Row>
     <Separator size="xs" />
     <Button
       icon="done"
@@ -64,8 +66,8 @@ const SchoolClassForm = props => (
       label="Discard Changes"
     />
     <Separator size="xs" />
-    <div className="row">
-      <div className="col-lg-5">
+    <Row>
+      <Column lgSize={5}>
         <Subheader>Available students</Subheader>
         <List>
           {props.students.filter(student => !get(props.values, 'students', []).find(linkedStudent => linkedStudent.id === student.id))
@@ -95,9 +97,9 @@ const SchoolClassForm = props => (
               />
             ))}
         </List>
-      </div>
-      <div className="col-lg-2" />
-      <div className="col-lg-5">
+      </Column>
+      <Column lgSize={2} />
+      <Column lgSize={5}>
         <Subheader>Students in Class</Subheader>
         <List>
           {get(props.values, 'students', []).map(student => (
@@ -126,8 +128,8 @@ const SchoolClassForm = props => (
             />
           ))}
         </List>
-      </div>
-    </div>
+      </Column>
+    </Row>
   </form>
 );
 

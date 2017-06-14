@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import PermissionValidator from '../../../core/content/PermissionValidator';
 import Paper from '../../../core/layout/Paper';
+import Row from '../../../core/layout/Row';
+import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
 import Select from '../../../core/form/Select';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
@@ -17,8 +19,8 @@ const SchoolForm = props => (
         props.onSubmit();
       }}
     >
-      <div className="row">
-        <div className="col-lg-6">
+      <Row>
+        <Column lgSize={6}>
           <TextInput
             floatingLabel
             fullWidth
@@ -28,14 +30,14 @@ const SchoolForm = props => (
             onChange={value => props.onChange('name', value)}
             errorText={get(props.errors, 'name', '')}
           />
-        </div>
+        </Column>
         <PermissionValidator
           allowedFor={[
             'ADMIN',
             'DISTRIBUTOR_MANAGER'
           ]}
         >
-          <div className="col-lg-4">
+          <Column lgSize={4}>
             <FetchAutoComplete
               url="companies?page=1&size=100"
               fullWidth
@@ -49,9 +51,9 @@ const SchoolForm = props => (
                 value: 'id',
               }}
             />
-          </div>
+          </Column>
         </PermissionValidator>
-        <div className="col-lg-2">
+        <Column lgSize={2}>
           <TextInput
             floatingLabel
             fullWidth
@@ -61,10 +63,10 @@ const SchoolForm = props => (
             onChange={value => props.onChange('foundationYear', value)}
             errorText={get(props.errors, 'foundationYear', '')}
           />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-lg-3">
+        </Column>
+      </Row>
+      <Row>
+        <Column lgSize={3}>
           <TextInput
             floatingLabel
             fullWidth
@@ -74,8 +76,8 @@ const SchoolForm = props => (
             onChange={value => props.onChange('country', value)}
             errorText={get(props.errors, 'country', '')}
           />
-        </div>
-        <div className="col-lg-3">
+        </Column>
+        <Column lgSize={3}>
           <Select
             fullWidth
             disabled={props.submitting}
@@ -85,8 +87,8 @@ const SchoolForm = props => (
             errorText={get(props.errors, 'state', '')}
             options={props.states}
           />
-        </div>
-        <div className="col-lg-6">
+        </Column>
+        <Column lgSize={6}>
           <TextInput
             floatingLabel
             fullWidth
@@ -96,10 +98,10 @@ const SchoolForm = props => (
             onChange={value => props.onChange('city', value)}
             errorText={get(props.errors, 'city', '')}
           />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-lg-9">
+        </Column>
+      </Row>
+      <Row>
+        <Column lgSize={9}>
           <TextInput
             floatingLabel
             fullWidth
@@ -109,8 +111,8 @@ const SchoolForm = props => (
             onChange={value => props.onChange('address', value)}
             errorText={get(props.errors, 'address', '')}
           />
-        </div>
-        <div className="col-lg-3">
+        </Column>
+        <Column lgSize={3}>
           <TextInput
             floatingLabel
             fullWidth
@@ -120,8 +122,8 @@ const SchoolForm = props => (
             onChange={value => props.onChange('phone', value)}
             errorText={get(props.errors, 'phone', '')}
           />
-        </div>
-      </div>
+        </Column>
+      </Row>
       <Separator size="xs" />
       <Button
         icon="done"

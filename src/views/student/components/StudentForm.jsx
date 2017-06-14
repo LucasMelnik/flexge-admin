@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Paper from '../../../core/layout/Paper';
+import Row from '../../../core/layout/Row';
+import Column from '../../../core/layout/Column';
 import PermissionValidator from '../../../core/content/PermissionValidator';
 import TextInput from '../../../core/form/TextInput';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
@@ -16,8 +18,8 @@ const StudentForm = props => (
         props.onSubmit();
       }}
     >
-      <div className="row">
-        <div className="col-lg-6">
+      <Row>
+        <Column lgSize={6}>
           <TextInput
             floatingLabel
             fullWidth
@@ -27,8 +29,8 @@ const StudentForm = props => (
             onChange={value => props.onChange('name', value)}
             errorText={get(props.errors, 'name', '')}
           />
-        </div>
-        <div className="col-lg-6">
+        </Column>
+        <Column lgSize={6}>
           <TextInput
             floatingLabel
             fullWidth
@@ -38,16 +40,16 @@ const StudentForm = props => (
             onChange={value => props.onChange('email', value)}
             errorText={get(props.errors, 'email', '')}
           />
-        </div>
-      </div>
-      <div className="row">
+        </Column>
+      </Row>
+      <Row>
         <PermissionValidator
           allowedFor={[
             'ADMIN',
             'DISTRIBUTOR_MANAGER'
           ]}
         >
-          <div className="col-lg-6">
+          <Column lgSize={6}>
             <FetchAutoComplete
               url="companies?page=1&size=100"
               fullWidth
@@ -61,9 +63,9 @@ const StudentForm = props => (
                 value: 'id',
               }}
             />
-          </div>
+          </Column>
         </PermissionValidator>
-      </div>
+      </Row>
       <Separator size="xs" />
       <Button
         icon="done"

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Paper from '../../../core/layout/Paper';
+import Row from '../../../core/layout/Row';
+import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
 import Button from '../../../core/form/Button';
@@ -15,8 +17,8 @@ const ModuleForm = props => (
         props.onSubmit();
       }}
     >
-      <div className="row">
-        <div className="col-lg-3">
+      <Row>
+        <Column lgSize={3}>
           <TextInput
             floatingLabel
             fullWidth
@@ -24,10 +26,10 @@ const ModuleForm = props => (
             label="Module Name"
             value={get(props.values, 'name', '')}
             onChange={value => props.onChange('name', value)}
-            error={get(props.errors, 'name', '')}
+            errorText={get(props.errors, 'name', '')}
           />
-        </div>
-        <div className="col-lg-3">
+        </Column>
+        <Column lgSize={3}>
           <TextInput
             floatingLabel
             fullWidth
@@ -35,10 +37,10 @@ const ModuleForm = props => (
             label="Module Description"
             value={get(props.values, 'description', '')}
             onChange={value => props.onChange('description', value)}
-            error={get(props.errors, 'description', '')}
+            errorText={get(props.errors, 'description', '')}
           />
-        </div>
-        <div className="col-lg-3">
+        </Column>
+        <Column lgSize={3}>
           <FetchAutoComplete
             url="courses?page=1&size=100"
             fullWidth
@@ -46,14 +48,14 @@ const ModuleForm = props => (
             label="Course"
             value={get(props.values, 'course.name', '')}
             onSelect={course => props.onChange('course', course)}
-            error={get(props.errors, 'course', '')}
+            errorText={get(props.errors, 'course', '')}
             resultTransformer={{
               text: 'name',
               value: 'id',
             }}
           />
-        </div>
-        <div className="col-lg-3">
+        </Column>
+        <Column lgSize={3}>
           <FetchAutoComplete
             url="academic-plans?page=1&size=100"
             fullWidth
@@ -61,14 +63,14 @@ const ModuleForm = props => (
             label="Academic Plan"
             value={get(props.values, 'academicPlan.name', '')}
             onSelect={academicPlan => props.onChange('academicPlan', academicPlan)}
-            error={get(props.errors, 'academicPlan', '')}
+            errorText={get(props.errors, 'academicPlan', '')}
             resultTransformer={{
               text: 'name',
               value: 'id',
             }}
           />
-        </div>
-      </div>
+        </Column>
+      </Row>
       <Separator size="xs" />
       <Button
         icon="done"
