@@ -1,10 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 const PermissionValidator = props => (
-  <div>
-    {props.allowedFor.find(role => role === localStorage.role) && props.children}
-  </div>
+  props.allowedFor.find(role => role === localStorage.role) ? props.children : null
 );
 
 PermissionValidator.propTypes = {

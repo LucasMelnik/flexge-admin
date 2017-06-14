@@ -29,11 +29,12 @@ class StudentListService {
       query: {
         page: this.page,
         size: this.rowsByPage,
-        query: this.filter && {
+        query: {
           name: {
-            $regex: this.filter,
-            $options : 'i',
+            $regex: this.form.getValue('filter'),
+            $options: 'i',
           },
+          company: this.form.getValue('company').id,
         },
       },
     }).then(() => {
