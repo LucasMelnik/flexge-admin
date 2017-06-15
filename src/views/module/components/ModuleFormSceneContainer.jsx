@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import ModuleFormScene from './ModuleFormScene';
 import ModuleFormService from '../services/ModuleFormService';
 
-class SchoolFormSceneContainer extends Component {
+class ModuleFormSceneContainer extends Component {
 
   static propTypes = {
     params: PropTypes.shape({
@@ -18,11 +18,9 @@ class SchoolFormSceneContainer extends Component {
 
   render() {
     return (
-      <ModuleFormScene
-        moduleId={ModuleFormService.moduleId}
-      />
+      <ModuleFormScene moduleId={ModuleFormService.moduleId} />
     );
   }
 }
 
-export default observer(SchoolFormSceneContainer);
+export default observer(ModuleFormSceneContainer);

@@ -1,8 +1,11 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import FormService from '../../../core/services/FormService';
+import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
 class StudentListService {
   fetch = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -27,11 +30,12 @@ class StudentListService {
       query: {
         page: this.page,
         size: this.rowsByPage,
-        query: this.filter && {
+        query: {
           name: {
-            $regex: this.filter,
-            $options : 'i',
+            $regex: this.form.getValue('filter'),
+            $options: 'i',
           },
+          company: this.form.getValue('company').id,
         },
       },
     }).then(() => {
@@ -52,18 +56,18 @@ class StudentListService {
     this.load();
   });
 
-  handleFilterChange = action((value) => {
-    this.filter = value;
-    this.load();
-  });
-
-  handleRemove = action((studentId) => {
-    this.fetch.fetch({
-      url: `/students/${studentId}`,
-      method: 'delete',
-    }).then(() => {
-      this.load();
-    });
+  handleRemove = action((student) => {
+    ConfirmationDialogService.show(
+      'Delete Student',
+      `You are about to delete the student "${student.name}", Do you want to continue ?`,
+      () => {
+        this.fetch.fetch({
+          url: `/students/${student.id}`,
+          method: 'delete',
+        }).then(() => {
+          this.load();
+        });
+      });
   });
 }
 

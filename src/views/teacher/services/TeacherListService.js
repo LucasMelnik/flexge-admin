@@ -1,8 +1,11 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import FormService from '../../../core/services/FormService';
+import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
 class TeacherListService {
   fetch = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -27,11 +30,12 @@ class TeacherListService {
       query: {
         page: this.page,
         size: this.rowsByPage,
-        query: this.filter && {
+        query: {
           name: {
-            $regex: this.filter,
-            $options : 'i',
+            $regex: this.form.getValue('filter'),
+            $options: 'i',
           },
+          company: this.form.getValue('company').id,
         },
       },
     }).then(() => {
@@ -55,18 +59,18 @@ class TeacherListService {
     this.load();
   });
 
-  handleFilterChange = action((value) => {
-    this.filter = value;
-    this.load();
-  });
-
-  handleRemove = action((teacherId) => {
-    this.fetch.fetch({
-      url: `/teachers/${teacherId}`,
-      method: 'delete',
-    }).then(() => {
-      this.load();
-    });
+  handleRemove = action((teacher) => {
+    ConfirmationDialogService.show(
+      'Delete Teacher',
+      `You are about to delete the teacher "${teacher.name}", Do you want to continue ?`,
+      () => {
+        this.fetch.fetch({
+          url: `/teachers/${teacher.id}`,
+          method: 'delete',
+        }).then(() => {
+          this.load();
+        });
+      });
   });
 }
 

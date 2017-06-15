@@ -24,11 +24,15 @@ const ModuleList = props => (
             label: 'Course',
             path: 'course.name',
           },
+          {
+            label: 'Academic Plan',
+            path: 'academicPlan.name',
+          },
         ]}
         rows={props.modules}
         selectable
         onSelect={row => browserHistory.push(`/modules/${row.id}`)}
-        onDelete={row => props.onDelete(row.id)}
+        onDelete={row => props.onDelete(row)}
       />
     </Async>
   </Paper>
@@ -39,7 +43,7 @@ ModuleList.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.string,
-    course: PropTypes.string.isRequired,
+    course: PropTypes.object.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,

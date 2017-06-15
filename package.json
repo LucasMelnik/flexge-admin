@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "0.16.1",
-    "bootstrap": "3.3.7",
     "jsxstyle": "1.0.2",
     "jwt-decode": "^2.2.0",
     "lodash": "4.17.4",

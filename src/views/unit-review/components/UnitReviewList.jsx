@@ -5,36 +5,29 @@ import Paper from '../../../core/layout/Paper';
 import Async from '../../../core/content/Async';
 import Table from '../../../core/content/Table';
 
-const StudentList = props => (
+const UnitReviewList = props => (
   <Paper>
     <Async fetching={props.fetching}>
       <Table
         columns={[
           {
             label: 'Name',
-            path: 'name',
-          },
-          {
-            label: 'Email',
-            path: 'email',
+            path: 'unit.name',
           },
         ]}
-        rows={props.students}
+        rows={props.units}
         selectable
-        onSelect={row => browserHistory.push(`/students/${row.id}`)}
-        onDelete={row => props.onDelete(row)}
+        onSelect={row => browserHistory.push(`/units/${row.id}`)}
       />
     </Async>
   </Paper>
 );
 
-StudentList.propTypes = {
-  students: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+UnitReviewList.propTypes = {
+  units: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
-  onDelete: PropTypes.func.isRequired,
-};
+}
 
-export default StudentList;
+export default UnitReviewList;

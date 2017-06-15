@@ -22,7 +22,7 @@ const SchoolList = props => (
         rows={props.schools}
         selectable
         onSelect={row => browserHistory.push(`/schools/${row.id}`)}
-        onDelete={row => props.onDelete(row.id)}
+        onDelete={row => props.onDelete(row)}
       />
     </Async>
   </Paper>
