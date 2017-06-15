@@ -42,7 +42,7 @@ const TeacherForm = props => (
         <PermissionValidator
           allowedFor={[
             'ADMIN',
-            'DISTRIBUTOR_MANAGER'
+            'DISTRIBUTOR_MANAGER',
           ]}
         >
           <div className="col-lg-3">
