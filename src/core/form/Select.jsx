@@ -29,7 +29,7 @@ Select.propTypes = {
   onChange: PropTypes.func,
   options: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string,
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
   })).isRequired,
   multiple: PropTypes.bool,
   fullWidth: PropTypes.bool,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import isBoolean from 'lodash/isBoolean';
 import {
   Table as MaterialTable,
   TableBody,
@@ -90,9 +91,9 @@ export default class Table extends Component {
           displayRowCheckbox={false}
           showRowHover
         >
-          {this.props.rows && this.props.rows.length > 0 ? this.props.rows.map(row => (
+          {this.props.rows && this.props.rows.length > 0 ? this.props.rows.map((row, index)=> (
             <TableRow
-              key={row.id}
+              key={row.id || index}
             >
               {this.props.actionComponent && (
                 <TableRowColumn>
@@ -102,18 +103,19 @@ export default class Table extends Component {
               {this.props.columns.map(column => (
                 <TableRowColumn
                   key={column.path}
-                  onMouseDown={() => this.props.onSelect && this.props.onSelect(row)}
+                  onMouseDown={() => this.props.onSelect && this.props.onSelect(row, index)}
                 >
-                  {get(row, column.path, column.labelWhenNull || '').toString()}
+                  {isBoolean(row[column.path]) && (row[column.path] ? 'Yes' : 'No')}
+                  {!isBoolean(row[column.path]) && get(row, column.path, column.labelWhenNull || '').toString()}
                 </TableRowColumn>
               ))}
               {this.props.onDelete && (
                 <TableRowColumn
-                  key={`delete${row.id}`}
+                  key={`delete${row.id || index}`}
                   style={{ width: 90 }}
                 >
                   <IconButton
-                    onClick={() => this.props.onDelete(row)}
+                    onClick={() => this.props.onDelete(row, index)}
                     iconClassName="material-icons"
                   >
                     delete

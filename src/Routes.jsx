@@ -16,6 +16,8 @@ import TeacherFormSceneContainer from './views/teacher/components/TeacherFormSce
 import ModuleListScene from './views/module/components/ModuleListScene';
 import ModuleFormSceneContainer from './views/module/components/ModuleFormSceneContainer';
 import NotFoundScene from './views/not-found/NotFoundScene';
+import QuestionListScene from './views/question/components/QuestionListScene';
+import QuestionFormSceneContainer from './views/question/components/QuestionFormSceneContainer';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -46,6 +48,9 @@ const Routes = () => (
       <Route path="/modules" component={ModuleListScene} />
       <Route path="/modules/new" component={ModuleFormSceneContainer} />
       <Route path="/modules/:moduleId" component={ModuleFormSceneContainer} />
+      <Route path="/questions" component={QuestionListScene} />
+      <Route path="/questions/new" component={QuestionFormSceneContainer} />
+      <Route path="/questions/:questionId" component={QuestionFormSceneContainer} />
     </Route>
     <Route path="*" component={NotFoundScene} />
   </Router>

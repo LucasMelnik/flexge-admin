@@ -5,7 +5,7 @@
   "dependencies": {
     "axios": "0.16.1",
     "jsxstyle": "1.0.2",
-    "jwt-decode": "^2.2.0",
+    "jwt-decode": "2.2.0",
     "lodash": "4.17.4",
     "material-ui": "0.18.1",
     "mobx": "3.1.10",
