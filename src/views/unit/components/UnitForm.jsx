@@ -8,8 +8,9 @@ import Separator from '../../../core/layout/Separator';
 import Switch from '../../../core/form/Switch';
 import Select from '../../../core/form/Select';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
-import Async from '../../../core/content/Async';
 import Table from '../../../core/content/Table';
+import Row from '../../../core/layout/Row';
+import Column from '../../../core/layout/Column';
 
 const UnitForm = props => (
   <Paper>
@@ -19,8 +20,8 @@ const UnitForm = props => (
         props.onSubmit();
       }}
     >
-      <div className="row">
-        <div className="col-lg-6">
+      <Row>
+        <Column lgSize={6}>
           <TextInput
             floatingLabel
             fullWidth
@@ -30,57 +31,43 @@ const UnitForm = props => (
             onChange={value => props.onChange('name', value)}
             error={get(props.errors, 'name', '')}
           />
-        </div>
-        <div className="col-lg-6">
-          <Switch
-            label="Enabled"
-            toggled
-            onChange={value => props.onChange('', value)}
+        </Column>
+        <Column lgSize={6}>
+          <FetchAutoComplete
+            url="modules?page=1&size=100"
+            fullWidth
+            disabled={props.submitting}
+            label="Module"
+            value={get(props.values, 'module.name', '')}
+            onSelect={module => props.onChange('module', module)}
+            error={get(props.errors, 'module', '')}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
           />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-lg-4">
-          <TextInput
+        </Column>
+      </Row>
+      <Row>
+        <Column lgSize={3}>
+          <Select
             floatingLabel
             fullWidth
+            options={[
+              { label: '1', value: 1 },
+              { label: '2', value: 2 },
+              { label: '3', value: 3 },
+              { label: '4', value: 4 },
+              { label: '5', value: 5 },
+            ]}
             disabled={props.submitting}
             label="Order"
             value={get(props.values, 'order', '')}
             onChange={value => props.onChange('order', value)}
             error={get(props.errors, 'order', '')}
           />
-        </div>
-        <div className="col-lg-4">
-          <TextInput
-            floatingLabel
-            fullWidth
-            disabled={props.submitting}
-            label="Time (minutes)"
-            value={get(props.values, 'time', '')}
-            onChange={value => props.onChange('time', value)}
-            error={get(props.errors, 'time', '')}
-          />
-        </div>
-        <div className="col-lg-4">
-          <Select
-            floatingLabel
-            fullWidth
-            options={[
-              { label: 'EASY', value: 0 },
-              { label: 'MEDIUM', value: 1 },
-              { label: 'HARD', value: 2 },
-            ]}
-            disabled={props.submitting}
-            label="Difficulty"
-            value={get(props.values, 'difficulty', '')}
-            onChange={value => props.onChange('difficulty', value)}
-            error={get(props.errors, 'difficulty', '')}
-          />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-lg-4">
+        </Column>
+        <Column lgSize={3}>
           <Select
             floatingLabel
             fullWidth
@@ -97,65 +84,41 @@ const UnitForm = props => (
             onChange={value => props.onChange('scoreToPass', value)}
             error={get(props.errors, 'scoreToPass', '')}
           />
-        </div>
-        <div className="col-lg-4">
+        </Column>
+        <Column lgSize={3}>
           <Select
             floatingLabel
             fullWidth
             options={[
-              { label: 'Answering Question', value: 0 },
-              { label: 'Dictation', value: 1 },
-              { label: 'Gap Fill', value: 2 },
-              { label: 'Grammar', value: 3 },
-              { label: 'Movie', value: 4 },
-              { label: 'Multiple Complete Phrase', value: 5 },
-              { label: 'Presentation', value: 6 },
-              { label: 'Pronunciation', value: 7 },
-              { label: 'Speech Practice', value: 8 },
-              { label: 'True / False', value: 9 },
-              { label: 'Unscramble Phrase Drag and Drop', value: 10 },
+              { label: '5', value: 5 },
+              { label: '10', value: 10 },
+              { label: '15', value: 15 },
+              { label: '20', value: 20 },
             ]}
             disabled={props.submitting}
-            label="Unit Type"
-            value={get(props.values, 'scoreToPass', '')}
-            onChange={value => props.onChange('scoreToPass', value)}
-            error={get(props.errors, 'scoreToPass', '')}
+            label="Time (minutes)"
+            value={get(props.values, 'time', '')}
+            onChange={value => props.onChange('time', value)}
+            error={get(props.errors, 'time', '')}
           />
-        </div>
-        <div className="col-lg-4">
-          <FetchAutoComplete
-            url="modules?page=1&size=100"
+        </Column>
+        <Column lgSize={3}>
+          <Select
+            floatingLabel
             fullWidth
+            options={[
+              { label: 'EASY', value: 'EASY' },
+              { label: 'MODERATE', value: 'MODERATE' },
+              { label: 'HARD', value: 'HARD' },
+            ]}
             disabled={props.submitting}
-            label="Module"
-            value={get(props.values, 'module.name', '')}
-            onSelect={module => props.onChange('module', module)}
-            error={get(props.errors, 'module', '')}
-            resultTransformer={{
-              text: 'name',
-              value: 'id',
-            }}
+            label="Difficulty"
+            value={get(props.values, 'difficulty', '')}
+            onChange={value => props.onChange('difficulty', value)}
+            error={get(props.errors, 'difficulty', '')}
           />
-        </div>
-      </div>
-      <div className="row">
-        <Table
-          columns={[
-            {
-              label: 'Order',
-              path: 'order',
-            },
-            {
-              label: 'Text',
-              path: 'text',
-            },
-            {
-              label: 'Translation',
-              path: 'translation',
-            },
-          ]}
-        />
-      </div>
+        </Column>
+      </Row>
       <Separator size="xs" />
       <Button
         icon="done"

@@ -15,6 +15,8 @@ import TeacherListScene from './views/teacher/components/TeacherListScene';
 import TeacherFormSceneContainer from './views/teacher/components/TeacherFormSceneContainer';
 import ModuleListScene from './views/module/components/ModuleListScene';
 import ModuleFormSceneContainer from './views/module/components/ModuleFormSceneContainer';
+import UnitListScene from './views/unit/components/UnitListScene';
+import UnitFormSceneContainer from './views/unit/components/UnitFormSceneContainer';
 import NotFoundScene from './views/not-found/NotFoundScene';
 
 function authRequired(nextState, replace) {
@@ -46,6 +48,9 @@ const Routes = () => (
       <Route path="/modules" component={ModuleListScene} />
       <Route path="/modules/new" component={ModuleFormSceneContainer} />
       <Route path="/modules/:moduleId" component={ModuleFormSceneContainer} />
+      <Route path="/units" component={UnitListScene} />
+      <Route path="/units/new" component={UnitFormSceneContainer} />
+      <Route path="/modules/:moduleId/units/:unitId" component={UnitFormSceneContainer} />
     </Route>
     <Route path="*" component={NotFoundScene} />
   </Router>
