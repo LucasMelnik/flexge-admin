@@ -15,6 +15,7 @@ import MultipleCompletePhraseForm from "./forms/MultipleCompletePhraseForm";
 import MusicVideoForm from "./forms/MusicVideoForm";
 import PresentationForm from "./forms/PresentationForm";
 import PronunciationForm from "./forms/PronunciationForm";
+import SpeechPracticeForm from "./forms/SpeechPracticeForm";
 
 const QuestionForm = props => (
   <Paper>
@@ -106,6 +107,14 @@ const QuestionForm = props => (
       )}
       {get(props.values, 'type.key', '') === 'PRONUNCIATION' && (
         <PronunciationForm
+           onChange={props.onChange}
+           errors={props.errors}
+           values={props.values}
+           submitting={props.submitting}
+        />
+      )}
+      {get(props.values, 'type.key', '') === 'SPEECH_PRACTICE' && (
+        <SpeechPracticeForm
            onChange={props.onChange}
            errors={props.errors}
            values={props.values}
