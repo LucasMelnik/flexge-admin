@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Separator from "../../../../core/layout/Separator";
 import TranslationContainer from '../inputs/TranslationContainer';
 import YoutubeLinkContainer from "../inputs/YoutubeLinkContainer";
-import AnswersContainer from "../AnswersContainer";
+import AnswersContainer from "../inputs/AnswersContainer";
 
 const MovieForm = props => (
   <div>
