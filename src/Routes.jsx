@@ -15,6 +15,8 @@ import TeacherListScene from './views/teacher/components/TeacherListScene';
 import TeacherFormSceneContainer from './views/teacher/components/TeacherFormSceneContainer';
 import ModuleListScene from './views/module/components/ModuleListScene';
 import ModuleFormSceneContainer from './views/module/components/ModuleFormSceneContainer';
+import UnitListScene from './views/unit/components/UnitListScene';
+import UnitFormSceneContainer from './views/unit/components/UnitFormSceneContainer';
 import NotFoundScene from './views/not-found/NotFoundScene';
 import QuestionListScene from './views/question/components/QuestionListScene';
 import QuestionFormSceneContainer from './views/question/components/QuestionFormSceneContainer';
@@ -51,6 +53,9 @@ const Routes = () => (
       <Route path="/questions" component={QuestionListScene} />
       <Route path="/questions/new" component={QuestionFormSceneContainer} />
       <Route path="/questions/:questionId" component={QuestionFormSceneContainer} />
+      <Route path="/units" component={UnitListScene} />
+      <Route path="/units/new" component={UnitFormSceneContainer} />
+      <Route path="/modules/:moduleId/units/:unitId" component={UnitFormSceneContainer} />
     </Route>
     <Route path="*" component={NotFoundScene} />
   </Router>

@@ -48,6 +48,10 @@ export default class FetchAutoComplete extends Component {
     });
   }
 
+  handleOnUpdateInput = (text) => {
+    this.props.onSelect(this.state.data.find(item => item[this.props.resultTransformer.text] === text));
+  }
+
   render() {
     return (
       <AutoComplete
@@ -58,7 +62,7 @@ export default class FetchAutoComplete extends Component {
         label={this.props.label}
         fullWidth={this.props.fullWidth}
         onSelect={this.props.onSelect}
-        onUpdateInput={this.props.onUpdateInput}
+        onUpdateInput={this.handleOnUpdateInput}
         style={this.props.style}
         value={this.props.value}
       />
