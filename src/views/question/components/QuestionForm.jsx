@@ -12,6 +12,7 @@ import GapFillForm from "./forms/GapFillForm";
 import GrammarForm from "./forms/GrammarForm";
 import MovieForm from "./forms/MovieForm";
 import MultipleCompletePhraseForm from "./forms/MultipleCompletePhraseForm";
+import MusicVideoForm from "./forms/MusicVideoForm";
 
 const QuestionForm = props => (
   <Paper>
@@ -79,6 +80,14 @@ const QuestionForm = props => (
       )}
       {get(props.values, 'type.key', '') === 'MULTIPLE_COMPLETE_PHRASE' && (
         <MultipleCompletePhraseForm
+           onChange={props.onChange}
+           errors={props.errors}
+           values={props.values}
+           submitting={props.submitting}
+        />
+      )}
+      {get(props.values, 'type.key', '') === 'MUSIC_VIDEO' && (
+        <MusicVideoForm
            onChange={props.onChange}
            errors={props.errors}
            values={props.values}
