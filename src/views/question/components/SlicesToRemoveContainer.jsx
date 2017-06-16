@@ -19,6 +19,15 @@ export default class SlicesToRemoveContainer extends Component {
     }
   }
 
+  getSliceTextsRemoved = () => {
+    return this.state.slices.reduce((result, text, index) => {
+      if (this.state.removedSlices.find(removedIndex => removedIndex === index)) {
+        result = result.concat([text]);
+      }
+      return result;
+    }, []);
+  }
+
   handleRemoveSlice = (index) => {
     const updatedRemovedSlice = [
       ...this.state.removedSlices,
@@ -27,16 +36,18 @@ export default class SlicesToRemoveContainer extends Component {
 
     this.setState({
       removedSlices: updatedRemovedSlice,
+    }, () => {
+      this.props.onChange(updatedRemovedSlice, this.getSliceTextsRemoved());
     });
-    this.props.onChange(updatedRemovedSlice);
   }
 
   handleShowSlice = (index) => {
     const updatedRemovedSlice = this.state.removedSlices.filter(removedIndex => removedIndex !== index);
       this.setState({
       removedSlices: updatedRemovedSlice,
+    }, () => {
+      this.props.onChange(updatedRemovedSlice, this.getSliceTextsRemoved());
     });
-    this.props.onChange(updatedRemovedSlice);
   }
 
   render() {

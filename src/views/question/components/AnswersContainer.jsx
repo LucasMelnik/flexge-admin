@@ -11,20 +11,36 @@ class AnswersContainer extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     needCorrectAnswer: PropTypes.bool,
+    defaultAnswers: PropTypes.arrayOf(PropTypes.string),
   };
 
   static defaultProps = {
     needCorrectAnswer: false,
+    defaultAnswers: [],
   };
 
   formService = new FormService();
-  state = { answers: [] }
+  state = { answers: [], defaultAnswers: [] }
 
   componentWillMount() {
     this.formService.validations = {
       text: [isRequired],
     };
     this.formService.setInitialValues({ correct: false });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.defaultAnswers) {
+      this.setState({
+        defaultAnswers: nextProps.defaultAnswers.map((text, index) => {
+          return {
+            text,
+            id: `default-${index}`,
+            correct: true,
+          }
+        }),
+      });
+    }
   }
 
   handleSubmit = () => {
@@ -51,10 +67,14 @@ class AnswersContainer extends Component {
     }
     this.setState({
       answers: updatedAnswers
+    }, () => {
+      this.formService.setInitialValues({ correct: false });
+      this.formService.reset();
+      this.props.onChange([
+        ...updatedAnswers,
+        ...this.state.defaultAnswers,
+      ]);
     });
-    this.formService.setInitialValues({ correct: false });
-    this.formService.reset();
-    this.props.onChange(updatedAnswers);
   }
 
   handleEdit = (id) => {
@@ -69,15 +89,22 @@ class AnswersContainer extends Component {
         const updatedAnswers = this.state.answers.filter(answer => answer.id !== id);
         this.setState({
           answers: updatedAnswers,
+        }, () => {
+          this.prop.onChange([
+            ...updatedAnswers,
+            ...this.state.defaultAnswers,
+          ]);
         });
-        this.props.onChange(updatedAnswers);
       });
   }
 
   render() {
     return (
       <Answers
-        answers={this.state.answers}
+        answers={[
+          ...this.state.answers,
+          ...this.state.defaultAnswers,
+        ]}
         onSubmit={this.handleSubmit}
         onDelete={this.handleDelete}
         onEdit={this.handleEdit}

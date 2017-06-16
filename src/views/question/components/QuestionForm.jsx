@@ -47,11 +47,15 @@ const QuestionForm = props => (
       />
       <Separator size="xs" />
       <SlicesToRemoveContainer
-        onChange={slices => props.onChange('indexesToRemove', slices)}
+        onChange={(slices, texts) => {
+          props.onChange('indexesToRemove', slices);
+          props.onChange('textsRemoved', texts);
+        }}
         text={get(props.values, 'text', '')}
       />
       <Separator size="xs" />
       <AnswersContainer
+        defaultAnswers={get(props.values, 'textsRemoved', [])}
         onChange={answers => props.onChange('answers', answers)}
       />
       <Separator size="xs" />
