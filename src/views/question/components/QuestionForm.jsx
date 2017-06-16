@@ -7,12 +7,13 @@ import Row from "../../../core/layout/Row";
 import Column from "../../../core/layout/Column";
 import Button from '../../../core/form/Button';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
-import Dictationform from './forms/DictationForm';
+import DictationForm from './forms/DictationForm';
 import GapFillForm from "./forms/GapFillForm";
 import GrammarForm from "./forms/GrammarForm";
 import MovieForm from "./forms/MovieForm";
 import MultipleCompletePhraseForm from "./forms/MultipleCompletePhraseForm";
 import MusicVideoForm from "./forms/MusicVideoForm";
+import PresentationForm from "./forms/PresentationForm";
 
 const QuestionForm = props => (
   <Paper>
@@ -43,7 +44,7 @@ const QuestionForm = props => (
         </Column>
       </Row>
       {get(props.values, 'type.key', '') === 'DICTATION' && (
-        <Dictationform
+        <DictationForm
            onChange={props.onChange}
            errors={props.errors}
            values={props.values}
@@ -88,6 +89,14 @@ const QuestionForm = props => (
       )}
       {get(props.values, 'type.key', '') === 'MUSIC_VIDEO' && (
         <MusicVideoForm
+           onChange={props.onChange}
+           errors={props.errors}
+           values={props.values}
+           submitting={props.submitting}
+        />
+      )}
+      {get(props.values, 'type.key', '') === 'PRESENTATION' && (
+        <PresentationForm
            onChange={props.onChange}
            errors={props.errors}
            values={props.values}
