@@ -7,9 +7,9 @@ import Row from "../../../core/layout/Row";
 import Column from "../../../core/layout/Column";
 import Button from '../../../core/form/Button';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
-import TranslationContainer from './TranslationContainer';
-import SlicesToRemoveContainer from './SlicesToRemoveContainer';
-import AnswersContainer from './AnswersContainer';
+import Dictationform from './forms/DictationForm';
+import GapFillForm from "./forms/GapFillForm";
+import GrammarForm from "./forms/GrammarForm";
 
 const QuestionForm = props => (
   <Paper>
@@ -39,25 +39,33 @@ const QuestionForm = props => (
           Add Grammar select
         </Column>
       </Row>
-      <TranslationContainer
-        onChange={props.onChange}
-        submitting={props.submitting}
-        values={props.values}
-        errors={props.errors}
-      />
-      <Separator size="xs" />
-      <SlicesToRemoveContainer
-        onChange={(slices, texts) => {
-          props.onChange('indexesToRemove', slices);
-          props.onChange('textsRemoved', texts);
-        }}
-        text={get(props.values, 'text', '')}
-      />
-      <Separator size="xs" />
-      <AnswersContainer
-        defaultAnswers={get(props.values, 'textsRemoved', [])}
-        onChange={answers => props.onChange('answers', answers)}
-      />
+      {get(props.values, 'type.key', '') === 'DICTATION' && (
+        <Dictationform
+           onChange={props.onChange}
+           errors={props.errors}
+           values={props.values}
+           submitting={props.submitting}
+           isDirty={props.isDirty}
+        />
+      )}
+      {get(props.values, 'type.key', '') === 'GAP_FILL' && (
+        <GapFillForm
+           onChange={props.onChange}
+           errors={props.errors}
+           values={props.values}
+           submitting={props.submitting}
+           isDirty={props.isDirty}
+        />
+      )}
+      {get(props.values, 'type.key', '') === 'GRAMMAR' && (
+        <GrammarForm
+           onChange={props.onChange}
+           errors={props.errors}
+           values={props.values}
+           submitting={props.submitting}
+           isDirty={props.isDirty}
+        />
+      )}
       <Separator size="xs" />
       <Button
         icon="done"
