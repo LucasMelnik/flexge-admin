@@ -5,10 +5,8 @@ import Paper from '../../../core/layout/Paper';
 import TextInput from '../../../core/form/TextInput';
 import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
-import Switch from '../../../core/form/Switch';
 import Select from '../../../core/form/Select';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
-import Table from '../../../core/content/Table';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 
