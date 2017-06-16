@@ -23,7 +23,7 @@ const Answers = props => (
           errorText={get(props.errors, 'text', '')}
         />
         <ColumnSeparator size="sm" />
-        {props.needCorrectAnswer && (
+        {props.answerType === 'BOTH' && (
           <Select
             label="Is this a Correct answer ?"
             value={get(props.values, 'correct', '')}
@@ -34,7 +34,7 @@ const Answers = props => (
             ]}
           />
         )}
-        {props.needCorrectAnswer && (
+        {props.answerType === 'BOTH'  && (
           <ColumnSeparator size="sm" />
         )}
         <Button
@@ -82,7 +82,11 @@ Answers.propTypes = {
     text: PropTypes.string.isRequired,
     correct: PropTypes.bool.isRequired,
   })),
-  needCorrectAnswer: PropTypes.bool.isRequired,
+  answerType: PropTypes.oneOf([
+    'CORRECT',
+    'WRONG',
+    'BOTH',
+  ]).isRequired,
   values: PropTypes.object,
   errors: PropTypes.object,
   onChange: PropTypes.func.isRequired,

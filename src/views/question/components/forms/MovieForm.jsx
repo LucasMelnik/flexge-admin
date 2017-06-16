@@ -23,7 +23,7 @@ const MovieForm = props => (
     />
     <Separator size="xs" />
     <AnswersContainer
-      needCorrectAnswer
+      answerType="CORRECT"
       onChange={answers => props.onChange('answers', answers)}
     />
   </div>

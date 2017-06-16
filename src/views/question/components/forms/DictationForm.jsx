@@ -15,7 +15,7 @@ const DictationForm = props => (
     />
     <Separator size="xs" />
     <AnswersContainer
-      needCorrectAnswer
+      answerType="CORRECT"
       defaultAnswers={get(props.values, 'textsRemoved', [])}
       onChange={answers => props.onChange('answers', answers)}
     />

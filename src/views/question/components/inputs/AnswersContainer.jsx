@@ -10,12 +10,16 @@ class AnswersContainer extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    needCorrectAnswer: PropTypes.bool,
+    answerType: PropTypes.oneOf([
+      'CORRECT',
+      'WRONG',
+      'BOTH',
+    ]),
     defaultAnswers: PropTypes.arrayOf(PropTypes.string),
   };
 
   static defaultProps = {
-    needCorrectAnswer: false,
+    answerType: 'BOTH',
     defaultAnswers: [],
   };
 
@@ -26,7 +30,7 @@ class AnswersContainer extends Component {
     this.formService.validations = {
       text: [isRequired],
     };
-    this.formService.setInitialValues({ correct: false });
+    this.formService.setInitialValues({ correct: this.props.answerType === 'CORRECT' ? true : false });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -68,7 +72,7 @@ class AnswersContainer extends Component {
     this.setState({
       answers: updatedAnswers
     }, () => {
-      this.formService.setInitialValues({ correct: false });
+      // this.formService.setInitialValues({ correct: false });
       this.formService.reset();
       this.props.onChange([
         ...updatedAnswers,
@@ -90,7 +94,7 @@ class AnswersContainer extends Component {
         this.setState({
           answers: updatedAnswers,
         }, () => {
-          this.prop.onChange([
+          this.props.onChange([
             ...updatedAnswers,
             ...this.state.defaultAnswers,
           ]);
@@ -113,7 +117,7 @@ class AnswersContainer extends Component {
         values={this.formService.getValues()}
         errors={this.formService.errors}
         isDirty={this.formService.isDirty}
-        needCorrectAnswer={this.props.needCorrectAnswer}
+        answerType={this.props.answerType}
       />
     )
   }
