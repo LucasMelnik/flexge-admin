@@ -6,37 +6,44 @@ import Row from "../../../../core/layout/Row";
 import Column from "../../../../core/layout/Column";
 
 const YoutubeLink = props => (
-  <Row className="row">
-    <Column lgsize={8}>
+  <Row>
+    <Column lgSize={8}>
       <TextInput
         floatingLabel
         fullWidth
         label="Youtube link"
+        disabled={props.submitting}
         value={get(props.values, 'link', '')}
         onChange={value => props.onChange('link', value)}
-        error={get(props.errors, 'link', '')}
+        errorText={get(props.errors, 'link', '')}
       />
     </Column>
-    <Column lgSize={2}>
-      <TextInput
-        floatingLabel
-        fullWidth
-        label="Start time"
-        value={get(props.values, 'startTime', '')}
-        onChange={value => props.onChange('startTime', value)}
-        error={get(props.errors, 'startTime', '')}
-      />
-    </Column>
-    <Column lgSize={2}>
-      <TextInput
-        floatingLabel
-        fullWidth
-        label="End time"
-        value={get(props.values, 'endTime', '')}
-        onChange={value => props.onChange('endTime', value)}
-        error={get(props.errors, 'endTime', '')}
-      />
-    </Column>
+    {props.requiredCut && (
+      <Column lgSize={2}>
+        <TextInput
+          floatingLabel
+          fullWidth
+          label="Start time"
+          disabled={props.submitting}
+          value={get(props.values, 'startTime', '')}
+          onChange={value => props.onChange('startTime', value)}
+          errorText={get(props.errors, 'startTime', '')}
+        />
+      </Column>
+    )}
+    {props.requiredCut && (
+      <Column lgSize={2}>
+        <TextInput
+          floatingLabel
+          fullWidth
+          label="End time"
+          disabled={props.submitting}
+          value={get(props.values, 'endTime', '')}
+          onChange={value => props.onChange('endTime', value)}
+          errorText={get(props.errors, 'endTime', '')}
+        />
+      </Column>
+    )}
   </Row>
 );
 
@@ -44,13 +51,15 @@ YoutubeLink.propTypes = {
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
+  submitting: PropTypes.bool,
+  requiredCut: PropTypes.bool,
 };
 
 YoutubeLink.defaultProps = {
   values: {},
   errors: {},
-  isDirty: () => false,
-  onReset: () => false,
+  submitting: false,
+  requiredCut: false,
   onChange: () => false,
 };
 

@@ -10,6 +10,7 @@ import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
 import Dictationform from './forms/DictationForm';
 import GapFillForm from "./forms/GapFillForm";
 import GrammarForm from "./forms/GrammarForm";
+import MovieForm from "./forms/MovieForm";
 
 const QuestionForm = props => (
   <Paper>
@@ -59,6 +60,15 @@ const QuestionForm = props => (
       )}
       {get(props.values, 'type.key', '') === 'GRAMMAR' && (
         <GrammarForm
+           onChange={props.onChange}
+           errors={props.errors}
+           values={props.values}
+           submitting={props.submitting}
+           isDirty={props.isDirty}
+        />
+      )}
+      {get(props.values, 'type.key', '') === 'MOVIE' && (
+        <MovieForm
            onChange={props.onChange}
            errors={props.errors}
            values={props.values}
