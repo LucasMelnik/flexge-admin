@@ -14,6 +14,7 @@ import MovieForm from "./forms/MovieForm";
 import MultipleCompletePhraseForm from "./forms/MultipleCompletePhraseForm";
 import MusicVideoForm from "./forms/MusicVideoForm";
 import PresentationForm from "./forms/PresentationForm";
+import PronunciationForm from "./forms/PronunciationForm";
 
 const QuestionForm = props => (
   <Paper>
@@ -97,6 +98,14 @@ const QuestionForm = props => (
       )}
       {get(props.values, 'type.key', '') === 'PRESENTATION' && (
         <PresentationForm
+           onChange={props.onChange}
+           errors={props.errors}
+           values={props.values}
+           submitting={props.submitting}
+        />
+      )}
+      {get(props.values, 'type.key', '') === 'PRONUNCIATION' && (
+        <PronunciationForm
            onChange={props.onChange}
            errors={props.errors}
            values={props.values}
