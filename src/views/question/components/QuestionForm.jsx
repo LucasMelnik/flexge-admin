@@ -16,6 +16,7 @@ import MusicVideoForm from "./forms/MusicVideoForm";
 import PresentationForm from "./forms/PresentationForm";
 import PronunciationForm from "./forms/PronunciationForm";
 import SpeechPracticeForm from "./forms/SpeechPracticeForm";
+import UnscramblePhraseForm from "./forms/UnscramblePhraseForm";
 
 const QuestionForm = props => (
   <Paper>
@@ -115,6 +116,14 @@ const QuestionForm = props => (
       )}
       {get(props.values, 'type.key', '') === 'SPEECH_PRACTICE' && (
         <SpeechPracticeForm
+           onChange={props.onChange}
+           errors={props.errors}
+           values={props.values}
+           submitting={props.submitting}
+        />
+      )}
+      {['UNSCRAMBLE_PHRASE_DRAG_AND_DROP', 'UNSCRAMBLE_PHRASE_SR'].find(type => type === get(props.values, 'type.key', ''))  && (
+        <UnscramblePhraseForm
            onChange={props.onChange}
            errors={props.errors}
            values={props.values}
