@@ -22,7 +22,7 @@ const SlicesToRemove = props => (
                 return (
                   <Chip
                     key={`slice-${sliceText}-${index}`}
-                    onRequestDelete={() => props.onRemoveSlice(index)}
+                    onRequestDelete={!props.disableRemove ? () => props.onRemoveSlice(index) : null}
                     style={{
                       margin: '20px 5px',
                     }}
@@ -68,6 +68,7 @@ SlicesToRemove.propTypes = {
   onRemoveSlice: PropTypes.func.isRequired,
   onShowSlice: PropTypes.func.isRequired,
   errors: PropTypes.object,
+  disableRemove: PropTypes.bool.isRequired,
 };
 
 SlicesToRemove.defaultProps = {

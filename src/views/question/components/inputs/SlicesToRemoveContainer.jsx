@@ -7,6 +7,11 @@ export default class SlicesToRemoveContainer extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     text: PropTypes.string.isRequired,
+    maxRemovesAllowed: PropTypes.number,
+  };
+
+  static defaultProps = {
+    maxRemovesAllowed: null,
   };
 
   state = { slices: [], removedSlices: [] };
@@ -58,6 +63,7 @@ export default class SlicesToRemoveContainer extends Component {
         removedSlices={this.state.removedSlices}
         slices={this.state.slices}
         text={this.props.text}
+        disableRemove={this.state.removedSlices.length === this.props.maxRemovesAllowed}
       />
     )
   }
