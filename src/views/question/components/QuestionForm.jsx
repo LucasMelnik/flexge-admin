@@ -11,6 +11,7 @@ import Dictationform from './forms/DictationForm';
 import GapFillForm from "./forms/GapFillForm";
 import GrammarForm from "./forms/GrammarForm";
 import MovieForm from "./forms/MovieForm";
+import MultipleCompletePhraseForm from "./forms/MultipleCompletePhraseForm";
 
 const QuestionForm = props => (
   <Paper>
@@ -74,6 +75,14 @@ const QuestionForm = props => (
            values={props.values}
            submitting={props.submitting}
            isDirty={props.isDirty}
+        />
+      )}
+      {get(props.values, 'type.key', '') === 'MULTIPLE_COMPLETE_PHRASE' && (
+        <MultipleCompletePhraseForm
+           onChange={props.onChange}
+           errors={props.errors}
+           values={props.values}
+           submitting={props.submitting}
         />
       )}
       <Separator size="xs" />
