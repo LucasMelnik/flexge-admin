@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Separator from "../../../../core/layout/Separator";
-import TranslationContainer from '../inputs/TranslationContainer';
-import SlicesToRemoveContainer from "../inputs/SlicesToRemoveContainer";
+import TranslationContainer from '../inputs/TranslationInputContainer';
+import AnswersInputContainer from "../inputs/AnswersInputContainer";
+import SlicesInputContainer from "../inputs/SlicesInputContainer";
 
-const MusicVideoForm = props => (
+const GapFillMultipleItemForm = props => (
   <div>
     <TranslationContainer
       onChange={props.onChange}
@@ -14,7 +15,7 @@ const MusicVideoForm = props => (
       errors={props.errors}
     />
     <Separator size="xs" />
-    <SlicesToRemoveContainer
+    <SlicesInputContainer
       onChange={(slices, texts) => {
         props.onChange('indexesToRemove', slices);
         props.onChange('textsRemoved', texts);
@@ -23,21 +24,28 @@ const MusicVideoForm = props => (
       indexesToRemove={get(props.values, 'indexesToRemove', [])}
       errorText={get(props.errors, 'indexesToRemove', '')}
     />
+    <Separator size="xs" />
+    <AnswersInputContainer
+      answerType="WRONG"
+      defaultAnswers={get(props.values, 'textsRemoved', [])}
+      onChange={answers => props.onChange('answers', answers)}
+      errorText={get(props.errors, 'answers', '')}
+    />
   </div>
 );
 
-MusicVideoForm.propTypes = {
+GapFillMultipleItemForm.propTypes = {
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
 };
 
-MusicVideoForm.defaultProps = {
+GapFillMultipleItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
   onChange: () => false,
 };
 
-export default MusicVideoForm;
+export default GapFillMultipleItemForm;

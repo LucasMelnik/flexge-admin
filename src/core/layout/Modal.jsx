@@ -13,6 +13,10 @@ const Modal = props => (
     titleStyle={{
       padding: '14px 14px 10px',
     }}
+    style={{
+      top: '-100px',
+    }}
+    autoDetectWindowHeight={false}
     autoScrollBodyContent
     modal
   >

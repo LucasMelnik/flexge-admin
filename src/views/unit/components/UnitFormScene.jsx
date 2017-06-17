@@ -6,7 +6,7 @@ import Title from '../../../core/content/Title';
 import Separator from '../../../core/layout/Separator';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import UnitFormContainer from './UnitFormContainer';
-import UnitQuestionContainer from "./UnitQuestionContainer";
+import UnitQuestionContainer from "./UnitItemsContainer";
 
 const UnitFormScene = props => (
   <div>
@@ -34,16 +34,21 @@ const UnitFormScene = props => (
     <UnitFormContainer />
     <Separator size="sm" />
     {props.unitId && (
-      <UnitQuestionContainer unitId={props.unitId} />
+      <UnitQuestionContainer
+        unitId={props.unitId}
+        moduleId={props.moduleId}
+      />
     )}
   </div>
 );
 
 UnitFormScene.propTypes = {
   unitId: PropTypes.string,
+  moduleId: PropTypes.string,
 };
 UnitFormScene.defaultProps = {
   unitId: null,
+  moduleId: null,
 };
 
 export default UnitFormScene;

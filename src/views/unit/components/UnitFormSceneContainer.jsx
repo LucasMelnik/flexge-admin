@@ -26,7 +26,10 @@ class UnitFormSceneContainer extends Component {
 
   render() {
     return (
-      <UnitFormScene unitId={this.props.params.unitId} />
+      <UnitFormScene
+        unitId={this.props.params.unitId}
+        moduleId={this.props.params.moduleId}
+      />
     );
   }
 }
