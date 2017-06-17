@@ -34,8 +34,8 @@ const QuestionForm = props => (
             disabled={props.submitting || !!props.values.id}
             label="Question Type"
             value={get(props.values, 'type.name', '')}
-            onSelect={company => {
-              props.onChange('type', company);
+            onSelect={type => {
+              props.onChange('type', type);
               props.setValidationsByQuestionType();
             }}
             errorText={get(props.errors, 'type', '')}
@@ -46,7 +46,19 @@ const QuestionForm = props => (
           />
         </Column>
         <Column lgSize={6}>
-          Add Grammar select
+          <FetchAutoComplete
+            url="grammars?page=1&size=100"
+            fullWidth
+            disabled={props.submitting || !!props.values.id}
+            label="Grammar"
+            value={get(props.values, 'grammar.name', '')}
+            onSelect={grammar => props.onChange('grammar', grammar)}
+            errorText={get(props.errors, 'grammar', '')}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
         </Column>
       </Row>
       {get(props.values, 'type.key', '') === 'DICTATION' && (

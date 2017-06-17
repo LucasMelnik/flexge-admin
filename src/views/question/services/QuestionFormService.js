@@ -97,7 +97,6 @@ class QuestionFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      console.log(this.form.errors);
       return;
     }
     const questionId = this.form.getValue('id');
