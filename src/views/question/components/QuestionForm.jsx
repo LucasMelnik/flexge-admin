@@ -70,7 +70,6 @@ const QuestionForm = props => (
            errors={props.errors}
            values={props.values}
            submitting={props.submitting}
-           isDirty={props.isDirty}
         />
       )}
       {get(props.values, 'type.key', '') === 'MOVIE' && (

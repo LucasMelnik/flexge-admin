@@ -21,6 +21,7 @@ const UnscramblePhraseForm = props => (
         props.onChange('textsRemoved', texts);
       }}
       text={get(props.values, 'text', '')}
+      errorText={get(props.errors, 'indexesToRemove', '')}
     />
     <Separator size="xs" />
     <AnswersContainer

@@ -8,10 +8,12 @@ export default class SlicesToRemoveContainer extends Component {
     onChange: PropTypes.func.isRequired,
     text: PropTypes.string.isRequired,
     maxRemovesAllowed: PropTypes.number,
+    errorText: PropTypes.string,
   };
 
   static defaultProps = {
     maxRemovesAllowed: null,
+    errorText: null,
   };
 
   state = { slices: [], removedSlices: [] };
@@ -19,7 +21,7 @@ export default class SlicesToRemoveContainer extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.text.length > 0) {
       this.setState({
-        slices: nextProps.text.split(' '),
+        slices: nextProps.text.trim().split(' '),
       });
     }
   }
@@ -64,6 +66,7 @@ export default class SlicesToRemoveContainer extends Component {
         slices={this.state.slices}
         text={this.props.text}
         disableRemove={this.state.removedSlices.length === this.props.maxRemovesAllowed}
+        errorText={this.props.errorText}
       />
     )
   }

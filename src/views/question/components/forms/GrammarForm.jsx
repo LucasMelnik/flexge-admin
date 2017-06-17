@@ -5,7 +5,7 @@ import Separator from "../../../../core/layout/Separator";
 import TranslationContainer from '../inputs/TranslationContainer';
 import SlicesToRemoveContainer from "../inputs/SlicesToRemoveContainer";
 
-const GapFillForm = props => (
+const GrammarForm = props => (
   <div>
     <TranslationContainer
       onChange={props.onChange}
@@ -20,24 +20,24 @@ const GapFillForm = props => (
         props.onChange('textsRemoved', texts);
       }}
       text={get(props.values, 'text', '')}
+      errorText={get(props.errors, 'indexesToRemove', '')}
+      maxRemovesAllowed={1}
     />
   </div>
 );
 
-GapFillForm.propTypes = {
+GrammarForm.propTypes = {
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
-  isDirty: PropTypes.func,
 };
 
-GapFillForm.defaultProps = {
+GrammarForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  isDirty: () => false,
   onChange: () => false,
 };
 
-export default GapFillForm;
+export default GrammarForm;

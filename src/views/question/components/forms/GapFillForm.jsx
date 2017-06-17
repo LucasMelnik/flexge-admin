@@ -21,6 +21,7 @@ const GapFillForm = props => (
         props.onChange('textsRemoved', texts);
       }}
       text={get(props.values, 'text', '')}
+      errorText={get(props.errors, 'indexesToRemove', '')}
       maxRemovesAllowed={1}
     />
     <Separator size="xs" />

@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
-import { isRequired } from '../../../core/validations';
+import { isRequired, minLength } from '../../../core/validations';
 
 class QuestionFormService {
   fetch = new FetchService()
@@ -18,6 +18,7 @@ class QuestionFormService {
       text: [isRequired],
       translation: [isRequired],
       type: [isRequired],
+      indexesToRemove: [isRequired, minLength(1)]
     };
   }
 
@@ -40,6 +41,7 @@ class QuestionFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      console.log(this.form.errors);
       return;
     }
     const questionId = this.form.getValue('id');

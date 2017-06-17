@@ -5,13 +5,14 @@ import IconButton from 'material-ui/IconButton';
 import UndoIcon from 'material-ui/svg-icons/content/undo';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
+import ErrorText from "../../../../core/content/ErrorText";
 
 const SlicesToRemove = props => (
   <Row>
     <Column lgSize={12}>
       {props.slices.length > 0 && (
         <div>
-          <label>Here you must click on the X button to select the word(s) to hide.</label>
+          <small>Here you must click on the X button to select the word(s) to hide.</small>
           <div style={{
               display: 'flex',
               flexWrap: 'wrap',
@@ -24,7 +25,7 @@ const SlicesToRemove = props => (
                     key={`slice-${sliceText}-${index}`}
                     onRequestDelete={!props.disableRemove ? () => props.onRemoveSlice(index) : null}
                     style={{
-                      margin: '20px 5px',
+                      margin: '10px 5px',
                     }}
                   >
                     {sliceText}
@@ -35,7 +36,7 @@ const SlicesToRemove = props => (
                   <Chip
                     key={`slice-${sliceText}-${index}`}
                     style={{
-                      margin: '20px 5px',
+                      margin: '10px 5px',
                     }}
                     labelStyle={{
                       lineHeight: '12px',
@@ -56,6 +57,9 @@ const SlicesToRemove = props => (
               }
             })}
           </div>
+          {props.errorText && (
+           <ErrorText>{props.errorText}</ErrorText>
+          )}
         </div>
       )}
     </Column>
@@ -67,12 +71,12 @@ SlicesToRemove.propTypes = {
   removedSlices: PropTypes.arrayOf(PropTypes.number).isRequired,
   onRemoveSlice: PropTypes.func.isRequired,
   onShowSlice: PropTypes.func.isRequired,
-  errors: PropTypes.object,
+  errorText: PropTypes.string,
   disableRemove: PropTypes.bool.isRequired,
 };
 
 SlicesToRemove.defaultProps = {
-  errors: {},
+  errorText: null,
 };
 
 export default SlicesToRemove;
