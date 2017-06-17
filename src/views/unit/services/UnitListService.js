@@ -58,7 +58,7 @@ class UnitListService {
 
   handleRemove = action((unit) => {
     ConfirmationDialogService.show(
-      'Delete Unit',
+      'Delete UnitQuestionContainer.jsx',
       `You are about to delete the unit "${unit.name}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({

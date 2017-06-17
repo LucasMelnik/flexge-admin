@@ -6,6 +6,7 @@ import Title from '../../../core/content/Title';
 import Separator from '../../../core/layout/Separator';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import UnitFormContainer from './UnitFormContainer';
+import UnitQuestionContainer from "./UnitQuestionContainer";
 
 const UnitFormScene = props => (
   <div>
@@ -31,6 +32,10 @@ const UnitFormScene = props => (
     />
     <Separator size="sm" />
     <UnitFormContainer />
+    <Separator size="sm" />
+    {props.unitId && (
+      <UnitQuestionContainer unitId={props.unitId} />
+    )}
   </div>
 );
 

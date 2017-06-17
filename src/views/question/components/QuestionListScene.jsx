@@ -3,6 +3,9 @@ import { browserHistory } from 'react-router';
 import InlineBlock from 'jsxstyle/InlineBlock';
 import Title from '../../../core/content/Title';
 import FloatActionButton from '../../../core/form/FloatActionButton';
+import QuestionListContainer from './QuestionListContainer';
+import Separator from "../../../core/layout/Separator";
+import QuestionListPaginationContainer from "./QuestionListPaginationContainer";
 
 const QuestionListScene = () => (
  <div>
@@ -21,6 +24,10 @@ const QuestionListScene = () => (
      }}
      onClick={() => browserHistory.push('/questions/new')}
    />
+   <Separator size="sm" />
+   <QuestionListContainer />
+   <Separator size="sm" />
+   <QuestionListPaginationContainer />
  </div>
 );
 

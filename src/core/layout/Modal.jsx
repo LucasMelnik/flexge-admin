@@ -8,6 +8,7 @@ const Modal = props => (
     open={props.isOpen}
     contentStyle={{
       width: props.width,
+      maxWidth: 'none',
     }}
     titleStyle={{
       padding: '14px 14px 10px',
@@ -23,11 +24,11 @@ Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
-  width: PropTypes.number,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 Modal.defaultProps = {
-  width: 400,
+  width: 600,
 };
 
 export default Modal;

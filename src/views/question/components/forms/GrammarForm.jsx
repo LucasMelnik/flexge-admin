@@ -17,9 +17,10 @@ const GrammarForm = props => (
     <SlicesToRemoveContainer
       onChange={(slices, texts) => {
         props.onChange('indexesToRemove', slices);
-        props.onChange('textsRemoved', texts);
+        props.onChange('answers', texts.map(text => { return { correct: true, text } }));
       }}
       text={get(props.values, 'text', '')}
+      indexesToRemove={get(props.values, 'indexesToRemove', [])}
       errorText={get(props.errors, 'indexesToRemove', '')}
       maxRemovesAllowed={1}
     />

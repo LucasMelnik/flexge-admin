@@ -9,14 +9,25 @@ export default class SlicesToRemoveContainer extends Component {
     text: PropTypes.string.isRequired,
     maxRemovesAllowed: PropTypes.number,
     errorText: PropTypes.string,
+    indexesToRemove: PropTypes.arrayOf(PropTypes.number),
   };
 
   static defaultProps = {
     maxRemovesAllowed: null,
     errorText: null,
+    indexesToRemove: [],
   };
 
   state = { slices: [], removedSlices: [] };
+
+  componentWillMount() {
+    if (this.props.text.length > 0) {
+      this.setState({
+        slices: this.props.text.trim().split(' '),
+        removedSlices: this.props.indexesToRemove,
+      });
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.text.length > 0) {
@@ -28,7 +39,7 @@ export default class SlicesToRemoveContainer extends Component {
 
   getSliceTextsRemoved = () => {
     return this.state.slices.reduce((result, text, index) => {
-      if (this.state.removedSlices.find(removedIndex => removedIndex === index)) {
+      if (this.state.removedSlices.find(removedIndex => removedIndex === index) !== undefined) {
         result = result.concat([text]);
       }
       return result;

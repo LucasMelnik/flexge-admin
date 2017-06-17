@@ -17,6 +17,7 @@ import PresentationForm from "./forms/PresentationForm";
 import PronunciationForm from "./forms/PronunciationForm";
 import SpeechPracticeForm from "./forms/SpeechPracticeForm";
 import UnscramblePhraseForm from "./forms/UnscramblePhraseForm";
+import Select from "../../../core/form/Select";
 
 const QuestionForm = props => (
   <Paper>
@@ -27,11 +28,11 @@ const QuestionForm = props => (
       }}
     >
       <Row>
-        <Column lgSize={6}>
+        <Column lgSize={5}>
           <FetchAutoComplete
             url="question-types?page=1&size=100"
             fullWidth
-            disabled={props.submitting || !!props.values.id}
+            disabled={props.submitting}
             label="Question Type"
             value={get(props.values, 'type.name', '')}
             onSelect={type => {
@@ -45,11 +46,11 @@ const QuestionForm = props => (
             }}
           />
         </Column>
-        <Column lgSize={6}>
+        <Column lgSize={5}>
           <FetchAutoComplete
             url="grammars?page=1&size=100"
             fullWidth
-            disabled={props.submitting || !!props.values.id}
+            disabled={props.submitting}
             label="Grammar"
             value={get(props.values, 'grammar.name', '')}
             onSelect={grammar => props.onChange('grammar', grammar)}
@@ -60,6 +61,20 @@ const QuestionForm = props => (
             }}
           />
         </Column>
+        <Column lgSize={2}>
+          <Select
+            floatingLabel
+            fullWidth
+            options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => {
+              return { label: value.toString(), value }
+            })}
+            disabled={props.submitting}
+            label="Group"
+            value={get(props.values, 'group', '')}
+            onChange={value => props.onChange('group', value)}
+            errorText={get(props.errors, 'group', '')}
+          />
+        </Column>
       </Row>
       {get(props.values, 'type.key', '') === 'DICTATION' && (
         <DictationForm
@@ -67,7 +82,6 @@ const QuestionForm = props => (
            errors={props.errors}
            values={props.values}
            submitting={props.submitting}
-           isDirty={props.isDirty}
         />
       )}
       {get(props.values, 'type.key', '') === 'GAP_FILL' && (
@@ -76,7 +90,6 @@ const QuestionForm = props => (
            errors={props.errors}
            values={props.values}
            submitting={props.submitting}
-           isDirty={props.isDirty}
         />
       )}
       {get(props.values, 'type.key', '') === 'GRAMMAR' && (
@@ -93,7 +106,6 @@ const QuestionForm = props => (
            errors={props.errors}
            values={props.values}
            submitting={props.submitting}
-           isDirty={props.isDirty}
         />
       )}
       {get(props.values, 'type.key', '') === 'MULTIPLE_COMPLETE_PHRASE' && (
