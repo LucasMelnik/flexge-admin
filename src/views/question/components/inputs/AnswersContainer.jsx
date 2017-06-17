@@ -74,8 +74,7 @@ class AnswersContainer extends Component {
     this.setState({
       answers: updatedAnswers
     }, () => {
-      // this.formService.setInitialValues({ correct: false });
-      this.formService.reset();
+      this.handleReset();
       this.props.onChange([
         ...updatedAnswers,
         ...this.state.defaultAnswers,
@@ -85,6 +84,11 @@ class AnswersContainer extends Component {
 
   handleEdit = (id) => {
     this.formService.setInitialValues(this.state.answers.find(answer => answer.id === id));
+  }
+
+  handleReset = () => {
+    this.formService.setInitialValues({ correct: this.props.answerType === 'CORRECT' ? true : false });
+    this.formService.reset();
   }
 
   handleDelete = (id) => {
@@ -114,8 +118,8 @@ class AnswersContainer extends Component {
         onSubmit={this.handleSubmit}
         onDelete={this.handleDelete}
         onEdit={this.handleEdit}
+        onReset={this.handleReset}
         onChange={this.formService.setValue}
-        onReset={this.formService.reset}
         values={this.formService.getValues()}
         errors={this.formService.errors}
         isDirty={this.formService.isDirty}

@@ -48,8 +48,7 @@ const Answers = props => (
         <ColumnSeparator size="xs" />
         <Button
           icon="clear"
-          label="Discard Changes"
-          disabled={!props.isDirty()}
+          label="Cancel"
           onClick={() => props.onReset()}
         />
       </Column>
