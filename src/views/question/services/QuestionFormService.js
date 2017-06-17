@@ -18,10 +18,65 @@ class QuestionFormService {
       text: [isRequired],
       translation: [isRequired],
       type: [isRequired],
-      indexesToRemove: [isRequired, minLength(1)],
-      answers: [isRequired, minLength(1)]
     };
   }
+
+  setValidationsByQuestionType = action(() => {
+    const defaultValidations = {
+      text: [isRequired],
+      translation: [isRequired],
+      type: [isRequired],
+    };
+
+    switch (this.form.getValue('type').key) {
+      case 'DICTATION':
+        this.form.validations = {
+          ...defaultValidations,
+          answers: [isRequired, minLength(1)],
+        };
+        break;
+      case 'GAP_FILL':
+        this.form.validations = {
+          ...defaultValidations,
+          indexesToRemove: [isRequired, minLength(1)],
+          answers: [isRequired, minLength(4)],
+        };
+        break;
+      case 'GRAMMAR':
+        this.form.validations = {
+          ...defaultValidations,
+          indexesToRemove: [isRequired, minLength(1)],
+        };
+        break;
+      case 'MOVIE':
+        this.form.validations = {
+          ...defaultValidations,
+          answers: [isRequired, minLength(3)],
+        };
+      case 'MULTIPLE_COMPLETE_PHRASE':
+      case 'UNSCRAMBLE_PHRASE_DRAG_AND_DROP':
+      case 'UNSCRAMBLE_PHRASE_SR':
+        this.form.validations = {
+          ...defaultValidations,
+          indexesToRemove: [isRequired, minLength(2)],
+          answers: [isRequired, minLength(3)],
+        };
+        break;
+      case 'MUSIC_VIDEO':
+        this.form.validations = {
+          ...defaultValidations,
+          indexesToRemove: [isRequired, minLength(5)],
+        };
+        break;
+      default:
+        break;
+    }
+    this.form.setInitialValues({
+      id: this.form.getValue('id'),
+      type: this.form.getValue('type'),
+    });
+    this.form.reset();
+  });
 
   handleLoad = action((questionId) => {
     this.form.reset();

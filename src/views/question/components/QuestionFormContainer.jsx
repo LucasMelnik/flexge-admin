@@ -6,6 +6,7 @@ import QuestionFormService from '../services/QuestionFormService';
 const QuestionFormContainer = () => (
   <QuestionForm
     onSubmit={QuestionFormService.handleSubmit}
+    setValidationsByQuestionType={QuestionFormService.setValidationsByQuestionType}
     onChange={QuestionFormService.form.setValue}
     onReset={QuestionFormService.form.reset}
     values={QuestionFormService.form.getValues()}

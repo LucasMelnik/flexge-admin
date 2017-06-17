@@ -34,7 +34,10 @@ const QuestionForm = props => (
             disabled={props.submitting || !!props.values.id}
             label="Question Type"
             value={get(props.values, 'type.name', '')}
-            onSelect={company => props.onChange('type', company)}
+            onSelect={company => {
+              props.onChange('type', company);
+              props.setValidationsByQuestionType();
+            }}
             errorText={get(props.errors, 'type', '')}
             resultTransformer={{
               text: 'name',
@@ -152,6 +155,7 @@ const QuestionForm = props => (
 
 QuestionForm.propTypes = {
   onSubmit: PropTypes.func,
+  setValidationsByQuestionType: PropTypes.func,
   onReset: PropTypes.func,
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
@@ -166,6 +170,7 @@ QuestionForm.defaultProps = {
   submitting: false,
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
+  setValidationsByQuestionType: () => false,
   onReset: () => false,
   onChange: () => false,
 };
