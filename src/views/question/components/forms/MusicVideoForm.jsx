@@ -29,14 +29,12 @@ MusicVideoForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
-  isDirty: PropTypes.func,
 };
 
 MusicVideoForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  isDirty: () => false,
   onChange: () => false,
 };
 

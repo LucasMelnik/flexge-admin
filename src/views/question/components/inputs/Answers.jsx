@@ -9,6 +9,7 @@ import TextInput from '../../../../core/form/TextInput';
 import Button from '../../../../core/form/Button';
 import Select from '../../../../core/form/Select';
 import Table from '../../../../core/content/Table';
+import ErrorText from "../../../../core/content/ErrorText";
 
 const Answers = props => (
   <div>
@@ -71,6 +72,9 @@ const Answers = props => (
           onDelete={(row) => props.onDelete(row.id)}
           onSelect={(row) => props.onEdit(row.id)}
         />
+        {props.errorText && (
+          <ErrorText>{props.errorText}</ErrorText>
+        )}
       </Column>
     </Row>
   </div>
@@ -87,8 +91,8 @@ Answers.propTypes = {
     'WRONG',
     'BOTH',
   ]).isRequired,
+  errorText: PropTypes.string,
   values: PropTypes.object,
-  errors: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   onReset: PropTypes.func.isRequired,
   isDirty: PropTypes.func.isRequired,
@@ -100,6 +104,7 @@ Answers.propTypes = {
 Answers.defaultProps = {
   answers: [],
   values: {},
+  errorText: null,
 };
 
 export default Answers;

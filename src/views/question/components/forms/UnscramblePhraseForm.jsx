@@ -25,8 +25,10 @@ const UnscramblePhraseForm = props => (
     />
     <Separator size="xs" />
     <AnswersContainer
+      answerType="WRONG"
       defaultAnswers={get(props.values, 'textsRemoved', [])}
       onChange={answers => props.onChange('answers', answers)}
+      errorText={get(props.errors, 'answers', '')}
     />
   </div>
 );

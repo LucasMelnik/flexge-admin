@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import get from 'lodash/get';
 import Separator from "../../../../core/layout/Separator";
 import TranslationContainer from '../inputs/TranslationContainer';
 import YoutubeLinkContainer from "../inputs/YoutubeLinkContainer";
@@ -23,8 +24,8 @@ const MovieForm = props => (
     />
     <Separator size="xs" />
     <AnswersContainer
-      answerType="CORRECT"
       onChange={answers => props.onChange('answers', answers)}
+      errorText={get(props.errors, 'answers', '')}
     />
   </div>
 );
@@ -34,14 +35,12 @@ MovieForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
-  isDirty: PropTypes.func,
 };
 
 MovieForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  isDirty: () => false,
   onChange: () => false,
 };
 

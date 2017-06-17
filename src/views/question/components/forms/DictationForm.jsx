@@ -18,6 +18,7 @@ const DictationForm = props => (
       answerType="CORRECT"
       defaultAnswers={get(props.values, 'textsRemoved', [])}
       onChange={answers => props.onChange('answers', answers)}
+      errorText={get(props.errors, 'answers', '')}
     />
   </div>
 );

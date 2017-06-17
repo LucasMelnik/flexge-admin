@@ -18,7 +18,8 @@ class QuestionFormService {
       text: [isRequired],
       translation: [isRequired],
       type: [isRequired],
-      indexesToRemove: [isRequired, minLength(1)]
+      indexesToRemove: [isRequired, minLength(1)],
+      answers: [isRequired, minLength(1)]
     };
   }
 

@@ -16,11 +16,13 @@ class AnswersContainer extends Component {
       'BOTH',
     ]),
     defaultAnswers: PropTypes.arrayOf(PropTypes.string),
+    errorText: PropTypes.string,
   };
 
   static defaultProps = {
     answerType: 'BOTH',
     defaultAnswers: [],
+    errorText: null,
   };
 
   formService = new FormService();
@@ -118,6 +120,7 @@ class AnswersContainer extends Component {
         errors={this.formService.errors}
         isDirty={this.formService.isDirty}
         answerType={this.props.answerType}
+        errorText={this.props.errorText}
       />
     )
   }
