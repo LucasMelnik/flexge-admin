@@ -42,10 +42,16 @@ export default class SlicesInputContainer extends Component {
   getSliceTextsRemoved = () => {
     return this.state.slices.reduce((result, text, index) => {
       if (this.state.removedSlices.find(removedIndex => removedIndex === index) !== undefined) {
-        result = result.concat([text]);
+        if (this.props.sequenceRemove) {
+          result = [
+            result[0].concat(' ').concat(text).trim(),
+          ];
+        } else {
+          result = result.concat([text]);
+        }
       }
       return result;
-    }, []);
+    }, ['']);
   };
 
   handleRemoveSlice = (index) => {
@@ -80,6 +86,7 @@ export default class SlicesInputContainer extends Component {
         text={this.props.text}
         disableRemove={this.state.removedSlices.length === this.props.maxRemovesAllowed}
         errorText={this.props.errorText}
+        sequenceRemove={this.props.sequenceRemove}
       />
     );
   }

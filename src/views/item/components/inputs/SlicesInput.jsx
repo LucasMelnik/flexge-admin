@@ -20,10 +20,22 @@ const SlicesInput = props => (
           >
             {props.slices.map((sliceText, index) => {
               if (props.removedSlices.find(removedIndex => removedIndex === index) === undefined) {
+                let removeSliceFunc = null;
+                if ((!props.disableRemove && !props.sequenceRemove) ||
+                  (!props.disableRemove && props.sequenceRemove &&
+                    (!props.removedSlices.length ||
+                      props.removedSlices.find(removedIndex => index === (removedIndex - 1)) ||
+                      props.removedSlices.find(removedIndex => index === (removedIndex + 1))
+                    )
+                  )
+                ) {
+                  removeSliceFunc = () => props.onRemoveSlice(index);
+                }
+
                 return (
                   <Chip
                     key={`slice-${sliceText}-${index}`}
-                    onRequestDelete={!props.disableRemove ? () => props.onRemoveSlice(index) : null}
+                    onRequestDelete={removeSliceFunc}
                     style={{
                       margin: '10px 5px',
                     }}
@@ -73,6 +85,7 @@ SlicesInput.propTypes = {
   onShowSlice: PropTypes.func.isRequired,
   errorText: PropTypes.string,
   disableRemove: PropTypes.bool.isRequired,
+  sequenceRemove: PropTypes.bool.isRequired,
 };
 
 SlicesInput.defaultProps = {

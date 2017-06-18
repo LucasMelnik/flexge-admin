@@ -88,7 +88,7 @@ class ItemFormService {
           text: [isRequired],
           translation: [isRequired],
           indexesToRemove: [isRequired, minLength(1)],
-          answers: [isRequired, minLength(3)],
+          answers: [isRequired, minLength(1)],
         };
         break;
       case 'GAP_FILL_MULTIPLE':
