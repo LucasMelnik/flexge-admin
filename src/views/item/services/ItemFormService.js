@@ -76,7 +76,6 @@ class ItemFormService {
           ...this.defaultValidations,
           text: [isRequired],
           translation: [isRequired],
-          answers: [isRequired, minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),],
         };
         break;
       case 'GAP_FILL':
