@@ -44,14 +44,14 @@ export default class SlicesInputContainer extends Component {
       if (this.state.removedSlices.find(removedIndex => removedIndex === index) !== undefined) {
         if (this.props.sequenceRemove) {
           result = [
-            result[0].concat(' ').concat(text).trim(),
+            (result[0] || '').concat(' ').concat(text).trim(),
           ];
         } else {
           result = result.concat([text]);
         }
       }
       return result;
-    }, ['']);
+    }, []);
   };
 
   handleRemoveSlice = (index) => {
