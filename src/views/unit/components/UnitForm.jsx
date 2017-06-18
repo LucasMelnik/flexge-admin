@@ -78,7 +78,7 @@ const UnitForm = props => (
             error={get(props.errors, 'order', '')}
           />
         </Column>
-        <Column lgSize={1}>
+        <Column lgSize={2}>
           <Select
             floatingLabel
             fullWidth
@@ -93,7 +93,7 @@ const UnitForm = props => (
             error={get(props.errors, 'scoreToPass', '')}
           />
         </Column>
-        <Column lgSize={3}>
+        <Column lgSize={2}>
           <Select
             floatingLabel
             fullWidth
