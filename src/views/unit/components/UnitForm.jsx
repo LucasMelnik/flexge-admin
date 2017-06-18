@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import range from 'lodash/range';
 import Paper from '../../../core/layout/Paper';
 import TextInput from '../../../core/form/TextInput';
 import Button from '../../../core/form/Button';
@@ -66,15 +67,12 @@ const UnitForm = props => (
           <Select
             floatingLabel
             fullWidth
-            options={[
-              { label: '1', value: 1 },
-              { label: '2', value: 2 },
-              { label: '3', value: 3 },
-              { label: '4', value: 4 },
-              { label: '5', value: 5 },
-            ]}
+            options={range(1, 11).map(value => ({
+              value,
+              label: value.toString(),
+            }))}
             disabled={props.submitting}
-            label="Order"
+            label="Group"
             value={get(props.values, 'order', '')}
             onChange={value => props.onChange('order', value)}
             error={get(props.errors, 'order', '')}
@@ -84,13 +82,10 @@ const UnitForm = props => (
           <Select
             floatingLabel
             fullWidth
-            options={[
-              { label: '70', value: 70 },
-              { label: '75', value: 75 },
-              { label: '80', value: 80 },
-              { label: '85', value: 85 },
-              { label: '90', value: 90 },
-            ]}
+            options={range(70, 110, 10).map(value => ({
+              value,
+              label: value.toString(),
+            }))}
             disabled={props.submitting}
             label="Score to pass"
             value={get(props.values, 'scoreToPass', '')}
@@ -102,12 +97,10 @@ const UnitForm = props => (
           <Select
             floatingLabel
             fullWidth
-            options={[
-              { label: '5', value: 5 },
-              { label: '10', value: 10 },
-              { label: '15', value: 15 },
-              { label: '20', value: 20 },
-            ]}
+            options={range(1, 21).map(value => ({
+              value,
+              label: value.toString(),
+            }))}
             disabled={props.submitting}
             label="Time (minutes)"
             value={get(props.values, 'time', '')}
