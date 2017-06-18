@@ -8,7 +8,7 @@ const UnitItemListContainer = () => (
   <UnitItemList
     items={toJS(UnitItemListService.items)}
     fetching={UnitItemListService.fetch.fetching}
-    onDelete={UnitItemListService.handleRemove}
+    onDelete={UnitItemListService.handleUnlinkItem}
     onSelect={UnitItemListService.handleSelect}
     onOrderChange={UnitItemListService.handleOrderChange}
   />

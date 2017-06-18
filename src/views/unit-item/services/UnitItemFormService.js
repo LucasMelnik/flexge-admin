@@ -7,7 +7,6 @@ class UnitItemFormService {
   constructor() {
     extendObservable(this, {
       successCallback: null,
-      unitItemId: null,
     });
   }
 
@@ -15,15 +14,13 @@ class UnitItemFormService {
     this.successCallback = successCallback;
   });
 
-  handleLoad = action((unitItemId) => {
-    this.unitItemId = unitItemId;
-  });
-
   handleLinkToUnit = action((unitItem) => {
     this.submit.fetch({
       method: 'post',
-      url: `/units/${unitItem.unit}/items`,
-      body: unitItem,
+      url: `/units/${unitItem.unit}/items/${unitItem.item}/unit-item`,
+      body: {
+        order: unitItem.order,
+      },
     }).then(() => {
       if (this.submit.data) {
         const item = this.submit.data;

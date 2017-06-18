@@ -39,6 +39,7 @@ export default class UnitItemsContainer extends Component {
         UnitItemFormService.handleLinkToUnit(unitItem);
       } else {
         this.toggleModal();
+        UnitItemListService.load();
       }
     };
     ItemFormService.init(saveItemCallback);
@@ -52,7 +53,6 @@ export default class UnitItemsContainer extends Component {
 
   handleSelect = (unitItem) => {
     ItemFormService.handleLoad(unitItem.item.id);
-    UnitItemFormService.handleLoad(unitItem.id);
     setTimeout(() => { this.toggleModal(); }, 100);
   };
 
