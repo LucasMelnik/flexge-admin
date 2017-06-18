@@ -20,6 +20,7 @@ import SpeechPracticeItemForm from "./forms/SpeechPracticeItemForm";
 import TextItemForm from "./forms/TextItemForm";
 import UnscrambleDragDropItemForm from "./forms/UnscrambleDragDropItemForm";
 import UnscrambleSpeechRecognitionItemForm from "./forms/UnscrambleSpeechRecognitionItemForm";
+import TrueFalseItemForm from "./forms/TrueFalseItemForm";
 
 const ItemForm = props => (
   <form
@@ -176,8 +177,12 @@ const ItemForm = props => (
       />
     )}
     {get(props.values, 'type.key', '') === 'TRUE_FALSE' && (
-      //TODO
-      <span>todo</span>
+      <TrueFalseItemForm
+        onChange={props.onChange}
+        errors={props.errors}
+        values={props.values}
+        submitting={props.submitting}
+      />
     )}
     <Separator size="xs" />
     <Button
