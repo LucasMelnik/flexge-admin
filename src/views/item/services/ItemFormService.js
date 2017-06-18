@@ -213,7 +213,7 @@ class ItemFormService {
       if (this.submit.data) {
         const item = this.submit.data;
         if (this.successCallback) {
-          this.successCallback(item, itemId === undefined);
+          this.successCallback(item, !itemId);
         } else {
           browserHistory.push(`/items/${item.id}`);
           this.itemId = item.id;

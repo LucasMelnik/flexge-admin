@@ -17,12 +17,18 @@ class AnswersInputContainer extends Component {
     ]),
     defaultAnswers: PropTypes.arrayOf(PropTypes.string),
     errorText: PropTypes.string,
+    value: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      correct: PropTypes.bool.isRequired,
+    })),
   };
 
   static defaultProps = {
     answerType: 'BOTH',
     defaultAnswers: [],
     errorText: null,
+    value: [],
   };
 
   formService = new FormService();
@@ -33,6 +39,9 @@ class AnswersInputContainer extends Component {
       text: [isRequired],
     };
     this.formService.setInitialValues({ correct: this.props.answerType === 'CORRECT' });
+    this.setState({
+      answers: this.props.value,
+    })
   }
 
   componentWillReceiveProps(nextProps) {
