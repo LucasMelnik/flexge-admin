@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { sortBy } from 'lodash';
 import AutoComplete from './AutoComplete';
 
 export default class FetchAutoComplete extends Component {
@@ -41,8 +42,9 @@ export default class FetchAutoComplete extends Component {
         ...localStorage.accessToken && { Authorization: `Bearer ${localStorage.accessToken}` },
       },
     }).then((response) => {
+      const data = response.data.docs || response.data;
       this.setState({
-        data: response.data.docs || response.data,
+        data: sortBy(data, item => item[this.props.resultTransformer.text].toLowerCase()),
       });
       return response.data;
     });
