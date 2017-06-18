@@ -26,13 +26,17 @@ export default class UnitItemsContainer extends Component {
       this.toggleModal();
       UnitItemListService.load();
     });
-    ItemFormService.init(item => {
-      const unitItem = {
-        unit: this.props.unitId,
-        item: item.id,
-        order: UnitItemListService.total + 1,
-      };
-      UnitItemFormService.handleSave(unitItem);
+    ItemFormService.init((item, isNew) => {
+      if (isNew) {
+        const unitItem = {
+          unit: this.props.unitId,
+          item: item.id,
+          order: UnitItemListService.total + 1,
+        };
+        UnitItemFormService.handleInsert(unitItem);
+      } else {
+        this.toggleModal();
+      }
     });
   }
 
@@ -44,6 +48,7 @@ export default class UnitItemsContainer extends Component {
 
   handleSelect = (unitItem) => {
     ItemFormService.handleLoad(unitItem.item.id);
+    UnitItemFormService.handleLoad(unitItem.id);
     setTimeout(() => { this.toggleModal(); }, 100);
   };
 

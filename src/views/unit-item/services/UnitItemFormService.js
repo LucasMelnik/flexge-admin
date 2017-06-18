@@ -13,6 +13,7 @@ class UnitItemFormService {
   constructor() {
     extendObservable(this, {
       successCallback: null,
+      unitItemId: null,
     });
   }
 
@@ -20,11 +21,14 @@ class UnitItemFormService {
     this.successCallback = successCallback;
   });
 
-  handleSave = action((unitItem) => {
-    const unitItemId = unitItem.id;
+  handleLoad = action((unitItemId) => {
+    this.unitItemId = unitItemId;
+  });
+
+  handleInsert = action((unitItem) => {
     this.submit.fetch({
-      method: unitItemId ? 'put' : 'post',
-      url: unitItemId ? `/units/${unitItem.unit}/items/${unitItemId}` : `/units/${unitItem.unit}/items`,
+      method: 'post',
+      url: `/units/${unitItem.unit}/items`,
       body: unitItem,
     }).then(() => {
       if (this.submit.data) {

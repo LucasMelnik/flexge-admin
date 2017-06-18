@@ -39,11 +39,13 @@ const UnitItemList = props => (
 UnitItemList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    translation: PropTypes.string.isRequired,
-    grammar: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    }).isRequired,
+    item: PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      translation: PropTypes.string.isRequired,
+      grammar: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }).isRequired
+    }),
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
