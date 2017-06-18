@@ -4,6 +4,7 @@ import ConfirmationDialogService from '../../../core/services/ConfirmationDialog
 
 class UnitItemListService {
   fetch = new FetchService();
+  submit = new FetchService();
 
   constructor() {
     extendObservable(this, {
@@ -37,6 +38,19 @@ class UnitItemListService {
         this.total = 0;
         this.pageCount = 1;
       }
+    });
+  });
+
+  handleOrderChange = action((unitItem, order)=> {
+    this.fetch.fetch({
+      url: `/units/${unitItem.unit}/items/${unitItem.id}`,
+      method: 'put',
+      body: {
+        item: unitItem.item.id,
+        order,
+      }
+    }).then(() => {
+      this.load();
     });
   });
 

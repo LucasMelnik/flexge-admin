@@ -10,6 +10,7 @@ const UnitItemListContainer = () => (
     fetching={UnitItemListService.fetch.fetching}
     onDelete={UnitItemListService.handleRemove}
     onSelect={UnitItemListService.handleSelect}
+    onOrderChange={UnitItemListService.handleOrderChange}
   />
 );
 

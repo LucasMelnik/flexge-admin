@@ -1,14 +1,8 @@
 import { extendObservable, action } from 'mobx';
-// import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
-// import FormService from '../../../core/services/FormService';
-// import NotificationService from '../../../core/services/NotificationService';
-// import { isRequired, minLength } from '../../../core/validations';
 
 class UnitItemFormService {
-  // fetch = new FetchService();
   submit = new FetchService();
-  // form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -25,7 +19,7 @@ class UnitItemFormService {
     this.unitItemId = unitItemId;
   });
 
-  handleInsert = action((unitItem) => {
+  handleLinkToUnit = action((unitItem) => {
     this.submit.fetch({
       method: 'post',
       url: `/units/${unitItem.unit}/items`,

@@ -22,22 +22,26 @@ export default class UnitItemsContainer extends Component {
 
   componentWillMount() {
     UnitItemListService.init(this.props.unitId, this.handleSelect);
-    UnitItemFormService.init(() => {
+
+    const linkUnitCallback = () => {
       this.toggleModal();
       UnitItemListService.load();
-    });
-    ItemFormService.init((item, isNew) => {
+    };
+    UnitItemFormService.init(linkUnitCallback);
+
+    const saveItemCallback = (item, isNew) => {
       if (isNew) {
         const unitItem = {
           unit: this.props.unitId,
           item: item.id,
           order: UnitItemListService.total + 1,
         };
-        UnitItemFormService.handleInsert(unitItem);
+        UnitItemFormService.handleLinkToUnit(unitItem);
       } else {
         this.toggleModal();
       }
-    });
+    };
+    ItemFormService.init(saveItemCallback);
   }
 
   toggleModal = () => {

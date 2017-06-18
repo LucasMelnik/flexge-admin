@@ -21,8 +21,10 @@ export default class Table extends Component {
       label: PropTypes.string.isRequired,
       path: PropTypes.string.isRequired,
       labelWhenNull: PropTypes.string,
+      width: PropTypes.number,
     })),
     actionComponent: PropTypes.func,
+    actionComponentWidth: PropTypes.number,
     onSelect: PropTypes.func,
     onDelete: PropTypes.func,
     rows: PropTypes.arrayOf(PropTypes.object),
@@ -30,6 +32,7 @@ export default class Table extends Component {
 
   static defaultProps = {
     actionComponent: null,
+    actionComponentWidth: null,
     onSelect: null,
     onDelete: null,
     selectable: false,
@@ -67,7 +70,7 @@ export default class Table extends Component {
           adjustForCheckbox={false}
         >
           <TableRow>
-            {this.props.actionComponent && <TableHeaderColumn />}
+            {this.props.actionComponent && <TableHeaderColumn style={{ width: this.props.actionComponentWidth || 'auto' }} />}
             {this.props.columns.map(column => (
               <TableHeaderColumn
                 key={column.label}
@@ -75,6 +78,9 @@ export default class Table extends Component {
                   ${column.path === this.state.currentSortColumn && this.state.currentSortDirection === 'asc' && 'asc'}
                   ${column.path === this.state.currentSortColumn && this.state.currentSortDirection === 'desc' && 'desc'}
                 `}
+                style={{
+                  width: column.width || 'auto',
+                }}
               >
                 {column.label}
               </TableHeaderColumn>
@@ -96,7 +102,7 @@ export default class Table extends Component {
               key={row.id || index}
             >
               {this.props.actionComponent && (
-                <TableRowColumn>
+                <TableRowColumn style={{ width: this.props.actionComponentWidth || 'auto' }}>
                   {this.props.actionComponent(row)}
                 </TableRowColumn>
               )}
@@ -104,6 +110,9 @@ export default class Table extends Component {
                 <TableRowColumn
                   key={column.path}
                   onMouseDown={() => this.props.onSelect && this.props.onSelect(row, index)}
+                  style={{
+                    width: column.width || 'auto',
+                  }}
                 >
                   {isBoolean(row[column.path]) && (row[column.path] ? 'Yes' : 'No')}
                   {!isBoolean(row[column.path]) && get(row, column.path, column.labelWhenNull || '').toString()}
