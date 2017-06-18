@@ -85,7 +85,7 @@ const UnitForm = props => (
             options={range(70, 105, 5).map(value => ({
               value,
               label: value.toString(),
-            }))}
+            }))} 
             disabled={props.submitting}
             label="Score to pass"
             value={get(props.values, 'scoreToPass', '')}
