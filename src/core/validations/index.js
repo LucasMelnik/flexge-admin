@@ -12,3 +12,14 @@ export const isValidEmail = (value) => {
   }
   return null;
 };
+
+export const onlyOneCorrectAnswer = (answers) => {
+  if (answers && answers.length) {
+    const correctAnswers = answers.filter(answer => answer.correct);
+    if (correctAnswers.length > 1) {
+      return 'Please inform only one correct answer';
+    }
+    return null;
+  }
+  return null;
+};

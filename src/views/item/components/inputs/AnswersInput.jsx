@@ -35,7 +35,7 @@ const AnswersInput = props => (
             ]}
           />
         )}
-        {props.answerType === 'BOTH'  && (
+        {props.answerType === 'BOTH' && (
           <ColumnSeparator size="sm" />
         )}
         <Button
