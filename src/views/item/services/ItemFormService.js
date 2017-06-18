@@ -12,7 +12,6 @@ class ItemFormService {
 
   defaultValidations = {
     type: [isRequired],
-    order: [isRequired],
     grammar: [isRequired],
   };
 

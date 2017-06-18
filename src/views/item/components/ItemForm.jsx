@@ -30,7 +30,7 @@ const ItemForm = props => (
     }}
   >
     <Row>
-      <Column lgSize={5}>
+      <Column lgSize={6}>
         <FetchAutoComplete
           url="item-types?page=1&size=100"
           fullWidth
@@ -48,7 +48,7 @@ const ItemForm = props => (
           }}
         />
       </Column>
-      <Column lgSize={5}>
+      <Column lgSize={6}>
         <FetchAutoComplete
           url="grammars?page=1&size=100"
           fullWidth
@@ -63,20 +63,20 @@ const ItemForm = props => (
           }}
         />
       </Column>
-      <Column lgSize={2}>
-        <Select
-          floatingLabel
-          fullWidth
-          options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => {
-            return { label: value.toString(), value }
-          })}
-          disabled={props.submitting}
-          label="Order"
-          value={get(props.values, 'order', '')}
-          onChange={value => props.onChange('order', value)}
-          errorText={get(props.errors, 'order', '')}
-        />
-      </Column>
+      {/*<Column lgSize={2}>*/}
+        {/*<Select*/}
+          {/*floatingLabel*/}
+          {/*fullWidth*/}
+          {/*options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => {*/}
+            {/*return { label: value.toString(), value }*/}
+          {/*})}*/}
+          {/*disabled={props.submitting}*/}
+          {/*label="Order"*/}
+          {/*value={get(props.values, 'order', '')}*/}
+          {/*onChange={value => props.onChange('order', value)}*/}
+          {/*errorText={get(props.errors, 'order', '')}*/}
+        {/*/>*/}
+      {/*</Column>*/}
     </Row>
     {get(props.values, 'type.key', '') === 'VIDEO' && (
       <VideoItemForm
