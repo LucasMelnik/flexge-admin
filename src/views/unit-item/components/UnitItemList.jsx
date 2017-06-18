@@ -26,6 +26,10 @@ const UnitItemList = props => (
             label: 'Grammar',
             path: 'item.grammar.name',
           },
+          {
+            label: 'Type',
+            path: 'item.type.name',
+          },
         ]}
         rows={props.items}
         selectable
