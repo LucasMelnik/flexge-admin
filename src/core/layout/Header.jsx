@@ -4,7 +4,8 @@ import { browserHistory } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import PermissionValidator from '../../core/content/PermissionValidator';
+import PermissionValidator from '../content/PermissionValidator';
+import ClickOutsideListener from './ClickOutsideListener';
 
 export default class Header extends Component {
 
@@ -29,6 +30,12 @@ export default class Header extends Component {
     });
   }
 
+  handleCloseMenu = () => {
+    this.setState({
+      openMenu: false,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -37,8 +44,12 @@ export default class Header extends Component {
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           onLeftIconButtonTouchTap={() => this.toggleMenu()}
         />
-        <Drawer open={this.state.openMenu}>
-          {this.props.menuItems.map(menuItem => {
+        <Drawer
+          docked={false}
+          open={this.state.openMenu}
+          onRequestChange={this.handleCloseMenu}
+        >
+          {this.props.menuItems.map((menuItem) => {
             const menuItemComponent = (
               <MenuItem
                 key={menuItem.url}
@@ -46,7 +57,7 @@ export default class Header extends Component {
                   this.toggleMenu();
                   browserHistory.push(menuItem.url);
                 }}
-                style={{cursor: 'pointer'}}
+                style={{ cursor: 'pointer' }}
               >
                 {menuItem.label}
               </MenuItem>

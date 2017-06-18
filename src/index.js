@@ -7,9 +7,11 @@ import './index.css';
 
 injectTapEventPlugin();
 
-ReactDOM.render(
+const App = () => (
   <Theme>
     <Routes />
-  </Theme>,
-  document.getElementById('root')
+  </Theme>
 );
+
+window.__myapp_container = document.getElementById('root')
+ReactDOM.render(<App />, window.__myapp_container)
