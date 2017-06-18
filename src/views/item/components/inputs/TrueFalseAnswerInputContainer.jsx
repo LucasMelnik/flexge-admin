@@ -12,44 +12,62 @@ export default class TrueFalseAnswerInputContainer extends Component {
     onChange: PropTypes.func.isRequired,
   };
 
-  state = {
-    answers: [
-      {
-        correct: true,
-        text: 'This is True',
-      },
-      {
-        correct: false,
-        text: 'This is Not True',
-      },
-    ]
-  };
+  state = { checked: false, answers: [] };
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.value.length) {
       this.setState({
+        checked: this.props.value[0].correct,
         answers: this.props.value,
       });
     }
   }
 
-  handleChange = () => {
+  componentWillReceiveProps() {
+    if (this.props.value.length) {
+      this.setState({
+        checked: this.props.value[0].correct,
+        answers: this.props.value,
+      });
+    }
+  }
+
+  handleChange = (checked) => {
+    let answers = null;
+    if (this.state.answers.length) {
+      const isTrueAnswer = this.state.answers[0];
+      const isFalseAnswer = this.state.answers[1];
+      isTrueAnswer.correct = checked;
+      isFalseAnswer.correct = !checked;
+      answers = [
+        isTrueAnswer,
+        isFalseAnswer,
+      ];
+    } else {
+      answers = [
+        {
+          correct: checked,
+          text: 'True',
+        },
+        {
+          correct: !checked,
+          text: 'Not True',
+        },
+      ];
+    }
     this.setState({
-      answers: this.state.answers.map(answer => {
-        answer.correct = !answer.correct;
-        return answer;
-      }),
-    }, () => {
-      this.props.onChange(this.state.answers);
+      checked,
+      answers,
     });
+    this.props.onChange(answers);
   };
 
   render() {
     return (
       <TrueFalseAnswerInput
-        answers={this.state.answers}
+        checked={this.state.checked}
         onChange={this.handleChange}
       />
-    )
+    );
   }
 }
