@@ -82,7 +82,7 @@ const UnitForm = props => (
           <Select
             floatingLabel
             fullWidth
-            options={range(70, 110, 10).map(value => ({
+            options={range(70, 105, 5).map(value => ({
               value,
               label: value.toString(),
             }))}
