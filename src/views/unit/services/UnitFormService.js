@@ -6,9 +6,9 @@ import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
 class UnitFormService {
-  fetch = new FetchService()
-  submit = new FetchService()
-  form = new FormService()
+  fetch = new FetchService();
+  submit = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -17,6 +17,7 @@ class UnitFormService {
     this.form.validations = {
       name: [isRequired],
       module: [isRequired],
+      type: [isRequired],
     };
   }
 
@@ -48,7 +49,7 @@ class UnitFormService {
       url: unitId ? `/modules/${moduleId}/units/${unitId}` : `/modules/${moduleId}/units`,
       body: {
         ...this.form.getValues(),
-        abilities: ['LISTENING', 'READING'],
+        type: this.form.getValue('type').id,
       },
     }).then(() => {
       if (this.submit.data) {

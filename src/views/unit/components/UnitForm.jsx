@@ -47,7 +47,22 @@ const UnitForm = props => (
         </Column>
       </Row>
       <Row>
-        <Column lgSize={3}>
+        <Column lgSize={4}>
+          <FetchAutoComplete
+            url="unit-types?page=1&size=100"
+            fullWidth
+            disabled={props.submitting}
+            label="Unit Type"
+            value={get(props.values, 'type.name', '')}
+            onSelect={type => props.onChange('type', type)}
+            errorText={get(props.errors, 'type', '')}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </Column>
+        <Column lgSize={1}>
           <Select
             floatingLabel
             fullWidth
@@ -65,7 +80,7 @@ const UnitForm = props => (
             error={get(props.errors, 'order', '')}
           />
         </Column>
-        <Column lgSize={3}>
+        <Column lgSize={1}>
           <Select
             floatingLabel
             fullWidth
