@@ -145,7 +145,7 @@ class ItemFormService {
           answers: [isRequired, minLength(3)],
         };
         break;
-      case 'UNSCRAMBLE_SPEECH_RECOG':
+      case 'UNSCRAMBLE_SPEECH_RECOGNITION':
         this.form.validations = {
           ...this.defaultValidations,
           text: [isRequired],

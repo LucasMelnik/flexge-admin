@@ -168,7 +168,7 @@ const ItemForm = props => (
          submitting={props.submitting}
       />
     )}
-    {get(props.values, 'type.key', '') === 'UNSCRAMBLE_SPEECH_RECOG' && (
+    {get(props.values, 'type.key', '') === 'UNSCRAMBLE_SPEECH_RECOGNITION' && (
       <UnscrambleSpeechRecognitionItemForm
          onChange={props.onChange}
          errors={props.errors}

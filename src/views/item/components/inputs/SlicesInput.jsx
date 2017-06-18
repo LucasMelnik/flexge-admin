@@ -12,7 +12,9 @@ const SlicesInput = props => (
     <Column lgSize={12}>
       {props.slices.length > 0 && (
         <div>
-          <small>Here you must click on the X button to select the word(s) to hide.</small>
+          {!props.disableRemove && (
+            <small>Here you must click on the X button to select the word(s) to hide.</small>
+          )}
           <div style={{
               display: 'flex',
               flexWrap: 'wrap',
