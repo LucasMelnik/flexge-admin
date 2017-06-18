@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
-import { isRequired, minLength } from '../../../core/validations';
+import { isRequired, minLength, minFilteredLength } from '../../../core/validations';
 
 class ItemFormService {
   fetch = new FetchService();
@@ -26,6 +26,8 @@ class ItemFormService {
   }
 
   setValidationsByItemType = action(() => {
+    const correctAnswerPredicate = (answer) => answer.correct;
+    const wrongAnswerPredicate = (answer) => !answer.correct;
 
     switch (this.form.getValue('type').key) {
       case 'VIDEO':
@@ -62,7 +64,11 @@ class ItemFormService {
           ...this.defaultValidations,
           text: [isRequired],
           translation: [isRequired],
-          answers: [isRequired, minLength(3)],
+          answers: [
+            isRequired,
+            minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),
+            minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
+          ],
         };
         break;
       case 'DICTATION':
@@ -70,7 +76,7 @@ class ItemFormService {
           ...this.defaultValidations,
           text: [isRequired],
           translation: [isRequired],
-          answers: [isRequired, minLength(1)],
+          answers: [isRequired, minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),],
         };
         break;
       case 'GAP_FILL':
@@ -79,7 +85,7 @@ class ItemFormService {
           text: [isRequired],
           translation: [isRequired],
           indexesToRemove: [isRequired, minLength(1)],
-          answers: [isRequired, minLength(4)],
+          answers: [isRequired, minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers')],
         };
         break;
       case 'GAP_FILL_SELECT':
@@ -88,7 +94,7 @@ class ItemFormService {
           text: [isRequired],
           translation: [isRequired],
           indexesToRemove: [isRequired, minLength(1)],
-          answers: [isRequired, minLength(1)],
+          answers: [isRequired, minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),],
         };
         break;
       case 'GAP_FILL_MULTIPLE':
@@ -96,8 +102,11 @@ class ItemFormService {
           ...this.defaultValidations,
           text: [isRequired],
           translation: [isRequired],
-          indexesToRemove: [isRequired, minLength(1)],
-          answers: [isRequired, minLength(3)],
+          indexesToRemove: [isRequired, minLength(2)],
+          answers: [
+            isRequired,
+            minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
+          ],
         };
         break;
       case 'PRESENTATION':
@@ -142,7 +151,7 @@ class ItemFormService {
           text: [isRequired],
           translation: [isRequired],
           indexesToRemove: [isRequired, minLength(3)],
-          answers: [isRequired, minLength(3)],
+          answers: [isRequired, minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),],
         };
         break;
       case 'UNSCRAMBLE_SPEECH_RECOGNITION':
@@ -150,21 +159,14 @@ class ItemFormService {
           ...this.defaultValidations,
           text: [isRequired],
           translation: [isRequired],
-          indexesToRemove: [isRequired, minLength(3)],
+          indexesToRemove: [isRequired],
         };
         break;
       default:
         break;
     }
 
-    if (this.form.getValue('id')) {
-      this.form.setInitialValues({
-        id: this.form.getValue('id'),
-        unit: this.form.getValue('unit'),
-        type: this.form.getValue('type'),
-        grammar: this.form.getValue('grammar'),
-      });
-    } else {
+    if (!this.form.getValue('id')) {
       this.form.setInitialValues({
         unit: this.form.getValue('unit'),
         type: this.form.getValue('type'),
@@ -185,6 +187,7 @@ class ItemFormService {
       }).then(() => {
         if (this.fetch.data) {
           this.form.setInitialValues(this.fetch.data);
+          this.setValidationsByItemType();
         }
       });
     } else {
