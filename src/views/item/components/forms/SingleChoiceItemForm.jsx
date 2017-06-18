@@ -15,7 +15,7 @@ const SingleChoiceItemForm = props => (
     />
     <Separator size="xs" />
     <AnswersInputContainer
-      value={get(props.values, 'answers', '')}
+      value={get(props.values, 'answers', [])}
       onChange={answers => props.onChange('answers', answers)}
       errorText={get(props.errors, 'answers', '')}
     />
