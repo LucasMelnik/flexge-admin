@@ -5,7 +5,6 @@ import Separator from '../../../core/layout/Separator';
 import Row from "../../../core/layout/Row";
 import Column from "../../../core/layout/Column";
 import Button from '../../../core/form/Button';
-import Select from "../../../core/form/Select";
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
 import VideoItemForm from "./forms/VideoItemForm";
 import VideoShortItemForm from "./forms/VideoShortItemForm";
@@ -63,20 +62,6 @@ const ItemForm = props => (
           }}
         />
       </Column>
-      {/*<Column lgSize={2}>*/}
-        {/*<Select*/}
-          {/*floatingLabel*/}
-          {/*fullWidth*/}
-          {/*options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => {*/}
-            {/*return { label: value.toString(), value }*/}
-          {/*})}*/}
-          {/*disabled={props.submitting}*/}
-          {/*label="Order"*/}
-          {/*value={get(props.values, 'order', '')}*/}
-          {/*onChange={value => props.onChange('order', value)}*/}
-          {/*errorText={get(props.errors, 'order', '')}*/}
-        {/*/>*/}
-      {/*</Column>*/}
     </Row>
     {get(props.values, 'type.key', '') === 'VIDEO' && (
       <VideoItemForm
