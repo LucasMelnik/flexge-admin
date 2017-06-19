@@ -3,7 +3,12 @@ import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
-import { isRequired, minLength, minFilteredLength } from '../../../core/validations';
+import {
+  isRequired,
+  minLength,
+  minFilteredLength,
+  onlyOneCorrectAnswer,
+} from '../../../core/validations';
 
 class ItemFormService {
   fetch = new FetchService();
@@ -25,8 +30,8 @@ class ItemFormService {
   }
 
   setValidationsByItemType = action(() => {
-    const correctAnswerPredicate = (answer) => answer.correct;
-    const wrongAnswerPredicate = (answer) => !answer.correct;
+    const correctAnswerPredicate = answer => answer.correct;
+    const wrongAnswerPredicate = answer => !answer.correct;
 
     switch (this.form.getValue('type').key) {
       case 'VIDEO':
@@ -64,6 +69,7 @@ class ItemFormService {
           text: [isRequired],
           translation: [isRequired],
           answers: [
+            onlyOneCorrectAnswer,
             isRequired,
             minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),
             minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
@@ -83,7 +89,11 @@ class ItemFormService {
           text: [isRequired],
           translation: [isRequired],
           indexesToRemove: [isRequired, minLength(1)],
-          answers: [isRequired, minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers')],
+          answers: [
+            onlyOneCorrectAnswer,
+            isRequired,
+            minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
+          ],
         };
         break;
       case 'GAP_FILL_SELECT':
@@ -92,7 +102,11 @@ class ItemFormService {
           text: [isRequired],
           translation: [isRequired],
           indexesToRemove: [isRequired, minLength(1)],
-          answers: [isRequired, minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),],
+          answers: [
+            onlyOneCorrectAnswer,
+            isRequired,
+            minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
+          ],
         };
         break;
       case 'GAP_FILL_MULTIPLE':
@@ -140,7 +154,11 @@ class ItemFormService {
           ...this.defaultValidations,
           text: [isRequired],
           translation: [isRequired],
-          answers: [isRequired, minLength(2)],
+          answers: [
+            onlyOneCorrectAnswer,
+            isRequired,
+            minLength(2),
+          ],
         };
         break;
       case 'UNSCRAMBLE_DRAG_AND_DROP':
@@ -149,7 +167,10 @@ class ItemFormService {
           text: [isRequired],
           translation: [isRequired],
           indexesToRemove: [isRequired, minLength(3)],
-          answers: [isRequired, minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),],
+          answers: [
+            isRequired,
+            minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
+          ],
         };
         break;
       case 'UNSCRAMBLE_SPEECH_RECOGNITION':
@@ -198,7 +219,6 @@ class ItemFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      console.log(this.form.errors)
       return;
     }
     const itemId = this.form.getValue('id');

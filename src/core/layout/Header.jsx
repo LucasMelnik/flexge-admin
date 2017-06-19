@@ -5,7 +5,6 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import PermissionValidator from '../content/PermissionValidator';
-import ClickOutsideListener from './ClickOutsideListener';
 
 export default class Header extends Component {
 
