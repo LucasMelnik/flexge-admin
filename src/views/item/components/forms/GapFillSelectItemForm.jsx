@@ -29,6 +29,7 @@ const GapFillSelectItemForm = props => (
     <Separator size="xs" />
     <AnswersInputContainer
       answerType="WRONG"
+      value={get(props.values, 'answers', [])}
       defaultAnswers={get(props.values, 'textsRemoved', [])}
       onChange={answers => props.onChange('answers', answers)}
       errorText={get(props.errors, 'answers', '')}

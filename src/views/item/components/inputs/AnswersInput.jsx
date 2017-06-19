@@ -14,47 +14,49 @@ import ErrorText from "../../../../core/content/ErrorText";
 
 const AnswersInput = props => (
   <div>
-    <Flex
-      alignItems="center"
-    >
-      <TextInput
-        id="answer"
-        floatingLabel
-        disabled={props.submitting}
-        label={props.label}
-        value={get(props.values, 'text', '')}
-        onChange={value => props.onChange('text', value)}
-        errorText={get(props.errors, 'text', '')}
-      />
-      <ColumnSeparator size="sm" />
-      {props.answerType === 'BOTH' && (
-        <Select
-          label="Is this a Correct answer ?"
-          value={get(props.values, 'correct', '')}
-          onChange={value => props.onChange('correct', value)}
-          options={[
-            { value: false, label: 'No' },
-            { value: true, label: 'Yes' },
-          ]}
+    {!props.disabled && (
+      <Flex
+        alignItems="center"
+      >
+        <TextInput
+          id="answer"
+          floatingLabel
+          disabled={props.submitting}
+          label={props.label}
+          value={get(props.values, 'text', '')}
+          onChange={value => props.onChange('text', value)}
+          errorText={get(props.errors, 'text', '')}
         />
-      )}
-      {props.answerType === 'BOTH' && (
         <ColumnSeparator size="sm" />
-      )}
-      <Button
-        icon="done"
-        secondary
-        label={props.values.id ? 'Update' : 'Add'}
-        disabled={!props.isDirty()}
-        onClick={() => props.onSubmit()}
-      />
-      <ColumnSeparator size="xs" />
-      <Button
-        icon="clear"
-        label="Cancel"
-        onClick={() => props.onReset()}
-      />
-    </Flex>
+        {props.answerType === 'BOTH' && (
+          <Select
+            label="Is this a Correct answer ?"
+            value={get(props.values, 'correct', '')}
+            onChange={value => props.onChange('correct', value)}
+            options={[
+              { value: false, label: 'No' },
+              { value: true, label: 'Yes' },
+            ]}
+          />
+        )}
+        {props.answerType === 'BOTH' && (
+          <ColumnSeparator size="sm" />
+        )}
+        <Button
+          icon="done"
+          secondary
+          label={props.values.id ? 'Update' : 'Add'}
+          disabled={!props.isDirty()}
+          onClick={() => props.onSubmit()}
+        />
+        <ColumnSeparator size="xs" />
+        <Button
+          icon="clear"
+          label="Cancel"
+          onClick={() => props.onReset()}
+        />
+      </Flex>
+    )}
     <Separator size="xs" />
     <Row>
       <Column lgSize={12}>
@@ -70,8 +72,8 @@ const AnswersInput = props => (
             },
           ]}
           rows={props.answers}
-          onDelete={(row) => props.onDelete(row.id)}
-          onSelect={(row) => props.onEdit(row.id)}
+          onDelete={!props.disabled ? (row) => props.onDelete(row.id) : null}
+          onSelect={!props.disabled ? (row) => props.onEdit(row.id) : null}
         />
         {props.errorText && (
           <ErrorText>{props.errorText}</ErrorText>
@@ -92,6 +94,7 @@ AnswersInput.propTypes = {
     'WRONG',
     'BOTH',
   ]).isRequired,
+  disabled: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   errorText: PropTypes.string,
   values: PropTypes.object,
