@@ -35,7 +35,7 @@ const UnitForm = props => (
           <FetchAutoComplete
             url="modules?page=1&size=100"
             fullWidth
-            disabled={props.submitting}
+            disabled
             label="Module"
             value={get(props.values, 'module.name', '')}
             onSelect={module => props.onChange('module', module)}
