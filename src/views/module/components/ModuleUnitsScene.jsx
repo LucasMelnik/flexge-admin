@@ -25,7 +25,7 @@ const ModuleUnitsScene = props => (
             <Button
               style={{ marginleft: 20 }}
               primary
-              onClick={() => () => browserHistory.push(`/modules/${props.module.id}/new`)}
+              onClick={ () => browserHistory.push(`/modules/${props.module.id}/units/new`)}
               label="Add new unit"
             />
           </InlineBlock>

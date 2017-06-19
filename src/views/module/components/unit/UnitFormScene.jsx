@@ -28,7 +28,7 @@ const UnitFormScene = props => (
         top: 20,
         right: 20,
       }}
-      onClick={() => browserHistory.push(`/modules/${props.moduleId}`)}
+      onClick={() => browserHistory.push(`/modules/${props.moduleId}/units`)}
     />
     <Separator size="sm" />
     <UnitFormContainer />
