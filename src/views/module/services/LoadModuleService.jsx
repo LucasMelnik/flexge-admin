@@ -11,6 +11,7 @@ class LoadModuleService {
   }
 
   handleLoad = action((moduleId) => {
+    this.module = {};
     this.fetch.fetch({
       url: `/modules/${moduleId}`,
     }).then(action(() => {
