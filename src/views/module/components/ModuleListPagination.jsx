@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Paper from '../../../core/layout/Paper';
+import Block from 'jsxstyle/Block';
 import Paginator from '../../../core/navigation/Paginator';
 
 const ModuleListPagination = props => (
-  <Paper
-    style={{
-      padding: 10,
-      textAlign: 'center',
-    }}
+  <Block
+    textAlign="center"
   >
     <Paginator
       pageCount={props.pageCount}
@@ -16,7 +13,7 @@ const ModuleListPagination = props => (
       marginPagesDisplayed={2}
       onPageChange={props.onPageChange}
     />
-  </Paper>
+  </Block>
 );
 
 ModuleListPagination.propTypes = {

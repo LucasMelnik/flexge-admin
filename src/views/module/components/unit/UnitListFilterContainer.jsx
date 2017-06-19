@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import UnitListService from '../services/UnitListService';
+import UnitListService from '../../services/UnitListService';
 import UnitListFilter from './UnitListFilter';
 
 const UnitListFilterContainer = () => (

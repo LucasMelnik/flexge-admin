@@ -1,20 +1,22 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import InlineBlock from 'jsxstyle/InlineBlock';
-import Title from '../../../core/content/Title';
+import {
+  Step,
+  Stepper,
+  StepLabel,
+} from 'material-ui/Stepper';
+import ArrowForwardIcon from 'material-ui/svg-icons/navigation/arrow-forward';
 import Separator from '../../../core/layout/Separator';
 import FloatActionButton from '../../../core/form/FloatActionButton';
-import ModuleListFilterContainer from './ModuleListFilterContainer';
 import ModuleListContainer from './ModuleListContainer';
-import ModuleListPaginationContainer from './ModuleListPaginationContainer';
 
 const ModuleListScene = () => (
   <div>
-    <InlineBlock>
-      <Title>
-        Modules
-      </Title>
-    </InlineBlock>
+    <Stepper activeStep={0} connector={<ArrowForwardIcon />}>
+      <Step>
+        <StepLabel>Modules</StepLabel>
+      </Step>
+    </Stepper>
     <FloatActionButton
       secondary
       icon="add"
@@ -25,13 +27,8 @@ const ModuleListScene = () => (
       }}
       onClick={() => browserHistory.push('/modules/new')}
     />
-    <Separator size="sm" />
-    <ModuleListFilterContainer />
-    <Separator size="sm" />
     <ModuleListContainer />
-    <Separator size="sm" />
-    <ModuleListPaginationContainer />
-    <Separator size="sm" />
+    <Separator />
   </div>
 );
 

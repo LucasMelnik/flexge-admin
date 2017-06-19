@@ -14,6 +14,7 @@ const ItemFormContainer = () => (
     isDirty={ItemFormService.form.isDirty}
     submitting={ItemFormService.submit.fetching}
     error={ItemFormService.submit.error}
+    fetching={ItemFormService.fetch.fetching}
   />
 );
 
