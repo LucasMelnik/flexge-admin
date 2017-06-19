@@ -18,7 +18,7 @@ const ModuleForm = props => (
       }}
     >
       <Row>
-        <Column lgSize={3}>
+        <Column lgSize={6}>
           <TextInput
             floatingLabel
             fullWidth
@@ -29,7 +29,7 @@ const ModuleForm = props => (
             errorText={get(props.errors, 'name', '')}
           />
         </Column>
-        <Column lgSize={3}>
+        <Column lgSize={6}>
           <TextInput
             floatingLabel
             fullWidth
@@ -38,9 +38,13 @@ const ModuleForm = props => (
             value={get(props.values, 'description', '')}
             onChange={value => props.onChange('description', value)}
             errorText={get(props.errors, 'description', '')}
+            multiLine
+            rows={2}
           />
         </Column>
-        <Column lgSize={3}>
+      </Row>
+      <Row>
+        <Column lgSize={6}>
           <FetchAutoComplete
             url="courses?page=1&size=100"
             fullWidth
@@ -55,7 +59,7 @@ const ModuleForm = props => (
             }}
           />
         </Column>
-        <Column lgSize={3}>
+        <Column lgSize={6}>
           <FetchAutoComplete
             url="academic-plans?page=1&size=100"
             fullWidth
