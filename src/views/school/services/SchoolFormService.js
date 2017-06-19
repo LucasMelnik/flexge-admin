@@ -54,8 +54,10 @@ class SchoolFormService {
         const school = this.submit.data;
         browserHistory.push(`/schools/${school.id}`);
         this.schoolId = school.id;
-        this.form.reset();
-        this.form.setInitialValues(school);
+        this.form.setInitialValues({
+          ...school,
+          company: this.form.getValue('company'),
+        });
         NotificationService.addNotification(
           `Scool ${schoolId ? 'updated' : 'created'} successfully.`,
           null,

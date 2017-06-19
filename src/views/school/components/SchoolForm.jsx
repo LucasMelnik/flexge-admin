@@ -34,7 +34,7 @@ const SchoolForm = props => (
         <PermissionValidator
           allowedFor={[
             'ADMIN',
-            'DISTRIBUTOR_MANAGER'
+            'DISTRIBUTOR_MANAGER',
           ]}
         >
           <Column lgSize={4}>
@@ -62,6 +62,7 @@ const SchoolForm = props => (
             value={get(props.values, 'foundationYear', '')}
             onChange={value => props.onChange('foundationYear', value)}
             errorText={get(props.errors, 'foundationYear', '')}
+            type="number"
           />
         </Column>
       </Row>
