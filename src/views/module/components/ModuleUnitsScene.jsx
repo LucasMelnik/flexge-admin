@@ -31,11 +31,21 @@ const ModuleUnitsScene = props => (
         </Step>
       </Stepper>
     </InlineBlock>
-    <InlineBlock verticalAlign="top" marginTop={18} marginLeft={15}>
+    <InlineBlock
+      marginTop={15}
+      float="right"
+    >
       <Button
+        icon="keyboard_backspace"
+        label="back"
+        onClick={() => browserHistory.push('/modules')}
+      />
+      {' '}
+      <Button
+        icon="add"
         primary
         onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
-        label="Add new unit"
+        label="New Unit"
       />
     </InlineBlock>
     {props.module.id && (

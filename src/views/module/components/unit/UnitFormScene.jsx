@@ -10,6 +10,7 @@ import {
 } from 'material-ui/Stepper';
 import ArrowForwardIcon from 'material-ui/svg-icons/navigation/arrow-forward';
 import UnitFormContainer from './UnitFormContainer';
+import Button from '../../../../core/form/Button';
 
 const UnitFormScene = props => (
   <div>
@@ -33,6 +34,16 @@ const UnitFormScene = props => (
           </StepLabel>
         </Step>
       </Stepper>
+    </InlineBlock>
+    <InlineBlock
+      marginTop={15}
+      float="right"
+    >
+      <Button
+        icon="keyboard_backspace"
+        label="back"
+        onClick={() => browserHistory.push(`/modules/${props.moduleId}/units`)}
+      />
     </InlineBlock>
     <UnitFormContainer />
   </div>

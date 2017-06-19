@@ -21,8 +21,12 @@ const ModuleListScene = () => (
       </Stepper>
     </InlineBlock>
 
-    <InlineBlock verticalAlign="top" marginTop={18} marginLeft={15}>
+    <InlineBlock
+      float="right"
+      marginTop={15}
+    >
       <Button
+        icon="add"
         primary
         onClick={() => browserHistory.push('/modules/new')}
         label="New module"
