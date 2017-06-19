@@ -9,7 +9,7 @@ import Tag from '../../../../core/form/Tag';
 const SlicesInput = props => (
   <Row>
     <Column lgSize={12}>
-      {props.slices.length > 0 && (
+      {props.texts.length > 0 && (
         <div>
           {!props.disableRemove && (
             <small>Here you must click on the X button to select the word(s) to hide.</small>
@@ -17,14 +17,14 @@ const SlicesInput = props => (
           <Flex
             flexWrap="wrap"
           >
-            {props.slices.map((sliceText, index) => {
-              if (props.removedSlices.find(removedIndex => removedIndex === index) === undefined) {
+            {props.texts.map((sliceText, index) => {
+              if (!props.value.find(removedSlice => removedSlice.index === index)) {
                 let removeSliceFunc = null;
                 if ((!props.disableRemove && !props.sequenceRemove) ||
                   (!props.disableRemove && props.sequenceRemove &&
-                    (!props.removedSlices.length ||
-                      props.removedSlices.find(removedIndex => index === (removedIndex - 1)) !== undefined ||
-                      props.removedSlices.find(removedIndex => index === (removedIndex + 1)) !== undefined
+                    (!props.value.length ||
+                      props.value.find(answer => index === (answer.index - 1)) ||
+                      props.value.find(answer => index === (answer.index + 1))
                     )
                   )
                 ) {
@@ -41,15 +41,15 @@ const SlicesInput = props => (
               } else {
                 return (
                   <Flex key={`slice-${sliceText}-${index}`}>
-                    {!props.linkedSlices.find(link => link === index) && (
+                    {!props.value.find(answer => answer.linkTo === index) && (
                       <Tag
                         icon="undo"
                         onClick={() => props.onShowSlice(index)}
                       />
                     )}
-                    {(props.allowLink && !props.linkedSlices.find(link => link === index) &&
-                      props.removedSlices.find(removedIndex => index === removedIndex) !== undefined &&
-                      props.removedSlices.find(removedIndex => index === (removedIndex - 1)) !== undefined) && (
+                    {(props.allowLink && !props.value.find(answer => answer.linkTo === index + 1) &&
+                      props.value.find(answer => index === answer.index) &&
+                      props.value.find(answer => index === (answer.index - 1))) && (
                       <Tag
                         key={`link-${index}`}
                         icon="link"
@@ -71,9 +71,12 @@ const SlicesInput = props => (
 );
 
 SlicesInput.propTypes = {
-  slices: PropTypes.arrayOf(PropTypes.string).isRequired,
-  removedSlices: PropTypes.arrayOf(PropTypes.number).isRequired,
-  linkedSlices: PropTypes.arrayOf(PropTypes.number).isRequired,
+  texts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  value:PropTypes.arrayOf(PropTypes.shape({
+    index: PropTypes.number,
+    text: PropTypes.string,
+    correct: PropTypes.bool,
+  })).isRequired,
   onRemoveSlice: PropTypes.func.isRequired,
   onShowSlice: PropTypes.func.isRequired,
   onLinkSlice: PropTypes.func,
