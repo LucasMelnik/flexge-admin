@@ -15,7 +15,7 @@ import UnitListContainer from './unit/UnitListContainer';
 const ModuleUnitsScene = props => (
   <div>
     <InlineBlock>
-      <Stepper activeStep={1} connector={<ArrowForwardIcon />}>
+      <Stepper activeStep={2} connector={<ArrowForwardIcon />}>
         <Step
           onClick={() => browserHistory.push('/modules')}
           style={{ cursor: 'pointer' }}
@@ -27,6 +27,11 @@ const ModuleUnitsScene = props => (
             {props.fetching ? (
               <Spinner size={20} />
             ) : `Module - ${props.module.name}`}
+          </StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>
+            Units
           </StepLabel>
         </Step>
       </Stepper>
