@@ -92,7 +92,7 @@ const ItemForm = props => (
             submitting={props.submitting}
           />
         )}
-        {get(props.values, 'type.key', '') === 'SINGLE_CHOICE_TEXT' && (
+        {'SINGLE_CHOICE_TEXT_SINGLE_CHOICE_AUDIO_SINGLE_CHOICE_VIDEO'.indexOf(get(props.values, 'type.key')) > -1 && (
           <SingleChoiceItemForm
             onChange={props.onChange}
             errors={props.errors}
