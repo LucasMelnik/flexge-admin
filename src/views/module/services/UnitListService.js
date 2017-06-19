@@ -1,4 +1,4 @@
-import { action, extendObservable } from 'mobx';
+import { action, extendObservable, toJS } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
@@ -41,7 +41,11 @@ class UnitListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.units = this.fetch.data.docs;
+        console.log('units', toJS(this.fetch.data.docs))
+        this.units = this.fetch.data.docs.map(unit => ({
+          ...unit,
+          itemsCount: unit.items ? unit.items.length : 0,
+        }));
         this.total = this.fetch.data.total;
         this.limit = this.fetch.data.limit;
         this.pageCount = this.fetch.data.pages;
