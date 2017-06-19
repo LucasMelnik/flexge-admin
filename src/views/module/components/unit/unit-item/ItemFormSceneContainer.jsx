@@ -6,6 +6,7 @@ import ItemFormScene from './ItemFormScene';
 import ItemFormService from '../../../../item/services/ItemFormService';
 import UnitItemFormService from '../../../services/UnitItemFormService';
 import LoadUnitService from '../../../services/LoadUnitService';
+import UnitItemListService from '../../../services/UnitItemListService';
 
 class UnitItemsSceneContainer extends Component {
 
@@ -23,7 +24,7 @@ class UnitItemsSceneContainer extends Component {
         const unitItem = {
           unit: this.props.params.unitId,
           item: item.id,
-          order: 1,
+          order: UnitItemListService.items.length + 1,
         };
         UnitItemFormService.handleLinkToUnit(unitItem);
       } else {
