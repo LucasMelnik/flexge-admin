@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import Separator from "../../../../core/layout/Separator";
 import TranslationContainer from '../inputs/TranslationInputContainer';
 import SlicesInputContainer from "../inputs/SlicesInputContainer";
+import AnswersInputContainer from "../inputs/AnswersInputContainer";
 
 const GapFillSelectItemForm = props => (
   <div>
@@ -17,13 +18,20 @@ const GapFillSelectItemForm = props => (
     <SlicesInputContainer
       onChange={(slices, texts) => {
         props.onChange('indexesToRemove', slices);
-        props.onChange('answers', texts.map(text => { return { correct: true, text } }));
+        props.onChange('textsRemoved', texts);
       }}
       text={get(props.values, 'text', '')}
       indexesToRemove={get(props.values, 'indexesToRemove', [])}
       errorText={get(props.errors, 'indexesToRemove', '')}
       maxRemovesAllowed={3}
       sequenceRemove
+    />
+    <Separator size="xs" />
+    <AnswersInputContainer
+      answerType="WRONG"
+      defaultAnswers={get(props.values, 'textsRemoved', [])}
+      onChange={answers => props.onChange('answers', answers)}
+      errorText={get(props.errors, 'answers', '')}
     />
   </div>
 );

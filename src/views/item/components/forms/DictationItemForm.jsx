@@ -15,6 +15,7 @@ const DictationItemForm = props => (
     />
     <Separator size="xs" />
     <AnswersContainer
+      label="Add other possibilities"
       answerType="CORRECT"
       value={get(props.values, 'answers', [])}
       onChange={answers => props.onChange('answers', answers)}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Separator from "../../../../core/layout/Separator";
 import TranslationInputContainer from '../inputs/TranslationInputContainer';
-import AnswersInputContainer from "../inputs/AnswersInputContainer";
+import SlicesInputContainer from '../inputs/SlicesInputContainer';
 
 const UnscrambleSpeechRecognitionItemForm = props => (
   <div>
@@ -14,11 +14,15 @@ const UnscrambleSpeechRecognitionItemForm = props => (
       errors={props.errors}
     />
     <Separator size="xs" />
-    <AnswersInputContainer
-      answerType="WRONG"
-      defaultAnswers={get(props.values, 'textsRemoved', [])}
-      onChange={answers => props.onChange('answers', answers)}
-      errorText={get(props.errors, 'answers', '')}
+    <SlicesInputContainer
+      onChange={(slices, texts) => {
+        props.onChange('indexesToRemove', slices);
+        props.onChange('textsRemoved', texts);
+      }}
+      text={get(props.values, 'text', '')}
+      indexesToRemove={get(props.values, 'indexesToRemove', [])}
+      errorText={get(props.errors, 'indexesToRemove', '')}
+      allowLinkSlices
     />
   </div>
 );

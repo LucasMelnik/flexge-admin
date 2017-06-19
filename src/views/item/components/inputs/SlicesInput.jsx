@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Chip from 'material-ui/Chip';
-import IconButton from 'material-ui/IconButton';
-import UndoIcon from 'material-ui/svg-icons/content/undo';
+import Flex from 'jsxstyle/Flex';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
-import ErrorText from "../../../../core/content/ErrorText";
+import ErrorText from '../../../../core/content/ErrorText';
+import Tag from '../../../../core/form/Tag';
 
 const SlicesInput = props => (
   <Row>
@@ -15,10 +14,8 @@ const SlicesInput = props => (
           {!props.disableRemove && (
             <small>Here you must click on the X button to select the word(s) to hide.</small>
           )}
-          <div style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-            }}
+          <Flex
+            flexWrap="wrap"
           >
             {props.slices.map((sliceText, index) => {
               if (props.removedSlices.find(removedIndex => removedIndex === index) === undefined) {
@@ -35,42 +32,35 @@ const SlicesInput = props => (
                 }
 
                 return (
-                  <Chip
+                  <Tag
                     key={`slice-${sliceText}-${index}`}
-                    onRequestDelete={removeSliceFunc}
-                    style={{
-                      margin: '10px 5px',
-                    }}
-                  >
-                    {sliceText}
-                  </Chip>
+                    onDelete={removeSliceFunc}
+                    text={sliceText}
+                  />
                 )
               } else {
                 return (
-                  <Chip
-                    key={`slice-${sliceText}-${index}`}
-                    style={{
-                      margin: '10px 5px',
-                    }}
-                    labelStyle={{
-                      lineHeight: '12px',
-                    }}
-                  >
-                    <IconButton
-                      style={{
-                        padding: 0,
-                        height: 30,
-                      }}
-                      tooltip={`Show "${sliceText}"`}
-                      onClick={() => props.onShowSlice(index)}
-                    >
-                      <UndoIcon />
-                    </IconButton>
-                  </Chip>
+                  <Flex key={`slice-${sliceText}-${index}`}>
+                    {!props.linkedSlices.find(link => link === index) && (
+                      <Tag
+                        icon="undo"
+                        onClick={() => props.onShowSlice(index)}
+                      />
+                    )}
+                    {(props.allowLink && !props.linkedSlices.find(link => link === index) &&
+                      props.removedSlices.find(removedIndex => index === removedIndex) !== undefined &&
+                      props.removedSlices.find(removedIndex => index === (removedIndex - 1)) !== undefined) && (
+                      <Tag
+                        key={`link-${index}`}
+                        icon="link"
+                        onClick={() => props.onLinkSlice(index)}
+                      />
+                    )}
+                  </Flex>
                 )
               }
             })}
-          </div>
+          </Flex>
           {props.errorText && (
            <ErrorText>{props.errorText}</ErrorText>
           )}
@@ -83,15 +73,19 @@ const SlicesInput = props => (
 SlicesInput.propTypes = {
   slices: PropTypes.arrayOf(PropTypes.string).isRequired,
   removedSlices: PropTypes.arrayOf(PropTypes.number).isRequired,
+  linkedSlices: PropTypes.arrayOf(PropTypes.number).isRequired,
   onRemoveSlice: PropTypes.func.isRequired,
   onShowSlice: PropTypes.func.isRequired,
+  onLinkSlice: PropTypes.func,
   errorText: PropTypes.string,
   disableRemove: PropTypes.bool.isRequired,
   sequenceRemove: PropTypes.bool.isRequired,
+  allowLink: PropTypes.bool.isRequired,
 };
 
 SlicesInput.defaultProps = {
   errorText: null,
+  onLinkSlice: null,
 };
 
 export default SlicesInput;

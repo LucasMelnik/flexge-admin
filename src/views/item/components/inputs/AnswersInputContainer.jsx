@@ -17,6 +17,7 @@ class AnswersInputContainer extends Component {
     ]),
     defaultAnswers: PropTypes.arrayOf(PropTypes.string),
     errorText: PropTypes.string,
+    label: PropTypes.string,
     value: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
@@ -26,6 +27,7 @@ class AnswersInputContainer extends Component {
 
   static defaultProps = {
     answerType: 'BOTH',
+    label: 'Add Other Answers',
     defaultAnswers: [],
     errorText: null,
     value: [],
@@ -134,6 +136,7 @@ class AnswersInputContainer extends Component {
         isDirty={this.formService.isDirty}
         answerType={this.props.answerType}
         errorText={this.props.errorText}
+        label={this.props.label}
       />
     );
   }

@@ -11,6 +11,7 @@ export default class SlicesInputContainer extends Component {
     errorText: PropTypes.string,
     indexesToRemove: PropTypes.arrayOf(PropTypes.number),
     sequenceRemove: PropTypes.bool,
+    allowLinkSlices: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -18,9 +19,10 @@ export default class SlicesInputContainer extends Component {
     errorText: null,
     indexesToRemove: [],
     sequenceRemove: false,
+    allowLinkSlices: false,
   };
 
-  state = { slices: [], removedSlices: [] };
+  state = { slices: [], removedSlices: [], linkedSlices: [] };
 
   componentWillMount() {
     if (this.props.text.length > 0) {
@@ -46,6 +48,8 @@ export default class SlicesInputContainer extends Component {
           result = [
             (result[0] || '').concat(' ').concat(text).trim(),
           ];
+        } else if (this.state.linkedSlices.find(link => link === index - 1) !== undefined) {
+          result[result.length - 1] = result[result.length - 1].concat(' ').concat(text);
         } else {
           result = result.concat([text]);
         }
@@ -69,10 +73,23 @@ export default class SlicesInputContainer extends Component {
 
   handleShowSlice = (index) => {
     const updatedRemovedSlice = this.state.removedSlices.filter(removedIndex => removedIndex !== index);
-      this.setState({
+    const updatedLinkedSlices = this.state.linkedSlices.filter(link => link !== index - 1);
+    this.setState({
       removedSlices: updatedRemovedSlice,
+      linkedSlices: updatedLinkedSlices,
     }, () => {
       this.props.onChange(updatedRemovedSlice, this.getSliceTextsRemoved());
+    });
+  };
+
+  handleLinkSlice = (index) => {
+    this.setState({
+      linkedSlices: [
+        ...this.state.linkedSlices,
+        index,
+      ]
+    }, () => {
+      this.props.onChange(this.state.removedSlices, this.getSliceTextsRemoved());
     });
   };
 
@@ -81,12 +98,15 @@ export default class SlicesInputContainer extends Component {
       <SlicesInput
         onRemoveSlice={this.handleRemoveSlice}
         onShowSlice={this.handleShowSlice}
+        onLinkSlice={this.handleLinkSlice}
         removedSlices={this.state.removedSlices}
+        linkedSlices={this.state.linkedSlices}
         slices={this.state.slices}
         text={this.props.text}
         disableRemove={this.state.removedSlices.length === this.props.maxRemovesAllowed}
         errorText={this.props.errorText}
         sequenceRemove={this.props.sequenceRemove}
+        allowLink={this.props.allowLinkSlices}
       />
     );
   }
