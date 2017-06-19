@@ -11,11 +11,9 @@ import {
 import ArrowForwardIcon from 'material-ui/svg-icons/navigation/arrow-forward';
 import Spinner from '../../../../../core/content/Spinner';
 import Button from '../../../../../core/form/Button';
-import UnitItemsContainer from './UnitItemsContainer';
+import UnitItemListContainer from './UnitItemListContainer';
 
 class UnitItemsScene extends Component {
-
-  state = { itemFormModalOpen: false };
 
   static propTypes = {
     unit: PropTypes.shape({
@@ -69,7 +67,7 @@ class UnitItemsScene extends Component {
           />
         </InlineBlock>
         {this.props.unit.id && (
-          <UnitItemsContainer
+          <UnitItemListContainer
             unitId={this.props.unit.id}
             moduleId={this.props.unit.module.id}
           />

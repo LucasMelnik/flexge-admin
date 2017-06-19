@@ -61,7 +61,7 @@ UnitItemList.propTypes = {
       translation: PropTypes.string,
       grammar: PropTypes.shape({
         name: PropTypes.string.isRequired,
-      }).isRequired,
+      }),
     }),
   })).isRequired,
   fetching: PropTypes.bool.isRequired,

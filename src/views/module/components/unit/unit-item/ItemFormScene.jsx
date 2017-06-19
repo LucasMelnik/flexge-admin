@@ -48,7 +48,11 @@ const ItemFormScene = props => (
 
 ItemFormScene.propTypes = {
   unit: PropTypes.object.isRequired,
-  itemId: PropTypes.string.isRequired,
+  itemId: PropTypes.string,
+};
+
+ItemFormScene.defaultProps = {
+  itemId: null,
 };
 
 export default ItemFormScene;

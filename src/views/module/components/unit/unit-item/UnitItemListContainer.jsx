@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import { toJS } from 'mobx';
 import { browserHistory } from 'react-router';
 import { observer } from 'mobx-react';
-import ItemFormService from '../../../../item/services/ItemFormService';
 import UnitItemListService from '../../../services/UnitItemListService';
-import UnitItemFormService from '../../../services/UnitItemFormService';
 import UnitItemList from './UnitItemList';
 
-class UnitItemsContainer extends Component {
+class UnitItemListContainer extends Component {
 
   static propTypes = {
     unitId: PropTypes.string.isRequired,
@@ -16,26 +14,7 @@ class UnitItemsContainer extends Component {
   };
 
   componentWillMount() {
-    UnitItemListService.init(this.props.unitId, this.handleSelect);
-
-    const linkUnitCallback = () => {
-      UnitItemListService.load();
-    };
-    UnitItemFormService.init(linkUnitCallback);
-
-    const saveItemCallback = (item, isNew) => {
-      if (isNew) {
-        const unitItem = {
-          unit: this.props.unitId,
-          item: item.id,
-          order: UnitItemListService.total + 1,
-        };
-        UnitItemFormService.handleLinkToUnit(unitItem);
-      } else {
-        UnitItemListService.load();
-      }
-    };
-    ItemFormService.init(saveItemCallback);
+    UnitItemListService.init(this.props.unitId);
   }
 
   handleSelect = (unitItem) => {
@@ -48,11 +27,11 @@ class UnitItemsContainer extends Component {
         items={toJS(UnitItemListService.items)}
         fetching={UnitItemListService.fetch.fetching}
         onDelete={UnitItemListService.handleUnlinkItem}
-        onSelect={UnitItemListService.handleSelect}
+        onSelect={this.handleSelect}
         onOrderChange={UnitItemListService.handleOrderChange}
       />
     );
   }
 }
 
-export default observer(UnitItemsContainer);
+export default observer(UnitItemListContainer);

@@ -14,13 +14,11 @@ class UnitItemListService {
       rowsByPage: 10,
       pageCount: 1,
       unitId: null,
-      selectCallback: null,
     });
   }
 
-  init = action((unitId, selectCallback) => {
+  init = action((unitId) => {
     this.unitId = unitId;
-    this.selectCallback = selectCallback;
     this.load();
   });
 
@@ -42,7 +40,7 @@ class UnitItemListService {
   });
 
   handleOrderChange = action((unitItem, order)=> {
-    this.fetch.fetch({
+    this.submit.fetch({
       url: `/units/${unitItem.unit}/items/${unitItem.item.id}/unit-item/${unitItem.id}`,
       method: 'put',
       body: {
@@ -51,12 +49,6 @@ class UnitItemListService {
     }).then(() => {
       this.load();
     });
-  });
-
-  handleSelect = action((item)=> {
-    if (this.selectCallback) {
-      this.selectCallback(item);
-    }
   });
 
   handleUnlinkItem = action((unitItem) => {
