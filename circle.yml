@@ -7,3 +7,8 @@ deployment:
     commands:
       - npm run build
       - aws s3 sync --delete /home/ubuntu/english-learning-frontend-admin/build/ s3://english-front
+  prod:
+    branch: production
+    commands:
+      - npm run build
+      - aws s3 sync --delete /home/ubuntu/english-learning-frontend-admin/build/ s3://english-app-prod
