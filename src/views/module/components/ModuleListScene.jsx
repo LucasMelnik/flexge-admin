@@ -5,28 +5,29 @@ import {
   Stepper,
   StepLabel,
 } from 'material-ui/Stepper';
+import InlineBlock from 'jsxstyle/InlineBlock';
 import ArrowForwardIcon from 'material-ui/svg-icons/navigation/arrow-forward';
 import Separator from '../../../core/layout/Separator';
-import FloatActionButton from '../../../core/form/FloatActionButton';
+import Button from '../../../core/form/Button';
 import ModuleListContainer from './ModuleListContainer';
 
 const ModuleListScene = () => (
   <div>
-    <Stepper activeStep={0} connector={<ArrowForwardIcon />}>
-      <Step>
-        <StepLabel>Modules</StepLabel>
-      </Step>
-    </Stepper>
-    <FloatActionButton
-      secondary
-      icon="add"
-      style={{ position: 'relative',
-        float: 'right',
-        top: 20,
-        right: 20,
-      }}
-      onClick={() => browserHistory.push('/modules/new')}
-    />
+    <InlineBlock>
+      <Stepper activeStep={0} connector={<ArrowForwardIcon />}>
+        <Step>
+          <StepLabel>Modules</StepLabel>
+        </Step>
+      </Stepper>
+    </InlineBlock>
+
+    <InlineBlock verticalAlign="top" marginTop={18} marginLeft={15}>
+      <Button
+        primary
+        onClick={() => browserHistory.push('/modules/new')}
+        label="New module"
+      />
+    </InlineBlock>
     <ModuleListContainer />
     <Separator />
   </div>

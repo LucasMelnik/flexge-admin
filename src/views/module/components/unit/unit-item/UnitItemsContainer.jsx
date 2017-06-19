@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toJS } from 'mobx';
+import { browserHistory } from 'react-router';
 import { observer } from 'mobx-react';
 import ItemFormService from '../../../../item/services/ItemFormService';
 import UnitItemListService from '../../../services/UnitItemListService';
@@ -11,14 +12,13 @@ class UnitItemsContainer extends Component {
 
   static propTypes = {
     unitId: PropTypes.string.isRequired,
-    onToggleModal: PropTypes.func.isRequired,
+    moduleId: PropTypes.string.isRequired,
   };
 
   componentWillMount() {
     UnitItemListService.init(this.props.unitId, this.handleSelect);
 
     const linkUnitCallback = () => {
-      this.props.onToggleModal();
       UnitItemListService.load();
     };
     UnitItemFormService.init(linkUnitCallback);
@@ -32,7 +32,6 @@ class UnitItemsContainer extends Component {
         };
         UnitItemFormService.handleLinkToUnit(unitItem);
       } else {
-        this.props.onToggleModal();
         UnitItemListService.load();
       }
     };
@@ -40,8 +39,7 @@ class UnitItemsContainer extends Component {
   }
 
   handleSelect = (unitItem) => {
-    ItemFormService.handleLoad(unitItem.item.id);
-    setTimeout(() => { this.props.onToggleModal() }, 100);
+    browserHistory.push(`/modules/${this.props.moduleId}/units/${this.props.unitId}/items/${unitItem.item.id}`)
   };
 
   render() {

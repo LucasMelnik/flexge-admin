@@ -1,34 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InlineBlock from 'jsxstyle/InlineBlock';
-import Block from 'jsxstyle/Block';
+import {
+  Step,
+  Stepper,
+  StepLabel,
+} from 'material-ui/Stepper';
+import ArrowForwardIcon from 'material-ui/svg-icons/navigation/arrow-forward';
 import { browserHistory } from 'react-router';
-import Separator from '../../../core/layout/Separator';
-import Title from '../../../core/content/Title';
-import FloatActionButton from '../../../core/form/FloatActionButton';
 import ModuleFormContainer from './ModuleFormContainer';
 
-const ModuleFormScene = () => (
-  <Block position="relative">
+const ModuleFormScene = props => (
+  <div>
     <InlineBlock>
-      <Title>
-        Module
-      </Title>
+      <Stepper activeStep={1} connector={<ArrowForwardIcon />}>
+        <Step
+          style={{ cursor: 'pointer' }}
+          onClick={() => browserHistory.push('/modules')}
+        >
+          <StepLabel>Modules</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>
+            {props.moduleId ? 'Edit Module' : 'New Module'}
+          </StepLabel>
+        </Step>
+      </Stepper>
     </InlineBlock>
-    <FloatActionButton
-      secondary
-      icon="arrow_back"
-      style={{
-        position: 'absolute',
-        top: 20,
-        right: 20,
-      }}
-      onClick={() => browserHistory.push('/modules')}
-    />
-    <Separator size="sm" />
     <ModuleFormContainer />
-    <Separator size="sm" />
-  </Block>
+  </div>
 );
 
 ModuleFormScene.propTypes = {
