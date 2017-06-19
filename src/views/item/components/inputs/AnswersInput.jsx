@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import Flex from 'jsxstyle/Flex';
 import Separator from '../../../../core/layout/Separator';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import Row from '../../../../core/layout/Row';
@@ -13,46 +14,47 @@ import ErrorText from "../../../../core/content/ErrorText";
 
 const AnswersInput = props => (
   <div>
-    <Row>
-      <Column lgSize={12}>
-        <TextInput
-          floatingLabel
-          disabled={props.submitting}
-          label="Answer"
-          value={get(props.values, 'text', '')}
-          onChange={value => props.onChange('text', value)}
-          errorText={get(props.errors, 'text', '')}
+    <Flex
+      alignItems="center"
+    >
+      <TextInput
+        id="answer"
+        floatingLabel
+        disabled={props.submitting}
+        label={props.label}
+        value={get(props.values, 'text', '')}
+        onChange={value => props.onChange('text', value)}
+        errorText={get(props.errors, 'text', '')}
+      />
+      <ColumnSeparator size="sm" />
+      {props.answerType === 'BOTH' && (
+        <Select
+          label="Is this a Correct answer ?"
+          value={get(props.values, 'correct', '')}
+          onChange={value => props.onChange('correct', value)}
+          options={[
+            { value: false, label: 'No' },
+            { value: true, label: 'Yes' },
+          ]}
         />
+      )}
+      {props.answerType === 'BOTH' && (
         <ColumnSeparator size="sm" />
-        {props.answerType === 'BOTH' && (
-          <Select
-            label="Is this a Correct answer ?"
-            value={get(props.values, 'correct', '')}
-            onChange={value => props.onChange('correct', value)}
-            options={[
-              { value: false, label: 'No' },
-              { value: true, label: 'Yes' },
-            ]}
-          />
-        )}
-        {props.answerType === 'BOTH' && (
-          <ColumnSeparator size="sm" />
-        )}
-        <Button
-          icon="done"
-          secondary
-          label={props.values.id ? 'Update' : 'Add'}
-          disabled={!props.isDirty()}
-          onClick={() => props.onSubmit()}
-        />
-        <ColumnSeparator size="xs" />
-        <Button
-          icon="clear"
-          label="Cancel"
-          onClick={() => props.onReset()}
-        />
-      </Column>
-    </Row>
+      )}
+      <Button
+        icon="done"
+        secondary
+        label={props.values.id ? 'Update' : 'Add'}
+        disabled={!props.isDirty()}
+        onClick={() => props.onSubmit()}
+      />
+      <ColumnSeparator size="xs" />
+      <Button
+        icon="clear"
+        label="Cancel"
+        onClick={() => props.onReset()}
+      />
+    </Flex>
     <Separator size="xs" />
     <Row>
       <Column lgSize={12}>
@@ -90,6 +92,7 @@ AnswersInput.propTypes = {
     'WRONG',
     'BOTH',
   ]).isRequired,
+  label: PropTypes.string.isRequired,
   errorText: PropTypes.string,
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
