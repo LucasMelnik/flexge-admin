@@ -20,7 +20,7 @@ const UnitForm = props => (
       }}
     >
       <Row>
-        <Column lgSize={6}>
+        <Column lgSize={4}>
           <TextInput
             floatingLabel
             fullWidth
@@ -31,7 +31,7 @@ const UnitForm = props => (
             error={get(props.errors, 'name', '')}
           />
         </Column>
-        <Column lgSize={6}>
+        <Column lgSize={4}>
           <FetchAutoComplete
             url="modules?page=1&size=100"
             fullWidth
@@ -46,8 +46,6 @@ const UnitForm = props => (
             }}
           />
         </Column>
-      </Row>
-      <Row>
         <Column lgSize={4}>
           <FetchAutoComplete
             url="unit-types?page=1&size=100"
@@ -63,7 +61,24 @@ const UnitForm = props => (
             }}
           />
         </Column>
-        <Column lgSize={1}>
+      </Row>
+      <Row>
+        <Column lgSize={2}>
+          <Select
+            floatingLabel
+            fullWidth
+            options={range(1, 11).map(value => ({
+              value,
+              label: value.toString(),
+            }))}
+            disabled={props.submitting}
+            label="Order"
+            value={get(props.values, 'order', '')}
+            onChange={value => props.onChange('order', value)}
+            error={get(props.errors, 'order', '')}
+          />
+        </Column>
+        <Column lgSize={2}>
           <Select
             floatingLabel
             fullWidth
@@ -73,9 +88,9 @@ const UnitForm = props => (
             }))}
             disabled={props.submitting}
             label="Group"
-            value={get(props.values, 'order', '')}
-            onChange={value => props.onChange('order', value)}
-            error={get(props.errors, 'order', '')}
+            value={get(props.values, 'group', '')}
+            onChange={value => props.onChange('group', value)}
+            error={get(props.errors, 'group', '')}
           />
         </Column>
         <Column lgSize={2}>
@@ -93,7 +108,7 @@ const UnitForm = props => (
             error={get(props.errors, 'scoreToPass', '')}
           />
         </Column>
-        <Column lgSize={2}>
+        <Column lgSize={3}>
           <Select
             floatingLabel
             fullWidth

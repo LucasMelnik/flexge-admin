@@ -27,7 +27,6 @@ const Button = (props) => {
     type: props.type,
     disabled: props.disabled,
   };
-  console.log('buttonProps', buttonProps)
 
   if (props.raised) {
     return (
