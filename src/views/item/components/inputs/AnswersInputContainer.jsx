@@ -23,6 +23,7 @@ class AnswersInputContainer extends Component {
       text: PropTypes.string.isRequired,
       correct: PropTypes.bool.isRequired,
     })),
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -30,6 +31,7 @@ class AnswersInputContainer extends Component {
     label: 'Add Other Answers',
     defaultAnswers: [],
     errorText: null,
+    disabled: false,
     value: [],
   };
 
@@ -137,6 +139,7 @@ class AnswersInputContainer extends Component {
         answerType={this.props.answerType}
         errorText={this.props.errorText}
         label={this.props.label}
+        disabled={this.props.disabled}
       />
     );
   }

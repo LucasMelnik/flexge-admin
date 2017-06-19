@@ -11,7 +11,7 @@ class UnitItemListService {
       items: [],
       total: 0,
       page: 1,
-      rowsByPage: 10,
+      rowsByPage: 30,
       pageCount: 1,
       unitId: null,
     });
@@ -25,6 +25,10 @@ class UnitItemListService {
   load = action(() => {
     this.fetch.fetch({
       url: `/units/${this.unitId}/items`,
+      query: {
+        page: this.page,
+        size: this.rowsByPage,
+      }
     }).then(() => {
       if (this.fetch.data) {
         this.items = this.fetch.data.docs;
