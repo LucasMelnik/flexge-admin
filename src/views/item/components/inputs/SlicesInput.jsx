@@ -26,8 +26,8 @@ const SlicesInput = props => (
                 if ((!props.disableRemove && !props.sequenceRemove) ||
                   (!props.disableRemove && props.sequenceRemove &&
                     (!props.removedSlices.length ||
-                      props.removedSlices.find(removedIndex => index === (removedIndex - 1)) ||
-                      props.removedSlices.find(removedIndex => index === (removedIndex + 1))
+                      props.removedSlices.find(removedIndex => index === (removedIndex - 1)) !== undefined ||
+                      props.removedSlices.find(removedIndex => index === (removedIndex + 1)) !== undefined
                     )
                   )
                 ) {
