@@ -102,7 +102,7 @@ class ItemFormService {
           indexesToRemove: [isRequired, minLength(1)],
           answers: [
             onlyOneCorrectAnswer,
-            minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
+            minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
           ],
         };
         break;
@@ -113,7 +113,7 @@ class ItemFormService {
           translation: [isRequired],
           indexesToRemove: [isRequired, minLength(2)],
           answers: [
-            minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
+            minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
           ],
         };
         break;
