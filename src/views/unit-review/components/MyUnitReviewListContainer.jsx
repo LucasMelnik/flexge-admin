@@ -7,7 +7,7 @@ import UnitReviewListService from '../services/UnitReviewListService';
 class MyUnitReviewListContainer extends Component {
 
   componentDidMount() {
-    UnitReviewListService.load();
+    UnitReviewListService.handleMyUnitsToReview();
   }
 
   render() {
@@ -15,6 +15,7 @@ class MyUnitReviewListContainer extends Component {
       <UnitReviewList
         units={toJS(UnitReviewListService.myUnits)}
         fetching={UnitReviewListService.fetch.fetching}
+        onSendReview={UnitReviewListService.onSendReview}
       />
     );
   }

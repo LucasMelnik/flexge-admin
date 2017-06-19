@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import Paper from '../../../core/layout/Paper';
 import Async from '../../../core/content/Async';
 import Table from '../../../core/content/Table';
+import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
 
 const UnitReviewList = props => (
   <Paper>
@@ -12,12 +13,17 @@ const UnitReviewList = props => (
         columns={[
           {
             label: 'Name',
-            path: 'unit.name',
+            path: 'name',
+          },
+          {
+            label: 'Module',
+            path: 'module.name',
           },
         ]}
         rows={props.units}
         selectable
         onSelect={row => browserHistory.push(`/units/${row.id}`)}
+        onSendReview={row => props.onSendReview(row)}
       />
     </Async>
   </Paper>
