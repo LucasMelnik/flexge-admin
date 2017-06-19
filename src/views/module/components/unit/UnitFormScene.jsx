@@ -28,7 +28,7 @@ const UnitFormScene = props => (
         top: 20,
         right: 20,
       }}
-      onClick={() => browserHistory.push('/units')}
+      onClick={() => browserHistory.push(`/modules/${props.moduleId}`)}
     />
     <Separator size="sm" />
     <UnitFormContainer />
@@ -43,6 +43,7 @@ const UnitFormScene = props => (
 
 UnitFormScene.propTypes = {
   unitId: PropTypes.string,
+  moduleId: PropTypes.string.isRequired,
 };
 UnitFormScene.defaultProps = {
   unitId: null,
