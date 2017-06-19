@@ -9,6 +9,7 @@ import {
   StepLabel,
 } from 'material-ui/Stepper';
 import ArrowForwardIcon from 'material-ui/svg-icons/navigation/arrow-forward';
+import Button from '../../../../../core/form/Button';
 import ItemFormContainer from '../../../../item/components/ItemFormContainer';
 
 const ItemFormScene = props => (
@@ -41,6 +42,16 @@ const ItemFormScene = props => (
           </StepLabel>
         </Step>
       </Stepper>
+    </InlineBlock>
+    <InlineBlock
+      marginTop={15}
+      float="right"
+    >
+      <Button
+        icon="keyboard_backspace"
+        label="back"
+        onClick={() => browserHistory.push(`/modules/${props.unit.module.id}/units/${props.unit.id}/items`)}
+      />
     </InlineBlock>
     <ItemFormContainer />
   </div>

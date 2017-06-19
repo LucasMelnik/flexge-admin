@@ -13,7 +13,7 @@ import Spinner from '../../../../../core/content/Spinner';
 import Button from '../../../../../core/form/Button';
 import UnitItemListContainer from './UnitItemListContainer';
 
-class UnitItemsScene extends Component {
+class UnitItemListScene extends Component {
 
   static propTypes = {
     unit: PropTypes.shape({
@@ -59,7 +59,16 @@ class UnitItemsScene extends Component {
             </Step>
           </Stepper>
         </InlineBlock>
-        <InlineBlock verticalAlign="top" marginTop={18} marginLeft={15}>
+        <InlineBlock
+          marginTop={15}
+          float="right"
+        >
+          <Button
+            icon="keyboard_backspace"
+            label="back"
+            onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units`)}
+          />
+          {' '}
           <Button
             primary
             onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units/${this.props.unit.id}/items/new`)}
@@ -78,4 +87,4 @@ class UnitItemsScene extends Component {
 }
 
 
-export default UnitItemsScene;
+export default UnitItemListScene;

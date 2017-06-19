@@ -8,6 +8,7 @@ import {
 } from 'material-ui/Stepper';
 import ArrowForwardIcon from 'material-ui/svg-icons/navigation/arrow-forward';
 import { browserHistory } from 'react-router';
+import Button from '../../../core/form/Button';
 import ModuleFormContainer from './ModuleFormContainer';
 
 const ModuleFormScene = props => (
@@ -26,6 +27,13 @@ const ModuleFormScene = props => (
           </StepLabel>
         </Step>
       </Stepper>
+    </InlineBlock>
+    <InlineBlock float="right" marginTop={15}>
+      <Button
+        icon="keyboard_backspace"
+        label="back"
+        onClick={() => browserHistory.push('/modules')}
+      />
     </InlineBlock>
     <ModuleFormContainer />
   </div>
