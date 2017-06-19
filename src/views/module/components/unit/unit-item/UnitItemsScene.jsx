@@ -10,11 +10,8 @@ import {
 } from 'material-ui/Stepper';
 import ArrowForwardIcon from 'material-ui/svg-icons/navigation/arrow-forward';
 import Spinner from '../../../../../core/content/Spinner';
-import FloatActionButton from '../../../../../core/form/FloatActionButton';
 import Button from '../../../../../core/form/Button';
 import UnitItemsContainer from './UnitItemsContainer';
-import ItemFormService from '../../../../item/services/ItemFormService';
-import ItemFormModal from './ItemFormModal';
 
 class UnitItemsScene extends Component {
 
@@ -38,25 +35,10 @@ class UnitItemsScene extends Component {
     fetching: false,
   };
 
-  handleAddClick = () => {
-    ItemFormService.handleLoad();
-    this.handleToggleModal();
-  };
-
-  handleToggleModal = () => {
-    this.setState({
-      itemFormModalOpen: !this.state.itemFormModalOpen,
-    });
-  };
-
   render() {
     return (
       <div>
-        <ItemFormModal
-          isOpen={this.state.itemFormModalOpen}
-          onClose={this.handleToggleModal}
-        />
-        <InlineBlock width={600}>
+        <InlineBlock>
           <Stepper activeStep={2} connector={<ArrowForwardIcon />}>
             <Step
               style={{ cursor: 'pointer' }}
@@ -82,14 +64,14 @@ class UnitItemsScene extends Component {
         <InlineBlock verticalAlign="top" marginTop={18} marginLeft={15}>
           <Button
             primary
-            onClick={this.handleAddClick}
+            onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units/${this.props.unit.id}/items/new`)}
             label="Add new item"
           />
         </InlineBlock>
         {this.props.unit.id && (
           <UnitItemsContainer
             unitId={this.props.unit.id}
-            onToggleModal={this.handleToggleModal}
+            moduleId={this.props.unit.module.id}
           />
         )}
       </div>
