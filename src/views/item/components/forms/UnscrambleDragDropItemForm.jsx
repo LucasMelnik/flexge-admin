@@ -23,6 +23,7 @@ const UnscrambleDragDropItemForm = props => (
       text={get(props.values, 'text', '')}
       indexesToRemove={get(props.values, 'indexesToRemove', [])}
       errorText={get(props.errors, 'indexesToRemove', '')}
+      allowLinkSlices
     />
     <Separator size="xs" />
     <AnswersInputContainer
