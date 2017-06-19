@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import range from 'lodash/range';
 import Paper from '../../../core/layout/Paper';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
+import Select from '../../../core/form/Select';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
 import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
@@ -44,7 +46,7 @@ const ModuleForm = props => (
         </Column>
       </Row>
       <Row>
-        <Column lgSize={6}>
+        <Column lgSize={3}>
           <FetchAutoComplete
             url="courses?page=1&size=100"
             fullWidth
@@ -59,7 +61,7 @@ const ModuleForm = props => (
             }}
           />
         </Column>
-        <Column lgSize={6}>
+        <Column lgSize={3}>
           <FetchAutoComplete
             url="academic-plans?page=1&size=100"
             fullWidth
@@ -72,6 +74,36 @@ const ModuleForm = props => (
               text: 'name',
               value: 'id',
             }}
+          />
+        </Column>
+        <Column lgSize={3}>
+          <Select
+            floatingLabel
+            fullWidth
+            options={range(1, 11).map(value => ({
+              value,
+              label: value.toString(),
+            }))}
+            disabled={props.submitting}
+            label="Order"
+            value={get(props.values, 'order', '')}
+            onChange={value => props.onChange('order', value)}
+            error={get(props.errors, 'order', '')}
+          />
+        </Column>
+        <Column lgSize={3}>
+          <Select
+            floatingLabel
+            fullWidth
+            options={range(1, 11).map(value => ({
+              value,
+              label: value.toString(),
+            }))}
+            disabled={props.submitting}
+            label="Group"
+            value={get(props.values, 'group', '')}
+            onChange={value => props.onChange('group', value)}
+            error={get(props.errors, 'group', '')}
           />
         </Column>
       </Row>
