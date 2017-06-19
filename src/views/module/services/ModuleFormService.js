@@ -54,7 +54,7 @@ class ModuleFormService {
     }).then(() => {
       if (this.submit.data) {
         const module = this.submit.data;
-        browserHistory.push(`/modules/${module.id}`);
+        browserHistory.push(`/modules`);
         this.moduleId = module.id;
         this.form.reset();
         this.form.setInitialValues(module);

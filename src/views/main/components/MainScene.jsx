@@ -42,7 +42,7 @@ const MainScene = props => (
         {
           label: 'Modules',
           url: '/modules',
-          requiredRoles: ['ADMIN'],
+          requiredRoles: ['ADMIN', 'CONTENT_ADMIN'],
         },
       ]}
     />
