@@ -19,6 +19,7 @@ const UnscrambleSpeechRecognitionItemForm = props => (
       onChange={(slices, texts) => {
         props.onChange('indexesToRemove', slices);
         props.onChange('textsRemoved', texts);
+        props.onChange('answers', texts.map((text, index) => ({ text, correct: true, id: `${index}` })));
       }}
       text={get(props.values, 'text', '')}
       indexesToRemove={get(props.values, 'indexesToRemove', [])}
@@ -28,7 +29,9 @@ const UnscrambleSpeechRecognitionItemForm = props => (
     <Separator size="xs" />
     <AnswersInputContainer
       disabled
+      value={get(props.values, 'answers', [])}
       defaultAnswers={get(props.values, 'textsRemoved', [])}
+      onChange={answers => props.onChange('answers', answers)}
     />
   </div>
 );
