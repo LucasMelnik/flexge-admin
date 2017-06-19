@@ -4,6 +4,8 @@ import { browserHistory } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
 import PermissionValidator from '../content/PermissionValidator';
 
 export default class Header extends Component {
@@ -42,6 +44,28 @@ export default class Header extends Component {
           title={this.props.title}
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           onLeftIconButtonTouchTap={() => this.toggleMenu()}
+          iconElementRight={(
+            <IconMenu
+              iconButtonElement={(
+                <IconButton
+                  style={{ color: 'fff' }}
+                  iconClassName="material-icons"
+                >
+                  more_vert
+                </IconButton>
+              )}
+              anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+              targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+            >
+              <MenuItem
+                primaryText="Sign out"
+                onClick={() => {
+                  localStorage.clear();
+                  browserHistory.push('/');
+                }}
+              />
+            </IconMenu>
+          )}
         />
         <Drawer
           docked={false}
