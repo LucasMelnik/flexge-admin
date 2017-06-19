@@ -4,9 +4,7 @@ import InlineBlock from 'jsxstyle/InlineBlock';
 import Title from '../../../core/content/Title';
 import Separator from '../../../core/layout/Separator';
 import FloatActionButton from '../../../core/form/FloatActionButton';
-import ModuleListFilterContainer from './ModuleListFilterContainer';
 import ModuleListContainer from './ModuleListContainer';
-import ModuleListPaginationContainer from './ModuleListPaginationContainer';
 
 const ModuleListScene = () => (
   <div>
@@ -25,13 +23,9 @@ const ModuleListScene = () => (
       }}
       onClick={() => browserHistory.push('/modules/new')}
     />
-    <Separator size="sm" />
-    <ModuleListFilterContainer />
-    <Separator size="sm" />
+    <Separator />
     <ModuleListContainer />
-    <Separator size="sm" />
-    <ModuleListPaginationContainer />
-    <Separator size="sm" />
+    <Separator />
   </div>
 );
 

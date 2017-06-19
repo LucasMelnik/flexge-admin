@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import range from 'lodash/range';
-import Paper from '../../../core/layout/Paper';
-import TextInput from '../../../core/form/TextInput';
-import Button from '../../../core/form/Button';
-import Separator from '../../../core/layout/Separator';
-import Select from '../../../core/form/Select';
-import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
-import Row from '../../../core/layout/Row';
-import Column from '../../../core/layout/Column';
+import Paper from '../../../../core/layout/Paper';
+import TextInput from '../../../../core/form/TextInput';
+import Button from '../../../../core/form/Button';
+import Separator from '../../../../core/layout/Separator';
+import Select from '../../../../core/form/Select';
+import FetchAutoComplete from '../../../../core/form/FetchAutoComplete';
+import Row from '../../../../core/layout/Row';
+import Column from '../../../../core/layout/Column';
 
 const UnitForm = props => (
   <Paper>
@@ -85,7 +85,7 @@ const UnitForm = props => (
             options={range(70, 105, 5).map(value => ({
               value,
               label: value.toString(),
-            }))} 
+            }))}
             disabled={props.submitting}
             label="Score to pass"
             value={get(props.values, 'scoreToPass', '')}

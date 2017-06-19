@@ -9,12 +9,16 @@ const Button = (props) => {
   const buttonProps = {
     primary: props.primary,
     secondary: props.secondary,
-    icon: <FontIcon
-      className="material-icons"
-      style={{ fontSize: 18 }}
-    >
-      {props.icon}
-    </FontIcon>,
+    ...props.icon && {
+      icon: (
+        <FontIcon
+          className="material-icons"
+          style={{ fontSize: 18 }}
+        >
+          {props.icon}
+        </FontIcon>
+      ),
+    },
     onClick: () => props.onClick && props.onClick(),
     label: props.label,
     style: props.style,
@@ -23,6 +27,7 @@ const Button = (props) => {
     type: props.type,
     disabled: props.disabled,
   };
+  console.log('buttonProps', buttonProps)
 
   if (props.raised) {
     return (

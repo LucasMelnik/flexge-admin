@@ -2,38 +2,49 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import Paper from '../../../core/layout/Paper';
+import Separator from '../../../core/layout/Separator';
+import Divider from '../../../core/layout/Divider';
 import Async from '../../../core/content/Async';
 import Table from '../../../core/content/Table';
+import ModuleListFilterContainer from './ModuleListFilterContainer';
+import ModuleListPaginationContainer from './ModuleListPaginationContainer';
 
 const ModuleList = props => (
   <Paper
     flexible
   >
     <Async fetching={props.fetching}>
-      <Table
-        columns={[
-          {
-            label: 'Name',
-            path: 'name',
-          },
-          {
-            label: 'Description',
-            path: 'description',
-          },
-          {
-            label: 'Course',
-            path: 'course.name',
-          },
-          {
-            label: 'Academic Plan',
-            path: 'academicPlan.name',
-          },
-        ]}
-        rows={props.modules}
-        selectable
-        onSelect={row => browserHistory.push(`/modules/${row.id}`)}
-        onDelete={row => props.onDelete(row)}
-      />
+      <div>
+        <ModuleListFilterContainer />
+        <Separator />
+        <Divider />
+        <Table
+          columns={[
+            {
+              label: 'Name',
+              path: 'name',
+            },
+            {
+              label: 'Description',
+              path: 'description',
+            },
+            {
+              label: 'Course',
+              path: 'course.name',
+            },
+            {
+              label: 'Academic Plan',
+              path: 'academicPlan.name',
+            },
+          ]}
+          rows={props.modules}
+          selectable
+          onSelect={row => browserHistory.push(`/modules/${row.id}/units`)}
+          onEdit={row => browserHistory.push(`/modules/${row.id}`)}
+          onDelete={row => props.onDelete(row)}
+        />
+        <ModuleListPaginationContainer />
+      </div>
     </Async>
   </Paper>
 );

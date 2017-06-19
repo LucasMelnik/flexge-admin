@@ -44,11 +44,6 @@ const MainScene = props => (
           url: '/modules',
           requiredRoles: ['ADMIN'],
         },
-        {
-          label: 'Units',
-          url: '/units',
-          requiredRoles: ['ADMIN'],
-        },
       ]}
     />
     <Block padding={15}>

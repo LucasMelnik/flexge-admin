@@ -1,23 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Paper from '../../../core/layout/Paper';
+import InlineBlock from 'jsxstyle/InlineBlock';
 import TextInput from '../../../core/form/TextInput';
+import Button from '../../../core/form/Button';
 
 const ModuleListFilter = props => (
-  <Paper
-    flexible
-  >
-    <TextInput
-      label="Search modules"
-      value={props.value}
-      onChange={props.onChange}
+  <div>
+    <InlineBlock marginRight={20}>
+      <TextInput
+        label="Search modules"
+        value={props.value}
+        onChange={props.onChange}
+        disabled={props.fetching}
+      />
+    </InlineBlock>
+    <Button
+      label="Search"
+      icon="search"
+      priimary
+      onClick={props.onSearch}
     />
-  </Paper>
+  </div>
 );
 
 ModuleListFilter.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  fetching: PropTypes.bool,
+  onSearch: PropTypes.func,
 };
+
+ModuleListFilter.defaultProps = {
+  fetching: false,
+  onSearch: null,
+}
 
 export default ModuleListFilter;

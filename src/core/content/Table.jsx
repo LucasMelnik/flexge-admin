@@ -27,6 +27,7 @@ export default class Table extends Component {
     actionComponentWidth: PropTypes.number,
     onSelect: PropTypes.func,
     onDelete: PropTypes.func,
+    onEdit: PropTypes.func,
     rows: PropTypes.arrayOf(PropTypes.object),
   }
 
@@ -35,6 +36,7 @@ export default class Table extends Component {
     actionComponentWidth: null,
     onSelect: null,
     onDelete: null,
+    onEdit: null,
     selectable: false,
     columns: [],
     rows: [],
@@ -85,11 +87,12 @@ export default class Table extends Component {
                 {column.label}
               </TableHeaderColumn>
             ))}
-            {this.props.onDelete && (
+            {(this.props.onDelete || this.props.onEdit) && (
               <TableHeaderColumn
-                key="delete"
-                style={{ width: 90 }}
-              />
+                style={{ width: 110 }}
+              >
+                Actions
+              </TableHeaderColumn>
             )}
           </TableRow>
         </TableHeader>
@@ -118,17 +121,28 @@ export default class Table extends Component {
                   {!isBoolean(row[column.path]) && get(row, column.path, column.labelWhenNull || '').toString()}
                 </TableRowColumn>
               ))}
-              {this.props.onDelete && (
+              {(this.props.onDelete || this.props.onEdit) && (
                 <TableRowColumn
-                  key={`delete${row.id || index}`}
-                  style={{ width: 90 }}
+                  style={{ width: 110 }}
                 >
-                  <IconButton
-                    onClick={() => this.props.onDelete(row, index)}
-                    iconClassName="material-icons"
-                  >
-                    delete
-                  </IconButton>
+                  {this.props.onEdit && (
+                    <IconButton
+                      style={{ width: 45 }}
+                      onClick={() => this.props.onEdit(row, index)}
+                      iconClassName="material-icons"
+                    >
+                      edit
+                    </IconButton>
+                  )}
+                  {this.props.onDelete && (
+                    <IconButton
+                      style={{ width: 45 }}
+                      onClick={() => this.props.onDelete(row, index)}
+                      iconClassName="material-icons"
+                    >
+                      delete
+                    </IconButton>
+                  )}
                 </TableRowColumn>
               )}
             </TableRow>

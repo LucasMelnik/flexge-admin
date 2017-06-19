@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import UnitForm from './UnitForm';
-import UnitFormService from '../services/UnitFormService';
+import UnitFormService from '../../services/UnitFormService';
 
 const UnitFormContainer = () => (
   <UnitForm

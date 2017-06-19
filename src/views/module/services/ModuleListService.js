@@ -54,7 +54,6 @@ class ModuleListService {
 
   handleFilterChange = action((value) => {
     this.filter = value;
-    this.load();
   });
 
   handleRemove = action((module) => {

@@ -15,19 +15,20 @@ class UnitListService {
       rowsByPage: 10,
       pageCount: 1,
       filter: '',
+      moduleId: null,
     });
   }
 
-  init = action(() => {
+  init = action((moduleId) => {
+    this.moduleId = moduleId;
     this.page = 1;
     this.filter = '';
     this.load();
   });
 
   load = action(() => {
-    const moduleId = this.form.getValue('module.id');
     this.fetch.fetch({
-      url: `/modules/${moduleId}/units`,
+      url: `/modules/${this.moduleId}/units`,
       query: {
         page: this.page,
         size: this.rowsByPage,
