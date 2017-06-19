@@ -42,7 +42,6 @@ export default class Header extends Component {
       <div>
         <AppBar
           title={this.props.title}
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
           onLeftIconButtonTouchTap={() => this.toggleMenu()}
           iconElementRight={(
             <IconMenu

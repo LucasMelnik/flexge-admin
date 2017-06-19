@@ -18,6 +18,8 @@ class UnitFormService {
       name: [isRequired],
       module: [isRequired],
       type: [isRequired],
+      group: [isRequired],
+      order: [isRequired],
     };
   }
 
@@ -54,7 +56,7 @@ class UnitFormService {
     }).then(() => {
       if (this.submit.data) {
         const unit = this.submit.data;
-        browserHistory.push(`/modules/${moduleId}/units`);
+        browserHistory.push(`/modules/${moduleId}/units/${unit.id}/items`);
         this.unitId = unit.id;
         this.form.setInitialValues({
           ...unit,

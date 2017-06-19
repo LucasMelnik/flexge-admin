@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import UnitForm from './UnitForm';
 import UnitFormService from '../../services/UnitFormService';
@@ -19,6 +20,7 @@ class UnitFormContainer extends Component {
   }
 
   render() {
+    console.log('errors', toJS(UnitFormService.form.errors))
     return (
       <UnitForm
         onSubmit={UnitFormService.handleSubmit}
