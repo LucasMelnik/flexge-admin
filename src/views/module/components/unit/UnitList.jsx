@@ -30,6 +30,14 @@ const UnitList = props => (
               label: 'Abilities',
               path: 'abilities',
             },
+            {
+              label: 'Unit Type',
+              path: 'type.name',
+            },
+            {
+              label: 'Items count',
+              path: 'itemsCount',
+            },
           ]}
           rows={props.units}
           selectable
