@@ -33,7 +33,8 @@ const UnitList = props => (
           ]}
           rows={props.units}
           selectable
-          onSelect={row => browserHistory.push(`/modules/${row.module.id}/units/${row.id}`)}
+          onSelect={row => browserHistory.push(`/modules/${row.module.id}/units/${row.id}/items`)}
+          onEdit={row => browserHistory.push(`/modules/${row.module.id}/units/${row.id}`)}
           onDelete={row => props.onDelete(row)}
         />
         <Separator />

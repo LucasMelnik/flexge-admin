@@ -1,49 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
+import Block from 'jsxstyle/Block';
 import InlineBlock from 'jsxstyle/InlineBlock';
-import Title from '../../../core/content/Title';
+import {
+  Step,
+  Stepper,
+  StepLabel,
+} from 'material-ui/Stepper';
+import ArrowForwardIcon from 'material-ui/svg-icons/navigation/arrow-forward';
 import Spinner from '../../../core/content/Spinner';
-import Separator from '../../../core/layout/Separator';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import Button from '../../../core/form/Button';
 import UnitListContainer from './unit/UnitListContainer';
 
 const ModuleUnitsScene = props => (
   <div>
-    <InlineBlock>
-      <Title>
-        List of units from:
-        {' '}
-        {props.fetching ? (
-          <InlineBlock>
-            <Spinner size={20} />
-          </InlineBlock>
-        ) : (
-          <InlineBlock>
-            {props.module.name}
-            <Button
-              style={{ marginleft: 20 }}
-              primary
-              onClick={ () => browserHistory.push(`/modules/${props.module.id}/units/new`)}
-              label="Add new unit"
-            />
-          </InlineBlock>
-        )}
-      </Title>
+    <InlineBlock width={280}>
+      <Stepper activeStep={1} connector={<ArrowForwardIcon />}>
+        <Step
+          onClick={() => browserHistory.push('/modules')}
+          style={{ cursor: 'pointer' }}
+        >
+          <StepLabel>Modules</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>
+            {props.fetching ? (
+              <Spinner size={20} />
+            ) : `Module - ${props.module.name}`}
+          </StepLabel>
+        </Step>
+      </Stepper>
     </InlineBlock>
-    <FloatActionButton
-      secondary
-      icon="arrow_back"
-      style={{
-        position: 'relative',
-        float: 'right',
-        top: 20,
-        right: 20,
-      }}
-      onClick={() => browserHistory.push('/modules/')}
-    />
-    <Separator />
+    <InlineBlock verticalAlign="top" marginTop={18} marginLeft={15}>
+      <Button
+        primary
+        onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
+        label="Add new unit"
+      />
+    </InlineBlock>
     {props.module.id && (
       <UnitListContainer moduleId={props.module.id} />
     )}

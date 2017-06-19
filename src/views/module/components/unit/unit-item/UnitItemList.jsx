@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import range from 'lodash/range';
-import Paper from '../../../core/layout/Paper';
-import Async from '../../../core/content/Async';
-import Table from '../../../core/content/Table';
-import Select from "../../../core/form/Select";
+import Paper from '../../../../../core/layout/Paper';
+import Async from '../../../../../core/content/Async';
+import Table from '../../../../../core/content/Table';
+import Select from '../../../../../core/form/Select';
 
 const UnitItemList = props => (
   <Paper>
@@ -61,7 +61,7 @@ UnitItemList.propTypes = {
       translation: PropTypes.string,
       grammar: PropTypes.shape({
         name: PropTypes.string.isRequired,
-      }).isRequired
+      }).isRequired,
     }),
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
