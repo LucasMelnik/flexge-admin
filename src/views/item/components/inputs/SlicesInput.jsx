@@ -41,7 +41,7 @@ const SlicesInput = props => (
               } else {
                 return (
                   <Flex key={`slice-${sliceText}-${index}`}>
-                    {!props.value.find(answer => answer.linkTo === index) && (
+                    {(!props.allowLink || (props.allowLink && !props.value.find(answer => answer.linkTo === index))) && (
                       <Tag
                         icon="undo"
                         onClick={() => props.onShowSlice(index)}

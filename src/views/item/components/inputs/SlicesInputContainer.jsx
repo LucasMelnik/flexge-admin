@@ -52,8 +52,7 @@ export default class SlicesInputContainer extends Component {
   }
 
   handleRemoveSlice = (index) => {
-
-    const updatedRemovedSlice = [
+    let updatedRemovedSlice = sortBy([
       ...this.state.removedSlices,
       {
         index,
@@ -61,23 +60,19 @@ export default class SlicesInputContainer extends Component {
         text: this.state.slices[index],
         correct: true ,
       },
-    ];
-
+    ], 'index');
+    console.log('added and order', updatedRemovedSlice);
     if (this.props.sequenceRemove) {
-      const sequenceBefore = updatedRemovedSlice.find(slice => slice.index === index - 1);
-      const sequenceAfter = updatedRemovedSlice.find(slice => slice.index === index + 1);
-        if (sequenceBefore) {
-          console.log('before')
-          sequenceBefore.linkTo = index;
+      updatedRemovedSlice = updatedRemovedSlice.map(slice => {
+        return {
+          ...slice,
+          linkTo: slice.index + 1,
         }
-        if (sequenceAfter) {
-          console.log('after')
-          sequenceAfter.linkTo = index;
-        }
+      });
     }
 
     this.setState({
-      removedSlices: sortBy(updatedRemovedSlice, 'index'),
+      removedSlices: updatedRemovedSlice,
     }, () => {
       this.props.onChange(this.state.removedSlices);
     });
