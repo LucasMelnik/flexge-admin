@@ -147,14 +147,13 @@ export default class Table extends Component {
               )}
               {this.props.onSendReview && (
                 <TableRowColumn
-                  key={`send{row.id || index}`}
                   style={{ width: 90 }}
                 >
                   <IconButton
                     onClick={() => this.props.onSendReview(row, index)}
                     iconClassName="material-icons"
                   >
-                    paper
+                    send
                   </IconButton>
                 </TableRowColumn>
               )}
