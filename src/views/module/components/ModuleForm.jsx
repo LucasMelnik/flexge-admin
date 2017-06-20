@@ -80,21 +80,6 @@ const ModuleForm = props => (
           <Select
             floatingLabel
             fullWidth
-            options={range(1, 21).map(value => ({
-              value,
-              label: value.toString(),
-            }))}
-            disabled={props.submitting}
-            label="Order"
-            value={get(props.values, 'order', '')}
-            onChange={value => props.onChange('order', value)}
-            error={get(props.errors, 'order', '')}
-          />
-        </Column>
-        <Column lgSize={3}>
-          <Select
-            floatingLabel
-            fullWidth
             options={['A', 'B', 'C'].map(value => ({
               value,
               label: value
@@ -104,6 +89,21 @@ const ModuleForm = props => (
             value={get(props.values, 'group', '')}
             onChange={value => props.onChange('group', value)}
             error={get(props.errors, 'group', '')}
+          />
+        </Column>
+        <Column lgSize={3}>
+          <Select
+            floatingLabel
+            fullWidth
+            options={range(1, 21).map(value => ({
+              value,
+              label: value.toString(),
+            }))}
+            disabled={props.submitting}
+            label="Order"
+            value={get(props.values, 'order', '')}
+            onChange={value => props.onChange('order', value)}
+            error={get(props.errors, 'order', '')}
           />
         </Column>
       </Row>
