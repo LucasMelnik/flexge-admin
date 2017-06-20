@@ -15,7 +15,6 @@ class AnswersInputContainer extends Component {
       'WRONG',
       'BOTH',
     ]),
-    defaultAnswers: PropTypes.arrayOf(PropTypes.string),
     errorText: PropTypes.string,
     label: PropTypes.string,
     value: PropTypes.arrayOf(PropTypes.shape({
@@ -23,18 +22,19 @@ class AnswersInputContainer extends Component {
       text: PropTypes.string.isRequired,
       correct: PropTypes.bool.isRequired,
     })),
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
     answerType: 'BOTH',
     label: 'Add Other Answers',
-    defaultAnswers: [],
     errorText: null,
+    disabled: false,
     value: [],
   };
 
   formService = new FormService();
-  state = { answers: [], defaultAnswers: [] }
+  state = { answers: [] }
 
   componentWillMount() {
     this.formService.validations = {
@@ -43,22 +43,41 @@ class AnswersInputContainer extends Component {
     this.formService.setInitialValues({ correct: this.props.answerType === 'CORRECT' });
     this.setState({
       answers: this.props.value,
-    })
+    });
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.defaultAnswers) {
+    if (nextProps.value) {
       this.setState({
-        defaultAnswers: nextProps.defaultAnswers.map((text, index) => {
-          return {
-            text,
-            id: `default-${index}`,
-            correct: true,
-          }
-        }),
+        answers: nextProps.value,
       });
     }
   }
+
+  getNormalizedAnswers = () => {
+    return this.state.answers.reduce((result, answer) => {
+      if (result.find(resultAnswer => answer.index && resultAnswer.linkTo === answer.index)) {
+        result = result.map(resultAnswer => {
+          if (resultAnswer.linkTo === answer.index) {
+            return {
+              ...resultAnswer,
+              linkTo: answer.linkTo,
+              text: resultAnswer.text.concat(' ').concat(answer.text),
+            }
+          }
+          return resultAnswer;
+        });
+        return [
+          ...result,
+        ];
+      } else {
+        return [
+          ...result,
+          answer,
+        ];
+      }
+    }, []);
+  };
 
   handleSubmit = () => {
     if (this.formService.errors) {
@@ -86,10 +105,7 @@ class AnswersInputContainer extends Component {
       answers: updatedAnswers
     }, () => {
       this.handleReset();
-      this.props.onChange([
-        ...updatedAnswers,
-        ...this.state.defaultAnswers,
-      ]);
+      this.props.onChange(updatedAnswers);
     });
   };
 
@@ -111,10 +127,7 @@ class AnswersInputContainer extends Component {
         this.setState({
           answers: updatedAnswers,
         }, () => {
-          this.props.onChange([
-            ...updatedAnswers,
-            ...this.state.defaultAnswers,
-          ]);
+          this.props.onChange(updatedAnswers);
         });
       });
   };
@@ -122,10 +135,7 @@ class AnswersInputContainer extends Component {
   render() {
     return (
       <AnswersInput
-        answers={[
-          ...this.state.answers,
-          ...this.state.defaultAnswers,
-        ]}
+        answers={this.getNormalizedAnswers()}
         onSubmit={this.handleSubmit}
         onDelete={this.handleDelete}
         onEdit={this.handleEdit}
@@ -137,6 +147,7 @@ class AnswersInputContainer extends Component {
         answerType={this.props.answerType}
         errorText={this.props.errorText}
         label={this.props.label}
+        disabled={this.props.disabled}
       />
     );
   }

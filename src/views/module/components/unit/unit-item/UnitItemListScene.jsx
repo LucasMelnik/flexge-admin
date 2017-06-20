@@ -37,7 +37,7 @@ class UnitItemListScene extends Component {
     return (
       <div>
         <InlineBlock>
-          <Stepper activeStep={2} connector={<ArrowForwardIcon />}>
+          <Stepper activeStep={3} connector={<ArrowForwardIcon />}>
             <Step
               style={{ cursor: 'pointer' }}
               onClick={() => browserHistory.push('/modules')}
@@ -55,6 +55,11 @@ class UnitItemListScene extends Component {
                 {this.props.fetching ? (
                   <Spinner size={20} />
                 ) : `Unit - ${this.props.unit.name}`}
+              </StepLabel>
+            </Step>
+            <Step>
+              <StepLabel>
+                Items
               </StepLabel>
             </Step>
           </Stepper>

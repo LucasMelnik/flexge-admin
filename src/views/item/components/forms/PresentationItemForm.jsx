@@ -13,7 +13,7 @@ const PresentationItemForm = props => (
         <TextInput
           floatingLabel
           fullWidth
-          label="Title"
+          label="Title (The field is just required for Vocabulary units.)"
           disabled={props.submitting}
           value={get(props.values, 'title', '')}
           onChange={value => props.onChange('title', value)}

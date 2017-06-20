@@ -16,12 +16,12 @@ const GapFillSelectItemForm = props => (
     />
     <Separator size="xs" />
     <SlicesInputContainer
-      onChange={(slices, texts) => {
-        props.onChange('indexesToRemove', slices);
-        props.onChange('textsRemoved', texts);
+      onChange={(answers) => {
+        props.onChange('answers', answers);
+        props.onChange('indexesToRemove', answers); //this is to show errors
       }}
       text={get(props.values, 'text', '')}
-      indexesToRemove={get(props.values, 'indexesToRemove', [])}
+      value={get(props.values, 'answers', [])}
       errorText={get(props.errors, 'indexesToRemove', '')}
       maxRemovesAllowed={3}
       sequenceRemove
@@ -29,7 +29,7 @@ const GapFillSelectItemForm = props => (
     <Separator size="xs" />
     <AnswersInputContainer
       answerType="WRONG"
-      defaultAnswers={get(props.values, 'textsRemoved', [])}
+      value={get(props.values, 'answers', [])}
       onChange={answers => props.onChange('answers', answers)}
       errorText={get(props.errors, 'answers', '')}
     />

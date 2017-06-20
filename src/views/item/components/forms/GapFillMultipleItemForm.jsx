@@ -16,19 +16,18 @@ const GapFillMultipleItemForm = props => (
     />
     <Separator size="xs" />
     <SlicesInputContainer
-      onChange={(slices, texts) => {
-        props.onChange('indexesToRemove', slices);
-        props.onChange('textsRemoved', texts);
+      onChange={(answers) => {
+        props.onChange('answers', answers);
+        props.onChange('indexesToRemove', answers); //this is to show errors
       }}
       text={get(props.values, 'text', '')}
-      indexesToRemove={get(props.values, 'indexesToRemove', [])}
+      value={get(props.values, 'answers', [])}
       errorText={get(props.errors, 'indexesToRemove', '')}
     />
     <Separator size="xs" />
     <AnswersInputContainer
       answerType="WRONG"
       value={get(props.values, 'answers', [])}
-      defaultAnswers={get(props.values, 'textsRemoved', [])}
       onChange={answers => props.onChange('answers', answers)}
       errorText={get(props.errors, 'answers', '')}
     />

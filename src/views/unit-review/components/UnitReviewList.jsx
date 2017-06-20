@@ -12,12 +12,17 @@ const UnitReviewList = props => (
         columns={[
           {
             label: 'Name',
-            path: 'unit.name',
+            path: 'name',
+          },
+          {
+            label: 'Module',
+            path: 'module.name',
           },
         ]}
         rows={props.units}
         selectable
         onSelect={row => browserHistory.push(`/units/${row.id}`)}
+        onSendReview={row => props.onSendReview(row)}
       />
     </Async>
   </Paper>

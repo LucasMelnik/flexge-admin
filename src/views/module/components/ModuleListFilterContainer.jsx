@@ -5,8 +5,8 @@ import ModuleListFilter from './ModuleListFilter';
 
 const ModuleListFilterContainer = () => (
   <ModuleListFilter
-    value={ModuleListService.filter}
-    onChange={ModuleListService.handleFilterChange}
+    values={ModuleListService.form.getValues()}
+    onChange={ModuleListService.form.setValue}
     onSearch={ModuleListService.load}
     fetching={ModuleListService.fetch.fetching}
   />
