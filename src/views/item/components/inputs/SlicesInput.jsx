@@ -5,6 +5,7 @@ import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import ErrorText from '../../../../core/content/ErrorText';
 import Tag from '../../../../core/form/Tag';
+import Separator from '../../../../core/layout/Separator';
 
 const SlicesInput = props => (
   <Row>
@@ -66,6 +67,20 @@ const SlicesInput = props => (
           )}
         </div>
       )}
+      <Separator size="xs" />
+      {(props.value.length && (
+        <div>
+          <small>Gap Preview</small>
+          <Separator size="xs" />
+          {props.texts.map((sliceText, index) => {
+            if (props.value.find(removedSlice => removedSlice.index === index)) {
+              return `__ `;
+            } else {
+              return `${sliceText} `;
+            }
+          })}
+        </div>
+      ))}
     </Column>
   </Row>
 );
