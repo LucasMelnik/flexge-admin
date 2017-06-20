@@ -1,20 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Row from '../../../../core/layout/Row';
-import Column from '../../../../core/layout/Column';
+import Flex from 'jsxstyle/Flex';
 import Switch from '../../../../core/form/Switch';
 
 const TrueFalseAnswerInput = props => (
-  <Row>
-    <Column lgsize={12}>
-      <Switch
-        onChange={props.onChange}
-        label="Is it true?"
-        toggled={props.checked}
-        labelPosition="right"
-      />
-    </Column>
-  </Row>
+  <Flex
+    alignItems="center"
+  >
+    <label>False</label>
+    <Switch
+      onChange={props.onChange}
+      label=""
+      toggled={props.checked}
+      labelPosition="right"
+      style={{
+        width: 45,
+        paddingLeft: 5,
+      }}
+    />
+    <label>True</label>
+  </Flex>
 );
 
 TrueFalseAnswerInput.propTypes = {
