@@ -80,7 +80,7 @@ const ModuleForm = props => (
           <Select
             floatingLabel
             fullWidth
-            options={range(1, 11).map(value => ({
+            options={range(1, 21).map(value => ({
               value,
               label: value.toString(),
             }))}
