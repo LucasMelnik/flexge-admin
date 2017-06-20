@@ -95,9 +95,9 @@ const ModuleForm = props => (
           <Select
             floatingLabel
             fullWidth
-            options={range(1, 11).map(value => ({
+            options={['A', 'B', 'C'].map(value => ({
               value,
-              label: value.toString(),
+              label: value
             }))}
             disabled={props.submitting}
             label="Group"
