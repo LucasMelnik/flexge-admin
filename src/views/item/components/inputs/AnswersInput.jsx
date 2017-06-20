@@ -72,6 +72,7 @@ const AnswersInput = props => (
             },
           ]}
           rows={props.answers}
+          allowActionValidator={(row) => row.index === undefined}
           onDelete={!props.disabled ? (row) => props.onDelete(row.id) : null}
           onSelect={!props.disabled ? (row) => props.onEdit(row.id) : null}
         />

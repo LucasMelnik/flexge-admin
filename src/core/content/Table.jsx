@@ -28,6 +28,7 @@ export default class Table extends Component {
     onSelect: PropTypes.func,
     onDelete: PropTypes.func,
     onEdit: PropTypes.func,
+    allowActionValidator: PropTypes.func,
     rows: PropTypes.arrayOf(PropTypes.object),
   }
 
@@ -37,6 +38,7 @@ export default class Table extends Component {
     onSelect: null,
     onDelete: null,
     onEdit: null,
+    allowActionValidator: () => true,
     selectable: false,
     columns: [],
     rows: [],
@@ -112,7 +114,7 @@ export default class Table extends Component {
               {this.props.columns.map(column => (
                 <TableRowColumn
                   key={column.path}
-                  onMouseDown={() => this.props.onSelect && this.props.onSelect(row, index)}
+                  onMouseDown={() => (this.props.allowActionValidator(row) && this.props.onSelect) && this.props.onSelect(row, index)}
                   style={{
                     width: column.width || 'auto',
                   }}
@@ -125,7 +127,7 @@ export default class Table extends Component {
                 <TableRowColumn
                   style={{ width: 110 }}
                 >
-                  {this.props.onEdit && (
+                  {(this.props.allowActionValidator(row) && this.props.onEdit) && (
                     <IconButton
                       style={{ width: 45 }}
                       onClick={() => this.props.onEdit(row, index)}
@@ -134,7 +136,7 @@ export default class Table extends Component {
                       edit
                     </IconButton>
                   )}
-                  {this.props.onDelete && (
+                  {(this.props.allowActionValidator(row) && this.props.onDelete) && (
                     <IconButton
                       style={{ width: 45 }}
                       onClick={() => this.props.onDelete(row, index)}
