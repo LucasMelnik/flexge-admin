@@ -25,6 +25,14 @@ const ModuleList = props => (
               path: 'name',
             },
             {
+              label: 'Order',
+              path: 'order',
+            },
+            {
+              label: 'Group',
+              path: 'group',
+            },
+            {
               label: 'Description',
               path: 'description',
             },

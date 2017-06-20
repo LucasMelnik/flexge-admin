@@ -1,9 +1,11 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
 class ModuleListService {
   fetch = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -12,13 +14,11 @@ class ModuleListService {
       page: 1,
       rowsByPage: 10,
       pageCount: 1,
-      filter: '',
     });
   }
 
   init = action(() => {
     this.page = 1;
-    this.filter = '';
     this.load();
   });
 
@@ -28,9 +28,15 @@ class ModuleListService {
       query: {
         page: this.page,
         size: this.rowsByPage,
-        query: this.filter && {
-          name: {
-            $regex: this.filter,
+        query: {
+          ...this.form.getValue('filter') && {
+            name: {
+              $regex: this.form.getValue('filter'),
+              $options: 'i',
+            },
+          },
+          ...this.form.getValue('course.id') && {
+            course: this.form.getValue('course.id'),
           },
         },
       },
@@ -50,10 +56,6 @@ class ModuleListService {
   handlePageChange = action((page) => {
     this.page = page.selected + 1;
     this.load();
-  });
-
-  handleFilterChange = action((value) => {
-    this.filter = value;
   });
 
   handleRemove = action((module) => {
