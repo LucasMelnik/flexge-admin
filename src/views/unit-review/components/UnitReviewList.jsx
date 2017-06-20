@@ -4,7 +4,6 @@ import { browserHistory } from 'react-router';
 import Paper from '../../../core/layout/Paper';
 import Async from '../../../core/content/Async';
 import Table from '../../../core/content/Table';
-import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
 
 const UnitReviewList = props => (
   <Paper>
