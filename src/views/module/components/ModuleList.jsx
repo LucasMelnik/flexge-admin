@@ -21,8 +21,16 @@ const ModuleList = props => (
         <Table
           columns={[
             {
+              label: 'Order',
+              path: 'order',
+            },
+            {
               label: 'Name',
               path: 'name',
+            },
+            {
+              label: 'Group',
+              path: 'group',
             },
             {
               label: 'Description',
