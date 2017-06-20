@@ -55,13 +55,13 @@ class AnswersInputContainer extends Component {
   }
 
   getNormalizedAnswers = () => {
-    console.log(this.state.answers)
-    return this.state.answers.reduce((result, answer, index) => {
-      if (result.find(resultAnswer => resultAnswer.linkTo === answer.index)) {
+    return this.state.answers.reduce((result, answer) => {
+      if (result.find(resultAnswer => answer.index && resultAnswer.linkTo === answer.index)) {
         result = result.map(resultAnswer => {
           if (resultAnswer.linkTo === answer.index) {
             return {
               ...resultAnswer,
+              linkTo: answer.linkTo,
               text: resultAnswer.text.concat(' ').concat(answer.text),
             }
           }
@@ -69,25 +69,12 @@ class AnswersInputContainer extends Component {
         });
         return [
           ...result,
-        ]
-      // } else if (result.find(resultAnswer => resultAnswer.index === answer.linkTo)) {
-      //   result = result.map(resultAnswer => {
-      //     if (resultAnswer.index === answer.linkTo) {
-      //       return {
-      //         ...resultAnswer,
-      //         text: answer.text.concat(' ').concat(resultAnswer.text),
-      //       }
-      //     }
-      //     return resultAnswer;
-      //   });
-      //   return [
-      //     ...result,
-      //   ]
+        ];
       } else {
         return [
           ...result,
           answer,
-        ]
+        ];
       }
     }, []);
   };

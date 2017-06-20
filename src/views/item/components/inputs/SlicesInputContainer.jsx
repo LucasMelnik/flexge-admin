@@ -61,7 +61,7 @@ export default class SlicesInputContainer extends Component {
         correct: true ,
       },
     ], 'index');
-    console.log('added and order', updatedRemovedSlice);
+
     if (this.props.sequenceRemove) {
       updatedRemovedSlice = updatedRemovedSlice.map(slice => {
         return {
@@ -83,7 +83,7 @@ export default class SlicesInputContainer extends Component {
     this.setState({
       removedSlices: updatedRemovedSlice,
     }, () => {
-      this.props.onChange(updatedRemovedSlice);
+      this.props.onChange(this.state.removedSlices);
     });
   };
 

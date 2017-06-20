@@ -16,13 +16,12 @@ const UnscrambleSpeechRecognitionItemForm = props => (
     />
     <Separator size="xs" />
     <SlicesInputContainer
-      onChange={(slices, texts) => {
-        props.onChange('indexesToRemove', slices);
-        props.onChange('textsRemoved', texts);
-        props.onChange('answers', texts.map((text, index) => ({ text, correct: true, id: `${index}` })));
+      onChange={(answers) => {
+        props.onChange('answers', answers);
+        props.onChange('indexesToRemove', answers); //this is to show errors
       }}
       text={get(props.values, 'text', '')}
-      indexesToRemove={get(props.values, 'indexesToRemove', [])}
+      value={get(props.values, 'answers', [])}
       errorText={get(props.errors, 'indexesToRemove', '')}
       allowLinkSlices
     />
@@ -30,8 +29,8 @@ const UnscrambleSpeechRecognitionItemForm = props => (
     <AnswersInputContainer
       disabled
       value={get(props.values, 'answers', [])}
-      defaultAnswers={get(props.values, 'textsRemoved', [])}
       onChange={answers => props.onChange('answers', answers)}
+      errorText={get(props.errors, 'answers', '')}
     />
   </div>
 );
