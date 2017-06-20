@@ -18,7 +18,7 @@ const GapFillItemForm = props => (
     <SlicesInputContainer
       onChange={(answers) => {
         props.onChange('answers', answers);
-        props.onChange('indexesToRemove', answers); //this is to show errors
+        props.onChange('indexesToRemove', answers.filter(slice => slice.index !== undefined)); //this is to show errors
       }}
       text={get(props.values, 'text', '')}
       value={get(props.values, 'answers', [])}
