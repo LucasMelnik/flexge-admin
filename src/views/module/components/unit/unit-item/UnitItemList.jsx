@@ -37,7 +37,7 @@ const UnitItemList = props => (
             label="Order"
             value={row.order}
             onChange={(order) => props.onOrderChange(row, order)}
-            options={range(1, 16).map(value => ({
+            options={range(1, 31).map(value => ({
               label: value.toString(),
               value,
             }))}
