@@ -45,7 +45,11 @@ const UnitFormScene = props => (
         onClick={() => browserHistory.push(`/modules/${props.moduleId}/units`)}
       />
     </InlineBlock>
-    <UnitFormContainer currentModule={props.module} />
+    <UnitFormContainer
+      unitId={props.unitId}
+      moduleId={props.moduleId}
+      currentModule={props.module}
+    />
   </div>
 );
 

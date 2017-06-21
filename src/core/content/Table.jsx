@@ -37,6 +37,7 @@ export default class Table extends Component {
     onSelect: null,
     onDelete: null,
     onEdit: null,
+    onSendReview: null,
     selectable: false,
     columns: [],
     rows: [],
@@ -87,7 +88,7 @@ export default class Table extends Component {
                 {column.label}
               </TableHeaderColumn>
             ))}
-            {(this.props.onDelete || this.props.onEdit) && (
+            {(this.props.onDelete || this.props.onEdit || this.props.onSendReview) && (
               <TableHeaderColumn
                 style={{ width: 110 }}
               >

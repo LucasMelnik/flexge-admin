@@ -13,27 +13,34 @@ const UnitReviewList = props => (
         columns={[
           {
             label: 'Name',
-            path: 'name',
+            path: 'unit.name',
           },
           {
             label: 'Module',
-            path: 'module.name',
+            path: 'unit.module.name',
+          },
+          {
+            label: 'Status',
+            path: 'review.status',
           },
         ]}
         rows={props.units}
-        selectable
-        onSelect={row => browserHistory.push(`/units/${row.id}`)}
-        onSendReview={row => props.onSendReview(row)}
+        onSendReview={row => props.onSendReview(row.unit)}
       />
     </Async>
   </Paper>
 );
 
 UnitReviewList.propTypes = {
+  onSendReview: PropTypes.func,
   units: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
-}
+};
+
+UnitReviewList.defaultProps = {
+  onSendReview: null,
+};
 
 export default UnitReviewList;

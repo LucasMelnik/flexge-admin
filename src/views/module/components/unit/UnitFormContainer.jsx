@@ -9,10 +9,18 @@ class UnitFormContainer extends Component {
 
   static propTypes = {
     currentModule: PropTypes.object,
+    unitId: PropTypes.string,
+    moduleId: PropTypes.string,
   }
 
   static defaultProps = {
     currentModule: null,
+    unitId: null,
+    moduleId: null,
+  }
+
+  componentDidMount() {
+    UnitFormService.handleLoad(this.props.unitId, this.props.moduleId);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -20,7 +28,6 @@ class UnitFormContainer extends Component {
   }
 
   render() {
-    console.log('errors', toJS(UnitFormService.form.errors))
     return (
       <UnitForm
         onSubmit={UnitFormService.handleSubmit}

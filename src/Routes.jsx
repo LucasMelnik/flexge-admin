@@ -19,6 +19,7 @@ import ModuleUnitsSceneContainer from './views/module/components/ModuleUnitsScen
 import UnitFormSceneContainer from './views/module/components/unit/UnitFormSceneContainer';
 import UnitItemListSceneContainer from './views/module/components/unit/unit-item/UnitItemListSceneContainer';
 import ItemFormSceneContainer from './views/module/components/unit/unit-item/ItemFormSceneContainer';
+import UnitItemsReviewSceneContainer from './views/module/components/unit/review/UnitItemsReviewSceneContainer';
 import NotFoundScene from './views/not-found/NotFoundScene';
 
 function authRequired(nextState, replace) {
@@ -55,6 +56,7 @@ const Routes = () => (
       <Route path="/modules/:moduleId/units/:unitId" component={UnitFormSceneContainer} />
       <Route path="/modules/:moduleId/units/:unitId/items" component={UnitItemListSceneContainer} />
       <Route path="/modules/:moduleId/units/:unitId/items/new" component={ItemFormSceneContainer} />
+      <Route path="/modules/:moduleId/units/:unitId/items/review" component={UnitItemsReviewSceneContainer} />
       <Route path="/modules/:moduleId/units/:unitId/items/:itemId" component={ItemFormSceneContainer} />
     </Route>
     <Route path="*" component={NotFoundScene} />

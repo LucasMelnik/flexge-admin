@@ -1,18 +1,18 @@
 import React from 'react';
 import Tabs from '../../../core/navigation/Tabs';
 import MyUnitReviewListContainer from './MyUnitReviewListContainer';
-import ToReviewUnitReviewListContainer from './ToReviewUnitReviewListContainer';
+import ToReviewUnitListContainer from './ToReviewUnitListContainer';
 
 const UnitReviewListScene = () => (
   <Tabs
     tabs={[
       {
-        content: <ToReviewUnitReviewListContainer />,
-        label: 'Units to review',
+        content: <MyUnitReviewListContainer />,
+        label: 'My units',
       },
       {
-        content: <MyUnitReviewListContainer />,
-        label: 'My units in review',
+        content: <ToReviewUnitListContainer />,
+        label: 'Units to review',
       },
     ]}
   />
