@@ -53,7 +53,11 @@ const ItemFormScene = props => (
         onClick={() => browserHistory.push(`/modules/${props.unit.module.id}/units/${props.unit.id}/items`)}
       />
     </InlineBlock>
-    <ItemFormContainer />
+    {props.unit.id && (
+      <ItemFormContainer
+        itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
+      />
+    )}
   </div>
 );
 
