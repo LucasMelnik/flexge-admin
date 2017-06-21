@@ -36,7 +36,7 @@ const ItemForm = props => (
         <Row>
           <Column lgSize={6}>
             <FetchAutoComplete
-              url="item-types?page=1&size=100"
+              url={props.itemsTypeUrl}
               fullWidth
               disabled={props.submitting}
               label="Item Type"
@@ -219,6 +219,7 @@ ItemForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
+  itemsTypeUrl: PropTypes.string.isRequired,
 };
 
 ItemForm.defaultProps = {
