@@ -1,4 +1,4 @@
-import { action, extendObservable, toJS } from 'mobx';
+import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
