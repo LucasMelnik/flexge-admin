@@ -41,11 +41,7 @@ class UnitListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        console.log('units', toJS(this.fetch.data.docs))
-        this.units = this.fetch.data.docs.map(unit => ({
-          ...unit,
-          itemsCount: unit.items ? unit.items.length : 0,
-        }));
+        this.units = this.fetch.data.docs;
         this.total = this.fetch.data.total;
         this.limit = this.fetch.data.limit;
         this.pageCount = this.fetch.data.pages;
