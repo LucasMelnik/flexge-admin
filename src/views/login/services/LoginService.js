@@ -33,6 +33,7 @@ class LoginService {
       },
     }).then(() => {
       if (this.fetch.data) {
+        localStorage.setItem('email', this.fetch.data.email);
         localStorage.setItem('accessToken', this.fetch.data.accessToken);
         const decodedToken = jwtDecode(this.fetch.data.accessToken);
         localStorage.setItem('id', decodedToken.sub);
