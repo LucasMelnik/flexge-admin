@@ -20,17 +20,17 @@ class DifficultyLevelAmountsListService {
         this.difficultyAmounts = [
           {
             difficultyLevel: 'Easy',
-            amount: teacherAmounts.find(teacherAmount => teacherAmount.id === 'EASY').amount || 0,
+            amount: (teacherAmounts.find(teacherAmount => teacherAmount.id === 'EASY') || {}).amount || 0,
             points: 1,
           },
           {
             difficultyLevel: 'Moderate',
-            amount: teacherAmounts.find(teacherAmount => teacherAmount.id === 'MODERATE').amount || 0,
+            amount: (teacherAmounts.find(teacherAmount => teacherAmount.id === 'MODERATE') || {}).amount || 0,
             points: 2,
           },
           {
             difficultyLevel: 'Hard',
-            amount: teacherAmounts.find(teacherAmount => teacherAmount.id === 'HARD').amount || 0,
+            amount: (teacherAmounts.find(teacherAmount => teacherAmount.id === 'HARD') || {}).amount || 0,
             points: 3,
           },
         ];
