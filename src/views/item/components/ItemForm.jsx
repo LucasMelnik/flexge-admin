@@ -2,28 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Separator from '../../../core/layout/Separator';
-import Row from '../../../core/layout/Row';
-import Column from '../../../core/layout/Column';
-import Async from '../../../core/content/Async';
+import Row from "../../../core/layout/Row";
+import Column from "../../../core/layout/Column";
+import Async from "../../../core/content/Async";
 import Button from '../../../core/form/Button';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
-import VideoItemForm from './forms/VideoItemForm';
-import VideoShortItemForm from './forms/VideoShortItemForm';
-import VideoLongTextItemForm from './forms/VideoLongTextItemForm';
-import SingleChoiceItemForm from './forms/SingleChoiceItemForm';
-import DictationItemForm from './forms/DictationItemForm';
-import GapFillItemForm from './forms/GapFillItemForm';
-import GapFillSelectItemForm from './forms/GapFillSelectItemForm';
-import GapFillMultipleItemForm from './forms/GapFillMultipleItemForm';
-import PresentationItemForm from './forms/PresentationItemForm';
-import PronunciationItemForm from './forms/PronunciationItemForm';
-import SpeechPracticeItemForm from './forms/SpeechPracticeItemForm';
-import TextItemForm from './forms/TextItemForm';
-import UnscrambleDragDropItemForm from './forms/UnscrambleDragDropItemForm';
-import UnscrambleSpeechRecognitionItemForm from './forms/UnscrambleSpeechRecognitionItemForm';
-import TrueFalseItemForm from './forms/TrueFalseItemForm';
-import Paper from '../../../core/layout/Paper';
-import PostPhraseItemForm from './forms/PostPhraseItemForm';
+import VideoItemForm from "./forms/VideoItemForm";
+import VideoShortItemForm from "./forms/VideoShortItemForm";
+import VideoLongTextItemForm from "./forms/VideoLongTextItemForm";
+import SingleChoiceItemForm from "./forms/SingleChoiceItemForm";
+import DictationItemForm from "./forms/DictationItemForm";
+import GapFillItemForm from "./forms/GapFillItemForm";
+import GapFillSelectItemForm from "./forms/GapFillSelectItemForm";
+import GapFillMultipleItemForm from "./forms/GapFillMultipleItemForm";
+import PresentationItemForm from "./forms/PresentationItemForm";
+import PronunciationItemForm from "./forms/PronunciationItemForm";
+import SpeechPracticeItemForm from "./forms/SpeechPracticeItemForm";
+import TextItemForm from "./forms/TextItemForm";
+import UnscrambleDragDropItemForm from "./forms/UnscrambleDragDropItemForm";
+import UnscrambleSpeechRecognitionItemForm from "./forms/UnscrambleSpeechRecognitionItemForm";
+import TrueFalseItemForm from "./forms/TrueFalseItemForm";
+import Paper from "../../../core/layout/Paper";
 
 const ItemForm = props => (
   <Paper>
@@ -183,14 +182,6 @@ const ItemForm = props => (
         )}
         {get(props.values, 'type.key', '') === 'TRUE_FALSE' && (
           <TrueFalseItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
-            submitting={props.submitting}
-          />
-        )}
-        {get(props.values, 'type.key', '') === 'POST_PHRASE' && (
-          <PostPhraseItemForm
             onChange={props.onChange}
             errors={props.errors}
             values={props.values}
