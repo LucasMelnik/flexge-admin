@@ -9,6 +9,7 @@ export default class FetchAutoComplete extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
+    defaultSelect: PropTypes.bool,
     errorText: PropTypes.string,
     label: PropTypes.string,
     fullWidth: PropTypes.bool,
@@ -24,6 +25,7 @@ export default class FetchAutoComplete extends Component {
 
   static defaultProps = {
     disabled: false,
+    defaultSelect: false,
     errorText: null,
     label: '',
     fullWidth: true,
@@ -45,6 +47,10 @@ export default class FetchAutoComplete extends Component {
       const data = response.data.docs || response.data;
       this.setState({
         data: sortBy(data, item => item[this.props.resultTransformer.text].toLowerCase()),
+      }, () => {
+        if (this.props.defaultSelect) {
+          this.props.onSelect(this.state.data[0]);
+        }
       });
       return response.data;
     });

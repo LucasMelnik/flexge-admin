@@ -17,7 +17,7 @@ const Paper = props => (
 
 Paper.propTypes = {
   style: PropTypes.object,
-  zDepth: PropTypes.oneOf([1, 2, 3, 4, 5]),
+  zDepth: PropTypes.oneOf([0,1, 2, 3, 4, 5]),
   rounded: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };

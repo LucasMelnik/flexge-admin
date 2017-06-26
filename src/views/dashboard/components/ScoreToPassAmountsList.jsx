@@ -26,7 +26,7 @@ const ScoreToPassAmountsList = props => (
 
 ScoreToPassAmountsList.propTypes = {
   amounts: PropTypes.arrayOf(PropTypes.shape({
-    scoreToPass: PropTypes.string,
+    scoreToPass: PropTypes.number,
     amount: PropTypes.number,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,

@@ -12,22 +12,24 @@ class TimeAmountsListService {
     });
   }
 
-  load = action(() => {
+  load = action((course) => {
+    if (!course) return;
+
     this.fetch.fetch({
-      url: `/stats/${localStorage.getItem('id')}/time`,
+      url: `/stats/${course}/time`,
     }).then(() => {
       if (this.fetch.data) {
-        const teacherAmounts = toJS(this.fetch.data);
+        const courseAmounts = toJS(this.fetch.data);
         this.timeAmounts = range(1, 21).map(time => {
           return {
             time,
-            amount: (teacherAmounts.find(teacherAmount => teacherAmount.id === time) || {}).amount || 0
+            amount: (courseAmounts.find(courseAmount => courseAmount.id === time) || {}).amount || 0
           }
         });
 
         const totalTime = this.timeAmounts.reduce((acc, timeAmount) => acc + (timeAmount.time * timeAmount.amount), 0);
         const totalAmount = this.timeAmounts.reduce((acc, timeAmount) => acc + timeAmount.amount, 0);
-        this.average = totalTime / totalAmount;
+        this.average = (totalTime / totalAmount) || 0;
       } else {
         this.timeAmounts = [];
       }

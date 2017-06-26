@@ -14,16 +14,8 @@ const UnitTypeAmountsList = props => (
             path: 'name',
           },
           {
-            label: 'Planned Amount',
-            path: 'plannedAmount',
-          },
-          {
             label: 'Amount Done',
             path: 'amountDone',
-          },
-          {
-            label: 'Amount to do',
-            path: 'amountToDo',
           },
         ]}
         rows={props.amounts}
@@ -34,10 +26,8 @@ const UnitTypeAmountsList = props => (
 
 UnitTypeAmountsList.propTypes = {
   amounts: PropTypes.arrayOf(PropTypes.shape({
-    type: PropTypes.string,
-    plannedAmount: PropTypes.number,
+    name: PropTypes.string,
     amountDone: PropTypes.number,
-    amountToDo: PropTypes.number,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
 };

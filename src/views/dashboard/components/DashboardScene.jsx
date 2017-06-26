@@ -12,6 +12,7 @@ import TimeAmountsListContainer from './TimeAmountsListContainer';
 import TimeAverageContainer from './TimeAverageContainer';
 import ScoreToPassAmountsListContainer from './ScoreToPassAmountsListContainer';
 import ScoreToPassAverageContainer from './ScoreToPassAverageContainer';
+import DashboardFilterContainer from './DashboardFilterContainer';
 
 const DashboardScene = () => (
   <div>
@@ -21,6 +22,8 @@ const DashboardScene = () => (
     <Separator size="xs" />
     <PermissionValidator allowedFor={['CONTENT_ADMIN']}>
       <div>
+        <DashboardFilterContainer />
+        <Separator size="sm" />
         <Flex
           justifyContent="space-between"
         >

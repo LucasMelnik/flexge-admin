@@ -12,22 +12,24 @@ class ScoreToPassAmountsListService {
     });
   }
 
-  load = action(() => {
+  load = action((course) => {
+    if (!course) return;
+
     this.fetch.fetch({
-      url: `/stats/${localStorage.getItem('id')}/score-to-pass`,
+      url: `/stats/${course}/score-to-pass`,
     }).then(() => {
       if (this.fetch.data) {
-        const teacherAmounts = toJS(this.fetch.data);
+        const courseAmounts = toJS(this.fetch.data);
         this.scoreToPassAmounts = range(70, 105, 5).map(scoreToPass => {
           return {
             scoreToPass,
-            amount: (teacherAmounts.find(teacherAmount => teacherAmount.id === scoreToPass) || {}).amount || 0
+            amount: (courseAmounts.find(courseAmount => courseAmount.id === scoreToPass) || {}).amount || 0
           }
         });
 
         const totalTime = this.scoreToPassAmounts.reduce((acc, scoreAmount) => acc + (scoreAmount.scoreToPass * scoreAmount.amount), 0);
         const totalAmount = this.scoreToPassAmounts.reduce((acc, scoreAmount) => acc + scoreAmount.amount, 0);
-        this.average = totalTime / totalAmount;
+        this.average = (totalTime / totalAmount) || 0;
       } else {
         this.scoreToPassAmounts = [];
       }
