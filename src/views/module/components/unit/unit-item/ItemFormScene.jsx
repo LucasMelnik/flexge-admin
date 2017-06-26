@@ -56,6 +56,7 @@ const ItemFormScene = props => (
     {props.unit.id && (
       <ItemFormContainer
         itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
+        showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
       />
     )}
   </div>

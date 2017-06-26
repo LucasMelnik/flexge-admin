@@ -23,6 +23,7 @@ import UnscrambleDragDropItemForm from "./forms/UnscrambleDragDropItemForm";
 import UnscrambleSpeechRecognitionItemForm from "./forms/UnscrambleSpeechRecognitionItemForm";
 import TrueFalseItemForm from "./forms/TrueFalseItemForm";
 import Paper from "../../../core/layout/Paper";
+import TextInput from "../../../core/form/TextInput";
 
 const ItemForm = props => (
   <Paper>
@@ -188,6 +189,17 @@ const ItemForm = props => (
             submitting={props.submitting}
           />
         )}
+        {props.showPostPhrase && (
+          <TextInput
+            floatingLabel
+            fullWidth
+            label="Post Phrase"
+            disabled={props.submitting}
+            value={get(props.values, 'postPhrase', '')}
+            onChange={value => props.onChange('postPhrase', value)}
+            errorText={get(props.errors, 'postPhrase', '')}
+          />
+        )}
         <Separator size="xs" />
         <Button
           icon="done"
@@ -220,12 +232,14 @@ ItemForm.propTypes = {
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
   itemsTypeUrl: PropTypes.string.isRequired,
+  showPostPhrase: PropTypes.bool,
 };
 
 ItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
+  showPostPhrase: false,
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
   setValidationsByItemType: () => false,
