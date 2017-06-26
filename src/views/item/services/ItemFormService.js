@@ -123,6 +123,12 @@ class ItemFormService {
           translation: [isRequired],
         };
         break;
+      case 'POST_PHRASE':
+        this.form.validations = {
+          ...this.defaultValidations,
+          text: [isRequired],
+        };
+        break;
       case 'PRONUNCIATION':
         this.form.validations = {
           ...this.defaultValidations,
