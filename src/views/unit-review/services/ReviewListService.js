@@ -22,7 +22,7 @@ class ReviewListService {
         status: this.formMyReviews.getValue('status'),
       },
     }).then(() => {
-      if (this.fetch.data) {
+      if (this.fetch.data && this.fetch.data.units) {
         this.myUnitsAndReviews = this.fetch.data.units.map((unit) => {
           const review = this.fetch.data.reviews.find(item => item.unit === unit.id);
           return {
@@ -46,7 +46,7 @@ class ReviewListService {
         },
       },
     }).then(() => {
-      if (this.fetch.data) {
+      if (this.fetch.data && this.fetch.data.units) {
         const units = this.fetch.data.units;
         const reviews = this.fetch.data.reviews;
         this.allUnitsAndReviews = units.filter((unit) => {

@@ -90,7 +90,7 @@ const MyReviewList = props => (
           },
         ]}
         rows={props.unitsAndReviews}
-        allowActionValidator={row => !!row.review.id}
+        allowActionValidator={row => (row.review.id && (row.review.status === 'REVIEWED' || row.review.status === 'DONE')) || !row.review.id}
         selectable
         onSelect={row => (row.review.status === 'REVIEWED' || row.review.status === 'DONE') && browserHistory.push(`/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
         onSend={row => props.onSendToReview(row.unit)}

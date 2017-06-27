@@ -24,7 +24,7 @@ const ReviewFormScene = props => (
       <Button
         icon="keyboard_backspace"
         label="back"
-        onClick={() => browserHistory.push('/')}
+        onClick={() => browserHistory.push('/reviews')}
       />
       {' '}
       {props.status === 'PENDING' && (
