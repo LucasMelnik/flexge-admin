@@ -11,6 +11,7 @@ import Button from '../../../../core/form/Button';
 import Select from '../../../../core/form/Select';
 import Table from '../../../../core/content/Table';
 import ErrorText from "../../../../core/content/ErrorText";
+import FileInput from "../../../../core/form/FileInput";
 
 const AnswersInput = props => (
   <div>
@@ -26,6 +27,20 @@ const AnswersInput = props => (
           value={get(props.values, 'text', '')}
           onChange={value => props.onChange('text', value)}
           errorText={get(props.errors, 'text', '')}
+        />
+        <ColumnSeparator size="sm" />
+        <FileInput
+          accept="image"
+          value={get(props.values, 'image', '')}
+          onChange={(key) => props.onChange('image', key)}
+          errorText={get(props.errors, 'image', '')}
+        />
+        <ColumnSeparator size="sm" />
+        <FileInput
+          accept="audio"
+          value={get(props.values, 'audio', '')}
+          onChange={(key) => props.onChange('audio', key)}
+          errorText={get(props.errors, 'audio', '')}
         />
         <ColumnSeparator size="sm" />
         {props.answerType === 'BOTH' && (
@@ -69,6 +84,16 @@ const AnswersInput = props => (
             {
               label: 'Correct',
               path: 'correct',
+            },
+            {
+              label: 'Audio',
+              path: 'audio',
+              labelWhenNull: 'No Audio uploaded',
+            },
+            {
+              label: 'Image',
+              path: 'image',
+              labelWhenNull: 'No Image uploaded',
             },
           ]}
           rows={props.answers}

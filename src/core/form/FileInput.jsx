@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Block from 'jsxstyle/Block';
 import LinearProgress from 'material-ui/LinearProgress';
 import Button from './Button';
 import ErrorText from "../content/ErrorText";
@@ -11,6 +12,7 @@ export default class FileInput extends Component {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     errorText: PropTypes.string,
+    fullWidth: PropTypes.bool,
     accept: PropTypes.oneOf([
       'audio',
       'video',
@@ -21,6 +23,7 @@ export default class FileInput extends Component {
   static defaultProps = {
     accept: 'audio',
     errorText: null,
+    fullWidth: false,
   };
 
   state = { uploadPercentage: 0 }
@@ -51,7 +54,9 @@ export default class FileInput extends Component {
 
   render() {
     return (
-      <div>
+      <Block
+        width={this.props.fullWidth ? '100%' : '165px'}
+      >
         {this.state.uploadPercentage === 0 && (
           <Button
             label={this.props.value ? `Change the ${this.props.accept}` : `Choose the ${this.props.accept}`}
@@ -80,7 +85,7 @@ export default class FileInput extends Component {
           ref={input => { this.fileInput = input; }}
           accept={`${this.props.accept}/*`}
         />
-      </div>
+      </Block>
     );
   }
 }
