@@ -40,7 +40,7 @@ class UnitFormContainer extends Component {
           if (this.props.reviewId) {
             UnitFormService.handleSubmit();
           } else {
-            UnitFormService.handleSubmit(() => browserHistory.push(`/modules/${this.props.moduleId}/units/${this.props.unitId}/items`));
+            UnitFormService.handleSubmit(unitId => browserHistory.push(`/modules/${this.props.moduleId}/units/${unitId}/items`));
           }
         }}
         onChange={UnitFormService.form.setValue}

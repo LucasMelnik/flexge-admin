@@ -57,7 +57,7 @@ class UnitFormService {
         const unit = this.submit.data;
         this.unitId = unit.id;
         if (callbackAfterSuccess) {
-          callbackAfterSuccess();
+          callbackAfterSuccess(this.unitId);
         }
         this.form.setInitialValues({
           ...unit,
