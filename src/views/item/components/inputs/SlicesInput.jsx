@@ -68,7 +68,7 @@ const SlicesInput = props => (
         </div>
       )}
       <Separator size="xs" />
-      {(props.value.length && (
+      {(props.value.length > 0 && (
         <div>
           <small>Gap Preview</small>
           <Separator size="xs" />
