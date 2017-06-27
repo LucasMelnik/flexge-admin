@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Separator from "../../../../core/layout/Separator";
+import Separator from '../../../../core/layout/Separator';
 import TranslationContainer from '../inputs/TranslationInputContainer';
-import AnswersInputContainer from "../inputs/AnswersInputContainer";
-import SlicesInputContainer from "../inputs/SlicesInputContainer";
+import AnswersInputContainer from '../inputs/AnswersInputContainer';
+import SlicesInputContainer from '../inputs/SlicesInputContainer';
 
 const GapFillMultipleItemForm = props => (
   <div>

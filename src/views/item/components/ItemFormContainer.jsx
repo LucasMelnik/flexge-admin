@@ -17,12 +17,14 @@ const ItemFormContainer = props => (
     error={ItemFormService.submit.error}
     fetching={ItemFormService.fetch.fetching}
     itemsTypeUrl={props.itemsTypeUrl}
+    showPostPhrase={props.showPostPhrase}
     disabled={props.disabled}
   />
 );
 
 ItemFormContainer.propTypes = {
   itemsTypeUrl: PropTypes.string.isRequired,
+  showPostPhrase: PropTypes.bool.isRequired,
   disabled: PropTypes.bool,
 };
 
