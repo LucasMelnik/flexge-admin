@@ -18,12 +18,18 @@ const ItemFormContainer = props => (
     fetching={ItemFormService.fetch.fetching}
     itemsTypeUrl={props.itemsTypeUrl}
     showPostPhrase={props.showPostPhrase}
+    disabled={props.disabled}
   />
 );
 
 ItemFormContainer.propTypes = {
   itemsTypeUrl: PropTypes.string.isRequired,
   showPostPhrase: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
+};
+
+ItemFormContainer.defaultProps = {
+  disabled: false,
 };
 
 export default observer(ItemFormContainer);

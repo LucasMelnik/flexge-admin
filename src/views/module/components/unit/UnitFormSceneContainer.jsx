@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import UnitFormScene from './UnitFormScene';
-import UnitFormService from '../../services/UnitFormService';
 import LoadModuleService from '../../services/LoadModuleService';
 
 class UnitFormSceneContainer extends Component {
@@ -23,7 +22,6 @@ class UnitFormSceneContainer extends Component {
 
   componentWillMount() {
     LoadModuleService.handleLoad(this.props.params.moduleId);
-    UnitFormService.handleLoad(this.props.params.unitId, this.props.params.moduleId);
   }
 
   render() {

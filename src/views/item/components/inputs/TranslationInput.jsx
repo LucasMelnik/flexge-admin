@@ -12,7 +12,7 @@ const TranslationInput = props => (
         floatingLabel
         fullWidth
         label="Text"
-        disabled={props.submitting}
+        disabled={props.submitting || props.disabled}
         value={get(props.values, 'text', '')}
         onChange={value => props.onChange('text', value)}
         errorText={get(props.errors, 'text', '')}
@@ -23,7 +23,7 @@ const TranslationInput = props => (
         floatingLabel
         fullWidth
         label="Translation"
-        disabled={props.submitting}
+        disabled={props.submitting || props.disabled}
         value={get(props.values, 'translation', '')}
         onChange={value => props.onChange('translation', value)}
         errorText={get(props.errors, 'translation', '')}
@@ -37,11 +37,13 @@ TranslationInput.propTypes = {
   values: PropTypes.object,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 TranslationInput.defaultProps = {
   values: {},
   errors: {},
+  disabled: false,
 };
 
 export default TranslationInput;

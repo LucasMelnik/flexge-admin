@@ -12,7 +12,7 @@ const VideoInput = props => (
         floatingLabel
         fullWidth
         label="Youtube link"
-        disabled={props.submitting}
+        disabled={props.submitting || props.disabled}
         value={get(props.values, 'link', '')}
         onChange={value => props.onChange('link', value)}
         errorText={get(props.errors, 'link', '')}
@@ -24,7 +24,7 @@ const VideoInput = props => (
           floatingLabel
           fullWidth
           label="Start time"
-          disabled={props.submitting}
+          disabled={props.submitting || props.disabled}
           value={get(props.values, 'startTime', '')}
           onChange={value => props.onChange('startTime', value)}
           errorText={get(props.errors, 'startTime', '')}
@@ -37,7 +37,7 @@ const VideoInput = props => (
           floatingLabel
           fullWidth
           label="End time"
-          disabled={props.submitting}
+          disabled={props.submitting || props.disabled}
           value={get(props.values, 'endTime', '')}
           onChange={value => props.onChange('endTime', value)}
           errorText={get(props.errors, 'endTime', '')}
@@ -53,6 +53,7 @@ VideoInput.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   requiredCut: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 VideoInput.defaultProps = {
@@ -61,6 +62,7 @@ VideoInput.defaultProps = {
   submitting: false,
   requiredCut: false,
   onChange: () => false,
+  disabled: false,
 };
 
 export default VideoInput;

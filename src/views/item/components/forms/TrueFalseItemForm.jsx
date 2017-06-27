@@ -12,11 +12,13 @@ const TrueFalseItemForm = props => (
       submitting={props.submitting}
       values={props.values}
       errors={props.errors}
+      disabled={props.disabled}
     />
     <Separator size="xs" />
     <TrueFalseAnswerInputContainer
       value={get(props.values, 'answers', [])}
       onChange={answers => props.onChange('answers', answers)}
+      disabled={props.disabled}
     />
   </div>
 );
@@ -26,6 +28,7 @@ TrueFalseItemForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 TrueFalseItemForm.defaultProps = {
@@ -33,6 +36,7 @@ TrueFalseItemForm.defaultProps = {
   errors: {},
   submitting: false,
   onChange: () => false,
+  disabled: false,
 };
 
 export default TrueFalseItemForm;

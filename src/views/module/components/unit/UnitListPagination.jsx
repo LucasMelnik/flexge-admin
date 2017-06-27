@@ -15,8 +15,12 @@ const UnitListPagination = props => (
 );
 
 UnitListPagination.propTypes = {
-  pageCount: PropTypes.number.isRequired,
+  pageCount: PropTypes.number,
   onPageChange: PropTypes.func.isRequired,
 };
+
+UnitListPagination.defaultProps = {
+  pageCount: 0,
+}
 
 export default UnitListPagination;

@@ -4,7 +4,6 @@ import Title from '../../../core/content/Title';
 import PermissionValidator from '../../../core/content/PermissionValidator';
 import Separator from '../../../core/layout/Separator';
 import Divider from '../../../core/layout/Divider';
-import UnitReviewListScene from '../../unit-review/components/UnitReviewListScene';
 import UnitTypeAmountsListContainer from './UnitTypeAmountsListContainer';
 import DifficultyLevelAmountsListContainer from  './DifficultyLevelAmountsListContainer';
 import DifficultyLevelAverageContainer from  './DifficultyLevelAverageContainer';
@@ -86,7 +85,6 @@ const DashboardScene = () => (
         <Separator size="sm" />
       </div>
     </PermissionValidator>
-    <UnitReviewListScene />
   </div>
 );
 

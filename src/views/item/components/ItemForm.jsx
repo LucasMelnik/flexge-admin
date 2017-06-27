@@ -39,7 +39,7 @@ const ItemForm = props => (
             <FetchAutoComplete
               url={props.itemsTypeUrl}
               fullWidth
-              disabled={props.submitting}
+              disabled={props.submitting || props.disabled}
               label="Item Type"
               value={get(props.values, 'type.name', '')}
               onSelect={type => {
@@ -57,7 +57,7 @@ const ItemForm = props => (
             <FetchAutoComplete
               url="grammars?page=1&size=100"
               fullWidth
-              disabled={props.submitting}
+              disabled={props.submitting || props.disabled}
               label="Grammar"
               value={get(props.values, 'grammar.name', '')}
               onSelect={grammar => props.onChange('grammar', grammar)}
@@ -75,6 +75,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {get(props.values, 'type.key', '') === 'VIDEO_SHORT' && (
@@ -83,6 +84,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {get(props.values, 'type.key', '') === 'VIDEO_TEXT_AREA' && (
@@ -91,6 +93,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {['SINGLE_CHOICE_TEXT', 'SINGLE_CHOICE_AUDIO', 'SINGLE_CHOICE_VIDEO'].find(type => type === get(props.values, 'type.key')) && (
@@ -99,6 +102,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {get(props.values, 'type.key', '') === 'DICTATION' && (
@@ -107,6 +111,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {get(props.values, 'type.key', '') === 'GAP_FILL' && (
@@ -115,6 +120,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {get(props.values, 'type.key', '') === 'GAP_FILL_SELECT' && (
@@ -123,6 +129,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {get(props.values, 'type.key', '') === 'GAP_FILL_MULTIPLE' && (
@@ -131,6 +138,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {get(props.values, 'type.key', '') === 'PRESENTATION' && (
@@ -139,6 +147,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {get(props.values, 'type.key', '') === 'PRONUNCIATION' && (
@@ -147,6 +156,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {get(props.values, 'type.key', '') === 'SPEECH_PRACTICE' && (
@@ -155,6 +165,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {get(props.values, 'type.key', '') === 'TEXT' && (
@@ -163,6 +174,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {get(props.values, 'type.key', '') === 'UNSCRAMBLE_DRAG_AND_DROP' && (
@@ -171,6 +183,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {get(props.values, 'type.key', '') === 'UNSCRAMBLE_SPEECH_RECOGNITION' && (
@@ -179,6 +192,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {get(props.values, 'type.key', '') === 'TRUE_FALSE' && (
@@ -187,6 +201,7 @@ const ItemForm = props => (
             errors={props.errors}
             values={props.values}
             submitting={props.submitting}
+            disabled={props.disabled}
           />
         )}
         {props.showPostPhrase && (
@@ -201,22 +216,26 @@ const ItemForm = props => (
           />
         )}
         <Separator size="xs" />
-        <Button
-          icon="done"
-          secondary
-          fullWidth
-          disabled={props.submitting || !props.isDirty()}
-          type="submit"
-          label={props.values.id ? 'Update Item' : 'Create Item'}
-        />
-        <Separator size="xs" />
-        <Button
-          icon="clear"
-          fullWidth
-          disabled={props.submitting || !props.isDirty()}
-          onClick={props.onReset}
-          label="Discard Changes"
-        />
+        {!props.disabled && (
+          <div>
+            <Button
+              icon="done"
+              secondary
+              fullWidth
+              disabled={props.submitting || !props.isDirty()}
+              type="submit"
+              label={props.values.id ? 'Update Item' : 'Create Item'}
+            />
+            <Separator size="xs" />
+            <Button
+              icon="clear"
+              fullWidth
+              disabled={props.submitting || !props.isDirty()}
+              onClick={props.onReset}
+              label="Discard Changes"
+            />
+          </div>
+        )}
       </Async>
     </form>
   </Paper>
@@ -233,6 +252,7 @@ ItemForm.propTypes = {
   isDirty: PropTypes.func,
   itemsTypeUrl: PropTypes.string.isRequired,
   showPostPhrase: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 ItemForm.defaultProps = {
@@ -245,6 +265,7 @@ ItemForm.defaultProps = {
   setValidationsByItemType: () => false,
   onReset: () => false,
   onChange: () => false,
+  disabled: false,
 };
 
 export default ItemForm;

@@ -19,7 +19,10 @@ import ModuleUnitsSceneContainer from './views/module/components/ModuleUnitsScen
 import UnitFormSceneContainer from './views/module/components/unit/UnitFormSceneContainer';
 import UnitItemListSceneContainer from './views/module/components/unit/unit-item/UnitItemListSceneContainer';
 import ItemFormSceneContainer from './views/module/components/unit/unit-item/ItemFormSceneContainer';
+import ReviewListSceneContainer from './views/unit-review/components/ReviewListSceneContainer';
+import ReviewFormSceneContainer from './views/unit-review/components/ReviewFormSceneContainer';
 import NotFoundScene from './views/not-found/NotFoundScene';
+
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -55,7 +58,10 @@ const Routes = () => (
       <Route path="/modules/:moduleId/units/:unitId" component={UnitFormSceneContainer} />
       <Route path="/modules/:moduleId/units/:unitId/items" component={UnitItemListSceneContainer} />
       <Route path="/modules/:moduleId/units/:unitId/items/new" component={ItemFormSceneContainer} />
+      <Route path="/modules/:moduleId/units/:unitId/reviews/:reviewId" component={ReviewFormSceneContainer} />
+      <Route path="/modules/:moduleId/units/:unitId/reviews/:reviewId/items/:itemId" component={ItemFormSceneContainer} />
       <Route path="/modules/:moduleId/units/:unitId/items/:itemId" component={ItemFormSceneContainer} />
+      <Route path="/reviews" component={ReviewListSceneContainer} />
     </Route>
     <Route path="*" component={NotFoundScene} />
   </Router>

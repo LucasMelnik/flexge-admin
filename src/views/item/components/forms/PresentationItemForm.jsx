@@ -14,7 +14,7 @@ const PresentationItemForm = props => (
           floatingLabel
           fullWidth
           label="Title (The field is just required for Vocabulary units.)"
-          disabled={props.submitting}
+          disabled={props.submitting || props.disabled}
           value={get(props.values, 'title', '')}
           onChange={value => props.onChange('title', value)}
           errorText={get(props.errors, 'title', '')}
@@ -26,6 +26,7 @@ const PresentationItemForm = props => (
       submitting={props.submitting}
       values={props.values}
       errors={props.errors}
+      disabled={props.disabled}
     />
   </div>
 );
@@ -35,6 +36,7 @@ PresentationItemForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 PresentationItemForm.defaultProps = {
@@ -42,6 +44,7 @@ PresentationItemForm.defaultProps = {
   errors: {},
   submitting: false,
   onChange: () => false,
+  disabled: false,
 };
 
 export default PresentationItemForm;

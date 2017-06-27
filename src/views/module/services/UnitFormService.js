@@ -1,5 +1,4 @@
 import { extendObservable, action } from 'mobx';
-import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -39,7 +38,7 @@ class UnitFormService {
     this.unitId = unitId;
   });
 
-  handleSubmit = action(() => {
+  handleSubmit = action((callbackAfterSuccess) => {
     this.form.submitted = true;
     if (this.form.errors) {
       return;
@@ -56,8 +55,10 @@ class UnitFormService {
     }).then(() => {
       if (this.submit.data) {
         const unit = this.submit.data;
-        browserHistory.push(`/modules/${moduleId}/units/${unit.id}/items`);
         this.unitId = unit.id;
+        if (callbackAfterSuccess) {
+          callbackAfterSuccess();
+        }
         this.form.setInitialValues({
           ...unit,
           module: this.form.getValue('module'),

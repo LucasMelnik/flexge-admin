@@ -10,8 +10,9 @@ const VideoLongTextItemForm = props => (
       values={props.values}
       submitting={props.submitting}
       requiredCut
+      disabled={props.disabled}
     />
-    <span>slcie to remove na vertical</span>
+    <span>slice to remove na vertical</span>
   </div>
 );
 
@@ -20,6 +21,7 @@ VideoLongTextItemForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 VideoLongTextItemForm.defaultProps = {
@@ -27,6 +29,7 @@ VideoLongTextItemForm.defaultProps = {
   errors: {},
   submitting: false,
   onChange: () => false,
+  disabled: false,
 };
 
 export default VideoLongTextItemForm;

@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import DistributorManagerForm from './DistributorManagerForm';
 import DistributorManagerFormService from '../services/DistributorManagerFormService';
 
-const DistributorManagerFormContainer = () =>  (
+const DistributorManagerFormContainer = () => (
   <DistributorManagerForm
     onSubmit={DistributorManagerFormService.handleSubmit}
     onChange={DistributorManagerFormService.form.setValue}

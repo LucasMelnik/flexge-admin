@@ -14,7 +14,7 @@ import ItemFormContainer from '../../../../item/components/ItemFormContainer';
 
 const ItemFormScene = props => (
   <div>
-    <InlineBlock>
+    <InlineBlock opacity={props.reviewId ? 0 : 1}>
       <Stepper activeStep={3} connector={<ArrowForwardIcon />}>
         <Step
           style={{ cursor: 'pointer' }}
@@ -47,14 +47,23 @@ const ItemFormScene = props => (
       marginTop={15}
       float="right"
     >
-      <Button
-        icon="keyboard_backspace"
-        label="back"
-        onClick={() => browserHistory.push(`/modules/${props.unit.module.id}/units/${props.unit.id}/items`)}
-      />
+      {props.reviewId ? (
+        <Button
+          icon="keyboard_backspace"
+          label="back"
+          onClick={() => browserHistory.push(`/modules/${props.unit.module.id}/units/${props.unit.id}/reviews/${props.reviewId}`)}
+        />
+      ) : (
+        <Button
+          icon="keyboard_backspace"
+          label="back"
+          onClick={() => browserHistory.push(`/modules/${props.unit.module.id}/units/${props.unit.id}/items`)}
+        />
+      )}
     </InlineBlock>
     {props.unit.id && (
       <ItemFormContainer
+        disabled={props.disabled}
         itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
         showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
       />
@@ -65,10 +74,14 @@ const ItemFormScene = props => (
 ItemFormScene.propTypes = {
   unit: PropTypes.object.isRequired,
   itemId: PropTypes.string,
+  reviewId: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 ItemFormScene.defaultProps = {
   itemId: null,
+  reviewId: null,
+  disabled: false,
 };
 
 export default ItemFormScene;

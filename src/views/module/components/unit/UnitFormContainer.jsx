@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { toJS } from 'mobx';
+import { browserHistory } from 'react-router';
 import { observer } from 'mobx-react';
 import UnitForm from './UnitForm';
 import UnitFormService from '../../services/UnitFormService';
@@ -9,21 +9,40 @@ class UnitFormContainer extends Component {
 
   static propTypes = {
     currentModule: PropTypes.object,
+    unitId: PropTypes.string,
+    moduleId: PropTypes.string,
+    disabled: PropTypes.bool,
+    reviewId: PropTypes.string,
   }
 
   static defaultProps = {
     currentModule: null,
+    unitId: null,
+    moduleId: null,
+    disabled: false,
+    reviewId: null,
+  }
+
+  componentDidMount() {
+    UnitFormService.handleLoad(this.props.unitId, this.props.moduleId);
   }
 
   componentWillReceiveProps(nextProps) {
-    UnitFormService.form.setValue('module', nextProps.currentModule);
+    if (!UnitFormService.form.getValue('module')) {
+      UnitFormService.form.setValue('module', nextProps.currentModule);
+    }
   }
 
   render() {
-    console.log('errors', toJS(UnitFormService.form.errors))
     return (
       <UnitForm
-        onSubmit={UnitFormService.handleSubmit}
+        onSubmit={() => {
+          if (this.props.reviewId) {
+            UnitFormService.handleSubmit();
+          } else {
+            UnitFormService.handleSubmit(() => browserHistory.push(`/modules/${this.props.moduleId}/units/${this.props.unitId}/items`));
+          }
+        }}
         onChange={UnitFormService.form.setValue}
         onReset={UnitFormService.form.reset}
         values={UnitFormService.form.getValues()}
@@ -31,6 +50,7 @@ class UnitFormContainer extends Component {
         submitting={UnitFormService.fetch.fetching}
         error={UnitFormService.fetch.error}
         isDirty={UnitFormService.form.isDirty}
+        disabled={this.props.disabled}
       />
     );
   }

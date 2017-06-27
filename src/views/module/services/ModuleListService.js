@@ -29,9 +29,9 @@ class ModuleListService {
         page: this.page,
         size: this.rowsByPage,
         query: {
-          ...this.form.getValue('filter') && {
+          ...this.form.getValue('status') && {
             name: {
-              $regex: this.form.getValue('filter'),
+              $regex: this.form.getValue('status'),
               $options: 'i',
             },
           },

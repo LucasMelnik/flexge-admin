@@ -13,6 +13,7 @@ const GapFillItemForm = props => (
       submitting={props.submitting}
       values={props.values}
       errors={props.errors}
+      disabled={props.disabled}
     />
     <Separator size="xs" />
     <SlicesInputContainer
@@ -24,6 +25,7 @@ const GapFillItemForm = props => (
       value={get(props.values, 'answers', [])}
       errorText={get(props.errors, 'indexesToRemove', '')}
       maxRemovesAllowed={1}
+      disabled={props.disabled}
     />
     <Separator size="xs" />
     <AnswersContainer
@@ -31,6 +33,7 @@ const GapFillItemForm = props => (
       value={get(props.values, 'answers', [])}
       onChange={answers => props.onChange('answers', answers)}
       errorText={get(props.errors, 'answers', '')}
+      disabled={props.disabled}
     />
   </div>
 );
@@ -40,6 +43,7 @@ GapFillItemForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 GapFillItemForm.defaultProps = {
@@ -47,6 +51,7 @@ GapFillItemForm.defaultProps = {
   errors: {},
   submitting: false,
   onChange: () => false,
+  disabled: false,
 };
 
 export default GapFillItemForm;
