@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import UnitFormScene from './UnitFormScene';
-import UnitFormService from '../../services/UnitFormService';
 import LoadModuleService from '../../services/LoadModuleService';
 
 class UnitFormSceneContainer extends Component {

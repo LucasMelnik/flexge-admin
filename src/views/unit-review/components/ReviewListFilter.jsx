@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Flex from 'jsxstyle/Flex';
 import ColumnSeparator from '../../../core/layout/ColumnSeparator';
-import Paper from '../../../core/layout/Paper';
 import Select from '../../../core/form/Select';
 import Button from '../../../core/form/Button';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';

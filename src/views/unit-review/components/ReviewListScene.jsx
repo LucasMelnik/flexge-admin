@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '../../../core/navigation/Tabs';
-import Separator from '../../../core/layout/Separator';
-import Divider from '../../../core/layout/Divider';
-import MyReviewListFilterContainer from './MyReviewListFilterContainer';
 import MyReviewList from './MyReviewList';
 import ToReviewList from './ToReviewList';
 

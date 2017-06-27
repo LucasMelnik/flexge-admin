@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toJS } from 'mobx';
-import { browserHistory } from 'react-router';
 import { observer } from 'mobx-react';
 import UnitItemListService from '../../../services/UnitItemListService';
 import UnitItemList from './UnitItemList';

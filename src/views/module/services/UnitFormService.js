@@ -1,5 +1,4 @@
 import { extendObservable, action } from 'mobx';
-import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
