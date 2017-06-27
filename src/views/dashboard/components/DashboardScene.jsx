@@ -62,22 +62,10 @@ const DashboardScene = () => (
           <Flex
             justifyContent="space-between"
           >
-            <Flex
-            >
-              <TimeAmountsListContainer from={0} to={5} />
-            </Flex>
-            <Flex
-            >
-              <TimeAmountsListContainer from={5} to={10} />
-            </Flex>
-            <Flex
-            >
-              <TimeAmountsListContainer from={10} to={15} />
-            </Flex>
-            <Flex
-            >
-              <TimeAmountsListContainer from={15} to={20} />
-            </Flex>
+            <TimeAmountsListContainer from={0} to={5} />
+            <TimeAmountsListContainer from={5} to={10} />
+            <TimeAmountsListContainer from={10} to={15} />
+            <TimeAmountsListContainer from={15} to={20} />
           </Flex>
           <Divider />
           <TimeAverageContainer />
