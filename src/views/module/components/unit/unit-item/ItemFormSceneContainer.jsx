@@ -7,6 +7,7 @@ import ItemFormService from '../../../../item/services/ItemFormService';
 import UnitItemFormService from '../../../services/UnitItemFormService';
 import LoadUnitService from '../../../services/LoadUnitService';
 import UnitItemListService from '../../../services/UnitItemListService';
+import SendUnitToReviewService from '../../../../unit-review/services/SendUnitToReviewService';
 
 class UnitItemsSceneContainer extends Component {
 
@@ -15,8 +16,11 @@ class UnitItemsSceneContainer extends Component {
       moduleId: PropTypes.string.isRequired,
       unitId: PropTypes.string.isRequired,
       itemId: PropTypes.string,
+      reviewId: PropTypes.string,
     }).isRequired,
   };
+
+  sendUnitToReviewService = new SendUnitToReviewService();
 
   componentWillMount() {
     const saveItemCallback = (item, isNew) => {
@@ -27,7 +31,8 @@ class UnitItemsSceneContainer extends Component {
           order: UnitItemListService.items.length + 1,
         };
         UnitItemFormService.handleLinkToUnit(unitItem);
-      } else {
+      } else if (!this.props.params.reviewId) {
+        //If its review dont go back to the list
         this.handleBack();
       }
     };
@@ -37,9 +42,9 @@ class UnitItemsSceneContainer extends Component {
       this.handleBack();
     };
     UnitItemFormService.init(linkUnitCallback);
-
     LoadUnitService.handleLoad(this.props.params.moduleId, this.props.params.unitId);
     ItemFormService.handleLoad(this.props.params.itemId);
+    this.sendUnitToReviewService.handleLoad(this.props.params.reviewId);
   }
 
   handleBack = () => {
@@ -51,6 +56,8 @@ class UnitItemsSceneContainer extends Component {
       <ItemFormScene
         unit={LoadUnitService.unit}
         itemId={this.props.params.itemId}
+        reviewId={this.props.params.reviewId}
+        disabled={this.sendUnitToReviewService.form.getValue('status') === 'PENDING'}
       />
     );
   }

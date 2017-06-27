@@ -10,6 +10,7 @@ const VideoItemForm = props => (
       values={props.values}
       submitting={props.submitting}
       requiredCut
+      disabled={props.disabled}
     />
   </div>
 );
@@ -19,6 +20,7 @@ VideoItemForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 VideoItemForm.defaultProps = {
@@ -26,6 +28,7 @@ VideoItemForm.defaultProps = {
   errors: {},
   submitting: false,
   onChange: () => false,
+  disabled: false,
 };
 
 export default VideoItemForm;

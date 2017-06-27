@@ -10,7 +10,12 @@ export default class TrueFalseAnswerInputContainer extends Component {
       correct: PropTypes.bool.isRequired,
     })).isRequired,
     onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
   };
+
+  static defaultProps = {
+    disabled: false,
+  }
 
   state = { checked: false, answers: [] };
 
@@ -67,6 +72,7 @@ export default class TrueFalseAnswerInputContainer extends Component {
       <TrueFalseAnswerInput
         checked={this.state.checked}
         onChange={this.handleChange}
+        disabled={this.props.disabled}
       />
     );
   }

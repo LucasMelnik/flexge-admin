@@ -39,7 +39,7 @@ class UnitFormService {
     this.unitId = unitId;
   });
 
-  handleSubmit = action(() => {
+  handleSubmit = action((callbackAfterSuccess) => {
     this.form.submitted = true;
     if (this.form.errors) {
       return;
@@ -56,8 +56,10 @@ class UnitFormService {
     }).then(() => {
       if (this.submit.data) {
         const unit = this.submit.data;
-        browserHistory.push(`/modules/${moduleId}/units/${unit.id}/items`);
         this.unitId = unit.id;
+        if (callbackAfterSuccess) {
+          callbackAfterSuccess();
+        }
         this.form.setInitialValues({
           ...unit,
           module: this.form.getValue('module'),

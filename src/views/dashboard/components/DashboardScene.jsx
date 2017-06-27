@@ -86,7 +86,6 @@ const DashboardScene = () => (
         <Separator size="sm" />
       </div>
     </PermissionValidator>
-    <UnitReviewListScene />
   </div>
 );
 

@@ -22,6 +22,7 @@ export default class Table extends Component {
       path: PropTypes.string.isRequired,
       labelWhenNull: PropTypes.string,
       width: PropTypes.number,
+      render: PropTypes.func,
     })),
     actionComponent: PropTypes.func,
     actionComponentWidth: PropTypes.number,
@@ -30,6 +31,8 @@ export default class Table extends Component {
     onEdit: PropTypes.func,
     allowActionValidator: PropTypes.func,
     rows: PropTypes.arrayOf(PropTypes.object),
+    onSend: PropTypes.func,
+    isReadOnly: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   }
 
   static defaultProps = {
@@ -42,6 +45,9 @@ export default class Table extends Component {
     selectable: false,
     columns: [],
     rows: [],
+    onSend: null,
+    onSendReview: null,
+    isReadOnly: false,
   }
 
   constructor(props) {
@@ -89,20 +95,18 @@ export default class Table extends Component {
                 {column.label}
               </TableHeaderColumn>
             ))}
-            {(this.props.onDelete || this.props.onEdit) && (
-              <TableHeaderColumn
-                style={{ width: 110 }}
-              >
-                Actions
-              </TableHeaderColumn>
-            )}
+            <TableHeaderColumn
+              style={{ width: 110 }}
+            >
+              {(this.props.onDelete || this.props.onEdit || this.props.onSend) && 'Actions'}
+            </TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody
           displayRowCheckbox={false}
           showRowHover
         >
-          {this.props.rows && this.props.rows.length > 0 ? this.props.rows.map((row, index)=> (
+          {this.props.rows && this.props.rows.length > 0 ? this.props.rows.map((row, index) => (
             <TableRow
               key={row.id || index}
             >
@@ -114,7 +118,9 @@ export default class Table extends Component {
               {this.props.columns.map(column => (
                 <TableRowColumn
                   key={column.path}
-                  onMouseDown={() => (this.props.allowActionValidator(row) && this.props.onSelect) && this.props.onSelect(row, index)}
+                  onMouseDown={() => (this.props.allowActionValidator(row)
+                    && this.props.onSelect)
+                    && this.props.onSelect(row, index)}
                   style={{
                     width: column.width || 'auto',
                   }}
@@ -123,42 +129,36 @@ export default class Table extends Component {
                   {!isBoolean(row[column.path]) && get(row, column.path, column.labelWhenNull || '').toString()}
                 </TableRowColumn>
               ))}
-              {(this.props.onDelete || this.props.onEdit) && (
-                <TableRowColumn
-                  style={{ width: 110 }}
-                >
-                  {(this.props.allowActionValidator(row) && this.props.onEdit) && (
-                    <IconButton
-                      style={{ width: 45 }}
-                      onClick={() => this.props.onEdit(row, index)}
-                      iconClassName="material-icons"
-                    >
-                      edit
-                    </IconButton>
-                  )}
-                  {(this.props.allowActionValidator(row) && this.props.onDelete) && (
-                    <IconButton
-                      style={{ width: 45 }}
-                      onClick={() => this.props.onDelete(row, index)}
-                      iconClassName="material-icons"
-                    >
-                      delete
-                    </IconButton>
-                  )}
-                </TableRowColumn>
-              )}
-              {this.props.onSendReview && (
-                <TableRowColumn
-                  style={{ width: 90 }}
-                >
+              <TableRowColumn
+                style={{ width: 110 }}
+              >
+                {(this.props.allowActionValidator(row) && this.props.onEdit) && (
                   <IconButton
-                    onClick={() => this.props.onSendReview(row, index)}
+                    style={{ width: 45 }}
+                    onClick={() => this.props.onEdit(row, index)}
+                    iconClassName="material-icons"
+                  >
+                    edit
+                  </IconButton>
+                )}
+                {(this.props.allowActionValidator(row) && this.props.onDelete) && (
+                  <IconButton
+                    style={{ width: 45 }}
+                    onClick={() => this.props.onDelete(row, index)}
+                    iconClassName="material-icons"
+                  >
+                    delete
+                  </IconButton>
+                )}
+                {this.props.allowActionValidator(row) && this.props.onSend && (
+                  <IconButton
+                    onClick={() => this.props.onSend(row, index)}
                     iconClassName="material-icons"
                   >
                     send
                   </IconButton>
-                </TableRowColumn>
-              )}
+                )}
+              </TableRowColumn>
             </TableRow>
           )) : (
             <TableRow>

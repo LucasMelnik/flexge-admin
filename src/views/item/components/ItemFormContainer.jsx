@@ -17,11 +17,17 @@ const ItemFormContainer = props => (
     error={ItemFormService.submit.error}
     fetching={ItemFormService.fetch.fetching}
     itemsTypeUrl={props.itemsTypeUrl}
+    disabled={props.disabled}
   />
 );
 
 ItemFormContainer.propTypes = {
   itemsTypeUrl: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+};
+
+ItemFormContainer.defaultProps = {
+  disabled: false,
 };
 
 export default observer(ItemFormContainer);

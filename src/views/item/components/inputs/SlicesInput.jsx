@@ -31,11 +31,10 @@ const SlicesInput = props => (
                 ) {
                   removeSliceFunc = () => props.onRemoveSlice(index);
                 }
-
                 return (
                   <Tag
                     key={`slice-${sliceText}-${index}`}
-                    onDelete={removeSliceFunc}
+                    onDelete={!props.disabled && removeSliceFunc}
                     text={sliceText}
                   />
                 )
@@ -55,6 +54,7 @@ const SlicesInput = props => (
                         key={`link-${index}`}
                         icon="link"
                         onClick={() => props.onLinkSlice(index)}
+                        disabled={props.disabled}
                       />
                     )}
                   </Flex>
@@ -99,11 +99,13 @@ SlicesInput.propTypes = {
   disableRemove: PropTypes.bool.isRequired,
   sequenceRemove: PropTypes.bool.isRequired,
   allowLink: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
 };
 
 SlicesInput.defaultProps = {
   errorText: null,
   onLinkSlice: null,
+  disabled: false,
 };
 
 export default SlicesInput;

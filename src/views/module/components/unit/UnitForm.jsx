@@ -24,7 +24,7 @@ const UnitForm = props => (
           <TextInput
             floatingLabel
             fullWidth
-            disabled={props.submitting}
+            disabled={props.submitting || props.disabled}
             label="Unit Name"
             value={get(props.values, 'name', '')}
             onChange={value => props.onChange('name', value)}
@@ -50,7 +50,7 @@ const UnitForm = props => (
           <FetchAutoComplete
             url="unit-types?page=1&size=100"
             fullWidth
-            disabled={props.submitting}
+            disabled={props.submitting || props.disabled}
             label="Unit Type"
             value={get(props.values, 'type.name', '')}
             onSelect={type => props.onChange('type', type)}
@@ -71,7 +71,7 @@ const UnitForm = props => (
               value,
               label: value
             }))}
-            disabled={props.submitting}
+            disabled={props.submitting || props.disabled}
             label="Group"
             value={get(props.values, 'group', '')}
             onChange={value => props.onChange('group', value)}
@@ -86,7 +86,7 @@ const UnitForm = props => (
               value,
               label: value.toString(),
             }))}
-            disabled={props.submitting}
+            disabled={props.submitting || props.disabled}
             label="Order"
             value={get(props.values, 'order', '')}
             onChange={value => props.onChange('order', value)}
@@ -101,7 +101,7 @@ const UnitForm = props => (
               value,
               label: value.toString(),
             }))}
-            disabled={props.submitting}
+            disabled={props.submitting || props.disabled}
             label="Score to pass"
             value={get(props.values, 'scoreToPass', '')}
             onChange={value => props.onChange('scoreToPass', value)}
@@ -116,7 +116,7 @@ const UnitForm = props => (
               value,
               label: value.toString(),
             }))}
-            disabled={props.submitting}
+            disabled={props.submitting || props.disabled}
             label="Time (minutes)"
             value={get(props.values, 'time', '')}
             onChange={value => props.onChange('time', value)}
@@ -132,7 +132,7 @@ const UnitForm = props => (
               { label: 'MODERATE', value: 'MODERATE' },
               { label: 'HARD', value: 'HARD' },
             ]}
-            disabled={props.submitting}
+            disabled={props.submitting || props.disabled}
             label="Difficulty"
             value={get(props.values, 'difficulty', '')}
             onChange={value => props.onChange('difficulty', value)}
@@ -141,22 +141,26 @@ const UnitForm = props => (
         </Column>
       </Row>
       <Separator size="xs" />
-      <Button
-        icon="done"
-        secondary
-        fullWidth
-        disabled={props.submitting || !props.isDirty()}
-        type="submit"
-        label={props.values.id ? 'Update Unit' : 'Create Unit'}
-      />
-      <Separator size="xs" />
-      <Button
-        icon="clear"
-        fullWidth
-        disabled={props.submitting || !props.isDirty()}
-        onClick={props.onReset}
-        label="Discard changes"
-      />
+      {!props.disabled && (
+        <div>
+          <Button
+            icon="done"
+            secondary
+            fullWidth
+            disabled={props.submitting || !props.isDirty()}
+            type="submit"
+            label={props.values.id ? 'Update Unit' : 'Create Unit'}
+          />
+          <Separator size="xs" />
+          <Button
+            icon="clear"
+            fullWidth
+            disabled={props.submitting || !props.isDirty()}
+            onClick={props.onReset}
+            label="Discard changes"
+          />
+        </div>
+      )}
     </form>
   </Paper>
 );
@@ -169,6 +173,7 @@ UnitForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 UnitForm.defaultProps = {
@@ -179,6 +184,7 @@ UnitForm.defaultProps = {
   onSubmit: () => alert('submitted'),
   onReset: () => false,
   onChange: () => false,
+  disabled: false,
 };
 
 export default UnitForm;

@@ -23,7 +23,6 @@ class UnitFormSceneContainer extends Component {
 
   componentWillMount() {
     LoadModuleService.handleLoad(this.props.params.moduleId);
-    UnitFormService.handleLoad(this.props.params.unitId, this.props.params.moduleId);
   }
 
   render() {

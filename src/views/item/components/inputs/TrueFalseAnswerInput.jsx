@@ -15,6 +15,7 @@ const TrueFalseAnswerInput = props => (
         <Switch
           onChange={props.onChange}
           toggled={props.checked}
+          disabled={props.disabled}
         />
       </InlineBlock>
       <InlineBlock verticalAlign="middle" marginLeft={5}>
