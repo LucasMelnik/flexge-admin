@@ -112,6 +112,7 @@ class ItemFormService {
           text: [isRequired],
           translation: [isRequired],
           indexesToRemove: [isRequired, minLength(2)],
+          audio: [isRequired],
           answers: [
             minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
           ],

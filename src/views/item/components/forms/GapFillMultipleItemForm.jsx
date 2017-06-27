@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Separator from "../../../../core/layout/Separator";
+import Separator from '../../../../core/layout/Separator';
 import TranslationContainer from '../inputs/TranslationInputContainer';
-import AnswersInputContainer from "../inputs/AnswersInputContainer";
-import SlicesInputContainer from "../inputs/SlicesInputContainer";
+import AnswersInputContainer from '../inputs/AnswersInputContainer';
+import SlicesInputContainer from '../inputs/SlicesInputContainer';
+import FileInput from '../../../../core/form/FileInput';
 
 const GapFillMultipleItemForm = props => (
   <div>
@@ -13,6 +14,13 @@ const GapFillMultipleItemForm = props => (
       submitting={props.submitting}
       values={props.values}
       errors={props.errors}
+    />
+    <Separator size="xs" />
+    <FileInput
+      accept="audio"
+      value={get(props.values, 'audio', '')}
+      onChange={(key) => props.onChange('audio', key)}
+      errorText={get(props.errors, 'audio', '')}
     />
     <Separator size="xs" />
     <SlicesInputContainer
