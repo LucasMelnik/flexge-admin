@@ -14,7 +14,7 @@ const TextItemForm = props => (
           floatingLabel
           fullWidth
           label="Text"
-          disabled={props.submitting}
+          disabled={props.submitting || props.disabled}
           value={get(props.values, 'text', '')}
           onChange={value => props.onChange('text', value)}
           errorText={get(props.errors, 'text', '')}
@@ -29,6 +29,7 @@ TextItemForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 TextItemForm.defaultProps = {
@@ -36,6 +37,7 @@ TextItemForm.defaultProps = {
   errors: {},
   submitting: false,
   onChange: () => false,
+  disabled: false,
 };
 
 export default TextItemForm;

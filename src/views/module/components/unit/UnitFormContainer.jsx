@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { toJS } from 'mobx';
+import { browserHistory } from 'react-router';
 import { observer } from 'mobx-react';
 import UnitForm from './UnitForm';
 import UnitFormService from '../../services/UnitFormService';
@@ -11,12 +11,16 @@ class UnitFormContainer extends Component {
     currentModule: PropTypes.object,
     unitId: PropTypes.string,
     moduleId: PropTypes.string,
+    disabled: PropTypes.bool,
+    reviewId: PropTypes.string,
   }
 
   static defaultProps = {
     currentModule: null,
     unitId: null,
     moduleId: null,
+    disabled: false,
+    reviewId: null,
   }
 
   componentDidMount() {
@@ -24,13 +28,21 @@ class UnitFormContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    UnitFormService.form.setValue('module', nextProps.currentModule);
+    if (!UnitFormService.form.getValue('module')) {
+      UnitFormService.form.setValue('module', nextProps.currentModule);
+    }
   }
 
   render() {
     return (
       <UnitForm
-        onSubmit={UnitFormService.handleSubmit}
+        onSubmit={() => {
+          if (this.props.reviewId) {
+            UnitFormService.handleSubmit();
+          } else {
+            UnitFormService.handleSubmit(() => browserHistory.push(`/modules/${this.props.moduleId}/units/${this.props.unitId}/items`));
+          }
+        }}
         onChange={UnitFormService.form.setValue}
         onReset={UnitFormService.form.reset}
         values={UnitFormService.form.getValues()}
@@ -38,6 +50,7 @@ class UnitFormContainer extends Component {
         submitting={UnitFormService.fetch.fetching}
         error={UnitFormService.fetch.error}
         isDirty={UnitFormService.form.isDirty}
+        disabled={this.props.disabled}
       />
     );
   }

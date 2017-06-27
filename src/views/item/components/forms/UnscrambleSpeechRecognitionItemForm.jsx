@@ -13,6 +13,7 @@ const UnscrambleSpeechRecognitionItemForm = props => (
       submitting={props.submitting}
       values={props.values}
       errors={props.errors}
+      disabled={props.disabled}
     />
     <Separator size="xs" />
     <SlicesInputContainer
@@ -25,6 +26,7 @@ const UnscrambleSpeechRecognitionItemForm = props => (
       indexesToRemove={get(props.values, 'indexesToRemove', [])}
       errorText={get(props.errors, 'indexesToRemove', '')}
       allowLinkSlices
+      disabled={props.disabled}
     />
     <Separator size="xs" />
     <AnswersInputContainer
@@ -32,6 +34,7 @@ const UnscrambleSpeechRecognitionItemForm = props => (
       value={get(props.values, 'answers', [])}
       defaultAnswers={get(props.values, 'textsRemoved', [])}
       onChange={answers => props.onChange('answers', answers)}
+      disabled={props.disabled}
     />
   </div>
 );
@@ -41,6 +44,7 @@ UnscrambleSpeechRecognitionItemForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 UnscrambleSpeechRecognitionItemForm.defaultProps = {
@@ -48,6 +52,7 @@ UnscrambleSpeechRecognitionItemForm.defaultProps = {
   errors: {},
   submitting: false,
   onChange: () => false,
+  disabled: false,
 };
 
 export default UnscrambleSpeechRecognitionItemForm;

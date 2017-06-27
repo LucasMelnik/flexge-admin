@@ -9,6 +9,7 @@ const PronunciationItemForm = props => (
       submitting={props.submitting}
       values={props.values}
       errors={props.errors}
+      disabled={props.disabled}
     />
   </div>
 );
@@ -18,6 +19,7 @@ PronunciationItemForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 PronunciationItemForm.defaultProps = {
@@ -25,6 +27,7 @@ PronunciationItemForm.defaultProps = {
   errors: {},
   submitting: false,
   onChange: () => false,
+  disabled: false,
 };
 
 export default PronunciationItemForm;

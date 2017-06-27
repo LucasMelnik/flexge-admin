@@ -17,6 +17,7 @@ export default class SlicesInputContainer extends Component {
     errorText: PropTypes.string,
     sequenceRemove: PropTypes.bool,
     allowLinkSlices: PropTypes.bool,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -25,6 +26,7 @@ export default class SlicesInputContainer extends Component {
     value: [],
     sequenceRemove: false,
     allowLinkSlices: false,
+    disabled: false,
   };
 
   state = { slices: [], removedSlices: [] };
@@ -121,6 +123,7 @@ export default class SlicesInputContainer extends Component {
         errorText={this.props.errorText}
         sequenceRemove={this.props.sequenceRemove}
         allowLink={this.props.allowLinkSlices}
+        disabled={this.props.disabled}
       />
     );
   }

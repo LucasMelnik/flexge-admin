@@ -22,12 +22,15 @@ export default class Table extends Component {
       path: PropTypes.string.isRequired,
       labelWhenNull: PropTypes.string,
       width: PropTypes.number,
+      render: PropTypes.func,
     })),
     actionComponent: PropTypes.func,
     actionComponentWidth: PropTypes.number,
     onSelect: PropTypes.func,
     onDelete: PropTypes.func,
     onEdit: PropTypes.func,
+    onSend: PropTypes.func,
+    isReadOnly: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
     rows: PropTypes.arrayOf(PropTypes.object),
   }
 
@@ -37,7 +40,9 @@ export default class Table extends Component {
     onSelect: null,
     onDelete: null,
     onEdit: null,
+    onSend: null,
     onSendReview: null,
+    isReadOnly: false,
     selectable: false,
     columns: [],
     rows: [],
@@ -88,45 +93,61 @@ export default class Table extends Component {
                 {column.label}
               </TableHeaderColumn>
             ))}
-            {(this.props.onDelete || this.props.onEdit || this.props.onSendReview) && (
-              <TableHeaderColumn
-                style={{ width: 110 }}
-              >
-                Actions
-              </TableHeaderColumn>
-            )}
+            <TableHeaderColumn
+              style={{ width: 110 }}
+            >
+              {(this.props.onDelete || this.props.onEdit || this.props.onSend) && 'Actions'}
+            </TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody
           displayRowCheckbox={false}
           showRowHover
         >
-          {this.props.rows && this.props.rows.length > 0 ? this.props.rows.map((row, index)=> (
-            <TableRow
-              key={row.id || index}
-            >
-              {this.props.actionComponent && (
-                <TableRowColumn style={{ width: this.props.actionComponentWidth || 'auto' }}>
-                  {this.props.actionComponent(row)}
-                </TableRowColumn>
-              )}
-              {this.props.columns.map(column => (
-                <TableRowColumn
-                  key={column.path}
-                  onMouseDown={() => this.props.onSelect && this.props.onSelect(row, index)}
-                  style={{
-                    width: column.width || 'auto',
-                  }}
-                >
-                  {isBoolean(row[column.path]) && (row[column.path] ? 'Yes' : 'No')}
-                  {!isBoolean(row[column.path]) && get(row, column.path, column.labelWhenNull || '').toString()}
-                </TableRowColumn>
-              ))}
-              {(this.props.onDelete || this.props.onEdit) && (
+          {this.props.rows && this.props.rows.length > 0 ? this.props.rows.map((row, index) => {
+            let readOnly = false;
+            if (!!this.props.isReadOnly) {
+              if (typeof (this.props.isReadOnly) === 'bool') {
+                readOnly = this.props.isReadOnly;
+              } else {
+                readOnly = this.props.isReadOnly(row);
+              }
+            }
+            return (
+              <TableRow
+                key={row.id || index}
+              >
+                {this.props.actionComponent && (
+                  <TableRowColumn style={{ width: this.props.actionComponentWidth || 'auto' }}>
+                    {this.props.actionComponent(row)}
+                  </TableRowColumn>
+                )}
+                {this.props.columns.map((column) => {
+                  let content = null;
+                  const rowContent = get(row, column.path);
+                  if (!!column.render) {
+                    content = column.render(row)
+                  } else if (isBoolean(rowContent)) {
+                    content = rowContent ? 'Yes' : 'No';
+                  } else {
+                    content = get(row, column.path, column.labelWhenNull || '').toString();
+                  }
+                  return (
+                    <TableRowColumn
+                      key={column.path}
+                      onMouseDown={() => this.props.onSelect && this.props.onSelect(row, index)}
+                      style={{
+                        width: column.width || 'auto',
+                      }}
+                    >
+                      {content}
+                    </TableRowColumn>
+                  )
+                })}
                 <TableRowColumn
                   style={{ width: 110 }}
                 >
-                  {this.props.onEdit && (
+                  {!readOnly && this.props.onEdit && (
                     <IconButton
                       style={{ width: 45 }}
                       onClick={() => this.props.onEdit(row, index)}
@@ -135,7 +156,7 @@ export default class Table extends Component {
                       edit
                     </IconButton>
                   )}
-                  {this.props.onDelete && (
+                  {!readOnly && this.props.onDelete && (
                     <IconButton
                       style={{ width: 45 }}
                       onClick={() => this.props.onDelete(row, index)}
@@ -144,22 +165,18 @@ export default class Table extends Component {
                       delete
                     </IconButton>
                   )}
+                  {!readOnly && this.props.onSend && (
+                    <IconButton
+                      onClick={() => this.props.onSend(row, index)}
+                      iconClassName="material-icons"
+                    >
+                      send
+                    </IconButton>
+                  )}
                 </TableRowColumn>
-              )}
-              {this.props.onSendReview && (
-                <TableRowColumn
-                  style={{ width: 90 }}
-                >
-                  <IconButton
-                    onClick={() => this.props.onSendReview(row, index)}
-                    iconClassName="material-icons"
-                  >
-                    send
-                  </IconButton>
-                </TableRowColumn>
-              )}
-            </TableRow>
-          )) : (
+              </TableRow>
+            );
+          }) : (
             <TableRow>
               <TableRowColumn>
                 No data available.

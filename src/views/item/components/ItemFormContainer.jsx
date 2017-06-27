@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import ItemForm from './ItemForm';
 import ItemFormService from '../services/ItemFormService';
 
-const ItemFormContainer = () => (
+const ItemFormContainer = props => (
   <ItemForm
     onSubmit={ItemFormService.handleSubmit}
     setValidationsByItemType={ItemFormService.setValidationsByItemType}
@@ -15,7 +16,16 @@ const ItemFormContainer = () => (
     submitting={ItemFormService.submit.fetching}
     error={ItemFormService.submit.error}
     fetching={ItemFormService.fetch.fetching}
+    disabled={props.disabled}
   />
 );
+
+ItemFormContainer.propTypes = {
+  disabled: PropTypes.bool,
+}
+
+ItemFormContainer.defaultProps = {
+  disabled: false,
+}
 
 export default observer(ItemFormContainer);

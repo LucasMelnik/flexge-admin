@@ -94,7 +94,7 @@ AnswersInput.propTypes = {
     'WRONG',
     'BOTH',
   ]).isRequired,
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
   label: PropTypes.string.isRequired,
   errorText: PropTypes.string,
   values: PropTypes.object,
@@ -110,6 +110,7 @@ AnswersInput.defaultProps = {
   answers: [],
   values: {},
   errorText: null,
+  disabled: false,
 };
 
 export default AnswersInput;

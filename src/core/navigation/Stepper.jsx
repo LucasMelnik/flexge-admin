@@ -18,7 +18,7 @@ const Stepper = props => (
     <div style={{ margin: '12px 0' }}>
       <Button
         raised={false}
-        disabled={props.currentStep === 0 || props.submitting}
+        disabled={props.currentStep === 0 || props.submitting || props.disabled}
         onClick={props.onBackClick}
         style={{ marginRight: 12 }}
       >
@@ -27,7 +27,7 @@ const Stepper = props => (
       <Button
         colored
         onClick={props.onNextClick}
-        disabled={props.submitting}
+        disabled={props.submitting || props.disabled}
       >
         {props.currentStep + 1 === props.steps.length ? 'Finish' : 'Next'}
       </Button>
@@ -37,6 +37,7 @@ const Stepper = props => (
 
 Stepper.propTypes = {
   currentStep: PropTypes.number.isRequired,
+  disabled: PropTypes.bool,
   steps: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
     content: PropTypes.node.isRequired,
@@ -48,6 +49,7 @@ Stepper.propTypes = {
 
 Stepper.defaultProps = {
   submitting: false,
+  disabled: false,
 };
 
 export default Stepper;

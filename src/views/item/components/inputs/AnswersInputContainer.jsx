@@ -10,6 +10,7 @@ class AnswersInputContainer extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
     answerType: PropTypes.oneOf([
       'CORRECT',
       'WRONG',
@@ -22,7 +23,6 @@ class AnswersInputContainer extends Component {
       text: PropTypes.string.isRequired,
       correct: PropTypes.bool.isRequired,
     })),
-    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -55,7 +55,6 @@ class AnswersInputContainer extends Component {
   }
 
   getNormalizedAnswers = () => {
-    console.log(this.state.answers)
     return this.state.answers.reduce((result, answer, index) => {
       if (result.find(resultAnswer => resultAnswer.linkTo === answer.index)) {
         result = result.map(resultAnswer => {

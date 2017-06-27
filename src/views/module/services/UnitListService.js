@@ -42,7 +42,7 @@ class UnitListService {
     }).then(() => {
       if (this.fetch.data) {
         console.log('units', toJS(this.fetch.data.docs))
-        this.units = this.fetch.data.docs.map(unit => ({
+        this.units = this.fetch.data.map(unit => ({
           ...unit,
           itemsCount: unit.items ? unit.items.length : 0,
         }));

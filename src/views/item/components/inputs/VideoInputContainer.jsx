@@ -9,6 +9,7 @@ const VideoInputContainer = props => (
     onChange={props.onChange}
     submitting={props.submitting}
     requiredCut={props.requiredCut}
+    disabled={props.disabled}
   />
 );
 
@@ -18,6 +19,7 @@ VideoInputContainer.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   requiredCut: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 VideoInputContainer.defaultProps = {
@@ -25,6 +27,7 @@ VideoInputContainer.defaultProps = {
   errors: {},
   submitting: false,
   requiredCut: false,
+  disabled: false,
 };
 
 export default VideoInputContainer;
