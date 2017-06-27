@@ -14,8 +14,6 @@
     "qs": "6.4.0",
     "react": "15.5.4",
     "react-dom": "15.5.4",
-    "react-input-mask": "^0.9.1",
-    "react-number-format": "^2.0.0-alpha5",
     "react-paginate": "4.4.2",
     "react-router": "3.0.5",
     "react-tap-event-plugin": "2.0.1",

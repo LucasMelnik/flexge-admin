@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Block from 'jsxstyle/Block';
+import Flex from 'jsxstyle/Flex';
 import LinearProgress from 'material-ui/LinearProgress';
 import Button from './Button';
 import ErrorText from "../content/ErrorText";
+import AudioPreview from "../content/AudioPreview";
 
 export default class FileInput extends Component {
 
@@ -54,21 +55,27 @@ export default class FileInput extends Component {
 
   render() {
     return (
-      <Block
-        width={this.props.fullWidth ? '100%' : '165px'}
-      >
-        {this.state.uploadPercentage === 0 && (
-          <Button
-            label={this.props.value ? `Change the ${this.props.accept}` : `Choose the ${this.props.accept}`}
-            onClick={() => this.fileInput.click()}
-          />
-        )}
-        {this.state.uploadPercentage > 0 && (
-          <LinearProgress
-            mode="determinate"
-            value={this.state.uploadPercentage}
-          />
-        )}
+      <div>
+        <Flex
+          width={this.props.fullWidth ? '100%' : '215px'}
+          alignItems="center"
+        >
+          {this.state.uploadPercentage === 0 && (
+            <Button
+              label={this.props.value ? `Change the ${this.props.accept}` : `Choose the ${this.props.accept}`}
+              onClick={() => this.fileInput.click()}
+            />
+          )}
+          {this.state.uploadPercentage > 0 && (
+            <LinearProgress
+              mode="determinate"
+              value={this.state.uploadPercentage}
+            />
+          )}
+          {(this.props.accept === 'audio' && this.props.value && this.state.uploadPercentage === 0) && (
+            <AudioPreview src={`${process.env.REACT_APP_API_URL}/files/${this.props.value}`} />
+          )}
+        </Flex>
         {this.props.errorText && (
           <ErrorText>
             {this.props.errorText}
@@ -85,7 +92,7 @@ export default class FileInput extends Component {
           ref={input => { this.fileInput = input; }}
           accept={`${this.props.accept}/*`}
         />
-      </Block>
+      </div>
     );
   }
 }
