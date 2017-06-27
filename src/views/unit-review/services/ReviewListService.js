@@ -51,7 +51,7 @@ class ReviewListService {
         const reviews = this.fetch.data.reviews;
         this.allUnitsAndReviews = units.filter((unit) => {
           const unitReview = reviews.find(review => review.unit === unit.id);
-          if (!unitReview || unitReview.status === 'REVIEWED') {
+          if (!unitReview || unitReview.status === 'REVIEWED' || unitReview.status === 'DONE') {
             return false;
           }
           return true;

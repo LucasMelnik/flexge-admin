@@ -118,9 +118,7 @@ export default class Table extends Component {
               {this.props.columns.map(column => (
                 <TableRowColumn
                   key={column.path}
-                  onMouseDown={() => (this.props.allowActionValidator(row)
-                    && this.props.onSelect)
-                    && this.props.onSelect(row, index)}
+                  onMouseDown={() => this.props.onSelect && this.props.onSelect(row, index)}
                   style={{
                     width: column.width || 'auto',
                   }}
