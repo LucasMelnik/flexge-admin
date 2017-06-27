@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import Separator from "../../../../core/layout/Separator";
 import TranslationContainer from '../inputs/TranslationInputContainer';
 import AnswersContainer from "../inputs/AnswersInputContainer";
+import FileInput from "../../../../core/form/FileInput";
 
 const DictationItemForm = props => (
   <div>
@@ -12,6 +13,13 @@ const DictationItemForm = props => (
       submitting={props.submitting}
       values={props.values}
       errors={props.errors}
+    />
+    <Separator size="xs" />
+    <FileInput
+      accept="audio"
+      value={get(props.values, 'audio', '')}
+      onChange={(key) => props.onChange('audio', key)}
+      errorText={get(props.errors, 'audio', '')}
     />
     <Separator size="xs" />
     <AnswersContainer

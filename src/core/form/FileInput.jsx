@@ -3,17 +3,24 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import LinearProgress from 'material-ui/LinearProgress';
 import Button from './Button';
+import ErrorText from "../content/ErrorText";
 
 export default class FileInput extends Component {
 
   static propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    errorText: PropTypes.string,
     accept: PropTypes.oneOf([
-      'audio/*',
-      'video/*',
-      'image/*',
+      'audio',
+      'video',
+      'image',
     ]),
+  };
+
+  static defaultProps = {
+    accept: 'audio',
+    errorText: null,
   };
 
   state = { uploadPercentage: 0 }
@@ -45,17 +52,22 @@ export default class FileInput extends Component {
   render() {
     return (
       <div>
-        {!this.state.uploadPercentage && (
+        {this.state.uploadPercentage === 0 && (
           <Button
-            label={this.props.value ? 'Change File' : 'Choose File'}
+            label={this.props.value ? `Change the ${this.props.accept}` : `Choose the ${this.props.accept}`}
             onClick={() => this.fileInput.click()}
           />
         )}
-        {this.state.uploadPercentage && (
+        {this.state.uploadPercentage > 0 && (
           <LinearProgress
             mode="determinate"
             value={this.state.uploadPercentage}
           />
+        )}
+        {this.props.errorText && (
+          <ErrorText>
+            {this.props.errorText}
+          </ErrorText>
         )}
         <input
           type="file"
@@ -66,9 +78,9 @@ export default class FileInput extends Component {
           }}
           onChange={this.handleChange}
           ref={input => { this.fileInput = input; }}
-          accept={this.props.accept}
+          accept={`${this.props.accept}/*`}
         />
       </div>
-    )
+    );
   }
 }

@@ -80,6 +80,7 @@ class ItemFormService {
           ...this.defaultValidations,
           text: [isRequired],
           translation: [isRequired],
+          audio: [isRequired],
         };
         break;
       case 'GAP_FILL':
