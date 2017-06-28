@@ -9,6 +9,7 @@ import ErrorText from '../content/ErrorText';
 import AudioPreview from '../content/AudioPreview';
 import ImagePreview from '../content/ImagePreview';
 import Label from '../content/Label';
+import VideoPreview from '../content/VideoPreview';
 
 export default class FileInput extends Component {
 
@@ -125,6 +126,9 @@ export default class FileInput extends Component {
           )}
           {(this.props.accept === 'image' && hasValue) && (
             <ImagePreview src={`${process.env.REACT_APP_API_URL}/files/${this.props.value}`} />
+          )}
+          {(this.props.accept === 'video' && hasValue) && (
+            <VideoPreview src={`${process.env.REACT_APP_API_URL}/files/${this.props.value}`} />
           )}
         </Flex>
         {this.props.errorText && (
