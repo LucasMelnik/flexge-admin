@@ -41,7 +41,7 @@ class ReviewFormSceneContainer extends Component {
         onSendToDone={this.sendUnitToReviewService.handleSendToDone}
         error={this.sendUnitToReviewService.submit.error}
         errors={this.sendUnitToReviewService.form.errors}
-        isReadOnly
+        review={this.sendUnitToReviewService.form.getValues()}
       />
     );
   }

@@ -34,8 +34,9 @@ const SlicesInput = props => (
                 return (
                   <Tag
                     key={`slice-${sliceText}-${index}`}
-                    onDelete={!props.disabled && removeSliceFunc}
+                    onDelete={removeSliceFunc}
                     text={sliceText}
+                    disabled={props.disabled}
                   />
                 )
               } else {
@@ -45,6 +46,7 @@ const SlicesInput = props => (
                       <Tag
                         icon="undo"
                         onClick={() => props.onShowSlice(index)}
+                        disabled={props.disabled}
                       />
                     )}
                     {(props.allowLink && !props.value.find(answer => answer.linkTo === index + 1) &&

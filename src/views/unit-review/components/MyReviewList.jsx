@@ -32,7 +32,7 @@ const MyReviewList = props => (
           },
           {
             label: 'Reviewed By',
-            path: 'review.createdBy.name',
+            path: 'review.reviewedBy.name',
           },
           {
             label: 'Status',

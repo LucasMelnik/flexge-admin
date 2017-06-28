@@ -35,7 +35,7 @@ const ReviewFormScene = props => (
           onClick={() => props.onSendToReviewed(props.unitId, props.reviewId)}
         />
       )}
-      {props.status === 'REVIEWED' && (
+      {props.status === 'REVIEWED' && props.review.createdBy === localStorage.id && (
         <Button
           icon="rate_review"
           primary
@@ -48,7 +48,7 @@ const ReviewFormScene = props => (
       unitId={props.unitId}
       moduleId={props.moduleId}
       reviewId={props.reviewId}
-      disabled={props.status === 'PENDING'}
+      disabled={props.status === 'PENDING' || (props.status === 'REVIEWED' && props.review.createdBy !== localStorage.id)}
     />
     <Separator size="xs" />
     <Title>
@@ -60,7 +60,7 @@ const ReviewFormScene = props => (
       moduleId={props.moduleId}
       reviewId={props.reviewId}
       status={props.status}
-      disabled={props.status === 'PENDING'}
+      disabled={props.status === 'PENDING' || (props.status === 'REVIEWED' && props.review.createdBy !== localStorage.id)}
       isReadOnly={props.status === 'PENDING'}
     />
     <Separator size="xs" />
@@ -88,6 +88,9 @@ ReviewFormScene.propTypes = {
   comments: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   errors: PropTypes.object,
+  review: PropTypes.shape({
+    createdBy: PropTypes.string,
+  }),
 };
 
 ReviewFormScene.defaultProps = {
@@ -96,6 +99,7 @@ ReviewFormScene.defaultProps = {
   reviewId: null,
   comments: null,
   errors: null,
+  review: {},
 };
 
 export default ReviewFormScene;

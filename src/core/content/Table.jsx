@@ -115,18 +115,27 @@ export default class Table extends Component {
                   {this.props.actionComponent(row)}
                 </TableRowColumn>
               )}
-              {this.props.columns.map(column => (
-                <TableRowColumn
-                  key={column.path}
-                  onMouseDown={() => this.props.onSelect && this.props.onSelect(row, index)}
-                  style={{
-                    width: column.width || 'auto',
-                  }}
-                >
-                  {isBoolean(row[column.path]) && (row[column.path] ? 'Yes' : 'No')}
-                  {!isBoolean(row[column.path]) && get(row, column.path, column.labelWhenNull || '').toString()}
-                </TableRowColumn>
-              ))}
+              {this.props.columns.map((column) => {
+                let content = null;
+                if (column.render) {
+                  content = column.render(row);
+                } else if (isBoolean(get(row, column.path))) {
+                  content = get(row, column.path) ? 'Yes' : 'No';
+                } else {
+                  content = get(row, column.path, column.labelWhenNull || '').toString();
+                }
+                return (
+                  <TableRowColumn
+                    key={column.path}
+                    onMouseDown={() => this.props.onSelect && this.props.onSelect(row, index)}
+                    style={{
+                      width: column.width || 'auto',
+                    }}
+                  >
+                    {content}
+                  </TableRowColumn>
+                )
+              })}
               <TableRowColumn
                 style={{ width: 110 }}
               >

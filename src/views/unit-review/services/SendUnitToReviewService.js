@@ -90,7 +90,7 @@ class SendUnitToReviewService {
         }).then((res) => {
           if (res) {
             this.handleLoad();
-            browserHistory.push('/')
+            browserHistory.push('/reviews')
             NotificationService.addNotification(
               'Review created successfully.',
               null,
@@ -125,7 +125,7 @@ class SendUnitToReviewService {
         }).then((res) => {
           if (res) {
             this.handleLoad();
-            browserHistory.push('/')
+            browserHistory.push('/reviews')
             NotificationService.addNotification(
               'Review done.',
               null,
