@@ -30,17 +30,19 @@ const AnswersInput = props => (
         />
         <ColumnSeparator size="sm" />
         <FileInput
-          accept="image"
-          value={get(props.values, 'image', '')}
-          onChange={(key) => props.onChange('image', key)}
-          errorText={get(props.errors, 'image', '')}
-        />
-        <ColumnSeparator size="sm" />
-        <FileInput
+          label="Upload an audio to the answer"
           accept="audio"
           value={get(props.values, 'audio', '')}
           onChange={(key) => props.onChange('audio', key)}
           errorText={get(props.errors, 'audio', '')}
+        />
+        <ColumnSeparator size="sm" />
+        <FileInput
+          label="Upload an image to the answer"
+          accept="image"
+          value={get(props.values, 'image', '')}
+          onChange={(key) => props.onChange('image', key)}
+          errorText={get(props.errors, 'image', '')}
         />
         <ColumnSeparator size="sm" />
         {props.answerType === 'BOTH' && (

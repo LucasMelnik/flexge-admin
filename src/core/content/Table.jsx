@@ -122,7 +122,7 @@ export default class Table extends Component {
                 } else if (isBoolean(get(row, column.path))) {
                   content = get(row, column.path) ? 'Yes' : 'No';
                 } else {
-                  content = get(row, column.path, column.labelWhenNull || '').toString();
+                  content = (get(row, column.path, column.labelWhenNull || '') || (column.labelWhenNull || '')).toString();
                 }
                 return (
                   <TableRowColumn

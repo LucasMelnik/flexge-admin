@@ -17,6 +17,7 @@ const DictationItemForm = props => (
     />
     <Separator size="xs" />
     <FileInput
+      label="Upload an audio to item"
       accept="audio"
       value={get(props.values, 'audio', '')}
       onChange={(key) => props.onChange('audio', key)}
