@@ -6,6 +6,7 @@ import IconButton from 'material-ui/IconButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import Modal from '../layout/Modal';
 import Button from '../form/Button';
+import Separator from '../layout/Separator';
 
 export default class VideoPreview extends Component {
 
@@ -22,7 +23,7 @@ export default class VideoPreview extends Component {
     });
   };
 
-  handleLoad = () => {
+  handleCanPlay = () => {
     this.setState({
       loading: false,
     });
@@ -59,8 +60,17 @@ export default class VideoPreview extends Component {
             src={this.props.src}
             muted={false}
             controls
-            preload="auto"
+            preload="none"
+            autoPlay
+            onCanPlayThrough={this.handleCanPlay}
+            style={{
+              display: 'block',
+              height: 'auto',
+              width: this.state.loading ? 0 : 550,
+              visibility: this.state.loading ? 'hidden' : 'visible',
+            }}
           />
+          <Separator size="xs" />
           <Button
             label="Close"
             onClick={this.toggleModal}
