@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Flex from 'jsxstyle/Flex';
+import Block from 'jsxstyle/Block';
+import IconButton from 'material-ui/IconButton';
 import LinearProgress from 'material-ui/LinearProgress';
-import Button from './Button';
-import ErrorText from "../content/ErrorText";
+import ErrorText from '../content/ErrorText';
+import AudioPreview from '../content/AudioPreview';
+import ImagePreview from '../content/ImagePreview';
+import Label from '../content/Label';
 
 export default class FileInput extends Component {
 
   static propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    label: PropTypes.string.isRequired,
     errorText: PropTypes.string,
+    fullWidth: PropTypes.bool,
     accept: PropTypes.oneOf([
       'audio',
       'video',
@@ -21,6 +28,7 @@ export default class FileInput extends Component {
   static defaultProps = {
     accept: 'audio',
     errorText: null,
+    fullWidth: false,
   };
 
   state = { uploadPercentage: 0 }
@@ -38,7 +46,7 @@ export default class FileInput extends Component {
       data: fileData,
       onUploadProgress: (progressEvent) => {
         this.setState({
-          uploadPercentage: Math.round( (progressEvent.loaded * 100) / progressEvent.total ),
+          uploadPercentage: Math.round((progressEvent.loaded * 100) / progressEvent.total),
         });
       }
     }).then((response) => {
@@ -49,21 +57,76 @@ export default class FileInput extends Component {
     });
   };
 
+  handleDelete = () => {
+    if (this.props.value.indexOf('temp') >= 0) {
+      axios.request({
+        method: 'delete',
+        url: `${process.env.REACT_APP_API_URL}/files/${this.props.value.split('/').pop()}`,
+        headers: {
+          ...localStorage.accessToken && { Authorization: `Bearer ${localStorage.accessToken}` },
+        },
+      }).then(() => {
+        this.props.onChange(null);
+      });
+    } else {
+      this.props.onChange(null);
+    }
+  };
+
   render() {
+    const hasValue = (this.props.value && this.state.uploadPercentage === 0);
     return (
-      <div>
-        {this.state.uploadPercentage === 0 && (
-          <Button
-            label={this.props.value ? `Change the ${this.props.accept}` : `Choose the ${this.props.accept}`}
-            onClick={() => this.fileInput.click()}
-          />
-        )}
-        {this.state.uploadPercentage > 0 && (
-          <LinearProgress
-            mode="determinate"
-            value={this.state.uploadPercentage}
-          />
-        )}
+      <Block
+        width={this.props.fullWidth ? '100%' : '220px'}
+        height="55px"
+        position="relative"
+      >
+        <Label>{this.props.label}</Label>
+        <Flex
+          alignItems="flex-end"
+          height="100%"
+        >
+          {this.state.uploadPercentage === 0 && (
+            <IconButton
+              iconClassName="material-icons"
+              tooltip="Select a file"
+              onClick={() => this.fileInput.click()}
+              style={{
+              width: 36,
+              height: 36,
+              padding: 0,
+            }}
+            >
+              file_upload
+            </IconButton>
+          )}
+          {hasValue && (
+            <IconButton
+              iconClassName="material-icons"
+              tooltip="Delete the file"
+              onClick={this.handleDelete}
+              style={{
+                width: 36,
+                height: 36,
+                padding: 0,
+              }}
+            >
+              delete
+            </IconButton>
+          )}
+          {this.state.uploadPercentage > 0 && (
+            <LinearProgress
+              mode="determinate"
+              value={this.state.uploadPercentage}
+            />
+          )}
+          {(this.props.accept === 'audio' && hasValue) && (
+            <AudioPreview src={`${process.env.REACT_APP_API_URL}/files/${this.props.value}`} />
+          )}
+          {(this.props.accept === 'image' && hasValue) && (
+            <ImagePreview src={`${process.env.REACT_APP_API_URL}/files/${this.props.value}`} />
+          )}
+        </Flex>
         {this.props.errorText && (
           <ErrorText>
             {this.props.errorText}
@@ -80,7 +143,7 @@ export default class FileInput extends Component {
           ref={input => { this.fileInput = input; }}
           accept={`${this.props.accept}/*`}
         />
-      </div>
+      </Block>
     );
   }
 }
