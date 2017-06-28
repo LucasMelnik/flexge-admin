@@ -23,6 +23,14 @@ const UnitList = props => (
               path: 'name',
             },
             {
+              label: 'Group',
+              path: 'group',
+            },
+            {
+              label: 'Order',
+              path: 'order',
+            },
+            {
               label: 'Difficulty',
               path: 'difficulty',
             },

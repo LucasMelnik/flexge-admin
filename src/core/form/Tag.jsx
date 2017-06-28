@@ -5,8 +5,8 @@ import FontIcon from 'material-ui/FontIcon';
 
 const Tag = props => (
   <Chip
-    onRequestDelete={props.onDelete}
-    onTouchTap={() => props.onClick && props.onClick()}
+    onRequestDelete={props.disabled ? null : props.onDelete}
+    onTouchTap={() => !props.disabled && props.onClick && props.onClick()}
     style={{
       margin: '10px 5px',
     }}
@@ -14,7 +14,7 @@ const Tag = props => (
       lineHeight: props.icon ? '12px' : '32px',
     }}
   >
-    {props.icon && (
+    {!props.disabled && props.icon && (
       <FontIcon
         className="material-icons"
         style={{
@@ -35,6 +35,7 @@ Tag.propTypes = {
   icon: PropTypes.string,
   onDelete: PropTypes.func,
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 Tag.defaultProps = {
@@ -42,6 +43,7 @@ Tag.defaultProps = {
   icon: null,
   onDelete: null,
   onClick: null,
+  disabled: false,
 };
 
 export default Tag;

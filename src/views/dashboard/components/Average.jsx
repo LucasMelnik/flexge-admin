@@ -6,11 +6,13 @@ import Paper from '../../../core/layout/Paper';
 const Average = props => (
   <Paper zDepth={0}>
     <InlineBlock><b>Average: </b> {props.average.toFixed(2)}</InlineBlock>
-    <InlineBlock
-      marginLeft="15px"
-    >
-      <small>The average must be between {props.from} and {props.to}</small>
-    </InlineBlock>
+    {props.from && props.to && (
+      <InlineBlock
+        marginLeft="15px"
+      >
+        <small>The average must be between {props.from} and {props.to}</small>
+      </InlineBlock>
+    )}
   </Paper>
 );
 

@@ -25,6 +25,7 @@ class LoginService {
     if (this.form.errors) {
       return;
     }
+    localStorage.clear();
     this.fetch.fetch({
       method: 'post',
       url: '/auth',

@@ -6,8 +6,8 @@ import TimeAmountsListService from '../services/TimeAmountsListService';
 const TimeAverageContainer = () => (
   <Average
     average={TimeAmountsListService.average}
-    from={3.80}
-    to={4.20}
+    from={0}
+    to={0}
   />
 );
 

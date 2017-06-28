@@ -20,6 +20,7 @@ class ReviewListService {
       query: {
         course: this.formMyReviews.getValue('course.id'),
         status: this.formMyReviews.getValue('status'),
+        createdBy: localStorage.id,
       },
     }).then(() => {
       if (this.fetch.data && this.fetch.data.units) {
@@ -51,7 +52,7 @@ class ReviewListService {
         const reviews = this.fetch.data.reviews;
         this.allUnitsAndReviews = units.filter((unit) => {
           const unitReview = reviews.find(review => review.unit === unit.id);
-          if (!unitReview || unitReview.status === 'REVIEWED' || unitReview.status === 'DONE') {
+          if (!unitReview || unitReview.status === 'DONE') {
             return false;
           }
           return true;
