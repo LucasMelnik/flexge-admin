@@ -75,6 +75,30 @@ class ItemFormService {
           ],
         };
         break;
+      case 'SINGLE_CHOICE_IMAGE':
+        this.form.validations = {
+          ...this.defaultValidations,
+          text: [isRequired],
+          translation: [isRequired],
+          answers: [
+            onlyOneCorrectAnswer,
+            minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),
+            minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
+          ],
+        };
+        break;
+      case 'SINGLE_CHOICE_AUDIO':
+        this.form.validations = {
+          ...this.defaultValidations,
+          text: [isRequired],
+          translation: [isRequired],
+          answers: [
+            onlyOneCorrectAnswer,
+            minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),
+            minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
+          ],
+        };
+        break;
       case 'DICTATION':
         this.form.validations = {
           ...this.defaultValidations,
