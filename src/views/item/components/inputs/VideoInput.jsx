@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import TextInput from '../../../../core/form/TextInput';
-import Row from "../../../../core/layout/Row";
-import Column from "../../../../core/layout/Column";
+import Row from '../../../../core/layout/Row';
+import Column from '../../../../core/layout/Column';
+import MaskInput from '../../../../core/form/MaskInput';
 
 const VideoInput = props => (
   <Row>
@@ -20,7 +21,7 @@ const VideoInput = props => (
     </Column>
     {props.requiredCut && (
       <Column lgSize={2}>
-        <TextInput
+        <MaskInput
           floatingLabel
           fullWidth
           label="Start time"
@@ -28,12 +29,15 @@ const VideoInput = props => (
           value={get(props.values, 'videoStartTime', '')}
           onChange={value => props.onChange('videoStartTime', value)}
           errorText={get(props.errors, 'videoStartTime', '')}
+          delimiters={[':']}
+          blocks={[2, 2]}
+          numericOnly
         />
       </Column>
     )}
     {props.requiredCut && (
       <Column lgSize={2}>
-        <TextInput
+        <MaskInput
           floatingLabel
           fullWidth
           label="End time"
@@ -41,6 +45,9 @@ const VideoInput = props => (
           value={get(props.values, 'videoEndTime', '')}
           onChange={value => props.onChange('videoEndTime', value)}
           errorText={get(props.errors, 'videoEndTime', '')}
+          delimiters={[':']}
+          blocks={[2, 2]}
+          numericOnly
         />
       </Column>
     )}

@@ -6,6 +6,7 @@ import Paper from '../../../core/layout/Paper';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
+import MaskInput from '../../../core/form/MaskInput';
 import Select from '../../../core/form/Select';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
 import Button from '../../../core/form/Button';
@@ -54,7 +55,7 @@ const SchoolForm = props => (
           </Column>
         </PermissionValidator>
         <Column lgSize={2}>
-          <TextInput
+          <MaskInput
             floatingLabel
             fullWidth
             disabled={props.submitting}
@@ -62,7 +63,8 @@ const SchoolForm = props => (
             value={get(props.values, 'foundationYear', '')}
             onChange={value => props.onChange('foundationYear', value)}
             errorText={get(props.errors, 'foundationYear', '')}
-            type="number"
+            blocks={[4]}
+            numericOnly
           />
         </Column>
       </Row>
@@ -114,7 +116,7 @@ const SchoolForm = props => (
           />
         </Column>
         <Column lgSize={3}>
-          <TextInput
+          <MaskInput
             floatingLabel
             fullWidth
             disabled={props.submitting}
@@ -122,6 +124,7 @@ const SchoolForm = props => (
             value={get(props.values, 'phone', '')}
             onChange={value => props.onChange('phone', value)}
             errorText={get(props.errors, 'phone', '')}
+            maskType="phone"
           />
         </Column>
       </Row>

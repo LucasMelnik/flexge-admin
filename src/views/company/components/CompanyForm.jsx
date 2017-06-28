@@ -5,6 +5,7 @@ import Paper from '../../../core/layout/Paper';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
+import MaskInput from '../../../core/form/MaskInput';
 import Select from '../../../core/form/Select';
 import DatePicker from '../../../core/form/DatePicker';
 import Button from '../../../core/form/Button';
@@ -29,7 +30,7 @@ const CompanyForm = props => (
       />
       <Row>
         <Column lgSize={4}>
-          <TextInput
+          <MaskInput
             floatingLabel
             fullWidth
             disabled={props.submitting}
@@ -37,6 +38,9 @@ const CompanyForm = props => (
             value={get(props.values, 'cnpj', '')}
             onChange={value => props.onChange('cnpj', value)}
             errorText={get(props.errors, 'cnpj', '')}
+            delimiters={['.', '.', '/', '-']}
+            blocks={[2, 3, 3, 4, 2]}
+            numericOnly
           />
         </Column>
         <Column lgSize={6}>
@@ -51,7 +55,7 @@ const CompanyForm = props => (
           />
         </Column>
         <Column lgSize={2}>
-          <TextInput
+          <MaskInput
             floatingLabel
             fullWidth
             disabled={props.submitting}
@@ -59,6 +63,8 @@ const CompanyForm = props => (
             value={get(props.values, 'foundationYear', '')}
             onChange={value => props.onChange('foundationYear', value)}
             errorText={get(props.errors, 'foundationYear', '')}
+            blocks={[4]}
+            numericOnly
           />
         </Column>
       </Row>
@@ -110,7 +116,7 @@ const CompanyForm = props => (
           />
         </Column>
         <Column lgSize={3}>
-          <TextInput
+          <MaskInput
             floatingLabel
             fullWidth
             disabled={props.submitting}
@@ -118,12 +124,13 @@ const CompanyForm = props => (
             value={get(props.values, 'phone', '')}
             onChange={value => props.onChange('phone', value)}
             errorText={get(props.errors, 'phone', '')}
+            maskType="phone"
           />
         </Column>
       </Row>
       <Row>
         <Column lgSize={3}>
-          <TextInput
+          <MaskInput
             floatingLabel
             fullWidth
             disabled={props.submitting}
@@ -131,10 +138,12 @@ const CompanyForm = props => (
             value={get(props.values, 'licenseQuantityPackage', '')}
             onChange={value => props.onChange('licenseQuantityPackage', value)}
             errorText={get(props.errors, 'licenseQuantityPackage', '')}
+            blocks={[99]}
+            numericOnly
           />
         </Column>
         <Column lgSize={3}>
-          <TextInput
+          <MaskInput
             floatingLabel
             fullWidth
             disabled={props.submitting}
@@ -142,10 +151,11 @@ const CompanyForm = props => (
             value={get(props.values, 'licensePricePackage', '')}
             onChange={value => props.onChange('licensePricePackage', value)}
             errorText={get(props.errors, 'licensePricePackage', '')}
+            maskType="numeral"
           />
         </Column>
         <Column lgSize={3}>
-          <TextInput
+          <MaskInput
             floatingLabel
             fullWidth
             disabled={props.submitting}
@@ -153,6 +163,7 @@ const CompanyForm = props => (
             value={get(props.values, 'licensePriceExtra', '')}
             onChange={value => props.onChange('licensePriceExtra', value)}
             errorText={get(props.errors, 'licensePriceExtra', '')}
+            maskType="numeral"
           />
         </Column>
         <Column lgSize={3}>

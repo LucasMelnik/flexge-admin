@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
-import { isRequired } from '../../../core/validations';
+import { isRequired, isCNPJ } from '../../../core/validations';
 
 class CompanyFormService {
   fetch = new FetchService()
@@ -16,7 +16,7 @@ class CompanyFormService {
     });
     this.form.validations = {
       name: [isRequired],
-      cnpj: [isRequired],
+      cnpj: [isRequired, isCNPJ],
     };
   }
 

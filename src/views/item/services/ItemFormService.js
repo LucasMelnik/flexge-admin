@@ -239,8 +239,6 @@ class ItemFormService {
   });
 
   handleSubmit = action(() => {
-    console.log(this.form.getValues())
-    console.log(this.form.errors)
     this.form.submitted = true;
     if (this.form.errors) {
       return;
