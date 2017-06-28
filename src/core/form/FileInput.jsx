@@ -5,8 +5,9 @@ import Flex from 'jsxstyle/Flex';
 import Block from 'jsxstyle/Block';
 import LinearProgress from 'material-ui/LinearProgress';
 import Button from './Button';
-import ErrorText from "../content/ErrorText";
-import AudioPreview from "../content/AudioPreview";
+import ErrorText from '../content/ErrorText';
+import AudioPreview from '../content/AudioPreview';
+import ImagePreview from '../content/ImagePreview';
 
 export default class FileInput extends Component {
 
@@ -43,7 +44,7 @@ export default class FileInput extends Component {
       data: fileData,
       onUploadProgress: (progressEvent) => {
         this.setState({
-          uploadPercentage: Math.round( (progressEvent.loaded * 100) / progressEvent.total ),
+          uploadPercentage: Math.round((progressEvent.loaded * 100) / progressEvent.total),
         });
       }
     }).then((response) => {
@@ -79,6 +80,9 @@ export default class FileInput extends Component {
           )}
           {(this.props.accept === 'audio' && showPreview) && (
             <AudioPreview src={`${process.env.REACT_APP_API_URL}/files/${this.props.value}`} />
+          )}
+          {(this.props.accept === 'image' && showPreview) && (
+            <ImagePreview src={`${process.env.REACT_APP_API_URL}/files/${this.props.value}`} />
           )}
         </Flex>
         {this.props.errorText && (
