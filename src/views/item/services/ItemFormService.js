@@ -37,9 +37,9 @@ class ItemFormService {
       case 'VIDEO':
         this.form.validations = {
           ...this.defaultValidations,
-          link: [isRequired],
-          startTime: [isRequired],
-          endTime: [isRequired],
+          videoLink: [isRequired],
+          videoStartTime: [isRequired],
+          videoEndTime: [isRequired],
         };
         break;
       case 'VIDEO_SHORT':
@@ -47,9 +47,9 @@ class ItemFormService {
           ...this.defaultValidations,
           text: [isRequired],
           translation: [isRequired],
-          link: [isRequired],
-          startTime: [isRequired],
-          endTime: [isRequired],
+          videoLink: [isRequired],
+          videoStartTime: [isRequired],
+          videoEndTime: [isRequired],
         };
         break;
       case 'VIDEO_TEXT_AREA':
@@ -57,9 +57,9 @@ class ItemFormService {
           ...this.defaultValidations,
           text: [isRequired],
           translation: [isRequired],
-          link: [isRequired],
-          startTime: [isRequired],
-          endTime: [isRequired],
+          videoLink: [isRequired],
+          videoStartTime: [isRequired],
+          videoEndTime: [isRequired],
           indexesToRemove: [isRequired, minLength(10)],
         };
         break;
@@ -213,6 +213,8 @@ class ItemFormService {
   });
 
   handleSubmit = action(() => {
+    console.log(this.form.getValues())
+    console.log(this.form.errors)
     this.form.submitted = true;
     if (this.form.errors) {
       return;

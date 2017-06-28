@@ -88,7 +88,7 @@ UnitItemList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     item: PropTypes.shape({
-      text: PropTypes.string.isRequired,
+      text: PropTypes.string,
       translation: PropTypes.string,
       grammar: PropTypes.shape({
         name: PropTypes.string.isRequired,

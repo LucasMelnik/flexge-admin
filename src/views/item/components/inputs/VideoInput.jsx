@@ -13,9 +13,9 @@ const VideoInput = props => (
         fullWidth
         label="Youtube link"
         disabled={props.submitting || props.disabled}
-        value={get(props.values, 'link', '')}
-        onChange={value => props.onChange('link', value)}
-        errorText={get(props.errors, 'link', '')}
+        value={get(props.values, 'videoLink', '')}
+        onChange={value => props.onChange('videoLink', value)}
+        errorText={get(props.errors, 'videoLink', '')}
       />
     </Column>
     {props.requiredCut && (
@@ -25,9 +25,9 @@ const VideoInput = props => (
           fullWidth
           label="Start time"
           disabled={props.submitting || props.disabled}
-          value={get(props.values, 'startTime', '')}
-          onChange={value => props.onChange('startTime', value)}
-          errorText={get(props.errors, 'startTime', '')}
+          value={get(props.values, 'videoStartTime', '')}
+          onChange={value => props.onChange('videoStartTime', value)}
+          errorText={get(props.errors, 'videoStartTime', '')}
         />
       </Column>
     )}
@@ -38,9 +38,9 @@ const VideoInput = props => (
           fullWidth
           label="End time"
           disabled={props.submitting || props.disabled}
-          value={get(props.values, 'endTime', '')}
-          onChange={value => props.onChange('endTime', value)}
-          errorText={get(props.errors, 'endTime', '')}
+          value={get(props.values, 'videoEndTime', '')}
+          onChange={value => props.onChange('videoEndTime', value)}
+          errorText={get(props.errors, 'videoEndTime', '')}
         />
       </Column>
     )}
