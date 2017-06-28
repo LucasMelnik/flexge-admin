@@ -96,7 +96,7 @@ const ItemForm = props => (
             disabled={props.disabled}
           />
         )}
-        {['SINGLE_CHOICE_TEXT', 'SINGLE_CHOICE_AUDIO', 'SINGLE_CHOICE_VIDEO'].find(type => type === get(props.values, 'type.key')) && (
+        {['SINGLE_CHOICE_TEXT', 'SINGLE_CHOICE_AUDIO', 'SINGLE_CHOICE_IMAGE'].find(type => type === get(props.values, 'type.key')) && (
           <SingleChoiceItemForm
             onChange={props.onChange}
             errors={props.errors}
