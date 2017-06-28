@@ -10,6 +10,7 @@ const TextItemForm = props => (
     <Row>
       <Column lgSize={12}>
         <TextInput
+          rows={10}
           multiLine
           floatingLabel
           fullWidth
