@@ -61,6 +61,7 @@ export default class Header extends Component {
                 onClick={() => {
                   localStorage.clear();
                   browserHistory.push('/');
+                  window.location.reload();
                 }}
               />
             </IconMenu>
