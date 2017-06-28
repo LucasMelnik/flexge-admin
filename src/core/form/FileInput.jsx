@@ -122,13 +122,13 @@ export default class FileInput extends Component {
             />
           )}
           {(this.props.accept === 'audio' && hasValue) && (
-            <AudioPreview src={`${process.env.REACT_APP_API_URL}/files/${this.props.value}`} />
+            <AudioPreview src={this.props.value} />
           )}
           {(this.props.accept === 'image' && hasValue) && (
-            <ImagePreview src={`${process.env.REACT_APP_API_URL}/files/${this.props.value}`} />
+            <ImagePreview src={this.props.value} />
           )}
           {(this.props.accept === 'video' && hasValue) && (
-            <VideoPreview src={`${process.env.REACT_APP_API_URL}/files/${this.props.value}`} />
+            <VideoPreview src={this.props.value} />
           )}
         </Flex>
         {this.props.errorText && (

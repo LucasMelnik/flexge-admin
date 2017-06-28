@@ -45,7 +45,7 @@ export default class AudioPreview extends Component {
           {`${this.state.playing ? 'pause' : 'play'}_circle_outline`}
         </IconButton>
         <audio
-          src={this.props.src}
+          src={`${process.env.REACT_APP_API_URL}/files/${this.props.src}`}
           muted={false}
           controls={false}
           ref={input => { this.audio = input; }}

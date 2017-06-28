@@ -56,7 +56,7 @@ export default class ImagePreview extends Component {
             </Flex>
           )}
           <img
-            src={this.props.src}
+            src={`${process.env.REACT_APP_API_URL}/files/${this.props.src}`}
             onLoad={this.handleLoad}
             width="100%"
             alt=""

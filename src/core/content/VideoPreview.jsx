@@ -57,7 +57,7 @@ export default class VideoPreview extends Component {
             </Flex>
           )}
           <video
-            src={this.props.src}
+            src={`${process.env.REACT_APP_API_URL}/files/${this.props.src}`}
             muted={false}
             controls
             preload="none"

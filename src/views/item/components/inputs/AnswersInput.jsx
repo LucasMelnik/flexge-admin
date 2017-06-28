@@ -10,8 +10,10 @@ import TextInput from '../../../../core/form/TextInput';
 import Button from '../../../../core/form/Button';
 import Select from '../../../../core/form/Select';
 import Table from '../../../../core/content/Table';
-import ErrorText from "../../../../core/content/ErrorText";
-import FileInput from "../../../../core/form/FileInput";
+import ErrorText from '../../../../core/content/ErrorText';
+import FileInput from '../../../../core/form/FileInput';
+import AudioPreview from '../../../../core/content/AudioPreview';
+import ImagePreview from '../../../../core/content/ImagePreview';
 
 const AnswersInput = props => (
   <div>
@@ -89,13 +91,23 @@ const AnswersInput = props => (
             },
             {
               label: 'Audio',
-              path: 'audio',
-              labelWhenNull: 'No Audio uploaded',
+              render: row => {
+                if (row.audio) {
+                  return (<AudioPreview src={row.audio} />);
+                } else {
+                  return 'No Audio uploaded';
+                }
+              },
             },
             {
               label: 'Image',
-              path: 'image',
-              labelWhenNull: 'No Image uploaded',
+              render: row => {
+                if (row.image) {
+                  return (<ImagePreview src={row.image} />);
+                } else {
+                  return 'No Image uploaded';
+                }
+              },
             },
           ]}
           rows={props.answers}
