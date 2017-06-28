@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Flex from 'jsxstyle/Flex';
+import Block from 'jsxstyle/Block';
 import LinearProgress from 'material-ui/LinearProgress';
 import Button from './Button';
 import ErrorText from "../content/ErrorText";
@@ -54,11 +55,15 @@ export default class FileInput extends Component {
   };
 
   render() {
+    const showPreview = (this.props.value && this.state.uploadPercentage === 0);
     return (
-      <div>
+      <Block
+        width={this.props.fullWidth ? '100%' : showPreview ? '215px' : '165px'}
+        height="35px"
+      >
         <Flex
-          width={this.props.fullWidth ? '100%' : '215px'}
           alignItems="center"
+          height="100%"
         >
           {this.state.uploadPercentage === 0 && (
             <Button
@@ -72,7 +77,7 @@ export default class FileInput extends Component {
               value={this.state.uploadPercentage}
             />
           )}
-          {(this.props.accept === 'audio' && this.props.value && this.state.uploadPercentage === 0) && (
+          {(this.props.accept === 'audio' && showPreview) && (
             <AudioPreview src={`${process.env.REACT_APP_API_URL}/files/${this.props.value}`} />
           )}
         </Flex>
@@ -92,7 +97,7 @@ export default class FileInput extends Component {
           ref={input => { this.fileInput = input; }}
           accept={`${this.props.accept}/*`}
         />
-      </div>
+      </Block>
     );
   }
 }

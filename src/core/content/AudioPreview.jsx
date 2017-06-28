@@ -36,6 +36,11 @@ export default class AudioPreview extends Component {
           iconClassName="material-icons"
           tooltip="Play/Pause"
           onClick={this.togglePlay}
+          style={{
+            width: 36,
+            height: 36,
+            padding: 0,
+          }}
         >
           {`${this.state.playing ? 'pause' : 'play'}_circle_outline`}
         </IconButton>
