@@ -5,7 +5,6 @@ import Paper from '../../../core/layout/Paper';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import SchoolManagerListContainer from './SchoolManagerListContainer';
 import SchoolManagerFormContainer from './SchoolManagerFormContainer';
-import SchoolManagerListPaginationContainer from './SchoolManagerListPaginationContainer';
 
 const SchoolManagerScene = props => (
   <Paper>
@@ -28,17 +27,7 @@ const SchoolManagerScene = props => (
       }}
     />
     {props.actualScene === 'LIST' && (
-      <div>
-        <SchoolManagerListContainer
-          onRowClick={props.changeToEdit}
-        />
-        <InlineBlock
-          width="100%"
-          textAlign="center"
-        >
-          <SchoolManagerListPaginationContainer />
-        </InlineBlock>
-      </div>
+      <SchoolManagerListContainer onRowClick={props.changeToEdit} />
     )}
     {props.actualScene === 'FORM' && (
       <SchoolManagerFormContainer />

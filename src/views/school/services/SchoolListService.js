@@ -8,16 +8,11 @@ class SchoolListService {
   constructor() {
     extendObservable(this, {
       schools: [],
-      total: 0,
-      page: 1,
-      rowsByPage: 10,
-      pageCount: 1,
       filter: '',
     });
   }
 
   init = action(() => {
-    this.page = 1;
     this.filter = '';
     this.load();
   });
@@ -26,8 +21,6 @@ class SchoolListService {
     this.fetch.fetch({
       url: '/schools',
       query: {
-        page: this.page,
-        size: this.rowsByPage,
         query: this.filter && {
           name: {
             $regex: this.filter,
@@ -37,20 +30,12 @@ class SchoolListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.schools = this.fetch.data.docs;
-        this.total = this.fetch.data.total;
-        this.limit = this.fetch.data.limit;
-        this.pageCount = this.fetch.data.pages;
+        this.schools = this.fetch.data;
       } else {
         this.schools = [];
         this.total = 0;
       }
     });
-  });
-
-  handlePageChange = action((page) => {
-    this.page = page.selected + 1;
-    this.load();
   });
 
   handleFilterChange = action((value) => {

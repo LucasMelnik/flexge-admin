@@ -7,7 +7,6 @@ import Divider from '../../../core/layout/Divider';
 import Async from '../../../core/content/Async';
 import Table from '../../../core/content/Table';
 import ModuleListFilterContainer from './ModuleListFilterContainer';
-import ModuleListPaginationContainer from './ModuleListPaginationContainer';
 
 const ModuleList = props => (
   <Paper
@@ -51,7 +50,6 @@ const ModuleList = props => (
           onEdit={row => browserHistory.push(`/modules/${row.id}`)}
           onDelete={row => props.onDelete(row)}
         />
-        <ModuleListPaginationContainer />
       </div>
     </Async>
   </Paper>

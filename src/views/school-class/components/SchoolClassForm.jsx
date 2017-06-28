@@ -38,8 +38,8 @@ const SchoolClassForm = props => (
           fullWidth
           disabled={props.submitting}
           label="Teacher"
-          value={get(props.values, 'teacher', '')}
-          onSelect={teacher => props.onChange('teacher', teacher.id)}
+          value={get(props.values, 'teacher.name', '')}
+          onSelect={teacher => props.onChange('teacher', teacher)}
           errorText={get(props.errors, 'teacher', '')}
           resultTransformer={{
             text: 'name',

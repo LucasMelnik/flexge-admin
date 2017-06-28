@@ -6,7 +6,6 @@ import Separator from '../../../core/layout/Separator';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import StudentListFilterContainer from './StudentListFilterContainer';
 import StudentListContainer from './StudentListContainer';
-import StudentListPaginationContainer from './StudentListPaginationContainer';
 
 const StudentListScene = () => (
   <div>
@@ -29,8 +28,6 @@ const StudentListScene = () => (
     <StudentListFilterContainer />
     <Separator size="sm" />
     <StudentListContainer />
-    <Separator size="sm" />
-    <StudentListPaginationContainer />
     <Separator size="sm" />
   </div>
 );

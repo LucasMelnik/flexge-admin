@@ -44,7 +44,10 @@ class SchoolClassFormService {
     this.submit.fetch({
       method: classId ? 'put' : 'post',
       url: classId ? `/schools/${this.schoolId}/classes/${classId}` : `/schools/${this.schoolId}/classes`,
-      body: this.form.getValues(),
+      body: {
+        ...this.form.getValues(),
+        teacher: this.form.getValue('teacher').id,
+      }
     }).then(() => {
       if (this.submit.data) {
         const school = this.submit.data;

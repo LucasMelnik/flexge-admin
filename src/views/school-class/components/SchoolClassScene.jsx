@@ -4,7 +4,6 @@ import InlineBlock from 'jsxstyle/InlineBlock';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import Paper from '../../../core/layout/Paper';
 import SchoolClassListContainer from './SchoolClassListContainer';
-import SchoolClassListPaginationContainer from './SchoolClassListPaginationContainer';
 import SchoolClassFormContainer from './SchoolClassFormContainer';
 
 const SchoolClassScene = props => (
@@ -28,15 +27,7 @@ const SchoolClassScene = props => (
       }}
     />
     {props.actualScene === 'LIST' && (
-      <div>
-        <SchoolClassListContainer onSelect={props.changeToEdit} />
-        <InlineBlock
-          width="100%"
-          textAlign="center"
-        >
-          <SchoolClassListPaginationContainer />
-        </InlineBlock>
-      </div>
+      <SchoolClassListContainer onSelect={props.changeToEdit} />
     )}
     {props.actualScene === 'FORM' && (
       <SchoolClassFormContainer />

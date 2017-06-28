@@ -5,7 +5,6 @@ import Title from '../../../core/content/Title';
 import Separator from '../../../core/layout/Separator';
 import TeacherListFilterContainer from './TeacherListFilterContainer';
 import TeacherListContainer from './TeacherListContainer';
-import TeacherListPaginationContainer from './TeacherListPaginationContainer';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 
 const TeacherListScene = () => (
@@ -29,8 +28,6 @@ const TeacherListScene = () => (
     <TeacherListFilterContainer />
     <Separator size="sm" />
     <TeacherListContainer />
-    <Separator size="sm" />
-    <TeacherListPaginationContainer />
     <Separator size="sm" />
   </div>
 );

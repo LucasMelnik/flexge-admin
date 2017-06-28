@@ -7,7 +7,6 @@ import Separator from '../../../../core/layout/Separator';
 import Async from '../../../../core/content/Async';
 import Table from '../../../../core/content/Table';
 import UnitListFilterContainer from './UnitListFilterContainer';
-import UnitListPaginationContainer from './UnitListPaginationContainer';
 
 const UnitList = props => (
   <Paper>
@@ -36,7 +35,7 @@ const UnitList = props => (
             },
             {
               label: 'Abilities',
-              path: 'abilities',
+              path: 'type.abilities',
             },
             {
               label: 'Unit Type',
@@ -49,12 +48,11 @@ const UnitList = props => (
           ]}
           rows={props.units}
           selectable
-          onSelect={row => browserHistory.push(`/modules/${row.module.id}/units/${row.id}/items`)}
-          onEdit={row => browserHistory.push(`/modules/${row.module.id}/units/${row.id}`)}
+          onSelect={row => browserHistory.push(`/modules/${row.module}/units/${row.id}/items`)}
+          onEdit={row => browserHistory.push(`/modules/${row.module}/units/${row.id}`)}
           onDelete={row => props.onDelete(row)}
         />
         <Separator />
-        <UnitListPaginationContainer />
       </div>
     </Async>
   </Paper>
