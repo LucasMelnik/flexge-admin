@@ -23,12 +23,22 @@ class UnitItemListScene extends Component {
         id: PropTypes.string,
       }),
     }),
+    module: PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      course: PropTypes.shape({
+        name: PropTypes.string,
+      }),
+    }),
     fetching: PropTypes.bool,
   };
 
   static defaultProps = {
     unit: {
       module: {},
+    },
+    module: {
+      course: {},
     },
     fetching: false,
   };
@@ -37,7 +47,12 @@ class UnitItemListScene extends Component {
     return (
       <div>
         <InlineBlock>
-          <Stepper activeStep={3} connector={<ArrowForwardIcon />}>
+          <Stepper activeStep={4} connector={<ArrowForwardIcon />}>
+            <Step>
+              <StepLabel>
+                {`Course - ${this.props.module.course.name}`}
+              </StepLabel>
+            </Step>
             <Step
               style={{ cursor: 'pointer' }}
               onClick={() => browserHistory.push('/modules')}

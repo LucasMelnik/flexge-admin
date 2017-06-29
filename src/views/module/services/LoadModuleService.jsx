@@ -6,12 +6,14 @@ class LoadModuleService {
 
   constructor() {
     extendObservable(this, {
-      module: {},
+      module: {
+        course: {},
+      },
     });
   }
 
   handleLoad = action((moduleId) => {
-    this.module = {};
+    this.module = { course: {} };
     this.fetch.fetch({
       url: `/modules/${moduleId}`,
     }).then(action(() => {
