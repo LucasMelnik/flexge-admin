@@ -39,7 +39,7 @@ const UnitForm = props => (
             label="Module"
             value={get(props.values, 'module.name', '')}
             onSelect={module => props.onChange('module', module)}
-            error={get(props.errors, 'module', '')}
+            errorText={get(props.errors, 'module', '')}
             resultTransformer={{
               text: 'name',
               value: 'id',
@@ -75,7 +75,7 @@ const UnitForm = props => (
             label="Group"
             value={get(props.values, 'group', '')}
             onChange={value => props.onChange('group', value)}
-            error={get(props.errors, 'group', '')}
+            errorText={get(props.errors, 'group', '')}
           />
         </Column>
         <Column lgSize={2}>
@@ -105,7 +105,7 @@ const UnitForm = props => (
             label="Score to pass"
             value={get(props.values, 'scoreToPass', '')}
             onChange={value => props.onChange('scoreToPass', value)}
-            error={get(props.errors, 'scoreToPass', '')}
+            errorText={get(props.errors, 'scoreToPass', '')}
           />
         </Column>
         <Column lgSize={3}>
@@ -120,7 +120,7 @@ const UnitForm = props => (
             label="Time (minutes)"
             value={get(props.values, 'time', '')}
             onChange={value => props.onChange('time', value)}
-            error={get(props.errors, 'time', '')}
+            errorText={get(props.errors, 'time', '')}
           />
         </Column>
         <Column lgSize={3}>
@@ -136,7 +136,7 @@ const UnitForm = props => (
             label="Difficulty"
             value={get(props.values, 'difficulty', '')}
             onChange={value => props.onChange('difficulty', value)}
-            error={get(props.errors, 'difficulty', '')}
+            errorText={get(props.errors, 'difficulty', '')}
           />
         </Column>
       </Row>
