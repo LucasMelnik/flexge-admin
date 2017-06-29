@@ -20,7 +20,7 @@ export default class Table extends Component {
     selectable: PropTypes.bool,
     columns: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string.isRequired,
-      path: PropTypes.string.isRequired,
+      path: PropTypes.string,
       labelWhenNull: PropTypes.string,
       width: PropTypes.number,
       render: PropTypes.func,
@@ -145,7 +145,7 @@ export default class Table extends Component {
                 }
                 return (
                   <TableRowColumn
-                    key={column.path}
+                    key={`row-${index}-${column.path}`}
                     onMouseDown={() => this.props.onSelect && this.props.onSelect(row, index)}
                     style={{
                       width: column.width || 'auto',
