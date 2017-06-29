@@ -18,6 +18,8 @@ class ModuleFormService {
       name: [isRequired],
       course: [isRequired],
       academicPlan: [isRequired],
+      group: [isRequired],
+      order: [isRequired],
     };
   }
 

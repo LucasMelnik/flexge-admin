@@ -88,7 +88,7 @@ const ModuleForm = props => (
             label="Group"
             value={get(props.values, 'group', '')}
             onChange={value => props.onChange('group', value)}
-            error={get(props.errors, 'group', '')}
+            errorText={get(props.errors, 'group', '')}
           />
         </Column>
         <Column lgSize={3}>
@@ -103,7 +103,7 @@ const ModuleForm = props => (
             label="Order"
             value={get(props.values, 'order', '')}
             onChange={value => props.onChange('order', value)}
-            error={get(props.errors, 'order', '')}
+            errorText={get(props.errors, 'order', '')}
           />
         </Column>
       </Row>
