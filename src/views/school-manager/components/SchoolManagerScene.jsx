@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InlineBlock from 'jsxstyle/InlineBlock';
 import Paper from '../../../core/layout/Paper';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import SchoolManagerListContainer from './SchoolManagerListContainer';
