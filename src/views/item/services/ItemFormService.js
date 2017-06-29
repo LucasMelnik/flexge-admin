@@ -145,8 +145,8 @@ class ItemFormService {
           ...this.defaultValidations,
           text: [isRequired],
           translation: [isRequired],
-          audio: [isRequired],
-          image: [isRequired],
+          // audio: [isRequired],
+          // image: [isRequired],
         };
         break;
       case 'PRONUNCIATION':

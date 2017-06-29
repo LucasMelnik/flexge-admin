@@ -32,6 +32,7 @@ const PresentationItemForm = props => (
     <Row>
       <Column lgSize={6}>
         <FileInput
+          label="Upload an audio to the item"
           accept="audio"
           value={get(props.values, 'audio', '')}
           onChange={(key) => props.onChange('audio', key)}
@@ -40,6 +41,7 @@ const PresentationItemForm = props => (
       </Column>
       <Column lgSize={6}>
         <FileInput
+          label="Upload an image to the item"
           accept="image"
           value={get(props.values, 'image', '')}
           onChange={(key) => props.onChange('image', key)}
