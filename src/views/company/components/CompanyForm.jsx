@@ -129,7 +129,7 @@ const CompanyForm = props => (
         </Column>
       </Row>
       <Row>
-        <Column lgSize={3}>
+        <Column lgSize={2}>
           <MaskInput
             floatingLabel
             fullWidth
@@ -166,14 +166,24 @@ const CompanyForm = props => (
             maskType="numeral"
           />
         </Column>
-        <Column lgSize={3}>
+        <Column lgSize={2}>
           <DatePicker
             fullWidth
             disabled={props.submitting}
             label="Contract Starts in"
-            value={get(props.values, 'contractFrom', null)}
-            onChange={value => props.onChange('contractFrom', value)}
-            errorText={get(props.errors, 'contractFrom', '')}
+            value={get(props.values, 'contractStart', null)}
+            onChange={value => props.onChange('contractStart', value)}
+            errorText={get(props.errors, 'contractStart', '')}
+          />
+        </Column>
+        <Column lgSize={2}>
+          <DatePicker
+            fullWidth
+            disabled={props.submitting}
+            label="Contract Ends in"
+            value={get(props.values, 'contractEnd', null)}
+            onChange={value => props.onChange('contractEnd', value)}
+            errorText={get(props.errors, 'contractEnd', '')}
           />
         </Column>
       </Row>

@@ -6,9 +6,9 @@ import NotificationService from '../../../core/services/NotificationService';
 import { isRequired, isCNPJ } from '../../../core/validations';
 
 class CompanyFormService {
-  fetch = new FetchService()
-  submit = new FetchService()
-  form = new FormService()
+  fetch = new FetchService();
+  submit = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -28,8 +28,11 @@ class CompanyFormService {
       }).then(() => {
         if (this.fetch.data) {
           const initialValues = this.fetch.data;
-          if (initialValues.contractFrom) {
-            initialValues.contractFrom = new Date(initialValues.contractFrom);
+          if (initialValues.contractStart) {
+            initialValues.contractStart = new Date(initialValues.contractStart);
+          }
+          if (initialValues.contractEnd) {
+            initialValues.contractEnd = new Date(initialValues.contractEnd);
           }
           this.form.setInitialValues(initialValues);
         }
@@ -56,6 +59,12 @@ class CompanyFormService {
         browserHistory.push(`/companies/${company.id}`);
         this.companyId = company.id;
         this.form.reset();
+        if (company.contractStart) {
+          company.contractStart = new Date(company.contractStart);
+        }
+        if (company.contractEnd) {
+          company.contractEnd = new Date(company.contractEnd);
+        }
         this.form.setInitialValues(company);
         NotificationService.addNotification(
           `Company ${companyId ? 'updated' : 'created'} successfully.`,
