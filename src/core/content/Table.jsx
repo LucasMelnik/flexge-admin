@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import orderBy from 'lodash/orderBy'
 import isBoolean from 'lodash/isBoolean';
 import {
   Table as MaterialTable,
@@ -50,23 +51,32 @@ export default class Table extends Component {
     isReadOnly: false,
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentSortColumn: '',
-      currentSortDirection: '',
-    };
+  state = { data: [], highlightColumn: '', sortColumn: '', direction: 'desc' }
+
+  componentWillMount() {
+    this.setState({
+      data: this.props.rows,
+    });
   }
 
-  handleSortColumn = (path) => {
-    if (this.state.currentSortColumn === path) {
-      this.setState({ currentSortDirection: this.state.currentSortDirection === 'asc' ? 'desc' : 'asc' });
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      data: nextProps.rows,
+    });
+  }
+
+  handleSort = (path) => {
+    let direction = null;
+    if (this.state.sortColumn === path) {
+      direction = this.state.direction === 'asc' ? 'desc' : 'asc';
     } else {
-      this.setState({
-        currentSortColumn: path,
-        currentSortDirection: 'desc',
-      });
+      direction = 'desc';
     }
+    this.setState({
+      direction,
+      sortColumn: path,
+      data: orderBy(this.state.data, row => get(row, path) || '', direction),
+    });
   }
 
   render() {
@@ -84,15 +94,20 @@ export default class Table extends Component {
             {this.props.columns.map(column => (
               <TableHeaderColumn
                 key={column.label}
-                className={`
-                  ${column.path === this.state.currentSortColumn && this.state.currentSortDirection === 'asc' && 'asc'}
-                  ${column.path === this.state.currentSortColumn && this.state.currentSortDirection === 'desc' && 'desc'}
-                `}
+                onTouchTap={() => this.handleSort(column.path)}
                 style={{
                   width: column.width || 'auto',
                 }}
               >
                 {column.label}
+                <i className="material-icons" style={{ verticalAlign: 'middle' }}>
+                  {this.state.sortColumn === column.path && this.state.direction === 'desc' && (
+                    'keyboard_arrow_down'
+                  )}
+                  {this.state.sortColumn === column.path && this.state.direction === 'asc' && (
+                    'keyboard_arrow_up'
+                  )}
+                </i>
               </TableHeaderColumn>
             ))}
             <TableHeaderColumn
@@ -106,7 +121,7 @@ export default class Table extends Component {
           displayRowCheckbox={false}
           showRowHover
         >
-          {this.props.rows && this.props.rows.length > 0 ? this.props.rows.map((row, index) => (
+          {this.state.data && this.state.data.length > 0 ? this.state.data.map((row, index) => (
             <TableRow
               key={row.id || index}
             >

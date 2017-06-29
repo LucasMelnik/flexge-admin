@@ -1,4 +1,4 @@
-import { action, extendObservable } from 'mobx';
+import { action, extendObservable, toJS } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
@@ -10,10 +10,6 @@ class UnitListService {
   constructor() {
     extendObservable(this, {
       units: [],
-      total: 0,
-      page: 1,
-      rowsByPage: 10,
-      pageCount: 1,
       filter: '',
       moduleId: null,
     });
@@ -21,7 +17,6 @@ class UnitListService {
 
   init = action((moduleId) => {
     this.moduleId = moduleId;
-    this.page = 1;
     this.filter = '';
     this.load();
   });
@@ -30,8 +25,6 @@ class UnitListService {
     this.fetch.fetch({
       url: `/modules/${this.moduleId}/units`,
       query: {
-        page: this.page,
-        size: this.rowsByPage,
         query: {
           name: {
             $regex: this.form.getValue('filter'),
@@ -41,20 +34,12 @@ class UnitListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.units = this.fetch.data.docs;
-        this.total = this.fetch.data.total;
-        this.limit = this.fetch.data.limit;
-        this.pageCount = this.fetch.data.pages;
+        console.log(toJS(this.fetch.data))
+        this.units = this.fetch.data;
       } else {
         this.units = [];
-        this.total = 0;
       }
     });
-  });
-
-  handlePageChange = action((page) => {
-    this.page = page.selected + 1;
-    this.load();
   });
 
   handleRemove = action((unit) => {

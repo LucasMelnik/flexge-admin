@@ -6,7 +6,6 @@ import SubTitle from '../../../core/content/SubTitle';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import DistributorManagerListContainer from './DistributorManagerListContainer';
 import DistributorManagerFormContainer from './DistributorManagerFormContainer';
-import DistributorManagerListPaginationContainer from './DistributorManagerListPaginationContainer';
 
 const DistributorManagerScene = props => (
   <div>
@@ -33,17 +32,9 @@ const DistributorManagerScene = props => (
     />
     <Paper>
       {props.actualScene === 'LIST' && (
-        <div>
-          <DistributorManagerListContainer
-            onRowClick={props.changeToEdit}
-          />
-          <InlineBlock
-            width="100%"
-            textAlign="center"
-          >
-            <DistributorManagerListPaginationContainer />
-          </InlineBlock>
-        </div>
+        <DistributorManagerListContainer
+          onRowClick={props.changeToEdit}
+        />
       )}
       {props.actualScene === 'FORM' && (
         <DistributorManagerFormContainer distributorId={props.distributorId} />

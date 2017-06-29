@@ -9,10 +9,6 @@ class UnitItemListService {
   constructor() {
     extendObservable(this, {
       items: [],
-      total: 0,
-      page: 1,
-      rowsByPage: 30,
-      pageCount: 1,
       unitId: null,
     });
   }
@@ -31,10 +27,7 @@ class UnitItemListService {
       }
     }).then(() => {
       if (this.fetch.data) {
-        this.items = this.fetch.data.docs;
-        this.total = this.fetch.data.total;
-        this.limit = this.fetch.data.limit;
-        this.pageCount = this.fetch.data.pages;
+        this.items = this.fetch.data;
       } else {
         this.items = [];
         this.total = 0;

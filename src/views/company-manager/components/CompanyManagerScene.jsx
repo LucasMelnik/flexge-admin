@@ -6,7 +6,6 @@ import SubTitle from '../../../core/content/SubTitle';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import CompanyManagerListContainer from './CompanyManagerListContainer';
 import CompanyManagerFormContainer from './CompanyManagerFormContainer';
-import CompanyManagerListPaginationContainer from './CompanyManagerListPaginationContainer';
 
 const CompanyManagerScene = props => (
   <div>
@@ -41,17 +40,9 @@ const CompanyManagerScene = props => (
     )}
     <Paper>
       {props.actualScene === 'LIST' && (
-        <div>
-          <CompanyManagerListContainer
-            onRowClick={props.onRowClick}
-          />
-          <InlineBlock
-            width="100%"
-            textAlign="center"
-          >
-            <CompanyManagerListPaginationContainer />
-          </InlineBlock>
-        </div>
+        <CompanyManagerListContainer
+          onRowClick={props.onRowClick}
+        />
       )}
       {props.actualScene === 'FORM' && (
         <CompanyManagerFormContainer />

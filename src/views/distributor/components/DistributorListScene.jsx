@@ -6,7 +6,6 @@ import Separator from '../../../core/layout/Separator';
 import FloatActionButton from '../../../core/form/FloatActionButton';
 import DistributorListFilterContainer from './DistributorListFilterContainer';
 import DistributorListContainer from './DistributorListContainer';
-import DistributorListPaginationContainer from './DistributorListPaginationContainer';
 
 const DistributorListScene = () => (
   <div>
@@ -29,8 +28,6 @@ const DistributorListScene = () => (
     <DistributorListFilterContainer />
     <Separator size="sm" />
     <DistributorListContainer />
-    <Separator size="sm" />
-    <DistributorListPaginationContainer />
     <Separator size="sm" />
   </div>
 );
