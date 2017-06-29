@@ -12,9 +12,9 @@ const ModuleList = props => (
   <Paper
     flexible
   >
+    <ModuleListFilterContainer />
     <Async fetching={props.fetching}>
       <div>
-        <ModuleListFilterContainer />
         <Separator />
         <Divider />
         <Table

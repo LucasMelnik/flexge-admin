@@ -34,7 +34,6 @@ class UnitListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        console.log(toJS(this.fetch.data))
         this.units = this.fetch.data;
       } else {
         this.units = [];

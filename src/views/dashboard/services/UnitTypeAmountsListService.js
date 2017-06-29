@@ -14,16 +14,14 @@ class UnitTypeAmountsListService {
     if (!course) return;
 
     this.fetch.fetch({
-      url: '/unit-types?size=30',
+      url: '/unit-types',
     }).then(() => {
       if (this.fetch.data) {
-        this.unitTypesAmounts = toJS(this.fetch.data.docs).map(unitType => {
-          return {
-            id: unitType.id,
-            name: unitType.name,
-            amountDone: 0,
-          }
-        });
+        this.unitTypesAmounts = toJS(this.fetch.data).map(unitType => ({
+          id: unitType.id,
+          name: unitType.name,
+          amountDone: 0,
+        }));
 
         this.fetch = new FetchService();
         this.fetch.fetch({

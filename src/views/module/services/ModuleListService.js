@@ -39,7 +39,6 @@ class ModuleListService {
         this.modules = this.fetch.data;
       } else {
         this.modules = [];
-        this.total = 0;
       }
     });
   });

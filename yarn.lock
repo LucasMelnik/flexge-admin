@@ -1287,7 +1287,7 @@ clean-css@4.1.x:
   dependencies:
     source-map "0.5.x"
 
-cleave.js@^0.7.21:
+cleave.js@0.7.21:
   version "0.7.21"
   resolved "https://registry.yarnpkg.com/cleave.js/-/cleave.js-0.7.21.tgz#05c21866e42ab3e80d167cb54835036839ffbaa3"
 

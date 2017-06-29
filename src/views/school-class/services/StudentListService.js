@@ -14,15 +14,13 @@ class StudentListService {
     this.fetch.fetch({
       url: '/students',
       query: {
-        page: 1,
-        size: 100,
         // query: {
         //   company: companyId,
         // },
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.students = this.fetch.data.docs;
+        this.students = this.fetch.data;
       } else {
         this.students = [];
       }
