@@ -49,7 +49,6 @@ const ModuleList = props => (
             {
               label: 'Created By',
               path: 'createdBy.name',
-              labelWhenNull: 'createdBy.email'
             },
           ]}
           rows={props.modules}
