@@ -19,7 +19,7 @@ const StudentForm = props => (
       }}
     >
       <Row>
-        <Column lgSize={6}>
+        <Column lgSize={3}>
           <TextInput
             floatingLabel
             fullWidth
@@ -30,7 +30,7 @@ const StudentForm = props => (
             errorText={get(props.errors, 'name', '')}
           />
         </Column>
-        <Column lgSize={6}>
+        <Column lgSize={3}>
           <TextInput
             floatingLabel
             fullWidth
@@ -41,15 +41,25 @@ const StudentForm = props => (
             errorText={get(props.errors, 'email', '')}
           />
         </Column>
-      </Row>
-      <Row>
+        <Column lgSize={3}>
+          <TextInput
+            floatingLabel
+            fullWidth
+            type="password"
+            disabled={props.submitting}
+            label="Password"
+            value={get(props.values, 'password', '')}
+            onChange={value => props.onChange('password', value)}
+            errorText={get(props.errors, 'password', '')}
+          />
+        </Column>
         <PermissionValidator
           allowedFor={[
             'ADMIN',
             'DISTRIBUTOR_MANAGER'
           ]}
         >
-          <Column lgSize={6}>
+          <Column lgSize={3}>
             <FetchAutoComplete
               url="companies?page=1&size=100"
               fullWidth

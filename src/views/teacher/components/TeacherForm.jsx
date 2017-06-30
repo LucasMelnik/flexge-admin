@@ -19,7 +19,7 @@ const TeacherForm = props => (
       }}
     >
       <Row>
-        <Column lgSize={6}>
+        <Column lgSize={3}>
           <TextInput
             floatingLabel
             fullWidth
@@ -39,6 +39,18 @@ const TeacherForm = props => (
             value={get(props.values, 'email', '')}
             onChange={value => props.onChange('email', value)}
             errorText={get(props.errors, 'email', '')}
+          />
+        </Column>
+        <Column lgSize={3}>
+          <TextInput
+            floatingLabel
+            fullWidth
+            type="password"
+            disabled={props.submitting}
+            label="Password"
+            value={get(props.values, 'password', '')}
+            onChange={value => props.onChange('password', value)}
+            errorText={get(props.errors, 'password', '')}
           />
         </Column>
         <PermissionValidator

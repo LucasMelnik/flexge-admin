@@ -13,13 +13,7 @@ import ModuleListContainer from './ModuleListContainer';
 
 const ModuleListScene = () => (
   <div>
-    <InlineBlock>
-      <Stepper activeStep={0} connector={<ArrowForwardIcon />}>
-        <Step>
-          <StepLabel>Modules</StepLabel>
-        </Step>
-      </Stepper>
-    </InlineBlock>
+    <InlineBlock height={70} />
 
     <InlineBlock
       float="right"

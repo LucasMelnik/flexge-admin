@@ -17,6 +17,7 @@ class TeacherFormService {
     this.form.validations = {
       name: [isRequired],
       email: [isRequired, isValidEmail],
+      password: [isRequired],
       company: localStorage.role === 'COMPANY_MANAGER' ? [] : [isRequired],
     };
   }

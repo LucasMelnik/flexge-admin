@@ -17,6 +17,7 @@ class CompanyManagerFormService {
     this.form.validations = {
       name: [isRequired],
       email: [isRequired, isValidEmail],
+      password: [isRequired],
       company: [isRequired],
     };
   }
