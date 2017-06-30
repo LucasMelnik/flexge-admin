@@ -24,10 +24,12 @@ const UnitList = props => (
             {
               label: 'Group',
               path: 'group',
+              width: 40,
             },
             {
               label: 'Order',
               path: 'order',
+              width: 40,
             },
             {
               label: 'Difficulty',
@@ -44,6 +46,7 @@ const UnitList = props => (
             {
               label: 'Items count',
               path: 'itemsCount',
+              width: 80,
             },
           ]}
           rows={props.units}
