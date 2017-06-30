@@ -47,7 +47,7 @@ class UnitListService {
       `You are about to delete the unit "${unit.name}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({
-          url: `/modules/${unit.module.id}/units/${unit.id}`,
+          url: `/modules/${unit.module}/units/${unit.id}`,
           method: 'delete',
         }).then(() => {
           this.load();
