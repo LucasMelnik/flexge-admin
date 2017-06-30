@@ -26,10 +26,12 @@ const ModuleList = props => (
             {
               label: 'Order',
               path: 'order',
+              width: 40,
             },
             {
               label: 'Group',
               path: 'group',
+              width: 40,
             },
             {
               label: 'Description',
@@ -38,10 +40,16 @@ const ModuleList = props => (
             {
               label: 'Course',
               path: 'course.name',
+              width: 50,
             },
             {
               label: 'Academic Plan',
               path: 'academicPlan.name',
+            },
+            {
+              label: 'Created By',
+              path: 'createdBy.name',
+              labelWhenNull: 'createdBy.email'
             },
           ]}
           rows={props.modules}
