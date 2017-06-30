@@ -12,6 +12,8 @@ const TranslationInput = props => (
         floatingLabel
         fullWidth
         label="Text"
+        multiLine
+        rows={3}
         disabled={props.submitting || props.disabled}
         value={get(props.values, 'text', '')}
         onChange={value => props.onChange('text', value)}
@@ -23,6 +25,8 @@ const TranslationInput = props => (
         floatingLabel
         fullWidth
         label="Translation"
+        multiLine
+        rows={3}
         disabled={props.submitting || props.disabled}
         value={get(props.values, 'translation', '')}
         onChange={value => props.onChange('translation', value)}
