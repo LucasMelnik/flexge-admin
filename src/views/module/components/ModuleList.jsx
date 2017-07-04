@@ -20,35 +20,51 @@ const ModuleList = props => (
         <Table
           columns={[
             {
-              label: 'Name',
-              path: 'name',
+              label: 'Group',
+              path: 'group',
+              width: 80,
             },
             {
               label: 'Order',
               path: 'order',
-              width: 40,
+              width: 80,
             },
             {
-              label: 'Group',
-              path: 'group',
-              width: 40,
+              label: 'Name',
+              path: 'name',
             },
             {
               label: 'Description',
               path: 'description',
+              rowColumnStyle: {
+                textOverflow: 'none',
+                paddingTop: 5,
+                paddingBottom: 5,
+                paddingRight: 5,
+                whiteSpace: 'normal',
+                textAlign: 'justify',
+                lineHeight: '18px',
+              }
             },
             {
               label: 'Course',
               path: 'course.name',
-              width: 50,
+              width: 70,
             },
             {
               label: 'Academic Plan',
               path: 'academicPlan.name',
+              width: 140,
             },
             {
               label: 'Created By',
               path: 'createdBy.name',
+              width: 120,
+            },
+            {
+              label: 'Units count',
+              path: 'unitsCount',
+              width: 150,
             },
           ]}
           rows={props.modules}

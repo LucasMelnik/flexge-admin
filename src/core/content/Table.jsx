@@ -24,6 +24,7 @@ export default class Table extends Component {
       labelWhenNull: PropTypes.string,
       width: PropTypes.number,
       render: PropTypes.func,
+      rowColumnStyle: PropTypes.object,
     })),
     actionComponent: PropTypes.func,
     actionComponentWidth: PropTypes.number,
@@ -149,6 +150,7 @@ export default class Table extends Component {
                     onMouseDown={() => this.props.onSelect && this.props.onSelect(row, index)}
                     style={{
                       width: column.width || 'auto',
+                      ...column.rowColumnStyle,
                     }}
                   >
                     {content}
