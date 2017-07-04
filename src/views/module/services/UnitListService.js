@@ -1,4 +1,5 @@
 import { action, extendObservable } from 'mobx';
+import { orderBy } from 'lodash';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
@@ -34,7 +35,7 @@ class UnitListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.units = this.fetch.data;
+        this.units = orderBy(this.fetch.data, ['group', 'order'], ['asc', 'asc']);
       } else {
         this.units = [];
       }

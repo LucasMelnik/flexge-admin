@@ -7,6 +7,7 @@ import Column from "../../../core/layout/Column";
 import Async from "../../../core/content/Async";
 import Button from '../../../core/form/Button';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
+import FetchSelect from '../../../core/form/FetchSelect';
 import VideoItemForm from "./forms/VideoItemForm";
 import VideoShortItemForm from "./forms/VideoShortItemForm";
 import VideoLongTextItemForm from "./forms/VideoLongTextItemForm";
@@ -54,18 +55,15 @@ const ItemForm = props => (
             />
           </Column>
           <Column lgSize={6}>
-            <FetchAutoComplete
-              url="grammars?page=1&size=100"
+            <FetchSelect
+              url="grammars"
               fullWidth
               disabled={props.submitting || props.disabled}
               label="Grammar"
-              value={get(props.values, 'grammar.name', '')}
-              onSelect={grammar => props.onChange('grammar', grammar)}
+              maxHeight={350}
+              value={get(props.values, 'grammar.id', '')}
+              onChange={grammar => props.onChange('grammar.id', grammar)}
               errorText={get(props.errors, 'grammar', '')}
-              resultTransformer={{
-                text: 'name',
-                value: 'id',
-              }}
             />
           </Column>
         </Row>

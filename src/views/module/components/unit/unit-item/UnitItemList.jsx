@@ -20,10 +20,28 @@ const UnitItemList = props => (
             {
               label: 'Text',
               path: 'item.text',
+              rowColumnStyle: {
+                textOverflow: 'none',
+                paddingTop: 5,
+                paddingBottom: 5,
+                paddingRight: 5,
+                whiteSpace: 'normal',
+                textAlign: 'justify',
+                lineHeight: '18px',
+              },
             },
             {
               label: 'Translation',
               path: 'item.translation',
+              rowColumnStyle: {
+                textOverflow: 'none',
+                paddingTop: 5,
+                paddingBottom: 5,
+                paddingRight: 5,
+                whiteSpace: 'normal',
+                textAlign: 'justify',
+                lineHeight: '18px',
+              },
             },
             {
               label: 'Grammar',
@@ -44,10 +62,28 @@ const UnitItemList = props => (
           {
             label: 'Text',
             path: 'item.text',
+            rowColumnStyle: {
+              textOverflow: 'none',
+              paddingTop: 5,
+              paddingBottom: 5,
+              paddingRight: 5,
+              whiteSpace: 'normal',
+              textAlign: 'justify',
+              lineHeight: '18px',
+            },
           },
           {
             label: 'Translation',
             path: 'item.translation',
+            rowColumnStyle: {
+              textOverflow: 'none',
+              paddingTop: 5,
+              paddingBottom: 5,
+              paddingRight: 5,
+              whiteSpace: 'normal',
+              textAlign: 'justify',
+              lineHeight: '18px',
+            },
           },
           {
             label: 'Grammar',

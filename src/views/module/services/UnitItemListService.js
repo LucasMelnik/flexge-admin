@@ -36,7 +36,7 @@ class UnitItemListService {
     });
   });
 
-  handleOrderChange = action((unitItem, order)=> {
+  handleOrderChange = action((unitItem, order) => {
     this.submit.fetch({
       url: `/units/${unitItem.unit}/items/${unitItem.item.id}/unit-item/${unitItem.id}`,
       method: 'put',

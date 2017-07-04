@@ -18,18 +18,18 @@ const UnitList = props => (
         <Table
           columns={[
             {
-              label: 'Name',
-              path: 'name',
-            },
-            {
               label: 'Group',
               path: 'group',
-              width: 40,
+              width: 80,
             },
             {
               label: 'Order',
               path: 'order',
-              width: 40,
+              width: 80,
+            },
+            {
+              label: 'Name',
+              path: 'name',
             },
             {
               label: 'Difficulty',
@@ -46,7 +46,7 @@ const UnitList = props => (
             {
               label: 'Items count',
               path: 'itemsCount',
-              width: 80,
+              width: 150,
             },
           ]}
           rows={props.units}

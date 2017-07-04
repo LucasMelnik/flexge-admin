@@ -224,6 +224,7 @@ class ItemFormService {
         url: `/items/${itemId}`,
       }).then(() => {
         if (this.fetch.data) {
+          console.log(this.fetch.data)
           this.form.setInitialValues({
             ...this.fetch.data,
             indexesToRemove: this.fetch.data, // to validation works
