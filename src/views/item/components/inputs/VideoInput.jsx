@@ -24,7 +24,7 @@ const VideoInput = props => (
         <MaskInput
           floatingLabel
           fullWidth
-          label="Start time"
+          label="Start time (example 01:23)"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'videoStartTime', '')}
           onChange={value => props.onChange('videoStartTime', value)}
@@ -40,7 +40,7 @@ const VideoInput = props => (
         <MaskInput
           floatingLabel
           fullWidth
-          label="End time"
+          label="End time (example 01:23)"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'videoEndTime', '')}
           onChange={value => props.onChange('videoEndTime', value)}
