@@ -52,6 +52,9 @@ export default class MaskInput extends Component {
 
     this.maskedField = new Cleave(this.textField.input, maskOptions);
     this.maskedField.setRawValue(this.props.value);
+    this.setState({
+      maskedValue: this.maskedField.getFormattedValue(),
+    });
   }
 
   componentWillReceiveProps(nextProps) {

@@ -8,6 +8,7 @@ import {
   minLength,
   minFilteredLength,
   onlyOneCorrectAnswer,
+  isValidTime,
 } from '../../../core/validations';
 
 class ItemFormService {
@@ -38,8 +39,8 @@ class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           videoLink: [isRequired],
-          videoStartTime: [isRequired],
-          videoEndTime: [isRequired],
+          videoStartTime: [isRequired, isValidTime],
+          videoEndTime: [isRequired, isValidTime],
         };
         break;
       case 'VIDEO_SHORT':
@@ -48,18 +49,17 @@ class ItemFormService {
           text: [isRequired],
           translation: [isRequired],
           videoLink: [isRequired],
-          videoStartTime: [isRequired],
-          videoEndTime: [isRequired],
+          videoStartTime: [isRequired, isValidTime],
+          videoEndTime: [isRequired, isValidTime],
         };
         break;
       case 'VIDEO_TEXT_AREA':
         this.form.validations = {
           ...this.defaultValidations,
           text: [isRequired],
-          translation: [isRequired],
           videoLink: [isRequired],
-          videoStartTime: [isRequired],
-          videoEndTime: [isRequired],
+          videoStartTime: [isRequired, isValidTime],
+          videoEndTime: [isRequired, isValidTime],
           indexesToRemove: [isRequired, minLength(10)],
         };
         break;

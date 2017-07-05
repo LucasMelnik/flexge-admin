@@ -7,10 +7,19 @@ import FileInput from '../../../../core/form/FileInput';
 import TextInput from '../../../../core/form/TextInput';
 import Row from '../../../../core/layout/Row'
 import Column from '../../../../core/layout/Column'
-import SlicesInputContainer from '../inputs/SlicesInputContainer'
+import SlicesInputContainer from '../inputs/SlicesInputContainer';
 
 const VideoLongTextItemForm = props => (
   <div>
+    <TextInput
+      floatingLabel
+      fullWidth
+      label="Title"
+      disabled={props.submitting || props.disabled}
+      value={get(props.values, 'title', '')}
+      onChange={value => props.onChange('title', value)}
+      errorText={get(props.errors, 'title', '')}
+    />
     <Row>
       <Column lgSize={6}>
         <TextInput
