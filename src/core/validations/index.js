@@ -76,4 +76,4 @@ export const isCNPJ = (value) => {
 
 export const isValidTime = (value) => {
   return value.length !== 4 && 'The time must be in 00:00 format';
-}
+};
