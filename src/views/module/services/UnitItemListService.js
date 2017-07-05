@@ -1,4 +1,5 @@
 import { action, extendObservable } from 'mobx';
+import { orderBy } from 'lodash';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
@@ -21,13 +22,9 @@ class UnitItemListService {
   load = action(() => {
     this.fetch.fetch({
       url: `/units/${this.unitId}/items`,
-      query: {
-        page: this.page,
-        size: this.rowsByPage,
-      }
     }).then(() => {
       if (this.fetch.data) {
-        this.items = this.fetch.data;
+        this.items = orderBy(this.fetch.data, ['order'], ['asc']);;
       } else {
         this.items = [];
         this.total = 0;
