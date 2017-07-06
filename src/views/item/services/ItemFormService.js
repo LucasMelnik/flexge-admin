@@ -39,6 +39,7 @@ class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           videoLink: [isRequired],
+          reference: [isRequired],
           videoStartTime: [isRequired, isValidTime],
           videoEndTime: [isRequired, isValidTime],
         };
@@ -49,6 +50,7 @@ class ItemFormService {
           text: [isRequired],
           translation: [isRequired],
           videoLink: [isRequired],
+          reference: [isRequired],
           videoStartTime: [isRequired, isValidTime],
           videoEndTime: [isRequired, isValidTime],
         };
@@ -58,6 +60,7 @@ class ItemFormService {
           ...this.defaultValidations,
           text: [isRequired],
           videoLink: [isRequired],
+          reference: [isRequired],
           videoStartTime: [isRequired, isValidTime],
           videoEndTime: [isRequired, isValidTime],
           indexesToRemove: [isRequired, minLength(10)],
