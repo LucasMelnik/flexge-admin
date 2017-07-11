@@ -23,7 +23,7 @@ class ReviewListService {
         statusFormat: this.formMyReviews.getValue('statusFormat'),
         ...localStorage.role !== 'ADMIN' && {
           createdBy: localStorage.id,
-        }
+        },
       },
     }).then(() => {
       if (this.fetch.data && this.fetch.data.units) {
