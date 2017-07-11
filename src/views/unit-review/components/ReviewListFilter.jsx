@@ -11,13 +11,26 @@ const ReviewListFilter = props => (
   <Flex
     alignItems="flex-end"
   >
+
+    <Select
+      floatingLabel
+      options={['', 'PENDING', 'APPROVED', 'NOT_APPROVED', 'PENDING_REVIEW'].map(value => ({
+        value,
+        label: value.replace('_', ' '),
+      }))}
+      label="Status format"
+      value={get(props.values, 'statusFormat', '')}
+      onChange={value => props.onChange('statusFormat', value)}
+      errorText={get(props.errors, 'statusFormat', '')}
+    />
+    <ColumnSeparator size="sm" />
     <Select
       floatingLabel
       options={['', 'NOT SENT TO REVIEW', 'PENDING', 'REVIEWED', 'DONE'].map(value => ({
         value,
         label: value,
       }))}
-      label="Status"
+      label="Status content"
       value={get(props.values, 'status', '')}
       onChange={value => props.onChange('status', value)}
       errorText={get(props.errors, 'status', '')}
@@ -39,7 +52,6 @@ const ReviewListFilter = props => (
     <Button
       label="Search"
       icon="search"
-      priimary
       onClick={props.onSearch}
     />
   </Flex>

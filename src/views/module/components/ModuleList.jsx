@@ -22,7 +22,7 @@ const ModuleList = props => (
             {
               label: 'Course',
               path: 'course.name',
-              width: 70,
+              width: 80,
             },
             {
               label: 'Group',

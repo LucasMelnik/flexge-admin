@@ -183,7 +183,7 @@ export default class Table extends Component {
                     onClick={() => this.props.onSend(row, index)}
                     iconClassName="material-icons"
                   >
-                    send
+                    rate_review
                   </IconButton>
                 )}
               </TableRowColumn>

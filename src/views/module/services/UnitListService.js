@@ -35,7 +35,15 @@ class UnitListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.units = orderBy(this.fetch.data, ['group', 'order'], ['asc', 'asc']);
+        this.units = orderBy(this.fetch.data, ['group', 'order'], ['asc', 'asc']).map((unit) => {
+          if (!unit.review) {
+            return {
+              ...unit,
+              review: { status: 'NOT SENT TO REVIEW' },
+            };
+          }
+          return unit;
+        });
       } else {
         this.units = [];
       }

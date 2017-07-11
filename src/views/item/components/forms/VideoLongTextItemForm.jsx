@@ -60,6 +60,7 @@ const VideoLongTextItemForm = props => (
     <FileInput
       label="Upload a video to the item"
       accept="video"
+      disabled={props.disabled}
       value={get(props.values, 'video', '')}
       onChange={(key) => props.onChange('video', key)}
       errorText={get(props.errors, 'video', '')}

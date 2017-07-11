@@ -5,11 +5,13 @@ import get from 'lodash/get';
 import InlineBlock from 'jsxstyle/InlineBlock';
 import Title from '../../../core/content/Title';
 import Button from '../../../core/form/Button';
+import ColumnSeparator from '../../../core/layout/ColumnSeparator';
 import Paper from '../../../core/layout/Paper';
 import TextInput from '../../../core/form/TextInput';
 import Separator from '../../../core/layout/Separator';
-import UnitFormContainer from '../../module/components/unit/UnitFormContainer'
-import UnitItemListContainer from '../../module/components/unit/unit-item/UnitItemListContainer'
+import UnitFormContainer from '../../module/components/unit/UnitFormContainer';
+import UnitItemListContainer from '../../module/components/unit/unit-item/UnitItemListContainer';
+import ChangeStatusFormatContainer from './ChangeStatusFormatContainer';
 
 const ReviewFormScene = props => (
   <div>
@@ -63,7 +65,7 @@ const ReviewFormScene = props => (
       disabled={props.status === 'PENDING' || (props.status === 'REVIEWED' && props.review.createdBy !== localStorage.id)}
       isReadOnly={props.status === 'PENDING'}
     />
-    <Separator size="xs" />
+    <ColumnSeparator size="md" />
     <Paper >
       <TextInput
         floatingLabel
@@ -73,11 +75,17 @@ const ReviewFormScene = props => (
         isRequired
         rows={7}
         label="Comment review"
-        value={props.comments}
+        value={get(props.values, 'comments', '')}
         onChange={value => props.onChange('comments', value)}
         errorText={get(props.errors, 'comments', '')}
       />
     </Paper>
+    <ColumnSeparator size="md" />
+    <ChangeStatusFormatContainer
+      reviewId={props.reviewId}
+      unitId={props.unitId}
+      currentStatusFormat={props.currentStatusFormat}
+    />
   </div>
 );
 
@@ -85,7 +93,8 @@ ReviewFormScene.propTypes = {
   unitId: PropTypes.string,
   moduleId: PropTypes.string,
   reviewId: PropTypes.string,
-  comments: PropTypes.string.isRequired,
+  values: PropTypes.object.isRequired,
+  currentStatusFormat: PropTypes.string,
   status: PropTypes.string.isRequired,
   errors: PropTypes.object,
   review: PropTypes.shape({
@@ -100,6 +109,7 @@ ReviewFormScene.defaultProps = {
   comments: null,
   errors: null,
   review: {},
+  currentStatusFormat: null,
 };
 
 export default ReviewFormScene;

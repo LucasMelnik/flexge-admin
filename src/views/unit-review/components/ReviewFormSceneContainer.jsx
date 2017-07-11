@@ -34,9 +34,10 @@ class ReviewFormSceneContainer extends Component {
         unitId={this.props.params.unitId}
         moduleId={this.props.params.moduleId}
         reviewId={this.props.params.reviewId}
+        values={this.sendUnitToReviewService.form.getValues()}
         onChange={this.sendUnitToReviewService.form.setValue}
         status={this.sendUnitToReviewService.form.getValue('status')}
-        comments={this.sendUnitToReviewService.form.getValue('comments')}
+        currentStatusFormat={this.sendUnitToReviewService.currentStatusFormat}
         onSendToReviewed={this.sendUnitToReviewService.handleSendToReviewed}
         onSendToDone={this.sendUnitToReviewService.handleSendToDone}
         error={this.sendUnitToReviewService.submit.error}

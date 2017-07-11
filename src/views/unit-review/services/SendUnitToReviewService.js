@@ -1,4 +1,5 @@
 import { browserHistory } from 'react-router';
+import { extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
@@ -15,18 +16,18 @@ class SendUnitToReviewService {
     this.form.validations = {
       comments: [isRequired],
     };
+    extendObservable(this, {
+      currentStatusFormat: null,
+    });
   }
 
   handleLoad = (reviewId) => {
     if (reviewId) {
       this.fetch.fetch({
         url: `/reviews/${reviewId}`,
-        query: {
-          page: 1,
-          size: 2000,
-        },
       }).then(() => {
         if (this.fetch.data) {
+          this.currentStatusFormat = this.fetch.data.statusFormat;
           this.form.setInitialValues(this.fetch.data);
         }
       });
@@ -45,6 +46,7 @@ class SendUnitToReviewService {
           url: '/reviews',
           body: {
             status: 'PENDING',
+            statusFormat: 'PENDING',
             unit: unit.id,
           },
         }).then((res) => {
