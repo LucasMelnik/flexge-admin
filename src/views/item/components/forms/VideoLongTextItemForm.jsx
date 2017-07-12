@@ -4,9 +4,50 @@ import get from 'lodash/get';
 import VideoInputContainer from '../inputs/VideoInputContainer';
 import Separator from '../../../../core/layout/Separator';
 import FileInput from '../../../../core/form/FileInput';
+import TextInput from '../../../../core/form/TextInput';
+import Row from '../../../../core/layout/Row'
+import Column from '../../../../core/layout/Column'
+import SlicesInputContainer from '../inputs/SlicesInputContainer';
 
 const VideoLongTextItemForm = props => (
   <div>
+    <TextInput
+      floatingLabel
+      fullWidth
+      label="Title"
+      disabled={props.submitting || props.disabled}
+      value={get(props.values, 'title', '')}
+      onChange={value => props.onChange('title', value)}
+      errorText={get(props.errors, 'title', '')}
+    />
+    <Row>
+      <Column lgSize={6}>
+        <TextInput
+          rows={10}
+          multiLine
+          floatingLabel
+          fullWidth
+          label="Text"
+          disabled={props.submitting || props.disabled}
+          value={get(props.values, 'text', '')}
+          onChange={value => props.onChange('text', value)}
+          errorText={get(props.errors, 'text', '')}
+        />
+      </Column>
+      <Column lgSize={6}>
+        <SlicesInputContainer
+          onChange={(answers) => {
+            props.onChange('answers', answers);
+            props.onChange('indexesToRemove', answers.filter(slice => slice.index !== undefined)); //this is to show errors
+          }}
+          text={get(props.values, 'text', '')}
+          value={get(props.values, 'answers', [])}
+          errorText={get(props.errors, 'indexesToRemove', '')}
+          disabled={props.disabled}
+        />
+      </Column>
+    </Row>
+    <Separator size="xs" />
     <VideoInputContainer
       onChange={props.onChange}
       errors={props.errors}
@@ -19,6 +60,7 @@ const VideoLongTextItemForm = props => (
     <FileInput
       label="Upload a video to the item"
       accept="video"
+      disabled={props.disabled}
       value={get(props.values, 'video', '')}
       onChange={(key) => props.onChange('video', key)}
       errorText={get(props.errors, 'video', '')}

@@ -34,6 +34,7 @@ const PresentationItemForm = props => (
         <FileInput
           label="Upload an audio to the item"
           accept="audio"
+          disabled={props.disabled}
           value={get(props.values, 'audio', '')}
           onChange={(key) => props.onChange('audio', key)}
           errorText={get(props.errors, 'audio', '')}
@@ -43,6 +44,7 @@ const PresentationItemForm = props => (
         <FileInput
           label="Upload an image to the item"
           accept="image"
+          disabled={props.disabled}
           value={get(props.values, 'image', '')}
           onChange={(key) => props.onChange('image', key)}
           errorText={get(props.errors, 'image', '')}

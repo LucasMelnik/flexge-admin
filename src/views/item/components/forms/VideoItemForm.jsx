@@ -4,9 +4,19 @@ import get from 'lodash/get';
 import VideoInputContainer from '../inputs/VideoInputContainer';
 import Separator from '../../../../core/layout/Separator';
 import FileInput from '../../../../core/form/FileInput';
+import TextInput from '../../../../core/form/TextInput';
 
 const VideoItemForm = props => (
   <div>
+    <TextInput
+      floatingLabel
+      fullWidth
+      label="Title"
+      disabled={props.submitting || props.disabled}
+      value={get(props.values, 'title', '')}
+      onChange={value => props.onChange('title', value)}
+      errorText={get(props.errors, 'title', '')}
+    />
     <VideoInputContainer
       onChange={props.onChange}
       errors={props.errors}
@@ -19,6 +29,7 @@ const VideoItemForm = props => (
     <FileInput
       label="Upload a video to the item"
       accept="video"
+      disabled={props.disabled}
       value={get(props.values, 'video', '')}
       onChange={(key) => props.onChange('video', key)}
       errorText={get(props.errors, 'video', '')}

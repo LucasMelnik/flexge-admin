@@ -5,9 +5,20 @@ import Separator from '../../../../core/layout/Separator';
 import FileInput from '../../../../core/form/FileInput';
 import VideoInputContainer from '../inputs/VideoInputContainer';
 import TranslationInputContainer from '../inputs/TranslationInputContainer';
+import TextInput from '../../../../core/form/TextInput';
 
 const VideoShortItemForm = props => (
   <div>
+    <TextInput
+      floatingLabel
+      fullWidth
+      label="Title"
+      disabled={props.submitting || props.disabled}
+      value={get(props.values, 'title', '')}
+      onChange={value => props.onChange('title', value)}
+      errorText={get(props.errors, 'title', '')}
+    />
+    <Separator size="xs" />
     <TranslationInputContainer
       onChange={props.onChange}
       errors={props.errors}
@@ -28,6 +39,7 @@ const VideoShortItemForm = props => (
     <FileInput
       label="Upload a video to the item"
       accept="video"
+      disabled={props.disabled}
       value={get(props.values, 'video', '')}
       onChange={(key) => props.onChange('video', key)}
       errorText={get(props.errors, 'video', '')}

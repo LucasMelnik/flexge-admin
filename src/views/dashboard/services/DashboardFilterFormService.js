@@ -15,11 +15,11 @@ class DashboardFilterFormService {
   onChange = action((path, course) => {
     this.form.setValue(path, course || {});
 
-    if (course && course.id) {
-      DifficultyLevelAmountsListService.load(course.id);
-      TimeAmountsListService.load(course.id);
-      ScoreToPassAmountsListService.load(course.id);
-      UnitTypeAmountsListService.load(course.id);
+    if (course) {
+      DifficultyLevelAmountsListService.load(course);
+      TimeAmountsListService.load(course);
+      ScoreToPassAmountsListService.load(course);
+      UnitTypeAmountsListService.load(course);
     }
   });
 }

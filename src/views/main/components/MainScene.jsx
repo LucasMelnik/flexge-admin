@@ -37,9 +37,9 @@ const menuItems = [
     requiredRoles: ['ADMIN', 'CONTENT_ADMIN'],
   },
   {
-    label: 'Review',
+    label: 'Reviews',
     url: '/reviews',
-    requiredRoles: ['CONTENT_ADMIN'],
+    requiredRoles: ['ADMIN', 'CONTENT_ADMIN'],
   },
 ];
 
