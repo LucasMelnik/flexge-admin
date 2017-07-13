@@ -49,7 +49,7 @@ const ToReviewList = props => (
                     PENDING: '#ef8c3b',
                     REVIEWED: '#1188FF',
                     DONE: '#009687',
-                    'NOT SENT TO REVIEW': '#FF5233',
+                    'NOT SENT TO REVIEW': '#758C98',
                   }[row.review.status],
                 }}
               >
@@ -70,7 +70,7 @@ const ToReviewList = props => (
                   borderRadius: 5,
                   backgroundColor: {
                     PENDING: '#ef8c3b',
-                    PENDING_REVIEW: '#758C98',
+                    PENDING_REVIEW: '#ef8c3b',
                     APPROVED: '#009687',
                     NOT_APPROVED: '#FF5233',
                     DONE: '#009687',
