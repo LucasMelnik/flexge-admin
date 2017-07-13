@@ -60,6 +60,6 @@ class UnitItemListService {
   });
 }
 
-const unitItemListService = UnitItemListService();
+const unitItemListService = new UnitItemListService();
 
 export default unitItemListService;
