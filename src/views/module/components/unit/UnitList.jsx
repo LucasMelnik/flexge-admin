@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import replace from 'lodash/replace';
 import { browserHistory } from 'react-router';
 import Paper from '../../../../core/layout/Paper';
 import Divider from '../../../../core/layout/Divider';
@@ -42,6 +43,53 @@ const UnitList = props => (
             {
               label: 'Unit Type',
               path: 'type.name',
+            },
+            {
+              label: 'Status content',
+              path: 'review.status',
+              render: row => row.review && (
+                <div
+                  style={{
+                    color: '#fff',
+                    padding: 10,
+                    display: 'inline-block',
+                    fontWeight: 'bold',
+                    borderRadius: 5,
+                    backgroundColor: {
+                      PENDING: '#ef8c3b',
+                      REVIEWED: '#009687',
+                      DONE: '#009687',
+                      'NOT SENT TO REVIEW': '#FF5233',
+                    }[row.review.status],
+                  }}
+                >
+                  {row.review.status}
+                </div>
+              ),
+            },
+            {
+              label: 'Status format',
+              path: 'review.statusFormat',
+              render: row => row.review && (
+                <div
+                  style={{
+                    color: '#fff',
+                    padding: 10,
+                    display: 'inline-block',
+                    fontWeight: 'bold',
+                    borderRadius: 5,
+                    backgroundColor: {
+                      PENDING: '#ef8c3b',
+                      PENDING_REVIEW: '#758C98',
+                      APPROVED: '#009687',
+                      NOT_APPROVED: '#FF5233',
+                      DONE: '#009687',
+                    }[row.review.statusFormat],
+                  }}
+                >
+                  {replace(row.review.statusFormat, '_', ' ')}
+                </div>
+              ),
             },
             {
               label: 'Items count',

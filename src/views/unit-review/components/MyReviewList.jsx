@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
-import FontIcon from 'material-ui/FontIcon';
-import { green500, red500, blue500, yellow500 } from 'material-ui/styles/colors';
+import replace from 'lodash/replace';
 import MyReviewListFilterContainer from './MyReviewListFilterContainer';
 import Separator from '../../../core/layout/Separator';
 import Divider from '../../../core/layout/Divider';
@@ -25,6 +24,7 @@ const MyReviewList = props => (
           {
             label: 'Course',
             path: 'unit.module.course.name',
+            width: 80,
           },
           {
             label: 'Module',
@@ -35,65 +35,58 @@ const MyReviewList = props => (
             path: 'review.reviewedBy.name',
           },
           {
-            label: 'Status',
+            label: 'Status content',
             path: 'review.status',
-            render: (row) => {
-              if (row.review.status === 'PENDING') {
-                return (
-                  <div>
-                    {row.review.status}
-                    <FontIcon
-                      className="material-icons"
-                      style={{ verticalAlign: 'middle', color: yellow500 }}
-                    >
-                      av_timer
-                    </FontIcon>
-                  </div>
-                );
-              } else if (row.review.status === 'REVIEWED') {
-                return (
-                  <div>
-                    {row.review.status}
-                    <FontIcon
-                      className="material-icons"
-                      style={{ verticalAlign: 'middle', color: blue500 }}
-                    >
-                      rate_review
-                    </FontIcon>
-                  </div>
-                );
-              } else if (row.review.status === 'DONE') {
-                return (
-                  <div>
-                    {row.review.status}
-                    <FontIcon
-                      className="material-icons"
-                      style={{ color: green500, verticalAlign: 'middle' }}
-                    >
-                      check
-                    </FontIcon>
-                  </div>
-                );
-              }
-              return (
-                <div>
-                  {row.review.status}
-                  <FontIcon
-                    className="material-icons"
-                    style={{ verticalAlign: 'middle', color: red500 }}
-                  >
-                    warning
-                  </FontIcon>
-                </div>
-              );
-            },
+            render: row => (
+              <div
+                style={{
+                  color: '#fff',
+                  padding: 10,
+                  display: 'inline-block',
+                  fontWeight: 'bold',
+                  borderRadius: 5,
+                  backgroundColor: {
+                    PENDING: '#ef8c3b',
+                    REVIEWED: '#1188FF',
+                    DONE: '#009687',
+                    'NOT SENT TO REVIEW': '#FF5233',
+                  }[row.review.status],
+                }}
+              >
+                {row.review.status}
+              </div>
+            ),
+          },
+          {
+            label: 'Status format',
+            path: 'review.statusFormat',
+            render: row => (
+              <div
+                style={{
+                  color: '#fff',
+                  padding: 10,
+                  display: 'inline-block',
+                  fontWeight: 'bold',
+                  borderRadius: 5,
+                  backgroundColor: {
+                    PENDING: '#ef8c3b',
+                    PENDING_REVIEW: '#758C98',
+                    APPROVED: '#009687',
+                    NOT_APPROVED: '#FF5233',
+                    DONE: '#009687',
+                  }[row.review.statusFormat],
+                }}
+              >
+                {replace(row.review.statusFormat, '_', ' ')}
+              </div>
+            ),
           },
         ]}
         rows={props.unitsAndReviews}
         allowActionValidator={row => !row.review.id}
         selectable
-        onSelect={row => (row.review.status === 'REVIEWED' || row.review.status === 'DONE') && browserHistory.push(`/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
-        onSend={row => props.onSendToReview(row.unit)}
+        onSelect={row => (row.review.statusFormat === 'NOT_APPROVED' || row.review.status === 'REVIEWED' || row.review.status === 'DONE' || localStorage.role === 'ADMIN' ) && browserHistory.push(`/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
+        onSend={localStorage.role !== 'ADMIN' ? (row => props.onSendToReview(row.unit)) : null}
       />
     </Async>
   </Paper>

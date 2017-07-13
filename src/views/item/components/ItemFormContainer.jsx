@@ -1,35 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import ItemForm from './ItemForm';
 import ItemFormService from '../services/ItemFormService';
 
-const ItemFormContainer = props => (
-  <ItemForm
-    onSubmit={ItemFormService.handleSubmit}
-    setValidationsByItemType={ItemFormService.setValidationsByItemType}
-    onChange={ItemFormService.form.setValue}
-    onReset={ItemFormService.form.reset}
-    values={ItemFormService.form.getValues()}
-    errors={ItemFormService.form.errors}
-    isDirty={ItemFormService.form.isDirty}
-    submitting={ItemFormService.submit.fetching}
-    error={ItemFormService.submit.error}
-    fetching={ItemFormService.fetch.fetching}
-    itemsTypeUrl={props.itemsTypeUrl}
-    showPostPhrase={props.showPostPhrase}
-    disabled={props.disabled}
-  />
-);
+class ItemFormContainer extends Component {
+  static propTypes = {
+    itemId: PropTypes.string.isRequired,
+    itemsTypeUrl: PropTypes.string.isRequired,
+    showPostPhrase: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool,
+  };
 
-ItemFormContainer.propTypes = {
-  itemsTypeUrl: PropTypes.string.isRequired,
-  showPostPhrase: PropTypes.bool.isRequired,
-  disabled: PropTypes.bool,
-};
+  static defaultProps = {
+    disabled: false,
+  };
 
-ItemFormContainer.defaultProps = {
-  disabled: false,
-};
+  componentWillMount() {
+    ItemFormService.handleLoad(this.props.itemId);
+  }
+
+  render() {
+    return (
+      <ItemForm
+        onSubmit={ItemFormService.handleSubmit}
+        setValidationsByItemType={ItemFormService.setValidationsByItemType}
+        onChange={ItemFormService.form.setValue}
+        onReset={ItemFormService.form.reset}
+        values={ItemFormService.form.getValues()}
+        errors={ItemFormService.form.errors}
+        isDirty={ItemFormService.form.isDirty}
+        submitting={ItemFormService.submit.fetching}
+        error={ItemFormService.submit.error}
+        fetching={ItemFormService.fetch.fetching}
+        itemsTypeUrl={this.props.itemsTypeUrl}
+        showPostPhrase={this.props.showPostPhrase}
+        disabled={this.props.disabled}
+      />
+    );
+  }
+}
 
 export default observer(ItemFormContainer);

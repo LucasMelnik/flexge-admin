@@ -20,7 +20,10 @@ class ReviewListService {
       query: {
         course: this.formMyReviews.getValue('course.id'),
         status: this.formMyReviews.getValue('status'),
-        createdBy: localStorage.id,
+        statusFormat: this.formMyReviews.getValue('statusFormat'),
+        ...localStorage.role !== 'ADMIN' && {
+          createdBy: localStorage.id,
+        },
       },
     }).then(() => {
       if (this.fetch.data && this.fetch.data.units) {
@@ -41,10 +44,9 @@ class ReviewListService {
     this.fetch.fetch({
       url: '/reviews',
       query: {
-        query: {
-          course: this.formAllReviews.getValue('course.id'),
-          status: this.formAllReviews.getValue('status'),
-        },
+        course: this.formAllReviews.getValue('course.id'),
+        status: this.formAllReviews.getValue('status'),
+        statusFormat: this.formAllReviews.getValue('statusFormat'),
       },
     }).then(() => {
       if (this.fetch.data && this.fetch.data.units) {
@@ -52,7 +54,10 @@ class ReviewListService {
         const reviews = this.fetch.data.reviews;
         this.allUnitsAndReviews = units.filter((unit) => {
           const unitReview = reviews.find(review => review.unit === unit.id);
-          if (!unitReview || unitReview.status === 'DONE') {
+          if (!unitReview || unitReview.status === 'DONE' || unitReview.status === 'REVIEWED') {
+            return false;
+          }
+          if (unitReview.createdBy.id === localStorage.id) {
             return false;
           }
           return true;

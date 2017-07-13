@@ -20,6 +20,7 @@ const SpeechPracticeItemForm = props => (
       value={get(props.values, 'audio', '')}
       onChange={(key) => props.onChange('audio', key)}
       errorText={get(props.errors, 'audio', '')}
+      disabled={props.disabled}
     />
   </div>
 );

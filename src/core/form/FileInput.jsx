@@ -17,6 +17,7 @@ export default class FileInput extends Component {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
     errorText: PropTypes.string,
     fullWidth: PropTypes.bool,
     accept: PropTypes.oneOf([
@@ -30,6 +31,7 @@ export default class FileInput extends Component {
     accept: 'audio',
     errorText: null,
     fullWidth: false,
+    disabled: false,
   };
 
   state = { uploadPercentage: 0 }
@@ -91,6 +93,7 @@ export default class FileInput extends Component {
             <IconButton
               iconClassName="material-icons"
               tooltip="Select a file"
+              disabled={this.props.disabled}
               onClick={() => this.fileInput.click()}
               style={{
               width: 36,
@@ -105,6 +108,7 @@ export default class FileInput extends Component {
             <IconButton
               iconClassName="material-icons"
               tooltip="Delete the file"
+              disabled={this.props.disabled}
               onClick={this.handleDelete}
               style={{
                 width: 36,

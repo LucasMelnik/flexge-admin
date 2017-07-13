@@ -37,7 +37,7 @@ class ModuleListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.modules = orderBy(this.fetch.data, ['group', 'order'], ['asc', 'asc']);
+        this.modules = orderBy(this.fetch.data, ['course.name', 'group', 'order'], ['asc', 'asc', 'asc']);
       } else {
         this.modules = [];
       }

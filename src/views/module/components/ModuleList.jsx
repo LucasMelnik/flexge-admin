@@ -20,6 +20,11 @@ const ModuleList = props => (
         <Table
           columns={[
             {
+              label: 'Course',
+              path: 'course.name',
+              width: 80,
+            },
+            {
               label: 'Group',
               path: 'group',
               width: 80,
@@ -45,11 +50,6 @@ const ModuleList = props => (
                 textAlign: 'justify',
                 lineHeight: '18px',
               }
-            },
-            {
-              label: 'Course',
-              path: 'course.name',
-              width: 70,
             },
             {
               label: 'Academic Plan',

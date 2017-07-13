@@ -22,6 +22,4 @@ class LoadUnitService {
   });
 }
 
-const loadUnitService = new LoadUnitService();
-
-export default loadUnitService;
+export default LoadUnitService;

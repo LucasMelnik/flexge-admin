@@ -15,6 +15,7 @@ export default class FetchSelect extends Component {
     fullWidth: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     multiple: PropTypes.bool,
+    defaultSelect: PropTypes.bool,
     value: PropTypes.string,
     maxHeight: PropTypes.number,
   };
@@ -24,6 +25,7 @@ export default class FetchSelect extends Component {
     errorText: null,
     label: '',
     multiple: false,
+    defaultSelect: false,
     fullWidth: true,
     style: null,
     value: '',
@@ -43,6 +45,10 @@ export default class FetchSelect extends Component {
       const data = response.data;
       this.setState({
         data: orderBy(data, ['name'], ['asc']),
+      }, () => {
+        if (this.props.defaultSelect) {
+          this.props.onChange(this.state.data[0].id || null);
+        }
       });
       return data;
     });

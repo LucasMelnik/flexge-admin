@@ -10,53 +10,6 @@ import Select from '../../../../../core/form/Select';
 const UnitItemList = props => (
   <Paper>
     <Async fetching={props.fetching}>
-      {props.disabled ? (
-        <Table
-          columns={[
-            {
-              label: 'Order',
-              path: 'order',
-            },
-            {
-              label: 'Text',
-              path: 'item.text',
-              rowColumnStyle: {
-                textOverflow: 'none',
-                paddingTop: 5,
-                paddingBottom: 5,
-                paddingRight: 5,
-                whiteSpace: 'normal',
-                textAlign: 'justify',
-                lineHeight: '18px',
-              },
-            },
-            {
-              label: 'Translation',
-              path: 'item.translation',
-              rowColumnStyle: {
-                textOverflow: 'none',
-                paddingTop: 5,
-                paddingBottom: 5,
-                paddingRight: 5,
-                whiteSpace: 'normal',
-                textAlign: 'justify',
-                lineHeight: '18px',
-              },
-            },
-            {
-              label: 'Grammar',
-              path: 'item.grammar.name',
-            },
-            {
-              label: 'Type',
-              path: 'item.type.name',
-            },
-          ]}
-          rows={props.items}
-          selectable
-          onSelect={row => browserHistory.push(`/modules/${props.moduleId}/units/${props.unitId}/reviews/${props.reviewId}/items/${row.item.id}`)}
-        />
-    ) : (
       <Table
         columns={[
           {
@@ -97,7 +50,7 @@ const UnitItemList = props => (
         rows={props.items}
         selectable
         actionComponentWidth={130}
-        actionComponent={row => !props.disabled && (
+        actionComponent={row => (
           <Select
             fullWidth
             label="Order"
@@ -113,9 +66,8 @@ const UnitItemList = props => (
           />
         )}
         onSelect={row => browserHistory.push(`/modules/${props.moduleId}/units/${props.unitId}${props.reviewId ? `/reviews/${props.reviewId}` : ''}/items/${row.item.id}`)}
-        onDelete={row => !props.disabled && props.onDelete(row)}
+        onDelete={row => props.onDelete(row)}
       />
-    )}
     </Async>
   </Paper>
 );
@@ -133,7 +85,6 @@ UnitItemList.propTypes = {
   })).isRequired,
   unitId: PropTypes.string.isRequired,
   moduleId: PropTypes.string.isRequired,
-  disabled: PropTypes.bool,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
   onOrderChange: PropTypes.func.isRequired,
@@ -141,7 +92,6 @@ UnitItemList.propTypes = {
 };
 
 UnitItemList.defaultProps = {
-  disabled: false,
   reviewId: null,
 };
 

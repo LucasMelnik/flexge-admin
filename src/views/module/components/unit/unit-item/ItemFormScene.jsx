@@ -63,6 +63,7 @@ const ItemFormScene = props => (
     </InlineBlock>
     {props.unit.id && (
       <ItemFormContainer
+        itemId={props.itemId}
         disabled={props.disabled}
         itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
         showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}

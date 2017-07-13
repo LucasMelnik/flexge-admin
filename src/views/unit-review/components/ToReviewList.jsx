@@ -1,33 +1,13 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import FontIcon from 'material-ui/FontIcon';
-import { red500, blue500, yellow500, green500 } from 'material-ui/styles/colors';
+import replace from 'lodash/replace';
 import ToReviewListFilterContainer from './ToReviewListFilterContainer';
 import Separator from '../../../core/layout/Separator';
 import Divider from '../../../core/layout/Divider';
 import Paper from '../../../core/layout/Paper';
 import Async from '../../../core/content/Async';
 import Table from '../../../core/content/Table';
-
-const getIcon = icon => ({
-  'NOT SENT TO REVIEW': {
-    icon: 'warning',
-    color: red500,
-  },
-  DONE: {
-    icon: 'check',
-    color: green500,
-  },
-  PENDING: {
-    icon: 'av_timer',
-    color: yellow500,
-  },
-  REVIEWED: {
-    icon: 'rate_review',
-    color: blue500,
-  },
-})[icon];
 
 const ToReviewList = props => (
   <Paper>
@@ -44,6 +24,7 @@ const ToReviewList = props => (
           {
             label: 'Course',
             path: 'unit.module.course.name',
+            width: 80,
           },
           {
             label: 'Module',
@@ -54,26 +35,51 @@ const ToReviewList = props => (
             path: 'review.createdBy.name',
           },
           {
-            label: 'Reviewed By',
-            path: 'review.reviewedBy.name',
+            label: 'Status content',
+            path: 'review.status',
+            render: row => (
+              <div
+                style={{
+                  color: '#fff',
+                  padding: 10,
+                  display: 'inline-block',
+                  fontWeight: 'bold',
+                  borderRadius: 5,
+                  backgroundColor: {
+                    PENDING: '#ef8c3b',
+                    REVIEWED: '#1188FF',
+                    DONE: '#009687',
+                    'NOT SENT TO REVIEW': '#FF5233',
+                  }[row.review.status],
+                }}
+              >
+                {row.review.status}
+              </div>
+            ),
           },
           {
-            label: 'Status',
-            path: 'review.status',
-            render: (row) => {
-              const icon = getIcon(row.review.status);
-              return (
-                <div>
-                  {row.review.status}
-                  <FontIcon
-                    className="material-icons"
-                    style={{ verticalAlign: 'middle', color: icon.color }}
-                  >
-                    {icon.icon}
-                  </FontIcon>
-                </div>
-              );
-            },
+            label: 'Status format',
+            path: 'review.statusFormat',
+            render: row => (
+              <div
+                style={{
+                  color: '#fff',
+                  padding: 10,
+                  display: 'inline-block',
+                  fontWeight: 'bold',
+                  borderRadius: 5,
+                  backgroundColor: {
+                    PENDING: '#ef8c3b',
+                    PENDING_REVIEW: '#758C98',
+                    APPROVED: '#009687',
+                    NOT_APPROVED: '#FF5233',
+                    DONE: '#009687',
+                  }[row.review.statusFormat],
+                }}
+              >
+                {replace(row.review.statusFormat, '_', ' ')}
+              </div>
+            ),
           },
         ]}
         rows={props.unitsAndReviews}

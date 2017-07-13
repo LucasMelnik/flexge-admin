@@ -20,6 +20,8 @@ class UnitItemsSceneContainer extends Component {
     }).isRequired,
   };
 
+  loadUnitService = new LoadUnitService();
+
   sendUnitToReviewService = new SendUnitToReviewService();
 
   componentWillMount() {
@@ -32,7 +34,7 @@ class UnitItemsSceneContainer extends Component {
         };
         UnitItemFormService.handleLinkToUnit(unitItem);
       } else if (!this.props.params.reviewId) {
-        //If its review dont go back to the list
+        // If its review dont go back to the list
         this.handleBack();
       }
     };
@@ -42,8 +44,7 @@ class UnitItemsSceneContainer extends Component {
       this.handleBack();
     };
     UnitItemFormService.init(linkUnitCallback);
-    LoadUnitService.handleLoad(this.props.params.moduleId, this.props.params.unitId);
-    ItemFormService.handleLoad(this.props.params.itemId);
+    this.loadUnitService.handleLoad(this.props.params.moduleId, this.props.params.unitId);
     this.sendUnitToReviewService.handleLoad(this.props.params.reviewId);
   }
 
@@ -54,7 +55,7 @@ class UnitItemsSceneContainer extends Component {
   render() {
     return (
       <ItemFormScene
-        unit={LoadUnitService.unit}
+        unit={this.loadUnitService.unit}
         itemId={this.props.params.itemId}
         reviewId={this.props.params.reviewId}
         disabled={this.sendUnitToReviewService.form.getValue('status') === 'PENDING' ||
