@@ -70,7 +70,7 @@ const MyReviewList = props => (
                   borderRadius: 5,
                   backgroundColor: {
                     PENDING: '#ef8c3b',
-                    PENDING_REVIEW: '#ef8c3b',
+                    PENDING_REVIEW: '#758C98',
                     APPROVED: '#009687',
                     NOT_APPROVED: '#FF5233',
                     DONE: '#009687',
@@ -85,8 +85,8 @@ const MyReviewList = props => (
         rows={props.unitsAndReviews}
         allowActionValidator={row => !row.review.id}
         selectable
-        onSelect={row => (row.review.status === 'REVIEWED' || row.review.status === 'DONE' || localStorage.role === 'ADMIN') && browserHistory.push(`/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
-        onSend={localStorage.role !== 'ADMIN' && (row => props.onSendToReview(row.unit))}
+        onSelect={row => (row.review.statusFormat === 'NOT_APPROVED' || row.review.status === 'REVIEWED' || row.review.status === 'DONE' || localStorage.role === 'ADMIN' ) && browserHistory.push(`/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
+        onSend={localStorage.role !== 'ADMIN' ? (row => props.onSendToReview(row.unit)) : null}
       />
     </Async>
   </Paper>

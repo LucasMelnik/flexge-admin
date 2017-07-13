@@ -70,7 +70,7 @@ const ToReviewList = props => (
                   borderRadius: 5,
                   backgroundColor: {
                     PENDING: '#ef8c3b',
-                    PENDING_REVIEW: '#ef8c3b',
+                    PENDING_REVIEW: '#758C98',
                     APPROVED: '#009687',
                     NOT_APPROVED: '#FF5233',
                     DONE: '#009687',

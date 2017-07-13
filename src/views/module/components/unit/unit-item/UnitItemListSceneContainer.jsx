@@ -14,8 +14,10 @@ class UnitItemListSceneContainer extends Component {
     }).isRequired,
   }
 
+  loadUnitService = new LoadUnitService();
+
   componentWillMount() {
-    LoadUnitService.handleLoad(this.props.params.moduleId, this.props.params.unitId);
+    this.loadUnitService.handleLoad(this.props.params.moduleId, this.props.params.unitId);
     LoadModuleService.handleLoad(this.props.params.moduleId);
   }
 
@@ -23,8 +25,8 @@ class UnitItemListSceneContainer extends Component {
     return (
       <UnitItemListScene
         module={LoadModuleService.module}
-        unit={LoadUnitService.unit}
-        fetching={LoadUnitService.fetch.fetching}
+        unit={this.loadUnitService.unit}
+        fetching={this.loadUnitService.fetch.fetching}
       />
     );
   }

@@ -11,13 +11,11 @@ class UnitItemListContainer extends Component {
     unitId: PropTypes.string.isRequired,
     moduleId: PropTypes.string.isRequired,
     reviewId: PropTypes.string,
-    disabled: PropTypes.bool,
     isReadOnly: PropTypes.bool,
     status: PropTypes.string,
   };
 
   static defaultProps = {
-    disabled: false,
     isReadOnly: false,
     reviewId: null,
     status: null,
@@ -38,7 +36,6 @@ class UnitItemListContainer extends Component {
         fetching={UnitItemListService.fetch.fetching}
         onDelete={UnitItemListService.handleUnlinkItem}
         onOrderChange={UnitItemListService.handleOrderChange}
-        disabled={this.props.disabled}
         isReadOnly={this.props.isReadOnly}
       />
     );
