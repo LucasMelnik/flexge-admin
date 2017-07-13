@@ -23,6 +23,7 @@ class UnitItemsSceneContainer extends Component {
   loadUnitService = new LoadUnitService();
 
   sendUnitToReviewService = new SendUnitToReviewService();
+  unitItemListService = new UnitItemListService();
 
   componentWillMount() {
     const saveItemCallback = (item, isNew) => {
@@ -30,7 +31,7 @@ class UnitItemsSceneContainer extends Component {
         const unitItem = {
           unit: this.props.params.unitId,
           item: item.id,
-          order: UnitItemListService.items.length + 1,
+          order: this.unitItemListService.items.length + 1,
         };
         UnitItemFormService.handleLinkToUnit(unitItem);
       } else if (!this.props.params.reviewId) {

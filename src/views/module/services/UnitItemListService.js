@@ -24,7 +24,7 @@ class UnitItemListService {
       url: `/units/${this.unitId}/items`,
     }).then(() => {
       if (this.fetch.data) {
-        this.items = orderBy(this.fetch.data, ['order'], ['asc']);;
+        this.items = orderBy(this.fetch.data, ['order'], ['asc']);
       } else {
         this.items = [];
         this.total = 0;
@@ -60,6 +60,4 @@ class UnitItemListService {
   });
 }
 
-const unitItemListService = new UnitItemListService();
-
-export default unitItemListService;
+export default UnitItemListService;
