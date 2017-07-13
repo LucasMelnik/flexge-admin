@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import range from 'lodash/range';
-import { browserHistory } from 'react-router';
 import Paper from '../../../../../core/layout/Paper';
 import Async from '../../../../../core/content/Async';
 import Table from '../../../../../core/content/Table';
