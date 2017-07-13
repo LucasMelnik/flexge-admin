@@ -14,10 +14,9 @@ class UnitItemsAccordionContainer extends Component {
   };
 
   loadUnitService = new LoadUnitService();
-  unitItemListService = new UnitItemListService();
 
   componentWillMount() {
-    this.unitItemListService.init(this.props.unitId);
+    UnitItemListService.init(this.props.unitId);
     this.loadUnitService.handleLoad(this.props.moduleId, this.props.unitId);
   }
 
@@ -25,8 +24,8 @@ class UnitItemsAccordionContainer extends Component {
     return (
       <UnitItemsAccordion
         unit={this.loadUnitService.unit}
-        items={toJS(this.unitItemListService.items)}
-        fetching={this.unitItemListService.fetch.fetching}
+        items={toJS(UnitItemListService.items)}
+        fetching={UnitItemListService.fetch.fetching}
       />
     );
   }

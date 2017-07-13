@@ -21,10 +21,8 @@ class UnitItemListContainer extends Component {
     status: null,
   }
 
-  unitItemListService = new UnitItemListService();
-
   componentWillMount() {
-    this.unitItemListService.init(this.props.unitId);
+    UnitItemListService.init(this.props.unitId);
   }
 
   render() {
@@ -34,10 +32,10 @@ class UnitItemListContainer extends Component {
         unitId={this.props.unitId}
         reviewId={this.props.reviewId}
         status={this.props.status}
-        items={toJS(this.unitItemListService.items)}
-        fetching={this.unitItemListService.fetch.fetching}
-        onDelete={this.unitItemListService.handleUnlinkItem}
-        onOrderChange={this.unitItemListService.handleOrderChange}
+        items={toJS(UnitItemListService.items)}
+        fetching={UnitItemListService.fetch.fetching}
+        onDelete={UnitItemListService.handleUnlinkItem}
+        onOrderChange={UnitItemListService.handleOrderChange}
         isReadOnly={this.props.isReadOnly}
       />
     );

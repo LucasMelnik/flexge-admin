@@ -217,10 +217,6 @@ class ItemFormService {
     this.form.reset();
   });
 
-  init = action((successCallback) => {
-    this.successCallback = successCallback;
-  });
-
   handleLoad = action((itemId) => {
     if (itemId) {
       this.fetch.fetch({
@@ -241,7 +237,7 @@ class ItemFormService {
     this.itemId = itemId;
   });
 
-  handleSubmit = action(() => {
+  handleSubmit = action((successCallback) => {
     this.form.submitted = true;
     if (this.form.errors) {
       return;
@@ -258,8 +254,8 @@ class ItemFormService {
     }).then(() => {
       if (this.submit.data) {
         const item = this.submit.data;
-        if (this.successCallback) {
-          this.successCallback(item, !itemId);
+        if (successCallback) {
+          successCallback(item, !itemId);
         } else {
           browserHistory.push(`/items/${item.id}`);
           this.itemId = item.id;
@@ -285,6 +281,4 @@ class ItemFormService {
   })
 }
 
-const itemFormService = new ItemFormService();
-
-export default itemFormService;
+export default ItemFormService;

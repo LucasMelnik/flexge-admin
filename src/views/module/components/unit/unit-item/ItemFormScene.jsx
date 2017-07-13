@@ -67,6 +67,7 @@ const ItemFormScene = props => (
         disabled={props.disabled}
         itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
         showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
+        saveItemCallback={props.saveItemCallback}
       />
     )}
   </div>
@@ -77,6 +78,7 @@ ItemFormScene.propTypes = {
   itemId: PropTypes.string,
   reviewId: PropTypes.string,
   disabled: PropTypes.bool,
+  saveItemCallback: PropTypes.func.isRequired,
 };
 
 ItemFormScene.defaultProps = {
