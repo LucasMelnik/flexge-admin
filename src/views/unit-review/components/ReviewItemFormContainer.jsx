@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import { browserHistory } from 'react-router';
 import ItemFormContainer from '../../item/components/ItemFormContainer';
 import UnitItemFormService from '../../module/services/UnitItemFormService';
 import LoadUnitService from '../../module/services/LoadUnitService';
