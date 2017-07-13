@@ -53,8 +53,6 @@ class UnitItemsSceneContainer extends Component {
         unit={this.loadUnitService.unit}
         itemId={this.props.params.itemId}
         reviewId={this.props.params.reviewId}
-        disabled={this.sendUnitToReviewService.form.getValue('status') === 'PENDING' ||
-          (this.sendUnitToReviewService.form.getValue('status') === 'REVIEWED' && this.sendUnitToReviewService.form.getValue('id') !== localStorage.id)}
         saveItemCallback={this.saveItemCallback}
       />
     );

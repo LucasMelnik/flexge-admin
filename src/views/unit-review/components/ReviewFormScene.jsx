@@ -6,6 +6,8 @@ import InlineBlock from 'jsxstyle/InlineBlock';
 import Title from '../../../core/content/Title';
 import Button from '../../../core/form/Button';
 import ColumnSeparator from '../../../core/layout/ColumnSeparator';
+import Row from '../../../core/layout/Row';
+import Column from '../../../core/layout/Column';
 import Paper from '../../../core/layout/Paper';
 import TextInput from '../../../core/form/TextInput';
 import Separator from '../../../core/layout/Separator';
@@ -15,7 +17,7 @@ import ChangeStatusFormatContainer from './ChangeStatusFormatContainer';
 import UnitItemsAccordionContainer from './UnitItemsAccordionContainer';
 
 const ReviewFormScene = props => (
-  <div style={{ paddingBottom: '240px' }}>
+  <div style={{ paddingBottom: '320px' }}>
     <InlineBlock marginBottom={15}>
       <Title>
         Unit
@@ -77,32 +79,37 @@ const ReviewFormScene = props => (
       style={{
         position: 'fixed',
         zIndex: 3,
-        bottom: 5,
+        bottom: 0,
         left: 15,
         right: 15,
       }}
     >
-      <TextInput
-        floatingLabel
-        fullWidth
-        multiLine
-        disabled={props.status === 'REVIEWED' || props.status === 'DONE' || props.review.createdBy === localStorage.id}
-        isRequired
-        rows={7}
-        label="Comment review"
-        value={get(props.values, 'comments', '')}
-        onChange={value => props.onChange('comments', value)}
-        errorText={get(props.errors, 'comments', '')}
-      />
+      <Row>
+        <Column lgSize={9}>
+          <Paper>
+            <TextInput
+              floatingLabel
+              multiLine
+              disabled={props.status === 'REVIEWED' || props.status === 'DONE' || props.review.createdBy === localStorage.id}
+              isRequired
+              rows={5}
+              label="Comment review"
+              value={get(props.values, 'comments', '')}
+              onChange={value => props.onChange('comments', value)}
+              errorText={get(props.errors, 'comments', '')}
+            />
+          </Paper>
+        </Column>
+        <Column lgSize={3}>
+          <ChangeStatusFormatContainer
+            reviewId={props.reviewId}
+            unitId={props.unitId}
+            currentStatusFormat={props.currentStatusFormat}
+          />
+        </Column>
+      </Row>
     </Paper>
-    <ColumnSeparator size="md" />
-    {props.review.createdBy === localStorage.id && (
-      <ChangeStatusFormatContainer
-        reviewId={props.reviewId}
-        unitId={props.unitId}
-        currentStatusFormat={props.currentStatusFormat}
-      />
-    )}
+
   </div>
 );
 
