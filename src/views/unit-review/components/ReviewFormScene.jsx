@@ -58,7 +58,7 @@ const ReviewFormScene = props => (
       Unit items
     </Title>
     <Separator size="xs" />
-    {(props.status === 'PENDING' && props.review.createdBy === localStorage.id) || localStorage.role === 'ADMIN' ? (
+    {(props.status === 'PENDING' && props.review.createdBy !== localStorage.id) || localStorage.role === 'ADMIN' ? (
       <UnitItemsAccordionContainer
         moduleId={props.moduleId}
         unitId={props.unitId}
