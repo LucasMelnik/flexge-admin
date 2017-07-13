@@ -9,15 +9,12 @@ class UnitItemListContainer extends Component {
 
   static propTypes = {
     unitId: PropTypes.string.isRequired,
-    moduleId: PropTypes.string.isRequired,
-    reviewId: PropTypes.string,
-    isReadOnly: PropTypes.bool,
     status: PropTypes.string,
+    onSelect: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     isReadOnly: false,
-    reviewId: null,
     status: null,
   }
 
@@ -28,15 +25,12 @@ class UnitItemListContainer extends Component {
   render() {
     return (
       <UnitItemList
-        moduleId={this.props.moduleId}
-        unitId={this.props.unitId}
-        reviewId={this.props.reviewId}
         status={this.props.status}
         items={toJS(UnitItemListService.items)}
         fetching={UnitItemListService.fetch.fetching}
         onDelete={UnitItemListService.handleUnlinkItem}
         onOrderChange={UnitItemListService.handleOrderChange}
-        isReadOnly={this.props.isReadOnly}
+        onSelect={this.props.onSelect}
       />
     );
   }

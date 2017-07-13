@@ -99,6 +99,7 @@ class UnitItemListScene extends Component {
           <UnitItemListContainer
             unitId={this.props.unit.id}
             moduleId={this.props.unit.module.id}
+            onSelect={row => browserHistory.push(`/modules/${this.props.module.id}/units/${this.props.unit.id}/items/${row.item.id}`)}
           />
         )}
       </div>

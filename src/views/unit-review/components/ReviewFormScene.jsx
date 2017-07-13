@@ -12,12 +12,11 @@ import Paper from '../../../core/layout/Paper';
 import TextInput from '../../../core/form/TextInput';
 import Separator from '../../../core/layout/Separator';
 import UnitFormContainer from '../../module/components/unit/UnitFormContainer';
-import UnitItemListContainer from '../../module/components/unit/unit-item/UnitItemListContainer';
 import ChangeStatusFormatContainer from './ChangeStatusFormatContainer';
-import UnitItemsAccordionContainer from './UnitItemsAccordionContainer';
+import ReviewItems from './ReviewItems';
 
 const ReviewFormScene = props => (
-  <div style={{ paddingBottom: '320px' }}>
+  <div style={{ paddingBottom: '220px' }}>
     <InlineBlock marginBottom={15}>
       <Title>
         Unit
@@ -53,27 +52,17 @@ const ReviewFormScene = props => (
       unitId={props.unitId}
       moduleId={props.moduleId}
       reviewId={props.reviewId}
-      disabled={props.status === 'PENDING' || (props.status === 'REVIEWED' && props.review.createdBy !== localStorage.id)}
+      disabled={(props.currentStatusFormat === 'PENDING' || props.currentStatusFormat === 'PENDING_REVIEW') &&
+        (props.status === 'PENDING' || (props.status === 'REVIEWED' && props.review.createdBy !== localStorage.id))}
     />
     <Separator size="xs" />
-    <Title>
-      Unit items
-    </Title>
-    <Separator size="xs" />
-    {(props.status === 'PENDING' && props.review.createdBy !== localStorage.id) || localStorage.role === 'ADMIN' ? (
-      <UnitItemsAccordionContainer
-        moduleId={props.moduleId}
-        unitId={props.unitId}
-      />
-    ) : (
-      <UnitItemListContainer
-        unitId={props.unitId}
-        moduleId={props.moduleId}
-        reviewId={props.reviewId}
-        status={props.status}
-        isReadOnly={props.status === 'PENDING'}
-      />
-    )}
+    <ReviewItems
+      unitId={props.unitId}
+      moduleId={props.moduleId}
+      review={props.review}
+      status={props.status}
+      statusFormat={props.currentStatusFormat}
+    />
     <ColumnSeparator size="md" />
     <Paper
       style={{
@@ -90,6 +79,7 @@ const ReviewFormScene = props => (
             <TextInput
               floatingLabel
               multiLine
+              fullWidth
               disabled={props.status === 'REVIEWED' || props.status === 'DONE' || props.review.createdBy === localStorage.id}
               isRequired
               rows={5}
@@ -109,7 +99,6 @@ const ReviewFormScene = props => (
         </Column>
       </Row>
     </Paper>
-
   </div>
 );
 

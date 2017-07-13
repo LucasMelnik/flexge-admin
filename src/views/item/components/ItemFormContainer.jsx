@@ -6,7 +6,7 @@ import ItemFormService from '../services/ItemFormService';
 
 class ItemFormContainer extends Component {
   static propTypes = {
-    itemId: PropTypes.string.isRequired,
+    itemId: PropTypes.string,
     itemsTypeUrl: PropTypes.string.isRequired,
     showPostPhrase: PropTypes.bool.isRequired,
     disabled: PropTypes.bool,
@@ -16,11 +16,13 @@ class ItemFormContainer extends Component {
   static defaultProps = {
     disabled: false,
     saveItemCallback: null,
+    itemId: null,
   };
 
   itemFormService = new ItemFormService();
 
   componentWillMount() {
+    console.log('this.props.itemId', this.props.itemId);
     this.itemFormService.handleLoad(this.props.itemId);
   }
 

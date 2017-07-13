@@ -11,51 +11,53 @@ const UnitItemsAccordion = props => (
         borderSpacing: '5px',
       }}
     >
-      <tr>
-        <td
-          style={{
-            width: '100px',
-            textAlign: 'center',
-          }}
-        >
-          Order
-        </td>
-        <td
-          style={{
-            width: '500px',
-            textAlign: 'justify',
-          }}
-        >
-          Text
-        </td>
-        <td
-          style={{
-            width: '500px',
-            textAlign: 'justify',
-            paddingLeft: '30px',
-          }}
-        >
-          Translation
-        </td>
-        <td
-          style={{
-            width: '250px',
-            paddingLeft: '30px',
-            textAlign: 'center',
-          }}
-        >
-          Grammar
-        </td>
-        <td
-          style={{
-            width: '200px',
-            paddingLeft: '30px',
-            textAlign: 'center',
-          }}
-        >
-          Type
-        </td>
-      </tr>
+      <tbody>
+        <tr>
+          <td
+            style={{
+              width: '100px',
+              textAlign: 'center',
+            }}
+          >
+            Order
+          </td>
+          <td
+            style={{
+              width: '500px',
+              textAlign: 'justify',
+            }}
+          >
+            Text
+          </td>
+          <td
+            style={{
+              width: '500px',
+              textAlign: 'justify',
+              paddingLeft: '30px',
+            }}
+          >
+            Translation
+          </td>
+          <td
+            style={{
+              width: '250px',
+              paddingLeft: '30px',
+              textAlign: 'center',
+            }}
+          >
+            Grammar
+          </td>
+          <td
+            style={{
+              width: '200px',
+              paddingLeft: '30px',
+              textAlign: 'center',
+            }}
+          >
+            Type
+          </td>
+        </tr>
+      </tbody>
     </table>
     {props.items && props.items.map(item => (
       <Accordion
@@ -71,51 +73,53 @@ const UnitItemsAccordion = props => (
                 borderSpacing: '5px',
               }}
             >
-              <tr>
-                <td
-                  style={{
-                    width: '100px',
-                    textAlign: 'center',
-                  }}
-                >
-                  {item.order}
-                </td>
-                <td
-                  style={{
-                    width: '500px',
-                    textAlign: 'justify',
-                  }}
-                >
-                  {item.item.text}
-                </td>
-                <td
-                  style={{
-                    width: '500px',
-                    textAlign: 'justify',
-                    paddingLeft: '30px',
-                  }}
-                >
-                  {item.item.translation}
-                </td>
-                <td
-                  style={{
-                    width: '250px',
-                    paddingLeft: '30px',
-                    textAlign: 'center',
-                  }}
-                >
-                  {item.item.grammar && item.item.grammar.name}
-                </td>
-                <td
-                  style={{
-                    width: '200px',
-                    paddingLeft: '30px',
-                    textAlign: 'center',
-                  }}
-                >
-                  {item.item.type && item.item.type.name}
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td
+                    style={{
+                      width: '100px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {item.order}
+                  </td>
+                  <td
+                    style={{
+                      width: '500px',
+                      textAlign: 'justify',
+                    }}
+                  >
+                    {item.item.text}
+                  </td>
+                  <td
+                    style={{
+                      width: '500px',
+                      textAlign: 'justify',
+                      paddingLeft: '30px',
+                    }}
+                  >
+                    {item.item.translation}
+                  </td>
+                  <td
+                    style={{
+                      width: '250px',
+                      paddingLeft: '30px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {item.item.grammar && item.item.grammar.name}
+                  </td>
+                  <td
+                    style={{
+                      width: '200px',
+                      paddingLeft: '30px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {item.item.type && item.item.type.name}
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         )}

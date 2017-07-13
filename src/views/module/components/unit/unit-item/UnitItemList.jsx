@@ -65,7 +65,7 @@ const UnitItemList = props => (
             }}
           />
         )}
-        onSelect={row => browserHistory.push(`/modules/${props.moduleId}/units/${props.unitId}${props.reviewId ? `/reviews/${props.reviewId}` : ''}/items/${row.item.id}`)}
+        onSelect={props.onSelect}
         onDelete={row => props.onDelete(row)}
       />
     </Async>
@@ -83,16 +83,10 @@ UnitItemList.propTypes = {
       }),
     }),
   })).isRequired,
-  unitId: PropTypes.string.isRequired,
-  moduleId: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
   onOrderChange: PropTypes.func.isRequired,
-  reviewId: PropTypes.string,
-};
-
-UnitItemList.defaultProps = {
-  reviewId: null,
+  onSelect: PropTypes.func.isRequired,
 };
 
 export default UnitItemList;
