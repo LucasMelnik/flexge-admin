@@ -24,7 +24,7 @@ class UnitItemListService {
       url: `/units/${this.unitId}/items`,
     }).then(() => {
       if (this.fetch.data) {
-        this.items = orderBy(this.fetch.data, ['order'], ['asc']);
+        this.items = orderBy(this.fetch.data, ['order', 'group'], ['asc',  'asc']);
       } else {
         this.items = [];
         this.total = 0;
