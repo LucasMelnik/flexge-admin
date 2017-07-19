@@ -35,7 +35,7 @@ class UnitItemListService {
 
   handleOrderChange = action((unitItem, order) => {
     this.submit.fetch({
-      url: `/units/${unitItem.unit}/items/${unitItem.item.id}/unit-item/${unitItem.id}`,
+      url: `/units/${unitItem.unit}/items/${unitItem.item.id}`,
       method: 'put',
       body: {
         order,

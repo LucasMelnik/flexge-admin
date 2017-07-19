@@ -42,12 +42,12 @@ const ItemForm = props => (
               fullWidth
               disabled={props.submitting || props.disabled}
               label="Item Type"
-              value={get(props.values, 'type.name', '')}
+              value={get(props.values, 'item.type.name', '')}
               onSelect={type => {
-                props.onChange('type', type);
+                props.onChange('item.type', type);
                 props.setValidationsByItemType();
               }}
-              errorText={get(props.errors, 'type', '')}
+              errorText={get(props.errors, 'item.type', '')}
               resultTransformer={{
                 text: 'name',
                 value: 'id',
@@ -61,143 +61,143 @@ const ItemForm = props => (
               disabled={props.submitting || props.disabled}
               label="Grammar"
               maxHeight={350}
-              value={get(props.values, 'grammar.id', '')}
-              onChange={grammar => props.onChange('grammar.id', grammar)}
-              errorText={get(props.errors, 'grammar', '')}
+              value={get(props.values, 'item.grammar.id', '')}
+              onChange={grammar => props.onChange('item.grammar.id', grammar)}
+              errorText={get(props.errors, 'item.grammar', '')}
             />
           </Column>
         </Row>
-        {get(props.values, 'type.key', '') === 'VIDEO' && (
+        {get(props.values.item, 'type.key', '') === 'VIDEO' && (
           <VideoItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'VIDEO_SHORT' && (
+        {get(props.values.item, 'type.key', '') === 'VIDEO_SHORT' && (
           <VideoShortItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'VIDEO_TEXT_AREA' && (
+        {get(props.values.item, 'type.key', '') === 'VIDEO_TEXT_AREA' && (
           <VideoLongTextItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {['SINGLE_CHOICE_TEXT', 'SINGLE_CHOICE_AUDIO', 'SINGLE_CHOICE_IMAGE'].find(type => type === get(props.values, 'type.key')) && (
+        {['SINGLE_CHOICE_TEXT', 'SINGLE_CHOICE_AUDIO', 'SINGLE_CHOICE_IMAGE'].find(type => type === get(props.values.item, 'type.key')) && (
           <SingleChoiceItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'DICTATION' && (
+        {get(props.values.item, 'type.key', '') === 'DICTATION' && (
           <DictationItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'GAP_FILL' && (
+        {get(props.values.item, 'type.key', '') === 'GAP_FILL' && (
           <GapFillItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'GAP_FILL_SELECT' && (
+        {get(props.values.item, 'type.key', '') === 'GAP_FILL_SELECT' && (
           <GapFillSelectItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'GAP_FILL_MULTIPLE' && (
+        {get(props.values.item, 'type.key', '') === 'GAP_FILL_MULTIPLE' && (
           <GapFillMultipleItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'PRESENTATION' && (
+        {get(props.values.item, 'type.key', '') === 'PRESENTATION' && (
           <PresentationItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'PRONUNCIATION' && (
+        {get(props.values.item, 'type.key', '') === 'PRONUNCIATION' && (
           <PronunciationItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'SPEECH_PRACTICE' && (
+        {get(props.values.item, 'type.key', '') === 'SPEECH_PRACTICE' && (
           <SpeechPracticeItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'TEXT' && (
+        {get(props.values.item, 'type.key', '') === 'TEXT' && (
           <TextItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'UNSCRAMBLE_DRAG_AND_DROP' && (
+        {get(props.values.item, 'type.key', '') === 'UNSCRAMBLE_DRAG_AND_DROP' && (
           <UnscrambleDragDropItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'UNSCRAMBLE_SPEECH_RECOGNITION' && (
+        {get(props.values.item, 'type.key', '') === 'UNSCRAMBLE_SPEECH_RECOGNITION' && (
           <UnscrambleSpeechRecognitionItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'TRUE_FALSE' && (
+        {get(props.values.item, 'type.key', '') === 'TRUE_FALSE' && (
           <TrueFalseItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
@@ -208,9 +208,9 @@ const ItemForm = props => (
             fullWidth
             label="Post Phrase"
             disabled={props.submitting}
-            value={get(props.values, 'postPhrase', '')}
-            onChange={value => props.onChange('postPhrase', value)}
-            errorText={get(props.errors, 'postPhrase', '')}
+            value={get(props.values, 'item.postPhrase', '')}
+            onChange={value => props.onChange('item.postPhrase', value)}
+            errorText={get(props.errors, 'item.postPhrase', '')}
           />
         )}
         <Separator size="xs" />
