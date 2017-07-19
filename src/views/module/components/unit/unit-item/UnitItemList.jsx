@@ -45,6 +45,11 @@ const UnitItemList = props => (
             label: 'Type',
             path: 'item.type.name',
           },
+          {
+            label: 'Time',
+            path: 'time',
+            width: 30,
+          },
         ]}
         rows={props.items}
         selectable

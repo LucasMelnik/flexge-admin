@@ -254,6 +254,7 @@ class ItemFormService {
           grammar: this.form.getValue('item.grammar').id,
         },
         order: this.form.getValue('order') || this.order,
+        time: this.form.getValue('time'),
       },
     }).then(() => {
       if (this.submit.data) {
