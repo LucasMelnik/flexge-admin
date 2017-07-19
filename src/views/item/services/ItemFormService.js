@@ -255,6 +255,7 @@ class ItemFormService {
         },
         order: this.form.getValue('order') || this.order,
         time: this.form.getValue('time'),
+        group: 1,
       },
     }).then(() => {
       if (this.submit.data) {

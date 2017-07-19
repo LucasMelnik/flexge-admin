@@ -53,21 +53,59 @@ const UnitItemList = props => (
         ]}
         rows={props.items}
         selectable
-        actionComponentWidth={130}
+        actionComponentWidth={280}
         actionComponent={row => (
-          <Select
-            fullWidth
-            label="Order"
-            value={row.order}
-            onChange={order => props.onOrderChange(row, order)}
-            options={range(1, 31).map(value => ({
-              label: value.toString(),
-              value,
-            }))}
+          <div
             style={{
-              width: 50,
+              display: 'inline-block',
             }}
-          />
+          >
+            <div
+              style={{
+                display: 'inline-block',
+                width: 50,
+                marginRight: 10,
+              }}
+            >
+              <Select
+                fullWidth
+                label="Order"
+                value={row.order}
+                onChange={order => props.onOrderChange(row, order, row.group, row.time)}
+                options={range(1, 31).map(value => ({
+                  label: value.toString(),
+                  value,
+                }))}
+              />
+            </div>
+            <div
+              style={{
+                display: 'inline-block',
+                width: 170,
+              }}
+            >
+              <Select
+                fullWidth
+                label="Group"
+                value={row.group}
+                onChange={group => props.onOrderChange(row, row.order, group, row.time)}
+                options={[
+                  {
+                    label: 'Default',
+                    value: 1,
+                  },
+                  {
+                    label: 'First Review',
+                    value: 2,
+                  },
+                  {
+                    label: 'Second Review',
+                    value: 3,
+                  },
+                ]}
+              />
+            </div>
+          </div>
         )}
         onSelect={props.onSelect}
         onDelete={row => props.onDelete(row)}
