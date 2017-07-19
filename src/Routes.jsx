@@ -21,6 +21,8 @@ import UnitItemListSceneContainer from './views/module/components/unit/unit-item
 import ItemFormSceneContainer from './views/module/components/unit/unit-item/ItemFormSceneContainer';
 import ReviewListSceneContainer from './views/unit-review/components/ReviewListSceneContainer';
 import ReviewFormSceneContainer from './views/unit-review/components/ReviewFormSceneContainer';
+import PlacementTestListScene from './views/placement-test/components/PlacementTestListScene';
+import PlacementTestFormSceneContainer from './views/placement-test/components/PlacementTestFormSceneContainer';
 import NotFoundScene from './views/not-found/NotFoundScene';
 
 
@@ -62,6 +64,9 @@ const Routes = () => (
       <Route path="/modules/:moduleId/units/:unitId/reviews/:reviewId/items/:itemId" component={ItemFormSceneContainer} />
       <Route path="/modules/:moduleId/units/:unitId/items/:itemId" component={ItemFormSceneContainer} />
       <Route path="/reviews" component={ReviewListSceneContainer} />
+      <Route path="/placement-tests" component={PlacementTestListScene} />
+      <Route path="/placement-tests/new" component={PlacementTestFormSceneContainer} />
+      <Route path="/placement-tests/:placementTestId" component={PlacementTestFormSceneContainer} />
     </Route>
     <Route path="*" component={NotFoundScene} />
   </Router>
