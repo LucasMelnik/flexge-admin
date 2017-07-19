@@ -8,6 +8,8 @@ class ItemFormContainer extends Component {
   static propTypes = {
     itemId: PropTypes.string,
     itemsTypeUrl: PropTypes.string.isRequired,
+    endpointUrl: PropTypes.string.isRequired,
+    order: PropTypes.number.isRequired,
     showPostPhrase: PropTypes.bool.isRequired,
     disabled: PropTypes.bool,
     saveItemCallback: PropTypes.func,
@@ -19,17 +21,16 @@ class ItemFormContainer extends Component {
     itemId: null,
   };
 
-  itemFormService = new ItemFormService();
+  itemFormService = new ItemFormService(this.props.endpointUrl, this.props.order);
 
   componentWillMount() {
-    console.log('this.props.itemId', this.props.itemId);
     this.itemFormService.handleLoad(this.props.itemId);
   }
 
   render() {
     return (
       <ItemForm
-        onSubmit={() => this.itemFormService.handleSubmit(this.props.saveItemCallback)}
+        onSubmit={this.itemFormService.handleSubmit}
         setValidationsByItemType={this.itemFormService.setValidationsByItemType}
         onChange={this.itemFormService.form.setValue}
         onReset={this.itemFormService.form.reset}

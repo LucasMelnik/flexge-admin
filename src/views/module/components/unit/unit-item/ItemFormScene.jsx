@@ -65,8 +65,9 @@ const ItemFormScene = props => (
       <ItemFormContainer
         itemId={props.itemId}
         itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
+        endpointUrl={`units/${props.unit.id}/items`}
+        order={props.itemOrder}
         showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
-        saveItemCallback={props.saveItemCallback}
       />
     )}
   </div>
@@ -74,10 +75,10 @@ const ItemFormScene = props => (
 
 ItemFormScene.propTypes = {
   unit: PropTypes.object.isRequired,
+  itemOrder: PropTypes.number.isRequired,
   itemId: PropTypes.string,
   reviewId: PropTypes.string,
   disabled: PropTypes.bool,
-  saveItemCallback: PropTypes.func.isRequired,
 };
 
 ItemFormScene.defaultProps = {

@@ -18,13 +18,16 @@ class ItemFormService {
 
   defaultValidations = {
     type: [isRequired],
+    // time: [isRequired],
   };
 
-  constructor() {
+  constructor(endpointUrl, order) {
     extendObservable(this, {
       itemId: null,
       successCallback: null,
     });
+    this.endpointUrl = endpointUrl;
+    this.order = order;
     this.form.validations = {
       ...this.defaultValidations,
     };
@@ -237,7 +240,7 @@ class ItemFormService {
     this.itemId = itemId;
   });
 
-  handleSubmit = action((successCallback) => {
+  handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
       return;
@@ -245,23 +248,20 @@ class ItemFormService {
     const itemId = this.form.getValue('id');
     this.submit.fetch({
       method: itemId ? 'put' : 'post',
-      url: itemId ? `/items/${itemId}` : '/items',
+      url: itemId ? `/${this.endpointUrl}/${itemId}` : `/${this.endpointUrl}`,
       body: {
         ...this.form.getValues(),
         type: this.form.getValue('type').id,
         grammar: this.form.getValue('grammar').id,
+        order: this.order,
       },
     }).then(() => {
       if (this.submit.data) {
         const item = this.submit.data;
-        if (successCallback) {
-          successCallback(item, !itemId);
-        } else {
-          browserHistory.push(`/items/${item.id}`);
-          this.itemId = item.id;
-          this.form.reset();
-          this.form.setInitialValues(item);
-        }
+        this.itemId = item.id;
+        this.form.reset();
+        this.form.setInitialValues(item);
+        browserHistory.goBack();
         NotificationService.addNotification(
           `Item ${itemId ? 'updated' : 'created'} successfully.`,
           null,
