@@ -1,30 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import range from 'lodash/range';
 import Separator from '../../../core/layout/Separator';
-import Row from "../../../core/layout/Row";
-import Column from "../../../core/layout/Column";
-import Async from "../../../core/content/Async";
+import Row from '../../../core/layout/Row';
+import Column from '../../../core/layout/Column';
+import Async from '../../../core/content/Async';
 import Button from '../../../core/form/Button';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
 import FetchSelect from '../../../core/form/FetchSelect';
-import VideoItemForm from "./forms/VideoItemForm";
-import VideoShortItemForm from "./forms/VideoShortItemForm";
-import VideoLongTextItemForm from "./forms/VideoLongTextItemForm";
-import SingleChoiceItemForm from "./forms/SingleChoiceItemForm";
-import DictationItemForm from "./forms/DictationItemForm";
-import GapFillItemForm from "./forms/GapFillItemForm";
-import GapFillSelectItemForm from "./forms/GapFillSelectItemForm";
-import GapFillMultipleItemForm from "./forms/GapFillMultipleItemForm";
-import PresentationItemForm from "./forms/PresentationItemForm";
-import PronunciationItemForm from "./forms/PronunciationItemForm";
-import SpeechPracticeItemForm from "./forms/SpeechPracticeItemForm";
-import TextItemForm from "./forms/TextItemForm";
-import UnscrambleDragDropItemForm from "./forms/UnscrambleDragDropItemForm";
-import UnscrambleSpeechRecognitionItemForm from "./forms/UnscrambleSpeechRecognitionItemForm";
-import TrueFalseItemForm from "./forms/TrueFalseItemForm";
-import Paper from "../../../core/layout/Paper";
-import TextInput from "../../../core/form/TextInput";
+import VideoItemForm from './forms/VideoItemForm';
+import VideoShortItemForm from './forms/VideoShortItemForm';
+import VideoLongTextItemForm from './forms/VideoLongTextItemForm';
+import SingleChoiceItemForm from './forms/SingleChoiceItemForm';
+import DictationItemForm from './forms/DictationItemForm';
+import GapFillItemForm from './forms/GapFillItemForm';
+import GapFillSelectItemForm from './forms/GapFillSelectItemForm';
+import GapFillMultipleItemForm from './forms/GapFillMultipleItemForm';
+import PresentationItemForm from './forms/PresentationItemForm';
+import PronunciationItemForm from './forms/PronunciationItemForm';
+import SpeechPracticeItemForm from './forms/SpeechPracticeItemForm';
+import TextItemForm from './forms/TextItemForm';
+import UnscrambleDragDropItemForm from './forms/UnscrambleDragDropItemForm';
+import UnscrambleSpeechRecognitionItemForm from './forms/UnscrambleSpeechRecognitionItemForm';
+import TrueFalseItemForm from './forms/TrueFalseItemForm';
+import Paper from '../../../core/layout/Paper';
+import TextInput from '../../../core/form/TextInput';
+import Select from '../../../core/form/Select';
 
 const ItemForm = props => (
   <Paper>
@@ -36,7 +38,7 @@ const ItemForm = props => (
     >
       <Async fetching={props.fetching}>
         <Row>
-          <Column lgSize={6}>
+          <Column lgSize={4}>
             <FetchAutoComplete
               url={props.itemsTypeUrl}
               fullWidth
@@ -45,6 +47,9 @@ const ItemForm = props => (
               value={get(props.values, 'item.type.name', '')}
               onSelect={type => {
                 props.onChange('item.type', type);
+                if (type) {
+                  props.onChange('time', type.defaultTime);
+                }
                 props.setValidationsByItemType();
               }}
               errorText={get(props.errors, 'item.type', '')}
@@ -52,6 +57,21 @@ const ItemForm = props => (
                 text: 'name',
                 value: 'id',
               }}
+            />
+          </Column>
+          <Column lgSize={2}>
+            <Select
+              floatingLabel
+              fullWidth
+              options={range(1, 11).map(value => ({
+                value,
+                label: value.toString(),
+              }))}
+              disabled={props.submitting || props.disabled}
+              label="Time (minutes)"
+              value={get(props.values, 'time', '')}
+              onChange={value => props.onChange('time', value)}
+              errorText={get(props.errors, 'time', '')}
             />
           </Column>
           <Column lgSize={6}>
