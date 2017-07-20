@@ -11,10 +11,23 @@ import Table from '../../../core/content/Table';
 
 const ToReviewList = props => (
   <Paper>
-    <ToReviewListFilterContainer />
-    <Separator />
-    <Divider />
     <Async fetching={props.fetching}>
+      <div
+        style={{
+          textAlign: 'right',
+          fontSize: 13,
+        }}
+      >
+        {(props.unitsAndReviews && props.unitsAndReviews.length === 1) ?
+          (
+            `${props.unitsAndReviews.length} record found.`
+          ) : (
+            `${props.unitsAndReviews.length} records found.`
+          )
+        }
+      </div>
+      <ToReviewListFilterContainer />
+      <Separator />
       <Table
         columns={[
           {

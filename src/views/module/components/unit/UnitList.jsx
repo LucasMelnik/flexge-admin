@@ -13,6 +13,14 @@ const UnitList = props => (
   <Paper>
     <Async fetching={props.fetching}>
       <div>
+        <div
+          style={{
+            textAlign: 'right',
+            fontSize: 13,
+          }}
+        >
+          {props.units && props.units.length} records found.
+        </div>
         <UnitListFilterContainer />
         <Separator />
         <Divider />

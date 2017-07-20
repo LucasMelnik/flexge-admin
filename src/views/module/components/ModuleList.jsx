@@ -12,8 +12,16 @@ const ModuleList = props => (
   <Paper
     flexible
   >
-    <ModuleListFilterContainer />
     <Async fetching={props.fetching}>
+      <div
+        style={{
+          textAlign: 'right',
+          fontSize: 13,
+        }}
+      >
+        {props.modules && props.modules.length} records found.
+      </div>
+      <ModuleListFilterContainer />
       <div>
         <Separator />
         <Divider />
@@ -85,6 +93,7 @@ ModuleList.propTypes = {
     description: PropTypes.string,
     course: PropTypes.object.isRequired,
   })).isRequired,
+  countModules: PropTypes.number.isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
