@@ -1,128 +1,164 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import get from 'lodash/get';
 import InlineBlock from 'jsxstyle/InlineBlock';
 import Title from '../../../core/content/Title';
 import Button from '../../../core/form/Button';
+import FloatActionButton from '../../../core/form/FloatActionButton';
 import ColumnSeparator from '../../../core/layout/ColumnSeparator';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import Paper from '../../../core/layout/Paper';
-import TextInput from '../../../core/form/TextInput';
+import TextEditor from '../../../core/content/TextEditor';
 import Separator from '../../../core/layout/Separator';
 import UnitFormContainer from '../../module/components/unit/UnitFormContainer';
 import ChangeStatusFormatContainer from './ChangeStatusFormatContainer';
 import ReviewItems from './ReviewItems';
 
-const ReviewFormScene = props => (
-  <div style={{ paddingBottom: '220px' }}>
-    <InlineBlock marginBottom={15}>
-      <Title>
-        Unit
-      </Title>
-    </InlineBlock>
-    <InlineBlock
-      float="right"
-    >
-      <Button
-        icon="keyboard_backspace"
-        label="back"
-        onClick={() => browserHistory.push('/reviews')}
-      />
-      {' '}
-      {props.status === 'PENDING' && props.review.createdBy !== localStorage.id && (
-        <Button
-          icon="rate_review"
-          primary
-          label="Mark as reviewed"
-          onClick={() => props.onSendToReviewed(props.unitId, props.reviewId)}
-        />
-      )}
-      {props.status === 'REVIEWED' && props.review.createdBy === localStorage.id && (
-        <Button
-          icon="rate_review"
-          primary
-          label="Done"
-          onClick={() => props.onSendToDone(props.unitId, props.reviewId)}
-        />
-      )}
-    </InlineBlock>
-    <UnitFormContainer
-      unitId={props.unitId}
-      moduleId={props.moduleId}
-      reviewId={props.reviewId}
-      disabled={(props.currentStatusFormat === 'PENDING' || props.currentStatusFormat === 'PENDING_REVIEW') &&
-        (props.status === 'PENDING' || (props.status === 'REVIEWED' && props.review.createdBy !== localStorage.id))}
-    />
-    <Separator size="xs" />
-    <ReviewItems
-      unitId={props.unitId}
-      moduleId={props.moduleId}
-      review={props.review}
-      status={props.status}
-      statusFormat={props.currentStatusFormat}
-    />
-    <ColumnSeparator size="md" />
-    <Paper
-      style={{
-        position: 'fixed',
-        zIndex: 3,
-        bottom: 0,
-        left: 15,
-        right: 15,
-      }}
-    >
-      <Row>
-        <Column lgSize={9}>
-          <Paper>
-            <TextInput
-              floatingLabel
-              multiLine
-              fullWidth
-              disabled={props.status === 'REVIEWED' || props.status === 'DONE' || props.review.createdBy === localStorage.id}
-              isRequired
-              rows={5}
-              label="Comment review"
-              value={get(props.values, 'comments', '')}
-              onChange={value => props.onChange('comments', value)}
-              errorText={get(props.errors, 'comments', '')}
-            />
-          </Paper>
-        </Column>
-        <Column lgSize={3}>
-          <ChangeStatusFormatContainer
-            reviewId={props.reviewId}
-            unitId={props.unitId}
-            currentStatusFormat={props.currentStatusFormat}
+export default class Table extends Component {
+
+  state = {
+    expanded: false,
+  }
+
+  static propTypes = {
+    unitId: PropTypes.string,
+    moduleId: PropTypes.string,
+    reviewId: PropTypes.string,
+    values: PropTypes.object.isRequired,
+    currentStatusFormat: PropTypes.string,
+    status: PropTypes.string.isRequired,
+    review: PropTypes.shape({
+      createdBy: PropTypes.string,
+    }),
+  };
+
+  static defaultProps = {
+    unitId: null,
+    moduleId: null,
+    reviewId: null,
+    comments: null,
+    review: {},
+    currentStatusFormat: null,
+  };
+
+  expandOrRetractComment = () => {
+    if (this.state.expanded) {
+      this.setState({
+        expanded: false,
+      });
+    } else {
+      this.setState({
+        expanded: true,
+      });
+    }
+  }
+
+  render() {
+    return (
+      <div style={{ paddingBottom: '320px' }}>
+        <InlineBlock marginBottom={15}>
+          <Title>
+            Unit
+          </Title>
+        </InlineBlock>
+        <InlineBlock
+          float="right"
+        >
+          <Button
+            icon="keyboard_backspace"
+            label="back"
+            onClick={() => browserHistory.push('/reviews')}
           />
-        </Column>
-      </Row>
-    </Paper>
-  </div>
-);
+          {' '}
+          {this.props.status === 'PENDING' && this.props.review.createdBy !== localStorage.id && (
+            <Button
+              icon="rate_review"
+              primary
+              label="Mark as reviewed"
+              onClick={() => this.props.onSendToReviewed(this.props.unitId, this.props.reviewId)}
+            />
+          )}
+          {this.props.status === 'REVIEWED' && this.props.review.createdBy === localStorage.id && (
+            <Button
+              icon="rate_review"
+              primary
+              label="Done"
+              onClick={() => this.props.onSendToDone(this.props.unitId, this.props.reviewId)}
+            />
+          )}
+        </InlineBlock>
+        <UnitFormContainer
+          unitId={this.props.unitId}
+          moduleId={this.props.moduleId}
+          reviewId={this.props.reviewId}
+          disabled={(this.props.currentStatusFormat === 'PENDING' || this.props.currentStatusFormat === 'PENDING_REVIEW') &&
+            (this.props.status === 'PENDING' || (this.props.status === 'REVIEWED' && this.props.review.createdBy !== localStorage.id))}
+        />
+        <Separator size="xs" />
+        <ReviewItems
+          unitId={this.props.unitId}
+          moduleId={this.props.moduleId}
+          review={this.props.review}
+          status={this.props.status}
+          statusFormat={this.props.currentStatusFormat}
+        />
+        <ColumnSeparator size="md" />
+        <Paper
+          style={{
+            position: 'fixed',
+            zIndex: 3,
+            bottom: 10,
+            left: 15,
+            right: 15,
+            maxHeight: '90%',
+          }}
+        >
 
-ReviewFormScene.propTypes = {
-  unitId: PropTypes.string,
-  moduleId: PropTypes.string,
-  reviewId: PropTypes.string,
-  values: PropTypes.object.isRequired,
-  currentStatusFormat: PropTypes.string,
-  status: PropTypes.string.isRequired,
-  errors: PropTypes.object,
-  review: PropTypes.shape({
-    createdBy: PropTypes.string,
-  }),
-};
-
-ReviewFormScene.defaultProps = {
-  unitId: null,
-  moduleId: null,
-  reviewId: null,
-  comments: null,
-  errors: null,
-  review: {},
-  currentStatusFormat: null,
-};
-
-export default ReviewFormScene;
+          <FloatActionButton
+            style={{
+              position: 'absolute',
+              right: 35,
+              top: -20,
+            }}
+            icon={this.state.expanded ? 'arrow_downward' : 'arrow_upward'}
+            primary
+            onClick={this.expandOrRetractComment}
+          />
+          <Row>
+            <Column lgSize={9}>
+              <Paper
+                style={{
+                  height: this.state.expanded ? 800 : 300,
+                  overflowY: 'scroll',
+                  transition: 'all 0.5s',
+                }}
+              >
+                <TextEditor
+                  style={{
+                    height: this.state.expanded ? 800 : 240,
+                    marginBottom: 5,
+                  }}
+                  placeholder="Comment review..."
+                  isRequired
+                  modules={this.modules}
+                  readOnly={this.props.status === 'REVIEWED' || this.props.status === 'DONE' || this.props.review.createdBy === localStorage.id}
+                  value={get(this.props.values, 'comments', '')}
+                  onChange={value => this.props.onChange('comments', value)}
+                />
+              </Paper>
+            </Column>
+            <Column lgSize={3}>
+              <ChangeStatusFormatContainer
+                reviewId={this.props.reviewId}
+                unitId={this.props.unitId}
+                currentStatusFormat={this.props.currentStatusFormat}
+              />
+            </Column>
+          </Row>
+        </Paper>
+      </div>
+    );
+  }
+}

@@ -1331,6 +1331,10 @@ clone@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.2.tgz#260b7a99ebb1edfe247538175f783243cb19d149"
 
+clone@~2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/clone/-/clone-2.1.1.tgz#d217d1e961118e3ac9a4b8bba3285553bf647cdb"
+
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -1750,6 +1754,10 @@ decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
+deep-equal@^1.0.1, deep-equal@~1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
+
 deep-extend@~0.4.0:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.4.2.tgz#48b699c27e334bf89f10892be432f6e4c7d34a7f"
@@ -1909,6 +1917,10 @@ dot-prop@^3.0.0:
 dotenv@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
+
+draftjs-utils@^0.8.03:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.8.3.tgz#23198824217d9386d758d22b223d827ba28aae4a"
 
 duplexer2@^0.1.4:
   version "0.1.4"
@@ -2270,6 +2282,10 @@ eventemitter3@1.x.x:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-1.2.0.tgz#1c86991d816ad1e504750e73874224ecf3bec508"
 
+eventemitter3@~2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-2.0.3.tgz#b5e1079b59fb5e1ba2771c0a993be060a58c99ba"
+
 events@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
@@ -2341,7 +2357,7 @@ express@^4.13.3:
     utils-merge "1.0.0"
     vary "~1.1.1"
 
-extend@~3.0.0:
+extend@^3.0.0, extend@~3.0.0, extend@~3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.1.tgz#a755ea7bc1adfcc5a31ce7e762dbaadc5e636444"
 
@@ -2371,6 +2387,10 @@ extract-text-webpack-plugin@2.1.0:
 extsprintf@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.0.2.tgz#e1080e0658e300b06294990cc70e1502235fd550"
+
+fast-diff@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/fast-diff/-/fast-diff-1.1.1.tgz#0aea0e4e605b6a2189f0e936d4b7fbaf1b7cfd9b"
 
 fast-levenshtein@~2.0.4:
   version "2.0.6"
@@ -3831,7 +3851,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@4.17.4, "lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.2.0, lodash@^4.3.0:
+lodash@4.17.4, "lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -4350,6 +4370,10 @@ param-case@2.1.x:
   dependencies:
     no-case "^2.2.0"
 
+parchment@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/parchment/-/parchment-1.1.0.tgz#c79387a80fc4af4ba8947b94fc55a835f62850a5"
+
 parse-asn1@^5.0.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/parse-asn1/-/parse-asn1-5.1.0.tgz#37c4f9b7ed3ab65c74817b5f2480937fbf97c712"
@@ -4815,7 +4839,7 @@ promise@7.1.1, promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.5.10, prop-types@15.x, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@~15.5.7:
+prop-types@15.5.10, prop-types@15.x, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@~15.5.7:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -4886,6 +4910,25 @@ querystringify@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-1.0.0.tgz#6286242112c5b712fa654e526652bf6a13ff05cb"
 
+quill-delta@3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/quill-delta/-/quill-delta-3.5.0.tgz#5b67e685da60c34eabed4449c416c74aab89157b"
+  dependencies:
+    deep-equal "^1.0.1"
+    extend "^3.0.0"
+    fast-diff "1.1.1"
+
+quill@^1.2.6:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/quill/-/quill-1.3.0.tgz#1fa485dcd0f4c45925ed32158f50d8129ccab134"
+  dependencies:
+    clone "~2.1.1"
+    deep-equal "~1.0.1"
+    eventemitter3 "~2.0.3"
+    extend "~3.0.1"
+    parchment "1.1.0"
+    quill-delta "3.5.0"
+
 randomatic@^1.1.3:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-1.1.7.tgz#c7abe9cc8b87c0baa876b19fde83fd464797e38c"
@@ -4937,10 +4980,6 @@ react-addons-create-fragment@^15.0.0:
     loose-envify "^1.3.1"
     object-assign "^4.1.0"
 
-react-cardstack@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/react-cardstack/-/react-cardstack-0.1.1.tgz#18e216227bda62cd64061a6c7f0513d05891c411"
-
 react-css-property-operations@^15.4.1:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/react-css-property-operations/-/react-css-property-operations-15.4.1.tgz#4c0e305df4cc35f0f5fd2d65a79214c8b012db35"
@@ -4976,6 +5015,14 @@ react-dom@15.5.4:
     object-assign "^4.1.0"
     prop-types "~15.5.7"
 
+react-draft-wysiwyg@^1.10.6:
+  version "1.10.6"
+  resolved "https://registry.yarnpkg.com/react-draft-wysiwyg/-/react-draft-wysiwyg-1.10.6.tgz#26cc665aea5548dfd22b715993de492084353de3"
+  dependencies:
+    classnames "^2.2.5"
+    draftjs-utils "^0.8.03"
+    prop-types "^15.5.10"
+
 react-error-overlay@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-1.0.7.tgz#8712fe40cfc194ce992a4136c091c03bfada9148"
@@ -5004,6 +5051,13 @@ react-paginate@4.4.2:
     prop-types "^15.5.7"
     react "^15.0.0"
     react-addons-create-fragment "^15.0.0"
+
+react-quill@v1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-quill/-/react-quill-1.0.0.tgz#26c41746a0deb298a7549362cfa69c87db4d9399"
+  dependencies:
+    lodash "^4.17.4"
+    quill "^1.2.6"
 
 react-router@3.0.5:
   version "3.0.5"

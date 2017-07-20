@@ -18,6 +18,7 @@ class SendUnitToReviewService {
     };
     extendObservable(this, {
       currentStatusFormat: null,
+      errorComment: false,
     });
   }
 
@@ -74,7 +75,8 @@ class SendUnitToReviewService {
 
   handleSendToReviewed = (unitId, reviewId) => {
     this.form.setSubmitted();
-    if (this.form.errors) {
+    const comments = this.form.getValue('comments');
+    if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
       return;
     }
     ConfirmationDialogService.show(
