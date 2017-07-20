@@ -18,7 +18,7 @@ class ItemFormService {
 
   defaultValidations = {
     'item.type': [isRequired],
-    time: [isRequired],
+    'item.time': [isRequired],
   };
 
   constructor(endpointUrl, order) {
@@ -212,7 +212,6 @@ class ItemFormService {
     if (!this.form.getValue('item.id')) {
       this.form.setInitialValues({
         item: this.form.getValue('item'),
-        time: this.form.getValue('time'),
       });
     }
     this.form.reset();
@@ -254,7 +253,6 @@ class ItemFormService {
           grammar: this.form.getValue('item.grammar').id,
         },
         order: this.form.getValue('order') || this.order,
-        time: this.form.getValue('time'),
         group: 1,
       },
     }).then(() => {

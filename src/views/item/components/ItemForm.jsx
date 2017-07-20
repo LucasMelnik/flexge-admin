@@ -69,9 +69,9 @@ const ItemForm = props => (
               }))}
               disabled={props.submitting || props.disabled}
               label="Time (minutes)"
-              value={get(props.values, 'time', '')}
-              onChange={value => props.onChange('time', value)}
-              errorText={get(props.errors, 'time', '')}
+              value={get(props.values, 'item.time', '')}
+              onChange={value => props.onChange('item.time', value)}
+              errorText={get(props.errors, 'item.time', '')}
             />
           </Column>
           <Column lgSize={6}>
