@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
-import theme from 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.snow.css';
 
 export default class TextEditor extends Component {
 
@@ -25,16 +25,25 @@ export default class TextEditor extends Component {
 
   constructor(props) {
     super(props);
-    this.defaultModules = {
+    this.toolbarOptions = {
       toolbar: [
-        [{ size: [] }],
-        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-        [
-          { 'list': 'ordered' }, { 'list': 'bullet' },
-          { 'indent': '-1' }, { 'indent': '+1' },
-        ],
+        ['bold', 'italic', 'underline', 'strike'],
+        ['blockquote', 'code-block'],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],
+        [{ 'indent': '-1'}, { 'indent': '+1' }],
+
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+
+        [{ 'color': [] }, { 'background': [] }],
+        [{ 'align': [] }],
+
         ['clean'],
       ],
+    };
+
+    this.noToolbar = {
+      toolbar: [],
     };
   }
 
@@ -43,7 +52,7 @@ export default class TextEditor extends Component {
       <ReactQuill
         style={this.props.style}
         placeholder={this.props.placeholder}
-        modules={this.defaultModules}
+        modules={!this.props.readOnly ? this.toolbarOptions : this.noToolbar}
         readOnly={this.props.readOnly}
         value={this.props.value}
         onKeyPress={this.onKeyPress}

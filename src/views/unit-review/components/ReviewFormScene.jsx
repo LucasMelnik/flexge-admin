@@ -128,17 +128,15 @@ export default class Table extends Component {
           />
           <Row>
             <Column lgSize={9}>
-              <Paper
+              <div
                 style={{
                   height: this.state.expanded ? 800 : 300,
-                  overflowY: 'scroll',
                   transition: 'all 0.5s',
                 }}
               >
                 <TextEditor
                   style={{
-                    height: this.state.expanded ? 800 : 240,
-                    marginBottom: 5,
+                    height: this.state.expanded ? 760 : 260,
                   }}
                   placeholder="Comment review..."
                   isRequired
@@ -147,7 +145,7 @@ export default class Table extends Component {
                   value={get(this.props.values, 'comments', '')}
                   onChange={value => this.props.onChange('comments', value)}
                 />
-              </Paper>
+              </div>
             </Column>
             <Column lgSize={3}>
               <ChangeStatusFormatContainer
