@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import InlineBlock from 'jsxstyle/InlineBlock';
+import Flex from 'jsxstyle/Flex';
 import {
   Step,
   Stepper,
@@ -10,7 +11,10 @@ import {
 import ArrowForwardIcon from 'material-ui/svg-icons/navigation/arrow-forward';
 import Spinner from '../../../core/content/Spinner';
 import Button from '../../../core/form/Button';
+import Title from '../../../core/content/Title';
+import Separator from '../../../core/layout/Separator';
 import UnitListContainer from './unit/UnitListContainer';
+import MasteryTestListContainer from '../../mastery-test/components/MasteryTestListContainer';
 
 const ModuleUnitsScene = props => (
   <div>
@@ -38,7 +42,7 @@ const ModuleUnitsScene = props => (
         </Step>
         <Step>
           <StepLabel>
-            Units
+            Module details
           </StepLabel>
         </Step>
       </Stepper>
@@ -52,16 +56,39 @@ const ModuleUnitsScene = props => (
         label="back"
         onClick={() => browserHistory.push('/modules')}
       />
-      {' '}
-      <Button
-        icon="add"
-        primary
-        onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
-        label="New Unit"
-      />
     </InlineBlock>
     {props.module.id && (
-      <UnitListContainer moduleId={props.module.id} />
+      <div>
+        <Flex>
+          <Title>Mastery Test</Title>
+          <Button
+            style={{
+              marginLeft: 'auto',
+            }}
+            icon="add"
+            primary
+            onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
+            label="New Mastery Test"
+          />
+        </Flex>
+        <Separator />
+        <MasteryTestListContainer moduleId={props.module.id} />
+        <Separator />
+        <Flex>
+          <Title>Units</Title>
+          <Button
+            style={{
+              marginLeft: 'auto',
+            }}
+            icon="add"
+            primary
+            onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
+            label="New Unit"
+          />
+        </Flex>
+        <Separator />
+        <UnitListContainer moduleId={props.module.id} />
+      </div>
     )}
   </div>
 );
