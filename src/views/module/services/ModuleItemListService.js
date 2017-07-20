@@ -23,9 +23,9 @@ class ModuleItemListService {
     this.fetch.fetch({
       url: `/modules/${this.moduleId}/items`,
       query: {
-        query: {
-         ...this.form.getValues(),
-        }
+       ...this.form.getValues(),
+        grammar: this.form.getValue('grammar').id,
+        type: this.form.getValue('type').id,
       },
     }).then(() => {
       if (this.fetch.data) {

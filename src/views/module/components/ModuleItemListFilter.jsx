@@ -23,6 +23,7 @@ const ModuleItemListFilter = props => (
       <FetchSelect
         url={props.itemTypesUrl}
         fullWidth
+        addEmptyOption
         disabled={props.fetching}
         label="Type"
         maxHeight={350}
@@ -34,6 +35,7 @@ const ModuleItemListFilter = props => (
       <FetchSelect
         url="grammars"
         fullWidth
+        addEmptyOption
         disabled={props.fetching}
         label="Grammar"
         maxHeight={350}
