@@ -53,7 +53,11 @@ MasteryTestList.propTypes = {
     module: PropTypes.object.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onDelete: PropTypes.func,
+};
+
+MasteryTestList.defaultProps = {
+  onDelete: null,
 };
 
 export default MasteryTestList;
