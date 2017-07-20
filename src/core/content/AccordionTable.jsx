@@ -51,10 +51,10 @@ export default class Accordion extends Component {
                 >
                   {column.label}
                 </th>))}
-                {(this.props.onDelete || this.props.onEdit) && (
-                  <th>
-                    Actions
-                  </th>
+              {(this.props.onDelete || this.props.onEdit) && (
+                <th>
+                  Actions
+                </th>
                 )}
             </tr>
           </thead>
