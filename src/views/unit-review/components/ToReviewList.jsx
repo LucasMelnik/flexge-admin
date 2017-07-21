@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import replace from 'lodash/replace';
 import ToReviewListFilterContainer from './ToReviewListFilterContainer';
 import Separator from '../../../core/layout/Separator';
-import Divider from '../../../core/layout/Divider';
 import Paper from '../../../core/layout/Paper';
 import Async from '../../../core/content/Async';
 import Table from '../../../core/content/Table';

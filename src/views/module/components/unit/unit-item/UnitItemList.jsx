@@ -49,12 +49,27 @@ const UnitItemList = props => (
         rows={props.items}
         selectable
         actionComponentWidth={130}
-        actionComponent={row => (
+        allowActionValidator={row => row.createdBy === localStorage.id}
+        actionComponent={row => row.createdBy === localStorage.id ? (
           <Select
             fullWidth
             label="Order"
             value={row.order}
             onChange={order => props.onOrderChange(row, order)}
+            options={range(1, 31).map(value => ({
+              label: value.toString(),
+              value,
+            }))}
+            style={{
+              width: 50,
+            }}
+          />
+        ) : (
+          <Select
+            fullWidth
+            label="Order"
+            value={row.order}
+            disabled
             options={range(1, 31).map(value => ({
               label: value.toString(),
               value,

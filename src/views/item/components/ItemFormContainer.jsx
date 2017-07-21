@@ -22,7 +22,6 @@ class ItemFormContainer extends Component {
   itemFormService = new ItemFormService();
 
   componentWillMount() {
-    console.log('this.props.itemId', this.props.itemId);
     this.itemFormService.handleLoad(this.props.itemId);
   }
 

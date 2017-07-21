@@ -77,9 +77,10 @@ const ModuleList = props => (
           ]}
           rows={props.modules}
           selectable
+          allowActionValidator={row => row.createdBy.id === localStorage.id}
           onSelect={row => browserHistory.push(`/modules/${row.id}/units`)}
-          onEdit={row => browserHistory.push(`/modules/${row.id}`)}
-          onDelete={row => props.onDelete(row)}
+          onEdit={row => row.createdBy.id === localStorage.id && browserHistory.push(`/modules/${row.id}`)}
+          onDelete={row => row.createdBy.id === localStorage.id && props.onDelete(row)}
         />
       </div>
     </Async>
@@ -93,7 +94,6 @@ ModuleList.propTypes = {
     description: PropTypes.string,
     course: PropTypes.object.isRequired,
   })).isRequired,
-  countModules: PropTypes.number.isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
