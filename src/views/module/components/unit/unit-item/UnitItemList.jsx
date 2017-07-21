@@ -49,8 +49,8 @@ const UnitItemList = props => (
         rows={props.items}
         selectable
         actionComponentWidth={130}
-        allowActionValidator={row => row.createdBy === localStorage.id}
-        actionComponent={row => row.createdBy === localStorage.id ? (
+        allowActionValidator={row => props.createdBy === localStorage.id}
+        actionComponent={row => props.createdBy === localStorage.id ? (
           <Select
             fullWidth
             label="Order"
@@ -97,6 +97,7 @@ UnitItemList.propTypes = {
       }),
     }),
   })).isRequired,
+  createdBy: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
   onOrderChange: PropTypes.func.isRequired,
