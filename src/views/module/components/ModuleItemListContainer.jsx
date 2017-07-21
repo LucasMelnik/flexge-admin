@@ -9,18 +9,22 @@ class ModuleItemListContainer extends Component {
 
   static propTypes = {
     moduleId: PropTypes.string.isRequired,
+    unit: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
   };
 
   componentWillMount() {
-    ModuleItemListService.init(this.props.moduleId);
+    ModuleItemListService.init(this.props.moduleId, this.props.unit.id);
   }
 
   render() {
     return (
       <ModuleItemList
+        unit={this.props.unit}
         items={toJS(ModuleItemListService.items)}
-        itemTypesUrl={this.props.itemTypesUrl}
         fetching={ModuleItemListService.fetch.fetching}
+        onLink={ModuleItemListService.handleLinkToUnit}
       />
     );
   }

@@ -21,7 +21,7 @@ const ModuleItemListFilter = props => (
     </Column>
     <Column lgSize={3}>
       <FetchSelect
-        url={props.itemTypesUrl}
+        url="item-types"
         fullWidth
         addEmptyOption
         disabled={props.fetching}
@@ -56,7 +56,6 @@ const ModuleItemListFilter = props => (
 );
 
 ModuleItemListFilter.propTypes = {
-  itemTypesUrl: PropTypes.string.isRequired,
   values: PropTypes.object.isRequired,
   fetching: PropTypes.bool,
   onChange: PropTypes.func.isRequired,

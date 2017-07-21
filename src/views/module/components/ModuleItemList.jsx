@@ -2,24 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from '../../../core/layout/Paper';
 import Async from '../../../core/content/Async';
-import Table from '../../../core/content/Table';
 import ModuleItemListFilterContainer from './ModuleItemListFilterContainer';
 import Separator from '../../../core/layout/Separator';
 import Divider from '../../../core/layout/Divider';
-import Button from '../../../core/form/Button';
-import LinkItemButtonContainer from './unit/unit-item/LinkItemButtonContainer';
+import AccordionTable from '../../../core/content/AccordionTable';
+import IconButton from '../../../core/form/IconButton';
+import ItemFormContainer from '../../item/components/ItemFormContainer';
 
 const ModuleItemList = props => (
   <Paper>
-    <ModuleItemListFilterContainer itemTypesUrl={props.itemTypesUrl} />
+    <ModuleItemListFilterContainer />
     <Separator />
     <Divider />
     <Async fetching={props.fetching}>
-      <Table
+      <AccordionTable
         columns={[
           {
             label: 'Text',
             path: 'text',
+            width: '30%',
             rowColumnStyle: {
               textOverflow: 'none',
               paddingTop: 5,
@@ -33,6 +34,7 @@ const ModuleItemList = props => (
           {
             label: 'Translation',
             path: 'translation',
+            width: '30%',
             rowColumnStyle: {
               textOverflow: 'none',
               paddingTop: 5,
@@ -46,25 +48,34 @@ const ModuleItemList = props => (
           {
             label: 'Grammar',
             path: 'grammar.name',
+            width: '15%',
           },
           {
             label: 'Type',
             path: 'type.name',
+            width: '15%',
           },
           {
             label: 'Time',
             path: 'time',
-            width: 30,
+            width: '10%',
           },
         ]}
         rows={props.items}
-        selectable
-        onSelect={props.onSelect}
-        actionComponent={row =>
-          <LinkItemButtonContainer
+        renderFunction={(row) => (
+          <ItemFormContainer
             itemId={row.id}
-            unitId={props.unit.id}
-            order={props.nextOrder}
+            itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
+            endpointUrl={`units/${props.unit.id}/items`}
+            order={1}
+            disabled
+            showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
+          />
+        )}
+        actionComponent={row =>
+          <IconButton
+            icon="add_circle"
+            onClick={() => props.onLink(row)}
           />
         }
       />
@@ -83,9 +94,8 @@ ModuleItemList.propTypes = {
   unit: PropTypes.shape({
     id: PropTypes.string.isRequired,
   }).isRequired,
-  nextOrder: PropTypes.number.isRequired,
   fetching: PropTypes.bool.isRequired,
-  itemTypesUrl: PropTypes.string.isRequired,
+  onLink: PropTypes.func.isRequired,
 };
 
 export default ModuleItemList;

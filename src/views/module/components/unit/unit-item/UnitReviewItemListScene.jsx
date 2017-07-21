@@ -99,7 +99,7 @@ export default class UnitReviewItemListScene extends Component {
         {this.props.unit.id && (
           <ModuleItemListContainer
             moduleId={this.props.module.id}
-            itemTypesUrl={`unit-types/${this.props.unit.type.id}/item-types`}
+            unit={this.props.unit}
           />
         )}
       </div>

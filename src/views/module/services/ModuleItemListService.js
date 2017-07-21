@@ -10,12 +10,15 @@ class ModuleItemListService {
   constructor() {
     extendObservable(this, {
       items: [],
+      unitItemsCount: 1,
       moduleId: null,
+      unitId: null,
     });
   }
 
-  init = action((moduleId) => {
+  init = action((moduleId, unitId) => {
     this.moduleId = moduleId;
+    this.unitId = unitId;
     this.load();
   });
 
@@ -28,33 +31,36 @@ class ModuleItemListService {
         type: this.form.getValue('type').id,
       },
     }).then(() => {
+      const moduleItems = orderBy(this.fetch.data, ['type.name'], ['asc']);
+
       if (this.fetch.data) {
-        this.items = orderBy(this.fetch.data, ['type.name'], ['asc']);
+        this.fetch.fetch({
+          url: `/units/${this.unitId}/items`,
+        }).then(() => {
+          if (this.fetch.data) {
+            this.unitItemsCount = this.fetch.data.length;
+            this.items = moduleItems.filter(item => !this.fetch.data.find(unitItem => item.id === unitItem.item.id));
+          } else {
+            this.items = moduleItems;
+          }
+        });
       } else {
         this.items = [];
       }
     });
   });
 
-  // handleLinkToUnit = action((item) => {
-  //   this.submit.fetch({
-  //     method: 'post',
-  //     url: `/units/${this.unitId}/items/${item.id}`,
-  //     body: {
-  //       order: unitItem.order,
-  //     },
-  //   }).then(() => {
-  //     if (this.submit.data) {
-  //       const item = this.submit.data;
-  //       if (this.successCallback) {
-  //         this.successCallback(item);
-  //       }
-  //     }
-  //     if (this.submit.error) {
-  //       console.log('error on link unit to item', this.submit.error);
-  //     }
-  //   });
-  // });
+  handleLinkToUnit = action((item) => {
+    this.submit.fetch({
+      method: 'post',
+      url: `/units/${this.unitId}/items/${item.id}`,
+      body: {
+        order: this.unitItemsCount,
+      },
+    }).then(() => {
+      this.unitItemsCount = this.unitItemsCount + 1;
+    });
+  });
 }
 
 const moduleItemListService = new ModuleItemListService();

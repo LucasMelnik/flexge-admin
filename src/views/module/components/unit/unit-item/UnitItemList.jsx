@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import range from 'lodash/range';
 import Paper from '../../../../../core/layout/Paper';
 import Async from '../../../../../core/content/Async';
-import Table from '../../../../../core/content/Table';
 import Select from '../../../../../core/form/Select';
 import AccordionTable from '../../../../../core/content/AccordionTable';
 import ItemFormContainer from '../../../../item/components/ItemFormContainer';
