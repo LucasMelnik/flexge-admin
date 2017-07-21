@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import IconButton from 'material-ui/IconButton';
 import Collapse, { Panel } from 'rc-collapse';
 import 'rc-collapse/assets/index.css';
 import './Accordion.css';
 
-export default class Accordion extends Component {
+export default class AccordionTable extends Component {
 
   static propTypes = {
     columns: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string.isRequired,
       path: PropTypes.string,
       rowColumnStyle: PropTypes.object,
+      render: PropTypes.func,
     })),
-    onDelete: PropTypes.func,
-    onEdit: PropTypes.func,
+    actionComponent: PropTypes.func,
     rows: PropTypes.arrayOf(PropTypes.object),
-    renderFunction: PropTypes.func,
+    renderFunction: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -28,7 +27,7 @@ export default class Accordion extends Component {
     selectable: false,
     columns: [],
     rows: [],
-    renderFunction: null,
+    actionComponent: null,
   };
 
   render() {
@@ -36,6 +35,7 @@ export default class Accordion extends Component {
       <div>
         <table
           style={{
+            width: '100%',
             borderSpacing: '5px',
           }}
         >
@@ -50,12 +50,13 @@ export default class Accordion extends Component {
                   }}
                 >
                   {column.label}
-                </th>))}
-              {(this.props.onDelete || this.props.onEdit) && (
+                </th>
+              ))}
+              {this.props.actionComponent && (
                 <th>
                   Actions
                 </th>
-                )}
+              )}
             </tr>
           </thead>
         </table>
@@ -80,18 +81,12 @@ export default class Accordion extends Component {
                             ...column.rowColumnStyle,
                           }}
                         >
-                          {get(row, column.path, '')}
-                        </td>),
-                      )}
-                      {(this.props.onDelete) && (
+                          {column.render ? column.render(row) : get(row, column.path, '')}
+                        </td>
+                      ))}
+                      {this.props.actionComponent && (
                         <td>
-                          <IconButton
-                            style={{ width: 45 }}
-                            onClick={() => this.props.onDelete(row, index)}
-                            iconClassName="material-icons"
-                          >
-                            delete
-                          </IconButton>
+                          {this.props.actionComponent(row)}
                         </td>
                       )}
                     </tr>

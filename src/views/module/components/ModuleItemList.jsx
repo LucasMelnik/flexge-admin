@@ -7,6 +7,7 @@ import ModuleItemListFilterContainer from './ModuleItemListFilterContainer';
 import Separator from '../../../core/layout/Separator';
 import Divider from '../../../core/layout/Divider';
 import Button from '../../../core/form/Button';
+import LinkItemButtonContainer from './unit/unit-item/LinkItemButtonContainer';
 
 const ModuleItemList = props => (
   <Paper>
@@ -59,7 +60,13 @@ const ModuleItemList = props => (
         rows={props.items}
         selectable
         onSelect={props.onSelect}
-        actionComponent={row => <Button primary label="Add to Review" />}
+        actionComponent={row =>
+          <LinkItemButtonContainer
+            itemId={row.id}
+            unitId={props.unit.id}
+            order={props.nextOrder}
+          />
+        }
       />
     </Async>
   </Paper>
@@ -73,6 +80,10 @@ ModuleItemList.propTypes = {
       name: PropTypes.string.isRequired,
     }),
   })).isRequired,
+  unit: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }).isRequired,
+  nextOrder: PropTypes.number.isRequired,
   fetching: PropTypes.bool.isRequired,
   itemTypesUrl: PropTypes.string.isRequired,
 };

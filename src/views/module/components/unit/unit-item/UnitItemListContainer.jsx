@@ -8,29 +8,23 @@ import UnitItemList from './UnitItemList';
 class UnitItemListContainer extends Component {
 
   static propTypes = {
-    unitId: PropTypes.string.isRequired,
-    status: PropTypes.string,
-    onSelect: PropTypes.func.isRequired,
+    unit: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
   };
 
-  static defaultProps = {
-    isReadOnly: false,
-    status: null,
-  }
-
   componentWillMount() {
-    UnitItemListService.init(this.props.unitId);
+    UnitItemListService.init(this.props.unit.id);
   }
 
   render() {
     return (
       <UnitItemList
-        status={this.props.status}
+        unit={this.props.unit}
         items={toJS(UnitItemListService.items)}
         fetching={UnitItemListService.fetch.fetching}
         onDelete={UnitItemListService.handleUnlinkItem}
-        onOrderChange={UnitItemListService.handleOrderChange}
-        onSelect={this.props.onSelect}
+        onOrderOrGroupChange={UnitItemListService.handleOrderOrGroupChange}
       />
     );
   }

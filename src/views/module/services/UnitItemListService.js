@@ -33,14 +33,13 @@ class UnitItemListService {
     });
   });
 
-  handleOrderChange = action((unitItem, order, group, time) => {
+  handleOrderOrGroupChange = action((unitItem, order, group) => {
     this.submit.fetch({
       url: `/units/${unitItem.unit}/items/${unitItem.item.id}`,
       method: 'put',
       body: {
         order,
         group,
-        time,
       }
     }).then(() => {
       this.load();

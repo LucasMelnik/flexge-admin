@@ -90,9 +90,7 @@ export default class UnitReviewItemListScene extends Component {
         </InlineBlock>
         {this.props.unit.id && (
           <UnitItemListContainer
-            unitId={this.props.unit.id}
-            moduleId={this.props.unit.module.id}
-            onSelect={row => browserHistory.push(`/modules/${this.props.module.id}/units/${this.props.unit.id}/items/${row.item.id}`)}
+            unit={this.props.unit}
           />
         )}
         <Separator />

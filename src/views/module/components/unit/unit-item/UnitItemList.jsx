@@ -5,90 +5,42 @@ import Paper from '../../../../../core/layout/Paper';
 import Async from '../../../../../core/content/Async';
 import Table from '../../../../../core/content/Table';
 import Select from '../../../../../core/form/Select';
+import AccordionTable from '../../../../../core/content/AccordionTable';
+import ItemFormContainer from '../../../../item/components/ItemFormContainer';
+import IconButton from '../../../../../core/form/IconButton';
 
 const UnitItemList = props => (
   <Paper>
     <Async fetching={props.fetching}>
-      <Table
+      <AccordionTable
         columns={[
           {
-            label: 'Text',
-            path: 'item.text',
-            rowColumnStyle: {
-              textOverflow: 'none',
-              paddingTop: 5,
-              paddingBottom: 5,
-              paddingRight: 5,
-              whiteSpace: 'normal',
-              textAlign: 'justify',
-              lineHeight: '18px',
-            },
-          },
-          {
-            label: 'Translation',
-            path: 'item.translation',
-            rowColumnStyle: {
-              textOverflow: 'none',
-              paddingTop: 5,
-              paddingBottom: 5,
-              paddingRight: 5,
-              whiteSpace: 'normal',
-              textAlign: 'justify',
-              lineHeight: '18px',
-            },
-          },
-          {
-            label: 'Grammar',
-            path: 'item.grammar.name',
-          },
-          {
-            label: 'Type',
-            path: 'item.type.name',
-          },
-          {
-            label: 'Time',
-            path: 'time',
-            width: 30,
-          },
-        ]}
-        rows={props.items}
-        selectable
-        actionComponentWidth={280}
-        actionComponent={row => (
-          <div
-            style={{
-              display: 'inline-block',
-            }}
-          >
-            <div
-              style={{
-                display: 'inline-block',
-                width: 50,
-                marginRight: 10,
-              }}
-            >
+            label: 'Order',
+            path: 'order',
+            width: '5%',
+            render: (row) => (
               <Select
                 fullWidth
                 label="Order"
                 value={row.order}
-                onChange={order => props.onOrderChange(row, order, row.group, row.time)}
+                onChange={order => props.onOrderOrGroupChange(row, order, row.group)}
                 options={range(1, 31).map(value => ({
                   label: value.toString(),
                   value,
                 }))}
               />
-            </div>
-            <div
-              style={{
-                display: 'inline-block',
-                width: 170,
-              }}
-            >
+            )
+          },
+          {
+            label: 'Group',
+            path: 'group',
+            width: '10%',
+            render: (row) => (
               <Select
                 fullWidth
                 label="Group"
                 value={row.group}
-                onChange={group => props.onOrderChange(row, row.order, group, row.time)}
+                onChange={group => props.onOrderOrGroupChange(row, row.order, group)}
                 options={[
                   {
                     label: 'Default',
@@ -104,11 +56,68 @@ const UnitItemList = props => (
                   },
                 ]}
               />
-            </div>
-          </div>
+            )
+          },
+          {
+            label: 'Text',
+            path: 'item.text',
+            width: '25%',
+            rowColumnStyle: {
+              textOverflow: 'none',
+              paddingTop: 5,
+              paddingBottom: 5,
+              paddingRight: 5,
+              whiteSpace: 'normal',
+              textAlign: 'justify',
+              lineHeight: '18px',
+            },
+          },
+          {
+            label: 'Translation',
+            path: 'item.translation',
+            width: '25%',
+            rowColumnStyle: {
+              textOverflow: 'none',
+              paddingTop: 5,
+              paddingBottom: 5,
+              paddingRight: 5,
+              whiteSpace: 'normal',
+              textAlign: 'justify',
+              lineHeight: '18px',
+            },
+          },
+          {
+            label: 'Grammar',
+            path: 'item.grammar.name',
+            width: '15%',
+          },
+          {
+            label: 'Type',
+            path: 'item.type.name',
+            width: '15%',
+          },
+          {
+            label: 'Time',
+            path: 'time',
+            width: '5%',
+          },
+        ]}
+        rows={props.items}
+        renderFunction={(row) => (
+          <ItemFormContainer
+            itemId={row.item.id}
+            itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
+            endpointUrl={`units/${props.unit.id}/items`}
+            order={row.order}
+            showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
+          />
         )}
-        onSelect={props.onSelect}
-        onDelete={row => props.onDelete(row)}
+        actionComponent={row => (
+          <IconButton
+            icon="delete"
+            onClick={() => props.onDelete(row)}
+          />
+        )}
       />
     </Async>
   </Paper>
@@ -125,10 +134,16 @@ UnitItemList.propTypes = {
       }),
     }),
   })).isRequired,
+  unit: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    type: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
   fetching: PropTypes.bool.isRequired,
+  onOrderOrGroupChange: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onOrderChange: PropTypes.func.isRequired,
-  onSelect: PropTypes.func.isRequired,
 };
 
 export default UnitItemList;
