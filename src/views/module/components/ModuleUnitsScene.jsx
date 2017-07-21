@@ -53,12 +53,14 @@ const ModuleUnitsScene = props => (
         onClick={() => browserHistory.push('/modules')}
       />
       {' '}
-      <Button
-        icon="add"
-        primary
-        onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
-        label="New Unit"
-      />
+      {props.module.createdBy && (props.module.createdBy.id === localStorage.id) && (
+        <Button
+          icon="add"
+          primary
+          onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
+          label="New Unit"
+        />
+      )}
     </InlineBlock>
     {props.module.id && (
       <UnitListContainer moduleId={props.module.id} />
@@ -70,6 +72,7 @@ ModuleUnitsScene.propTypes = {
   module: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
+    createdBy: PropTypes.object,
   }),
   fetching: PropTypes.bool,
 };

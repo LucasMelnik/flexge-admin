@@ -9,6 +9,7 @@ class UnitItemListContainer extends Component {
 
   static propTypes = {
     unitId: PropTypes.string.isRequired,
+    createdBy: PropTypes.string.isRequired,
     status: PropTypes.string,
     onSelect: PropTypes.func.isRequired,
   };
@@ -27,6 +28,7 @@ class UnitItemListContainer extends Component {
       <UnitItemList
         status={this.props.status}
         items={toJS(UnitItemListService.items)}
+        createdBy={this.props.createdBy}
         fetching={UnitItemListService.fetch.fetching}
         onDelete={UnitItemListService.handleUnlinkItem}
         onOrderChange={UnitItemListService.handleOrderChange}

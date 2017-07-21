@@ -89,16 +89,19 @@ class UnitItemListScene extends Component {
             onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units`)}
           />
           {' '}
-          <Button
-            primary
-            onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units/${this.props.unit.id}/items/new`)}
-            label="Add new item"
-          />
+          {this.props.unit.createdBy && (this.props.unit.createdBy === localStorage.id) && (
+            <Button
+              primary
+              onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units/${this.props.unit.id}/items/new`)}
+              label="Add new item"
+            />
+          )}
         </InlineBlock>
         {this.props.unit.id && (
           <UnitItemListContainer
             unitId={this.props.unit.id}
             moduleId={this.props.unit.module.id}
+            createdBy={this.props.unit.createdBy}
             onSelect={row => browserHistory.push(`/modules/${this.props.module.id}/units/${this.props.unit.id}/items/${row.item.id}`)}
           />
         )}
