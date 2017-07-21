@@ -84,6 +84,17 @@ const AnswersInput = props => (
             {
               label: 'Answer',
               path: 'text',
+              render: row => (
+                <div
+                  style={{
+                    whiteSpace: 'normal',
+                    textAlign: 'justify',
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {row.text}
+                </div>
+              ),
             },
             {
               label: 'Correct',

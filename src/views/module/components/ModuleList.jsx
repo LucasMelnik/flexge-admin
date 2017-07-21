@@ -12,8 +12,16 @@ const ModuleList = props => (
   <Paper
     flexible
   >
-    <ModuleListFilterContainer />
     <Async fetching={props.fetching}>
+      <div
+        style={{
+          textAlign: 'right',
+          fontSize: 13,
+        }}
+      >
+        {props.modules && props.modules.length} records found.
+      </div>
+      <ModuleListFilterContainer />
       <div>
         <Separator />
         <Divider />
@@ -69,9 +77,10 @@ const ModuleList = props => (
           ]}
           rows={props.modules}
           selectable
+          allowActionValidator={row => row.createdBy.id === localStorage.id}
           onSelect={row => browserHistory.push(`/modules/${row.id}/units`)}
-          onEdit={row => browserHistory.push(`/modules/${row.id}`)}
-          onDelete={row => props.onDelete(row)}
+          onEdit={row => row.createdBy.id === localStorage.id && browserHistory.push(`/modules/${row.id}`)}
+          onDelete={row => row.createdBy.id === localStorage.id && props.onDelete(row)}
         />
       </div>
     </Async>
