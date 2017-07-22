@@ -257,7 +257,9 @@ class ItemFormService {
       },
     }).then(() => {
       if (this.submit.data) {
-        browserHistory.goBack();
+        if (!itemId) {
+          browserHistory.goBack();
+        }
         NotificationService.addNotification(
           `Item ${itemId ? 'updated' : 'created'} successfully.`,
           null,
