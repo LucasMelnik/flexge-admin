@@ -97,7 +97,7 @@ const UnitItemList = props => (
           },
           {
             label: 'Time',
-            path: 'time',
+            path: 'item.time',
             width: '5%',
           },
         ]}
@@ -108,6 +108,7 @@ const UnitItemList = props => (
             itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
             endpointUrl={`units/${props.unit.id}/items`}
             order={row.order}
+            disabled={props.unit.type.name.toLowerCase() === 'review'}
             showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
           />
         )}

@@ -8,7 +8,7 @@ import ArrowForwardIcon from 'material-ui/svg-icons/navigation/arrow-forward';
 import Spinner from '../../../../../core/content/Spinner';
 import Button from '../../../../../core/form/Button';
 import UnitItemListContainer from './UnitItemListContainer';
-import ModuleItemListContainer from '../../ModuleItemListContainer';
+import AllUnitItemListContainer from './AllUnitItemListContainer';
 import Separator from '../../../../../core/layout/Separator';
 import Title from '../../../../../core/content/Title';
 
@@ -56,13 +56,13 @@ export default class UnitReviewItemListScene extends Component {
               style={{ cursor: 'pointer' }}
               onClick={() => browserHistory.push('/modules')}
             >
-              <StepLabel>Modules</StepLabel>
+              <StepLabel>AllUnits</StepLabel>
             </Step>
             <Step
               style={{ cursor: 'pointer' }}
               onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units`)}
             >
-              <StepLabel>Module - {get(this.props, 'unit.module.name', '')}</StepLabel>
+              <StepLabel>AllUnit - {get(this.props, 'unit.module.name', '')}</StepLabel>
             </Step>
             <Step>
               <StepLabel>
@@ -96,8 +96,8 @@ export default class UnitReviewItemListScene extends Component {
         <Separator />
         <Title>Available Items to review</Title>
         <Separator />
-        {this.props.unit.id && (
-          <ModuleItemListContainer
+        {(this.props.unit.id && this.props.module.id) && (
+          <AllUnitItemListContainer
             moduleId={this.props.module.id}
             unit={this.props.unit}
           />
