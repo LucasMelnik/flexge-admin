@@ -18,11 +18,13 @@ const PlacementTestList = props => (
         columns={[
           {
             label: 'Level',
-            path: 'level',
+            path: 'placementTestLevel.level',
+            width: '5%',
           },
           {
             label: 'Order',
             path: 'order',
+            width: '5%',
           },
           {
             label: 'Grammar',
@@ -41,7 +43,14 @@ const PlacementTestList = props => (
 PlacementTestList.propTypes = {
   placementTests: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    placementTestLevel: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      level: PropTypes.number.isRequired,
+    }).isRequired,
+    grammar: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,

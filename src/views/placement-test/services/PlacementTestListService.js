@@ -21,14 +21,10 @@ class PlacementTestListService {
 
   load = action(() => {
     this.fetch.fetch({
-      url: '/placement-tests',
+      url: '/grammar-placement-test-levels',
       query: {
         query: {
-          name: {
-            $regex: this.form.getValue('filter'),
-            $options: 'i',
-          },
-          company: this.form.getValue('company').id,
+         ...this.form.getValues(),
         },
       },
     }).then(() => {
@@ -40,13 +36,13 @@ class PlacementTestListService {
     });
   });
 
-  handleRemove = action((placementTest) => {
+  handleRemove = action((grammarPlacementTest) => {
     ConfirmationDialogService.show(
-      'Delete Placement Test',
-      `You are about to delete the placement test "${placementTest.level} - ${placementTest.grammar.name}", Do you want to continue ?`,
+      'Delete Grammar from Placement Tests',
+      `You are about to delete the grammar "${grammarPlacementTest.grammar.name} - level ${grammarPlacementTest.placementTestLevel.level}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({
-          url: `/placement-tests/${placementTest.id}`,
+          url: `/grammar-placement-test-levels/${grammarPlacementTest.id}`,
           method: 'delete',
         }).then(() => {
           this.load();

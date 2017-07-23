@@ -15,7 +15,7 @@ class PlacementTestFormService {
       placementTestId: null,
     });
     this.form.validations = {
-      level: [isRequired],
+      placementTestLevel: [isRequired],
       order: [isRequired],
       grammar: [isRequired],
     };
@@ -25,7 +25,7 @@ class PlacementTestFormService {
     this.form.reset();
     if (placementTestId) {
       this.fetch.fetch({
-        url: `/placement-tests/${placementTestId}`,
+        url: `/grammar-placement-test-levels/${placementTestId}`,
       }).then(() => {
         if (this.fetch.data) {
           this.form.setInitialValues(this.fetch.data);
@@ -45,10 +45,9 @@ class PlacementTestFormService {
     const placementTestId = this.form.getValue('id');
     this.submit.fetch({
       method: placementTestId ? 'put' : 'post',
-      url: placementTestId ? `/placement-tests/${placementTestId}` : '/placement-tests',
+      url: placementTestId ? `/grammar-placement-test-levels/${placementTestId}` : '/grammar-placement-test-levels',
       body: {
         ...this.form.getValues(),
-        grammar: this.form.getValue('grammar').id,
       },
     }).then(() => {
       if (this.submit.data) {

@@ -12,12 +12,16 @@ const PlacementTestListFilter = props => (
     <Row>
       <Column lgSize={2}>
         <FetchSelect
-          url="grammars"
+          url="placement-test-levels"
           fullWidth
           disabled={props.fetching}
           label="Level"
-          value={get(props.values, 'level', '')}
-          onChange={value => props.onChange('level', value)}
+          value={get(props.values, 'placementTestLevel', '')}
+          onChange={value => props.onChange('placementTestLevel', value)}
+          optionsTransformer={placementTestLevel => ({
+            label: placementTestLevel.level.toString(),
+            value: placementTestLevel.id,
+          })}
         />
       </Column>
       <Column lgSize={6}>
@@ -27,8 +31,8 @@ const PlacementTestListFilter = props => (
           disabled={props.fetching}
           label="Grammar"
           maxHeight={350}
-          value={get(props.values, 'grammar.id', '')}
-          onChange={grammar => props.onChange('grammar.id', grammar)}
+          value={get(props.values, 'grammar', '')}
+          onChange={grammar => props.onChange('grammar', grammar)}
         />
       </Column>
       <Column lgSize={2}>

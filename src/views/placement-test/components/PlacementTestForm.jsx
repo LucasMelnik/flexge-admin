@@ -21,13 +21,17 @@ const PlacementTestForm = props => (
       <Row>
         <Column lgSize={2}>
           <FetchSelect
-            url="grammars"
+            url="placement-test-levels"
             fullWidth
             disabled={props.submitting}
             label="Level"
-            value={get(props.values, 'level', '')}
-            onChange={value => props.onChange('level', value)}
-            errorText={get(props.errors, 'level', '')}
+            value={get(props.values, 'placementTestLevel', '')}
+            onChange={value => props.onChange('placementTestLevel', value)}
+            errorText={get(props.errors, 'placementTestLevel', '')}
+            optionsTransformer={placementTestLevel => ({
+              label: placementTestLevel.level.toString(),
+              value: placementTestLevel.id,
+            })}
           />
         </Column>
         <Column lgSize={2}>
@@ -39,7 +43,7 @@ const PlacementTestForm = props => (
             value={get(props.values, 'order', '')}
             onChange={value => props.onChange('order', value)}
             errorText={get(props.errors, 'order', '')}
-            options={range(1, 1, 21).map(value => ({
+            options={range(1, 21).map(value => ({
               value,
               label: value.toString(),
             }))}
@@ -52,8 +56,8 @@ const PlacementTestForm = props => (
             disabled={props.submitting}
             label="Grammar"
             maxHeight={350}
-            value={get(props.values, 'grammar.id', '')}
-            onChange={grammar => props.onChange('grammar.id', grammar)}
+            value={get(props.values, 'grammar', '')}
+            onChange={grammar => props.onChange('grammar', grammar)}
             errorText={get(props.errors, 'grammar', '')}
           />
         </Column>
