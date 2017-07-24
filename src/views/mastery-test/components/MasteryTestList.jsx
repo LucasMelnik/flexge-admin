@@ -36,9 +36,8 @@ const MasteryTestList = props => (
           ]}
           rows={props.masteryTests}
           selectable
-          onSelect={row => browserHistory.push(`/modules/${row.id}/units`)}
-          onEdit={row => browserHistory.push(`/modules/${row.id}`)}
-          onDelete={row => props.onDelete(row)}
+          onSelect={row => browserHistory.push(`/modules/${row.module}/mastery-tests/${row.id}`)}
+          onDelete={row => props.onDelete(row.module, row.id)}
         />
       </div>
     </Async>
@@ -50,7 +49,7 @@ MasteryTestList.propTypes = {
     id: PropTypes.string.isRequired,
     modulePercentageToActive: PropTypes.number.isRequired,
     scoreToPass: PropTypes.number.isRequired,
-    module: PropTypes.object.isRequired,
+    module: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func,

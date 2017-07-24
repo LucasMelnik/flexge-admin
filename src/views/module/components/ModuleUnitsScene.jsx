@@ -67,7 +67,7 @@ const ModuleUnitsScene = props => (
             }}
             icon="add"
             primary
-            onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
+            onClick={() => browserHistory.push(`/modules/${props.module.id}/mastery-tests/new`)}
             label="New Mastery Test"
           />
         </Flex>
