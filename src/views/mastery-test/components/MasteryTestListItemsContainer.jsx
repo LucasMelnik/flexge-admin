@@ -25,6 +25,7 @@ class MasteryTestListItemsContainer extends Component {
         masteryTestId={this.props.masteryTestId}
         items={toJS(MasteryTestListItemsService.items)}
         fetching={MasteryTestListItemsService.fetch.fetching}
+        onDelete={MasteryTestListItemsService.handleRemove}
       />
     );
   }

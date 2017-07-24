@@ -4,6 +4,7 @@ import Paper from '../../../core/layout/Paper';
 import Async from '../../../core/content/Async';
 import AccordionTable from '../../../core/content/AccordionTable';
 import ItemFormContainer from '../../item/components/ItemFormContainer';
+import IconButton from '../../../core/form/IconButton';
 
 const MasteryTestListItems = props => (
   <Paper
@@ -39,6 +40,12 @@ const MasteryTestListItems = props => (
             />
           )
         }
+        actionComponent={row => (
+          <IconButton
+            icon="delete"
+            onClick={() => props.onDelete(props.masteryTestId, row.item.id)}
+          />
+        )}
       />
     </Async>
   </Paper>
@@ -48,6 +55,10 @@ MasteryTestListItems.propTypes = {
   items: PropTypes.array.isRequired,
   masteryTestId: PropTypes.string,
   fetching: PropTypes.bool.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
+MasteryTestListItems.defaultProps = {
+  masteryTestId: null,
 };
 
 export default MasteryTestListItems;
