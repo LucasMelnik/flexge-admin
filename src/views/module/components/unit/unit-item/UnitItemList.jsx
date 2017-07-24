@@ -49,8 +49,8 @@ const UnitItemList = props => (
         rows={props.items}
         selectable
         actionComponentWidth={130}
-        allowActionValidator={row => props.createdBy === localStorage.id}
-        actionComponent={row => props.createdBy === localStorage.id ? (
+        allowActionValidator={row => props.createdBy === localStorage.id || localStorage.role === 'ADMIN'}
+        actionComponent={row => props.createdBy === localStorage.id || localStorage.role === 'ADMIN' ? (
           <Select
             fullWidth
             label="Order"
