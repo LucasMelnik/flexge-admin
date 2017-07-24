@@ -3,46 +3,43 @@ import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
-class MasteryTestListService {
+class MasteryTestListItemsService {
   fetch = new FetchService();
   form = new FormService();
 
   constructor() {
     extendObservable(this, {
-      masteryTests: [],
+      items: [],
     });
   }
 
-  handleLoad = action((moduleId) => {
+  handleLoad = action((masteryTestId) => {
     this.fetch.fetch({
-      url: `/modules/${moduleId}/mastery-tests`,
+      url: `/mastery-tests/${masteryTestId}/items`,
     }).then(() => {
       if (this.fetch.data) {
-        this.masteryTests = this.fetch.data.map((masteryTest, index) => ({
-          ...masteryTest,
-          index: index + 1,
-        }));
+        this.items = this.fetch.data;
       } else {
-        this.masteryTests = [];
+        this.items = [];
       }
     });
   });
 
-  handleRemove = action((moduleId, masteryTestId) => {
+  handleRemove = action((masteryTestId, itemId) => {
     ConfirmationDialogService.show(
       'Delete Mastery Test',
-      'You are about to delete the mastery test, Do you want to continue ?',
+      'You are about to delete the mastery test item, Do you want to continue ?',
       () => {
         this.fetch.fetch({
-          url: `/modules/${moduleId}/mastery-tests/${masteryTestId}`,
+          url: `/mastery-tests/${masteryTestId}/items/${itemId}`,
           method: 'delete',
         }).then(() => {
-          this.handleLoad(moduleId);
+          this.handleLoad(masteryTestId);
         });
       });
   });
 }
 
-const masteryTestListService = new MasteryTestListService();
+const masteryTestListItemsService = new MasteryTestListItemsService();
 
-export default masteryTestListService;
+export default masteryTestListItemsService;

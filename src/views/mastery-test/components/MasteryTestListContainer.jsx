@@ -20,6 +20,7 @@ class MasteryTestListContainer extends Component {
       <MasteryTestList
         masteryTests={toJS(MasteryTestListService.masteryTests)}
         fetching={MasteryTestListService.fetch.fetching}
+        onDelete={MasteryTestListService.handleRemove}
       />
     );
   }
