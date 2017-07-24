@@ -89,7 +89,7 @@ class UnitItemListScene extends Component {
             onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units`)}
           />
           {' '}
-          {this.props.unit.createdBy && (this.props.unit.createdBy === localStorage.id) && (
+          {(localStorage.role === 'ADMIN' || this.props.unit.createdBy && (this.props.unit.createdBy === localStorage.id )) && (
             <Button
               primary
               onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units/${this.props.unit.id}/items/new`)}

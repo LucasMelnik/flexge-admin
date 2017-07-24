@@ -107,7 +107,7 @@ const UnitList = props => (
           ]}
           rows={props.units}
           selectable
-          allowActionValidator={row => row.createdBy === localStorage.id}
+          allowActionValidator={row => row.createdBy === localStorage.id || localStorage.role === 'ADMIN'}
           onSelect={row => browserHistory.push(`/modules/${row.module}/units/${row.id}/items`)}
           onEdit={row => browserHistory.push(`/modules/${row.module}/units/${row.id}`)}
           onDelete={row => props.onDelete(row)}
