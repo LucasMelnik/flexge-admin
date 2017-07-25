@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Paper from '../../../core/layout/Paper';
 import Button from '../../../core/form/Button';
 import Select from '../../../core/form/Select';
 import Column from '../../../core/layout/Column';
-import Separator from '../../../core/layout/Separator';
 import Row from '../../../core/layout/Row';
 import TextEditor from '../../../core/content/TextEditor';
 
