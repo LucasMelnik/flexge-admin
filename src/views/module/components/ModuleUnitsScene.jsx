@@ -53,7 +53,7 @@ const ModuleUnitsScene = props => (
         onClick={() => browserHistory.push('/modules')}
       />
       {' '}
-      {props.module.createdBy && (props.module.createdBy.id === localStorage.id) && (
+      {(localStorage.role === 'ADMIN' || (props.module.createdBy && (props.module.createdBy.id === localStorage.id))) && (
         <Button
           icon="add"
           primary
