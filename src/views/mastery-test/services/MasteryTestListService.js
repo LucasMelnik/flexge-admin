@@ -5,6 +5,7 @@ import ConfirmationDialogService from '../../../core/services/ConfirmationDialog
 
 class MasteryTestListService {
   fetch = new FetchService();
+  fetchItems = new FetchService();
   form = new FormService();
 
   constructor() {
@@ -14,14 +15,19 @@ class MasteryTestListService {
   }
 
   handleLoad = action((moduleId) => {
+    console.log(moduleId)
     this.fetch.fetch({
       url: `/modules/${moduleId}/mastery-tests`,
     }).then(() => {
       if (this.fetch.data) {
-        this.masteryTests = this.fetch.data.map((masteryTest, index) => ({
-          ...masteryTest,
-          index: index + 1,
-        }));
+        this.masteryTests = this.fetch.data.map((masteryTest, index) => (
+          {
+            ...masteryTest,
+            modulePercentageToActive: `${masteryTest.modulePercentageToActive}%`,
+            deadlineTime: masteryTest.deadlineTime,
+            index: index + 1,
+          }
+        ));
       } else {
         this.masteryTests = [];
       }

@@ -6,13 +6,13 @@ import Button from '../../../core/form/Button';
 import Title from '../../../core/content/Title';
 import Separator from '../../../core/layout/Separator';
 import MasteryTestFormContainer from './MasteryTestFormContainer';
-import MasteryTestItemsSceneContainer from './MasteryTestItemsSceneContainer';
+import MasteryTestItems from './MasteryTestItems';
 
 const MasteryTestFormScene = props => (
   <div>
     <InlineBlock>
       <Title>
-        {props.masteryTestId ? (
+        {props.params.masteryTestId ? (
           'Mastery Test informations'
         ) : (
           'New Mastery Test'
@@ -26,27 +26,25 @@ const MasteryTestFormScene = props => (
         position: 'relative',
         float: 'right',
       }}
-      onClick={() => browserHistory.push(`/modules/${props.moduleId}/units`)}
+      onClick={() => browserHistory.push(`/modules/${props.params.moduleId}/units`)}
     />
     <Separator size="sm" />
     <MasteryTestFormContainer
-      moduleId={props.moduleId}
+      moduleId={props.params.moduleId}
+      masteryTestId={props.params.masteryTestId}
     />
     <Separator size="sm" />
-    <MasteryTestItemsSceneContainer
-      masteryTestId={props.masteryTestId}
-      order={props.order}
-    />
+    {props.params.masteryTestId && (
+      <MasteryTestItems masteryTestId={props.params.masteryTestId} />
+    )}
   </div>
 );
 
 MasteryTestFormScene.propTypes = {
-  masteryTestId: PropTypes.string,
-  moduleId: PropTypes.string.isRequired,
-  order: PropTypes.number.isRequired,
-};
-MasteryTestFormScene.defaultProps = {
-  masteryTestId: null,
+  params: PropTypes.shape({
+    moduleId: PropTypes.string.isRequired,
+    masteryTestId: PropTypes.string,
+  }).isRequired,
 };
 
 export default MasteryTestFormScene;

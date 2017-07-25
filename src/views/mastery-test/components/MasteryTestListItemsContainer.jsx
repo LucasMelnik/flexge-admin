@@ -3,17 +3,14 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { toJS } from 'mobx';
 import MasteryTestListItems from './MasteryTestListItems';
+import DeleteMasteryTestItemService from '../services/DeleteMasteryTestItemService';
 import MasteryTestListItemsService from '../services/MasteryTestListItemsService';
 
 class MasteryTestListItemsContainer extends Component {
 
   static propTypes = {
-    masteryTestId: PropTypes.string,
+    masteryTestId: PropTypes.string.isRequired,
   };
-
-  static defaultProps = {
-    masteryTestId: null,
-  }
 
   componentWillMount() {
     MasteryTestListItemsService.handleLoad(this.props.masteryTestId);
@@ -25,7 +22,7 @@ class MasteryTestListItemsContainer extends Component {
         masteryTestId={this.props.masteryTestId}
         items={toJS(MasteryTestListItemsService.items)}
         fetching={MasteryTestListItemsService.fetch.fetching}
-        onDelete={MasteryTestListItemsService.handleRemove}
+        onDelete={DeleteMasteryTestItemService.handleRemove}
       />
     );
   }

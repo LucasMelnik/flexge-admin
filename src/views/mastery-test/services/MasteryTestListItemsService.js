@@ -1,11 +1,8 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
-import FormService from '../../../core/services/FormService';
-import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
 class MasteryTestListItemsService {
   fetch = new FetchService();
-  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -23,20 +20,6 @@ class MasteryTestListItemsService {
         this.items = [];
       }
     });
-  });
-
-  handleRemove = action((masteryTestId, itemId) => {
-    ConfirmationDialogService.show(
-      'Delete Mastery Test',
-      'You are about to delete the mastery test item, Do you want to continue ?',
-      () => {
-        this.fetch.fetch({
-          url: `/mastery-tests/${masteryTestId}/items/${itemId}`,
-          method: 'delete',
-        }).then(() => {
-          this.handleLoad(masteryTestId);
-        });
-      });
   });
 }
 

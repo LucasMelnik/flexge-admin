@@ -1,32 +1,39 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import MasteryTestForm from './MasteryTestForm';
 import MasteryTestFormService from '../services/MasteryTestFormService';
+import MasteryTestListItemsService from '../services/MasteryTestListItemsService';
 
 class MasteryTestFormContainer extends Component {
 
   static propTypes = {
+    masteryTestId: PropTypes.string,
     moduleId: PropTypes.string.isRequired,
   }
+  static defaultProps = {
+    masteryTestId: null,
+  }
 
-  componentWillReceiveProps(nextProps) {
-    if (!MasteryTestFormService.form.getValue('module')) {
-      MasteryTestFormService.form.setValue('module', nextProps.moduleId);
-    }
+  componentWillMount() {
+    MasteryTestFormService.handleLoad(this.props.moduleId, this.props.masteryTestId);
+    MasteryTestListItemsService.handleLoad(this.props.masteryTestId);
   }
 
   render() {
     return (
       <MasteryTestForm
         moduleId={this.props.moduleId}
+        deadlineTime={MasteryTestListItemsService.items.reduce(
+        (total, current) => total + current.item.time, 0)}
         onSubmit={MasteryTestFormService.handleSubmit}
         onChange={MasteryTestFormService.form.setValue}
         onReset={MasteryTestFormService.form.reset}
         values={MasteryTestFormService.form.getValues()}
         errors={MasteryTestFormService.form.errors}
-        submitting={MasteryTestFormService.fetch.fetching}
-        error={MasteryTestFormService.fetch.error}
+        submitting={MasteryTestFormService.submit.fetching}
+        error={MasteryTestFormService.submit.error}
         isDirty={MasteryTestFormService.form.isDirty}
       />
     );

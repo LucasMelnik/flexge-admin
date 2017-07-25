@@ -32,11 +32,9 @@ const MasteryTestForm = props => (
           <TextInput
             floatingLabel
             fullWidth
-            disabled={props.submitting}
+            disabled
             label="Deadline Time"
-            value={get(props.values, 'deadlineTime', '')}
-            onChange={value => props.onChange('deadlineTime', value)}
-            errorText={get(props.errors, 'deadlineTime', '')}
+            value={props.deadlineTime}
           />
         </Column>
         <Column lgSize={4}>
@@ -44,8 +42,10 @@ const MasteryTestForm = props => (
             floatingLabel
             fullWidth
             label="Score to Pass"
-            value={get(props.values, 'scoreToPass', '')}
-            onChange={value => props.onChange('scoreToPass', value)}
+            disabled
+            value={85}
+            // value={get(props.values, 'scoreToPass', '')}
+            // onChange={value => props.onChange('scoreToPass', value)}
             errorText={get(props.errors, 'scoreToPass', '')}
           />
         </Column>
@@ -72,6 +72,7 @@ const MasteryTestForm = props => (
 );
 
 MasteryTestForm.propTypes = {
+  deadlineTime: PropTypes.number.isRequired,
   onSubmit: PropTypes.func,
   onReset: PropTypes.func,
   values: PropTypes.object,

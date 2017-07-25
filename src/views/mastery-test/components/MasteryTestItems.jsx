@@ -6,19 +6,18 @@ import Button from '../../../core/form/Button';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import MasteryTestListItemsContainer from './MasteryTestListItemsContainer';
-import ItemFormContainer from '../../item/components/ItemFormContainer';
+import MasteryTestItemFormContainer from './MasteryTestItemFormContainer';
 
-class MasteryTestItemsScene extends Component {
+class MasteryTestItems extends Component {
 
   static propTypes = {
-    masteryTestId: PropTypes.string,
-    order: PropTypes.number.isRequired,
-
+    masteryTestId: PropTypes.string.isRequired,
+    order: PropTypes.number,
   }
 
   static defaultProps = {
-
-  };
+    order: null,
+  }
 
   state = {
     actualScene: 'LIST',
@@ -61,7 +60,7 @@ class MasteryTestItemsScene extends Component {
                 <Button
                   primary
                   icon="add"
-                  onClick={() => this.handleChangeToForm()}
+                  onClick={this.handleChangeToForm}
                   label="Add new mastery test item"
                 />
               )}
@@ -69,7 +68,7 @@ class MasteryTestItemsScene extends Component {
                 <Button
                   icon="keyboard_backspace"
                   label="back"
-                  onClick={() => this.handleChangeToList()}
+                  onClick={this.handleChangeToList}
                 />
               )}
             </div>
@@ -79,8 +78,8 @@ class MasteryTestItemsScene extends Component {
         {this.state.actualScene === 'LIST' ? (
           <MasteryTestListItemsContainer masteryTestId={this.props.masteryTestId} />
         ) : (
-          <ItemFormContainer
-            itemsTypeUrl={`/item-types`}
+          <MasteryTestItemFormContainer
+            itemsTypeUrl="/item-types"
             endpointUrl={`/mastery-tests/${this.props.masteryTestId}/items`}
             order={this.props.order}
             showPostPhrase={false}
@@ -91,4 +90,4 @@ class MasteryTestItemsScene extends Component {
   }
 }
 
-export default MasteryTestItemsScene;
+export default MasteryTestItems;

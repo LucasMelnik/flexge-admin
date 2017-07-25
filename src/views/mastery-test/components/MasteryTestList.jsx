@@ -47,7 +47,7 @@ const MasteryTestList = props => (
 MasteryTestList.propTypes = {
   masteryTests: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    modulePercentageToActive: PropTypes.number.isRequired,
+    modulePercentageToActive: PropTypes.string.isRequired,
     scoreToPass: PropTypes.number.isRequired,
     module: PropTypes.string.isRequired,
   })).isRequired,
