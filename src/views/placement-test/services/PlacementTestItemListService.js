@@ -51,7 +51,7 @@ class PlacementTestItemListService {
       `You are about to delete the item "${unitItem.item.text}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({
-          url: `/units/${this.placementTestId}/items/${unitItem.item.id}`,
+          url: `/grammar-placement-test-levels/${this.placementTestId}/items/${unitItem.item.id}`,
           method: 'delete',
         }).then(() => {
           this.load();
