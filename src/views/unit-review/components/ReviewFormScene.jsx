@@ -16,7 +16,7 @@ import UnitFormContainer from '../../module/components/unit/UnitFormContainer';
 import ChangeStatusFormatContainer from './ChangeStatusFormatContainer';
 import ReviewItems from './ReviewItems';
 
-export default class Table extends Component {
+export default class ReviewFormScene extends Component {
 
   state = {
     expanded: false,
@@ -127,7 +127,7 @@ export default class Table extends Component {
             onClick={this.expandOrRetractComment}
           />
           <Row>
-            <Column lgSize={9}>
+            <Column lgSize={5}>
               <div
                 style={{
                   height: this.state.expanded ? 800 : 300,
@@ -136,7 +136,7 @@ export default class Table extends Component {
               >
                 <TextEditor
                   style={{
-                    height: this.state.expanded ? 760 : 260,
+                    height: this.state.expanded ? 740 : 255,
                   }}
                   placeholder="Comment review..."
                   isRequired
@@ -147,8 +147,9 @@ export default class Table extends Component {
                 />
               </div>
             </Column>
-            <Column lgSize={3}>
+            <Column lgSize={7}>
               <ChangeStatusFormatContainer
+                expanded={this.state.expanded}
                 reviewId={this.props.reviewId}
                 unitId={this.props.unitId}
                 currentStatusFormat={this.props.currentStatusFormat}
