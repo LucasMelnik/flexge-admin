@@ -32,19 +32,19 @@ export default class PlacementTestItems extends Component {
     return (
       <div>
         <Row>
-          <Column lgSize={10}>
+          <Column lgSize={9}>
             <SubTitle>
               {this.state.actualScene === 'LIST' ? 'Placement Test items' : 'New Placement Test item'}
             </SubTitle>
           </Column>
-          <Column lgSize={2}>
+          <Column lgSize={3}>
             <div style={{ textAlign: 'right' }}>
               {this.state.actualScene === 'LIST' && (
                 <Button
                   primary
                   icon="add"
                   onClick={this.handleChangeToForm}
-                  label="Add new mastery test item"
+                  label="Add new placement test item"
                 />
               )}
               {this.state.actualScene === 'FORM' && (
@@ -58,10 +58,10 @@ export default class PlacementTestItems extends Component {
           </Column>
         </Row>
         <Separator size="xs" />
-        {this.state.actualScene === 'LIST' & (
+        {this.state.actualScene === 'LIST' && (
           <PlacementTestItemListContainer placementTestId={this.props.placementTestId} />
         )}
-        {this.state.actualScene === 'FORM' & (
+        {this.state.actualScene === 'FORM' && (
           <PlacementTestItemFormContainer
             onSaveSuccess={this.handleChangeToList}
             placementTestId={this.props.placementTestId}

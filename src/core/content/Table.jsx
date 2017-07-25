@@ -22,7 +22,7 @@ export default class Table extends Component {
       label: PropTypes.string.isRequired,
       path: PropTypes.string,
       labelWhenNull: PropTypes.string,
-      width: PropTypes.number,
+      width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       render: PropTypes.func,
       rowColumnStyle: PropTypes.object,
     })),
