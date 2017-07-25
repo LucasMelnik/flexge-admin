@@ -57,7 +57,7 @@ export default class ReviewFormScene extends Component {
 
   render() {
     return (
-      <div style={{ paddingBottom: '320px' }}>
+      <div style={{ paddingBottom: '360px' }}>
         <InlineBlock marginBottom={15}>
           <Title>
             Unit
@@ -110,9 +110,10 @@ export default class ReviewFormScene extends Component {
             position: 'fixed',
             zIndex: 3,
             bottom: 10,
-            left: 15,
-            right: 15,
-            maxHeight: '90%',
+            left: 10,
+            right: 10,
+            height: this.state.expanded ? 800 : 300,
+            maxHeight: '89%',
           }}
         >
 
@@ -130,17 +131,24 @@ export default class ReviewFormScene extends Component {
             <Column lgSize={5}>
               <div
                 style={{
-                  height: this.state.expanded ? 800 : 300,
+                  fontSize: 16,
+                  marginBottom: 10,
+                }}
+              >
+                  Revisão de conteúdo
+                </div>
+              <div
+                style={{
+                  height: this.state.expanded ? 800 : 230,
                   transition: 'all 0.5s',
                 }}
               >
                 <TextEditor
                   style={{
-                    height: this.state.expanded ? 740 : 255,
+                    height: this.state.expanded ? 700 : 200,
                   }}
                   placeholder="Comment review..."
                   isRequired
-                  modules={this.modules}
                   readOnly={this.props.status === 'REVIEWED' || this.props.status === 'DONE' || this.props.review.createdBy === localStorage.id}
                   value={get(this.props.values, 'comments', '')}
                   onChange={value => this.props.onChange('comments', value)}

@@ -52,17 +52,17 @@ export default class TextEditor extends Component {
       <ReactQuill
         style={this.props.style}
         placeholder={this.props.placeholder}
-        modules={!this.props.readOnly ? this.toolbarOptions : this.noToolbar}
+        modules={this.toolbarOptions}
         readOnly={this.props.readOnly}
         value={this.props.value}
         onKeyPress={this.onKeyPress}
         onChange={this.props.onChange}
       >
-        {/* <div
+        <div
           style={{
-            border: (this.props.value.length === 0 || this.props.value === '<p><br></p>') && '1px solid red',
+            background: this.props.readOnly && '#efefef',
           }}
-        /> */}
+        />
       </ReactQuill>
     );
   }

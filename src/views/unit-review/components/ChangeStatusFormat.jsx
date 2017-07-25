@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Paper from '../../../core/layout/Paper';
 import Button from '../../../core/form/Button';
 import Select from '../../../core/form/Select';
 import Column from '../../../core/layout/Column';
+import Separator from '../../../core/layout/Separator';
 import Row from '../../../core/layout/Row';
 import TextEditor from '../../../core/content/TextEditor';
 
@@ -23,17 +24,24 @@ const ChangeStatusFormat = (props) => {
         <Column lgSize={8}>
           <div
             style={{
-              height: props.expanded ? 800 : 300,
+              fontSize: 16,
+              marginBottom: 10,
+            }}
+          >
+            Revisão de Formato
+          </div>
+          <div
+            style={{
+              height: props.expanded ? 800 : 230,
               transition: 'all 0.5s',
             }}
           >
             <TextEditor
               style={{
-                height: props.expanded ? 740 : 255,
+                height: props.expanded ? 700 : 200,
               }}
               placeholder="Comment status format review..."
               isRequired
-              modules={this.modules}
               readOnly={localStorage.role !== 'ADMIN'}
               value={get(props.values, 'commentsStatusFormat', '')}
               onChange={value => props.onChange('commentsStatusFormat', value)}
@@ -41,6 +49,7 @@ const ChangeStatusFormat = (props) => {
           </div>
         </Column>
         <Column lgSize={4}>
+          <div style={{ marginBottom: 27 }} />
           <Paper>
             <Select
               floatingLabel
