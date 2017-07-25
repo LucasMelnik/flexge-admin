@@ -1,5 +1,5 @@
 import { extendObservable, action } from 'mobx';
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -21,10 +21,11 @@ class ItemFormService {
     'item.time': [isRequired],
   };
 
-  constructor(endpointUrl, order) {
+  constructor(endpointUrl, order, onSaveSuccess) {
     extendObservable(this, {
       itemId: null,
     });
+    this.onSaveSuccess = onSaveSuccess;
     this.endpointUrl = endpointUrl;
     this.order = order;
     this.form.validations = {
@@ -257,9 +258,7 @@ class ItemFormService {
       },
     }).then(() => {
       if (this.submit.data) {
-        if (!itemId) {
-          browserHistory.goBack();
-        }
+        this.onSaveSuccess();
         NotificationService.addNotification(
           `Item ${itemId ? 'updated' : 'created'} successfully.`,
           null,

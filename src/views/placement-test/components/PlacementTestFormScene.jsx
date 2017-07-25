@@ -6,6 +6,7 @@ import Title from '../../../core/content/Title';
 import Separator from '../../../core/layout/Separator';
 import PlacementTestFormContainer from './PlacementTestFormContainer';
 import Button from '../../../core/form/Button';
+import PlacementTestItems from './PlacementTestItems';
 
 const PlacementTestFormScene = props => (
   <div>
@@ -30,6 +31,10 @@ const PlacementTestFormScene = props => (
     />
     <Separator size="sm" />
     <PlacementTestFormContainer />
+    <Separator size="sm" />
+    {props.placementTestId && (
+      <PlacementTestItems placementTestId={props.placementTestId} />
+    )}
   </div>
 );
 

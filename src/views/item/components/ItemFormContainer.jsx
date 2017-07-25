@@ -6,22 +6,23 @@ import ItemFormService from '../services/ItemFormService';
 
 class ItemFormContainer extends Component {
   static propTypes = {
-    itemId: PropTypes.string,
     itemsTypeUrl: PropTypes.string.isRequired,
     endpointUrl: PropTypes.string.isRequired,
     order: PropTypes.number.isRequired,
-    showPostPhrase: PropTypes.bool.isRequired,
+    itemId: PropTypes.string,
     disabled: PropTypes.bool,
-    saveItemCallback: PropTypes.func,
+    onSaveSuccess: PropTypes.func,
+    showPostPhrase: PropTypes.bool,
   };
 
   static defaultProps = {
-    disabled: false,
-    saveItemCallback: null,
     itemId: null,
+    disabled: false,
+    showPostPhrase: false,
+    onSaveSuccess: () => {},
   };
 
-  itemFormService = new ItemFormService(this.props.endpointUrl, this.props.order);
+  itemFormService = new ItemFormService(this.props.endpointUrl, this.props.order, this.props.onSaveSuccess);
 
   componentWillMount() {
     this.itemFormService.handleLoad(this.props.itemId);
