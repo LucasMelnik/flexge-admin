@@ -47,19 +47,11 @@ const ItemFormScene = props => (
       marginTop={15}
       float="right"
     >
-      {props.reviewId ? (
-        <Button
-          icon="keyboard_backspace"
-          label="back"
-          onClick={() => browserHistory.push(`/modules/${props.unit.module.id}/units/${props.unit.id}/reviews/${props.reviewId}`)}
-        />
-      ) : (
-        <Button
-          icon="keyboard_backspace"
-          label="back"
-          onClick={() => browserHistory.push(`/modules/${props.unit.module.id}/units/${props.unit.id}/items`)}
-        />
-      )}
+    <Button
+      icon="keyboard_backspace"
+      label="back"
+      onClick={() => props.OnBack()}
+    />
     </InlineBlock>
     {props.unit.id && (
       <ItemFormContainer
@@ -68,6 +60,7 @@ const ItemFormScene = props => (
         endpointUrl={`units/${props.unit.id}/items`}
         order={props.itemOrder}
         showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
+        onSaveSuccess={props.OnBack}
       />
     )}
   </div>
@@ -76,6 +69,7 @@ const ItemFormScene = props => (
 ItemFormScene.propTypes = {
   unit: PropTypes.object.isRequired,
   itemOrder: PropTypes.number.isRequired,
+  OnBack: PropTypes.func.isRequired,
   itemId: PropTypes.string,
   reviewId: PropTypes.string,
   disabled: PropTypes.bool,

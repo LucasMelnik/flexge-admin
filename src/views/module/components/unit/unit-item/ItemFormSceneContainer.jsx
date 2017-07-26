@@ -19,7 +19,6 @@ class UnitItemsSceneContainer extends Component {
   };
 
   loadUnitService = new LoadUnitService();
-
   sendUnitToReviewService = new SendUnitToReviewService();
 
   componentWillMount() {
@@ -28,7 +27,11 @@ class UnitItemsSceneContainer extends Component {
   }
 
   handleBack = () => {
-    browserHistory.push(`/modules/${this.props.params.moduleId}/units/${this.props.params.unitId}/items`)
+    if (this.props.params.reviewId) {
+      browserHistory.push(`/modules/${props.unit.module.id}/units/${props.unit.id}/reviews/${props.reviewId}`)
+    } else {
+      browserHistory.push(`/modules/${this.props.params.moduleId}/units/${this.props.params.unitId}/items`)
+    }
   };
 
   render() {
@@ -38,6 +41,7 @@ class UnitItemsSceneContainer extends Component {
         itemId={this.props.params.itemId}
         reviewId={this.props.params.reviewId}
         itemOrder={UnitItemListService.items.length + 1}
+        onSaveSuccess={this.handleBack}
       />
     );
   }
