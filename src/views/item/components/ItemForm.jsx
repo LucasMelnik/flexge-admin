@@ -78,7 +78,7 @@ const ItemForm = props => (
             <FetchSelect
               url="grammars"
               fullWidth
-              disabled={props.submitting || props.disabled}
+              disabled={props.submitting || props.disabled || !!props.defaultGrammar}
               label="Grammar"
               maxHeight={350}
               value={get(props.values, 'item.grammar.id', '')}

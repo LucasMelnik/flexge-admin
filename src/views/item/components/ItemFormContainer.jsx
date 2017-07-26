@@ -8,8 +8,9 @@ class ItemFormContainer extends Component {
   static propTypes = {
     itemsTypeUrl: PropTypes.string.isRequired,
     endpointUrl: PropTypes.string.isRequired,
-    order: PropTypes.number.isRequired,
+    order: PropTypes.number,
     itemId: PropTypes.string,
+    defaultGrammar: PropTypes.string,
     disabled: PropTypes.bool,
     onSaveSuccess: PropTypes.func,
     showPostPhrase: PropTypes.bool,
@@ -17,15 +18,17 @@ class ItemFormContainer extends Component {
 
   static defaultProps = {
     itemId: null,
+    defaultGrammar: null,
     disabled: false,
     showPostPhrase: false,
+    order: null,
     onSaveSuccess: () => {},
   };
 
   itemFormService = new ItemFormService(this.props.endpointUrl, this.props.order, this.props.onSaveSuccess);
 
   componentWillMount() {
-    this.itemFormService.handleLoad(this.props.itemId);
+    this.itemFormService.handleLoad(this.props.itemId, this.props.defaultGrammar);
   }
 
   render() {
@@ -44,6 +47,7 @@ class ItemFormContainer extends Component {
         itemsTypeUrl={this.props.itemsTypeUrl}
         showPostPhrase={this.props.showPostPhrase}
         disabled={this.props.disabled}
+        defaultGrammar={this.props.defaultGrammar}
       />
     );
   }

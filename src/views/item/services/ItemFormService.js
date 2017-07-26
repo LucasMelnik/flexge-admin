@@ -218,7 +218,7 @@ class ItemFormService {
     this.form.reset();
   });
 
-  handleLoad = action((itemId) => {
+  handleLoad = action((itemId, defaultGrammar) => {
     if (itemId) {
       this.fetch.fetch({
         url: `/${this.endpointUrl}/${itemId}`,
@@ -232,7 +232,16 @@ class ItemFormService {
         }
       });
     } else {
-      this.form.setInitialValues({});
+      this.form.setInitialValues({
+        ...defaultGrammar && {
+          item: {
+            grammar:{
+              id: defaultGrammar,
+            },
+          },
+        },
+      });
+      console.log(this.form.getValues())
     }
     this.form.reset();
     this.itemId = itemId;

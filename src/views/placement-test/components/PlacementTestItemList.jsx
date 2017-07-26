@@ -77,8 +77,9 @@ const PlacementTestItemList = props => (
 
 PlacementTestItemList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    grammarPlacementTestLevel: PropTypes.string.isRequired,
+    grammarPlacementTestLevel: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
     item: PropTypes.shape({
       text: PropTypes.string,
       translation: PropTypes.string,

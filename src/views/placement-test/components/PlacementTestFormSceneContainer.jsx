@@ -10,7 +10,7 @@ class PlacementTestFormSceneContainer extends Component {
     params: PropTypes.shape({
       studentId: PropTypes.string,
     }).isRequired,
-  }
+  };
 
   componentWillMount() {
     PlacementTestFormService.handleLoad(this.props.params.placementTestId);
