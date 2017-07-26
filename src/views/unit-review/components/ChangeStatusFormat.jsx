@@ -17,66 +17,67 @@ const ChangeStatusFormat = (props) => {
     optionsStatusFormat = ['PENDING_REVIEW'];
   }
 
-  if (optionsStatusFormat.length) {
-    return (
-      <Row>
-        <Column lgSize={8}>
-          <div
+  return (
+    <Row>
+      <Column lgSize={8}>
+        <div
+          style={{
+            fontSize: 16,
+            marginBottom: 10,
+          }}
+        >
+          Revisão de Formato
+        </div>
+        <div
+          style={{
+            height: props.expanded ? 800 : 230,
+            transition: 'all 0.5s',
+          }}
+        >
+          <TextEditor
             style={{
-              fontSize: 16,
-              marginBottom: 10,
+              height: props.expanded ? 700 : 180,
             }}
-          >
-            Revisão de Formato
+            placeholder="Comment status format review..."
+            readOnly={localStorage.role !== 'ADMIN'}
+            value={get(props.values, 'commentsStatusFormat', '')}
+            onChange={value => props.onChange('commentsStatusFormat', value)}
+          />
+        </div>
+      </Column>
+      <Column lgSize={4}>
+        {optionsStatusFormat.length > 0 && (
+          <div>
+            <div style={{ marginBottom: 28 }} />
+            <Paper>
+              <Select
+                floatingLabel
+                options={optionsStatusFormat.map(value => ({
+                  value,
+                  label: value.replace('_', ' '),
+                }))}
+                label="Status format"
+                isRequired
+                value={get(props.values, 'statusFormat', '')}
+                onChange={value => props.onChange('statusFormat', value)}
+                errorText={get(props.errors, 'statusFormat', '')}
+              />
+              <Button
+                label="Save"
+                style={{
+                  verticalAlign: 'top',
+                  marginLeft: 10,
+                  marginTop: 28,
+                }}
+                primary
+                onClick={() => props.onSaveStatusFormat(props.unitId, props.reviewId)}
+              />
+            </Paper>
           </div>
-          <div
-            style={{
-              height: props.expanded ? 800 : 230,
-              transition: 'all 0.5s',
-            }}
-          >
-            <TextEditor
-              style={{
-                height: props.expanded ? 700 : 200,
-              }}
-              placeholder="Comment status format review..."
-              readOnly={localStorage.role !== 'ADMIN'}
-              value={get(props.values, 'commentsStatusFormat', '')}
-              onChange={value => props.onChange('commentsStatusFormat', value)}
-            />
-          </div>
-        </Column>
-        <Column lgSize={4}>
-          <div style={{ marginBottom: 27 }} />
-          <Paper>
-            <Select
-              floatingLabel
-              options={optionsStatusFormat.map(value => ({
-                value,
-                label: value.replace('_', ' '),
-              }))}
-              label="Status format"
-              isRequired
-              value={get(props.values, 'statusFormat', '')}
-              onChange={value => props.onChange('statusFormat', value)}
-              errorText={get(props.errors, 'statusFormat', '')}
-            />
-            <Button
-              label="Save"
-              style={{
-                verticalAlign: 'top',
-                marginLeft: 10,
-                marginTop: 28,
-              }}
-              primary
-              onClick={() => props.onSaveStatusFormat(props.unitId, props.reviewId)}
-            />
-          </Paper>
-        </Column>
-      </Row>
-    );
-  }
-  return null;
+        )}
+      </Column>
+    </Row>
+  );
 };
 
 ChangeStatusFormat.propTypes = {

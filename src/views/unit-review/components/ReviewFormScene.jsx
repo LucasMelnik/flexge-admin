@@ -109,11 +109,11 @@ export default class ReviewFormScene extends Component {
           style={{
             position: 'fixed',
             zIndex: 3,
-            bottom: 10,
-            left: 10,
-            right: 10,
+            bottom: 0,
+            left: 0,
+            right: 0,
             height: this.state.expanded ? 800 : 300,
-            maxHeight: '89%',
+            maxHeight: '87%',
           }}
         >
 
@@ -139,13 +139,13 @@ export default class ReviewFormScene extends Component {
                 </div>
               <div
                 style={{
-                  height: this.state.expanded ? 800 : 230,
+                  height: this.state.expanded ? 800 : 220,
                   transition: 'all 0.5s',
                 }}
               >
                 <TextEditor
                   style={{
-                    height: this.state.expanded ? 700 : 200,
+                    height: this.state.expanded ? 700 : 180,
                   }}
                   placeholder="Comment review..."
                   isRequired
