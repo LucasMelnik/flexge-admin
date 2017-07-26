@@ -50,7 +50,7 @@ const ItemFormScene = props => (
     <Button
       icon="keyboard_backspace"
       label="back"
-      onClick={() => props.OnBack()}
+      onClick={() => props.onBack()}
     />
     </InlineBlock>
     {props.unit.id && (
@@ -60,7 +60,7 @@ const ItemFormScene = props => (
         endpointUrl={`units/${props.unit.id}/items`}
         order={props.itemOrder}
         showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
-        onSaveSuccess={props.OnBack}
+        onSaveSuccess={props.onBack}
       />
     )}
   </div>
@@ -69,7 +69,7 @@ const ItemFormScene = props => (
 ItemFormScene.propTypes = {
   unit: PropTypes.object.isRequired,
   itemOrder: PropTypes.number.isRequired,
-  OnBack: PropTypes.func.isRequired,
+  onBack: PropTypes.func.isRequired,
   itemId: PropTypes.string,
   reviewId: PropTypes.string,
   disabled: PropTypes.bool,

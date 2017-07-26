@@ -28,7 +28,7 @@ class UnitItemsSceneContainer extends Component {
 
   handleBack = () => {
     if (this.props.params.reviewId) {
-      browserHistory.push(`/modules/${props.unit.module.id}/units/${props.unit.id}/reviews/${props.reviewId}`)
+      browserHistory.push(`/modules/${this.props.params.moduleId}/units/${this.props.params.unitId}/reviews/${this.props.params.reviewId}`)
     } else {
       browserHistory.push(`/modules/${this.props.params.moduleId}/units/${this.props.params.unitId}/items`)
     }
@@ -41,7 +41,7 @@ class UnitItemsSceneContainer extends Component {
         itemId={this.props.params.itemId}
         reviewId={this.props.params.reviewId}
         itemOrder={UnitItemListService.items.length + 1}
-        onSaveSuccess={this.handleBack}
+        onBack={this.handleBack}
       />
     );
   }
