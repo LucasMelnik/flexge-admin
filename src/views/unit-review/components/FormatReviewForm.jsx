@@ -16,18 +16,6 @@ const FormatReviewForm = (props) => (
       }}
     >
       Revisão de Formato
-      {/*<Select*/}
-      {/*floatingLabel*/}
-      {/*options={optionsStatusFormat.map(value => ({*/}
-      {/*value,*/}
-      {/*label: value.replace('_', ' '),*/}
-      {/*}))}*/}
-      {/*label="Revisão de Formato"*/}
-      {/*isRequired*/}
-      {/*value={get(props.values, 'statusFormat', '')}*/}
-      {/*onChange={value => props.onChange('statusFormat', value)}*/}
-      {/*errorText={get(props.errors, 'statusFormat', '')}*/}
-      {/*/>*/}
       {localStorage.role === 'ADMIN' && (
         <div>
           <Button
@@ -35,8 +23,8 @@ const FormatReviewForm = (props) => (
             icon="sentiment_very_satisfied"
             primary
             onClick={() => {
-              props.onChange('statusFormat', 'APPROVED')
-              props.onSaveStatusFormat()
+              props.onChange('statusFormat', 'APPROVED');
+              props.onSaveStatusFormat();
             }}
           />
           {' '}
@@ -45,8 +33,8 @@ const FormatReviewForm = (props) => (
             icon="sentiment_very_dissatisfied"
             primary
             onClick={() => {
-              props.onChange('statusFormat', 'NOT_APPROVED')
-              props.onSaveStatusFormat()
+              props.onChange('statusFormat', 'NOT_APPROVED');
+              props.onSaveStatusFormat();
             }}
           />
         </div>
@@ -58,8 +46,8 @@ const FormatReviewForm = (props) => (
             icon="assignment"
             primary
             onClick={() => {
-              props.onChange('statusFormat', 'PENDING_REVIEW')
-              props.onSaveStatusFormat()
+              props.onChange('statusFormat', 'PENDING_REVIEW');
+              props.onSaveStatusFormat();
             }}
           />
         </div>
