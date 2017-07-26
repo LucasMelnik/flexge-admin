@@ -43,7 +43,9 @@ class ReviewStatusFormatContainer {
       url: `/reviews/${reviewId}`,
       body: {
         statusFormat: this.form.getValue('statusFormat'),
-        commentsStatusFormat: this.form.getValue('commentsStatusFormat'),
+        ...this.form.getValue('commentsStatusFormat') && {
+          commentsStatusFormat: this.form.getValue('commentsStatusFormat'),
+        },
         unit: unitId,
       },
     }).then((res) => {

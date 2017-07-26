@@ -40,7 +40,6 @@ const ChangeStatusFormat = (props) => {
                 height: props.expanded ? 700 : 200,
               }}
               placeholder="Comment status format review..."
-              isRequired
               readOnly={localStorage.role !== 'ADMIN'}
               value={get(props.values, 'commentsStatusFormat', '')}
               onChange={value => props.onChange('commentsStatusFormat', value)}
