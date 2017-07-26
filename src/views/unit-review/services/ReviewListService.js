@@ -72,10 +72,6 @@ class ReviewListService {
     });
   });
 
-  handlePageChange = action((page) => {
-    this.page = page.selected + 1;
-    this.load();
-  });
 }
 
 const reviewListService = new ReviewListService();

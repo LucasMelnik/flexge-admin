@@ -12,6 +12,11 @@ class UnitItemListContainer extends Component {
       id: PropTypes.string.isRequired,
       createdBy: PropTypes.string.isRequired,
     }).isRequired,
+    disabled: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    disabled: false,
   };
 
   componentWillMount() {
@@ -26,6 +31,7 @@ class UnitItemListContainer extends Component {
         fetching={UnitItemListService.fetch.fetching}
         onDelete={UnitItemListService.handleUnlinkItem}
         onOrderOrGroupChange={UnitItemListService.handleOrderOrGroupChange}
+        disabled={this.props.disabled}
       />
     );
   }

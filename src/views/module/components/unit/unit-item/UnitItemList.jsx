@@ -18,7 +18,7 @@ const UnitItemList = props => (
             path: 'order',
             width: '5%',
             render: (row) => {
-              if (props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') {
+              if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled){
                 return (
                   <Select
                     fullWidth
@@ -41,7 +41,7 @@ const UnitItemList = props => (
             path: 'group',
             width: '10%',
             render: (row) => {
-              if (props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') {
+              if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
                 return (
                   <Select
                     fullWidth
@@ -120,12 +120,12 @@ const UnitItemList = props => (
             itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
             endpointUrl={`units/${props.unit.id}/items`}
             order={row.order}
-            disabled={props.unit.type.name.toLowerCase() === 'review'}
+            disabled={props.unit.type.name.toLowerCase() === 'review' || props.disabled}
             showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
           />
         )}
         actionComponent={row => {
-          if (props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') {
+          if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
             return (
               <IconButton
                 icon="delete"
@@ -160,6 +160,7 @@ UnitItemList.propTypes = {
     }).isRequired,
   }).isRequired,
   fetching: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
   onOrderOrGroupChange: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };

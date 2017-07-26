@@ -11,14 +11,14 @@ class UnitFormSceneContainer extends Component {
       unitId: PropTypes.string,
       moduleId: PropTypes.string,
     }),
-  }
+  };
 
   static defaultProps = {
     params: PropTypes.shape({
       unitId: null,
       moduleId: null,
     }),
-  }
+  };
 
   componentWillMount() {
     LoadModuleService.handleLoad(this.props.params.moduleId);

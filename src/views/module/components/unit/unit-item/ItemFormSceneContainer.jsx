@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 import ItemFormScene from './ItemFormScene';
 import LoadUnitService from '../../../services/LoadUnitService';
 import UnitItemListService from '../../../services/UnitItemListService';
-import SendUnitToReviewService from '../../../../unit-review/services/SendUnitToReviewService';
+import SendUnitToReviewService from '../../../../unit-review/services/ContentReviewService';
 
 class UnitItemsSceneContainer extends Component {
 

@@ -62,8 +62,6 @@ const Routes = () => (
       <Route path="/modules/:moduleId/units/:unitId/items" component={UnitItemListSceneContainer} />
       <Route path="/modules/:moduleId/units/:unitId/items/new" component={ItemFormSceneContainer} />
       <Route path="/modules/:moduleId/units/:unitId/reviews/:reviewId" component={ReviewFormSceneContainer} />
-      <Route path="/modules/:moduleId/units/:unitId/reviews/:reviewId/items/:itemId" component={ItemFormSceneContainer} />
-      <Route path="/modules/:moduleId/units/:unitId/items/:itemId" component={ItemFormSceneContainer} />
       <Route path="/reviews" component={ReviewListSceneContainer} />
       <Route path="/modules/:moduleId/mastery-tests/new" component={MasteryTestFormScene} />
       <Route path="/modules/:moduleId/mastery-tests/:masteryTestId" component={MasteryTestFormScene} />
