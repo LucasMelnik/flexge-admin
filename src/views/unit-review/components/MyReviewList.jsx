@@ -4,17 +4,30 @@ import { browserHistory } from 'react-router';
 import replace from 'lodash/replace';
 import MyReviewListFilterContainer from './MyReviewListFilterContainer';
 import Separator from '../../../core/layout/Separator';
-import Divider from '../../../core/layout/Divider';
 import Paper from '../../../core/layout/Paper';
 import Async from '../../../core/content/Async';
 import Table from '../../../core/content/Table';
 
 const MyReviewList = props => (
   <Paper>
-    <MyReviewListFilterContainer />
-    <Separator />
-    <Divider />
+
     <Async fetching={props.fetching}>
+      <div
+        style={{
+          textAlign: 'right',
+          fontSize: 13,
+        }}
+      >
+        {(props.unitsAndReviews && props.unitsAndReviews.length === 1) ?
+          (
+            `${props.unitsAndReviews.length} record found.`
+          ) : (
+            `${props.unitsAndReviews.length} records found.`
+          )
+        }
+      </div>
+      <MyReviewListFilterContainer />
+      <Separator />
       <Table
         columns={[
           {

@@ -12,7 +12,7 @@ const FloatActionButton = props => (
   >
     <FontIcon
       className="material-icons"
-      style={{ fontSize: 18 }}
+      style={{ fontSize: 28 }}
     >
       {props.icon}
     </FontIcon>

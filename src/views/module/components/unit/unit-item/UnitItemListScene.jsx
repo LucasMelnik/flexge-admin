@@ -19,6 +19,7 @@ class UnitItemListScene extends Component {
     unit: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
+      createdBy: PropTypes.string,
       module: PropTypes.shape({
         id: PropTypes.string,
       }),
@@ -89,11 +90,13 @@ class UnitItemListScene extends Component {
             onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units`)}
           />
           {' '}
-          <Button
-            primary
-            onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units/${this.props.unit.id}/items/new`)}
-            label="Add new item"
-          />
+          {localStorage.role === 'ADMIN' || this.props.unit.createdBy === localStorage.id ? (
+            <Button
+              primary
+              onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units/${this.props.unit.id}/items/new`)}
+              label="Add new item"
+            />
+          ) : null}
         </InlineBlock>
         {this.props.unit.id && (
           <UnitItemListContainer

@@ -18,6 +18,21 @@ class ReviewStatusFormatContainer {
     });
   }
 
+  handleLoad = (reviewId) => {
+    if (reviewId) {
+      this.fetch.fetch({
+        url: `/reviews/${reviewId}`,
+      }).then(() => {
+        if (this.fetch.data) {
+          this.currentStatusFormat = this.fetch.data.statusFormat;
+          this.form.setInitialValues(this.fetch.data);
+        }
+      });
+    } else {
+      this.form.reset();
+    }
+  };
+
   handleSaveStatusFormat = (unitId, reviewId) => {
     this.form.setSubmitted();
     if (this.form.errors) {
@@ -28,6 +43,7 @@ class ReviewStatusFormatContainer {
       url: `/reviews/${reviewId}`,
       body: {
         statusFormat: this.form.getValue('statusFormat'),
+        commentsStatusFormat: this.form.getValue('commentsStatusFormat'),
         unit: unitId,
       },
     }).then((res) => {

@@ -13,6 +13,14 @@ const UnitList = props => (
   <Paper>
     <Async fetching={props.fetching}>
       <div>
+        <div
+          style={{
+            textAlign: 'right',
+            fontSize: 13,
+          }}
+        >
+          {props.units && props.units.length} records found.
+        </div>
         <UnitListFilterContainer />
         <Separator />
         <Divider />
@@ -99,6 +107,7 @@ const UnitList = props => (
           ]}
           rows={props.units}
           selectable
+          allowActionValidator={row => row.createdBy === localStorage.id || localStorage.role === 'ADMIN'}
           onSelect={row => browserHistory.push(`/modules/${row.module}/units/${row.id}/items`)}
           onEdit={row => browserHistory.push(`/modules/${row.module}/units/${row.id}`)}
           onDelete={row => props.onDelete(row)}

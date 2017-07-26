@@ -56,6 +56,15 @@ const ModuleUnitsScene = props => (
         label="back"
         onClick={() => browserHistory.push('/modules')}
       />
+      {' '}
+      {(localStorage.role === 'ADMIN' || (props.module.createdBy && (props.module.createdBy.id === localStorage.id))) && (
+        <Button
+          icon="add"
+          primary
+          onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
+          label="New Unit"
+        />
+      )}
     </InlineBlock>
     {props.module.id && (
       <div>
@@ -97,6 +106,7 @@ ModuleUnitsScene.propTypes = {
   module: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
+    createdBy: PropTypes.object,
   }),
   fetching: PropTypes.bool,
 };

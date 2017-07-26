@@ -56,6 +56,7 @@ const ItemFormScene = props => (
     {props.unit.id && (
       <ItemFormContainer
         itemId={props.itemId}
+        disabled={localStorage.role === 'ADMIN' ? false : props.unit.createdBy !== localStorage.id ? true : false}
         itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
         endpointUrl={`units/${props.unit.id}/items`}
         order={props.itemOrder}

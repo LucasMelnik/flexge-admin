@@ -17,45 +17,57 @@ const UnitItemList = props => (
             label: 'Order',
             path: 'order',
             width: '5%',
-            render: (row) => (
-              <Select
-                fullWidth
-                label="Order"
-                value={row.order}
-                onChange={order => props.onOrderOrGroupChange(row, order, row.group)}
-                options={range(1, 31).map(value => ({
-                  label: value.toString(),
-                  value,
-                }))}
-              />
-            )
+            render: (row) => {
+              if (props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') {
+                return (
+                  <Select
+                    fullWidth
+                    label="Order"
+                    value={row.order}
+                    onChange={order => props.onOrderOrGroupChange(row, order, row.group)}
+                    options={range(1, 31).map(value => ({
+                      label: value.toString(),
+                      value,
+                    }))}
+                  />
+                );
+              } else {
+                return row.order;
+              }
+            }
           },
           {
             label: 'Group',
             path: 'group',
             width: '10%',
-            render: (row) => (
-              <Select
-                fullWidth
-                label="Group"
-                value={row.group}
-                onChange={group => props.onOrderOrGroupChange(row, row.order, group)}
-                options={[
-                  {
-                    label: 'Default',
-                    value: 1,
-                  },
-                  {
-                    label: 'First Review',
-                    value: 2,
-                  },
-                  {
-                    label: 'Second Review',
-                    value: 3,
-                  },
-                ]}
-              />
-            )
+            render: (row) => {
+              if (props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') {
+                return (
+                  <Select
+                    fullWidth
+                    label="Group"
+                    value={row.group}
+                    onChange={group => props.onOrderOrGroupChange(row, row.order, group)}
+                    options={[
+                      {
+                        label: 'Default',
+                        value: 1,
+                      },
+                      {
+                        label: 'First Review',
+                        value: 2,
+                      },
+                      {
+                        label: 'Second Review',
+                        value: 3,
+                      },
+                    ]}
+                  />
+                );
+              } else {
+                return row.group;
+              }
+            }
           },
           {
             label: 'Text',
@@ -112,12 +124,17 @@ const UnitItemList = props => (
             showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
           />
         )}
-        actionComponent={row => (
-          <IconButton
-            icon="delete"
-            onClick={() => props.onDelete(row)}
-          />
-        )}
+        actionComponent={row => {
+          if (props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') {
+            return (
+              <IconButton
+                icon="delete"
+                onClick={() => props.onDelete(row)}
+              />
+            )
+          }
+          return null;
+        }}
       />
     </Async>
   </Paper>
@@ -136,6 +153,7 @@ UnitItemList.propTypes = {
   })).isRequired,
   unit: PropTypes.shape({
     id: PropTypes.string.isRequired,
+    createdBy: PropTypes.string.isRequired,
     type: PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,

@@ -10,6 +10,7 @@ class UnitItemListContainer extends Component {
   static propTypes = {
     unit: PropTypes.shape({
       id: PropTypes.string.isRequired,
+      createdBy: PropTypes.string.isRequired,
     }).isRequired,
   };
 

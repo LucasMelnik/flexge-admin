@@ -12,6 +12,7 @@ class ChangeStatusFormatContainer extends Component {
     unitId: PropTypes.string,
     reviewId: PropTypes.string,
     currentStatusFormat: PropTypes.string,
+    expanded: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -20,9 +21,14 @@ class ChangeStatusFormatContainer extends Component {
     currentStatusFormat: null,
   }
 
+  componentWillMount() {
+    this.reviewStatusFormatService.handleLoad(this.props.reviewId);
+  }
+
   render() {
     return (
       <ChangeStatusFormat
+        expanded={this.props.expanded}
         unitId={this.props.unitId}
         reviewId={this.props.reviewId}
         values={this.reviewStatusFormatService.form.getValues()}
