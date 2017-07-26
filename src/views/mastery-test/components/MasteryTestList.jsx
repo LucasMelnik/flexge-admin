@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import Paper from '../../../core/layout/Paper';
-import Separator from '../../../core/layout/Separator';
-import Divider from '../../../core/layout/Divider';
 import Async from '../../../core/content/Async';
 import Table from '../../../core/content/Table';
 
@@ -13,8 +11,6 @@ const MasteryTestList = props => (
   >
     <Async fetching={props.fetching}>
       <div>
-        <Separator />
-        <Divider />
         <Table
           columns={[
             {

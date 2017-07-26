@@ -7,6 +7,7 @@ import Column from '../../../core/layout/Column';
 import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
 import TextInput from '../../../core/form/TextInput';
+import MaskInput from '../../../core/form/MaskInput';
 
 const MasteryTestForm = props => (
   <Paper>
@@ -18,7 +19,10 @@ const MasteryTestForm = props => (
     >
       <Row>
         <Column lgSize={4}>
-          <TextInput
+          <MaskInput
+            maskType="custom"
+            numeralPositiveOnly
+            blocks={[2]}
             floatingLabel
             fullWidth
             disabled={props.submitting}
@@ -28,15 +32,17 @@ const MasteryTestForm = props => (
             errorText={get(props.errors, 'modulePercentageToActive', '')}
           />
         </Column>
-        <Column lgSize={4}>
-          <TextInput
-            floatingLabel
-            fullWidth
-            disabled
-            label="Deadline Time"
-            value={props.deadlineTime}
-          />
-        </Column>
+        {props.values.id && (
+          <Column lgSize={4}>
+            <TextInput
+              floatingLabel
+              fullWidth
+              disabled
+              label="Deadline Time"
+              value={props.deadlineTime}
+            />
+          </Column>
+        )}
         <Column lgSize={4}>
           <TextInput
             floatingLabel
@@ -44,8 +50,6 @@ const MasteryTestForm = props => (
             label="Score to Pass"
             disabled
             value={85}
-            // value={get(props.values, 'scoreToPass', '')}
-            // onChange={value => props.onChange('scoreToPass', value)}
             errorText={get(props.errors, 'scoreToPass', '')}
           />
         </Column>

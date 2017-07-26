@@ -12,36 +12,21 @@ class MasteryTestItems extends Component {
 
   static propTypes = {
     masteryTestId: PropTypes.string.isRequired,
-    order: PropTypes.number,
-  }
-
-  static defaultProps = {
-    order: null,
-  }
+  };
 
   state = {
     actualScene: 'LIST',
-    editingItemId: null,
-  }
+  };
 
   handleChangeToForm = () => {
     this.setState({
       actualScene: 'FORM',
-      editingItemId: null,
     });
   };
 
   handleChangeToList = () => {
     this.setState({
       actualScene: 'LIST',
-      editingItemId: null,
-    });
-  };
-
-  handleChangeToEdit = (itemId) => {
-    this.setState({
-      actualScene: 'FORM',
-      editingItemId: itemId,
     });
   };
 
@@ -49,12 +34,12 @@ class MasteryTestItems extends Component {
     return (
       <div>
         <Row>
-          <Column lgSize={10}>
+          <Column lgSize={9}>
             <Title>
               {this.state.actualScene === 'LIST' ? 'Mastery Test items' : 'New Mastery Test item'}
             </Title>
           </Column>
-          <Column lgSize={2}>
+          <Column lgSize={3}>
             <div style={{ textAlign: 'right' }}>
               {this.state.actualScene === 'LIST' && (
                 <Button
@@ -79,10 +64,8 @@ class MasteryTestItems extends Component {
           <MasteryTestListItemsContainer masteryTestId={this.props.masteryTestId} />
         ) : (
           <MasteryTestItemFormContainer
-            itemsTypeUrl="/item-types"
             endpointUrl={`/mastery-tests/${this.props.masteryTestId}/items`}
-            order={this.props.order}
-            showPostPhrase={false}
+            onSaveSuccess={this.handleChangeToList}
           />
         )}
       </div>

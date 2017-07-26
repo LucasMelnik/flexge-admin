@@ -56,15 +56,6 @@ const ModuleUnitsScene = props => (
         label="back"
         onClick={() => browserHistory.push('/modules')}
       />
-      {' '}
-      {(localStorage.role === 'ADMIN' || (props.module.createdBy && (props.module.createdBy.id === localStorage.id))) && (
-        <Button
-          icon="add"
-          primary
-          onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
-          label="New Unit"
-        />
-      )}
     </InlineBlock>
     {props.module.id && (
       <div>
@@ -85,15 +76,17 @@ const ModuleUnitsScene = props => (
         <Separator />
         <Flex>
           <Title>Units</Title>
-          <Button
-            style={{
-              marginLeft: 'auto',
-            }}
-            icon="add"
-            primary
-            onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
-            label="New Unit"
-          />
+          {(localStorage.role === 'ADMIN' || (props.module.createdBy && (props.module.createdBy.id === localStorage.id))) && (
+            <Button
+              icon="add"
+              primary
+              onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
+              label="New Unit"
+              style={{
+                marginLeft: 'auto',
+              }}
+            />
+          )}
         </Flex>
         <Separator />
         <UnitListContainer moduleId={props.module.id} />

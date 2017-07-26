@@ -5,7 +5,6 @@ import ConfirmationDialogService from '../../../core/services/ConfirmationDialog
 
 class MasteryTestListService {
   fetch = new FetchService();
-  fetchItems = new FetchService();
   form = new FormService();
 
   constructor() {
@@ -15,7 +14,6 @@ class MasteryTestListService {
   }
 
   handleLoad = action((moduleId) => {
-    console.log(moduleId)
     this.fetch.fetch({
       url: `/modules/${moduleId}/mastery-tests`,
     }).then(() => {

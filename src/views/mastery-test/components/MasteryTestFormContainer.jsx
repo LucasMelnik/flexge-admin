@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import MasteryTestForm from './MasteryTestForm';
 import MasteryTestFormService from '../services/MasteryTestFormService';
@@ -11,20 +10,19 @@ class MasteryTestFormContainer extends Component {
   static propTypes = {
     masteryTestId: PropTypes.string,
     moduleId: PropTypes.string.isRequired,
-  }
+  };
+
   static defaultProps = {
     masteryTestId: null,
-  }
+  };
 
   componentWillMount() {
     MasteryTestFormService.handleLoad(this.props.moduleId, this.props.masteryTestId);
-    MasteryTestListItemsService.handleLoad(this.props.masteryTestId);
   }
 
   render() {
     return (
       <MasteryTestForm
-        moduleId={this.props.moduleId}
         deadlineTime={MasteryTestListItemsService.items.reduce(
         (total, current) => total + current.item.time, 0)}
         onSubmit={MasteryTestFormService.handleSubmit}

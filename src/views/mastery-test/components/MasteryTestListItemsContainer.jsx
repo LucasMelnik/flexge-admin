@@ -13,16 +13,17 @@ class MasteryTestListItemsContainer extends Component {
   };
 
   componentWillMount() {
-    MasteryTestListItemsService.handleLoad(this.props.masteryTestId);
+    MasteryTestListItemsService.init(this.props.masteryTestId);
   }
 
   render() {
     return (
       <MasteryTestListItems
-        masteryTestId={this.props.masteryTestId}
         items={toJS(MasteryTestListItemsService.items)}
         fetching={MasteryTestListItemsService.fetch.fetching}
         onDelete={DeleteMasteryTestItemService.handleRemove}
+        onSaveSuccess={MasteryTestListItemsService.handleLoad}
+        onOrderChange={MasteryTestListItemsService.handleOrderChange}
       />
     );
   }
