@@ -13,9 +13,9 @@ const PlacementTestFormScene = props => (
     <InlineBlock>
       <Title>
         {props.placementTestId ? (
-          'Placement Test informations'
+          'Grammar informations'
         ) : (
-          'New Placement Test'
+          'New Grammar'
         )}
       </Title>
     </InlineBlock>
