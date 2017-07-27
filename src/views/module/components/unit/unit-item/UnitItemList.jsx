@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import range from 'lodash/range';
+import moment from 'moment';
+import 'moment-duration-format';
 import Paper from '../../../../../core/layout/Paper';
 import Async from '../../../../../core/content/Async';
 import Select from '../../../../../core/form/Select';
@@ -114,6 +116,9 @@ const UnitItemList = props => (
             label: 'Time',
             path: 'item.time',
             width: '5%',
+            render: (row) => {
+              return `${row.item.time < 60 ? '00:' : ''}${moment.duration(row.item.time, "seconds").format("mm:ss", {forceLength: true})}`
+            },
           },
         ]}
         rows={props.items}

@@ -61,6 +61,7 @@ const ItemForm = props => (
           <Column lgSize={2}>
             <TimeInput
               fullWidth
+              disabled={props.submitting || props.disabled || props.isTestItem}
               label="Time (minutes)"
               value={get(props.values, 'item.time', '')}
               onChange={value => props.onChange('item.time', value)}
