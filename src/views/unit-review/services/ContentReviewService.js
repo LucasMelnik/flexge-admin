@@ -80,8 +80,8 @@ class ContentReviewService {
 
   handleSendToPending = action(() => {
     ConfirmationDialogService.show(
-      'Send to review',
-      'You are about to send the unit to pending, Do you want to continue ?',
+      'Send to pending status',
+      'This means you already fixed all notes, Do you want to continue ?',
       () => {
         this.submit.fetch({
           method: 'put',
@@ -97,7 +97,7 @@ class ContentReviewService {
             ReviewListService.handleAllUnits();
             browserHistory.push('/reviews');
             NotificationService.addNotification(
-              'Review sent successfully.',
+              'Status changed successfully.',
               null,
               null,
               'success',
@@ -105,7 +105,7 @@ class ContentReviewService {
           }
           if (this.submit.error) {
             NotificationService.addNotification(
-              'Error creating review.',
+              'Error changing status review.',
               null,
               null,
               'danger',
@@ -119,8 +119,15 @@ class ContentReviewService {
     this.form.setSubmitted();
     const comments = this.form.getValue('comments');
     if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
+      NotificationService.addNotification(
+          'Please leave a comment to mark as reviewed',
+           null,
+           null,
+           'danger',
+        );
       return;
     }
+
     ConfirmationDialogService.show(
       'Unit reviewed',
       'If you already have verified and commented on this unit, please confirm.',
@@ -138,7 +145,7 @@ class ContentReviewService {
             this.handleLoad();
             browserHistory.push('/reviews');
             NotificationService.addNotification(
-              'Review created successfully.',
+              'Unit reviewed successfully.',
               null,
               null,
               'success',
@@ -146,7 +153,7 @@ class ContentReviewService {
           }
           if (this.submit.error) {
             NotificationService.addNotification(
-              'Error creating review.',
+              'Error reviewing unit.',
               null,
               null,
               'danger',
@@ -160,11 +167,17 @@ class ContentReviewService {
     this.form.setSubmitted();
     const comments = this.form.getValue('comments');
     if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
+      NotificationService.addNotification(
+         'Please leave a comment to mark as done',
+          null,
+          null,
+          'danger',
+      );
       return;
     }
     ConfirmationDialogService.show(
       'Unit Done',
-      'This means you already fixed all comments, and cannot be reverted. Are you sure you want to confirm?',
+      'This means you already fixed all comments or the unit was correct, and cannot be reverted. Are you sure you want to confirm?',
       () => {
         this.submit.fetch({
           method: 'put',
