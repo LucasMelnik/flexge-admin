@@ -20,11 +20,23 @@ class MasteryTestFormContainer extends Component {
     MasteryTestFormService.handleLoad(this.props.moduleId, this.props.masteryTestId);
   }
 
+  sumDeadlineTime = () => {
+    const totalSeconds = MasteryTestListItemsService.items.reduce((total, current) => total + current.item.time, 0);
+    const totalSecondsWithBonus = (totalSeconds + (totalSeconds * 0.35));
+    const deadlineMinutes = totalSecondsWithBonus / 60;
+
+    let deadlineRounded = Math.round(deadlineMinutes);
+    if (deadlineRounded < deadlineMinutes) {
+      deadlineRounded += 0.5;
+    }
+
+    return deadlineRounded * 60;
+  };
+
   render() {
     return (
       <MasteryTestForm
-        deadlineTime={MasteryTestListItemsService.items.reduce(
-        (total, current) => total + current.item.time, 0)}
+        deadlineTime={this.sumDeadlineTime()}
         onSubmit={MasteryTestFormService.handleSubmit}
         onChange={MasteryTestFormService.form.setValue}
         onReset={MasteryTestFormService.form.reset}

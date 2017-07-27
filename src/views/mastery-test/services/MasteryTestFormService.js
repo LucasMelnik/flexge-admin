@@ -12,8 +12,6 @@ class MasteryTestFormService {
   constructor() {
     this.form.validations = {
       modulePercentageToActive: [isRequired],
-      // deadlineTime: [isRequired],
-      // scoreToPass: [isRequired],
     };
   }
 
