@@ -53,7 +53,7 @@ class ContentReviewService {
           body: {
             status: 'PENDING',
             statusFormat: 'PENDING',
-            unit: this.unitId,
+            unit: unit.id,
           },
         }).then((res) => {
           if (res) {
