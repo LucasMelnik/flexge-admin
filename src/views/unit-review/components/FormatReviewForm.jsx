@@ -56,11 +56,11 @@ const FormatReviewForm = (props) => (
     <TextEditor
       style={{
         height: props.expanded ? 600 : 220,
-        transition: 'all 0.5s'
+        transition: 'all 0.5s',
       }}
       placeholder="Comment status format review..."
       isRequired
-      readOnly={localStorage.role !== 'ADMIN'}
+      readOnly={localStorage.role !== 'ADMIN' && props.values.createdBy !== localStorage.id}
       value={get(props.values, 'commentsStatusFormat', '')}
       onChange={value => props.onChange('commentsStatusFormat', value)}
     />
