@@ -73,7 +73,7 @@ const ItemForm = props => (
                   label,
                 }
               })}
-              disabled={props.submitting || props.disabled}
+              disabled={props.submitting || props.disabled || props.isTestItem}
               label="Time (minutes)"
               value={get(props.values, 'item.time', '')}
               onChange={value => props.onChange('item.time', value)}
@@ -109,6 +109,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'VIDEO_TEXT_AREA' && (
@@ -127,6 +128,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'DICTATION' && (
@@ -136,6 +138,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'GAP_FILL' && (
@@ -145,6 +148,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'GAP_FILL_SELECT' && (
@@ -154,6 +158,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'GAP_FILL_MULTIPLE' && (
@@ -163,6 +168,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'PRESENTATION' && (
@@ -172,6 +178,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'PRONUNCIATION' && (
@@ -181,6 +188,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'SPEECH_PRACTICE' && (
@@ -190,6 +198,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'TEXT' && (
@@ -208,6 +217,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'UNSCRAMBLE_SPEECH_RECOGNITION' && (
@@ -217,6 +227,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'TRUE_FALSE' && (
@@ -226,6 +237,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {props.showPostPhrase && (
@@ -277,6 +289,7 @@ ItemForm.propTypes = {
   itemsTypeUrl: PropTypes.string.isRequired,
   showPostPhrase: PropTypes.bool,
   disabled: PropTypes.bool,
+  isTestItem: PropTypes.bool,
 };
 
 ItemForm.defaultProps = {
@@ -290,6 +303,7 @@ ItemForm.defaultProps = {
   onReset: () => false,
   onChange: () => false,
   disabled: false,
+  isTestItem: false,
 };
 
 export default ItemForm;

@@ -7,7 +7,7 @@ import TextInput from '../../../../core/form/TextInput';
 
 const TranslationInput = props => (
   <Row>
-    <Column lgSize={6}>
+    <Column lgSize={props.isTestItem ? 12 : 6}>
       <TextInput
         floatingLabel
         fullWidth
@@ -20,19 +20,21 @@ const TranslationInput = props => (
         errorText={get(props.errors, 'text', '')}
       />
     </Column>
-    <Column lgSize={6}>
-      <TextInput
-        floatingLabel
-        fullWidth
-        label="Translation"
-        multiLine
-        rows={3}
-        disabled={props.submitting || props.disabled}
-        value={get(props.values, 'translation', '')}
-        onChange={value => props.onChange('translation', value)}
-        errorText={get(props.errors, 'translation', '')}
-      />
-    </Column>
+    {!props.isTestItem && (
+      <Column lgSize={6}>
+        <TextInput
+          floatingLabel
+          fullWidth
+          label="Translation"
+          multiLine
+          rows={3}
+          disabled={props.submitting || props.disabled}
+          value={get(props.values, 'translation', '')}
+          onChange={value => props.onChange('translation', value)}
+          errorText={get(props.errors, 'translation', '')}
+        />
+      </Column>
+    )}
   </Row>
 );
 
@@ -42,12 +44,14 @@ TranslationInput.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
+  isTestItem: PropTypes.bool,
 };
 
 TranslationInput.defaultProps = {
   values: {},
   errors: {},
   disabled: false,
+  isTestItem: false,
 };
 
 export default TranslationInput;
