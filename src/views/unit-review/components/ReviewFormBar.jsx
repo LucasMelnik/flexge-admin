@@ -47,17 +47,15 @@ export default class ReviewFormControlBar extends Component {
           primary
           onClick={() => this.handleExpandOrRetractComment()}
         />
-        <Row
-
-        >
-          <Column lgSize={6}>
+        <Row>
+          <Column lgSize={6} mdSize={6} smSize={6}>
             <ContentReviewFormContainer
               expanded={this.state.expanded}
               reviewId={this.props.reviewId}
               unitId={this.props.unitId}
             />
           </Column>
-          <Column lgSize={6}>
+          <Column lgSize={6} mdSize={6} smSize={6}>
             <FormatReviewFormContainer
               expanded={this.state.expanded}
               reviewId={this.props.reviewId}
