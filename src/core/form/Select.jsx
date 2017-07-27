@@ -12,6 +12,7 @@ const Select = props => (
     disabled={props.disabled}
     onChange={(e, key, payload) => props.onChange(payload)}
     errorText={props.errorText}
+    onClick={(e) => e.stopPropagation()}
   >
     {props.addEmptyOption && (
       <MenuItem

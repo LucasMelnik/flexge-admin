@@ -42,8 +42,8 @@ const menuItems = [
     requiredRoles: ['ADMIN', 'CONTENT_ADMIN'],
   },
   {
-    label: 'Placement Tests',
-    url: '/placement-tests',
+    label: 'Placement Test',
+    url: '/placement-test',
     requiredRoles: ['ADMIN', 'CONTENT_ADMIN'],
   },
 ];

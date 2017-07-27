@@ -65,9 +65,9 @@ const Routes = () => (
       <Route path="/reviews" component={ReviewListSceneContainer} />
       <Route path="/modules/:moduleId/mastery-tests/new" component={MasteryTestFormScene} />
       <Route path="/modules/:moduleId/mastery-tests/:masteryTestId" component={MasteryTestFormScene} />
-      <Route path="/placement-tests" component={PlacementTestListScene} />
-      <Route path="/placement-tests/new" component={PlacementTestFormSceneContainer} />
-      <Route path="/placement-tests/:placementTestId" component={PlacementTestFormSceneContainer} />
+      <Route path="/placement-test" component={PlacementTestListScene} />
+      <Route path="/placement-test/new" component={PlacementTestFormSceneContainer} />
+      <Route path="/placement-test/:placementTestId" component={PlacementTestFormSceneContainer} />
     </Route>
     <Route path="*" component={NotFoundScene} />
   </Router>

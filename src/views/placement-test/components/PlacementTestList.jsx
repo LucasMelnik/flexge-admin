@@ -33,7 +33,7 @@ const PlacementTestList = props => (
         ]}
         rows={props.placementTests}
         selectable
-        onSelect={row => browserHistory.push(`/placement-tests/${row.id}`)}
+        onSelect={row => browserHistory.push(`/placement-test/${row.id}`)}
         onDelete={row => props.onDelete(row)}
       />
     </Async>
