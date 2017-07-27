@@ -241,7 +241,6 @@ class ItemFormService {
           },
         },
       });
-      console.log(this.form.getValues())
     }
     this.form.reset();
     this.itemId = itemId;
