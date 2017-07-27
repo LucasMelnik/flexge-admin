@@ -16,8 +16,12 @@ const ContentReviewForm = props => (
       }}
     >
       Revisão de conteúdo
-      <div>
-        {(get(props.values, 'status', '') === 'PENDING' && (get(props.values, 'createdBy', '') !== localStorage.id || localStorage.role === 'ADMIN')) && (
+      <div
+        style={{
+          marginTop: props.values.status === 'DONE' && 36,
+        }}
+      >
+        {(props.values.status === 'PENDING' && (props.values.createdBy !== localStorage.id || localStorage.role === 'ADMIN')) && (
           <div>
             <Button
               icon="rate_review"
@@ -34,7 +38,7 @@ const ContentReviewForm = props => (
             />
           </div>
         )}
-        {(get(props.values, 'status', '') === 'REVIEWED' && (get(props.values, 'createdBy', '') === localStorage.id || localStorage.role === 'ADMIN')) && (
+        {(props.values.status === 'REVIEWED' && (props.values.createdBy === localStorage.id || localStorage.role === 'ADMIN')) && (
           <Button
             icon="rate_review"
             primary

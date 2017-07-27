@@ -32,6 +32,7 @@ export default class ReviewFormControlBar extends Component {
           zIndex: 3,
           bottom: 0,
           left: 0,
+          right: 0,
           height: this.state.expanded ? '89%' : 360,
           maxHeight: '89%',
         }}
