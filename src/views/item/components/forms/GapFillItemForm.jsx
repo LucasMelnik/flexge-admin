@@ -14,6 +14,7 @@ const GapFillItemForm = props => (
       values={props.values}
       errors={props.errors}
       disabled={props.disabled}
+      isTestItem={props.isTestItem}
     />
     <Separator size="xs" />
     <SlicesInputContainer
@@ -44,6 +45,7 @@ GapFillItemForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
+  isTestItem: PropTypes.bool,
 };
 
 GapFillItemForm.defaultProps = {
@@ -52,6 +54,7 @@ GapFillItemForm.defaultProps = {
   submitting: false,
   onChange: () => false,
   disabled: false,
+  isTestItem: false,
 };
 
 export default GapFillItemForm;

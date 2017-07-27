@@ -14,6 +14,7 @@ const DictationItemForm = props => (
       values={props.values}
       errors={props.errors}
       disabled={props.disabled}
+      isTestItem={props.isTestItem}
     />
     <Separator size="xs" />
     <FileInput
@@ -41,6 +42,7 @@ DictationItemForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
+  isTestItem: PropTypes.bool,
 };
 
 DictationItemForm.defaultProps = {
@@ -49,6 +51,7 @@ DictationItemForm.defaultProps = {
   submitting: false,
   onChange: () => false,
   disabled: false,
+  isTestItem: false,
 };
 
 export default DictationItemForm;

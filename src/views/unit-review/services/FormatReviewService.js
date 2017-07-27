@@ -1,10 +1,10 @@
-import { extendObservable } from 'mobx';
+import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
-class ReviewStatusFormatContainer {
+class FormatReviewService {
   submit = new FetchService();
   fetch = new FetchService();
   form = new FormService();
@@ -15,38 +15,45 @@ class ReviewStatusFormatContainer {
     };
     extendObservable(this, {
       statusFormat: null,
+      reviewId: null,
+      unitId: null,
     });
   }
 
-  handleLoad = (reviewId) => {
-    if (reviewId) {
+  init = action((reviewId, unitId) => {
+    this.reviewId = reviewId;
+    this.unitId = unitId;
+    this.handleLoad();
+  });
+
+  handleLoad = action(() => {
+    if (this.reviewId) {
       this.fetch.fetch({
-        url: `/reviews/${reviewId}`,
+        url: `/reviews/${this.reviewId}`,
       }).then(() => {
         if (this.fetch.data) {
-          this.currentStatusFormat = this.fetch.data.statusFormat;
           this.form.setInitialValues(this.fetch.data);
         }
       });
     } else {
       this.form.reset();
     }
-  };
+  });
 
-  handleSaveStatusFormat = (unitId, reviewId) => {
+  handleSaveStatusFormat = action(() => {
     this.form.setSubmitted();
     if (this.form.errors) {
       return;
     }
     this.submit.fetch({
       method: 'put',
-      url: `/reviews/${reviewId}`,
+      url: `/reviews/${this.reviewId}`,
       body: {
         statusFormat: this.form.getValue('statusFormat'),
         ...this.form.getValue('commentsStatusFormat') && {
           commentsStatusFormat: this.form.getValue('commentsStatusFormat'),
         },
-        unit: unitId,
+        unit: this.unitId,
       },
     }).then((res) => {
       if (res) {
@@ -66,7 +73,7 @@ class ReviewStatusFormatContainer {
         );
       }
     });
-  };
+  });
 }
 
-export default ReviewStatusFormatContainer;
+export default FormatReviewService;

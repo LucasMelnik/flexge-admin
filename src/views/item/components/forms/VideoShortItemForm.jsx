@@ -25,6 +25,7 @@ const VideoShortItemForm = props => (
       values={props.values}
       submitting={props.submitting}
       disabled={props.disabled}
+      isTestItem={props.isTestItem}
     />
     <Separator size="xs" />
     <VideoInputContainer
@@ -53,6 +54,7 @@ VideoShortItemForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
+  isTestItem: PropTypes.bool,
 };
 
 VideoShortItemForm.defaultProps = {
@@ -61,6 +63,7 @@ VideoShortItemForm.defaultProps = {
   submitting: false,
   onChange: () => false,
   disabled: false,
+  isTestItem: false,
 };
 
 export default VideoShortItemForm;

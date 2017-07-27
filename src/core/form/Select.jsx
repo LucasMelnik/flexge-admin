@@ -12,7 +12,15 @@ const Select = props => (
     disabled={props.disabled}
     onChange={(e, key, payload) => props.onChange(payload)}
     errorText={props.errorText}
+    onClick={(e) => e.stopPropagation()}
   >
+    {props.addEmptyOption && (
+      <MenuItem
+        key="empty"
+        value={null}
+        primaryText=""
+      />
+    )}
     {props.options.map(option => (
       <MenuItem
         key={`${option.value}-${option.label}`}
@@ -34,6 +42,7 @@ Select.propTypes = {
   multiple: PropTypes.bool,
   fullWidth: PropTypes.bool,
   disabled: PropTypes.bool,
+  addEmptyOption: PropTypes.bool,
   errorText: PropTypes.string,
 };
 
@@ -43,6 +52,7 @@ Select.defaultProps = {
   fullWidth: false,
   multiple: false,
   disabled: false,
+  addEmptyOption: false,
   onChange: null,
 };
 

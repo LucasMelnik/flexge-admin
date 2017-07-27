@@ -21,10 +21,7 @@ class FormService {
           if (!error) {
             return result
           }
-          return {
-            ...result,
-            [path]: error
-          }
+          return set(result, path, error);
         }, {})
         if (!Object.keys(errors).length) {
           return null

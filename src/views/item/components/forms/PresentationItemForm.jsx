@@ -28,6 +28,7 @@ const PresentationItemForm = props => (
       values={props.values}
       errors={props.errors}
       disabled={props.disabled}
+      isTestItem={props.isTestItem}
     />
     <Row>
       <Column lgSize={6}>
@@ -60,6 +61,7 @@ PresentationItemForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
+  isTestItem: PropTypes.bool,
 };
 
 PresentationItemForm.defaultProps = {
@@ -68,6 +70,7 @@ PresentationItemForm.defaultProps = {
   submitting: false,
   onChange: () => false,
   disabled: false,
+  isTestItem: false,
 };
 
 export default PresentationItemForm;

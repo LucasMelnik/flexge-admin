@@ -1,19 +1,83 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import range from 'lodash/range';
+import moment from 'moment';
+import 'moment-duration-format';
 import Paper from '../../../../../core/layout/Paper';
 import Async from '../../../../../core/content/Async';
-import Table from '../../../../../core/content/Table';
 import Select from '../../../../../core/form/Select';
+import AccordionTable from '../../../../../core/content/AccordionTable';
+import ItemFormContainer from '../../../../item/components/ItemFormContainer';
+import IconButton from '../../../../../core/form/IconButton';
 
 const UnitItemList = props => (
   <Paper>
     <Async fetching={props.fetching}>
-      <Table
+      <AccordionTable
         columns={[
+          {
+            label: 'Order',
+            path: 'order',
+            width: '5%',
+            render: (row) => {
+              if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled){
+                return (
+                  <Select
+                    fullWidth
+                    label="Order"
+                    value={row.order}
+                    onChange={order => props.onOrderOrGroupChange(row, order, row.group)}
+                    options={range(1, 61).map(value => ({
+                      label: value.toString(),
+                      value,
+                    }))}
+                  />
+                );
+              } else {
+                return row.order;
+              }
+            }
+          },
+          {
+            label: 'Group',
+            path: 'group',
+            width: '10%',
+            render: (row) => {
+              if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
+                return (
+                  <Select
+                    fullWidth
+                    label="Group"
+                    value={row.group}
+                    onChange={group => props.onOrderOrGroupChange(row, row.order, group)}
+                    options={[
+                      {
+                        label: 'Default',
+                        value: 1,
+                      },
+                      {
+                        label: 'First Review',
+                        value: 2,
+                      },
+                      {
+                        label: 'Second Review',
+                        value: 3,
+                      },
+                    ]}
+                  />
+                );
+              } else {
+                return ['', 'Default', 'First Review', 'Second Review'][row.group];
+              }
+            }
+          },
           {
             label: 'Text',
             path: 'item.text',
+            width: '25%',
+            render: row => (
+              <div>{row.item.text ? row.item.text : row.item.title}</div>
+            ),
             rowColumnStyle: {
               textOverflow: 'none',
               paddingTop: 5,
@@ -27,6 +91,7 @@ const UnitItemList = props => (
           {
             label: 'Translation',
             path: 'item.translation',
+            width: '25%',
             rowColumnStyle: {
               textOverflow: 'none',
               paddingTop: 5,
@@ -40,47 +105,44 @@ const UnitItemList = props => (
           {
             label: 'Grammar',
             path: 'item.grammar.name',
+            width: '15%',
           },
           {
             label: 'Type',
             path: 'item.type.name',
+            width: '15%',
+          },
+          {
+            label: 'Time',
+            path: 'item.time',
+            width: '5%',
+            render: (row) => {
+              return `${row.item.time < 60 ? '00:' : ''}${moment.duration(row.item.time, "seconds").format("mm:ss", {forceLength: true})}`
+            },
           },
         ]}
         rows={props.items}
-        selectable
-        actionComponentWidth={130}
-        allowActionValidator={row => props.createdBy === localStorage.id || localStorage.role === 'ADMIN'}
-        actionComponent={row => props.createdBy === localStorage.id || localStorage.role === 'ADMIN' ? (
-          <Select
-            fullWidth
-            label="Order"
-            value={row.order}
-            onChange={order => props.onOrderChange(row, order)}
-            options={range(1, 61).map(value => ({
-              label: value.toString(),
-              value,
-            }))}
-            style={{
-              width: 50,
-            }}
-          />
-        ) : (
-          <Select
-            fullWidth
-            label="Order"
-            value={row.order}
-            disabled
-            options={range(1, 31).map(value => ({
-              label: value.toString(),
-              value,
-            }))}
-            style={{
-              width: 50,
-            }}
+        renderFunction={(row) => (
+          <ItemFormContainer
+            itemId={row.item.id}
+            itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
+            endpointUrl={`units/${props.unit.id}/items`}
+            order={row.order}
+            disabled={props.unit.type.name.toLowerCase() === 'review' || props.disabled}
+            showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
           />
         )}
-        onSelect={props.onSelect}
-        onDelete={row => props.onDelete(row)}
+        actionComponent={row => {
+          if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
+            return (
+              <IconButton
+                icon="delete"
+                onClick={() => props.onDelete(row)}
+              />
+            )
+          }
+          return null;
+        }}
       />
     </Async>
   </Paper>
@@ -97,11 +159,18 @@ UnitItemList.propTypes = {
       }),
     }),
   })).isRequired,
-  createdBy: PropTypes.string.isRequired,
+  unit: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    createdBy: PropTypes.string.isRequired,
+    type: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
   fetching: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  onOrderOrGroupChange: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onOrderChange: PropTypes.func.isRequired,
-  onSelect: PropTypes.func.isRequired,
 };
 
 export default UnitItemList;

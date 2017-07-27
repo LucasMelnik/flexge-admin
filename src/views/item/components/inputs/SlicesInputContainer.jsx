@@ -112,9 +112,9 @@ export default class SlicesInputContainer extends Component {
         onRemoveSlice={this.handleRemoveSlice}
         onShowSlice={this.handleShowSlice}
         onLinkSlice={this.handleLinkSlice}
-        value={this.state.removedSlices}
+        value={this.state.removedSlices.filter(slice => slice.hasOwnProperty('index'))}
         texts={this.state.slices}
-        disableRemove={this.state.removedSlices.length === this.props.maxRemovesAllowed}
+        disableRemove={this.state.removedSlices.filter(slice => slice.hasOwnProperty('index')).length === this.props.maxRemovesAllowed}
         errorText={this.props.errorText}
         sequenceRemove={this.props.sequenceRemove}
         allowLink={this.props.allowLinkSlices}

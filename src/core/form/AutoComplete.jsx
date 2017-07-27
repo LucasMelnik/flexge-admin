@@ -14,6 +14,7 @@ const AutoComplete = props => (
     onNewRequest={value => props.onSelect(value)}
     onUpdateInput={text => props.onUpdateInput && props.onUpdateInput(text)}
     open={props.open}
+    listStyle={{ maxHeight: 250, overflowY: 'auto' }}
     openOnFocus
     searchText={props.value}
     style={props.style}

@@ -2,29 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Separator from '../../../core/layout/Separator';
-import Row from "../../../core/layout/Row";
-import Column from "../../../core/layout/Column";
-import Async from "../../../core/content/Async";
+import Row from '../../../core/layout/Row';
+import Column from '../../../core/layout/Column';
+import Async from '../../../core/content/Async';
 import Button from '../../../core/form/Button';
 import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
 import FetchSelect from '../../../core/form/FetchSelect';
-import VideoItemForm from "./forms/VideoItemForm";
-import VideoShortItemForm from "./forms/VideoShortItemForm";
-import VideoLongTextItemForm from "./forms/VideoLongTextItemForm";
-import SingleChoiceItemForm from "./forms/SingleChoiceItemForm";
-import DictationItemForm from "./forms/DictationItemForm";
-import GapFillItemForm from "./forms/GapFillItemForm";
-import GapFillSelectItemForm from "./forms/GapFillSelectItemForm";
-import GapFillMultipleItemForm from "./forms/GapFillMultipleItemForm";
-import PresentationItemForm from "./forms/PresentationItemForm";
-import PronunciationItemForm from "./forms/PronunciationItemForm";
-import SpeechPracticeItemForm from "./forms/SpeechPracticeItemForm";
-import TextItemForm from "./forms/TextItemForm";
-import UnscrambleDragDropItemForm from "./forms/UnscrambleDragDropItemForm";
-import UnscrambleSpeechRecognitionItemForm from "./forms/UnscrambleSpeechRecognitionItemForm";
-import TrueFalseItemForm from "./forms/TrueFalseItemForm";
-import Paper from "../../../core/layout/Paper";
-import TextInput from "../../../core/form/TextInput";
+import VideoItemForm from './forms/VideoItemForm';
+import VideoShortItemForm from './forms/VideoShortItemForm';
+import VideoLongTextItemForm from './forms/VideoLongTextItemForm';
+import SingleChoiceItemForm from './forms/SingleChoiceItemForm';
+import DictationItemForm from './forms/DictationItemForm';
+import GapFillItemForm from './forms/GapFillItemForm';
+import GapFillSelectItemForm from './forms/GapFillSelectItemForm';
+import GapFillMultipleItemForm from './forms/GapFillMultipleItemForm';
+import PresentationItemForm from './forms/PresentationItemForm';
+import PronunciationItemForm from './forms/PronunciationItemForm';
+import SpeechPracticeItemForm from './forms/SpeechPracticeItemForm';
+import TextItemForm from './forms/TextItemForm';
+import UnscrambleDragDropItemForm from './forms/UnscrambleDragDropItemForm';
+import UnscrambleSpeechRecognitionItemForm from './forms/UnscrambleSpeechRecognitionItemForm';
+import TrueFalseItemForm from './forms/TrueFalseItemForm';
+import Paper from '../../../core/layout/Paper';
+import TextInput from '../../../core/form/TextInput';
+import TimeInput from '../../../core/form/TimeInput';
 
 const ItemForm = props => (
   <Paper>
@@ -36,170 +37,195 @@ const ItemForm = props => (
     >
       <Async fetching={props.fetching}>
         <Row>
-          <Column lgSize={6}>
+          <Column lgSize={4}>
             <FetchAutoComplete
               url={props.itemsTypeUrl}
               fullWidth
               disabled={props.submitting || props.disabled}
               label="Item Type"
-              value={get(props.values, 'type.name', '')}
+              value={get(props.values, 'item.type.name', '')}
               onSelect={type => {
-                props.onChange('type', type);
+                props.onChange('item.type', type);
+                if (type) {
+                  props.onChange('item.time', props.isTestItem ? type.defaultTestTime : type.defaultTime);
+                }
                 props.setValidationsByItemType();
               }}
-              errorText={get(props.errors, 'type', '')}
+              errorText={get(props.errors, 'item.type', '')}
               resultTransformer={{
                 text: 'name',
                 value: 'id',
               }}
             />
           </Column>
+          <Column lgSize={2}>
+            <TimeInput
+              fullWidth
+              disabled={props.submitting || props.disabled || props.isTestItem}
+              label="Time (minutes)"
+              value={get(props.values, 'item.time', '')}
+              onChange={value => props.onChange('item.time', value)}
+              errorText={get(props.errors, 'item.time', '')}
+            />
+          </Column>
           <Column lgSize={6}>
             <FetchSelect
               url="grammars"
               fullWidth
-              disabled={props.submitting || props.disabled}
+              disabled={props.submitting || props.disabled || !!props.defaultGrammar}
               label="Grammar"
               maxHeight={350}
-              value={get(props.values, 'grammar.id', '')}
-              onChange={grammar => props.onChange('grammar.id', grammar)}
-              errorText={get(props.errors, 'grammar', '')}
+              value={get(props.values, 'item.grammar.id', '')}
+              onChange={grammar => props.onChange('item.grammar.id', grammar)}
+              errorText={get(props.errors, 'item.grammar', '')}
             />
           </Column>
         </Row>
-        {get(props.values, 'type.key', '') === 'VIDEO' && (
+        {get(props.values.item, 'type.key', '') === 'VIDEO' && (
           <VideoItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'VIDEO_SHORT' && (
+        {get(props.values.item, 'type.key', '') === 'VIDEO_SHORT' && (
           <VideoShortItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
-        {get(props.values, 'type.key', '') === 'VIDEO_TEXT_AREA' && (
+        {get(props.values.item, 'type.key', '') === 'VIDEO_TEXT_AREA' && (
           <VideoLongTextItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {['SINGLE_CHOICE_TEXT', 'SINGLE_CHOICE_AUDIO', 'SINGLE_CHOICE_IMAGE'].find(type => type === get(props.values, 'type.key')) && (
+        {['SINGLE_CHOICE_TEXT', 'SINGLE_CHOICE_AUDIO', 'SINGLE_CHOICE_IMAGE'].find(type => type === get(props.values.item, 'type.key')) && (
           <SingleChoiceItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
-        {get(props.values, 'type.key', '') === 'DICTATION' && (
+        {get(props.values.item, 'type.key', '') === 'DICTATION' && (
           <DictationItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
-        {get(props.values, 'type.key', '') === 'GAP_FILL' && (
+        {get(props.values.item, 'type.key', '') === 'GAP_FILL' && (
           <GapFillItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
-        {get(props.values, 'type.key', '') === 'GAP_FILL_SELECT' && (
+        {get(props.values.item, 'type.key', '') === 'GAP_FILL_SELECT' && (
           <GapFillSelectItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
-        {get(props.values, 'type.key', '') === 'GAP_FILL_MULTIPLE' && (
+        {get(props.values.item, 'type.key', '') === 'GAP_FILL_MULTIPLE' && (
           <GapFillMultipleItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
-        {get(props.values, 'type.key', '') === 'PRESENTATION' && (
+        {get(props.values.item, 'type.key', '') === 'PRESENTATION' && (
           <PresentationItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
-        {get(props.values, 'type.key', '') === 'PRONUNCIATION' && (
+        {get(props.values.item, 'type.key', '') === 'PRONUNCIATION' && (
           <PronunciationItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
-        {get(props.values, 'type.key', '') === 'SPEECH_PRACTICE' && (
+        {get(props.values.item, 'type.key', '') === 'SPEECH_PRACTICE' && (
           <SpeechPracticeItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
-        {get(props.values, 'type.key', '') === 'TEXT' && (
+        {get(props.values.item, 'type.key', '') === 'TEXT' && (
           <TextItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
           />
         )}
-        {get(props.values, 'type.key', '') === 'UNSCRAMBLE_DRAG_AND_DROP' && (
+        {get(props.values.item, 'type.key', '') === 'UNSCRAMBLE_DRAG_AND_DROP' && (
           <UnscrambleDragDropItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
-        {get(props.values, 'type.key', '') === 'UNSCRAMBLE_SPEECH_RECOGNITION' && (
+        {get(props.values.item, 'type.key', '') === 'UNSCRAMBLE_SPEECH_RECOGNITION' && (
           <UnscrambleSpeechRecognitionItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
-        {get(props.values, 'type.key', '') === 'TRUE_FALSE' && (
+        {get(props.values.item, 'type.key', '') === 'TRUE_FALSE' && (
           <TrueFalseItemForm
-            onChange={props.onChange}
-            errors={props.errors}
-            values={props.values}
+            onChange={(path, value) => props.onChange(`item.${path}`, value)}
+            errors={get(props.errors, 'item', {})}
+            values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {props.showPostPhrase && (
@@ -208,9 +234,9 @@ const ItemForm = props => (
             fullWidth
             label="Post Phrase"
             disabled={props.submitting}
-            value={get(props.values, 'postPhrase', '')}
-            onChange={value => props.onChange('postPhrase', value)}
-            errorText={get(props.errors, 'postPhrase', '')}
+            value={get(props.values, 'item.postPhrase', '')}
+            onChange={value => props.onChange('item.postPhrase', value)}
+            errorText={get(props.errors, 'item.postPhrase', '')}
           />
         )}
         <Separator size="xs" />
@@ -251,6 +277,7 @@ ItemForm.propTypes = {
   itemsTypeUrl: PropTypes.string.isRequired,
   showPostPhrase: PropTypes.bool,
   disabled: PropTypes.bool,
+  isTestItem: PropTypes.bool,
 };
 
 ItemForm.defaultProps = {
@@ -264,6 +291,7 @@ ItemForm.defaultProps = {
   onReset: () => false,
   onChange: () => false,
   disabled: false,
+  isTestItem: false,
 };
 
 export default ItemForm;

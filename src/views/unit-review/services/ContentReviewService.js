@@ -1,5 +1,5 @@
 import { browserHistory } from 'react-router';
-import { extendObservable } from 'mobx';
+import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
@@ -7,7 +7,7 @@ import NotificationService from '../../../core/services/NotificationService';
 import ReviewListService from './ReviewListService';
 import { isRequired } from '../../../core/validations';
 
-class SendUnitToReviewService {
+class ContentReviewService {
   submit = new FetchService();
   fetch = new FetchService();
   form = new FormService();
@@ -17,27 +17,32 @@ class SendUnitToReviewService {
       comments: [isRequired],
     };
     extendObservable(this, {
-      currentStatusFormat: null,
-      errorComment: false,
+      reviewId: null,
+      unitId: null,
     });
   }
 
-  handleLoad = (reviewId) => {
-    if (reviewId) {
+  init = action((reviewId, unitId) => {
+    this.reviewId = reviewId;
+    this.unitId = unitId;
+    this.handleLoad();
+  });
+
+  handleLoad = action(() => {
+    if (this.reviewId) {
       this.fetch.fetch({
-        url: `/reviews/${reviewId}`,
+        url: `/reviews/${this.reviewId}`,
       }).then(() => {
         if (this.fetch.data) {
-          this.currentStatusFormat = this.fetch.data.statusFormat;
           this.form.setInitialValues(this.fetch.data);
         }
       });
     } else {
       this.form.reset();
     }
-  };
+  });
 
-  handleSendToReview = (unit) => {
+  handleSendToReview = action((unit) => {
     ConfirmationDialogService.show(
       'Send to review',
       `You are about to send the unit "${unit.name}" to review, Do you want to continue ?`,
@@ -71,32 +76,28 @@ class SendUnitToReviewService {
           }
         });
       });
-  };
+  });
 
-  handleSendToReviewed = (unitId, reviewId) => {
-    this.form.setSubmitted();
-    const comments = this.form.getValue('comments');
-    if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
-      return;
-    }
+  handleSendToPending = action(() => {
     ConfirmationDialogService.show(
-      'Unit reviewed',
-      'If you already have verified and commented on this unit, please confirm.',
+      'Send to pending status',
+      'This means you already fixed all notes, Do you want to continue ?',
       () => {
         this.submit.fetch({
           method: 'put',
-          url: `/reviews/${reviewId}`,
+          url: `/reviews/${this.reviewId}`,
           body: {
-            status: 'REVIEWED',
-            unit: unitId,
+            status: 'PENDING',
+            unit: this.unitId,
             comments: this.form.getValue('comments'),
           },
         }).then((res) => {
           if (res) {
-            this.handleLoad();
-            browserHistory.push('/reviews')
+            ReviewListService.handleMyUnits();
+            ReviewListService.handleAllUnits();
+            browserHistory.push('/reviews');
             NotificationService.addNotification(
-              'Review created successfully.',
+              'Status changed successfully.',
               null,
               null,
               'success',
@@ -104,7 +105,7 @@ class SendUnitToReviewService {
           }
           if (this.submit.error) {
             NotificationService.addNotification(
-              'Error creating review.',
+              'Error changing status review.',
               null,
               null,
               'danger',
@@ -112,24 +113,84 @@ class SendUnitToReviewService {
           }
         });
       });
-  };
+  });
 
-  handleSendToDone = (unitId, reviewId) => {
+  handleSendToReviewed = action(() => {
+    this.form.setSubmitted();
+    const comments = this.form.getValue('comments');
+    if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
+      NotificationService.addNotification(
+          'Please leave a comment to mark as reviewed',
+           null,
+           null,
+           'danger',
+        );
+      return;
+    }
+
     ConfirmationDialogService.show(
-      'Unit Done',
-      'This means you already fixed all comments, and cannot be reverted. Are you sure you want to confirm?',
+      'Unit reviewed',
+      'If you already have verified and commented on this unit, please confirm.',
       () => {
         this.submit.fetch({
           method: 'put',
-          url: `/reviews/${reviewId}`,
+          url: `/reviews/${this.reviewId}`,
           body: {
-            status: 'DONE',
-            unit: unitId,
+            status: 'REVIEWED',
+            unit: this.unitId,
+            comments: this.form.getValue('comments'),
           },
         }).then((res) => {
           if (res) {
             this.handleLoad();
-            browserHistory.push('/reviews')
+            browserHistory.push('/reviews');
+            NotificationService.addNotification(
+              'Unit reviewed successfully.',
+              null,
+              null,
+              'success',
+            );
+          }
+          if (this.submit.error) {
+            NotificationService.addNotification(
+              'Error reviewing unit.',
+              null,
+              null,
+              'danger',
+            );
+          }
+        });
+      });
+  });
+
+  handleSendToDone = action(() => {
+    this.form.setSubmitted();
+    const comments = this.form.getValue('comments');
+    if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
+      NotificationService.addNotification(
+         'Please leave a comment to mark as done',
+          null,
+          null,
+          'danger',
+      );
+      return;
+    }
+    ConfirmationDialogService.show(
+      'Unit Done',
+      'This means you already fixed all comments or the unit was correct, and cannot be reverted. Are you sure you want to confirm?',
+      () => {
+        this.submit.fetch({
+          method: 'put',
+          url: `/reviews/${this.reviewId}`,
+          body: {
+            status: 'DONE',
+            unit: this.unitId,
+            comments: this.form.getValue('comments'),
+          },
+        }).then((res) => {
+          if (res) {
+            this.handleLoad();
+            browserHistory.push('/reviews');
             NotificationService.addNotification(
               'Review done.',
               null,
@@ -147,7 +208,7 @@ class SendUnitToReviewService {
           }
         });
       });
-  };
+  });
 }
 
-export default SendUnitToReviewService;
+export default ContentReviewService;

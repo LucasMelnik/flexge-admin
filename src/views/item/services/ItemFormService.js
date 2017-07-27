@@ -1,5 +1,5 @@
 import { extendObservable, action } from 'mobx';
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -17,14 +17,18 @@ class ItemFormService {
   form = new FormService();
 
   defaultValidations = {
-    type: [isRequired],
+    'item.type': [isRequired],
+    'item.time': [isRequired],
   };
 
-  constructor() {
+  constructor(endpointUrl, order, onSaveSuccess, isTestItem) {
     extendObservable(this, {
       itemId: null,
-      successCallback: null,
     });
+    this.isTestItem = isTestItem;
+    this.onSaveSuccess = onSaveSuccess;
+    this.endpointUrl = endpointUrl;
+    this.order = order;
     this.form.validations = {
       ...this.defaultValidations,
     };
@@ -34,44 +38,44 @@ class ItemFormService {
     const correctAnswerPredicate = answer => answer.correct;
     const wrongAnswerPredicate = answer => !answer.correct;
 
-    switch (this.form.getValue('type').key) {
+    switch (this.form.getValue('item.type').key) {
       case 'VIDEO':
         this.form.validations = {
           ...this.defaultValidations,
-          videoLink: [isRequired],
-          reference: [isRequired],
-          videoStartTime: [isRequired, isValidTime],
-          videoEndTime: [isRequired, isValidTime],
+          'item.videoLink': [isRequired],
+          'item.reference': [isRequired],
+          'item.videoStartTime': [isRequired, isValidTime],
+          'item.videoEndTime': [isRequired, isValidTime],
         };
         break;
       case 'VIDEO_SHORT':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
-          videoLink: [isRequired],
-          reference: [isRequired],
-          videoStartTime: [isRequired, isValidTime],
-          videoEndTime: [isRequired, isValidTime],
+          'item.text': [isRequired],
+          'item.translation': [isRequired],
+          'item.videoLink': [isRequired],
+          // 'item.reference': [isRequired],
+          'item.videoStartTime': [isRequired, isValidTime],
+          'item.videoEndTime': [isRequired, isValidTime],
         };
         break;
       case 'VIDEO_TEXT_AREA':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          videoLink: [isRequired],
-          reference: [isRequired],
-          videoStartTime: [isRequired, isValidTime],
-          videoEndTime: [isRequired, isValidTime],
-          indexesToRemove: [isRequired, minLength(10)],
+          'item.text': [isRequired],
+          'item.videoLink': [isRequired],
+          'item.reference': [isRequired],
+          'item.videoStartTime': [isRequired, isValidTime],
+          'item.videoEndTime': [isRequired, isValidTime],
+          'item.indexesToRemove': [isRequired, minLength(10)],
         };
         break;
       case 'SINGLE_CHOICE_TEXT':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
-          answers: [
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.answers': [
             onlyOneCorrectAnswer,
             minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),
             minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
@@ -81,9 +85,9 @@ class ItemFormService {
       case 'SINGLE_CHOICE_IMAGE':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
-          answers: [
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.answers': [
             onlyOneCorrectAnswer,
             minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),
             minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
@@ -93,9 +97,9 @@ class ItemFormService {
       case 'SINGLE_CHOICE_AUDIO':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
-          answers: [
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.answers': [
             onlyOneCorrectAnswer,
             minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),
             minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
@@ -105,17 +109,17 @@ class ItemFormService {
       case 'DICTATION':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
         };
         break;
       case 'GAP_FILL':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
-          indexesToRemove: [isRequired, minLength(1)],
-          answers: [
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.indexesToRemove': [isRequired, minLength(1)],
+          'item.answers': [
             onlyOneCorrectAnswer,
             minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
           ],
@@ -124,10 +128,10 @@ class ItemFormService {
       case 'GAP_FILL_SELECT':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
-          indexesToRemove: [isRequired, minLength(1)],
-          answers: [
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.indexesToRemove': [isRequired, minLength(1)],
+          'item.answers': [
             minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
           ],
         };
@@ -135,10 +139,10 @@ class ItemFormService {
       case 'GAP_FILL_MULTIPLE':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
-          indexesToRemove: [isRequired, minLength(2)],
-          answers: [
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.indexesToRemove': [isRequired, minLength(2)],
+          'item.answers': [
             minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
           ],
         };
@@ -146,8 +150,8 @@ class ItemFormService {
       case 'PRESENTATION':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
           // audio: [isRequired],
           // image: [isRequired],
         };
@@ -155,29 +159,29 @@ class ItemFormService {
       case 'PRONUNCIATION':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
         };
         break;
       case 'SPEECH_PRACTICE':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
         };
         break;
       case 'TEXT':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
+          'item.text': [isRequired],
         };
         break;
       case 'TRUE_FALSE':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
-          answers: [
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.answers': [
             onlyOneCorrectAnswer,
             isRequired,
             minLength(2),
@@ -187,10 +191,10 @@ class ItemFormService {
       case 'UNSCRAMBLE_DRAG_AND_DROP':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
-          indexesToRemove: [isRequired, minLength(3)],
-          answers: [
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.indexesToRemove': [isRequired, minLength(3)],
+          'item.answers': [
             minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
           ],
         };
@@ -198,70 +202,73 @@ class ItemFormService {
       case 'UNSCRAMBLE_SPEECH_RECOGNITION':
         this.form.validations = {
           ...this.defaultValidations,
-          text: [isRequired],
-          translation: [isRequired],
-          indexesToRemove: [isRequired],
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.indexesToRemove': [isRequired],
         };
         break;
       default:
         break;
     }
 
-    if (!this.form.getValue('id')) {
+    if (!this.form.getValue('item.id')) {
       this.form.setInitialValues({
-        unit: this.form.getValue('unit'),
-        type: this.form.getValue('type'),
-        grammar: this.form.getValue('grammar'),
+        item: this.form.getValue('item'),
       });
     }
     this.form.reset();
   });
 
-  handleLoad = action((itemId) => {
+  handleLoad = action((itemId, defaultGrammar) => {
     if (itemId) {
       this.fetch.fetch({
-        url: `/items/${itemId}`,
+        url: `/${this.endpointUrl}/${itemId}`,
       }).then(() => {
         if (this.fetch.data) {
           this.form.setInitialValues({
             ...this.fetch.data,
-            indexesToRemove: this.fetch.data, // to validation works
+            'item.indexesToRemove': this.fetch.data, // to validation works
           });
           this.setValidationsByItemType();
         }
       });
     } else {
-      this.form.setInitialValues({});
+      this.form.setInitialValues({
+        ...defaultGrammar && {
+          item: {
+            grammar:{
+              id: defaultGrammar,
+            },
+          },
+        },
+      });
     }
     this.form.reset();
     this.itemId = itemId;
   });
 
-  handleSubmit = action((successCallback) => {
+  handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
       return;
     }
-    const itemId = this.form.getValue('id');
+    const itemId = this.form.getValue('item.id');
     this.submit.fetch({
       method: itemId ? 'put' : 'post',
-      url: itemId ? `/items/${itemId}` : '/items',
+      url: itemId ? `/${this.endpointUrl}/${itemId}` : `/${this.endpointUrl}`,
       body: {
-        ...this.form.getValues(),
-        type: this.form.getValue('type').id,
-        grammar: this.form.getValue('grammar').id,
+        item: {
+          ...this.form.getValue('item'),
+          type: this.form.getValue('item.type').id,
+          grammar: this.form.getValue('item.grammar').id,
+          reference: this.form.getValue('item.reference') && this.form.getValue('item.reference').length > 0 ? this.form.getValue('item.reference'): null,
+        },
+        order: this.form.getValue('order') || this.order,
+        group: 1,
       },
     }).then(() => {
       if (this.submit.data) {
-        const item = this.submit.data;
-        if (successCallback) {
-          successCallback(item, !itemId);
-        } else {
-          browserHistory.push(`/items/${item.id}`);
-          this.itemId = item.id;
-          this.form.reset();
-          this.form.setInitialValues(item);
-        }
+        this.onSaveSuccess();
         NotificationService.addNotification(
           `Item ${itemId ? 'updated' : 'created'} successfully.`,
           null,

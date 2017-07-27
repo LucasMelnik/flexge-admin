@@ -41,6 +41,11 @@ const menuItems = [
     url: '/reviews',
     requiredRoles: ['ADMIN', 'CONTENT_ADMIN'],
   },
+  {
+    label: 'Placement Test',
+    url: '/placement-test',
+    requiredRoles: ['ADMIN', 'CONTENT_ADMIN'],
+  },
 ];
 
 const getTitle = (props) => {

@@ -21,6 +21,9 @@ import UnitItemListSceneContainer from './views/module/components/unit/unit-item
 import ItemFormSceneContainer from './views/module/components/unit/unit-item/ItemFormSceneContainer';
 import ReviewListSceneContainer from './views/unit-review/components/ReviewListSceneContainer';
 import ReviewFormSceneContainer from './views/unit-review/components/ReviewFormSceneContainer';
+import MasteryTestFormScene from './views/mastery-test/components/MasteryTestFormScene';
+import PlacementTestListScene from './views/placement-test/components/PlacementTestListScene';
+import PlacementTestFormSceneContainer from './views/placement-test/components/PlacementTestFormSceneContainer';
 import NotFoundScene from './views/not-found/NotFoundScene';
 
 
@@ -59,9 +62,12 @@ const Routes = () => (
       <Route path="/modules/:moduleId/units/:unitId/items" component={UnitItemListSceneContainer} />
       <Route path="/modules/:moduleId/units/:unitId/items/new" component={ItemFormSceneContainer} />
       <Route path="/modules/:moduleId/units/:unitId/reviews/:reviewId" component={ReviewFormSceneContainer} />
-      <Route path="/modules/:moduleId/units/:unitId/reviews/:reviewId/items/:itemId" component={ItemFormSceneContainer} />
-      <Route path="/modules/:moduleId/units/:unitId/items/:itemId" component={ItemFormSceneContainer} />
       <Route path="/reviews" component={ReviewListSceneContainer} />
+      <Route path="/modules/:moduleId/mastery-tests/new" component={MasteryTestFormScene} />
+      <Route path="/modules/:moduleId/mastery-tests/:masteryTestId" component={MasteryTestFormScene} />
+      <Route path="/placement-test" component={PlacementTestListScene} />
+      <Route path="/placement-test/new" component={PlacementTestFormSceneContainer} />
+      <Route path="/placement-test/:placementTestId" component={PlacementTestFormSceneContainer} />
     </Route>
     <Route path="*" component={NotFoundScene} />
   </Router>

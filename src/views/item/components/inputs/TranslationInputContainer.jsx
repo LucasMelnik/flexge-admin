@@ -9,6 +9,7 @@ const TranslationInputContainer = props => (
     onChange={props.onChange}
     submitting={props.submitting}
     disabled={props.disabled}
+    isTestItem={props.isTestItem}
   />
 );
 
@@ -18,12 +19,14 @@ TranslationInputContainer.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
+  isTestItem: PropTypes.bool,
 };
 
 TranslationInputContainer.defaultProps = {
   values: {},
   errors: {},
   disabled: false,
+  isTestItem: false,
 };
 
 export default TranslationInputContainer;
