@@ -73,6 +73,9 @@ const UnitItemList = props => (
             label: 'Text',
             path: 'item.text',
             width: '25%',
+            render: row => (
+              <div>{row.item.text ? row.item.text : row.item.title}</div>
+            ),
             rowColumnStyle: {
               textOverflow: 'none',
               paddingTop: 5,
