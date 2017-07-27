@@ -47,7 +47,7 @@ const ItemForm = props => (
               onSelect={type => {
                 props.onChange('item.type', type);
                 if (type) {
-                  props.onChange('time', type.defaultTime);
+                  props.onChange('item.time', props.isTestItem ? type.defaultTestTime : type.defaultTime);
                 }
                 props.setValidationsByItemType();
               }}
