@@ -7,6 +7,7 @@ import Column from '../../../core/layout/Column';
 import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
 import TextInput from '../../../core/form/TextInput';
+import TimeInput from '../../../core/form/TimeInput';
 
 const MasteryTestForm = props => (
   <Paper>
@@ -33,7 +34,7 @@ const MasteryTestForm = props => (
         </Column>
         {props.values.id && (
           <Column lgSize={4}>
-            <TextInput
+            <TimeInput
               floatingLabel
               fullWidth
               disabled

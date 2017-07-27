@@ -7,7 +7,7 @@ import MaskInput from './MaskInput';
 export default class TimeInput extends Component {
 
   static propTypes = {
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     label: PropTypes.string,
     errorText: PropTypes.string,
     fullWidth: PropTypes.bool,
@@ -21,6 +21,7 @@ export default class TimeInput extends Component {
     errorText: null,
     fullWidth: false,
     disabled: false,
+    onChange: () => false,
   };
 
   state = { maskedValue: '' };
