@@ -23,6 +23,7 @@ class FormatReviewService {
   init = action((reviewId, unitId) => {
     this.reviewId = reviewId;
     this.unitId = unitId;
+    this.handleLoad();
   });
 
   handleLoad = action(() => {
