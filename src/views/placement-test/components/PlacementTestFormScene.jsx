@@ -13,14 +13,13 @@ const PlacementTestFormScene = props => (
     <InlineBlock>
       <Title>
         {props.placementTestId ? (
-          'Placement Test informations'
+          'Grammar informations'
         ) : (
-          'New Placement Test'
+          'New Grammar'
         )}
       </Title>
     </InlineBlock>
     <Button
-      primary
       label="Back"
       icon="arrow_back"
       style={{

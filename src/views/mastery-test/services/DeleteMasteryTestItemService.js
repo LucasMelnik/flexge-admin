@@ -6,16 +6,16 @@ import MasteryTestListItemsService from './MasteryTestListItemsService';
 class DeleteMasteryTestItemService {
   submit = new FetchService();
 
-  handleRemove = action((masteryTestId, itemId) => {
+  handleRemove = action((masteryTestItem) => {
     ConfirmationDialogService.show(
-      'Delete Mastery Test',
-      'You are about to delete the mastery test item, Do you want to continue ?',
+      'Delete Mastery Test Item',
+      `You are about to delete the mastery test "Order: ${masteryTestItem.order} - ${masteryTestItem.item.text}", Do you want to continue ?`,
       () => {
         this.submit.fetch({
-          url: `/mastery-tests/${masteryTestId}/items/${itemId}`,
+          url: `/mastery-tests/${masteryTestItem.masteryTest}/items/${masteryTestItem.item.id}`,
           method: 'delete',
         }).then(() => {
-          MasteryTestListItemsService.handleLoad(masteryTestId);
+          MasteryTestListItemsService.handleLoad(masteryTestItem.masteryTest);
         });
       });
   });

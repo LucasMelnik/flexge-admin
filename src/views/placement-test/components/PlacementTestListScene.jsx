@@ -10,7 +10,7 @@ const PlacementTestListScene = () => (
   <div>
     <InlineBlock>
       <Title>
-        Placement Tests
+        Placement Test
       </Title>
     </InlineBlock>
     <Button

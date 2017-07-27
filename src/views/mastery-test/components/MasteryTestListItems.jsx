@@ -90,7 +90,7 @@ const MasteryTestListItems = props => (
         actionComponent={row => (
           <IconButton
             icon="delete"
-            onClick={() => props.onDelete(props.masteryTestId, row.item.id)}
+            onClick={() => props.onDelete(row)}
           />
         )}
       />

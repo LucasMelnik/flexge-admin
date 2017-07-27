@@ -14,7 +14,7 @@ class MasteryTestItemFormContainer extends Component {
   render() {
     return (
       <ItemFormContainer
-        itemsTypeUrl="/item-types?allowedForMasteryTest=true"
+        itemsTypeUrl="/item-types?query[allowedForMasteryTest]=true"
         endpointUrl={this.props.endpointUrl}
         order={MasteryTestListItemsService.items.length + 1}
         showPostPhrase={false}
