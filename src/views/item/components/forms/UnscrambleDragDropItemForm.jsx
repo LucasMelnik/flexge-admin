@@ -14,6 +14,7 @@ const UnscrambleDragDropItemForm = props => (
       values={props.values}
       errors={props.errors}
       disabled={props.disabled}
+      isTestItem={props.isTestItem}
     />
     <Separator size="xs" />
     <SlicesInputContainer
@@ -44,6 +45,7 @@ UnscrambleDragDropItemForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
+  isTestItem: PropTypes.bool,
 };
 
 UnscrambleDragDropItemForm.defaultProps = {
@@ -52,6 +54,7 @@ UnscrambleDragDropItemForm.defaultProps = {
   submitting: false,
   onChange: () => false,
   disabled: false,
+  isTestItem: false,
 };
 
 export default UnscrambleDragDropItemForm;

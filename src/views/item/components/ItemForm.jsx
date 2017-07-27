@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import range from 'lodash/range';
 import Separator from '../../../core/layout/Separator';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
@@ -26,7 +25,7 @@ import UnscrambleSpeechRecognitionItemForm from './forms/UnscrambleSpeechRecogni
 import TrueFalseItemForm from './forms/TrueFalseItemForm';
 import Paper from '../../../core/layout/Paper';
 import TextInput from '../../../core/form/TextInput';
-import Select from '../../../core/form/Select';
+import TimeInput from '../../../core/form/TimeInput';
 
 const ItemForm = props => (
   <Paper>
@@ -60,20 +59,9 @@ const ItemForm = props => (
             />
           </Column>
           <Column lgSize={2}>
-            <Select
-              floatingLabel
+            <TimeInput
               fullWidth
-              options={range(0.5, 10.5, 0.5).map(value => {
-                let label = `${parseInt(value, 10)}:${Math.round((value - parseInt(value, 10)) * 60)}`;
-                if (label.length < 4) {
-                  label = `${label}0`
-                }
-                return {
-                  value: value,
-                  label,
-                }
-              })}
-              disabled={props.submitting || props.disabled}
+              disabled={props.submitting || props.disabled || props.isTestItem}
               label="Time (minutes)"
               value={get(props.values, 'item.time', '')}
               onChange={value => props.onChange('item.time', value)}
@@ -109,6 +97,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'VIDEO_TEXT_AREA' && (
@@ -127,6 +116,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'DICTATION' && (
@@ -136,6 +126,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'GAP_FILL' && (
@@ -145,6 +136,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'GAP_FILL_SELECT' && (
@@ -154,6 +146,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'GAP_FILL_MULTIPLE' && (
@@ -163,6 +156,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'PRESENTATION' && (
@@ -172,6 +166,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'PRONUNCIATION' && (
@@ -181,6 +176,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'SPEECH_PRACTICE' && (
@@ -190,6 +186,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'TEXT' && (
@@ -208,6 +205,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'UNSCRAMBLE_SPEECH_RECOGNITION' && (
@@ -217,6 +215,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {get(props.values.item, 'type.key', '') === 'TRUE_FALSE' && (
@@ -226,6 +225,7 @@ const ItemForm = props => (
             values={props.values.item}
             submitting={props.submitting}
             disabled={props.disabled}
+            isTestItem={props.isTestItem}
           />
         )}
         {props.showPostPhrase && (
@@ -277,6 +277,7 @@ ItemForm.propTypes = {
   itemsTypeUrl: PropTypes.string.isRequired,
   showPostPhrase: PropTypes.bool,
   disabled: PropTypes.bool,
+  isTestItem: PropTypes.bool,
 };
 
 ItemForm.defaultProps = {
@@ -290,6 +291,7 @@ ItemForm.defaultProps = {
   onReset: () => false,
   onChange: () => false,
   disabled: false,
+  isTestItem: false,
 };
 
 export default ItemForm;

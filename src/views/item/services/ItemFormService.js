@@ -21,10 +21,11 @@ class ItemFormService {
     'item.time': [isRequired],
   };
 
-  constructor(endpointUrl, order, onSaveSuccess) {
+  constructor(endpointUrl, order, onSaveSuccess, isTestItem) {
     extendObservable(this, {
       itemId: null,
     });
+    this.isTestItem = isTestItem;
     this.onSaveSuccess = onSaveSuccess;
     this.endpointUrl = endpointUrl;
     this.order = order;
@@ -73,7 +74,7 @@ class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
           'item.answers': [
             onlyOneCorrectAnswer,
             minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),
@@ -85,7 +86,7 @@ class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
           'item.answers': [
             onlyOneCorrectAnswer,
             minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),
@@ -97,7 +98,7 @@ class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
           'item.answers': [
             onlyOneCorrectAnswer,
             minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),
@@ -109,14 +110,14 @@ class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
         };
         break;
       case 'GAP_FILL':
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
           'item.indexesToRemove': [isRequired, minLength(1)],
           'item.answers': [
             onlyOneCorrectAnswer,
@@ -128,7 +129,7 @@ class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
           'item.indexesToRemove': [isRequired, minLength(1)],
           'item.answers': [
             minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
@@ -139,7 +140,7 @@ class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
           'item.indexesToRemove': [isRequired, minLength(2)],
           'item.answers': [
             minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
@@ -150,7 +151,7 @@ class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
           // audio: [isRequired],
           // image: [isRequired],
         };
@@ -159,14 +160,14 @@ class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
         };
         break;
       case 'SPEECH_PRACTICE':
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
         };
         break;
       case 'TEXT':
@@ -179,7 +180,7 @@ class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
           'item.answers': [
             onlyOneCorrectAnswer,
             isRequired,
@@ -191,7 +192,7 @@ class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
           'item.indexesToRemove': [isRequired, minLength(3)],
           'item.answers': [
             minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
@@ -202,7 +203,7 @@ class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
           'item.indexesToRemove': [isRequired],
         };
         break;

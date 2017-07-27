@@ -19,6 +19,7 @@ class MasteryTestItemFormContainer extends Component {
         order={MasteryTestListItemsService.items.length + 1}
         showPostPhrase={false}
         onSaveSuccess={this.props.onSaveSuccess}
+        isTestItem
       />
     );
   }

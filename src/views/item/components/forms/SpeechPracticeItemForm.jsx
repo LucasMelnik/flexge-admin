@@ -13,6 +13,7 @@ const SpeechPracticeItemForm = props => (
       values={props.values}
       errors={props.errors}
       disabled={props.disabled}
+      isTestItem={props.isTestItem}
     />
     <Separator size="xs" />
     <FileInput
@@ -31,6 +32,7 @@ SpeechPracticeItemForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
+  isTestItem: PropTypes.bool,
 };
 
 SpeechPracticeItemForm.defaultProps = {
@@ -39,6 +41,7 @@ SpeechPracticeItemForm.defaultProps = {
   submitting: false,
   onChange: () => false,
   disabled: false,
+  isTestItem: false,
 };
 
 export default SpeechPracticeItemForm;

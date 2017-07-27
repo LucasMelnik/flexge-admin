@@ -12,6 +12,7 @@ class ItemFormContainer extends Component {
     itemId: PropTypes.string,
     defaultGrammar: PropTypes.string,
     disabled: PropTypes.bool,
+    isTestItem: PropTypes.bool,
     onSaveSuccess: PropTypes.func,
     showPostPhrase: PropTypes.bool,
   };
@@ -20,12 +21,13 @@ class ItemFormContainer extends Component {
     itemId: null,
     defaultGrammar: null,
     disabled: false,
+    isTestItem: false,
     showPostPhrase: false,
     order: null,
     onSaveSuccess: () => {},
   };
 
-  itemFormService = new ItemFormService(this.props.endpointUrl, this.props.order, this.props.onSaveSuccess);
+  itemFormService = new ItemFormService(this.props.endpointUrl, this.props.order, this.props.onSaveSuccess, this.props.isTestItem);
 
   componentWillMount() {
     this.itemFormService.handleLoad(this.props.itemId, this.props.defaultGrammar);
@@ -47,6 +49,7 @@ class ItemFormContainer extends Component {
         itemsTypeUrl={this.props.itemsTypeUrl}
         showPostPhrase={this.props.showPostPhrase}
         disabled={this.props.disabled}
+        isTestItem={this.props.isTestItem}
         defaultGrammar={this.props.defaultGrammar}
       />
     );

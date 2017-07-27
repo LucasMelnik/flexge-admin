@@ -19,16 +19,21 @@ const PlacementTestList = props => (
           {
             label: 'Level',
             path: 'placementTestLevel.level',
-            width: '5%',
+            width: '8%',
           },
           {
             label: 'Order',
             path: 'order',
-            width: '5%',
+            width: '8%',
           },
           {
             label: 'Grammar',
             path: 'grammar.name',
+          },
+          {
+            label: 'Items Count',
+            path: 'items.length',
+            width: '8%',
           },
         ]}
         rows={props.placementTests}

@@ -14,6 +14,7 @@ const UnscrambleSpeechRecognitionItemForm = props => (
       values={props.values}
       errors={props.errors}
       disabled={props.disabled}
+      isTestItem={props.isTestItem}
     />
     <Separator size="xs" />
     <SlicesInputContainer
@@ -43,6 +44,7 @@ UnscrambleSpeechRecognitionItemForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
+  isTestItem: PropTypes.bool,
 };
 
 UnscrambleSpeechRecognitionItemForm.defaultProps = {
@@ -51,6 +53,7 @@ UnscrambleSpeechRecognitionItemForm.defaultProps = {
   submitting: false,
   onChange: () => false,
   disabled: false,
+  isTestItem: false,
 };
 
 export default UnscrambleSpeechRecognitionItemForm;

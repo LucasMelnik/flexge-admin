@@ -13,6 +13,7 @@ const SingleChoiceItemForm = props => (
       values={props.values}
       submitting={props.submitting}
       disabled={props.disabled}
+      isTestItem={props.isTestItem}
     />
     <Separator size="xs" />
     <AnswersInputContainer
@@ -30,6 +31,7 @@ SingleChoiceItemForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
+  isTestItem: PropTypes.bool,
 };
 
 SingleChoiceItemForm.defaultProps = {
@@ -38,6 +40,7 @@ SingleChoiceItemForm.defaultProps = {
   submitting: false,
   onChange: () => false,
   disabled: false,
+  isTestItem: false,
 };
 
 export default SingleChoiceItemForm;

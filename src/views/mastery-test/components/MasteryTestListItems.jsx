@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import range from 'lodash/range';
+import moment from 'moment';
+import 'moment-duration-format';
 import Paper from '../../../core/layout/Paper';
 import Async from '../../../core/content/Async';
 import AccordionTable from '../../../core/content/AccordionTable';
@@ -72,6 +74,9 @@ const MasteryTestListItems = props => (
           label: 'Time',
           path: 'item.time',
           width: '15%',
+          render: (row) => {
+            return `${row.item.time < 60 ? '00:' : ''}${moment.duration(row.item.time, "seconds").format("mm:ss", {forceLength: true})}`
+          },
         },
         ]}
         rows={props.items}
@@ -84,6 +89,7 @@ const MasteryTestListItems = props => (
               order={row.order}
               showPostPhrase={false}
               onSaveSuccess={props.onSaveSuccess}
+              isTestItem
             />
           )
         }
