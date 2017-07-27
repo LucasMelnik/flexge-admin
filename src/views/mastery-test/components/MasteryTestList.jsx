@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
+import moment from 'moment';
+import 'moment-duration-format';
 import Paper from '../../../core/layout/Paper';
 import Async from '../../../core/content/Async';
 import Table from '../../../core/content/Table';
@@ -24,6 +26,9 @@ const MasteryTestList = props => (
             {
               label: 'Deadline Time',
               path: 'deadlineTime',
+              render: (row) => {
+                return `${row.deadlineTime < 60 ? '00:' : ''}${moment.duration(row.deadlineTime, "seconds").format("mm:ss", {forceLength: true})}`
+              },
             },
             {
               label: 'Score to Pass',
