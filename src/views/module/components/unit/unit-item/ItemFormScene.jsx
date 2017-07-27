@@ -47,27 +47,21 @@ const ItemFormScene = props => (
       marginTop={15}
       float="right"
     >
-      {props.reviewId ? (
-        <Button
-          icon="keyboard_backspace"
-          label="back"
-          onClick={() => browserHistory.push(`/modules/${props.unit.module.id}/units/${props.unit.id}/reviews/${props.reviewId}`)}
-        />
-      ) : (
-        <Button
-          icon="keyboard_backspace"
-          label="back"
-          onClick={() => browserHistory.push(`/modules/${props.unit.module.id}/units/${props.unit.id}/items`)}
-        />
-      )}
+    <Button
+      icon="keyboard_backspace"
+      label="back"
+      onClick={() => props.onBack()}
+    />
     </InlineBlock>
     {props.unit.id && (
       <ItemFormContainer
         itemId={props.itemId}
         disabled={localStorage.role === 'ADMIN' ? false : props.unit.createdBy !== localStorage.id ? true : false}
         itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
+        endpointUrl={`units/${props.unit.id}/items`}
+        order={props.itemOrder}
         showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
-        saveItemCallback={props.saveItemCallback}
+        onSaveSuccess={props.onBack}
       />
     )}
   </div>
@@ -75,10 +69,11 @@ const ItemFormScene = props => (
 
 ItemFormScene.propTypes = {
   unit: PropTypes.object.isRequired,
+  itemOrder: PropTypes.number.isRequired,
+  onBack: PropTypes.func.isRequired,
   itemId: PropTypes.string,
   reviewId: PropTypes.string,
   disabled: PropTypes.bool,
-  saveItemCallback: PropTypes.func.isRequired,
 };
 
 ItemFormScene.defaultProps = {

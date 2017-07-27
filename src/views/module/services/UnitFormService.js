@@ -20,7 +20,6 @@ class UnitFormService {
       group: [isRequired],
       order: [isRequired],
       scoreToPass: [isRequired],
-      time: [isRequired],
       difficulty: [isRequired],
     };
   }

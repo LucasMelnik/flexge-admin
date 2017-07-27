@@ -3,7 +3,7 @@ import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import ReviewListScene from './ReviewListScene';
 import ReviewListService from '../services/ReviewListService';
-import SendUnitToReviewService from '../services/SendUnitToReviewService';
+import SendUnitToReviewService from '../services/ContentReviewService';
 
 class ReviewListSceneContainer extends Component {
 

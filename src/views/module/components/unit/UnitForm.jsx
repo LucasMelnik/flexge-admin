@@ -63,7 +63,7 @@ const UnitForm = props => (
         </Column>
       </Row>
       <Row>
-        <Column lgSize={2}>
+        <Column lgSize={3}>
           <Select
             floatingLabel
             fullWidth
@@ -78,7 +78,7 @@ const UnitForm = props => (
             errorText={get(props.errors, 'group', '')}
           />
         </Column>
-        <Column lgSize={2}>
+        <Column lgSize={3}>
           <Select
             floatingLabel
             fullWidth
@@ -93,7 +93,7 @@ const UnitForm = props => (
             errorText={get(props.errors, 'order', '')}
           />
         </Column>
-        <Column lgSize={2}>
+        <Column lgSize={3}>
           <Select
             floatingLabel
             fullWidth
@@ -106,21 +106,6 @@ const UnitForm = props => (
             value={get(props.values, 'scoreToPass', '')}
             onChange={value => props.onChange('scoreToPass', value)}
             errorText={get(props.errors, 'scoreToPass', '')}
-          />
-        </Column>
-        <Column lgSize={3}>
-          <Select
-            floatingLabel
-            fullWidth
-            options={range(1, 21).map(value => ({
-              value,
-              label: value.toString(),
-            }))}
-            disabled={props.submitting || props.disabled}
-            label="Time (minutes)"
-            value={get(props.values, 'time', '')}
-            onChange={value => props.onChange('time', value)}
-            errorText={get(props.errors, 'time', '')}
           />
         </Column>
         <Column lgSize={3}>

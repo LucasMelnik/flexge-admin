@@ -58,7 +58,7 @@ export default class FetchAutoComplete extends Component {
 
   handleOnUpdateInput = (text) => {
     this.props.onSelect(this.state.data.find(item => item[this.props.resultTransformer.text] === text));
-  }
+  };
 
   render() {
     return (

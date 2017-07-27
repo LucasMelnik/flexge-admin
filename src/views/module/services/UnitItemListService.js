@@ -24,7 +24,7 @@ class UnitItemListService {
       url: `/units/${this.unitId}/items`,
     }).then(() => {
       if (this.fetch.data) {
-        this.items = orderBy(this.fetch.data, ['order'], ['asc']);
+        this.items = orderBy(this.fetch.data, ['order', 'group'], ['asc',  'asc']);
       } else {
         this.items = [];
         this.total = 0;
@@ -33,12 +33,13 @@ class UnitItemListService {
     });
   });
 
-  handleOrderChange = action((unitItem, order) => {
+  handleOrderOrGroupChange = action((unitItem, order, group) => {
     this.submit.fetch({
-      url: `/units/${unitItem.unit}/items/${unitItem.item.id}/unit-item/${unitItem.id}`,
+      url: `/units/${unitItem.unit}/items/${unitItem.item.id}`,
       method: 'put',
       body: {
         order,
+        group,
       }
     }).then(() => {
       this.load();
@@ -51,7 +52,7 @@ class UnitItemListService {
       `You are about to delete the item "${unitItem.item.text}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({
-          url: `/units/${this.unitId}/items/${unitItem.item.id}/unit-item/${unitItem.id}`,
+          url: `/units/${this.unitId}/items/${unitItem.item.id}`,
           method: 'delete',
         }).then(() => {
           this.load();

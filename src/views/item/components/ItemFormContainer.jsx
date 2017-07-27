@@ -6,29 +6,35 @@ import ItemFormService from '../services/ItemFormService';
 
 class ItemFormContainer extends Component {
   static propTypes = {
-    itemId: PropTypes.string,
     itemsTypeUrl: PropTypes.string.isRequired,
-    showPostPhrase: PropTypes.bool.isRequired,
+    endpointUrl: PropTypes.string.isRequired,
+    order: PropTypes.number,
+    itemId: PropTypes.string,
+    defaultGrammar: PropTypes.string,
     disabled: PropTypes.bool,
-    saveItemCallback: PropTypes.func,
+    onSaveSuccess: PropTypes.func,
+    showPostPhrase: PropTypes.bool,
   };
 
   static defaultProps = {
-    disabled: false,
-    saveItemCallback: null,
     itemId: null,
+    defaultGrammar: null,
+    disabled: false,
+    showPostPhrase: false,
+    order: null,
+    onSaveSuccess: () => {},
   };
 
-  itemFormService = new ItemFormService();
+  itemFormService = new ItemFormService(this.props.endpointUrl, this.props.order, this.props.onSaveSuccess);
 
   componentWillMount() {
-    this.itemFormService.handleLoad(this.props.itemId);
+    this.itemFormService.handleLoad(this.props.itemId, this.props.defaultGrammar);
   }
 
   render() {
     return (
       <ItemForm
-        onSubmit={() => this.itemFormService.handleSubmit(this.props.saveItemCallback)}
+        onSubmit={this.itemFormService.handleSubmit}
         setValidationsByItemType={this.itemFormService.setValidationsByItemType}
         onChange={this.itemFormService.form.setValue}
         onReset={this.itemFormService.form.reset}
@@ -41,6 +47,7 @@ class ItemFormContainer extends Component {
         itemsTypeUrl={this.props.itemsTypeUrl}
         showPostPhrase={this.props.showPostPhrase}
         disabled={this.props.disabled}
+        defaultGrammar={this.props.defaultGrammar}
       />
     );
   }

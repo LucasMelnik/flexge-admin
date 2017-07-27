@@ -98,7 +98,7 @@ const MyReviewList = props => (
         rows={props.unitsAndReviews}
         allowActionValidator={row => !row.review.id}
         selectable
-        onSelect={row => (row.review.statusFormat === 'NOT_APPROVED' || row.review.status === 'REVIEWED' || row.review.status === 'DONE' || localStorage.role === 'ADMIN' ) && browserHistory.push(`/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
+        onSelect={row => (row.review.statusFormat === 'NOT_APPROVED' || row.review.status === 'REVIEWED' || row.review.status === 'DONE' || localStorage.role === 'ADMIN') && row.review.id && browserHistory.push(`/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
         onSend={localStorage.role !== 'ADMIN' ? (row => props.onSendToReview(row.unit)) : null}
       />
     </Async>

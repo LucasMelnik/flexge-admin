@@ -1,5 +1,5 @@
 import { browserHistory } from 'react-router';
-import { extendObservable } from 'mobx';
+import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
@@ -7,7 +7,7 @@ import NotificationService from '../../../core/services/NotificationService';
 import ReviewListService from './ReviewListService';
 import { isRequired } from '../../../core/validations';
 
-class SendUnitToReviewService {
+class ContentReviewService {
   submit = new FetchService();
   fetch = new FetchService();
   form = new FormService();
@@ -17,27 +17,32 @@ class SendUnitToReviewService {
       comments: [isRequired],
     };
     extendObservable(this, {
-      currentStatusFormat: null,
-      errorComment: false,
+      reviewId: null,
+      unitId: null,
     });
   }
 
-  handleLoad = (reviewId) => {
-    if (reviewId) {
+  init = action((reviewId, unitId) => {
+    this.reviewId = reviewId;
+    this.unitId = unitId;
+    this.handleLoad();
+  });
+
+  handleLoad = action(() => {
+    if (this.reviewId) {
       this.fetch.fetch({
-        url: `/reviews/${reviewId}`,
+        url: `/reviews/${this.reviewId}`,
       }).then(() => {
         if (this.fetch.data) {
-          this.currentStatusFormat = this.fetch.data.statusFormat;
           this.form.setInitialValues(this.fetch.data);
         }
       });
     } else {
       this.form.reset();
     }
-  };
+  });
 
-  handleSendToReview = (unit) => {
+  handleSendToReview = action((unit) => {
     ConfirmationDialogService.show(
       'Send to review',
       `You are about to send the unit "${unit.name}" to review, Do you want to continue ?`,
@@ -48,7 +53,7 @@ class SendUnitToReviewService {
           body: {
             status: 'PENDING',
             statusFormat: 'PENDING',
-            unit: unit.id,
+            unit: this.unitId,
           },
         }).then((res) => {
           if (res) {
@@ -71,9 +76,9 @@ class SendUnitToReviewService {
           }
         });
       });
-  };
+  });
 
-  handleSendToReviewed = (unitId, reviewId) => {
+  handleSendToReviewed = action(() => {
     this.form.setSubmitted();
     const comments = this.form.getValue('comments');
     if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
@@ -85,16 +90,16 @@ class SendUnitToReviewService {
       () => {
         this.submit.fetch({
           method: 'put',
-          url: `/reviews/${reviewId}`,
+          url: `/reviews/${this.reviewId}`,
           body: {
             status: 'REVIEWED',
-            unit: unitId,
+            unit: this.unitId,
             comments: this.form.getValue('comments'),
           },
         }).then((res) => {
           if (res) {
             this.handleLoad();
-            browserHistory.push('/reviews')
+            browserHistory.push('/reviews');
             NotificationService.addNotification(
               'Review created successfully.',
               null,
@@ -112,24 +117,24 @@ class SendUnitToReviewService {
           }
         });
       });
-  };
+  });
 
-  handleSendToDone = (unitId, reviewId) => {
+  handleSendToDone = action(() => {
     ConfirmationDialogService.show(
       'Unit Done',
       'This means you already fixed all comments, and cannot be reverted. Are you sure you want to confirm?',
       () => {
         this.submit.fetch({
           method: 'put',
-          url: `/reviews/${reviewId}`,
+          url: `/reviews/${this.reviewId}`,
           body: {
             status: 'DONE',
-            unit: unitId,
+            unit: this.unitId,
           },
         }).then((res) => {
           if (res) {
             this.handleLoad();
-            browserHistory.push('/reviews')
+            browserHistory.push('/reviews');
             NotificationService.addNotification(
               'Review done.',
               null,
@@ -147,7 +152,7 @@ class SendUnitToReviewService {
           }
         });
       });
-  };
+  });
 }
 
-export default SendUnitToReviewService;
+export default ContentReviewService;

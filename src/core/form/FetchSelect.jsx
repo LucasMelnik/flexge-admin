@@ -16,8 +16,10 @@ export default class FetchSelect extends Component {
     onChange: PropTypes.func.isRequired,
     multiple: PropTypes.bool,
     defaultSelect: PropTypes.bool,
+    addEmptyOption: PropTypes.bool,
     value: PropTypes.string,
     maxHeight: PropTypes.number,
+    optionsTransformer: PropTypes.func,
   };
 
   static defaultProps = {
@@ -26,10 +28,15 @@ export default class FetchSelect extends Component {
     label: '',
     multiple: false,
     defaultSelect: false,
+    addEmptyOption: false,
     fullWidth: true,
     style: null,
     value: '',
     maxHeight: 200,
+    optionsTransformer: option => ({
+      label: option.name,
+      value: option.id,
+    })
   };
 
   state = { data: [] };
@@ -66,12 +73,19 @@ export default class FetchSelect extends Component {
         onChange={(e, key, payload) => this.props.onChange(payload)}
         errorText={this.props.errorText}
       >
-        {this.state.data.map(option => (
+        {this.props.addEmptyOption && (
           <MenuItem
-            key={`${option.id}-${option.name}`}
-            value={option.id}
-            primaryText={option.name}
-            label={option.name}
+            key="empty"
+            value={null}
+            primaryText=""
+          />
+        )}
+        {this.state.data.map(this.props.optionsTransformer).map(option => (
+          <MenuItem
+            key={`${option.value}-${option.value}`}
+            value={option.value}
+            primaryText={option.label}
+            label={option.label}
           />
         ))}
       </SelectField>

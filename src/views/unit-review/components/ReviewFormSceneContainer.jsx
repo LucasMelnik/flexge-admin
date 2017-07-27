@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import ReviewFormScene from './ReviewFormScene';
-import SendUnitToReviewService from '../services/SendUnitToReviewService';
+import ContentReviewService from '../services/ContentReviewService';
+import LoadUnitService from '../../module/services/LoadUnitService';
+import Async from '../../../core/content/Async';
 
 class ReviewFormSceneContainer extends Component {
 
-  sendUnitToReviewService = new SendUnitToReviewService();
+  contentReviewService = new ContentReviewService();
+  loadUnitService = new LoadUnitService();
 
   static propTypes = {
     params: PropTypes.shape({
@@ -14,7 +17,7 @@ class ReviewFormSceneContainer extends Component {
       moduleId: PropTypes.string,
       reviewId: PropTypes.string,
     }),
-  }
+  };
 
   static defaultProps = {
     params: PropTypes.shape({
@@ -22,28 +25,26 @@ class ReviewFormSceneContainer extends Component {
       moduleId: null,
       reviewId: null,
     }),
-  }
+  };
 
   componentWillMount() {
-    this.sendUnitToReviewService.handleLoad(this.props.params.reviewId);
+    this.loadUnitService.handleLoad(this.props.params.moduleId, this.props.params.unitId);
+    this.contentReviewService.init(this.props.params.reviewId);
   }
 
   render() {
     return (
-      <ReviewFormScene
-        unitId={this.props.params.unitId}
-        moduleId={this.props.params.moduleId}
-        reviewId={this.props.params.reviewId}
-        values={this.sendUnitToReviewService.form.getValues()}
-        onChange={this.sendUnitToReviewService.form.setValue}
-        status={this.sendUnitToReviewService.form.getValue('status')}
-        currentStatusFormat={this.sendUnitToReviewService.currentStatusFormat}
-        onSendToReviewed={this.sendUnitToReviewService.handleSendToReviewed}
-        onSendToDone={this.sendUnitToReviewService.handleSendToDone}
-        error={this.sendUnitToReviewService.submit.error}
-        errors={this.sendUnitToReviewService.form.errors}
-        review={this.sendUnitToReviewService.form.getValues()}
-      />
+      <Async fetching={this.loadUnitService.fetch.fetching || this.contentReviewService.fetch.fetching}>
+        {(this.loadUnitService.unit.id  && this.contentReviewService.form.getValue('id')) ? (
+          <ReviewFormScene
+            unit={this.loadUnitService.unit}
+            moduleId={this.props.params.moduleId}
+            review={this.contentReviewService.form.getValues()}
+          />
+        ) : (
+          <div />
+        )}
+      </Async>
     );
   }
 }
