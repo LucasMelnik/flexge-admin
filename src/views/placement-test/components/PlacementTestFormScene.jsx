@@ -20,7 +20,6 @@ const PlacementTestFormScene = props => (
       </Title>
     </InlineBlock>
     <Button
-      primary
       label="Back"
       icon="arrow_back"
       style={{
