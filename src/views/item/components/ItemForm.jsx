@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import range from 'lodash/range';
 import Separator from '../../../core/layout/Separator';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
@@ -26,7 +25,7 @@ import UnscrambleSpeechRecognitionItemForm from './forms/UnscrambleSpeechRecogni
 import TrueFalseItemForm from './forms/TrueFalseItemForm';
 import Paper from '../../../core/layout/Paper';
 import TextInput from '../../../core/form/TextInput';
-import Select from '../../../core/form/Select';
+import TimeInput from '../../../core/form/TimeInput';
 
 const ItemForm = props => (
   <Paper>
@@ -60,20 +59,8 @@ const ItemForm = props => (
             />
           </Column>
           <Column lgSize={2}>
-            <Select
-              floatingLabel
+            <TimeInput
               fullWidth
-              options={range(0.5, 10.5, 0.5).map(value => {
-                let label = `${parseInt(value, 10)}:${Math.round((value - parseInt(value, 10)) * 60)}`;
-                if (label.length < 4) {
-                  label = `${label}0`
-                }
-                return {
-                  value: value,
-                  label,
-                }
-              })}
-              disabled={props.submitting || props.disabled || props.isTestItem}
               label="Time (minutes)"
               value={get(props.values, 'item.time', '')}
               onChange={value => props.onChange('item.time', value)}
