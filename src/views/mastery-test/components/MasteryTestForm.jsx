@@ -19,12 +19,12 @@ const MasteryTestForm = props => (
     >
       <Row>
         <Column lgSize={4}>
-          <MaskInput
-            maskType="custom"
-            numeralPositiveOnly
-            blocks={[2]}
+          <TextInput
             floatingLabel
             fullWidth
+            step={1}
+            type="number"
+            max={100}
             disabled={props.submitting}
             label="Module Percentage to Activate"
             value={get(props.values, 'modulePercentageToActive', '')}
