@@ -52,7 +52,7 @@ class PlacementTestFormService {
     }).then(() => {
       if (this.submit.data) {
         const placementTest = this.submit.data;
-        browserHistory.push(`/placement-tests/${placementTest.id}`);
+        browserHistory.push(`/placement-test/${placementTest.id}`);
         this.placementTestId = placementTest.id;
         this.form.reset();
         this.form.setInitialValues(placementTest);

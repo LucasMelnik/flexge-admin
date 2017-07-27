@@ -11,6 +11,7 @@ const TextInput = props => (
     fullWidth={props.fullWidth}
     disabled={props.disabled}
     type={props.type}
+    max={props.max}
     step={props.step}
     multiLine={props.multiLine}
     rows={props.multiLine ? props.rows : 1}
@@ -24,6 +25,7 @@ TextInput.propTypes = {
   errorText: PropTypes.string,
   fullWidth: PropTypes.bool,
   disabled: PropTypes.bool,
+  max: PropTypes.number,
   value: PropTypes.any,
   type: PropTypes.oneOf(['text', 'number', 'password']),
   step: PropTypes.number,
@@ -35,6 +37,7 @@ TextInput.propTypes = {
 TextInput.defaultProps = {
   value: '',
   label: null,
+  max: null,
   errorText: null,
   fullWidth: false,
   disabled: false,
