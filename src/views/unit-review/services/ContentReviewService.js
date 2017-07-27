@@ -78,6 +78,43 @@ class ContentReviewService {
       });
   });
 
+  handleSendToPending = action(() => {
+    ConfirmationDialogService.show(
+      'Send to review',
+      'You are about to send the unit to pending, Do you want to continue ?',
+      () => {
+        this.submit.fetch({
+          method: 'put',
+          url: `/reviews/${this.reviewId}`,
+          body: {
+            status: 'PENDING',
+            unit: this.unitId,
+            comments: this.form.getValue('comments'),
+          },
+        }).then((res) => {
+          if (res) {
+            ReviewListService.handleMyUnits();
+            ReviewListService.handleAllUnits();
+            browserHistory.push('/reviews');
+            NotificationService.addNotification(
+              'Review sent successfully.',
+              null,
+              null,
+              'success',
+            );
+          }
+          if (this.submit.error) {
+            NotificationService.addNotification(
+              'Error creating review.',
+              null,
+              null,
+              'danger',
+            );
+          }
+        });
+      });
+  });
+
   handleSendToReviewed = action(() => {
     this.form.setSubmitted();
     const comments = this.form.getValue('comments');
@@ -120,6 +157,11 @@ class ContentReviewService {
   });
 
   handleSendToDone = action(() => {
+    this.form.setSubmitted();
+    const comments = this.form.getValue('comments');
+    if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
+      return;
+    }
     ConfirmationDialogService.show(
       'Unit Done',
       'This means you already fixed all comments, and cannot be reverted. Are you sure you want to confirm?',
@@ -130,6 +172,7 @@ class ContentReviewService {
           body: {
             status: 'DONE',
             unit: this.unitId,
+            comments: this.form.getValue('comments'),
           },
         }).then((res) => {
           if (res) {

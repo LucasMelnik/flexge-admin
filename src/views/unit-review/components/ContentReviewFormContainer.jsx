@@ -25,6 +25,7 @@ class ContentReviewFormContainer extends Component {
           expanded={this.props.expanded}
           values={this.contentReviewService.form.getValues()}
           onChange={this.contentReviewService.form.setValue}
+          onSendToPending={this.contentReviewService.handleSendToPending}
           onSendToReviewed={this.contentReviewService.handleSendToReviewed}
           onSendToDone={this.contentReviewService.handleSendToDone}
           errors={this.contentReviewService.form.errors}
