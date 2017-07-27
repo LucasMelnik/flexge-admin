@@ -27,7 +27,7 @@ const PlacementTestFormScene = props => (
         position: 'relative',
         float: 'right',
       }}
-      onClick={() => browserHistory.push('/placement-tests')}
+      onClick={() => browserHistory.push('/placement-test')}
     />
     <Separator size="sm" />
     <PlacementTestFormContainer />

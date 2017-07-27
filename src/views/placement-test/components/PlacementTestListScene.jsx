@@ -21,7 +21,7 @@ const PlacementTestListScene = () => (
         position: 'relative',
         float: 'right',
       }}
-      onClick={() => browserHistory.push('/placement-tests/new')}
+      onClick={() => browserHistory.push('/placement-test/new')}
     />
     <Separator size="sm" />
     <PlacementTestListContainer />
