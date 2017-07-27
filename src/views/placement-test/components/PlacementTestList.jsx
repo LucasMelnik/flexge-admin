@@ -30,6 +30,11 @@ const PlacementTestList = props => (
             label: 'Grammar',
             path: 'grammar.name',
           },
+          {
+            label: 'Items Count',
+            path: 'items.length',
+            width: '8%',
+          },
         ]}
         rows={props.placementTests}
         selectable
