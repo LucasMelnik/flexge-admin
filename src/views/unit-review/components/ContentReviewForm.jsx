@@ -16,21 +16,34 @@ const ContentReviewForm = props => (
       }}
     >
       Revisão de conteúdo
-      <div>
-        {get(props.values, 'status', '') === 'PENDING' && get(props.values, 'createdBy', '') !== localStorage.id && (
-          <Button
-            icon="rate_review"
-            primary
-            label="Mark as reviewed"
-            onClick={props.onSendToReviewed}
-          />
+      <div
+        style={{
+          marginTop: props.values.status === 'DONE' && 36,
+        }}
+      >
+        {(props.values.status === 'PENDING' && (props.values.createdBy !== localStorage.id || localStorage.role === 'ADMIN')) && (
+          <div>
+            <Button
+              icon="rate_review"
+              primary
+              label="Mark as reviewed"
+              onClick={props.onSendToReviewed}
+            />
+            {' '}
+            <Button
+              icon="rate_review"
+              primary
+              label="Done"
+              onClick={props.onSendToDone}
+            />
+          </div>
         )}
-        {get(props.values, 'status', '') === 'REVIEWED' && get(props.values, 'createdBy', '') === localStorage.id && (
+        {(props.values.status === 'REVIEWED' && (props.values.createdBy === localStorage.id || localStorage.role === 'ADMIN')) && (
           <Button
             icon="rate_review"
             primary
-            label="Done"
-            onClick={props.onSendToDone}
+            label="Pending"
+            onClick={props.onSendToPending}
           />
         )}
       </div>
@@ -42,7 +55,7 @@ const ContentReviewForm = props => (
       }}
       placeholder="Comment review..."
       isRequired
-      readOnly={get(props.values, 'status', '') === 'REVIEWED' || get(props.values, 'status', '') === 'DONE' || get(props.values, 'createdBy', '') === localStorage.id}
+      readOnly={get(props.values, 'status', '') === 'DONE'}
       value={get(props.values, 'comments', '')}
       onChange={value => props.onChange('comments', value)}
     />
@@ -50,10 +63,11 @@ const ContentReviewForm = props => (
 );
 
 ContentReviewForm.propTypes = {
+  onSendToPending: PropTypes.func.isRequired,
   onSendToReviewed: PropTypes.func.isRequired,
   onSendToDone: PropTypes.func.isRequired,
   values: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
 };
 
 export default ContentReviewForm;

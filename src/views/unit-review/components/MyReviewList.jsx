@@ -10,7 +10,6 @@ import Table from '../../../core/content/Table';
 
 const MyReviewList = props => (
   <Paper>
-
     <Async fetching={props.fetching}>
       <div
         style={{
@@ -42,6 +41,10 @@ const MyReviewList = props => (
           {
             label: 'Module',
             path: 'unit.module.name',
+          },
+          {
+            label: 'Unit Type',
+            path: 'unit.type.name',
           },
           {
             label: 'Reviewed By',

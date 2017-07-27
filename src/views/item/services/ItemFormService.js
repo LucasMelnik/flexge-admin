@@ -53,7 +53,7 @@ class ItemFormService {
           'item.text': [isRequired],
           'item.translation': [isRequired],
           'item.videoLink': [isRequired],
-          'item.reference': [isRequired],
+          // 'item.reference': [isRequired],
           'item.videoStartTime': [isRequired, isValidTime],
           'item.videoEndTime': [isRequired, isValidTime],
         };
@@ -241,7 +241,6 @@ class ItemFormService {
           },
         },
       });
-      console.log(this.form.getValues())
     }
     this.form.reset();
     this.itemId = itemId;

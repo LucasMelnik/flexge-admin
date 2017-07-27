@@ -63,10 +63,16 @@ const ItemForm = props => (
             <Select
               floatingLabel
               fullWidth
-              options={range(1, 11).map(value => ({
-                value,
-                label: value.toString(),
-              }))}
+              options={range(0.5, 10.5, 0.5).map(value => {
+                let label = `${parseInt(value, 10)}:${Math.round((value - parseInt(value, 10)) * 60)}`;
+                if (label.length < 4) {
+                  label = `${label}0`
+                }
+                return {
+                  value: value,
+                  label,
+                }
+              })}
               disabled={props.submitting || props.disabled}
               label="Time (minutes)"
               value={get(props.values, 'item.time', '')}

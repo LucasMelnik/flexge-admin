@@ -32,6 +32,7 @@ export default class ReviewFormControlBar extends Component {
           zIndex: 3,
           bottom: 0,
           left: 0,
+          right: 0,
           height: this.state.expanded ? '89%' : 360,
           maxHeight: '89%',
         }}
@@ -46,17 +47,15 @@ export default class ReviewFormControlBar extends Component {
           primary
           onClick={() => this.handleExpandOrRetractComment()}
         />
-        <Row
-
-        >
-          <Column lgSize={6}>
+        <Row>
+          <Column lgSize={6} mdSize={6} smSize={6}>
             <ContentReviewFormContainer
               expanded={this.state.expanded}
               reviewId={this.props.reviewId}
               unitId={this.props.unitId}
             />
           </Column>
-          <Column lgSize={6}>
+          <Column lgSize={6} mdSize={6} smSize={6}>
             <FormatReviewFormContainer
               expanded={this.state.expanded}
               reviewId={this.props.reviewId}

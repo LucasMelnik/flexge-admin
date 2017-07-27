@@ -34,7 +34,7 @@ export default class PlacementTestItems extends Component {
         <Row>
           <Column lgSize={9}>
             <SubTitle>
-              {this.state.actualScene === 'LIST' ? 'Placement Test items' : 'New Placement Test item'}
+              {this.state.actualScene === 'LIST' ? 'Grammar items' : 'New Grammar item'}
             </SubTitle>
           </Column>
           <Column lgSize={3}>
@@ -44,7 +44,7 @@ export default class PlacementTestItems extends Component {
                   primary
                   icon="add"
                   onClick={this.handleChangeToForm}
-                  label="Add new placement test item"
+                  label="Add new grammar item"
                 />
               )}
               {this.state.actualScene === 'FORM' && (

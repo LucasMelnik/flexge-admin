@@ -43,6 +43,10 @@ const ToReviewList = props => (
             path: 'unit.module.name',
           },
           {
+            label: 'Unit Type',
+            path: 'unit.type.name',
+          },
+          {
             label: 'Created By',
             path: 'review.createdBy.name',
           },

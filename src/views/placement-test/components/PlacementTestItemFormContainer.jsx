@@ -19,7 +19,7 @@ class PlacementTestItemFormContainer extends Component {
   render() {
     return (
       <ItemFormContainer
-        itemsTypeUrl="/item-types?allowedForPlacementTest=true"
+        itemsTypeUrl="/item-types?query[allowedForPlacementTest]=true"
         endpointUrl={`grammar-placement-test-levels/${this.props.placementTestId}/items`}
         onSaveSuccess={this.props.onSaveSuccess}
         order={PlacementTestItemListService.items.length + 1}
