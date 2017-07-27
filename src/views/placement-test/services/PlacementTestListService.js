@@ -1,4 +1,5 @@
 import { action, extendObservable } from 'mobx';
+import orderBy from 'lodash/orderBy';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
@@ -29,7 +30,7 @@ class PlacementTestListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.placementTests = this.fetch.data;
+        this.placementTests = orderBy(this.fetch.data, ['placementTestLevel.level', 'order'], ['asc',  'asc']);
       } else {
         this.placementTests = [];
       }
