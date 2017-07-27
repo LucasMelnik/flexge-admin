@@ -7,7 +7,6 @@ import Column from '../../../core/layout/Column';
 import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
 import TextInput from '../../../core/form/TextInput';
-import MaskInput from '../../../core/form/MaskInput';
 
 const MasteryTestForm = props => (
   <Paper>
