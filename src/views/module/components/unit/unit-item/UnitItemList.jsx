@@ -67,7 +67,7 @@ const UnitItemList = props => (
                   />
                 );
               } else {
-                return row.group;
+                return ['', 'Default', 'First Review', 'Second Review'][row.group];
               }
             }
           },
