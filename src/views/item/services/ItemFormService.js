@@ -236,7 +236,7 @@ class ItemFormService {
       this.form.setInitialValues({
         ...defaultGrammar && {
           item: {
-            grammar:{
+            grammar: {
               id: defaultGrammar,
             },
           },
@@ -252,6 +252,7 @@ class ItemFormService {
     if (this.form.errors) {
       return;
     }
+    console.log(this.form.getValue('item.time'))
     const itemId = this.form.getValue('item.id');
     this.submit.fetch({
       method: itemId ? 'put' : 'post',
@@ -261,7 +262,7 @@ class ItemFormService {
           ...this.form.getValue('item'),
           type: this.form.getValue('item.type').id,
           grammar: this.form.getValue('item.grammar').id,
-          reference: this.form.getValue('item.reference') && this.form.getValue('item.reference').length > 0 ? this.form.getValue('item.reference'): null,
+          reference: this.form.getValue('item.reference') && this.form.getValue('item.reference').length > 0 ? this.form.getValue('item.reference') : null,
         },
         order: this.form.getValue('order') || this.order,
         group: 1,

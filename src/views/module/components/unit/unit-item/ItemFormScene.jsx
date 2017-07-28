@@ -47,11 +47,11 @@ const ItemFormScene = props => (
       marginTop={15}
       float="right"
     >
-    <Button
-      icon="keyboard_backspace"
-      label="back"
-      onClick={() => props.onBack()}
-    />
+      <Button
+        icon="keyboard_backspace"
+        label="back"
+        onClick={() => props.onBack()}
+      />
     </InlineBlock>
     {props.unit.id && (
       <ItemFormContainer

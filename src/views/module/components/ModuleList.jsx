@@ -15,7 +15,7 @@ const ModuleList = props => (
     <Async fetching={props.fetching}>
       <div
         style={{
-          textAlign: 'right',
+          textAlign: 'left',
           fontSize: 13,
         }}
       >
