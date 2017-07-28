@@ -21,7 +21,7 @@ class TimeAmountsListService {
     }).then(() => {
       if (this.fetch.data) {
         const courseAmounts = toJS(this.fetch.data)[0] || { averageSeconds: 0, totalSeconds: 0 };
-        
+
         this.average = `${courseAmounts.averageSeconds < 60 ? '00:' : ''}${moment.duration(courseAmounts.averageSeconds, "seconds").format("mm:ss")}`;
         this.total = `${courseAmounts.totalSeconds < 60 ? '00:' : ''}${moment.duration(courseAmounts.totalSeconds, "seconds").format("hh:mm:ss")}`;
       } else {

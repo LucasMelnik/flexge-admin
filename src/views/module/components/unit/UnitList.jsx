@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import replace from 'lodash/replace';
+import moment from 'moment';
+import 'moment-duration-format';
 import { browserHistory } from 'react-router';
 import Paper from '../../../../core/layout/Paper';
 import Divider from '../../../../core/layout/Divider';
@@ -114,7 +116,15 @@ const UnitList = props => (
             {
               label: 'Items count',
               path: 'itemsCount',
-              width: 120,
+              width: 100,
+            },
+            {
+              label: 'Unit time',
+              path: 'time',
+              width: 85,
+              render: (row) => {
+                return `${row.time < 60 ? '00:' : ''}${moment.duration(row.time, "seconds").format("mm:ss", {forceLength: true})}`
+              },
             },
           ]}
           rows={props.units}

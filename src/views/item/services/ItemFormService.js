@@ -284,7 +284,6 @@ class ItemFormService {
     if (this.form.errors) {
       return;
     }
-    console.log(this.form.getValue('item.time'))
     const itemId = this.form.getValue('item.id');
     this.submit.fetch({
       method: itemId ? 'put' : 'post',
