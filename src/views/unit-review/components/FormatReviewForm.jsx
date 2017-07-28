@@ -36,7 +36,6 @@ const FormatReviewForm = (props) => (
             <Button
               label="Format Not Approved"
               icon="sentiment_very_dissatisfied"
-              primary
               onClick={() => {
                 props.onChange('statusFormat', 'NOT_APPROVED');
                 props.onSaveStatusFormat();
