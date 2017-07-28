@@ -114,7 +114,7 @@ ToReviewList.propTypes = {
     unit: PropTypes.shape({
       name: PropTypes.string,
       module: PropTypes.object,
-      type: PropTypes.string,
+      type: PropTypes.object,
       difficulty: PropTypes.string,
       order: PropTypes.number,
       group: PropTypes.string,

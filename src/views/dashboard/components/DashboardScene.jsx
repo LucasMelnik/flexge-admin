@@ -6,8 +6,7 @@ import Divider from '../../../core/layout/Divider';
 import UnitTypeAmountsListContainer from './UnitTypeAmountsListContainer';
 import DifficultyLevelAmountsListContainer from './DifficultyLevelAmountsListContainer';
 import DifficultyLevelAverageContainer from './DifficultyLevelAverageContainer';
-import TimeAmountsListContainer from './TimeAmountsListContainer';
-import TimeAverageContainer from './TimeAverageContainer';
+import TimeAmountsListContainer from './TimeAmountsContainer';
 import ScoreToPassAmountsListContainer from './ScoreToPassAmountsListContainer';
 import ScoreToPassAverageContainer from './ScoreToPassAverageContainer';
 import DashboardFilterContainer from './DashboardFilterContainer';
@@ -37,6 +36,12 @@ const DashboardScene = () => (
           flexDirection="column"
           boxShadow="rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px"
         >
+          <TimeAmountsListContainer />
+        </Flex>
+        <Flex
+          flexDirection="column"
+          boxShadow="rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px"
+        >
           <DifficultyLevelAmountsListContainer />
           <Divider />
           <DifficultyLevelAverageContainer />
@@ -50,22 +55,6 @@ const DashboardScene = () => (
           <ScoreToPassAverageContainer />
         </Flex>
       </Flex>
-    </Flex>
-    <Separator size="sm" />
-    <Flex
-      flexDirection="column"
-      boxShadow="rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px"
-    >
-      <Flex
-        justifyContent="space-between"
-      >
-        <TimeAmountsListContainer from={0} to={5} />
-        <TimeAmountsListContainer from={5} to={10} />
-        <TimeAmountsListContainer from={10} to={15} />
-        <TimeAmountsListContainer from={15} to={20} />
-      </Flex>
-      <Divider />
-      <TimeAverageContainer />
     </Flex>
     <Separator size="sm" />
   </div>
