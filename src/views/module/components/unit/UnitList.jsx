@@ -15,7 +15,7 @@ const UnitList = props => (
       <div>
         <div
           style={{
-            textAlign: 'right',
+            textAlign: 'left',
             fontSize: 13,
           }}
         >
@@ -43,10 +43,22 @@ const UnitList = props => (
             {
               label: 'Difficulty',
               path: 'difficulty',
+              width: 140,
             },
             {
               label: 'Abilities',
               path: 'type.abilities',
+              width: 120,
+              render: row => (
+                <div>
+                  {row.type.abilities.map((ability, index) => {
+                    if (row.type.abilities.length !== index + 1) {
+                      return `${ability.charAt(0)}, `;
+                    }
+                    return `${ability.charAt(0)}`;
+                  })}
+                </div>
+              ),
             },
             {
               label: 'Unit Type',
@@ -102,7 +114,7 @@ const UnitList = props => (
             {
               label: 'Items count',
               path: 'itemsCount',
-              width: 150,
+              width: 120,
             },
           ]}
           rows={props.units}

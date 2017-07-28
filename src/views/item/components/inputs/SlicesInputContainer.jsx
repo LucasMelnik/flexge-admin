@@ -46,7 +46,7 @@ export default class SlicesInputContainer extends Component {
         slices: nextProps.text.trim().split(' '),
       });
     }
-    if (nextProps.value.length > 0) {
+    if (nextProps.value) {
       this.setState({
         removedSlices: nextProps.value,
       });

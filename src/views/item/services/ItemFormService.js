@@ -1,4 +1,4 @@
-import { extendObservable, action } from 'mobx';
+import { extendObservable, action, observe } from 'mobx';
 // import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
@@ -32,6 +32,35 @@ class ItemFormService {
     this.form.validations = {
       ...this.defaultValidations,
     };
+  }
+
+  createTextObserver() {
+    // function to handle changes on item text and update answers
+    observe(this.form.values.item, 'text', () => {
+      const item = this.form.getValues().item;
+      if (['GAP_FILL', 'GAP_FILL_MULTIPLE', 'GAP_FILL_SELECT', 'UNSCRAMBLE_DRAG_AND_DROP','UNSCRAMBLE_SPEECH_RECOGNITION'].find(type => type === item.type.key)) {
+        if (item.answers) {
+          const slices = item.text.trim().split(' ');
+          item.answers = item.answers.reduce((acc, answer) => {
+            if ((!answer.correct) || (answer.correct && answer.index < slices.length)) {
+              if (answer.correct) {
+                answer.text = slices[answer.index];
+              }
+              return [
+                ...acc,
+                answer,
+              ];
+            } else {
+              return [
+                ...acc,
+              ];
+            }
+          }, []);
+          this.form.setValue('item.answers', item.answers);
+          this.form.setValue('item.indexesToRemove', item.answers.filter(slice => slice.index !== undefined));
+        }
+      }
+    });
   }
 
   setValidationsByItemType = action(() => {
@@ -230,18 +259,21 @@ class ItemFormService {
             'item.indexesToRemove': this.fetch.data, // to validation works
           });
           this.setValidationsByItemType();
+          this.createTextObserver();
         }
       });
     } else {
       this.form.setInitialValues({
-        ...defaultGrammar && {
-          item: {
-            grammar:{
+        item: {
+          text: '',
+          ...defaultGrammar && {
+            grammar: {
               id: defaultGrammar,
             },
           },
         },
       });
+      setTimeout(() => { this.createTextObserver(); }, 250);
     }
     this.form.reset();
     this.itemId = itemId;
@@ -252,6 +284,7 @@ class ItemFormService {
     if (this.form.errors) {
       return;
     }
+    console.log(this.form.getValue('item.time'))
     const itemId = this.form.getValue('item.id');
     this.submit.fetch({
       method: itemId ? 'put' : 'post',
@@ -261,7 +294,7 @@ class ItemFormService {
           ...this.form.getValue('item'),
           type: this.form.getValue('item.type').id,
           grammar: this.form.getValue('item.grammar').id,
-          reference: this.form.getValue('item.reference') && this.form.getValue('item.reference').length > 0 ? this.form.getValue('item.reference'): null,
+          reference: this.form.getValue('item.reference') && this.form.getValue('item.reference').length > 0 ? this.form.getValue('item.reference') : null,
         },
         order: this.form.getValue('order') || this.order,
         group: 1,
@@ -285,7 +318,7 @@ class ItemFormService {
         );
       }
     });
-  })
+  });
 }
 
 export default ItemFormService;
