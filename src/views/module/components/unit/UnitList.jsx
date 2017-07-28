@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import replace from 'lodash/replace';
+import moment from 'moment';
+import 'moment-duration-format';
 import { browserHistory } from 'react-router';
 import Paper from '../../../../core/layout/Paper';
 import Divider from '../../../../core/layout/Divider';
@@ -15,7 +17,7 @@ const UnitList = props => (
       <div>
         <div
           style={{
-            textAlign: 'right',
+            textAlign: 'left',
             fontSize: 13,
           }}
         >
@@ -43,10 +45,22 @@ const UnitList = props => (
             {
               label: 'Difficulty',
               path: 'difficulty',
+              width: 140,
             },
             {
               label: 'Abilities',
               path: 'type.abilities',
+              width: 120,
+              render: row => (
+                <div>
+                  {row.type.abilities.map((ability, index) => {
+                    if (row.type.abilities.length !== index + 1) {
+                      return `${ability.charAt(0)}, `;
+                    }
+                    return `${ability.charAt(0)}`;
+                  })}
+                </div>
+              ),
             },
             {
               label: 'Unit Type',
@@ -102,7 +116,15 @@ const UnitList = props => (
             {
               label: 'Items count',
               path: 'itemsCount',
-              width: 150,
+              width: 100,
+            },
+            {
+              label: 'Unit time',
+              path: 'time',
+              width: 85,
+              render: (row) => {
+                return `${row.time < 60 ? '00:' : ''}${moment.duration(row.time, "seconds").format("mm:ss", {forceLength: true})}`
+              },
             },
           ]}
           rows={props.units}

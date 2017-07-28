@@ -1,5 +1,6 @@
 import { action, extendObservable, toJS } from 'mobx';
-import range from 'lodash/range';
+import moment from 'moment';
+import 'moment-duration-format';
 import FetchService from '../../../core/services/FetchService';
 
 class TimeAmountsListService {
@@ -7,8 +8,8 @@ class TimeAmountsListService {
 
   constructor() {
     extendObservable(this, {
-      timeAmounts: [],
-      average: 0,
+      total: '00:00',
+      average: '00:00',
     });
   }
 
@@ -19,19 +20,13 @@ class TimeAmountsListService {
       url: `/stats/${course}/time`,
     }).then(() => {
       if (this.fetch.data) {
-        const courseAmounts = toJS(this.fetch.data);
-        this.timeAmounts = range(1, 21).map(time => {
-          return {
-            time,
-            amount: (courseAmounts.find(courseAmount => courseAmount.id === time) || {}).amount || 0
-          }
-        });
+        const courseAmounts = toJS(this.fetch.data)[0] || { averageSeconds: 0, totalSeconds: 0 };
 
-        const totalTime = this.timeAmounts.reduce((acc, timeAmount) => acc + (timeAmount.time * timeAmount.amount), 0);
-        const totalAmount = this.timeAmounts.reduce((acc, timeAmount) => acc + timeAmount.amount, 0);
-        this.average = (totalTime / totalAmount) || 0;
+        this.average = `${courseAmounts.averageSeconds < 60 ? '00:' : ''}${moment.duration(courseAmounts.averageSeconds, "seconds").format("mm:ss")}`;
+        this.total = `${courseAmounts.totalSeconds < 60 ? '00:' : ''}${moment.duration(courseAmounts.totalSeconds, "seconds").format("hh:mm:ss")}`;
       } else {
-        this.timeAmounts = [];
+        this.total = '00:00';
+        this.average = '00:00';
       }
     });
   });

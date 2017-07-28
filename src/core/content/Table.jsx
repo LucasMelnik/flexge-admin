@@ -124,6 +124,7 @@ export default class Table extends Component {
         >
           {this.state.data && this.state.data.length > 0 ? this.state.data.map((row, index) => (
             <TableRow
+              style={index % 2 === 0 ? { background: '#f7f7f7' } : { background: '#ffffff' }}
               key={row.id || index}
             >
               {this.props.actionComponent && (
@@ -153,7 +154,15 @@ export default class Table extends Component {
                       ...column.rowColumnStyle,
                     }}
                   >
-                    {content}
+                    <div
+                      style={{
+                        wordBreak: 'break-all',
+                        whiteSpace: 'normal',
+                        textAlign: 'justify',
+                      }}
+                    >
+                      {content}
+                    </div>
                   </TableRowColumn>
                 )
               })}

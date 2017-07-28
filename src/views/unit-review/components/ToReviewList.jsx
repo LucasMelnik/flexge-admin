@@ -13,7 +13,7 @@ const ToReviewList = props => (
     <Async fetching={props.fetching}>
       <div
         style={{
-          textAlign: 'right',
+          textAlign: 'left',
           fontSize: 13,
         }}
       >
@@ -114,7 +114,7 @@ ToReviewList.propTypes = {
     unit: PropTypes.shape({
       name: PropTypes.string,
       module: PropTypes.object,
-      type: PropTypes.string,
+      type: PropTypes.object,
       difficulty: PropTypes.string,
       order: PropTypes.number,
       group: PropTypes.string,
