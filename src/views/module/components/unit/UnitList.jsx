@@ -79,7 +79,7 @@ const UnitList = props => (
                     borderRadius: 5,
                     backgroundColor: {
                       PENDING: '#ef8c3b',
-                      REVIEWED: '#009687',
+                      REVIEWED: '#1188FF',
                       DONE: '#009687',
                       'NOT SENT TO REVIEW': '#758C98',
                     }[row.review.status],
