@@ -15,7 +15,7 @@ const ContentReviewForm = props => (
         justifyContent: 'space-between',
       }}
     >
-      Revisão de conteúdo
+      Revisão de conteúdo {props.values.statusFormat !== 'APPROVED' && ('(Awaiting format review)')}
       <div
         style={{
           marginTop: props.values.status === 'DONE' && 36,
@@ -28,6 +28,7 @@ const ContentReviewForm = props => (
               primary
               label="Mark as reviewed"
               onClick={props.onSendToReviewed}
+              disabled={props.values.statusFormat !== 'APPROVED'}
             />
             {' '}
             <Button
@@ -35,6 +36,7 @@ const ContentReviewForm = props => (
               primary
               label="Done"
               onClick={props.onSendToDone}
+              disabled={props.values.statusFormat !== 'APPROVED'}
             />
           </div>
         )}
@@ -44,6 +46,7 @@ const ContentReviewForm = props => (
             primary
             label="Pending"
             onClick={props.onSendToPending}
+            disabled={props.values.statusFormat !== 'APPROVED'}
           />
         )}
       </div>
@@ -55,7 +58,7 @@ const ContentReviewForm = props => (
       }}
       placeholder="Comment review..."
       isRequired
-      readOnly={get(props.values, 'status', '') === 'DONE'}
+      readOnly={get(props.values, 'status', '') === 'DONE' || props.values.statusFormat !== 'APPROVED'}
       value={get(props.values, 'comments', '')}
       onChange={value => props.onChange('comments', value)}
     />
