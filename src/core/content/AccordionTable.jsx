@@ -86,7 +86,7 @@ export default class AccordionTable extends Component {
                       ))}
                       {this.props.actionComponent && (
                         <td>
-                          {this.props.actionComponent(row)}
+                          {this.props.actionComponent(row, index)}
                         </td>
                       )}
                     </tr>
