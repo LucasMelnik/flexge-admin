@@ -53,6 +53,7 @@ const ToReviewList = props => (
           {
             label: 'Status content',
             path: 'review.status',
+            width: 235,
             render: row => (
               <div
                 style={{
@@ -66,10 +67,11 @@ const ToReviewList = props => (
                     REVIEWED: '#1188FF',
                     DONE: '#009687',
                     'NOT SENT TO REVIEW': '#758C98',
-                  }[row.review.status],
+                    'AWAITING FORMAT REVIEW': '#758C98',
+                  }[row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status],
                 }}
               >
-                {row.review.status}
+                {row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status}
               </div>
             ),
           },

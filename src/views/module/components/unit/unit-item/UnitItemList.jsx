@@ -42,6 +42,9 @@ const UnitItemList = props => (
             label: 'Group',
             path: 'group',
             width: '10%',
+            rowColumnStyle: {
+              maxWidth: 130,
+            },
             render: (row) => {
               if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
                 return (
@@ -74,7 +77,7 @@ const UnitItemList = props => (
           {
             label: 'Text',
             path: 'item.text',
-            width: '25%',
+            width: '23%',
             render: row => (
               <div>{row.item.text ? row.item.text : row.item.title}</div>
             ),
@@ -91,7 +94,7 @@ const UnitItemList = props => (
           {
             label: 'Translation',
             path: 'item.translation',
-            width: '25%',
+            width: '23%',
             rowColumnStyle: {
               textOverflow: 'none',
               paddingTop: 5,
@@ -105,12 +108,12 @@ const UnitItemList = props => (
           {
             label: 'Grammar',
             path: 'item.grammar.name',
-            width: '15%',
+            width: '13%',
           },
           {
             label: 'Type',
             path: 'item.type.name',
-            width: '15%',
+            width: '10%',
           },
           {
             label: 'Time',
@@ -132,13 +135,23 @@ const UnitItemList = props => (
             showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
           />
         )}
-        actionComponent={row => {
+        actionComponent={(row, index) => {
           if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
             return (
-              <IconButton
-                icon="delete"
-                onClick={() => props.onDelete(row)}
-              />
+              <div>
+                <IconButton
+                  icon="delete"
+                  onClick={() => props.onDelete(row)}
+                />
+                <IconButton
+                  icon="exposure_plus_1"
+                  onClick={() => props.onAutoReorder(index, 'ADD_LINE')}
+                />
+                <IconButton
+                  icon="exposure_neg_1"
+                  onClick={() => props.onAutoReorder(index, 'REMOVE_LINE')}
+                />
+              </div>
             )
           }
           return null;
@@ -170,6 +183,7 @@ UnitItemList.propTypes = {
   fetching: PropTypes.bool.isRequired,
   disabled: PropTypes.bool.isRequired,
   onOrderOrGroupChange: PropTypes.func.isRequired,
+  onAutoReorder: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 

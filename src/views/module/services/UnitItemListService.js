@@ -11,6 +11,7 @@ class UnitItemListService {
     extendObservable(this, {
       items: [],
       unitId: null,
+      reorderSubmitting: false,
     });
   }
 
@@ -25,6 +26,7 @@ class UnitItemListService {
     }).then(() => {
       if (this.fetch.data) {
         this.items = orderBy(this.fetch.data, ['order', 'group'], ['asc',  'asc']);
+        this.reorderSubmitting = false;
       } else {
         this.items = [];
         this.total = 0;
@@ -44,6 +46,34 @@ class UnitItemListService {
     }).then(() => {
       this.load();
     });
+  });
+
+  handleAutoReorder = action((startIndex, action) => {
+    this.reorderSubmitting = true;
+
+    const reorderPromises = [];
+    this.items.forEach((unitItem, index) => {
+      const body = {
+        group: unitItem.group,
+      };
+
+      if (action === 'ADD_LINE' && index >= startIndex) {
+        body.order = unitItem.order + 1;
+      } else if (action === 'REMOVE_LINE' && index <= startIndex) {
+        body.order = unitItem.order - 1;
+      }
+
+      reorderPromises.push(
+        this.submit.fetch({
+          url: `/units/${unitItem.unit}/items/${unitItem.item.id}`,
+          method: 'put',
+          body,
+        })
+      );
+    });
+
+    Promise.all(reorderPromises)
+      .then(() => this.load());
   });
 
   handleUnlinkItem = action((unitItem) => {
