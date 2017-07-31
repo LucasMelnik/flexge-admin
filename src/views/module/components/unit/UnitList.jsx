@@ -69,6 +69,7 @@ const UnitList = props => (
             {
               label: 'Status content',
               path: 'review.status',
+              width: 235,
               render: row => row.review && (
                 <div
                   style={{
@@ -79,13 +80,14 @@ const UnitList = props => (
                     borderRadius: 5,
                     backgroundColor: {
                       PENDING: '#ef8c3b',
-                      REVIEWED: '#009687',
+                      REVIEWED: '#1188FF',
                       DONE: '#009687',
                       'NOT SENT TO REVIEW': '#758C98',
-                    }[row.review.status],
+                      'AWAITING FORMAT REVIEW': '#758C98',
+                    }[row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status],
                   }}
                 >
-                  {row.review.status}
+                  {row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status}
                 </div>
               ),
             },
