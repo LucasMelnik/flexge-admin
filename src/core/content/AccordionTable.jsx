@@ -45,7 +45,7 @@ export default class AccordionTable extends Component {
                 <th
                   key={`column_${column.path}`}
                   style={{
-                    width: column.width || 'auto',
+                    width: column.width,
                     textAlign: 'left',
                   }}
                 >
@@ -53,7 +53,12 @@ export default class AccordionTable extends Component {
                 </th>
               ))}
               {this.props.actionComponent && (
-                <th>
+                <th
+                  style={{
+                    paddingLeft: 10,
+                    textAlign: 'left',
+                  }}
+                >
                   Actions
                 </th>
               )}
@@ -68,6 +73,7 @@ export default class AccordionTable extends Component {
               header={(
                 <table
                   style={{
+                    width: '100%',
                     borderSpacing: '5px',
                   }}
                 >
@@ -77,7 +83,7 @@ export default class AccordionTable extends Component {
                         <td
                           key={`row_${row.id || index}_column_${column.path}`}
                           style={{
-                            width: column.width || 'auto',
+                            width: column.width,
                             ...column.rowColumnStyle,
                           }}
                         >

@@ -18,9 +18,9 @@ const UnitItemList = props => (
           {
             label: 'Order',
             path: 'order',
-            width: '5%',
+            width: '7%',
             render: (row) => {
-              if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled){
+              if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
                 return (
                   <Select
                     fullWidth
@@ -33,18 +33,14 @@ const UnitItemList = props => (
                     }))}
                   />
                 );
-              } else {
-                return row.order;
               }
-            }
+              return row.order;
+            },
           },
           {
             label: 'Group',
             path: 'group',
-            width: '10%',
-            rowColumnStyle: {
-              maxWidth: 130,
-            },
+            width: '7%',
             render: (row) => {
               if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
                 return (
@@ -69,15 +65,14 @@ const UnitItemList = props => (
                     ]}
                   />
                 );
-              } else {
-                return ['', 'Default', 'First Review', 'Second Review'][row.group];
               }
-            }
+              return ['', 'Default', 'First Review', 'Second Review'][row.group];
+            },
           },
           {
             label: 'Text',
             path: 'item.text',
-            width: '23%',
+            width: '25%',
             render: row => (
               <div>{row.item.text ? row.item.text : row.item.title}</div>
             ),
@@ -85,7 +80,7 @@ const UnitItemList = props => (
               textOverflow: 'none',
               paddingTop: 5,
               paddingBottom: 5,
-              paddingRight: 5,
+              paddingRight: 15,
               whiteSpace: 'normal',
               textAlign: 'justify',
               lineHeight: '18px',
@@ -94,12 +89,12 @@ const UnitItemList = props => (
           {
             label: 'Translation',
             path: 'item.translation',
-            width: '23%',
+            width: '25%',
             rowColumnStyle: {
               textOverflow: 'none',
               paddingTop: 5,
               paddingBottom: 5,
-              paddingRight: 5,
+              paddingRight: 15,
               whiteSpace: 'normal',
               textAlign: 'justify',
               lineHeight: '18px',
@@ -108,24 +103,22 @@ const UnitItemList = props => (
           {
             label: 'Grammar',
             path: 'item.grammar.name',
-            width: '13%',
+            width: '10%',
           },
           {
             label: 'Type',
             path: 'item.type.name',
-            width: '10%',
+            width: '9%',
           },
           {
             label: 'Time',
             path: 'item.time',
             width: '5%',
-            render: (row) => {
-              return `${row.item.time < 60 ? '00:' : ''}${moment.duration(row.item.time, "seconds").format("mm:ss", {forceLength: true})}`
-            },
+            render: row => (`${row.item.time < 60 ? '00:' : ''}${moment.duration(row.item.time, 'seconds').format('mm:ss', { forceLength: true })}`),
           },
         ]}
         rows={props.items}
-        renderFunction={(row) => (
+        renderFunction={row => (
           <ItemFormContainer
             itemId={row.item.id}
             itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
@@ -152,7 +145,7 @@ const UnitItemList = props => (
                   onClick={() => props.onAutoReorder(index, 'REMOVE_LINE')}
                 />
               </div>
-            )
+            );
           }
           return null;
         }}
