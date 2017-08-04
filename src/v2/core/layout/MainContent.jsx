@@ -12,17 +12,7 @@ const MainContent = props => (
         padding: '15px 0 0 15px',
       }}
     >
-      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div className="page-title">
-          ...
-        </div>
-      </div>
-      <div className="clearfix" />
-      <div className="col-lg-12">
-        <section className="box ">
-          {props.children}
-        </section>
-      </div>
+      {props.children}
     </section>
   </section>
 );

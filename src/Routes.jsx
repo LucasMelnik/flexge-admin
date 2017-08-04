@@ -2,8 +2,6 @@ import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import LoginScene from './views/login/components/LoginScene';
 import MainScene from './views/main/components/MainScene';
-import MainSceneV2 from './views/v2/MainSceneV2';
-import TestComponents from './views/v2/TestComponents';
 import DashboardScene from './views/dashboard/components/DashboardScene';
 import CompanyListScene from './views/company/components/CompanyListScene';
 import CompanyFormSceneContainer from './views/company/components/CompanyFormSceneContainer';
@@ -29,6 +27,12 @@ import PlacementTestFormSceneContainer from './views/placement-test/components/P
 import NotFoundScene from './views/not-found/NotFoundScene';
 
 
+// **** V2 **** //
+import MainSceneV2 from './v2/views/main/components/MainScene';
+import TestComponents from './v2/TestComponents';
+import DashboardSceneV2 from './v2/views/dashboard/components/DashboardScene';
+
+
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
     replace('/login');
@@ -38,7 +42,9 @@ function authRequired(nextState, replace) {
 const Routes = () => (
   <Router history={browserHistory}>
     <Route path="/login" component={LoginScene} />
-    <Route path="/v2" component={MainSceneV2} />
+    <Route path="/v2" component={MainSceneV2}>
+      <IndexRoute component={DashboardSceneV2} />
+    </Route>
     <Route path="/v2/test" component={TestComponents} />
     <Route path="/" component={MainScene} onEnter={authRequired}>
       <IndexRoute component={DashboardScene} />
