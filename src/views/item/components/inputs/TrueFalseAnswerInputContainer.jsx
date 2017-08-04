@@ -25,6 +25,18 @@ export default class TrueFalseAnswerInputContainer extends Component {
         checked: this.props.value[0].correct,
         answers: this.props.value,
       });
+    } else {
+      const answers = [
+        {
+          correct: false,
+          text: 'True',
+        },
+        {
+          correct: true,
+          text: 'Not True',
+        },
+      ];
+      this.props.onChange(answers);
     }
   }
 
