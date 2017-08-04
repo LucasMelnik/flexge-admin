@@ -1,8 +1,8 @@
 import React from 'react';
-import Menu from '../layout/Menu';
-import MenuItem from '../layout/MenuItem';
-import MenuSection from '../layout/MenuSection';
-import SubMenu from '../layout/SubMenu';
+import Menu from './Menu';
+import MenuItem from './MenuItem';
+import MenuSection from './MenuSection';
+import SubMenu from './SubMenu';
 
 const LeftSidebar = () => (
   <div className="page-container row-fluid">
