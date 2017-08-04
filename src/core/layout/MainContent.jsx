@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const MainContent = () => (
+const MainContent = props => (
   <section id="main-content">
     <section
       className="wrapper"
@@ -19,11 +20,15 @@ const MainContent = () => (
       <div className="clearfix" />
       <div className="col-lg-12">
         <section className="box ">
-          ...
+          {props.children}
         </section>
       </div>
     </section>
   </section>
 );
+
+MainContent.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default MainContent;

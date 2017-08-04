@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 const SubMenu = props => (
   <ul className="sub-menu">
-    {props.items.map(items => (
-      <li>
+    {props.items.map(item => (
+      <li key={item.link}>
         <a
           className=""
-          href={items.link}
+          href={item.link}
         >
-          {items.label}
+          {item.label}
         </a>
       </li>
     ))}
