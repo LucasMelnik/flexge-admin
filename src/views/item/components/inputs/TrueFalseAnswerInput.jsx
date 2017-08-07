@@ -13,6 +13,7 @@ const TrueFalseAnswerInput = props => (
       </InlineBlock>
       <InlineBlock verticalAlign="middle">
         <Switch
+          label=""
           onChange={props.onChange}
           toggled={props.checked}
           disabled={props.disabled}
