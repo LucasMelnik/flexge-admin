@@ -59,7 +59,7 @@ class UnitItemListService {
 
       if (action === 'ADD_LINE' && index >= startIndex) {
         body.order = unitItem.order + 1;
-      } else if (action === 'REMOVE_LINE' && index <= startIndex) {
+      } else if (action === 'REMOVE_LINE' && index >= startIndex) {
         body.order = unitItem.order - 1;
       }
 
