@@ -19,7 +19,6 @@ export default class TestComponents extends Component {
           <div className="row">
             <div className="col-lg-6">
               <Select
-                id="select"
                 url="courses"
                 resultTransformer={{
                   text: 'name',
@@ -31,7 +30,6 @@ export default class TestComponents extends Component {
             <div className="col-lg-6">
               <pre>{`
                 <Select
-                  id="select"
                   url="courses"
                   resultTransformer={{
                     text: 'name',

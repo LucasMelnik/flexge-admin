@@ -9,7 +9,6 @@ import 'select2/dist/css/select2.css';
 export default class Select extends Component {
 
   static propTypes = {
-    id: PropTypes.string,
     url: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     resultTransformer: PropTypes.shape({
@@ -20,13 +19,12 @@ export default class Select extends Component {
   };
 
   static defaultProps = {
-    id: null,
     placeholder: 'Select...',
 
   };
 
   componentDidMount() {
-    $(`#${this.props.id}`).select2({
+    $(this.select2).select2({
         placeholder: this.props.placeholder,
         allowClear: true,
     })
@@ -57,7 +55,7 @@ export default class Select extends Component {
 
     render() {
       return (
-        <select className="" id={this.props.id} style={{ width: '100%'}}>
+        <select className="" ref={(select2) => this.select2 = select2} style={{ width: '100%'}}>
           <option></option>
           {this.state.data.map(item => (
             <option>{item.name}</option>
