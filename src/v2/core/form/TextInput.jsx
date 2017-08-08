@@ -13,7 +13,7 @@ const TextInput = props => (
       {props.description}
     </span>
     <div className="controls">
-      {!props.fieldType === 'textarea' ? (
+      {props.fieldType === 'textarea' ? (
         <textarea
           className="form-control autogrow"
           cols="5"
@@ -26,7 +26,7 @@ const TextInput = props => (
             height: 50,
           }}
         />
-      ) : !props.fieldType === 'static' ? (
+      ) : props.fieldType === 'static' ? (
         <p
           className="form-control-static"
         >
