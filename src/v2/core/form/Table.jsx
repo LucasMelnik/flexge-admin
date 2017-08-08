@@ -46,7 +46,6 @@ const Table = props => (
 );
 
 Table.propTypes = {
-  type: PropTypes.oneOf(['bordered', 'striped']),
   columns: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
     path: PropTypes.string,
@@ -59,7 +58,6 @@ Table.propTypes = {
 };
 
 Table.defaultProps = {
-  type: 'bordered',
   columns: [],
   rows: [],
   actionComponent: null,
