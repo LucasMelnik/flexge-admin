@@ -7,6 +7,7 @@ import Card from './core/layout/Card';
 import TextInput from './core/form/TextInput';
 import Table from './core/form/Table';
 import DateInput from './core/form/DateInput';
+import Tabs from './core/layout/Tabs';
 
 export default class TestComponents extends Component {
 
@@ -507,6 +508,38 @@ export default class TestComponents extends Component {
                   label="Date label"
                   placeholder="Placeholder"
                 />
+              `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="Tabs">
+          <div className="row">
+            <div className="col-lg-6">
+              <Tabs
+                tabs={[
+                  {
+                    title: 'Tab title 1',
+                    icon: 'fa-home',
+                    content: (<p>loremipsum loremipsumloremipsumloremipsum loremipsum loremipsumloremipsum loremipsum</p>)
+                  },
+                  {
+                    title: 'Tab title 2',
+                    content: (<p>test tab</p>)
+                  },
+                ]}
+              />
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <Tabs
+                tabs={[
+                  {
+                    title: 'Tab title 1',
+                    icon: 'fa-home',
+                    content: (<p>loremipsum loremipsumloremipsumloremipsum loremipsum loremipsumloremipsum loremipsum</p>)
+                  },
+                ]}
+              />
               `}</pre>
             </div>
           </div>
