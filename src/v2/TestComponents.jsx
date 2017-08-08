@@ -6,6 +6,7 @@ import Select from './core/form/Select';
 import Card from './core/layout/Card';
 import TextInput from './core/form/TextInput';
 import Table from './core/form/Table';
+import DateInput from './core/form/DateInput';
 
 export default class TestComponents extends Component {
 
@@ -486,6 +487,27 @@ export default class TestComponents extends Component {
                   ]}
                 />
             `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="DateInput">
+          <div className="row">
+            <div className="col-lg-6">
+              <DateInput
+                format="mm/dd/yy"
+                label="Date label"
+                placeholder="Placeholder"
+              />
+              <div>For more details: <a href="https://bootstrap-datepicker.readthedocs.io/en/latest/">https://bootstrap-datepicker.readthedocs.io/en/latest/</a></div>
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <DateInput
+                  format="mm/dd/yy"
+                  label="Date label"
+                  placeholder="Placeholder"
+                />
+              `}</pre>
             </div>
           </div>
         </Card>
