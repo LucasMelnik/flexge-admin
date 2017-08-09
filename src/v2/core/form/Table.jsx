@@ -77,7 +77,7 @@ export default class Table extends Component {
             </TableHeaderColumn>
           ))}
         </BootstrapTable>
-        <small>{this.props.rows.length} records found.</small>
+        <small>{this.props.rows.length} record{this.props.rows.length > 1 && 's'} found.</small>
       </div>
     );
   }
