@@ -10,6 +10,7 @@ import DateInput from './core/form/DateInput';
 import Tabs from './core/layout/Tabs';
 import Dialog from './core/layout/Dialog';
 import Notification from './core/layout/Notification';
+import Switch from './core/form/Switch';
 
 export default class TestComponents extends Component {
 
@@ -587,7 +588,7 @@ export default class TestComponents extends Component {
             </div>
           </div>
         </Card>
-        <Card title="Dialog">
+        <Card title="Notifications">
           <div className="row">
             <div className="col-lg-6">
               <Notification
@@ -608,6 +609,25 @@ export default class TestComponents extends Component {
                       message: 'Ops, bugo'
                     }
                   ]}
+                />
+              `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="Switch">
+          <div className="row">
+            <div className="col-lg-6">
+              <Switch
+                value={true}
+                onChange={val => console.log(val)}
+              />
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <Switch
+                  value={true}
+                  onChange={val => console.log(val)}
+                  disabled
                 />
               `}</pre>
             </div>
