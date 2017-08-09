@@ -30,7 +30,7 @@ const CompanyList = props => (
         {
           label: 'Actions',
           path: 'action',
-          width: 120,
+          width: '120',
           render: (row) => {
             return (
               <div>

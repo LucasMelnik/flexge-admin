@@ -13,7 +13,7 @@ export default class Table extends Component {
       isKey: PropTypes.bool,
       hidden: PropTypes.bool,
       render: PropTypes.func,
-      width: PropTypes.oneOfType(PropTypes.string, PropTypes.number),
+      width: PropTypes.string,
       rowColumnStyle: PropTypes.object,
     })),
     rows: PropTypes.arrayOf(PropTypes.object),
