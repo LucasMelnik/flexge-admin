@@ -12,8 +12,7 @@ const CompanyListSceneV2 = () => (
       crumbs={[
         {
           text: 'Companies',
-          link: '/companies',
-        }
+        },
       ]}
     />
     <Card
@@ -23,7 +22,7 @@ const CompanyListSceneV2 = () => (
           label="New company"
           icon="fa-plus"
           onClick={() => browserHistory.push('/v2/companies/new')}
-        />
+        />,
       ]}
     >
       <div

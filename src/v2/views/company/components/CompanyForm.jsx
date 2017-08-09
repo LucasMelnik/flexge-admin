@@ -199,7 +199,8 @@ const CompanyForm = props => (
       </Row>
       <FormButtons
         confirmLabel={props.values.id ? 'Update Company' : 'Create Company'}
-        disabled={props.submitting || !props.isDirty()}
+        isDisabled={props.submitting || !props.isDirty()}
+        onReset={props.onReset}
       />
     </form>
   </Card>

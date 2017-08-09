@@ -1,9 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CompanyFormContainer from './CompanyFormContainer';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
 
 const CompanyFormScene = props => (
   <div>
+    <Breadcrumb
+      crumbs={[
+        {
+          text: 'Companies',
+          link: '/companies',
+        },
+        {
+          text: props.params.companyId ? 'Edit Company' : 'Create Company',
+        },
+      ]}
+    />
     <CompanyFormContainer companyId={props.params.companyId} />
   </div>
 );
