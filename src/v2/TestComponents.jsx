@@ -12,6 +12,7 @@ import Dialog from './core/layout/Dialog';
 import Notification from './core/layout/Notification';
 import Switch from './core/form/Switch';
 import Tags from './core/form/Tags';
+import Breadcrumb from './core/layout/Breadcrumb';
 
 export default class TestComponents extends Component {
 
@@ -670,6 +671,37 @@ export default class TestComponents extends Component {
                 ]}
                 onDelete={() => console.log()}
               />
+              `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="Breadcrumb">
+          <div className="row">
+            <div className="col-lg-6">
+              <Breadcrumb
+                crumbs={[
+                  {
+                    text: 'Home',
+                    icon: 'fa-home',
+                    link: '/'
+                  },
+                  {
+                    text: 'Crumbs',
+                  },
+                ]}
+              />
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <Breadcrumb
+                  crumbs={[
+                    {
+                      text: 'Home',
+                      icon: 'fa-home',
+                      link: '/'
+                    },
+                  ]}
+                />
               `}</pre>
             </div>
           </div>
