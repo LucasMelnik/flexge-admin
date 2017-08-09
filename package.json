@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "0.16.1",
+    "bootstrap-datepicker": "^1.7.1",
     "cleave.js": "0.7.21",
     "datatables.net": "^1.10.15",
     "jquery": "^3.2.1",

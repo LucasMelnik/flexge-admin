@@ -41,6 +41,7 @@ export default class Table extends Component {
       bPaginate: false,
       searching: false,
       bDestroy: true,
+      fnDrawCallback: () => this.forceUpdate(),
       bSort: this.props.hasSortColumn,
       bInfo: this.props.hasInfo,
       language: {
@@ -48,6 +49,12 @@ export default class Table extends Component {
         info: this.props.infoText,
         infoEmpty: this.props.infoEmptyText,
       },
+    });
+  }
+
+  componentDidUpdate() {
+    $(this.table).DataTable({
+      bDestroy: true,
     });
   }
 

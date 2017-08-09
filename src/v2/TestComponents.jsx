@@ -6,12 +6,27 @@ import Select from './core/form/Select';
 import Card from './core/layout/Card';
 import TextInput from './core/form/TextInput';
 import Table from './core/form/Table';
+import DateInput from './core/form/DateInput';
+import Tabs from './core/layout/Tabs';
+import Dialog from './core/layout/Dialog';
+import Notification from './core/layout/Notification';
+import Switch from './core/form/Switch';
+import Tags from './core/form/Tags';
+import Breadcrumb from './core/layout/Breadcrumb';
 
 export default class TestComponents extends Component {
 
-  componentDidMount() {
+  state = { modalOpen: false };
 
+  componentDidMount() {
   }
+
+  toggleModal = () => {
+    this.setState({
+      modalOpen: !this.state.modalOpen,
+    })
+  };
+
   render() {
     return (
       <div className="col-lg-12">
@@ -486,6 +501,208 @@ export default class TestComponents extends Component {
                   ]}
                 />
             `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="DateInput">
+          <div className="row">
+            <div className="col-lg-6">
+              <DateInput
+                format="mm/dd/yy"
+                label="Date label"
+                placeholder="Placeholder"
+              />
+              <div>For more details: <a href="https://bootstrap-datepicker.readthedocs.io/en/latest/">https://bootstrap-datepicker.readthedocs.io/en/latest/</a></div>
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <DateInput
+                  format="mm/dd/yy"
+                  label="Date label"
+                  placeholder="Placeholder"
+                />
+              `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="Tabs">
+          <div className="row">
+            <div className="col-lg-6">
+              <Tabs
+                tabs={[
+                  {
+                    title: 'Tab title 1',
+                    icon: 'fa-home',
+                    content: (<p>loremipsum loremipsumloremipsumloremipsum loremipsum loremipsumloremipsum loremipsum</p>)
+                  },
+                  {
+                    title: 'Tab title 2',
+                    content: (<p>test tab</p>)
+                  },
+                ]}
+              />
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <Tabs
+                tabs={[
+                  {
+                    title: 'Tab title 1',
+                    icon: 'fa-home',
+                    content: (<p>loremipsum loremipsumloremipsumloremipsum loremipsum loremipsumloremipsum loremipsum</p>)
+                  },
+                ]}
+              />
+              `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="Dialog">
+          <div className="row">
+            <div className="col-lg-6">
+              <button
+                onClick={this.toggleModal}
+              >
+                Open Modal
+              </button>
+              <Dialog
+                title="Dialog title"
+                isOpen={this.state.modalOpen}
+                actions={[
+                  <button onClick={this.toggleModal}>Close</button>
+                ]}
+              >
+                <p>content</p>
+              </Dialog>
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <Dialog
+                  title="Dialog title"
+                  isOpen={this.state.modalOpen}
+                  actions={[
+                    <button onClick={this.toggleModal}>Close</button>
+                  ]}
+                >
+                  <p>content</p>
+                </Dialog>
+              `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="Notifications">
+          <div className="row">
+            <div className="col-lg-6">
+              <Notification
+                notifications={[
+                  {
+                    type: 'error',
+                    message: 'Ops, bugo'
+                  }
+                ]}
+              />
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <Notification
+                  notifications={[
+                    {
+                      type: 'error',
+                      message: 'Ops, bugo'
+                    }
+                  ]}
+                />
+              `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="Switch">
+          <div className="row">
+            <div className="col-lg-6">
+              <Switch
+                value={true}
+                onChange={val => console.log(val)}
+              />
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <Switch
+                  value={true}
+                  onChange={val => console.log(val)}
+                  disabled
+                />
+              `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="Tags">
+          <div className="row">
+            <div className="col-lg-6">
+              <Tags
+                tags={[
+                  {
+                    text: 'Test',
+                    icon: 'fa-home'
+                  },
+                  {
+                    icon: 'fa-home'
+                  },
+                  {
+                    text: 'Test',
+                  },
+                ]}
+                onDelete={() => console.log()}
+              />
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <Tags
+                tags={[
+                  {
+                    text: 'Test',
+                    icon: 'fa-home'
+                  },
+                  {
+                    text: 'Test',
+                  },
+                  {
+                    text: 'Test',
+                  },
+                ]}
+                onDelete={() => console.log()}
+              />
+              `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="Breadcrumb">
+          <div className="row">
+            <div className="col-lg-6">
+              <Breadcrumb
+                crumbs={[
+                  {
+                    text: 'Home',
+                    icon: 'fa-home',
+                    link: '/'
+                  },
+                  {
+                    text: 'Crumbs',
+                  },
+                ]}
+              />
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <Breadcrumb
+                  crumbs={[
+                    {
+                      text: 'Home',
+                      icon: 'fa-home',
+                      link: '/'
+                    },
+                  ]}
+                />
+              `}</pre>
             </div>
           </div>
         </Card>

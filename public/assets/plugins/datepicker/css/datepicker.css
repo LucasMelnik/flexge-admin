@@ -41,7 +41,7 @@
   left: 7px;
 }
 .datepicker > div {
-  display: none;
+  display: block;
 }
 .datepicker table {
   width: 100%;

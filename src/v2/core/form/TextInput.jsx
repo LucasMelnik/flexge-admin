@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const TextInput = props => (
@@ -82,4 +82,56 @@ TextInput.defaultProps = {
   helpText: null,
 };
 
-export default TextInput;
+  render() {
+    return (
+      <div className={`form-group has-${this.props.fieldValidation}`}>
+        <label
+          className="form-label"
+          htmlFor={this.props.id}
+        >
+          {this.props.label}
+        </label>
+        <span className="desc">
+      {this.props.description}
+    </span>
+        <div className="controls">
+          {this.props.fieldType === 'textarea' ? (
+            <textarea
+              className="form-control autogrow"
+              cols="5"
+              id={this.props.id}
+              placeholder={this.props.placeholder}
+              style={{
+                overflow: 'hidden',
+                wordWrap: 'break-word',
+                resize: 'horizontal',
+                height: 50,
+              }}
+            />
+          ) : this.props.fieldType === 'static' ? (
+            <p
+              className="form-control-static"
+            >
+              {this.props.placeholder}
+            </p>
+          ) : (
+            <input
+              className="form-control"
+              id={this.props.id}
+              type={this.props.type}
+              placeholder={this.props.placeholder}
+              disabled={this.props.disabled && 'disabled'}
+            />
+          )}
+          {this.props.helpText && (
+            <span
+              className="help-block"
+            >
+            {this.props.helpText}
+        </span>
+          )}
+        </div>
+      </div>
+    );
+  }
+}
