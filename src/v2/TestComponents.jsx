@@ -9,6 +9,7 @@ import Table from './core/form/Table';
 import DateInput from './core/form/DateInput';
 import Tabs from './core/layout/Tabs';
 import Dialog from './core/layout/Dialog';
+import Notification from './core/layout/Notification';
 
 export default class TestComponents extends Component {
 
@@ -582,6 +583,32 @@ export default class TestComponents extends Component {
                 >
                   <p>content</p>
                 </Dialog>
+              `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="Dialog">
+          <div className="row">
+            <div className="col-lg-6">
+              <Notification
+                notifications={[
+                  {
+                    type: 'error',
+                    message: 'Ops, bugo'
+                  }
+                ]}
+              />
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <Notification
+                  notifications={[
+                    {
+                      type: 'error',
+                      message: 'Ops, bugo'
+                    }
+                  ]}
+                />
               `}</pre>
             </div>
           </div>
