@@ -6,7 +6,7 @@ import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
 import Select from '../../../core/form/Select';
-import DatePicker from '../../../../core/form/DatePicker';
+import DateInput from '../../../core/form/DateInput';
 import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
 
@@ -82,7 +82,7 @@ const CompanyForm = props => (
             value={get(props.values, 'state', '')}
             onChange={value => props.onChange('state', value)}
             errorText={get(props.errors, 'state', '')}
-            // options={props.states}
+            options={props.states}
           />
         </Column>
         <Column lgSize={6}>
@@ -156,8 +156,7 @@ const CompanyForm = props => (
           />
         </Column>
         <Column lgSize={2}>
-          <DatePicker
-            fullWidth
+          <DateInput
             disabled={props.submitting}
             label="Contract Starts in"
             value={get(props.values, 'contractStart', null)}
@@ -166,8 +165,7 @@ const CompanyForm = props => (
           />
         </Column>
         <Column lgSize={2}>
-          <DatePicker
-            fullWidth
+          <DateInput
             disabled={props.submitting}
             label="Contract Ends in"
             value={get(props.values, 'contractEnd', null)}

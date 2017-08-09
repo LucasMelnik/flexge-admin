@@ -1,40 +1,37 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import Card from '../../../core/layout/Card';
 import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
 
 const CompanyList = props => (
-  <Card>
-    <Async fetching={props.fetching}>
-      <Table
-        columns={[
-          {
-            label: 'ID',
-            path: 'id',
-            isKey: true,
-            hidden: true,
-          },
-          {
-            label: 'Name',
-            path: 'name',
-          },
-          {
-            label: 'Social Reason',
-            path: 'socialReason',
-          },
-          {
-            label: 'Phone',
-            path: 'phone',
-          },
-        ]}
-        rows={props.companies}
-        selectable
-        onSelect={row => browserHistory.push(`/companies/${row.id}`)}
-      />
-    </Async>
-  </Card>
+  <Async fetching={props.fetching}>
+    <Table
+      columns={[
+        {
+          label: 'ID',
+          path: 'id',
+          isKey: true,
+          hidden: true,
+        },
+        {
+          label: 'Name',
+          path: 'name',
+        },
+        {
+          label: 'Social Reason',
+          path: 'socialReason',
+        },
+        {
+          label: 'Phone',
+          path: 'phone',
+        },
+      ]}
+      rows={props.companies}
+      selectable
+      onSelect={row => browserHistory.push(`/companies/${row.id}`)}
+    />
+  </Async>
 );
 
 CompanyList.propTypes = {

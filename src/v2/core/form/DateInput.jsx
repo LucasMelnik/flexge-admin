@@ -43,9 +43,9 @@ export default class DateInput extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.datepicker.datepicker('setDate', nextProps.value);
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   this.datepicker.datepicker('setDate', nextProps.value);
+  // }
 
   render() {
     return (

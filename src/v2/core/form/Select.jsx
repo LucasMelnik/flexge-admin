@@ -42,9 +42,9 @@ export default class Select extends Component {
           style={{ width: '100%' }}
         >
           <option></option>
-          {/* {this.state.options.map(item => (
-            item
-          ))} */}
+          {this.props.options.map(item => (
+            <option key={item.value} value={item.value}>{item.label}</option>
+          ))}
         </select>
       </div>
     );
