@@ -11,7 +11,7 @@ import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
 
 const CompanyForm = props => (
-  <Card>
+  <Card title={props.values.id ? 'Update Company' : 'Create Company'}>
     <form
       onSubmit={(event) => {
         event.preventDefault();

@@ -33,7 +33,7 @@ import TestComponents from './v2/TestComponents';
 import DashboardSceneV2 from './v2/views/dashboard/components/DashboardScene';
 
 import CompanyListSceneV2 from './v2/views/company/components/CompanyListSceneV2';
-import CompanyFormSceneContainerV2 from './v2/views/company/components/CompanyFormSceneContainerV2';
+import CompanyFormScene from './v2/views/company/components/CompanyFormScene';
 
 
 function authRequired(nextState, replace) {
@@ -45,11 +45,11 @@ function authRequired(nextState, replace) {
 const Routes = () => (
   <Router history={browserHistory}>
     <Route path="/login" component={LoginScene} />
-    <Route path="/v2" component={MainSceneV2}>
+    <Route path="/v2" component={MainSceneV2} onEnter={authRequired}>
       <IndexRoute component={DashboardSceneV2} />
       <Route path="/v2/companies" component={CompanyListSceneV2} />
-      <Route path="/v2/companies/new" component={CompanyFormSceneContainerV2} />
-      <Route path="/v2/companies/:companyId" component={CompanyFormSceneContainerV2} />
+      <Route path="/v2/companies/new" component={CompanyFormScene} />
+      <Route path="/v2/companies/:companyId" component={CompanyFormScene} />
     </Route>
     <Route path="/v2/test" component={TestComponents} />
     <Route path="/" component={MainScene} onEnter={authRequired}>
