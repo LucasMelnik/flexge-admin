@@ -6,31 +6,29 @@ import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
 
 const CompanyList = props => (
-  <Card>
-    <Async fetching={props.fetching}>
-      <Table
-        // id="datatable"
-        columns={[
-          {
-            label: 'Name',
-            path: 'name',
-          },
-          {
-            label: 'Social Reason',
-            path: 'socialReason',
-          },
-          {
-            label: 'Phone',
-            path: 'phone',
-          },
-        ]}
-        rows={props.companies}
-        selectable
-        onSelect={row => browserHistory.push(`/companies/${row.id}`)}
-        onDelete={row => props.onDelete(row)}
-      />
-    </Async>
-  </Card>
+  <Async fetching={props.fetching}>
+    <Table
+      // id="datatable"
+      columns={[
+        {
+          label: 'Name',
+          path: 'name',
+        },
+        {
+          label: 'Social Reason',
+          path: 'socialReason',
+        },
+        {
+          label: 'Phone',
+          path: 'phone',
+        },
+      ]}
+      rows={props.companies}
+      selectable
+      onSelect={row => browserHistory.push(`/companies/${row.id}`)}
+      onDelete={row => props.onDelete(row)}
+    />
+  </Async>
 );
 
 CompanyList.propTypes = {

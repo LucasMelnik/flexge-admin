@@ -34,25 +34,25 @@ export default class Table extends Component {
   };
 
   componentDidMount() {
-    $(this.table).DataTable({
-      responsive: true,
-      bPaginate: false,
-      searching: false,
-      bDestroy: true,
-      // fnDrawCallback: () => this.forceUpdate(),
-      bSort: this.props.hasSortColumn,
-      bInfo: this.props.hasInfo,
-      language: {
-        zeroRecords: this.props.noRecordsText,
-        info: this.props.infoText,
-        infoEmpty: this.props.infoEmptyText,
-      },
-    });
+    // $(this.table).DataTable({
+    //   responsive: true,
+    //   bPaginate: false,
+    //   searching: false,
+    //   bDestroy: true,
+    //   fnDrawCallback: () => this.forceUpdate(),
+    //   bSort: this.props.hasSortColumn,
+    //   bInfo: this.props.hasInfo,
+    //   language: {
+    //     zeroRecords: this.props.noRecordsText,
+    //     info: this.props.infoText,
+    //     infoEmpty: this.props.infoEmptyText,
+    //   },
+    // });
   }
 
-  componentWillUnmount() {
-    const table = $(this.table).DataTable(); // eslint-disable-line new-cap
-    table.destroy();
+  componentDidUpdate() {
+    // const table = $(this.table).DataTable(); // eslint-disable-line new-cap
+    // table.destroy();
   }
 
   render() {

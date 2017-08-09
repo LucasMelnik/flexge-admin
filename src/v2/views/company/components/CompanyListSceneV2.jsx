@@ -1,20 +1,14 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import Title from '../../../core/layout/Title';
+import Card from '../../../core/layout/Card';
 import Separator from '../../../core/layout/Separator';
 import Button from '../../../core/form/Button';
 import CompanyListFilterContainer from './CompanyListFilterContainer';
 import CompanyListContainer from './CompanyListContainer';
 
 const CompanyListSceneV2 = () => (
-  <div
-    style={{
-      marginRight: 15,
-    }}
-  >
-    <Title>
-      Companies
-    </Title>
+  <Card title="Companies" >
     <Separator size="sm" />
     <div
       style={{
@@ -39,7 +33,7 @@ const CompanyListSceneV2 = () => (
     </div>
     <CompanyListContainer />
     <Separator size="sm" />
-  </div>
+  </Card>
 );
 
 export default CompanyListSceneV2;
