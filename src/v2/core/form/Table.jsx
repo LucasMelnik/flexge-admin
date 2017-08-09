@@ -37,46 +37,48 @@ export default class Table extends Component {
 
   render() {
     return (
-      <BootstrapTable
-        data={this.props.rows}
-        striped
-        hover
-        search={false}
-        expandableRow={() => this.props.expandable}
-        expandComponent={this.props.expandableComponent}
-        expandColumnOptions={{
-          expandColumnVisible: this.props.expandable,
-          expandColumnComponent: this.renderExpandableIcon,
-          columnWidth: 25
-        }}
-        selectRow={{
-          mode: 'checkbox',
-          hideSelectColumn: true,
-          clickToSelect: true ,
-          onSelect: (row, isSelected, e) => {
-            if (this.props.selectable && window.$(e.target).is('td')) {
-              this.props.onSelect(row);
-            }
-            return false;
-          },
-        }}
-      >
-        {this.props.columns.map(column => (
-          <TableHeaderColumn
-            key={`column-definition-${column.label}`}
-            isKey={column.isKey}
-            hidden={column.hidden}
-            dataField={column.path}
-            dataSort={column.path !== 'action'}
-            dataFormat={column.render}
-            tdStyle={column.rowColumnStyle}
-            width={column.width || 'auto'}
-          >
-            {column.label}
-          </TableHeaderColumn>
-        ))}
-
-      </BootstrapTable>
+      <div>
+        <BootstrapTable
+          data={this.props.rows}
+          striped
+          hover
+          search={false}
+          expandableRow={() => this.props.expandable}
+          expandComponent={this.props.expandableComponent}
+          expandColumnOptions={{
+            expandColumnVisible: this.props.expandable,
+            expandColumnComponent: this.renderExpandableIcon,
+            columnWidth: 25
+          }}
+          selectRow={{
+            mode: 'checkbox',
+            hideSelectColumn: true,
+            clickToSelect: true ,
+            onSelect: (row, isSelected, e) => {
+              if (this.props.selectable && window.$(e.target).is('td')) {
+                this.props.onSelect(row);
+              }
+              return false;
+            },
+          }}
+        >
+          {this.props.columns.map(column => (
+            <TableHeaderColumn
+              key={`column-definition-${column.label}`}
+              isKey={column.isKey}
+              hidden={column.hidden}
+              dataField={column.path}
+              dataSort={column.path !== 'action'}
+              dataFormat={column.render}
+              tdStyle={column.rowColumnStyle}
+              width={column.width || 'auto'}
+            >
+              {column.label}
+            </TableHeaderColumn>
+          ))}
+        </BootstrapTable>
+        <small>{this.props.rows.length} records found.</small>
+      </div>
     );
   }
 }
