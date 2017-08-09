@@ -9,7 +9,7 @@ const Button = props => (
     className={`
       btn
       btn-${props.type}
-      ${props.icon ? 'btn-icon right15 bottom15' : ''}
+      ${props.icon ? 'btn-icon' : ''}
       ${props.cornered && 'btn-corner'}
       ${props.rounded && 'btn-round'}
       ${props.bordered && 'btn-border'}
