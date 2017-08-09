@@ -1,104 +1,74 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
-import $ from 'jquery';
-import 'datatables.net';
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+import Icon from '../layout/Icon';
 
 export default class Table extends Component {
 
   static propTypes = {
-    hasSortColumn: PropTypes.bool,
-    hasInfo: PropTypes.bool,
-    noRecordsText: PropTypes.string,
-    infoEmptyText: PropTypes.string,
-    infoText: PropTypes.string,
     columns: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string.isRequired,
       path: PropTypes.string,
-      rowColumnStyle: PropTypes.object,
+      isKey: PropTypes.bool,
+      hidden: PropTypes.bool,
       render: PropTypes.func,
+      rowColumnStyle: PropTypes.object,
     })),
-    actionComponent: PropTypes.func,
     rows: PropTypes.arrayOf(PropTypes.object),
+    selectable: PropTypes.bool,
+    onSelect: PropTypes.func,
+    expandable: PropTypes.bool,
+    expandableComponent: PropTypes.func,
+    actionComponent: PropTypes.func,
   };
 
   static defaultProps = {
     columns: [],
     rows: [],
-    hasSortColumn: true,
-    noRecordsText: 'No records found.',
-    hasInfo: true,
-    infoText: '_MAX_ records found.',
-    infoEmptyText: 'No records found.',
     actionComponent: null,
+    expandable: false,
+    selectable: false,
+    onSelect: null,
   };
 
-  componentDidMount() {
-    $(this.table).DataTable({
-      responsive: true,
-      bPaginate: false,
-      searching: false,
-      bDestroy: true,
-      // fnDrawCallback: () => this.forceUpdate(),
-      bSort: this.props.hasSortColumn,
-      bInfo: this.props.hasInfo,
-      language: {
-        zeroRecords: this.props.noRecordsText,
-        info: this.props.infoText,
-        infoEmpty: this.props.infoEmptyText,
-      },
-    });
-  }
-
-  componentWillUnmount() {
-    const table = $(this.table).DataTable(); // eslint-disable-line new-cap
-    table.destroy();
-  }
+  renderExpandableIcon = ({ isExpanded }) => {
+    return <Icon name={isExpanded ? 'fa-angle-down' : 'fa-angle-right'} />
+  };
 
   render() {
     return (
-      <table
-        ref={table => this.table = table}
-        className="table table-striped dt-responsive display"
+      <BootstrapTable
+        data={this.props.rows}
+        striped
+        hover
+        search
+        expandableRow={() => this.props.expandable}
+        expandComponent={this.props.expandableComponent}
+        expandColumnOptions={{
+          expandColumnVisible: this.props.expandable,
+          expandColumnComponent: this.renderExpandableIcon,
+          columnWidth: 25
+        }}
+        options={{
+          onRowClick: this.props.selectable ? this.props.onSelect : null,
+        }}
       >
-        <thead>
-          <tr>
-            {this.props.columns.map(column => (
-              <th
-                key={`column_${column.path}`}
-              >
-                {column.label}
-              </th>
-            ))}
-            {this.props.actionComponent && (
-              <th>
-                Actions
-              </th>
-            )}
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.rows.map((row, index) => (
-            <tr key={`row-${row.id}`}>
-              {this.props.columns.map(column => (
-                <td
-                  key={`row_${row.id || index}_column_${column.path}`}
-                  style={{
-                    ...column.rowColumnStyle,
-                  }}
-                >
-                  {column.render ? column.render(row) : get(row, column.path, '')}
-                </td>
-              ))}
-              {this.props.actionComponent && (
-                <td>
-                  {this.props.actionComponent(row, index)}
-                </td>
-              )}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        {this.props.columns.map(column => (
+          <TableHeaderColumn
+            key={`colum-definition-${column.label}`}
+            isKey={column.isKey}
+            hidden={column.hidden}
+            dataField={column.path}
+            dataSort
+            dataFormat={column.render}
+            tdStyle={column.rowColumnStyle}
+          >
+            {column.label}
+          </TableHeaderColumn>
+        ))}
+
+      </BootstrapTable>
     );
   }
 }

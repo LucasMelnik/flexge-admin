@@ -9,8 +9,13 @@ const CompanyList = props => (
   <Card>
     <Async fetching={props.fetching}>
       <Table
-        // id="datatable"
         columns={[
+          {
+            label: 'ID',
+            path: 'id',
+            isKey: true,
+            hidden: true,
+          },
           {
             label: 'Name',
             path: 'name',
@@ -27,7 +32,6 @@ const CompanyList = props => (
         rows={props.companies}
         selectable
         onSelect={row => browserHistory.push(`/companies/${row.id}`)}
-        onDelete={row => props.onDelete(row)}
       />
     </Async>
   </Card>
