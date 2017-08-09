@@ -8,12 +8,21 @@ import TextInput from './core/form/TextInput';
 import Table from './core/form/Table';
 import DateInput from './core/form/DateInput';
 import Tabs from './core/layout/Tabs';
+import Dialog from './core/layout/Dialog';
 
 export default class TestComponents extends Component {
 
-  componentDidMount() {
+  state = { modalOpen: false };
 
+  componentDidMount() {
   }
+
+  toggleModal = () => {
+    this.setState({
+      modalOpen: !this.state.modalOpen,
+    })
+  };
+
   render() {
     return (
       <div className="col-lg-12">
@@ -540,6 +549,39 @@ export default class TestComponents extends Component {
                   },
                 ]}
               />
+              `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="Dialog">
+          <div className="row">
+            <div className="col-lg-6">
+              <button
+                onClick={this.toggleModal}
+              >
+                Open Modal
+              </button>
+              <Dialog
+                title="Dialog title"
+                isOpen={this.state.modalOpen}
+                actions={[
+                  <button onClick={this.toggleModal}>Close</button>
+                ]}
+              >
+                <p>content</p>
+              </Dialog>
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <Dialog
+                  title="Dialog title"
+                  isOpen={this.state.modalOpen}
+                  actions={[
+                    <button onClick={this.toggleModal}>Close</button>
+                  ]}
+                >
+                  <p>content</p>
+                </Dialog>
               `}</pre>
             </div>
           </div>
