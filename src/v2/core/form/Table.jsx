@@ -20,13 +20,11 @@ export default class Table extends Component {
     onSelect: PropTypes.func,
     expandable: PropTypes.bool,
     expandableComponent: PropTypes.func,
-    actionComponent: PropTypes.func,
   };
 
   static defaultProps = {
     columns: [],
     rows: [],
-    actionComponent: null,
     expandable: false,
     selectable: false,
     onSelect: null,
@@ -50,17 +48,25 @@ export default class Table extends Component {
           expandColumnComponent: this.renderExpandableIcon,
           columnWidth: 25
         }}
-        options={{
-          onRowClick: this.props.selectable ? this.props.onSelect : null,
+        selectRow={{
+          mode: 'checkbox',
+          hideSelectColumn: true,
+          clickToSelect: true ,
+          onSelect: (row, isSelected, e) => {
+            if (this.props.selectable && window.$(e.target).is('td')) {
+              this.props.onSelect(row);
+            }
+            return false;
+          },
         }}
       >
         {this.props.columns.map(column => (
           <TableHeaderColumn
-            key={`colum-definition-${column.label}`}
+            key={`column-definition-${column.label}`}
             isKey={column.isKey}
             hidden={column.hidden}
             dataField={column.path}
-            dataSort
+            dataSort={column.path !== 'action'}
             dataFormat={column.render}
             tdStyle={column.rowColumnStyle}
           >

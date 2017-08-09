@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
+import Button from '../../../core/form/Button';
 
 const CompanyList = props => (
   <Async fetching={props.fetching}>
@@ -25,6 +26,13 @@ const CompanyList = props => (
         {
           label: 'Phone',
           path: 'phone',
+        },
+        {
+          label: 'Actions',
+          path: 'action',
+          render: (row) => {
+            return <Button label="Delete" onClick={() => alert()}/>
+          },
         },
       ]}
       rows={props.companies}
