@@ -8205,3 +8205,20 @@ table.dataTable tfoot th select, table.dataTable tfoot td select{
 table.dataTable.display tbody tr:first-child td {
     border-top: 1px solid #f0eff5;
 }
+
+.react-bs-table-bordered {
+    border-radius: 0px !important;
+    border-left: none !important;
+    border-bottom: none !important;
+}
+
+.react-bs-table .react-bs-container-header>table>thead>tr>th {
+    vertical-align: middle;
+    font-family: 'Poppins', sans-serif, Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+.table>tbody>tr>td {
+    vertical-align: middle;
+    font-family: 'Poppins', sans-serif, Arial, Helvetica, sans-serif;
+}
