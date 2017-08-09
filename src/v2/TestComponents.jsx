@@ -11,6 +11,7 @@ import Tabs from './core/layout/Tabs';
 import Dialog from './core/layout/Dialog';
 import Notification from './core/layout/Notification';
 import Switch from './core/form/Switch';
+import Tags from './core/form/Tags';
 
 export default class TestComponents extends Component {
 
@@ -629,6 +630,46 @@ export default class TestComponents extends Component {
                   onChange={val => console.log(val)}
                   disabled
                 />
+              `}</pre>
+            </div>
+          </div>
+        </Card>
+        <Card title="Tags">
+          <div className="row">
+            <div className="col-lg-6">
+              <Tags
+                tags={[
+                  {
+                    text: 'Test',
+                    icon: 'fa-home'
+                  },
+                  {
+                    icon: 'fa-home'
+                  },
+                  {
+                    text: 'Test',
+                  },
+                ]}
+                onDelete={() => console.log()}
+              />
+            </div>
+            <div className="col-lg-6">
+              <pre>{`
+                <Tags
+                tags={[
+                  {
+                    text: 'Test',
+                    icon: 'fa-home'
+                  },
+                  {
+                    text: 'Test',
+                  },
+                  {
+                    text: 'Test',
+                  },
+                ]}
+                onDelete={() => console.log()}
+              />
               `}</pre>
             </div>
           </div>
