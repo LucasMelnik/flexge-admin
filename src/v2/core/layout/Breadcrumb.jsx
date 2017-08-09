@@ -5,6 +5,12 @@ import Icon from './Icon';
 
 const Breadcrumb = props => (
   <ol className="breadcrumb">
+    <li>
+      <Link to="/">
+        <Icon name="fa-home"/>
+        Home
+      </Link>
+    </li>
     {props.crumbs.map((crumb, index) => (
       <li
         key={`crumb-${crumb.link}`}
