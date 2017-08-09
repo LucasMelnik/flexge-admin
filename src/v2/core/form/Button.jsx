@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Icon from '../layout/Icon';
 
 const Button = props => (
   <button
@@ -16,9 +17,9 @@ const Button = props => (
     `}
   >
     {props.icon && (
-      <i className={props.icon} style={{ marginRight: 5 }} />
+      <Icon name={props.icon} size="xs" />
     )}
-    <span>
+    <span style={{ marginLeft: props.icon ? 10 : 0 }}>
       {props.label}
     </span>
   </button>

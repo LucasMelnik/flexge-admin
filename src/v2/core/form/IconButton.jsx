@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Icon from '../layout/Icon';
 
 const IconButton = props => (
   <button
@@ -12,8 +13,15 @@ const IconButton = props => (
       ${props.bordered && 'btn-border'}
       ${props.size && `btn-${props.size}`}
     `}
+    style={{
+      outline: 'none',
+    }}
+    onClick={props.onClick}
   >
-    <i className={props.icon} />
+    <Icon
+      name={props.icon}
+      size="xs"
+    />
   </button>
 );
 
@@ -39,6 +47,7 @@ IconButton.propTypes = {
   cornered: PropTypes.bool,
   rounded: PropTypes.bool,
   bordered: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 IconButton.defaultProps = {
@@ -47,6 +56,7 @@ IconButton.defaultProps = {
   cornered: false,
   rounded: false,
   bordered: false,
+  onClick: null,
 };
 
 export default IconButton;

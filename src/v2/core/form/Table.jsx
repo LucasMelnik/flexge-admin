@@ -13,6 +13,7 @@ export default class Table extends Component {
       isKey: PropTypes.bool,
       hidden: PropTypes.bool,
       render: PropTypes.func,
+      width: PropTypes.oneOfType(PropTypes.string, PropTypes.number),
       rowColumnStyle: PropTypes.object,
     })),
     rows: PropTypes.arrayOf(PropTypes.object),
@@ -40,7 +41,7 @@ export default class Table extends Component {
         data={this.props.rows}
         striped
         hover
-        search
+        search={false}
         expandableRow={() => this.props.expandable}
         expandComponent={this.props.expandableComponent}
         expandColumnOptions={{
@@ -69,6 +70,7 @@ export default class Table extends Component {
             dataSort={column.path !== 'action'}
             dataFormat={column.render}
             tdStyle={column.rowColumnStyle}
+            width={column.width || 'auto'}
           >
             {column.label}
           </TableHeaderColumn>

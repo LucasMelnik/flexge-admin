@@ -6,6 +6,7 @@ const CompanyListFilter = props => (
   <div>
     <TextInput
       label="Search companies"
+      placeholder="Start type to filter the companies"
       value={props.value}
       onChange={props.onChange}
     />

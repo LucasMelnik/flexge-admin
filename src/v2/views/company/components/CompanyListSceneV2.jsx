@@ -8,8 +8,16 @@ import CompanyListFilterContainer from './CompanyListFilterContainer';
 import CompanyListContainer from './CompanyListContainer';
 
 const CompanyListSceneV2 = () => (
-  <Card title="Companies" >
-    <Separator size="sm" />
+  <Card
+    title="Companies"
+    actions={[
+      <Button
+        label="New company"
+        icon="fa-plus"
+        onClick={() => browserHistory.push('/v2/companies/new')}
+      />
+    ]}
+  >
     <div
       style={{
         display: 'flex',
@@ -25,14 +33,8 @@ const CompanyListSceneV2 = () => (
       >
         <CompanyListFilterContainer />
       </div>
-
-      <Button
-        label="New company"
-        onClick={() => browserHistory.push('/v2/companies/new')}
-      />
     </div>
     <CompanyListContainer />
-    <Separator size="sm" />
   </Card>
 );
 
