@@ -45,7 +45,7 @@ function authRequired(nextState, replace) {
 const Routes = () => (
   <Router history={browserHistory}>
     <Route path="/login" component={LoginScene} />
-    <Route path="/v2" component={MainSceneV2}>
+    <Route path="/v2" component={MainSceneV2} onEnter={authRequired}>
       <IndexRoute component={DashboardSceneV2} />
       <Route path="/v2/companies" component={CompanyListSceneV2} />
       <Route path="/v2/companies/new" component={CompanyFormSceneContainerV2} />
