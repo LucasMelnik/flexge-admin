@@ -395,6 +395,21 @@ html[dir="rtl"] .select2-results {
     color: #000;
 }
 
+.select2-container--default .select2-selection--single {
+    background-color: #fff !important;
+    border: 1px solid #e1e1e1 !important;
+    border-radius: 0px !important;
+    height: 34px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  top: 60% !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 32px !important;
+}
+
 .select2-results .select2-no-results,
 .select2-results .select2-searching,
 .select2-results .select2-ajax-error,

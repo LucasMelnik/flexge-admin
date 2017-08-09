@@ -32,6 +32,9 @@ import MainSceneV2 from './v2/views/main/components/MainScene';
 import TestComponents from './v2/TestComponents';
 import DashboardSceneV2 from './v2/views/dashboard/components/DashboardScene';
 
+import CompanyListSceneV2 from './v2/views/company/components/CompanyListSceneV2';
+import CompanyFormSceneContainerV2 from './v2/views/company/components/CompanyFormSceneContainerV2';
+
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -44,6 +47,9 @@ const Routes = () => (
     <Route path="/login" component={LoginScene} />
     <Route path="/v2" component={MainSceneV2}>
       <IndexRoute component={DashboardSceneV2} />
+      <Route path="/v2/companies" component={CompanyListSceneV2} />
+      <Route path="/v2/companies/new" component={CompanyFormSceneContainerV2} />
+      <Route path="/v2/companies/:companyId" component={CompanyFormSceneContainerV2} />
     </Route>
     <Route path="/v2/test" component={TestComponents} />
     <Route path="/" component={MainScene} onEnter={authRequired}>

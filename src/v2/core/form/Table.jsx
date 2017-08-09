@@ -36,10 +36,11 @@ export default class Table extends Component {
   };
 
   componentDidMount() {
-    $(`#${this.props.id}`).DataTable({
+    $(this.table).DataTable({
       responsive: true,
       bPaginate: false,
       searching: false,
+      bDestroy: true,
       bSort: this.props.hasSortColumn,
       bInfo: this.props.hasInfo,
       language: {
@@ -52,7 +53,7 @@ export default class Table extends Component {
 
   render() {
     return (
-      <table id={this.props.id} className="table table-striped dt-responsive display">
+      <table ref={table => this.table = table} className="table table-striped dt-responsive display">
         <thead>
           <tr>
             {this.props.columns.map(column => (

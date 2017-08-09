@@ -9,7 +9,7 @@ const MainContent = props => (
         marginTop: 60,
         display: 'inline-block',
         width: '100%',
-        padding: '15px 0 0 15px',
+        padding: '15px 15px 0 15px',
       }}
     >
       {props.children}

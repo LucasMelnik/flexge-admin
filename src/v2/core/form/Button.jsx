@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const Button = props => (
   <button
     type="button"
+    onClick={() => props.onClick && props.onClick()}
     className={`
       btn
       btn-${props.type}
@@ -43,6 +44,7 @@ Button.propTypes = {
   ]),
   label: PropTypes.string.isRequired,
   icon: PropTypes.string,
+  onClick: PropTypes.func,
   cornered: PropTypes.bool,
   rounded: PropTypes.bool,
   bordered: PropTypes.bool,
@@ -52,6 +54,7 @@ Button.defaultProps = {
   type: 'primary',
   size: null,
   icon: null,
+  onClick: null,
   cornered: false,
   rounded: false,
   bordered: false,

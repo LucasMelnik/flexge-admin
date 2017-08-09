@@ -18,6 +18,7 @@ const TextInput = props => (
           className="form-control autogrow"
           cols="5"
           id={props.id}
+          value={props.value}
           placeholder={props.placeholder}
           style={{
             overflow: 'hidden',
@@ -37,6 +38,8 @@ const TextInput = props => (
           className="form-control"
           id={props.id}
           type={props.type}
+          value={props.value}
+          onChange={e => props.onChange && props.onChange(e.target.value)}
           placeholder={props.placeholder}
           disabled={props.disabled && 'disabled'}
         />
@@ -55,6 +58,8 @@ const TextInput = props => (
 TextInput.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
   type: PropTypes.oneOf(['text', 'password']),
   placeholder: PropTypes.string,
   description: PropTypes.string,
@@ -67,6 +72,8 @@ TextInput.propTypes = {
 TextInput.defaultProps = {
   id: null,
   description: null,
+  onChange: null,
+  value: '',
   placeholder: null,
   type: 'text',
   disabled: false,
