@@ -21,15 +21,19 @@ const MainScene = props => (
             items={[
               {
                 label: 'Schools',
+                link: '/v2/schools',
               },
               {
                 label: 'Classes',
+                link: '/v2/classes',
               },
               {
                 label: 'Teachers',
+                link: '/v2/teachers',
               },
               {
                 label: 'Students',
+                link: '/v2/students',
               },
             ]}
           />
@@ -39,9 +43,7 @@ const MainScene = props => (
             items={[
               {
                 label: 'Companies',
-              },
-              {
-                label: 'Company Managers',
+                link: '/v2/companies',
               },
             ]}
           />
@@ -51,9 +53,11 @@ const MainScene = props => (
             items={[
               {
                 label: 'Distributors',
+                link: '/v2/distributors',
               },
               {
                 label: 'General Configuration',
+                link: '/v2/configs',
               },
             ]}
           />
@@ -66,15 +70,19 @@ const MainScene = props => (
             items={[
               {
                 label: 'Courses',
+                link: '/v2/courses',
               },
               {
                 label: 'Modules',
+                link: '/v2/modules',
               },
               {
                 label: 'Units',
+                link: '/v2/units',
               },
               {
                 label: 'Items',
+                link: '/v2/items',
               },
             ]}
           />

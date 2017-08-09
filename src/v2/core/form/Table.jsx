@@ -7,7 +7,6 @@ import 'datatables.net';
 export default class Table extends Component {
 
   static propTypes = {
-    id: PropTypes.string.isRequired,
     hasSortColumn: PropTypes.bool,
     hasInfo: PropTypes.bool,
     noRecordsText: PropTypes.string,
@@ -21,7 +20,6 @@ export default class Table extends Component {
     })),
     actionComponent: PropTypes.func,
     rows: PropTypes.arrayOf(PropTypes.object),
-    renderFunction: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -41,7 +39,7 @@ export default class Table extends Component {
       bPaginate: false,
       searching: false,
       bDestroy: true,
-      fnDrawCallback: () => this.forceUpdate(),
+      // fnDrawCallback: () => this.forceUpdate(),
       bSort: this.props.hasSortColumn,
       bInfo: this.props.hasInfo,
       language: {
@@ -52,15 +50,17 @@ export default class Table extends Component {
     });
   }
 
-  componentDidUpdate() {
-    $(this.table).DataTable({
-      bDestroy: true,
-    });
+  componentWillUnmount() {
+    const table = $(this.table).DataTable(); // eslint-disable-line new-cap
+    table.destroy();
   }
 
   render() {
     return (
-      <table ref={table => this.table = table} className="table table-striped dt-responsive display">
+      <table
+        ref={table => this.table = table}
+        className="table table-striped dt-responsive display"
+      >
         <thead>
           <tr>
             {this.props.columns.map(column => (

@@ -22,7 +22,7 @@ const Card = props => (
 
 Card.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 Card.defaultProps = {
