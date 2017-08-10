@@ -1,6 +1,6 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../../core/services/FetchService';
-import ConfirmationDialogService from '../../../../core/services/ConfirmationDialogService';
+import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
 class CompanyListService {
   fetch = new FetchService();
@@ -42,6 +42,7 @@ class CompanyListService {
   });
 
   handleRemove = action((company) => {
+
     ConfirmationDialogService.show(
       'Delete Company',
       `You are about to delete the company "${company.name}", Do you want to continue ?`,

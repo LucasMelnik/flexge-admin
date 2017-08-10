@@ -31,17 +31,17 @@ const CompanyList = props => (
           label: 'Actions',
           path: 'action',
           width: '120',
-          render: (row) => {
+          render: (cell, row) => {
             return (
               <div>
                 <IconButton
                   icon="fa-trash"
-                  onClick={(row) => props.onDelete(row.id)}
+                  onClick={() => props.onDelete(row)}
                 />
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={(row) => alert()}
+                  onClick={() => alert()}
                 />
               </div>
             );

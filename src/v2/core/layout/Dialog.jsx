@@ -27,7 +27,7 @@ export default class Dialog extends Component {
   render() {
     return (
       <div
-        className="modal fade col-xs-12"
+        className="modal fade"
         role="dialog"
         ref={node => this.modal = node}
       >

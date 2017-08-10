@@ -7,9 +7,11 @@ import Menu from '../../../core/layout/Menu';
 import MenuItem from '../../../core/layout/MenuItem';
 import MenuSection from '../../../core/layout/MenuSection';
 import SubMenu from '../../../core/layout/SubMenu';
+import ConfirmDialogContainer from './ConfirmDialogContainer';
 
 const MainScene = props => (
   <div>
+    <ConfirmDialogContainer />
     <TopBar />
     <LeftSidebar>
       <Menu>
