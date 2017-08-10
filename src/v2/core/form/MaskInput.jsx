@@ -23,6 +23,7 @@ export default class MaskInput extends Component {
     numeralPositiveOnly: PropTypes.bool,
     fieldValidation: PropTypes.oneOf(['error', 'warning', 'success']),
     helpText: PropTypes.string,
+    description: PropTypes.string,
   };
 
   static defaultProps = {
@@ -36,6 +37,7 @@ export default class MaskInput extends Component {
     blocks: [],
     fieldValidation: null,
     helpText: null,
+    description: null,
   };
 
   state = { maskedValue: '' };
@@ -82,6 +84,7 @@ export default class MaskInput extends Component {
         placeholder={this.props.placeholder}
         fieldValidation={this.props.fieldValidation}
         helpText={this.props.helpText}
+        description={this.props.description}
         type="text"
         ref={input => { this.textInput = input; }}
       />

@@ -16,6 +16,9 @@ const Button = props => (
       ${props.size && `btn-${props.size}`}
       ${props.fullWidth && 'input-block-level'}
     `}
+    style={{
+      outline: 'none',
+    }}
   >
     {props.icon && (
       <Icon name={props.icon} size="xs" />
