@@ -44,8 +44,6 @@ const CompanyForm = props => (
         }}
       >
         <TextInput
-          floatingLabel
-          fullWidth
           disabled={props.submitting}
           label="Company Name"
           value={get(props.values, 'name', '')}
@@ -66,8 +64,6 @@ const CompanyForm = props => (
           </Column>
           <Column lgSize={6}>
             <TextInput
-              floatingLabel
-              fullWidth
               disabled={props.submitting}
               label="Social Reason"
               value={get(props.values, 'socialReason', '')}
@@ -78,8 +74,6 @@ const CompanyForm = props => (
           </Column>
           <Column lgSize={2}>
             <TextInput
-              floatingLabel
-              fullWidth
               disabled={props.submitting}
               label="Year of Foundation"
               value={get(props.values, 'foundationYear', '')}
@@ -92,8 +86,6 @@ const CompanyForm = props => (
         <Row>
           <Column lgSize={3}>
             <TextInput
-              floatingLabel
-              fullWidth
               disabled
               label="Country"
               value={get(props.values, 'country', '')}

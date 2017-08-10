@@ -40,6 +40,16 @@ const MainScene = props => (
             ]}
           />
         </MenuItem>
+        <MenuItem title="Distributor" icon="fa fa-user">
+          <SubMenu
+            items={[
+              {
+                label: 'Distributors',
+                link: '/v2/distributors',
+              },
+            ]}
+          />
+        </MenuItem>
         <MenuItem title="Company" icon="fa fa-user">
           <SubMenu
             items={[
