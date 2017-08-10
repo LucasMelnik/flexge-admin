@@ -16,6 +16,7 @@ class CompanyFormService {
     });
     this.form.validations = {
       name: [isRequired],
+      state: [isRequired],
       cnpj: [isRequired, isCNPJ],
     };
   }
@@ -52,11 +53,14 @@ class CompanyFormService {
     this.submit.fetch({
       method: companyId ? 'put' : 'post',
       url: companyId ? `/companies/${companyId}` : '/companies',
-      body: this.form.getValues(),
+      body: {
+        ...this.form.getValues(),
+        state: this.form.getValue('state').value,
+      },
     }).then(() => {
       if (this.submit.data) {
         const company = this.submit.data;
-        browserHistory.push(`/companies/${company.id}`);
+        browserHistory.push(`/v2/companies/${company.id}`);
         this.companyId = company.id;
         this.form.reset();
         if (company.contractStart) {
@@ -66,12 +70,8 @@ class CompanyFormService {
           company.contractEnd = new Date(company.contractEnd);
         }
         this.form.setInitialValues(company);
-        NotificationService.addNotification(
-          `Company ${companyId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
-          'success',
-        );
+
+        window.showSuccess(`Company ${companyId ? 'updated' : 'created'} successfully.`);
       }
       if (this.submit.error) {
         NotificationService.addNotification(

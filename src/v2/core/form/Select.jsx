@@ -3,49 +3,63 @@ import PropTypes from 'prop-types';
 import $ from 'jquery';
 import 'select2';
 import 'select2/dist/css/select2.css';
+import Select2 from 'react-select';
+import 'react-select/dist/react-select.css';
+import './Select.css';
 
 export default class Select extends Component {
 
   static propTypes = {
     url: PropTypes.string.isRequired,
+    value: PropTypes.string,
     placeholder: PropTypes.string,
     label: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
     options: PropTypes.node,
+    description: PropTypes.string,
+    fieldValidation: PropTypes.string,
   };
 
   static defaultProps = {
     placeholder: 'Select...',
     options: [],
+    value: null,
+    fieldValidation: null,
+    description: null,
   };
-
-  componentDidMount() {
-    $(this.select2).select2({
-      placeholder: this.props.placeholder,
-      allowClear: true,
-    });
-  }
 
   render() {
     return (
       <div>
         <div
           style={{
+            display: 'flex',
             fontWeight: 400,
             color: '#555555',
             marginBottom: 10,
           }}
         >
-          {this.props.label}
+          <div>
+            {this.props.label}
+          </div>
+          <div style={{
+            marginLeft: 15,
+            fontSize: 13,
+            color: 'red',
+          }}>
+            {this.props.description}
+          </div>
         </div>
-        <select
-          ref={select2 => this.select2 = select2}
-          style={{ width: '100%' }}
+        <div
+          style={this.props.fieldValidation && { border: '1px solid red' }}
         >
-          <option></option>
-          {this.props.options.map(item => (
-            <option key={item.value} value={item.value}>{item.label}</option>
-          ))}
-        </select>
+          <Select2
+            placeholder={this.props.placeholder}
+            value={this.props.value}
+            options={this.props.options}
+            onChange={this.props.onChange}
+          />
+        </div>
       </div>
     );
   }

@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import Button from './Button';
 
 const FormButtons = props => (
-  <div>
+  <div
+    style={{
+      textAlign: 'right',
+    }}
+  >
     <Button
       icon="fa fa-check"
       type="primary"
@@ -12,6 +16,8 @@ const FormButtons = props => (
       buttonType="submit"
       label={props.confirmLabel}
     />
+    &emsp;
+    &emsp;
     &emsp;
     <Button
       icon="fa fa-ban"

@@ -9,7 +9,7 @@ const CompanyFormScene = props => (
       crumbs={[
         {
           text: 'Companies',
-          link: '/companies',
+          link: '/v2/companies',
         },
         {
           text: props.params.companyId ? 'Edit Company' : 'Create Company',

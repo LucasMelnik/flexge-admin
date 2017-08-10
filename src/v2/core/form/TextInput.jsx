@@ -37,7 +37,12 @@ export default class TextInput extends Component {
         >
           {this.props.label}
         </label>
-        <span className="desc">
+        <span
+          className="desc"
+          style={{
+            color: 'red',
+          }}
+        >
           {this.props.description}
         </span>
         <div className="controls">

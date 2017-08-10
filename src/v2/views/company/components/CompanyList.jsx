@@ -38,11 +38,11 @@ const CompanyList = props => (
                   icon="fa-trash"
                   onClick={() => props.onDelete(row)}
                 />
-                {' '}
+                {/* {' '}
                 <IconButton
                   icon="fa-edit"
                   onClick={() => alert()}
-                />
+                /> */}
               </div>
             );
           },
@@ -50,7 +50,7 @@ const CompanyList = props => (
       ]}
       rows={props.companies}
       selectable
-      onSelect={row => browserHistory.push(`/companies/${row.id}`)}
+      onSelect={row => browserHistory.push(`/v2/companies/${row.id}`)}
     />
   </Async>
 );
