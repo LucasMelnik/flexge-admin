@@ -7,6 +7,7 @@ export default class TextInput extends Component {
     label: PropTypes.string.isRequired,
     value: PropTypes.string,
     onChange: PropTypes.func,
+    onFocus: PropTypes.func,
     type: PropTypes.oneOf(['text', 'password']),
     placeholder: PropTypes.string,
     description: PropTypes.string,
@@ -19,6 +20,7 @@ export default class TextInput extends Component {
   static defaultProps = {
     description: null,
     onChange: null,
+    onFocus: null,
     value: '',
     placeholder: null,
     type: 'text',
@@ -71,6 +73,7 @@ export default class TextInput extends Component {
               type={this.props.type}
               value={this.props.value}
               onChange={e => this.props.onChange && this.props.onChange(e.target.value)}
+              onFocus={this.props.onFocus}
               placeholder={this.props.placeholder}
               disabled={this.props.disabled && 'disabled'}
             />
