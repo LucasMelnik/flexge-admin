@@ -30,7 +30,7 @@ const Card = props => (
 
 Card.propTypes = {
   title: PropTypes.string,
-  actions: PropTypes.arrayOf(PropTypes.node),
+  actions: PropTypes.node,
   children: PropTypes.node.isRequired,
 };
 

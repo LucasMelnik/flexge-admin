@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import Cleave from 'cleave.js';
-//eslint-disable-next-line
-import CleavePhoneBr from 'cleave.js/dist/addons/cleave-phone.br';
+import 'cleave.js/dist/addons/cleave-phone.br';
 import TextInput from './TextInput';
 
 export default class MaskInput extends Component {
@@ -10,8 +10,6 @@ export default class MaskInput extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     label: PropTypes.string,
-    errorText: PropTypes.string,
-    fullWidth: PropTypes.bool,
     disabled: PropTypes.bool,
     value: PropTypes.any,
     maskType: PropTypes.oneOf([
@@ -23,19 +21,21 @@ export default class MaskInput extends Component {
     blocks: PropTypes.arrayOf(PropTypes.number),
     numericOnly: PropTypes.bool,
     numeralPositiveOnly: PropTypes.bool,
+    fieldValidation: PropTypes.oneOf(['error', 'warning', 'success']),
+    helpText: PropTypes.string,
   };
 
   static defaultProps = {
     value: '',
     label: null,
-    errorText: null,
-    fullWidth: false,
     disabled: false,
     maskType: 'custom',
     delimiters: [],
     numericOnly: false,
     numeralPositiveOnly: false,
     blocks: [],
+    fieldValidation: null,
+    helpText: null,
   };
 
   state = { maskedValue: '' };
@@ -50,7 +50,7 @@ export default class MaskInput extends Component {
     };
     maskOptions[this.props.maskType] = true;
 
-    this.maskedField = new Cleave(this.textInput, maskOptions);
+    this.maskedField = new Cleave(window.$(ReactDOM.findDOMNode(this.textInput)).find('input'), maskOptions);
     this.maskedField.setRawValue(this.props.value);
     this.setState({
       maskedValue: this.maskedField.getFormattedValue(),
@@ -76,10 +76,12 @@ export default class MaskInput extends Component {
     return (
       <TextInput
         label={this.props.label}
-        // errorText={this.props.errorText}
         value={this.state.maskedValue}
         onChange={this.handleChange}
         disabled={this.props.disabled}
+        placeholder={this.props.placeholder}
+        fieldValidation={this.props.fieldValidation}
+        helpText={this.props.helpText}
         type="text"
         ref={input => { this.textInput = input; }}
       />
