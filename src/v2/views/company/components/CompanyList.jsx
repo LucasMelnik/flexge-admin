@@ -38,11 +38,11 @@ const CompanyList = props => (
                   icon="fa-trash"
                   onClick={() => props.onDelete(row)}
                 />
-                {/* {' '}
+                {' '}
                 <IconButton
                   icon="fa-edit"
                   onClick={() => alert()}
-                /> */}
+                />
               </div>
             );
           },

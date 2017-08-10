@@ -47,6 +47,7 @@ class CompanyFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      window.showErrorMessage('Fill the required fields');
       return;
     }
     const companyId = this.form.getValue('id');
