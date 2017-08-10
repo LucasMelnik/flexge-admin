@@ -2,11 +2,11 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
 import CompanyListFilterContainer from './CompanyListFilterContainer';
 import CompanyListContainer from './CompanyListContainer';
-import Breadcrumb from '../../../core/layout/Breadcrumb';
 
-const CompanyListSceneV2 = () => (
+const CompanyListScene = () => (
   <div>
     <Breadcrumb
       crumbs={[
@@ -46,4 +46,4 @@ const CompanyListSceneV2 = () => (
   </div>
 );
 
-export default CompanyListSceneV2;
+export default CompanyListScene;

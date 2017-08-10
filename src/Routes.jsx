@@ -32,11 +32,14 @@ import MainSceneV2 from './v2/views/main/components/MainScene';
 import TestComponents from './v2/TestComponents';
 import DashboardSceneV2 from './v2/views/dashboard/components/DashboardScene';
 
-import CompanyListSceneV2 from './v2/views/company/components/CompanyListSceneV2';
+import CompanyListSceneV2 from './v2/views/company/components/CompanyListScene';
 import CompanyFormScene from './v2/views/company/components/CompanyFormScene';
 
-import DistributorListSceneV2 from './v2/views/distributor/components/DistributorListSceneV2';
+import DistributorListSceneV2 from './v2/views/distributor/components/DistributorListScene';
 import DistributorFormScene from './v2/views/distributor/components/DistributorFormScene';
+
+import TeacherListSceneV2 from './v2/views/teacher/components/TeacherListScene';
+import TeacherFormScene from './v2/views/teacher/components/TeacherFormScene';
 
 
 function authRequired(nextState, replace) {
@@ -56,6 +59,9 @@ const Routes = () => (
       <Route path="/v2/distributors" component={DistributorListSceneV2} />
       <Route path="/v2/distributors/new" component={DistributorFormScene} />
       <Route path="/v2/distributors/:distributorId" component={DistributorFormScene} />
+      <Route path="/v2/teachers" component={TeacherListSceneV2} />
+      <Route path="/v2/teachers/new" component={TeacherFormScene} />
+      <Route path="/v2/teachers/:teacherId" component={TeacherFormScene} />
     </Route>
     <Route path="/v2/test" component={TestComponents} />
     <Route path="/" component={MainScene} onEnter={authRequired}>

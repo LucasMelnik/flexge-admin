@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { sortBy } from 'lodash';
-import $ from 'jquery';
-import 'select2';
-import 'select2/dist/css/select2.css';
+import Select2 from 'react-select';
+import 'react-select/dist/react-select.css';
+import './Select.css';
 
 export default class FetchSelect extends Component {
 
@@ -16,20 +16,23 @@ export default class FetchSelect extends Component {
       text: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
     }).isRequired,
-
+    value: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    description: PropTypes.string,
+    fieldValidation: PropTypes.string,
+    optionsTransformer: PropTypes.func,
   };
 
   static defaultProps = {
     placeholder: 'Select...',
-
+    value: null,
+    fieldValidation: null,
+    description: null,
+    optionsTransformer: option => ({
+      label: option.name,
+      value: option.id,
+    })
   };
-
-  componentDidMount() {
-    $(this.select2).select2({
-      placeholder: this.props.placeholder,
-      allowClear: true,
-    });
-  }
 
   state = { data: [] };
 
@@ -46,10 +49,11 @@ export default class FetchSelect extends Component {
         data: sortBy(data, item => item[this.props.resultTransformer.text].toLowerCase()),
       }, () => {
         if (this.props.defaultSelect) {
-          this.props.onSelect(this.state.data[0]);
+          this.props.onChange(this.state.data[0].id || null);
         }
       });
-      return response.data;
+
+      return data;
     });
   }
 
@@ -58,22 +62,39 @@ export default class FetchSelect extends Component {
       <div>
         <div
           style={{
+            display: 'flex',
             fontWeight: 400,
             color: '#555555',
             marginBottom: 10,
           }}
         >
-          {this.props.label}
+          <div>
+            {this.props.label}
+          </div>
+          <div style={{
+            marginLeft: 15,
+            fontSize: 13,
+            color: 'red',
+          }}>
+            {this.props.description}
+          </div>
         </div>
-        <select
-          ref={select2 => this.select2 = select2}
-          style={{ width: '100%' }}
+        <div
+          style={this.props.fieldValidation && { border: '1px solid red' }}
         >
-          <option></option>
-          {this.state.data.map(item => (
-            <option>{item.name}</option>
-          ))}
-        </select>
+          {this.state.data.map(item => {
+            console.log({
+              label: item.name,
+              value: item.id,
+            })
+          })}
+          <Select2
+            placeholder={this.props.placeholder}
+            value={this.props.value}
+            options={this.state.data.map(this.props.optionsTransformer)}
+            onChange={this.props.onChange}
+          />
+        </div>
       </div>
     );
   }
