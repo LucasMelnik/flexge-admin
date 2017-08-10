@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
-import 'select2';
-import 'select2/dist/css/select2.css';
 import Select2 from 'react-select';
 import 'react-select/dist/react-select.css';
 import './Select.css';
@@ -10,7 +8,6 @@ import './Select.css';
 export default class Select extends Component {
 
   static propTypes = {
-    url: PropTypes.string.isRequired,
     value: PropTypes.string,
     placeholder: PropTypes.string,
     label: PropTypes.string.isRequired,

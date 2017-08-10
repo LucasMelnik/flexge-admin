@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import TextInput from '../../../core/form/TextInput';
 
 const CompanyListFilter = props => (
-  <div>
-    <TextInput
-      label="Search companies"
-      placeholder="Start type to filter the companies"
-      value={props.value}
-      onChange={props.onChange}
-    />
-  </div>
+  <TextInput
+    label="Search companies"
+    placeholder="Start type to filter the companies"
+    value={props.value}
+    onChange={props.onChange}
+  />
 );
 
 CompanyListFilter.propTypes = {

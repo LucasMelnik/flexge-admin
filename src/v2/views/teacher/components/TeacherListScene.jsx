@@ -3,25 +3,25 @@ import { browserHistory } from 'react-router';
 import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
-import DistributorListFilterContainer from './DistributorListFilterContainer';
-import DistributorListContainer from './DistributorListContainer';
+import TeacherListFilterContainer from './TeacherListFilterContainer';
+import TeacherListContainer from './TeacherListContainer';
 
-const DistributorListSceneV2 = () => (
+const TeacherListScene = () => (
   <div>
     <Breadcrumb
       crumbs={[
         {
-          text: 'Distributors',
+          text: 'Teachers',
         },
       ]}
     />
     <Card
-      title="Distributors"
+      title="Teachers"
       actions={[
         <Button
-          label="New distributor"
+          label="New teacher"
           icon="fa-plus"
-          onClick={() => browserHistory.push('/v2/distributors/new')}
+          onClick={() => browserHistory.push('/v2/teachers/new')}
         />,
       ]}
     >
@@ -38,12 +38,12 @@ const DistributorListSceneV2 = () => (
             width: '40%',
           }}
         >
-          <DistributorListFilterContainer />
+          <TeacherListFilterContainer />
         </div>
       </div>
-      <DistributorListContainer />
+      <TeacherListContainer />
     </Card>
   </div>
 );
 
-export default DistributorListSceneV2;
+export default TeacherListScene;
