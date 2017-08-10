@@ -4,7 +4,7 @@ import Icon from '../layout/Icon';
 
 const Button = props => (
   <button
-    type="button"
+    type={props.buttonType}
     onClick={() => props.onClick && props.onClick()}
     className={`
       btn
@@ -14,6 +14,7 @@ const Button = props => (
       ${props.rounded && 'btn-round'}
       ${props.bordered && 'btn-border'}
       ${props.size && `btn-${props.size}`}
+      ${props.fullWidth && 'input-block-level'}
     `}
   >
     {props.icon && (
@@ -49,16 +50,20 @@ Button.propTypes = {
   cornered: PropTypes.bool,
   rounded: PropTypes.bool,
   bordered: PropTypes.bool,
+  fullWidth: PropTypes.bool,
+  buttonType: PropTypes.oneOf(['button', 'submit']),
 };
 
 Button.defaultProps = {
-  type: 'primary',
+  type: 'default',
   size: null,
   icon: null,
   onClick: null,
   cornered: false,
   rounded: false,
   bordered: false,
+  fullWidth: false,
+  buttonType: 'button',
 };
 
 export default Button;
