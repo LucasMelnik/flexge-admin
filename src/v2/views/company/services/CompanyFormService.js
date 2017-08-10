@@ -56,7 +56,7 @@ class CompanyFormService {
       url: companyId ? `/companies/${companyId}` : '/companies',
       body: {
         ...this.form.getValues(),
-        state: this.form.getValue('state').value,
+        state: this.form.getValue('state'),
       },
     }).then(() => {
       if (this.submit.data) {

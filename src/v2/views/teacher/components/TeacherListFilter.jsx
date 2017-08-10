@@ -24,12 +24,12 @@ const TeacherListFilter = props => (
           disabled={props.fetching}
           label="Company"
           fullWidth={false}
-          onSelect={value => props.onChange('company', value)}
+          onChange={value => props.onChange('company', value)}
           resultTransformer={{
             text: 'name',
             value: 'id',
           }}
-          value={get(props.values, 'company.name')}
+          value={get(props.values, 'company')}
         />
       </InlineBlock>
     </PermissionValidator>

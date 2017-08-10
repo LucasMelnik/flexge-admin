@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
 import Select2 from 'react-select';
 import 'react-select/dist/react-select.css';
 import './Select.css';
@@ -12,7 +11,10 @@ export default class Select extends Component {
     placeholder: PropTypes.string,
     label: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    options: PropTypes.node,
+    options: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    })),
     description: PropTypes.string,
     fieldValidation: PropTypes.string,
   };
@@ -54,7 +56,7 @@ export default class Select extends Component {
             placeholder={this.props.placeholder}
             value={this.props.value}
             options={this.props.options}
-            onChange={this.props.onChange}
+            onChange={(option) => this.props.onChange && this.props.onChange(option.value)}
           />
         </div>
       </div>

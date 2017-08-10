@@ -10,11 +10,11 @@ class CompanyFormContainer extends Component {
 
   static propTypes = {
     companyId: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     companyId: null,
-  }
+  };
 
   componentWillMount() {
     CompanyFormService.handleLoad(this.props.companyId);
