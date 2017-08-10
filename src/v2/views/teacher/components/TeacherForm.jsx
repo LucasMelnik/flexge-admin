@@ -74,7 +74,7 @@ const TeacherForm = props => (
               fullWidth
               disabled={props.submitting}
               label="Company"
-              value={get(props.values, 'company.name', '')}
+              value={get(props.values, 'company', '')}
               onChange={company => props.onChange('company', company)}
               description={get(props.errors, 'company', null)}
               fieldValidation={get(props.errors, 'company', null) && 'error'}

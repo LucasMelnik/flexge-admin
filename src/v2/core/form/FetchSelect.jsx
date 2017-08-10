@@ -38,7 +38,6 @@ export default class FetchSelect extends Component {
       },
     }).then((response) => {
       const data = response.data.docs || response.data;
-      console.log(data)
       this.setState({
         data: sortBy(data, item => item[this.props.resultTransformer.text].toLowerCase()),
       }, () => {
