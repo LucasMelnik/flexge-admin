@@ -13,14 +13,14 @@ import FormButtons from '../../../core/form/FormButtons';
 
 const TeacherForm = props => (
   <Card
-    title={props.values.id ? 'Update Company' : 'Create Company'}
+    title={props.values.id ? 'Update Teacher' : 'Create Teacher'}
     actions={
       (
         <Button
           icon="fa-arrow-left"
           label="Back"
           type="default"
-          onClick={() => browserHistory.push('/v2/companies')}
+          onClick={() => browserHistory.push('/v2/teachers')}
         />
       )
     }
@@ -70,13 +70,14 @@ const TeacherForm = props => (
         >
           <Column lgSize={3}>
             <FetchSelect
-              url="companies?"
+              url="/companies"
               fullWidth
               disabled={props.submitting}
               label="Company"
               value={get(props.values, 'company.name', '')}
               onChange={company => props.onChange('company', company)}
-              errorText={get(props.errors, 'company', '')}
+              description={get(props.errors, 'company', null)}
+              fieldValidation={get(props.errors, 'company', null) && 'error'}
               resultTransformer={{
                 text: 'name',
                 value: 'id',
