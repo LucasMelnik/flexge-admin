@@ -28,11 +28,13 @@ const ModuleDetailScene = props => (
     <Card
       title="Mastery test"
       actions={
-        <Button
-          icon="fa-plus"
-          onClick={() => browserHistory.push(`/v2/modules/${props.module.id}/mastery-tests/new`)}
-          label="New Mastery Test"
-        />
+        ((props.module.createdBy && props.module.createdBy.id === localStorage.id) || localStorage.role === 'ADMIN') && (
+          <Button
+            icon="fa-plus"
+            onClick={() => browserHistory.push(`/v2/modules/${props.module.id}/mastery-tests/new`)}
+            label="New Mastery Test"
+          />
+        )
       }
     >
       <Async fetching={props.fetching}>
@@ -47,11 +49,13 @@ const ModuleDetailScene = props => (
     <Card
       title="Units"
       actions={
-        <Button
-          icon="fa-plus"
-          onClick={() => browserHistory.push(`/v2/modules/${props.module.id}/units/new`)}
-          label="New Unit"
-        />
+        (props.module.createdBy && props.module.createdBy.id === localStorage.id) && (
+          <Button
+            icon="fa-plus"
+            onClick={() => browserHistory.push(`/v2/modules/${props.module.id}/units/new`)}
+            label="New Unit"
+          />
+        )
       }
     >
       <Async fetching={props.fetching}>

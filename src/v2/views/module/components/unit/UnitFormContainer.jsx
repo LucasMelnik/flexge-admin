@@ -32,7 +32,13 @@ class UnitFormContainer extends Component {
           if (this.props.reviewId) {
             UnitFormService.handleSubmit();
           } else {
-            UnitFormService.handleSubmit(unitId => browserHistory.push(`/v2/modules/${this.props.moduleId}/units/${unitId}/items`));
+            UnitFormService.handleSubmit(unit => {
+              if (unit.type.name.toLowerCase() === 'review') {
+                browserHistory.push(`/v2/modules/${unit.module.id}/units/${unit.id}/review-items`)
+              } else {
+                browserHistory.push(`/v2/modules/${unit.module.id}/units/${unit.id}/items`)
+              }
+            });
           }
         }}
         onChange={UnitFormService.form.setValue}

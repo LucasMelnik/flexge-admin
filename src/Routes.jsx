@@ -52,6 +52,7 @@ import MasteryTestFormSceneContainerV2 from './v2/views/mastery-test/components/
 import UnitFormSceneContainerV2 from './v2/views/module/components/unit/UnitFormSceneContainer';
 import UnitItemListSceneContainerV2 from './v2/views/module/components/unit/unit-item/UnitItemListSceneContainer';
 import UnitItemFormSceneContainerV2 from './v2/views/module/components/unit/unit-item/UnitItemFormSceneContainer';
+import UnitReviewItemListSceneContainerV2 from './v2/views/module/components/unit/unit-item/UnitReviewItemListSceneContainer';
 
 import StudentListSceneV2 from './v2/views/student/components/StudentListScene';
 import StudentFormScene from './v2/views/student/components/StudentFormScene';
@@ -95,6 +96,7 @@ const Routes = () => (
       <Route path="modules/:moduleId/units/:unitId" component={UnitFormSceneContainerV2} />
       <Route path="modules/:moduleId/units/:unitId/items" component={UnitItemListSceneContainerV2} />
       <Route path="modules/:moduleId/units/:unitId/items/new" component={UnitItemFormSceneContainerV2} />
+      <Route path="modules/:moduleId/units/:unitId/review-items" component={UnitReviewItemListSceneContainerV2} />
       <Route path="students" component={StudentListSceneV2} />
       <Route path="students/new" component={StudentFormScene} />
       <Route path="students/:studentId" component={StudentFormScene} />

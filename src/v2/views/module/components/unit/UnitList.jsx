@@ -140,7 +140,13 @@ const UnitList = props => (
       ]}
       rows={props.units}
       selectable
-      onSelect={row => browserHistory.push(`/v2/modules/${row.module}/units/${row.id}/items`)}
+      onSelect={row => {
+        if (row.type.name.toLowerCase() === 'review') {
+          browserHistory.push(`/v2/modules/${row.module}/units/${row.id}/review-items`)
+        } else {
+          browserHistory.push(`/v2/modules/${row.module}/units/${row.id}/items`)
+        }
+      }}
     />
   </Async>
 );

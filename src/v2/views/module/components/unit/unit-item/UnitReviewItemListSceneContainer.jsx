@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import UnitItemListScene from './UnitItemListScene';
 import LoadUnitService from '../../../services/LoadUnitService';
 import LoadModuleService from '../../../services/LoadModuleService';
+import UnitReviewItemListScene from './UnitReviewItemListScene';
 
-class UnitItemListSceneContainer extends Component {
+class UnitReviewItemListSceneContainer extends Component {
 
   static propTypes = {
     params: PropTypes.shape({
@@ -23,7 +23,7 @@ class UnitItemListSceneContainer extends Component {
 
   render() {
     return (
-      <UnitItemListScene
+      <UnitReviewItemListScene
         module={LoadModuleService.module}
         unit={this.loadUnitService.unit}
         unitId={this.props.params.unitId}
@@ -34,4 +34,4 @@ class UnitItemListSceneContainer extends Component {
   }
 }
 
-export default observer(UnitItemListSceneContainer);
+export default observer(UnitReviewItemListSceneContainer);

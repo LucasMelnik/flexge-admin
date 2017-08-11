@@ -118,10 +118,10 @@ const UnitForm = props => (
         />
       </Column>
     </Row>
-    <Separator size="xs" />
+    <Separator size="md" />
     {!props.disabled && (
       <FormButtons
-        confirmLabel={props.values.id ? 'Update Module' : 'Create Module'}
+        confirmLabel={props.values.id ? 'Update Unit' : 'Create Unit'}
         isDisabled={props.submitting || !props.isDirty()}
         onReset={props.onReset}
       />
