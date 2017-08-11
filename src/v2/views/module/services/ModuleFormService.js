@@ -57,11 +57,7 @@ class ModuleFormService {
       },
     }).then(() => {
       if (this.submit.data) {
-        const module = this.submit.data;
         browserHistory.push(`/v2/modules`);
-        this.moduleId = module.id;
-        this.form.reset();
-        this.form.setInitialValues(module);
         NotificationService.addNotification(
           `Module ${moduleId ? 'updated' : 'created'} successfully.`,
           null,
@@ -74,7 +70,7 @@ class ModuleFormService {
           `Error ${moduleId ? 'updating' : 'creating'} module.`,
           null,
           null,
-          'danger',
+          'error',
         );
       }
     });

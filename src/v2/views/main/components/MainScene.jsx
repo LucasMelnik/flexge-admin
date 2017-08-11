@@ -8,6 +8,7 @@ import MenuItem from '../../../core/layout/MenuItem';
 import MenuSection from '../../../core/layout/MenuSection';
 import SubMenu from '../../../core/layout/SubMenu';
 import ConfirmDialogContainer from './ConfirmDialogContainer';
+import NotificationContainer from './NotificationContainer';
 
 const MainScene = props => (
   <div>
@@ -106,6 +107,7 @@ const MainScene = props => (
     <MainContent>
       {props.children}
     </MainContent>
+    <NotificationContainer />
   </div>
 );
 
