@@ -25,22 +25,7 @@ const TeacherListScene = () => (
         />,
       ]}
     >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-        }}
-      >
-        <div
-          style={{
-            width: '40%',
-          }}
-        >
-          <TeacherListFilterContainer />
-        </div>
-      </div>
+      <TeacherListFilterContainer />
       <TeacherListContainer />
     </Card>
   </div>

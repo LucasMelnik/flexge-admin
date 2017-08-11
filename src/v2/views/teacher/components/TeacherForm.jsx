@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 import get from 'lodash/get';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import PermissionValidator from '../../../../core/content/PermissionValidator';
-import { browserHistory } from 'react-router';
 import Card from '../../../core/layout/Card';
 import FetchSelect from '../../../core/form/FetchSelect';
 import TextInput from '../../../core/form/TextInput';

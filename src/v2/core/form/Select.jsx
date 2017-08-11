@@ -22,7 +22,7 @@ export default class Select extends Component {
   static defaultProps = {
     placeholder: 'Select...',
     options: [],
-    value: null,
+    value: '',
     fieldValidation: null,
     description: null,
   };
@@ -32,7 +32,7 @@ export default class Select extends Component {
       <div>
         <div
           style={{
-            display: 'flex',
+            minWidth: 250,
             fontWeight: 400,
             color: '#555555',
             marginBottom: 10,
@@ -56,7 +56,8 @@ export default class Select extends Component {
             placeholder={this.props.placeholder}
             value={this.props.value}
             options={this.props.options}
-            onChange={(option) => this.props.onChange && this.props.onChange(option.value)}
+            resetValue=""
+            onChange={(option) => this.props.onChange && this.props.onChange(option.value || '')}
           />
         </div>
       </div>

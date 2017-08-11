@@ -25,22 +25,7 @@ const CompanyListScene = () => (
         />,
       ]}
     >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-        }}
-      >
-        <div
-          style={{
-            width: '40%',
-          }}
-        >
-          <CompanyListFilterContainer />
-        </div>
-      </div>
+      <CompanyListFilterContainer />
       <CompanyListContainer />
     </Card>
   </div>

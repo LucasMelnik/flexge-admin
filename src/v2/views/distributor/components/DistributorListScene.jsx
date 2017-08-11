@@ -25,22 +25,7 @@ const DistributorListScene = () => (
         />,
       ]}
     >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-        }}
-      >
-        <div
-          style={{
-            width: '40%',
-          }}
-        >
-          <DistributorListFilterContainer />
-        </div>
-      </div>
+      <DistributorListFilterContainer />
       <DistributorListContainer />
     </Card>
   </div>
