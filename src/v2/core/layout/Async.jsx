@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Block from 'jsxstyle/Block';
+import './async.css';
 
 const Async = props => (
   <div>
     {props.fetching ? (
-      <Block textAlign="center">
-        <div>loading...</div>
-      </Block>
+      <div
+        style={{
+          position: 'relative',
+          padding: '10px 0px',
+        }}
+      >
+        <div className="spinner" />
+      </div>
     ) : (
       props.children
     )}

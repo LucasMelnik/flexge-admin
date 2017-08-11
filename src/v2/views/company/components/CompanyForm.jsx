@@ -11,33 +11,23 @@ import Select from '../../../core/form/Select';
 import DateInput from '../../../core/form/DateInput';
 import FormButtons from '../../../core/form/FormButtons';
 import MaskInput from '../../../core/form/MaskInput';
+import Async from '../../../core/layout/Async';
 
 const CompanyForm = props => (
-  <div>
-    {props.submitting && (
-      <div
-        style={{
-          background: 'rgba(43, 40, 40, 0.09)',
-          position: 'absolute',
-          zIndex: 3,
-          width: '100%',
-          height: '100%',
-        }}
-      />
-     )}
-    <Card
-      title={props.values.id ? 'Update Company' : 'Create Company'}
-      actions={
-        (
-          <Button
-            icon="fa-arrow-left"
-            label="Back"
-            type="default"
-            onClick={() => browserHistory.push('/v2/companies')}
-          />
-        )
-      }
-    >
+  <Card
+    title={props.values.id ? 'Update Company' : 'Create Company'}
+    actions={
+      (
+        <Button
+          icon="fa-arrow-left"
+          label="Back"
+          type="default"
+          onClick={() => browserHistory.push('/v2/companies')}
+        />
+      )
+    }
+  >
+    <Async fetching={props.submitting}>
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -235,8 +225,8 @@ const CompanyForm = props => (
           onReset={props.onReset}
         />
       </form>
-    </Card>
-  </div>
+    </Async>
+  </Card>
 );
 
 CompanyForm.propTypes = {
