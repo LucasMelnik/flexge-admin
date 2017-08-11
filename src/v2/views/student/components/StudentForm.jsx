@@ -87,6 +87,7 @@ const StudentForm = props => (
           </Column>
         </PermissionValidator>
       </Row>
+      <div style={{ marginBottom: 20 }} />
       <FormButtons
         confirmLabel={props.values.id ? 'Update Student' : 'Create Student'}
         isDisabled={props.submitting || !props.isDirty()}
