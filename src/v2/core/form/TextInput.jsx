@@ -5,16 +5,18 @@ export default class TextInput extends Component {
 
   static propTypes = {
     label: PropTypes.string.isRequired,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
-    type: PropTypes.oneOf(['text', 'password']),
+    type: PropTypes.oneOf(['text', 'password', 'number']),
     placeholder: PropTypes.string,
     description: PropTypes.string,
     disabled: PropTypes.bool,
     fieldType: PropTypes.oneOf(['textarea', 'static']),
     fieldValidation: PropTypes.oneOf(['error', 'warning', 'success']),
     helpText: PropTypes.string,
+    step: PropTypes.number,
+    max: PropTypes.number,
   };
 
   static defaultProps = {
@@ -28,6 +30,8 @@ export default class TextInput extends Component {
     fieldType: null,
     fieldValidation: null,
     helpText: null,
+    max: null,
+    step: null,
   };
 
   render() {
@@ -79,6 +83,8 @@ export default class TextInput extends Component {
               onFocus={this.props.onFocus}
               placeholder={this.props.placeholder}
               disabled={this.props.disabled && 'disabled'}
+              step={this.props.step}
+              max={this.props.max}
             />
           )}
           {this.props.helpText && (

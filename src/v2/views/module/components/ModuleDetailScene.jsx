@@ -5,6 +5,8 @@ import Separator from '../../../core/layout/Separator';
 import Button from '../../../core/form/Button';
 import Card from '../../../core/layout/Card';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
+import MasteryTestListContainer from '../../mastery-test/components/MasteryTestListContainer';
+import Async from '../../../core/layout/Async';
 
 const ModuleDetailScene = props => (
   <div>
@@ -26,11 +28,18 @@ const ModuleDetailScene = props => (
       actions={
         <Button
           icon="fa-plus"
-          onClick={() => browserHistory.push('/v2/matery-test/new')}
+          onClick={() => browserHistory.push(`/v2/modules/${props.module.id}/mastery-tests/new`)}
           label="New Mastery Test"
         />
       }
     >
+      <Async fetching={props.fetching}>
+        {props.module.id && (
+          <MasteryTestListContainer
+            moduleId={props.module.id}
+          />
+        )}
+      </Async>
     </Card>
     <Separator size="md" />
     <Card
