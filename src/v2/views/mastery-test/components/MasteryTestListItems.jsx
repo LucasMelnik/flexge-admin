@@ -7,6 +7,7 @@ import IconButton from '../../../core/form/IconButton';
 import Select from '../../../core/form/Select';
 import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
+import ItemFormContainer from '../../item/components/ItemFormContainer';
 
 const MasteryTestListItems = props => (
   <Async fetching={props.fetching}>
@@ -25,7 +26,7 @@ const MasteryTestListItems = props => (
           rowColumnStyle: {
             paddingRight: 10,
           },
-          render: (row) => (
+          render: (cell, row) => (
             <Select
               label="Order"
               value={row.order}
@@ -74,7 +75,7 @@ const MasteryTestListItems = props => (
           label: 'Time',
           path: 'item.time',
           width: '15%',
-          render: (row) => {
+          render: (cell, row) => {
             return `${row.item.time < 60 ? '00:' : ''}${moment.duration(row.item.time, "seconds").format("mm:ss", {forceLength: true})}`
           },
         },
@@ -94,7 +95,17 @@ const MasteryTestListItems = props => (
       ]}
       rows={props.items}
       expandable
-      expandableComponent={(row) => <p>Render itemForm</p>}
+      expandableComponent={(row) => (
+        <ItemFormContainer
+          itemId={row.item.id}
+          itemsTypeUrl="/item-types?query[allowedForMasteryTest]=true"
+          endpointUrl={`/mastery-tests/${row.masteryTest}/items`}
+          order={row.order}
+          showPostPhrase={false}
+          onSaveSuccess={props.onSaveSuccess}
+          isTestItem
+        />
+      )}
     />
   </Async>
 );

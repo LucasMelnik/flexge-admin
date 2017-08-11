@@ -4,6 +4,7 @@ import Button from '../../../core/form/Button';
 import MasteryTestListItemsContainer from './MasteryTestListItemsContainer';
 //import MasteryTestItemFormContainer from './MasteryTestItemFormContainer';
 import Card from '../../../core/layout/Card';
+import MasteryTestItemFormContainer from './MasteryTestItemFormContainer';
 
 class MasteryTestItems extends Component {
 
@@ -53,11 +54,10 @@ class MasteryTestItems extends Component {
         {this.state.actualScene === 'LIST' ? (
           <MasteryTestListItemsContainer masteryTestId={this.props.masteryTestId} />
         ) : (
-         // <MasteryTestItemFormContainer
-           // endpointUrl={`/mastery-tests/${this.props.masteryTestId}/items`}
-            //onSaveSuccess={this.handleChangeToList}
-          ///>
-          <p>form</p>
+         <MasteryTestItemFormContainer
+            endpointUrl={`/mastery-tests/${this.props.masteryTestId}/items`}
+            onSaveSuccess={this.handleChangeToList}
+          />
         )}
       </Card>
     );
