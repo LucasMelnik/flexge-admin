@@ -101,7 +101,11 @@ const MainScene = props => (
           />
         </MenuItem>
         <MenuItem title="Review" icon="fa fa-user" />
-        <MenuItem title="Placement Test" icon="fa fa-user" />
+        <MenuItem
+          title="Placement Test"
+          icon="fa fa-user"
+          link="/v2/placement-test"
+        />
       </Menu>
     </LeftSidebar>
     <MainContent>

@@ -10,8 +10,6 @@ import Separator from '../../../core/layout/Separator';
 
 const PlacementTestList = props => (
   <Paper>
-    <PlacementTestListFilterContainer />
-    <Separator />
     <Divider />
     <Async fetching={props.fetching}>
       <Table

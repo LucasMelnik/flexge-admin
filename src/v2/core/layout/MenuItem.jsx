@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 
 export default class MenuItem extends Component {
 
@@ -7,18 +8,20 @@ export default class MenuItem extends Component {
     children: PropTypes.node,
     icon: PropTypes.string,
     title: PropTypes.string,
+    link: PropTypes.string,
   };
 
   static defaultProps = {
     children: null,
     icon: null,
     title: null,
+    link: null,
   };
 
   render() {
     return (
       <li className="">
-        <a>
+        <Link to={this.props.link}>
           <i className={this.props.icon} />
           <span className="title">
             {this.props.title}
@@ -26,7 +29,7 @@ export default class MenuItem extends Component {
           {this.props.children && (
             <span className="arrow" />
           )}
-        </a>
+        </Link>
         {this.props.children}
       </li>
     );

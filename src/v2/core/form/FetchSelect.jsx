@@ -41,7 +41,7 @@ export default class FetchSelect extends Component {
     }).then((response) => {
       const data = response.data.docs || response.data;
       this.setState({
-        data: sortBy(data, item => item[this.props.resultTransformer.text].toLowerCase()),
+        data: sortBy(data, item => String(item[this.props.resultTransformer.text]).toLowerCase()),
       }, () => {
         if (this.props.defaultSelect) {
           this.props.onChange(this.state.data[0].id || null);

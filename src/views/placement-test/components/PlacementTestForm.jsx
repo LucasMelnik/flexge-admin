@@ -26,7 +26,7 @@ const PlacementTestForm = props => (
             disabled={props.submitting}
             label="Level"
             value={get(props.values, 'placementTestLevel', '')}
-            onChange={value => props.onChange('placementTestLevel', value)}
+          onChange={value => props.onChange('placementTestLevel', value)}
             errorText={get(props.errors, 'placementTestLevel', '')}
             optionsTransformer={placementTestLevel => ({
               label: placementTestLevel.level.toString(),

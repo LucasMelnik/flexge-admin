@@ -51,6 +51,9 @@ import ModuleFormSceneV2 from './v2/views/module/components/ModuleFormScene';
 import StudentListSceneV2 from './v2/views/student/components/StudentListScene';
 import StudentFormScene from './v2/views/student/components/StudentFormScene';
 
+import PlacementTestListSceneV2 from './v2/views/placement-test/components/PlacementTestListScene';
+import PlacementTestFormSceneV2 from './v2/views/placement-test/components/PlacementTestFormScene';
+
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
     replace('/login');
@@ -80,6 +83,9 @@ const Routes = () => (
       <Route path="students" component={StudentListSceneV2} />
       <Route path="students/new" component={StudentFormScene} />
       <Route path="students/:" component={StudentFormScene} />
+      <Route path="placement-test" component={PlacementTestListSceneV2} />
+      <Route path="placement-test/new" component={PlacementTestFormSceneV2} />
+      <Route path="placement-test/:companyId" component={PlacementTestFormSceneV2} />
     </Route>
     <Route path="/v2/test" component={TestComponents} />
     <Route path="/" component={MainScene} onEnter={authRequired}>

@@ -9,10 +9,10 @@ export default class Select extends Component {
   static propTypes = {
     value: PropTypes.string,
     placeholder: PropTypes.string,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     onChange: PropTypes.func.isRequired,
     options: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string.isRequired,
+      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     })),
     description: PropTypes.string,
