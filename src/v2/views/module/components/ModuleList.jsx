@@ -87,7 +87,7 @@ const ModuleList = props => (
         ]}
         rows={props.modules}
         selectable
-        onSelect={row => browserHistory.push(`/v2/modules/${row.id}/units`)}
+        onSelect={row => browserHistory.push(`/v2/modules/${row.id}/details`)}
       />
   </Async>
 );

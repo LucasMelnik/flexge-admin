@@ -11,7 +11,7 @@ const Async = props => (
           padding: '10px 0px',
         }}
       >
-        <div className="spinner" />
+        <div className={`spinner spinner-${props.size}`} />
       </div>
     ) : (
       props.children
@@ -22,6 +22,11 @@ const Async = props => (
 Async.propTypes = {
   fetching: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
+  size: PropTypes.oneOf(['xs', 'md']),
+};
+
+Async.defaultProps = {
+  size: 'md',
 };
 
 export default Async;
