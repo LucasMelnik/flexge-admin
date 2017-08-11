@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 
 const SubMenu = props => (
   <ul className="sub-menu">
     {props.items.map(item => (
       <li key={`sub-menu-${item.link}`}>
-        <a href={item.link}>
+        <Link to={item.link}>
           {item.label}
-        </a>
+        </Link>
       </li>
     ))}
   </ul>
