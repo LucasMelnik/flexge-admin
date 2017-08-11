@@ -7,6 +7,7 @@ import Select from '../../../../../core/form/Select';
 import IconButton from '../../../../../core/form/IconButton';
 import Table from '../../../../../core/form/Table';
 import Async from '../../../../../core/layout/Async';
+import ItemFormContainer from '../../../../item/components/ItemFormContainer';
 
 const UnitItemList = props => (
   <Async fetching={props.fetching}>
@@ -153,7 +154,14 @@ const UnitItemList = props => (
       rows={props.items}
       expandable
       expandableComponent={(row) => (
-        <p>dasds</p>
+        <ItemFormContainer
+          itemId={row.item.id}
+          itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
+          endpointUrl={`units/${props.unit.id}/items`}
+          order={row.order}
+          disabled={props.unit.type.name.toLowerCase() === 'review' || props.disabled}
+          showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
+        />
       )}
     />
 </Async>

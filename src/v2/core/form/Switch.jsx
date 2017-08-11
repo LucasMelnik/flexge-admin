@@ -5,12 +5,14 @@ export default class Switch extends Component {
 
   static propTypes = {
     value: PropTypes.bool,
+    disabled: PropTypes.bool,
     onChange: PropTypes.func,
     size: PropTypes.oneOf(['small', 'default']),
   };
 
   static defaultProps = {
     value: false,
+    disabled: false,
     onChange: () => null,
     size: 'small',
   };

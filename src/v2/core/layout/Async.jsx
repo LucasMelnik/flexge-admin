@@ -22,7 +22,7 @@ const Async = props => (
 Async.propTypes = {
   fetching: PropTypes.bool.isRequired,
   children: PropTypes.node,
-  size: PropTypes.oneOf(['xs', 'md']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
 };
 
 Async.defaultProps = {

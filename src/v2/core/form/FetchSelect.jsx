@@ -11,7 +11,7 @@ export default class FetchSelect extends Component {
     label: PropTypes.string.isRequired,
     resultTransformer: PropTypes.shape({
       text: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
+      value: PropTypes.string,
     }).isRequired,
     placeholder: PropTypes.string,
     value: PropTypes.string,
@@ -59,7 +59,7 @@ export default class FetchSelect extends Component {
         description={this.props.description}
         fieldValidation={this.props.fieldValidation}
         placeholder={this.props.placeholder}
-        onChange={this.props.onChange}
+        onChange={(value) => this.props.onChange(value, this.state.data.find(item => item[this.props.resultTransformer.value] === value))}
         options={this.state.data.map(option => ({
           label: option[this.props.resultTransformer.text],
           value: option[this.props.resultTransformer.value],

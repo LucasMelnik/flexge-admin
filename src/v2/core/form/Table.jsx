@@ -55,7 +55,7 @@ export default class Table extends Component {
             expandColumnComponent: this.renderExpandableIcon,
             columnWidth: 40
           }}
-          selectRow={this.props.selectable && {
+          selectRow={this.props.selectable ? {
             mode: 'checkbox',
             hideSelectColumn: true,
             clickToSelect: true ,
@@ -65,7 +65,7 @@ export default class Table extends Component {
               }
               this.props.onSelect && this.props.onSelect(row);
             },
-          }}
+          } : {}}
         >
           {this.props.columns.map(column => (
             <TableHeaderColumn

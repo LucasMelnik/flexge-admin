@@ -8,6 +8,9 @@ const Icon = props => (
       icon-${props.size}
       ${props.backgroundStyle ? `icon-${props.backgroundStyle}` : ''}
     `}
+    style={{
+      marginRight: 0,
+    }}
   />
 );
 
