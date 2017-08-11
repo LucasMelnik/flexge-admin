@@ -17,13 +17,13 @@ const CompanyListScene = () => (
     />
     <Card
       title="Companies"
-      actions={[
+      actions={
         <Button
           label="New company"
           icon="fa-plus"
           onClick={() => browserHistory.push('/v2/companies/new')}
-        />,
-      ]}
+        />
+      }
     >
       <CompanyListFilterContainer />
       <CompanyListContainer />
