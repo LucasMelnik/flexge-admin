@@ -57,7 +57,7 @@ class PlacementTestFormService {
         this.form.reset();
         this.form.setInitialValues(placementTest);
         NotificationService.addNotification(
-          `Placement Test ${placementTestId ? 'updated' : 'created'} successfully.`,
+          `Placement Test Grammar ${placementTestId ? 'updated' : 'created'} successfully.`,
           null,
           null,
           'success',
@@ -65,7 +65,7 @@ class PlacementTestFormService {
       }
       if (this.submit.error) {
         NotificationService.addNotification(
-          `Error ${placementTestId ? 'updating' : 'creating'} Placement Test.`,
+          `Error ${placementTestId ? 'updating' : 'creating'} Placement Test Grammar.`,
           null,
           null,
           'danger',
