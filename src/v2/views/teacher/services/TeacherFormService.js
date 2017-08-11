@@ -2,7 +2,6 @@ import { extendObservable, action } from 'mobx';
 import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
-import NotificationService from '../../../core/services/NotificationService';
 import { isRequired, isValidEmail } from '../../../../core/validations';
 
 class TeacherFormService {
@@ -29,7 +28,11 @@ class TeacherFormService {
         url: `/teachers/${teacherId}`,
       }).then(() => {
         if (this.fetch.data) {
-          this.form.setInitialValues(this.fetch.data);
+          const data = {
+            ...this.fetch.data,
+            company: this.fetch.data.company.id,
+          };
+          this.form.setInitialValues(data);
         }
       });
     } else {
@@ -49,29 +52,19 @@ class TeacherFormService {
       url: teacherId ? `/teachers/${teacherId}` : '/teachers',
       body: {
         ...this.form.getValues(),
-        company: this.form.getValue('company').id,
+        company: this.form.getValue('company'),
       },
     }).then(() => {
       if (this.submit.data) {
         const teacher = this.submit.data;
-        browserHistory.push(`/teachers/${teacher.id}`);
+        browserHistory.push(`/v2/teachers/${teacher.id}`);
         this.teacherId = teacher.id;
         this.form.reset();
         this.form.setInitialValues(teacher);
-        NotificationService.addNotification(
-          `Teacher ${teacherId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
-          'success',
-        );
+        window.showSuccess(`Teacher ${teacherId ? 'updated' : 'created'} successfully.`);
       }
       if (this.submit.error) {
-        NotificationService.addNotification(
-          `Error ${teacherId ? 'updating' : 'creating'} teacher.`,
-          null,
-          null,
-          'danger',
-        );
+        window.showErrorMessage(`Error ${teacherId ? 'updating' : 'creating'} teacher.`);
       }
     });
   });

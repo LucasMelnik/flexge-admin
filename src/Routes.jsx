@@ -51,17 +51,17 @@ function authRequired(nextState, replace) {
 const Routes = () => (
   <Router history={browserHistory}>
     <Route path="/login" component={LoginScene} />
-    <Route path="/v2" component={MainSceneV2} onEnter={authRequired}>
+    <Route path="/v2/" component={MainSceneV2} onEnter={authRequired}>
       <IndexRoute component={DashboardSceneV2} />
-      <Route path="/v2/companies" component={CompanyListSceneV2} />
-      <Route path="/v2/companies/new" component={CompanyFormScene} />
-      <Route path="/v2/companies/:companyId" component={CompanyFormScene} />
-      <Route path="/v2/distributors" component={DistributorListSceneV2} />
-      <Route path="/v2/distributors/new" component={DistributorFormScene} />
-      <Route path="/v2/distributors/:distributorId" component={DistributorFormScene} />
-      <Route path="/v2/teachers" component={TeacherListSceneV2} />
-      <Route path="/v2/teachers/new" component={TeacherFormScene} />
-      <Route path="/v2/teachers/:teacherId" component={TeacherFormScene} />
+      <Route path="companies" component={CompanyListSceneV2} />
+      <Route path="companies/new" component={CompanyFormScene} />
+      <Route path="companies/:companyId" component={CompanyFormScene} />
+      <Route path="distributors" component={DistributorListSceneV2} />
+      <Route path="distributors/new" component={DistributorFormScene} />
+      <Route path="distributors/:distributorId" component={DistributorFormScene} />
+      <Route path="teachers" component={TeacherListSceneV2} />
+      <Route path="teachers/new" component={TeacherFormScene} />
+      <Route path="teachers/:teacherId" component={TeacherFormScene} />
     </Route>
     <Route path="/v2/test" component={TestComponents} />
     <Route path="/" component={MainScene} onEnter={authRequired}>
