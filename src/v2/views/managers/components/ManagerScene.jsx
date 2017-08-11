@@ -20,7 +20,7 @@ const ManagerScene = props => (
         {props.actualScene === 'FORM' && (
           <Button
             label="Back to Managers"
-            icon="fa-arrow-back"
+            icon="fa-arrow-left"
             onClick={() => props.changeToList()}
           />
         )}
