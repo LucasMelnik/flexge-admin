@@ -28,6 +28,7 @@ import NotFoundScene from './views/not-found/NotFoundScene';
 
 
 // **** V2 **** //
+import LoginSceneV2 from './v2/views/login/components/LoginScene';
 import MainSceneV2 from './v2/views/main/components/MainScene';
 import TestComponents from './v2/TestComponents';
 import DashboardSceneV2 from './v2/views/dashboard/components/DashboardScene';
@@ -52,6 +53,15 @@ import UnitFormSceneContainerV2 from './v2/views/module/components/unit/UnitForm
 import UnitItemListSceneContainerV2 from './v2/views/module/components/unit/unit-item/UnitItemListSceneContainer';
 import UnitItemFormSceneContainerV2 from './v2/views/module/components/unit/unit-item/UnitItemFormSceneContainer';
 
+import StudentListSceneV2 from './v2/views/student/components/StudentListScene';
+import StudentFormScene from './v2/views/student/components/StudentFormScene';
+//
+// import SchoolClassListSceneV2 from './v2/views/school-class/components/SchoolClassListScene';
+// import SchoolClassFormScene from './v2/views/school-class/components/SchoolClassFormScene';
+
+import PlacementTestListSceneV2 from './v2/views/placement-test/components/PlacementTestListScene';
+import PlacementTestFormSceneV2 from './v2/views/placement-test/components/PlacementTestFormScene';
+
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
     replace('/login');
@@ -60,7 +70,7 @@ function authRequired(nextState, replace) {
 
 const Routes = () => (
   <Router history={browserHistory}>
-    <Route path="/login" component={LoginScene} />
+    <Route path="/login" component={LoginSceneV2} />
     <Route path="/v2/" component={MainSceneV2} onEnter={authRequired}>
       <IndexRoute component={DashboardSceneV2} />
       <Route path="companies" component={CompanyListSceneV2} />
@@ -85,6 +95,12 @@ const Routes = () => (
       <Route path="modules/:moduleId/units/:unitId" component={UnitFormSceneContainerV2} />
       <Route path="modules/:moduleId/units/:unitId/items" component={UnitItemListSceneContainerV2} />
       <Route path="modules/:moduleId/units/:unitId/items/new" component={UnitItemFormSceneContainerV2} />
+      <Route path="students" component={StudentListSceneV2} />
+      <Route path="students/new" component={StudentFormScene} />
+      <Route path="students/:studentId" component={StudentFormScene} />
+      <Route path="placement-test" component={PlacementTestListSceneV2} />
+      <Route path="placement-test/new" component={PlacementTestFormSceneV2} />
+      <Route path="placement-test/:placementTestId" component={PlacementTestFormSceneV2} />
     </Route>
     <Route path="/v2/test" component={TestComponents} />
     <Route path="/" component={MainScene} onEnter={authRequired}>

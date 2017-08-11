@@ -58,7 +58,7 @@ export default class Table extends Component {
           selectRow={this.props.selectable ? {
             mode: 'checkbox',
             hideSelectColumn: true,
-            clickToSelect: true ,
+            clickToSelect: true,
             onSelect: (row, isSelected, e) => {
               if (window.$(e.target).is('button') || window.$(e.target).is('i')) {
                 return false;

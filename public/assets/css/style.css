@@ -4498,7 +4498,7 @@ a.cke_button_off:hover, .cke_hc a.cke_button_off:focus, .cke_hc a.cke_button_off
 .register-social a {
     margin: 5px 5px 5px 5px;
 }
-body.login_page {
+.login_page {
     background-color: #009688;
     background-image: url('../images/login-bg.png');
     background-attachment: fixed;
