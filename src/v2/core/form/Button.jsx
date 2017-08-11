@@ -4,6 +4,7 @@ import Icon from '../layout/Icon';
 
 const Button = props => (
   <button
+    disabled={props.disabled}
     type={props.buttonType}
     onClick={() => props.onClick && props.onClick()}
     className={`
@@ -50,6 +51,7 @@ Button.propTypes = {
   label: PropTypes.string.isRequired,
   icon: PropTypes.string,
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
   cornered: PropTypes.bool,
   rounded: PropTypes.bool,
   bordered: PropTypes.bool,
