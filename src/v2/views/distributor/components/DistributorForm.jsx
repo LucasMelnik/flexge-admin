@@ -6,6 +6,7 @@ import Button from '../../../core/form/Button';
 import { browserHistory } from 'react-router';
 import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
+import Async from '../../../core/layout/Async';
 
 const DistributorForm = props => (
   <Card
@@ -21,26 +22,28 @@ const DistributorForm = props => (
       )
     }
   >
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        props.onSubmit();
-      }}
-    >
-      <TextInput
-        disabled={props.submitting}
-        label="Distributor Name"
-        value={get(props.values, 'name', '')}
-        onChange={value => props.onChange('name', value)}
-        description={get(props.errors, 'name', null)}
-        fieldValidation={get(props.errors, 'name', null) && 'error'}
-      />
-      <FormButtons
-        confirmLabel={props.values.id ? 'Update Distributor' : 'Create Distributor'}
-        isDisabled={props.submitting || !props.isDirty()}
-        onReset={props.onReset}
-      />
-    </form>
+    <Async fetching={props.submitting}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          props.onSubmit();
+        }}
+      >
+        <TextInput
+          disabled={props.submitting}
+          label="Distributor Name"
+          value={get(props.values, 'name', '')}
+          onChange={value => props.onChange('name', value)}
+          description={get(props.errors, 'name', null)}
+          fieldValidation={get(props.errors, 'name', null) && 'error'}
+        />
+        <FormButtons
+          confirmLabel={props.values.id ? 'Update Distributor' : 'Create Distributor'}
+          isDisabled={props.submitting || !props.isDirty()}
+          onReset={props.onReset}
+        />
+      </form>
+    </Async>
   </Card>
 );
 

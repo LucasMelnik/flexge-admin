@@ -61,7 +61,10 @@ class TeacherFormService {
         browserHistory.push(`/v2/teachers/${teacher.id}`);
         this.teacherId = teacher.id;
         this.form.reset();
-        this.form.setInitialValues(teacher);
+        this.form.setInitialValues({
+          ...teacher,
+          company: teacher.company.id,
+        });
         window.showSuccess(`Teacher ${teacherId ? 'updated' : 'created'} successfully.`);
       }
       if (this.submit.error) {

@@ -50,6 +50,9 @@ import ModuleFormSceneV2 from './v2/views/module/components/ModuleFormScene';
 
 import StudentListSceneV2 from './v2/views/student/components/StudentListScene';
 import StudentFormScene from './v2/views/student/components/StudentFormScene';
+//
+// import SchoolClassListSceneV2 from './v2/views/school-class/components/SchoolClassListScene';
+// import SchoolClassFormScene from './v2/views/school-class/components/SchoolClassFormScene';
 
 import PlacementTestListSceneV2 from './v2/views/placement-test/components/PlacementTestListScene';
 import PlacementTestFormSceneV2 from './v2/views/placement-test/components/PlacementTestFormScene';
@@ -82,10 +85,10 @@ const Routes = () => (
       <Route path="modules/:moduleId" component={ModuleFormSceneV2} />
       <Route path="students" component={StudentListSceneV2} />
       <Route path="students/new" component={StudentFormScene} />
-      <Route path="students/:" component={StudentFormScene} />
+      <Route path="students/:studentId" component={StudentFormScene} />
       <Route path="placement-test" component={PlacementTestListSceneV2} />
       <Route path="placement-test/new" component={PlacementTestFormSceneV2} />
-      <Route path="placement-test/:companyId" component={PlacementTestFormSceneV2} />
+      <Route path="placement-test/:placementTestId" component={PlacementTestFormSceneV2} />
     </Route>
     <Route path="/v2/test" component={TestComponents} />
     <Route path="/" component={MainScene} onEnter={authRequired}>
