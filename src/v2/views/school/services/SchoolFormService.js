@@ -2,30 +2,29 @@ import { extendObservable, action } from 'mobx';
 import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
-import { isRequired, isValidEmail } from '../../../../core/validations';
+import NotificationService from '../../../core/services/NotificationService';
+import { isRequired } from '../../../../core/validations';
 
-class TeacherFormService {
+class SchoolFormService {
   fetch = new FetchService()
   submit = new FetchService()
   form = new FormService()
 
   constructor() {
     extendObservable(this, {
-      teacherId: null,
+      schoolId: null,
     });
     this.form.validations = {
       name: [isRequired],
-      email: [isRequired, isValidEmail],
-      password: [isRequired],
       company: localStorage.role === 'COMPANY_MANAGER' ? [] : [isRequired],
     };
   }
 
-  handleLoad = action((teacherId) => {
+  handleLoad = action((schoolId) => {
     this.form.reset();
-    if (teacherId) {
+    if (schoolId) {
       this.fetch.fetch({
-        url: `/teachers/${teacherId}`,
+        url: `/schools/${schoolId}`,
       }).then(() => {
         if (this.fetch.data) {
           const data = {
@@ -36,9 +35,9 @@ class TeacherFormService {
         }
       });
     } else {
-      this.form.setInitialValues({});
+      this.form.setInitialValues({ country: 'Brazil' });
     }
-    this.teacherId = teacherId;
+    this.schoolId = schoolId;
   });
 
   handleSubmit = action(() => {
@@ -47,30 +46,32 @@ class TeacherFormService {
       window.showErrorMessage('Fill the required fields');
       return;
     }
-    const teacherId = this.form.getValue('id');
+    const schoolId = this.form.getValue('id');
     this.submit.fetch({
-      method: teacherId ? 'put' : 'post',
-      url: teacherId ? `/teachers/${teacherId}` : '/teachers',
+      method: schoolId ? 'put' : 'post',
+      url: schoolId ? `/schools/${schoolId}` : '/schools',
       body: {
         ...this.form.getValues(),
         company: this.form.getValue('company'),
       },
     }).then(() => {
       if (this.submit.data) {
-        const teacher = this.submit.data;
-        browserHistory.push(`/v2/teachers/${teacher.id}`);
-        this.teacherId = teacher.id;
-        this.form.reset();
-        this.form.setInitialValues(teacher);
-        window.showSuccess(`Teacher ${teacherId ? 'updated' : 'created'} successfully.`);
+        const school = this.submit.data;
+        browserHistory.push(`/v2/schools/${school.id}`);
+        this.schoolId = school.id;
+        this.form.setInitialValues({
+          ...school,
+          company: this.form.getValue('company'),
+        });
+        window.showSuccess(`School ${schoolId ? 'updated' : 'created'} successfully.`);
       }
       if (this.submit.error) {
-        window.showErrorMessage(`Error ${teacherId ? 'updating' : 'creating'} teacher.`);
+        window.showErrorMessage(`Error ${schoolId ? 'updating' : 'creating'} school.`);
       }
     });
-  });
+  })
 }
 
-const teacherFormService = new TeacherFormService();
+const schoolFormService = new SchoolFormService();
 
-export default teacherFormService;
+export default schoolFormService;

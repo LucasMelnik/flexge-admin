@@ -2,36 +2,38 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
-class DistributorListService {
+class SchoolListService {
   fetch = new FetchService();
 
   constructor() {
     extendObservable(this, {
-      distributors: [],
+      schools: [],
       filter: '',
     });
   }
 
   init = action(() => {
+    this.filter = '';
     this.load();
   });
 
   load = action(() => {
     this.fetch.fetch({
-      url: '/distributors',
+      url: '/schools',
       query: {
         query: this.filter && {
           name: {
             $regex: this.filter,
-            $options: 'i',
+            $options : 'i',
           },
         },
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.distributors = this.fetch.data;
+        this.schools = this.fetch.data;
       } else {
-        this.distributors = [];
+        this.schools = [];
+        this.total = 0;
       }
     });
   });
@@ -41,22 +43,21 @@ class DistributorListService {
     this.load();
   });
 
-  handleRemove = action((distributor) => {
+  handleRemove = action((school) => {
     ConfirmationDialogService.show(
-      'Delete Distributor',
-      `You are about to delete the distributor "${distributor.name}", Do you want to continue ?`,
+      'Delete School',
+      `You are about to delete the school "${school.name}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({
-          url: `/distributors/${distributor.id}`,
+          url: `/schools/${school.id}`,
           method: 'delete',
         }).then(() => {
-          window.showSuccess(`Distributor "${distributor.name}" deleted successfully.`);
           this.load();
         });
       });
   });
 }
 
-const distributorListService = new DistributorListService();
+const schoolListService = new SchoolListService();
 
-export default distributorListService;
+export default schoolListService;

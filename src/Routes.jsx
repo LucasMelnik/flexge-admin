@@ -41,6 +41,9 @@ import DistributorFormScene from './v2/views/distributor/components/DistributorF
 import TeacherListSceneV2 from './v2/views/teacher/components/TeacherListScene';
 import TeacherFormScene from './v2/views/teacher/components/TeacherFormScene';
 
+import SchoolListSceneV2 from './v2/views/school/components/SchoolListScene';
+import SchoolFormScene from './v2/views/school/components/SchoolFormScene';
+
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -62,6 +65,9 @@ const Routes = () => (
       <Route path="teachers" component={TeacherListSceneV2} />
       <Route path="teachers/new" component={TeacherFormScene} />
       <Route path="teachers/:teacherId" component={TeacherFormScene} />
+      <Route path="schools" component={SchoolListSceneV2} />
+      <Route path="schools/new" component={SchoolFormScene} />
+      <Route path="schools/:schoolId" component={SchoolFormScene} />
     </Route>
     <Route path="/v2/test" component={TestComponents} />
     <Route path="/" component={MainScene} onEnter={authRequired}>
