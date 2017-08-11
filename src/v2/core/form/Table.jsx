@@ -60,10 +60,13 @@ export default class Table extends Component {
             hideSelectColumn: true,
             clickToSelect: true ,
             onSelect: (row, isSelected, e) => {
-              if (this.props.selectable && !window.$(e.target).is('button')) {
-                this.props.onSelect(row);
+
+              if (this.props.selectable &&
+                (window.$(e.target).is('button') || window.$(e.target).is('i'))
+              ) {
+                return false;
               }
-              return false;
+              this.props.onSelect(row);
             },
           }}
         >

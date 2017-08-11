@@ -49,7 +49,7 @@ const ModuleDetailScene = props => (
       actions={
         <Button
           icon="fa-plus"
-          onClick={() => browserHistory.push('/v2/units/new')}
+          onClick={() => browserHistory.push(`/v2/modules/${props.module.id}/units/new`)}
           label="New Unit"
         />
       }
@@ -66,8 +66,8 @@ const ModuleDetailScene = props => (
 
 ModuleDetailScene.propTypes = {
   module: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    name: PropTypes.string,
   }),
   fetching: PropTypes.bool.isRequired,
 };

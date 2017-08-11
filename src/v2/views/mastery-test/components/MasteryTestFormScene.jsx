@@ -20,7 +20,7 @@ const MasteryTestFormScene = props => (
         },
         {
           text: `Module - ${props.module.name}`,
-          link: `/v2/modules/${props.module.id}`,
+          link: `/v2/modules/${props.module.id}/details`,
         },
         {
           text: props.masteryTestId ? 'Edit Mastery Test': 'New Mastery Test',

@@ -48,6 +48,7 @@ import ModuleListSceneV2 from './v2/views/module/components/ModuleListScene';
 import ModuleFormSceneV2 from './v2/views/module/components/ModuleFormScene';
 import ModuleDetailSceneContainerV2 from './v2/views/module/components/ModuleDetailSceneContainer';
 import MasteryTestFormSceneContainerV2 from './v2/views/mastery-test/components/MasteryTestFormSceneContainer';
+import UnitFormSceneContainerV2 from './v2/views/module/components/unit/UnitFormSceneContainer';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -78,6 +79,8 @@ const Routes = () => (
       <Route path="modules/:moduleId/details" component={ModuleDetailSceneContainerV2} />
       <Route path="modules/:moduleId/mastery-tests/new" component={MasteryTestFormSceneContainerV2} />
       <Route path="modules/:moduleId/mastery-tests/:masteryTestId" component={MasteryTestFormSceneContainerV2} />
+      <Route path="modules/:moduleId/units/new" component={UnitFormSceneContainerV2} />
+      <Route path="modules/:moduleId/units/:unitId" component={UnitFormSceneContainerV2} />
     </Route>
     <Route path="/v2/test" component={TestComponents} />
     <Route path="/" component={MainScene} onEnter={authRequired}>
