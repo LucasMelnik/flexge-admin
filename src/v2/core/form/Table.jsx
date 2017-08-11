@@ -53,12 +53,12 @@ export default class Table extends Component {
           expandColumnOptions={{
             expandColumnVisible: this.props.expandable,
             expandColumnComponent: this.renderExpandableIcon,
-            columnWidth: 25
+            columnWidth: 25,
           }}
           selectRow={{
             mode: 'checkbox',
             hideSelectColumn: true,
-            clickToSelect: true ,
+            clickToSelect: true,
             onSelect: (row, isSelected, e) => {
               if (this.props.selectable && window.$(e.target).is('td')) {
                 this.props.onSelect(row);

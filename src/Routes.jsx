@@ -28,6 +28,7 @@ import NotFoundScene from './views/not-found/NotFoundScene';
 
 
 // **** V2 **** //
+import LoginSceneV2 from './v2/views/login/components/LoginScene';
 import MainSceneV2 from './v2/views/main/components/MainScene';
 import TestComponents from './v2/TestComponents';
 import DashboardSceneV2 from './v2/views/dashboard/components/DashboardScene';
@@ -55,7 +56,7 @@ function authRequired(nextState, replace) {
 
 const Routes = () => (
   <Router history={browserHistory}>
-    <Route path="/login" component={LoginScene} />
+    <Route path="/login" component={LoginSceneV2} />
     <Route path="/v2/" component={MainSceneV2} onEnter={authRequired}>
       <IndexRoute component={DashboardSceneV2} />
       <Route path="companies" component={CompanyListSceneV2} />
