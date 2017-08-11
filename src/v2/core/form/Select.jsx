@@ -7,7 +7,7 @@ import './Select.css';
 export default class Select extends Component {
 
   static propTypes = {
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     placeholder: PropTypes.string,
     label: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,

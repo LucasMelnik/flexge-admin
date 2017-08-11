@@ -21,12 +21,13 @@ const Async = props => (
 
 Async.propTypes = {
   fetching: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   size: PropTypes.oneOf(['xs', 'md']),
 };
 
 Async.defaultProps = {
   size: 'md',
+  children: null,
 };
 
 export default Async;

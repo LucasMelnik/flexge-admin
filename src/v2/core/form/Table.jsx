@@ -37,7 +37,7 @@ export default class Table extends Component {
   };
 
   renderExpandableIcon = ({ isExpanded }) => {
-    return <Icon name={isExpanded ? 'fa-angle-down' : 'fa-angle-right'} />
+    return <Icon name={isExpanded ? 'fa-chevron-down' : 'fa-chevron-right'} />
   };
 
   render() {
@@ -53,20 +53,17 @@ export default class Table extends Component {
           expandColumnOptions={{
             expandColumnVisible: this.props.expandable,
             expandColumnComponent: this.renderExpandableIcon,
-            columnWidth: 25
+            columnWidth: 40
           }}
-          selectRow={{
+          selectRow={this.props.selectable && {
             mode: 'checkbox',
             hideSelectColumn: true,
             clickToSelect: true ,
             onSelect: (row, isSelected, e) => {
-
-              if (this.props.selectable &&
-                (window.$(e.target).is('button') || window.$(e.target).is('i'))
-              ) {
+              if (window.$(e.target).is('button') || window.$(e.target).is('i')) {
                 return false;
               }
-              this.props.onSelect(row);
+              this.props.onSelect && this.props.onSelect(row);
             },
           }}
         >
