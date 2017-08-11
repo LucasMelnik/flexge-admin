@@ -44,6 +44,8 @@ import TeacherFormScene from './v2/views/teacher/components/TeacherFormScene';
 import SchoolListSceneV2 from './v2/views/school/components/SchoolListScene';
 import SchoolFormScene from './v2/views/school/components/SchoolFormScene';
 
+import ModuleListSceneV2 from './v2/views/module/components/ModuleListScene';
+import ModuleFormSceneV2 from './v2/views/module/components/ModuleFormScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -68,6 +70,9 @@ const Routes = () => (
       <Route path="schools" component={SchoolListSceneV2} />
       <Route path="schools/new" component={SchoolFormScene} />
       <Route path="schools/:schoolId" component={SchoolFormScene} />
+      <Route path="modules" component={ModuleListSceneV2} />
+      <Route path="modules/new" component={ModuleFormSceneV2} />
+      <Route path="modules/:moduleId" component={ModuleFormSceneV2} />
     </Route>
     <Route path="/v2/test" component={TestComponents} />
     <Route path="/" component={MainScene} onEnter={authRequired}>

@@ -52,12 +52,15 @@ export default class TextInput extends Component {
             <textarea
               className="form-control autogrow"
               cols="5"
+              rows="2"
+              disabled={this.props.disabled && 'disabled'}
               value={this.props.value}
+              onChange={e => this.props.onChange && this.props.onChange(e.target.value)}
               placeholder={this.props.placeholder}
               style={{
                 overflow: 'hidden',
                 wordWrap: 'break-word',
-                resize: 'horizontal',
+                resize: 'none',
                 height: 50,
               }}
             />

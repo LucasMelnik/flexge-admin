@@ -18,6 +18,7 @@ export default class FetchSelect extends Component {
     onChange: PropTypes.func.isRequired,
     description: PropTypes.string,
     fieldValidation: PropTypes.string,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -25,6 +26,7 @@ export default class FetchSelect extends Component {
     value: null,
     fieldValidation: null,
     description: null,
+    disabled: false,
   };
 
   state = { data: [] };
@@ -53,6 +55,7 @@ export default class FetchSelect extends Component {
       <Select
         value={this.props.value}
         label={this.props.label}
+        disabled={this.props.disabled}
         description={this.props.description}
         fieldValidation={this.props.fieldValidation}
         placeholder={this.props.placeholder}
