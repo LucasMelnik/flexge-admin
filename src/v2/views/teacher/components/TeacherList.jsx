@@ -25,11 +25,10 @@ const TeacherList = props => (
         },
         {
           label: 'Company',
-          path: 'phone',
+          path: 'company.name',
         },
         {
           label: 'Actions',
-          path: 'company.name',
           width: '120',
           render: (cell, row) => {
             return (

@@ -47,6 +47,7 @@ const TeacherForm = props => (
             disabled={props.submitting}
             label="Email"
             value={get(props.values, 'email', '')}
+            onChange={value => props.onChange('email', value)}
             description={get(props.errors, 'email', null)}
             fieldValidation={get(props.errors, 'email', null) && 'error'}
           />

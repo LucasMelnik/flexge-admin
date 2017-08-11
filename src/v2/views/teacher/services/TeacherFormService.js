@@ -49,7 +49,7 @@ class TeacherFormService {
       url: teacherId ? `/teachers/${teacherId}` : '/teachers',
       body: {
         ...this.form.getValues(),
-        company: this.form.getValue('company').id,
+        company: this.form.getValue('company'),
       },
     }).then(() => {
       if (this.submit.data) {
@@ -58,12 +58,7 @@ class TeacherFormService {
         this.teacherId = teacher.id;
         this.form.reset();
         this.form.setInitialValues(teacher);
-        NotificationService.addNotification(
-          `Teacher ${teacherId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
-          'success',
-        );
+        window.showSuccess(`Teacher ${teacherId ? 'updated' : 'created'} successfully.`);
       }
       if (this.submit.error) {
         NotificationService.addNotification(
