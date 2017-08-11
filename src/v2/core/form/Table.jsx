@@ -32,6 +32,10 @@ export default class Table extends Component {
     onSelect: null,
   };
 
+  renderColumnValue = (cell, row, path) => {
+    return get(row, path, '');
+  };
+
   renderExpandableIcon = ({ isExpanded }) => {
     return <Icon name={isExpanded ? 'fa-angle-down' : 'fa-angle-right'} />
   };
@@ -70,7 +74,8 @@ export default class Table extends Component {
               hidden={column.hidden}
               dataField={column.path}
               dataSort={column.path !== 'action'}
-              dataFormat={column.render}
+              dataFormat={column.render || this.renderColumnValue}
+              formatExtraData={column.path}
               tdStyle={column.rowColumnStyle}
               width={column.width || 'auto'}
             >
