@@ -7,6 +7,8 @@ import Card from '../../../core/layout/Card';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import MasteryTestListContainer from '../../mastery-test/components/MasteryTestListContainer';
 import Async from '../../../core/layout/Async';
+import UnitListContainer from './unit/UnitListContainer';
+import UnitListFilterContainer from './unit/UnitListFilterContainer';
 
 const ModuleDetailScene = props => (
   <div>
@@ -52,6 +54,12 @@ const ModuleDetailScene = props => (
         />
       }
     >
+      <Async fetching={props.fetching}>
+        <UnitListFilterContainer />
+        {props.module.id && (
+          <UnitListContainer moduleId={props.module.id} />
+        )}
+      </Async>
     </Card>
   </div>
 );

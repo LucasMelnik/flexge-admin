@@ -28,7 +28,7 @@ const MasteryTestList = props => (
         {
           label: 'Deadline Time',
           path: 'deadlineTime',
-          render: (row) => {
+          render: (cell, row) => {
             return `${row.deadlineTime < 60 ? '00:' : ''}${moment.duration(row.deadlineTime, "seconds").format("mm:ss", {forceLength: true})}`
           },
         },
