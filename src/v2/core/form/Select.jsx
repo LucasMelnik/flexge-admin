@@ -34,6 +34,7 @@ export default class Select extends Component {
           style={{
             minWidth: 250,
             fontWeight: 400,
+            display: 'flex',
             color: '#555555',
             marginBottom: 10,
           }}
@@ -44,6 +45,7 @@ export default class Select extends Component {
           <div style={{
             marginLeft: 15,
             fontSize: 13,
+            display: 'inline-block',
             color: 'red',
           }}>
             {this.props.description}

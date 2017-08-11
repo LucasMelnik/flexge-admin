@@ -23,7 +23,7 @@ class CompanyListService {
         query: this.filter && {
           name: {
             $regex: this.filter,
-            $options : 'i',
+            $options: 'i',
           },
         },
       },
@@ -42,7 +42,6 @@ class CompanyListService {
   });
 
   handleRemove = action((company) => {
-
     ConfirmationDialogService.show(
       'Delete Company',
       `You are about to delete the company "${company.name}", Do you want to continue ?`,
@@ -51,6 +50,7 @@ class CompanyListService {
           url: `/companies/${company.id}`,
           method: 'delete',
         }).then(() => {
+          window.showSuccess(`Company "${company.name}" deleted successfully.`);
           this.load();
         });
       });
