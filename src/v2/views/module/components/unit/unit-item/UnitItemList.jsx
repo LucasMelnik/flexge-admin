@@ -164,7 +164,7 @@ const UnitItemList = props => (
         />
       )}
     />
-</Async>
+  </Async>
 );
 
 UnitItemList.propTypes = {
