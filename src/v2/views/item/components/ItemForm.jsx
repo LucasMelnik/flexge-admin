@@ -117,6 +117,7 @@ const ItemForm = props => (
           submitting={props.submitting}
           disabled={props.disabled}
           isTestItem={props.isTestItem}
+          showPostPhrase={get(props.values.item, 'type.key') === 'SINGLE_CHOICE_IMAGE'}
         />
       )}
       {get(props.values.item, 'type.key', '') === 'DICTATION' && (
@@ -228,17 +229,6 @@ const ItemForm = props => (
           isTestItem={props.isTestItem}
         />
       )}
-      {props.showPostPhrase && (
-        <TextInput
-          floatingLabel
-          fullWidth
-          label="Post Phrase"
-          disabled={props.submitting}
-          value={get(props.values, 'item.postPhrase', '')}
-          onChange={value => props.onChange('item.postPhrase', value)}
-          errorText={get(props.errors, 'item.postPhrase', '')}
-        />
-      )}
       <Separator size="xs" />
       {!props.disabled && (
         <FormButtons
@@ -261,7 +251,6 @@ ItemForm.propTypes = {
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
   itemsTypeUrl: PropTypes.string.isRequired,
-  showPostPhrase: PropTypes.bool,
   disabled: PropTypes.bool,
   isTestItem: PropTypes.bool,
 };
