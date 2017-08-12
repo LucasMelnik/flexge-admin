@@ -38,7 +38,7 @@ export default class Table extends Component {
     return get(row, path, '');
   };
 
-  renderExpandableIcon = (isExpanded, a, b) => {
+  renderExpandableIcon = ({ isExpanded }) => {
     return <Icon name={isExpanded ? 'fa-chevron-down' : 'fa-chevron-right'} />
   };
 
@@ -54,7 +54,13 @@ export default class Table extends Component {
             expandBy: 'column',
           }}
           expandableRow={() => this.props.expandable}
-          expandComponent={row => this.props.expandableComponent(row, !!this.state.expandedRows.find(id => id === row.id))}
+          expandComponent={row => {
+            if (this.state.expandedRows.find(id => id === row.id)) {
+              return this.props.expandableComponent(row)
+            } else {
+              return null;
+            }
+          }}
           expandColumnOptions={{
             expandColumnVisible: this.props.expandable,
             expandColumnComponent: this.renderExpandableIcon,

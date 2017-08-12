@@ -153,20 +153,16 @@ const UnitItemList = props => (
       ]}
       rows={props.items}
       expandable
-      expandableComponent={(row, expanded) => {
-        if (expanded) {
-          return (
-            <ItemFormContainer
-              itemId={row.item.id}
-              itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
-              endpointUrl={`units/${props.unit.id}/items`}
-              order={row.order}
-              disabled={props.unit.type.name.toLowerCase() === 'review' || props.disabled}
-              showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
-            />
-          );
-        }
-      }}
+      expandableComponent={(row, expanded) => (
+        <ItemFormContainer
+          itemId={row.item.id}
+          itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
+          endpointUrl={`units/${props.unit.id}/items`}
+          order={row.order}
+          disabled={props.unit.type.name.toLowerCase() === 'review' || props.disabled}
+          showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
+        />
+      )}
     />
   </Async>
 );
