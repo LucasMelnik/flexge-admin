@@ -70,8 +70,8 @@ const ItemForm = props => (
             url="grammars"
             disabled={props.submitting || props.disabled || !!props.defaultGrammar}
             label="Grammar"
-            value={get(props.values, 'item.grammar', '')}
-            onChange={grammar => props.onChange('item.grammar', grammar)}
+            value={get(props.values, 'item.grammar.id', '')}
+            onChange={(value, grammar) => props.onChange('item.grammar', grammar)}
             description={get(props.errors, 'item.grammar', '')}
             fieldValidation={get(props.errors, 'item.grammar', null) && 'error'}
             resultTransformer={{

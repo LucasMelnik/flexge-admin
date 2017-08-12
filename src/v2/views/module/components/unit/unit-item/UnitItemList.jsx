@@ -125,9 +125,9 @@ const UnitItemList = props => (
         {
           label: 'Actions',
           path: 'action',
-          width: '175',
+          width: props.disabled ? '0' : '175',
           render: (cell, row, extraData, index) => {
-            if (props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') {
+            if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
               return (
                 <div>
                   <IconButton

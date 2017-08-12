@@ -55,6 +55,7 @@ import UnitItemFormSceneContainerV2 from './v2/views/module/components/unit/unit
 import UnitReviewItemListSceneContainerV2 from './v2/views/module/components/unit/unit-item/UnitReviewItemListSceneContainer';
 
 import ReviewListSceneContainerV2 from './v2/views/unit-review/components/ReviewListSceneContainer';
+import ReviewFormSceneContainerV2 from './v2/views/unit-review/components/ReviewFormSceneContainer';
 
 import StudentListSceneV2 from './v2/views/student/components/StudentListScene';
 import StudentFormScene from './v2/views/student/components/StudentFormScene';
@@ -106,6 +107,7 @@ const Routes = () => (
       <Route path="placement-test/new" component={PlacementTestFormSceneV2} />
       <Route path="placement-test/:placementTestId" component={PlacementTestFormSceneV2} />
       <Route path="reviews" component={ReviewListSceneContainerV2} />
+      <Route path="modules/:moduleId/units/:unitId/reviews/:reviewId" component={ReviewFormSceneContainerV2} />
     </Route>
     <Route path="/v2/test" component={TestComponents} />
     <Route path="/" component={MainScene} onEnter={authRequired}>
