@@ -34,6 +34,7 @@ const AnswersInput = props => (
         />
         <ColumnSeparator size="sm" />
         <FileInput
+          disabled={props.submitting}
           label="Upload an audio to the answer"
           accept="audio"
           value={get(props.values, 'audio', '')}
@@ -42,6 +43,7 @@ const AnswersInput = props => (
         />
         <ColumnSeparator size="sm" />
         <FileInput
+          disabled={props.submitting}
           label="Upload an image to the answer"
           accept="image"
           value={get(props.values, 'image', '')}
@@ -51,6 +53,7 @@ const AnswersInput = props => (
         <ColumnSeparator size="sm" />
         {props.answerType === 'BOTH' && (
           <Select
+            disabled={props.submitting}
             label="Is this a Correct answer ?"
             value={get(props.values, 'correct', '')}
             onChange={value => props.onChange('correct', value)}
