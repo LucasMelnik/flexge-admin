@@ -32,11 +32,13 @@ export default class Table extends Component {
     onSelect: null,
   };
 
+  state = { expandedRows: [] };
+
   renderColumnValue = (cell, row, path) => {
     return get(row, path, '');
   };
 
-  renderExpandableIcon = ({ isExpanded }) => {
+  renderExpandableIcon = (isExpanded, a, b) => {
     return <Icon name={isExpanded ? 'fa-chevron-down' : 'fa-chevron-right'} />
   };
 
@@ -48,24 +50,37 @@ export default class Table extends Component {
           striped
           hover
           search={false}
+          options={{
+            expandBy: 'column',
+          }}
           expandableRow={() => this.props.expandable}
-          expandComponent={this.props.expandableComponent}
+          expandComponent={row => this.props.expandableComponent(row, !!this.state.expandedRows.find(id => id === row.id))}
           expandColumnOptions={{
             expandColumnVisible: this.props.expandable,
             expandColumnComponent: this.renderExpandableIcon,
             columnWidth: 40
           }}
-          selectRow={this.props.selectable ? {
+          selectRow={{
             mode: 'checkbox',
             hideSelectColumn: true,
             clickToSelect: true,
+            clickToExpand: true,
             onSelect: (row, isSelected, e) => {
+              this.setState({
+                expandedRows: [
+                  ...this.state.expandedRows,
+                  row.id
+                ],
+              });
+
               if (window.$(e.target).is('button') || window.$(e.target).is('i')) {
                 return false;
               }
-              this.props.onSelect && this.props.onSelect(row);
+              if (this.props.selectable && this.props.onSelect) {
+                this.props.onSelect(row);
+              }
             },
-          } : {}}
+          }}
         >
           {this.props.columns.map(column => (
             <TableHeaderColumn
@@ -78,6 +93,7 @@ export default class Table extends Component {
               formatExtraData={column.path}
               tdStyle={column.rowColumnStyle}
               width={column.width || 'auto'}
+              expandable={false}
             >
               {column.label}
             </TableHeaderColumn>
