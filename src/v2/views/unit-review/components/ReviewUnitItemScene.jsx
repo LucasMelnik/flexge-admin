@@ -6,12 +6,12 @@ import ReviewItemFormContainer from './ReviewItemFormContainer';
 import Card from '../../../core/layout/Card';
 import Async from '../../../core/layout/Async';
 
-class ReviewUnitItemsScene extends Component {
+class ReviewUnitItemScene extends Component {
 
   static propTypes = {
     fetching: PropTypes.bool,
     unit: PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.string,
     }).isRequired,
     moduleId: PropTypes.string,
     review: PropTypes.shape({
@@ -83,4 +83,4 @@ class ReviewUnitItemsScene extends Component {
   }
 }
 
-export default ReviewUnitItemsScene;
+export default ReviewUnitItemScene;

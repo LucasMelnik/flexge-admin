@@ -7,7 +7,8 @@ import UnitFormContainer from '../../module/components/unit/UnitFormContainer';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import Async from '../../../core/layout/Async';
-import ReviewUnitItemsScene from './ReviewUnitItemsScene';
+import ReviewUnitItemsScene from './ReviewUnitItemScene';
+import ReviewFormControlBar from './ReviewFormControlBar';
 
 const ReviewFormScene = props => (
   <div>
@@ -58,7 +59,11 @@ const ReviewFormScene = props => (
        fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
        moduleId={props.module.id}
     />
-    <Separator size="md" />
+    <ReviewFormControlBar
+      reviewId={props.review.id}
+      unitId={props.unit.id}
+      fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
+    />
   </div>
 );
 
