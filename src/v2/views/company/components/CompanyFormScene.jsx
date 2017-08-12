@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 import CompanyFormContainer from './CompanyFormContainer';
+import Button from '../../../core/form/Button';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import ManagerSceneContainer from '../../managers/components/ManagerSceneContainer';
 import Separator from '../../../core/layout/Separator';
+import Card from '../../../core/layout/Card';
 
 const CompanyFormScene = props => (
   <div>
@@ -18,7 +21,21 @@ const CompanyFormScene = props => (
         },
       ]}
     />
-    <CompanyFormContainer companyId={props.params.companyId} />
+    <Card
+      title={props.params.companyId ? 'Edit Company' : 'Create Company'}
+      actions={
+        (
+          <Button
+            icon="fa-arrow-left"
+            label="Back"
+            type="default"
+            onClick={() => browserHistory.push('/v2/companies')}
+          />
+        )
+      }
+    >
+      <CompanyFormContainer companyId={props.params.companyId} />
+    </Card>
     {props.params.companyId && (
       <div>
         <Separator size="md" />

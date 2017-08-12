@@ -52,7 +52,7 @@ export default class Select extends Component {
           </div>
         </div>
         <div
-          style={this.props.fieldValidation && { border: '1px solid red' }}
+          style={this.props.fieldValidation ? { border: '1px solid red' } : null}
         >
           <Select2
             disabled={this.props.disabled}
