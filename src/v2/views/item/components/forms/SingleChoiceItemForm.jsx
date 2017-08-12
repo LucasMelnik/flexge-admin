@@ -5,6 +5,7 @@ import Separator from "../../../../core/layout/Separator";
 import AnswersInputContainer from "../inputs/AnswersInputContainer";
 import TranslationInputContainer from "../inputs/TranslationInputContainer";
 import TextInput from '../../../../core/form/TextInput';
+import FileInput from '../../../../core/form/FileInput';
 
 const SingleChoiceItemForm = props => (
   <div>
@@ -27,6 +28,16 @@ const SingleChoiceItemForm = props => (
         onChange={value => props.onChange('postPhrase', value)}
         description={get(props.errors, 'postPhrase', '')}
         fieldValidation={get(props.errors, 'postPhrase', null) && 'error'}
+      />
+    )}
+    {props.showPostPhrase && (
+      <FileInput
+        label="Upload the post phrase audio"
+        accept="audio"
+        value={get(props.values, 'postPhraseAudio', '')}
+        onChange={(key) => props.onChange('postPhraseAudio', key)}
+        errorText={get(props.errors, 'postPhraseAudio', '')}
+        disabled={props.disabled}
       />
     )}
     <Separator size="xs" />

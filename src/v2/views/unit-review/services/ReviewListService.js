@@ -18,7 +18,7 @@ class ReviewListService {
     this.fetch.fetch({
       url: '/reviews',
       query: {
-        course: this.formMyReviews.getValue('course.id'),
+        course: this.formMyReviews.getValue('course'),
         status: this.formMyReviews.getValue('status'),
         statusFormat: this.formMyReviews.getValue('statusFormat'),
         ...localStorage.role !== 'ADMIN' && {
@@ -44,7 +44,7 @@ class ReviewListService {
     this.fetch.fetch({
       url: '/reviews',
       query: {
-        course: this.formAllReviews.getValue('course.id'),
+        course: this.formAllReviews.getValue('course'),
         status: this.formAllReviews.getValue('status'),
         statusFormat: this.formAllReviews.getValue('statusFormat'),
       },

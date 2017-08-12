@@ -37,7 +37,7 @@ const ReviewListFilter = props => (
       url="/courses"
       label="Course"
       disabled={props.fetching}
-      value={get(props.values, 'course.name')}
+      value={get(props.values, 'course')}
       onChange={value => props.onChange('course', value)}
       resultTransformer={{
         text: 'name',

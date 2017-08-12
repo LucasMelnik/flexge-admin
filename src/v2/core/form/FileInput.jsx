@@ -94,7 +94,7 @@ export default class FileInput extends Component {
               height: '100%',
             }}
           >
-            {!this.state.uploading && (
+            {(!this.state.uploading && !this.props.disabled) && (
               <IconButton
                 tooltip="Select a file"
                 disabled={this.props.disabled}
@@ -102,8 +102,10 @@ export default class FileInput extends Component {
                 icon="fa-upload"
               />
             )}
-            <ColumnSeparator />
-            {hasValue && (
+            {(!this.state.uploading && !this.props.disabled) && (
+              <ColumnSeparator />
+            )}
+            {(hasValue && !this.props.disabled) && (
               <IconButton
                 tooltip="Delete the file"
                 disabled={this.props.disabled}
