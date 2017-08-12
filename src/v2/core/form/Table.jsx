@@ -72,12 +72,14 @@ export default class Table extends Component {
             clickToSelect: true,
             clickToExpand: true,
             onSelect: (row, isSelected, e) => {
-              this.setState({
-                expandedRows: [
-                  ...this.state.expandedRows,
-                  row.id
-                ],
-              });
+              if (this.props.expandable) {
+                this.setState({
+                  expandedRows: [
+                    ...this.state.expandedRows,
+                    row.id
+                  ],
+                });
+              }
 
               if (window.$(e.target).is('button') || window.$(e.target).is('i')) {
                 return false;
