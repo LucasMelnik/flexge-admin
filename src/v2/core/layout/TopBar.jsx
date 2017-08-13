@@ -5,14 +5,14 @@ const TopBar = () => (
   <div className="page-topbar">
     <div className="logo-area" />
     <div className="quick-area">
-      {/* <div className="pull-left">
+      <div className="pull-left">
         <ul className="info-menu left-links list-inline list-unstyled">
           <li className="">
-            <a href="#" data-toggle="sidebar" className="sidebar_toggle">
-              <i className="fa fa-bars"></i>
+            <a href="javascript:void(0)" data-toggle="sidebar" className="sidebar_toggle">
+              <i className="fa fa-expand" />
             </a>
           </li>
-          <li className="">
+          {/* <li className="">
             <a href="#" data-toggle="dropdown" className="toggle">
               <i className="fa fa-envelope"></i>
               <span className="badge badge-primary">7</span>
@@ -38,9 +38,9 @@ const TopBar = () => (
                 <input type='submit' value="" />
               </form>
             </div>
-          </li>
+          </li> */}
         </ul>
-      </div> */}
+      </div>
       <div className="pull-right">
         <ul className="info-menu right-links list-inline list-unstyled">
           <li className="profile">
