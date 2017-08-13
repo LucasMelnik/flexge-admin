@@ -46,7 +46,6 @@ const UnitItemFormScene = props => (
             itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
             endpointUrl={`units/${props.unit.id}/items`}
             order={props.itemOrder}
-            showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
             onSaveSuccess={props.onBack}
           />
         )}
