@@ -19,7 +19,41 @@ const MainScene = props => (
         <MenuSection>
           Cadastros
         </MenuSection>
-        <MenuItem title="School" icon="fa fa-user">
+        <MenuItem title="Admin" icon="fa fa-user">
+          <SubMenu
+            items={[
+              {
+                label: 'Distributors',
+                link: '/v2/distributors',
+              },
+              {
+                label: 'General Configuration',
+                link: '/v2/configs',
+              },
+            ]}
+          />
+        </MenuItem>
+        <MenuItem title="Distributor" icon="fa fa-users">
+          <SubMenu
+            items={[
+              {
+                label: 'Distributors',
+                link: '/v2/distributors',
+              },
+            ]}
+          />
+        </MenuItem>
+        <MenuItem title="Company" icon="fa fa-building">
+          <SubMenu
+            items={[
+              {
+                label: 'Companies',
+                link: '/v2/companies',
+              },
+            ]}
+          />
+        </MenuItem>
+        <MenuItem title="School" icon="fa fa-graduation-cap">
           <SubMenu
             items={[
               {
@@ -41,50 +75,12 @@ const MainScene = props => (
             ]}
           />
         </MenuItem>
-        <MenuItem title="Distributor" icon="fa fa-user">
-          <SubMenu
-            items={[
-              {
-                label: 'Distributors',
-                link: '/v2/distributors',
-              },
-            ]}
-          />
-        </MenuItem>
-        <MenuItem title="Company" icon="fa fa-user">
-          <SubMenu
-            items={[
-              {
-                label: 'Companies',
-                link: '/v2/companies',
-              },
-            ]}
-          />
-        </MenuItem>
-        <MenuItem title="Admin" icon="fa fa-user">
-          <SubMenu
-            items={[
-              {
-                label: 'Distributors',
-                link: '/v2/distributors',
-              },
-              {
-                label: 'General Configuration',
-                link: '/v2/configs',
-              },
-            ]}
-          />
-        </MenuItem>
         <MenuSection>
           Conteúdo
         </MenuSection>
-        <MenuItem title="Course" icon="fa fa-user">
+        <MenuItem title="Course" icon="fa fa-book">
           <SubMenu
             items={[
-              {
-                label: 'Courses',
-                link: '/v2/courses',
-              },
               {
                 label: 'Modules',
                 link: '/v2/modules',
@@ -102,12 +98,12 @@ const MainScene = props => (
         </MenuItem>
         <MenuItem
           title="Review"
-          icon="fa fa-user"
+          icon="fa fa-eye"
           link="/v2/reviews"
         />
         <MenuItem
           title="Placement Test"
-          icon="fa fa-user"
+          icon="fa fa-pencil-square"
           link="/v2/placement-test"
         />
       </Menu>
