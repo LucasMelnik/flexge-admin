@@ -4,9 +4,7 @@ import { browserHistory } from 'react-router';
 import Paper from '../../../core/layout/Paper';
 import Async from '../../../core/content/Async';
 import Table from '../../../core/content/Table';
-import PlacementTestListFilterContainer from './PlacementTestListFilterContainer';
 import Divider from '../../../core/layout/Divider';
-import Separator from '../../../core/layout/Separator';
 
 const PlacementTestList = props => (
   <Paper>
