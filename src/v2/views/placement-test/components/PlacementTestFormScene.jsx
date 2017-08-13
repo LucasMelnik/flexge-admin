@@ -34,7 +34,7 @@ const PlacementTestFormScene = props => (
         )
       }
     >
-      <PlacementTestFormContainer />
+      <PlacementTestFormContainer placementTestId={props.params.placementTestId} />
     </Card>
     <Separator size="sm" />
     {props.params.placementTestId && (
