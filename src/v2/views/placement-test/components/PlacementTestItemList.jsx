@@ -32,11 +32,6 @@ const PlacementTestItemList = props => (
           },
         },
         {
-          label: 'Grammar',
-          path: 'item.grammar.name',
-          width: '15%',
-        },
-        {
           label: 'Type',
           path: 'item.type.name',
           width: '15%',
