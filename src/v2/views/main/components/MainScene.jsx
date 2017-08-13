@@ -17,9 +17,11 @@ const MainScene = props => (
     <TopBar />
     <LeftSidebar>
       <Menu>
-        <MenuSection>
-          Cadastros
-        </MenuSection>
+        <PermissionValidator allowedFor={['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER']}>
+          <MenuSection>
+            Cadastros
+          </MenuSection>
+        </PermissionValidator>
         <PermissionValidator allowedFor={['ADMIN']}>
           <MenuItem title="Admin" icon="fa fa-user">
             <SubMenu
