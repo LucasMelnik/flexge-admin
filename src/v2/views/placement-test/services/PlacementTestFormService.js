@@ -47,7 +47,9 @@ class PlacementTestFormService {
       method: placementTestId ? 'put' : 'post',
       url: placementTestId ? `/grammar-placement-test-levels/${placementTestId}` : '/grammar-placement-test-levels',
       body: {
-        ...this.form.getValues(),
+        order: this.form.getValue('order'),
+        grammar: this.form.getValue('grammar'),
+        placementTestLevel: this.form.getValue('placementTestLevel'),
       },
     }).then(() => {
       if (this.submit.data) {

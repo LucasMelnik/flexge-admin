@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import PlacementTestFormService from '../services/PlacementTestFormService';
-// import ItemFormContainer from '../../item/components/ItemFormContainer';
+import ItemFormContainer from '../../item/components/ItemFormContainer';
 
 class PlacementTestItemFormContainer extends Component {
 
@@ -17,14 +17,13 @@ class PlacementTestItemFormContainer extends Component {
 
   render() {
     return (
-      null
-      // <ItemFormContainer
-      //   itemsTypeUrl="/item-types?query[allowedForPlacementTest]=true"
-      //   endpointUrl={`grammar-placement-test-levels/${this.props.placementTestId}/items`}
-      //   onSaveSuccess={this.props.onSaveSuccess}
-      //   defaultGrammar={PlacementTestFormService.form.getValue('grammar')}
-      //   isTestItem
-      // />
+      <ItemFormContainer
+        itemsTypeUrl="/item-types?query[allowedForPlacementTest]=true"
+        endpointUrl={`grammar-placement-test-levels/${this.props.placementTestId}/items`}
+        onSaveSuccess={this.props.onSaveSuccess}
+        defaultGrammar={PlacementTestFormService.form.getValue('grammar')}
+        isTestItem
+      />
     );
   }
 }

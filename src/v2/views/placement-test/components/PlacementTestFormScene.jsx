@@ -17,12 +17,12 @@ const PlacementTestFormScene = props => (
           link: '/v2/placement-test',
         },
         {
-          text: props.placementTestId ? 'Edit Placement Test Grammar' : 'Create Placement Test Grammar',
+          text: props.params.placementTestId ? 'Edit Placement Test Grammar' : 'Create Placement Test Grammar',
         },
       ]}
     />
     <Card
-      title={`${props.placementTestId ? 'Update' : 'Create'} Placement Test Grammar`}
+      title={`${props.params.placementTestId ? 'Update' : 'Create'} Placement Test Grammar`}
       actions={
         (
           <Button
@@ -37,17 +37,16 @@ const PlacementTestFormScene = props => (
       <PlacementTestFormContainer />
     </Card>
     <Separator size="sm" />
-    {props.placementTestId && (
-      <PlacementTestItems placementTestId={props.placementTestId} />
+    {props.params.placementTestId && (
+      <PlacementTestItems placementTestId={props.params.placementTestId} />
     )}
   </div>
 );
 
 PlacementTestFormScene.propTypes = {
-  placementTestId: PropTypes.string,
-};
-PlacementTestFormScene.defaultProps = {
-  placementTestId: null,
+  params: PropTypes.shape({
+    placementTestId: PropTypes.string,
+  }).isRequired,
 };
 
 export default PlacementTestFormScene;
