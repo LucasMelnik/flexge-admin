@@ -59,9 +59,9 @@ import ReviewFormSceneContainerV2 from './v2/views/unit-review/components/Review
 
 import StudentListSceneV2 from './v2/views/student/components/StudentListScene';
 import StudentFormScene from './v2/views/student/components/StudentFormScene';
-//
-// import SchoolClassListSceneV2 from './v2/views/school-class/components/SchoolClassListScene';
-// import SchoolClassFormScene from './v2/views/school-class/components/SchoolClassFormScene';
+
+import SchoolClassListSceneV2 from './v2/views/school-class/components/SchoolClassListScene';
+import SchoolClassFormScene from './v2/views/school-class/components/SchoolClassFormScene';
 
 import PlacementTestListSceneV2 from './v2/views/placement-test/components/PlacementTestListScene';
 import PlacementTestFormSceneV2 from './v2/views/placement-test/components/PlacementTestFormScene';
@@ -91,6 +91,9 @@ const Routes = () => (
       <Route path="schools" component={SchoolListSceneV2} />
       <Route path="schools/new" component={SchoolFormScene} />
       <Route path="schools/:schoolId" component={SchoolFormScene} />
+      <Route path="classes" component={SchoolClassListSceneV2} />
+      <Route path="classes/new" component={SchoolClassFormScene} />
+      <Route path="classes/:classId" component={SchoolClassFormScene} />
       <Route path="modules" component={ModuleListSceneV2} />
       <Route path="modules/new" component={ModuleFormSceneV2} />
       <Route path="modules/:moduleId" component={ModuleFormSceneV2} />
