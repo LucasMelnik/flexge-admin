@@ -11,6 +11,8 @@ class UnitTypeAmountsListService {
   }
 
   load = action((course) => {
+
+    console.log('entoru', course)
     if (!course) return;
 
     this.fetch.fetch({
