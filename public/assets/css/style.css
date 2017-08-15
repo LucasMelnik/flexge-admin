@@ -767,7 +767,7 @@ a:hover, a:focus {
 ------------------------------------------*/
 
 .page-sidebar {
-    height: auto;
+    height: 100%;
     width: 260px;
     position: fixed;
     padding: 0px;
@@ -780,7 +780,6 @@ a:hover, a:focus {
     -o-box-shadow: 0 0 10px 0 rgba(33,33,33,.2);
     -ms-box-shadow: 0 0 10px 0 rgba(33,33,33,.2);
     min-height: 100%;
-    height: auto;
 }
 
 .page-sidebar.fixedscroll {
@@ -789,6 +788,10 @@ a:hover, a:focus {
 
 .page-sidebar.pagescroll {
     position: absolute;
+}
+
+.page-sidebar-wrapper {
+  height: 100%;
 }
 
 .fixedscroll #main-menu-wrapper{
@@ -1058,7 +1061,7 @@ a:hover, a:focus {
 
 .page-sidebar .project-info {
     position: relative;
-    bottom: 0px;
+    bottom: 100px;
     height: 40px;
     background-color: rgba(70, 70, 78, 1.0);
     width: 100%;

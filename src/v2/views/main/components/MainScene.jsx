@@ -39,24 +39,20 @@ const MainScene = props => (
           </MenuItem>
         </PermissionValidator>
         <PermissionValidator allowedFor={['ADMIN']}>
-          <MenuItem title="Distributor" icon="fa fa-users">
+          <MenuItem title="Partners" icon="fa fa-users">
             <SubMenu
               items={[
                 {
                   label: 'Distributors',
                   link: '/v2/distributors',
                 },
-              ]}
-            />
-          </MenuItem>
-        </PermissionValidator>
-        <PermissionValidator allowedFor={['ADMIN', 'DISTRIBUTOR_MANAGER']}>
-          <MenuItem title="Company" icon="fa fa-building">
-            <SubMenu
-              items={[
                 {
                   label: 'Companies',
                   link: '/v2/companies',
+                },
+                {
+                  label: 'Schools',
+                  link: '/v2/schools',
                 },
               ]}
             />
@@ -66,10 +62,6 @@ const MainScene = props => (
           <MenuItem title="School" icon="fa fa-graduation-cap">
             <SubMenu
               items={[
-                {
-                  label: 'Schools',
-                  link: '/v2/schools',
-                },
                 {
                   label: 'Classes',
                   link: '/v2/classes',

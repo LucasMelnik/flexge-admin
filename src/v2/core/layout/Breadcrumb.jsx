@@ -12,7 +12,7 @@ const Breadcrumb = props => (
     <ol className="breadcrumb">
       <li>
         <Link to="/">
-          <Icon name="fa-home"/>
+          <Icon name="fa-home" />
           Home
         </Link>
       </li>
