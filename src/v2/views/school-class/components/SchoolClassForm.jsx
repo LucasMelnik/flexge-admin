@@ -16,10 +16,10 @@ const SchoolClassForm = props => (
     }}
   >
     <Row>
-      <Column lgSize={6}>
+      <Column lgSize={4}>
         <TextInput
           disabled={props.submitting}
-          label="School Name"
+          label="Class Name"
           value={get(props.values, 'name', '')}
           onChange={value => props.onChange('name', value)}
           description={get(props.errors, 'name', null)}
@@ -32,7 +32,7 @@ const SchoolClassForm = props => (
           'DISTRIBUTOR_MANAGER',
         ]}
       >
-        <Column lgSize={6}>
+        <Column lgSize={4}>
           <FetchSelect
             url="/teachers"
             disabled={props.submitting}
@@ -41,6 +41,28 @@ const SchoolClassForm = props => (
             onChange={teacher => props.onChange('teacher', teacher)}
             description={get(props.errors, 'teacher', null)}
             fieldValidation={get(props.errors, 'teacher', null) && 'error'}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </Column>
+      </PermissionValidator>
+      <PermissionValidator
+        allowedFor={[
+          'ADMIN',
+          'DISTRIBUTOR_MANAGER',
+        ]}
+      >
+        <Column lgSize={4}>
+          <FetchSelect
+            url="/schools"
+            disabled={props.submitting}
+            label="School"
+            value={get(props.values, 'school', '')}
+            onChange={school => props.onChange('school', school)}
+            description={get(props.errors, 'school', null)}
+            fieldValidation={get(props.errors, 'school', null) && 'error'}
             resultTransformer={{
               text: 'name',
               value: 'id',

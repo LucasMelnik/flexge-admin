@@ -67,12 +67,28 @@ const MainScene = props => (
                   link: '/v2/classes',
                 },
                 {
-                  label: 'Teachers',
-                  link: '/v2/teachers',
-                },
-                {
                   label: 'Students',
                   link: '/v2/students',
+                },
+              ]}
+            />
+          </MenuItem>
+        </PermissionValidator>
+        <PermissionValidator allowedFor={['ADMIN']}>
+          <MenuItem title="Users" icon="fa fa-user">
+            <SubMenu
+              items={[
+                {
+                  label: 'Company Manager',
+                  link: '/v2/',
+                },
+                {
+                  label: 'School Manager',
+                  link: '/v2/',
+                },
+                {
+                  label: 'Teacher',
+                  link: '/v2/teachers',
                 },
               ]}
             />
