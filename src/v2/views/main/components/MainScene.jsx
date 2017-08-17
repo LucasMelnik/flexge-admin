@@ -58,7 +58,7 @@ const MainScene = props => (
             />
           </MenuItem>
         </PermissionValidator>
-        {/* <PermissionValidator allowedFor={['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER']}>
+        <PermissionValidator allowedFor={['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER']}>
           <MenuItem title="School" icon="fa fa-graduation-cap">
             <SubMenu
               items={[
@@ -73,7 +73,7 @@ const MainScene = props => (
               ]}
             />
           </MenuItem>
-        </PermissionValidator> */}
+        </PermissionValidator>
         <PermissionValidator allowedFor={['ADMIN']}>
           <MenuItem title="Users" icon="fa fa-user">
             <SubMenu

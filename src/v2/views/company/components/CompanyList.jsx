@@ -50,7 +50,7 @@ const CompanyList = props => (
       ]}
       rows={props.companies}
       selectable
-      onSelect={row => browserHistory.push(`/v2/companies-detail/${row.id}`)}
+      onSelect={row => browserHistory.push(`/v2/company-detail/${row.id}/`)}
     />
   </Async>
 );

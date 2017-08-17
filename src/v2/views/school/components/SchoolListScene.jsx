@@ -13,7 +13,7 @@ const SchoolListScene = props => (
       <Button
         label="New school"
         icon="fa-plus"
-        onClick={() => browserHistory.push(`/v2/companies/${props.companyId}/schools/new`)}
+        onClick={() => browserHistory.push(props.companyId ? `/v2/companies/${props.companyId}/schools/new` : '/v2/schools/new')}
       />,
     ]}
   >
@@ -23,7 +23,11 @@ const SchoolListScene = props => (
 );
 
 SchoolListScene.propTypes = {
-  companyId: PropTypes.string.isRequired,
+  companyId: PropTypes.string,
+};
+
+SchoolListScene.defaultProps = {
+  companyId: null,
 };
 
 export default SchoolListScene;

@@ -45,7 +45,7 @@ import TeacherFormScene from './v2/views/teacher/components/TeacherFormScene';
 
 import SchoolListSceneV2 from './v2/views/school/components/SchoolListScene';
 import SchoolFormScene from './v2/views/school/components/SchoolFormScene';
-import SchoolDetailFormScene from './v2/views/school/components/SchoolDetailFormScene';
+import SchoolDetailSceneContainer from './v2/views/school/components/SchoolDetailSceneContainer';
 
 import ModuleListSceneV2 from './v2/views/module/components/ModuleListScene';
 import ModuleFormSceneV2 from './v2/views/module/components/ModuleFormScene';
@@ -85,7 +85,7 @@ const Routes = () => (
       <Route path="companies" component={CompanyListSceneV2} />
       <Route path="companies/new" component={CompanyFormScene} />
       <Route path="companies/:companyId" component={CompanyFormScene} />
-      <Route path="companies-detail/:companyId" component={CompanyDetailFormScene} />
+      <Route path="company-detail/:companyId" component={CompanyDetailFormScene} />
       <Route path="distributors" component={DistributorListSceneV2} />
       <Route path="distributors/new" component={DistributorFormScene} />
       <Route path="distributors/:distributorId" component={DistributorFormScene} />
@@ -95,7 +95,9 @@ const Routes = () => (
       <Route path="schools" component={SchoolListSceneV2} />
       <Route path="companies/:companyId/schools/new" component={SchoolFormScene} />
       <Route path="companies/:companyId/schools/:schoolId" component={SchoolFormScene} />
-      <Route path="companies/:companyId/schools-detail/:schoolId" component={SchoolDetailFormScene} />
+      <Route path="school-detail/:schoolId" component={SchoolDetailSceneContainer} />
+      <Route path="company-detail/:companyId/school-detail/:schoolId" component={SchoolDetailSceneContainer} />
+      <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId" component={SchoolDetailSceneContainer} />
       <Route path="classes" component={SchoolClassListSceneV2} />
       <Route path="companies/:companyId/schools/:schoolId/classes/new" component={SchoolClassFormScene} />
       <Route path="companies/:companyId/schools/:schoolId/classes/:classId" component={SchoolClassFormScene} />

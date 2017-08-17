@@ -37,7 +37,7 @@ const SchoolList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => browserHistory.push(`/v2/companies/${props.companyId}/schools/${row.id}`)}
+                  onClick={() => browserHistory.push(props.companyId ? `/v2/companies/${props.companyId}/schools/${row.id}` : `/v2/schools/${row.id}`)}
                 />
               </div>
             );
@@ -46,7 +46,7 @@ const SchoolList = props => (
       ]}
       rows={props.schools}
       selectable
-      onSelect={row => browserHistory.push(`/v2/companies/${props.companyId}/schools-detail/${row.id}`)}
+      onSelect={row => browserHistory.push(props.companyId ? `/v2/company-detail/${props.companyId}/school-detail/${row.id}` : `/v2/school-detail/${row.id}`)}
     />
   </Async>
 );

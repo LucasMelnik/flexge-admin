@@ -14,15 +14,15 @@ const SchoolClassDetailFormScene = props => (
       crumbs={[
         // {
         //   text: 'School Classes',
-        //   link: `/v2/schools-detail/${props.params.schoolId}`,
+        //   link: `/v2/school-detail/${props.params.schoolId}`,
         // },
         {
           text: 'Detail Company',
-          link: `/v2/companies-detail/${props.params.companyId}`,
+          link: `/v2/company-detail/${props.params.companyId}`,
         },
         {
           text: 'Detail school',
-          link: `/v2/companies/${props.params.companyId}/schools-detail/${props.params.schoolId}`,
+          link: `/v2/companies/${props.params.companyId}/school-detail/${props.params.schoolId}`,
         },
         {
           text: 'Detail Class',
@@ -37,7 +37,7 @@ const SchoolClassDetailFormScene = props => (
             icon="fa-arrow-left"
             label="Back"
             type="default"
-            onClick={() => browserHistory.push(`/v2/companies/${props.params.companyId}/schools-detail/${props.params.schoolId}`)}
+            onClick={() => browserHistory.push(`/v2/companies/${props.params.companyId}/school-detail/${props.params.schoolId}`)}
           />
         )
       }

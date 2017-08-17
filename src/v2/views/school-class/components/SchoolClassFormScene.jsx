@@ -27,7 +27,7 @@ const SchoolClassFormScene = props => (
             icon="fa-arrow-left"
             label="Back"
             type="default"
-            onClick={() => browserHistory.push(`/v2/schools-detail/${props.params.schoolId}`)}
+            onClick={() => browserHistory.push(`/v2/school-detail/${props.params.schoolId}`)}
           />
         )
       }

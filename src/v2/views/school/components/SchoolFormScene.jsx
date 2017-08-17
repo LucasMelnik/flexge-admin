@@ -18,7 +18,7 @@ const SchoolFormScene = props => (
         },
         {
           text: 'Detail Company',
-          link: `/v2/companies-detail/${props.params.companyId}`,
+          link: `/v2/company-detail/${props.params.companyId}`,
         },
         {
           text: props.params.schoolId ? 'Edit School' : 'Create School',
@@ -33,7 +33,7 @@ const SchoolFormScene = props => (
             icon="fa-arrow-left"
             label="Back"
             type="default"
-            onClick={() => browserHistory.push(`/v2/companies-detail/${props.params.companyId}`)}
+            onClick={() => browserHistory.push(`/v2/company-detail/${props.params.companyId}`)}
           />
         )
       }

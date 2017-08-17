@@ -18,7 +18,7 @@ const CompanyFormScene = props => (
           link: '/v2/companies',
         },
         {
-          text: 'Detail Company',
+          text: `Company - ${props.company ? props.company.name : '...loading'}`,
         },
       ]}
     />
