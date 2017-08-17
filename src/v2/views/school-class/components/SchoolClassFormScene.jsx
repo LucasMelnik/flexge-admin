@@ -27,18 +27,22 @@ const SchoolClassFormScene = props => (
             icon="fa-arrow-left"
             label="Back"
             type="default"
-            onClick={() => browserHistory.push('/v2/classes')}
+            onClick={() => browserHistory.push(`/v2/schools-detail/${props.params.schoolId}`)}
           />
         )
       }
     >
-      <SchoolClassFormContainer classId={props.params.classId} />
+      <SchoolClassFormContainer
+        schoolId={props.params.schoolId}
+        classId={props.params.classId}
+      />
     </Card>
   </div>
 );
 
 SchoolClassFormScene.propTypes = {
   params: PropTypes.shape({
+    schoolId: PropTypes.string,
     classId: PropTypes.string,
   }),
 };

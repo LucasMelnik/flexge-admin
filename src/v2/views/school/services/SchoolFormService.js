@@ -19,24 +19,29 @@ class SchoolFormService {
     };
   }
 
-  handleLoad = action((schoolId) => {
+  init = action((schoolId, companyId) => {
+    this.schoolId = schoolId;
+    this.companyId = companyId;
+    this.handleLoad();
+  });
+
+  handleLoad = action(() => {
     this.form.reset();
-    if (schoolId) {
+    if (this.schoolId) {
       this.fetch.fetch({
-        url: `/schools/${schoolId}`,
+        url: `/schools/${this.schoolId}`,
       }).then(() => {
         if (this.fetch.data) {
           const data = {
             ...this.fetch.data,
-            company: this.fetch.data.company.id,
+            company: this.companyId,
           };
           this.form.setInitialValues(data);
         }
       });
     } else {
-      this.form.setInitialValues({ country: 'Brazil' });
+      this.form.setInitialValues({ country: 'Brazil', company: this.companyId });
     }
-    this.schoolId = schoolId;
   });
 
   handleSubmit = action(() => {
@@ -56,7 +61,7 @@ class SchoolFormService {
     }).then(() => {
       if (this.submit.data) {
         const school = this.submit.data;
-        browserHistory.push(`/v2/schools/${school.id}`);
+        browserHistory.push(`/v2/companies/${this.companyId}/schools/${school.id}`);
         this.schoolId = school.id;
         this.form.setInitialValues({
           ...school,

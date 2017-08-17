@@ -10,14 +10,16 @@ class SchoolClassFormContainer extends Component {
 
   static propTypes = {
     schoolId: PropTypes.string,
+    classId: PropTypes.string,
   }
 
   static defaultProps = {
     schoolId: null,
+    classId: null,
   }
 
   componentWillMount() {
-    SchoolClassFormService.handleLoad(this.props.schoolId);
+    SchoolClassFormService.init(this.props.schoolId, this.props.classId);
   }
 
   render() {

@@ -9,11 +9,13 @@ class SchoolListService {
     extendObservable(this, {
       schools: [],
       filter: '',
+      companyId: null,
     });
   }
 
-  init = action(() => {
+  init = action((companyId) => {
     this.filter = '';
+    this.companyId = companyId;
     this.load();
   });
 
@@ -21,10 +23,11 @@ class SchoolListService {
     this.fetch.fetch({
       url: '/schools',
       query: {
+        company: this.companyId,
         query: this.filter && {
           name: {
             $regex: this.filter,
-            $options : 'i',
+            $options: 'i',
           },
         },
       },

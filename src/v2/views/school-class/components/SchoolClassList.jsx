@@ -37,7 +37,7 @@ const SchoolClassList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => alert()}
+                  onClick={() => browserHistory.push(`/v2/companies/${props.companyId}/schools/${props.schoolId}/classes/${row.id}`)}
                 />
               </div>
             );
@@ -46,7 +46,7 @@ const SchoolClassList = props => (
       ]}
       rows={props.schools}
       selectable
-      onSelect={row => browserHistory.push(`/v2/classes/${row.id}`)}
+      onSelect={row => browserHistory.push(`/v2/companies/${props.companyId}/schools/${props.schoolId}/classes-detail/${row.id}`)}
     />
   </Async>
 );
@@ -59,6 +59,8 @@ SchoolClassList.propTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
   })).isRequired,
+  companyId: PropTypes.string.isRequired,
+  schoolId: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
 };

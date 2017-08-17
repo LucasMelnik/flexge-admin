@@ -41,7 +41,7 @@ const CompanyList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => alert()}
+                  onClick={() => browserHistory.push(`/v2/companies/${row.id}`)}
                 />
               </div>
             );
@@ -50,7 +50,7 @@ const CompanyList = props => (
       ]}
       rows={props.companies}
       selectable
-      onSelect={row => browserHistory.push(`/v2/companies/${row.id}`)}
+      onSelect={row => browserHistory.push(`/v2/companies-detail/${row.id}`)}
     />
   </Async>
 );

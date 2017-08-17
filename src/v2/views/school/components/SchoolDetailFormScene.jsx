@@ -1,32 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
-import SchoolFormContainer from './SchoolFormContainer';
+import SchoolDetailFormContainer from './SchoolDetailFormContainer';
+import SchoolClassListContainer from '../../school-class/components/SchoolClassListContainer';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Separator from '../../../core/layout/Separator';
 import ManagerSceneContainer from '../../managers/components/ManagerSceneContainer';
 import Button from '../../../core/form/Button';
 import Card from '../../../core/layout/Card';
 
-const SchoolFormScene = props => (
+const SchoolDetailFormScene = props => (
   <div>
     <Breadcrumb
       crumbs={[
-        {
-          text: 'Companies',
-          link: '/v2/companies',
-        },
         {
           text: 'Detail Company',
           link: `/v2/companies-detail/${props.params.companyId}`,
         },
         {
-          text: props.params.schoolId ? 'Edit School' : 'Create School',
+          text: 'Detail school',
         },
       ]}
     />
     <Card
-      title={props.params.schoolId ? 'Update School' : 'Create School'}
+      title="Detail school"
       actions={
         (
           <Button
@@ -38,12 +35,28 @@ const SchoolFormScene = props => (
         )
       }
     >
-      <SchoolFormContainer
-        companyId={props.params.companyId}
-        schoolId={props.params.schoolId} />
+      <SchoolDetailFormContainer
+        schoolId={props.params.schoolId}
+      />
     </Card>
     {props.params.schoolId && (
       <div>
+        <Separator size="md" />
+        <Card
+          title="Classes"
+          actions={[
+            <Button
+              label="New class"
+              icon="fa-plus"
+              onClick={() => browserHistory.push(`/v2/companies/${props.params.companyId}/schools/${props.params.schoolId}/classes/new`)}
+            />,
+          ]}
+        >
+          <SchoolClassListContainer
+            companyId={props.params.companyId}
+            schoolId={props.params.schoolId}
+          />
+        </Card>
         <Separator size="md" />
         <ManagerSceneContainer
           title="School Managers"
@@ -57,15 +70,15 @@ const SchoolFormScene = props => (
   </div>
 );
 
-SchoolFormScene.propTypes = {
+SchoolDetailFormScene.propTypes = {
   params: PropTypes.shape({
     companyId: PropTypes.string,
     schoolId: PropTypes.string,
   }),
 };
 
-SchoolFormScene.defaultProps = {
+SchoolDetailFormScene.defaultProps = {
   params: null,
 };
 
-export default SchoolFormScene;
+export default SchoolDetailFormScene;

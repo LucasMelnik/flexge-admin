@@ -57,7 +57,7 @@ const SchoolClassForm = props => (
         <Column lgSize={4}>
           <FetchSelect
             url="/schools"
-            disabled={props.submitting}
+            disabled
             label="School"
             value={get(props.values, 'school', '')}
             onChange={school => props.onChange('school', school)}

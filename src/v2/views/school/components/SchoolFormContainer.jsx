@@ -9,6 +9,7 @@ import StateService from '../../../core/services/StateService';
 class SchoolFormContainer extends Component {
 
   static propTypes = {
+    companyId: PropTypes.string.isRequired,
     schoolId: PropTypes.string,
   }
 
@@ -17,7 +18,7 @@ class SchoolFormContainer extends Component {
   }
 
   componentWillMount() {
-    SchoolFormService.handleLoad(this.props.schoolId);
+    SchoolFormService.init(this.props.schoolId, this.props.companyId);
   }
 
   render() {

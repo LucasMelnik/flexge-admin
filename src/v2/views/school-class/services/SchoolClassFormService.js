@@ -12,6 +12,7 @@ class SchoolClassFormService {
   constructor() {
     extendObservable(this, {
       schoolId: null,
+      classId: null,
       successCallback: null,
     });
     this.form.validations = {
@@ -19,18 +20,30 @@ class SchoolClassFormService {
     };
   }
 
-  init = action((schoolId, successCallback) => {
+  init = action((schoolId, classId, successCallback) => {
     this.schoolId = schoolId;
+    this.classId = classId;
     this.successCallback = successCallback;
+    if (this.classId) {
+      this.handleLoad();
+    } else {
+      this.form.reset();
+      this.form.setInitialValues({
+        school: this.schoolId,
+      });
+    }
   });
 
-  handleLoad = action((classId) => {
+  handleLoad = action(() => {
     this.fetch.fetch({
-      url: `/schools-class/${classId}`,
+      url: `/schools/${this.schoolId}/classes/${this.classId}`,
     }).then(() => {
       if (this.fetch.data) {
         this.form.reset();
-        this.form.setInitialValues(this.fetch.data);
+        this.form.setInitialValues({
+          ...this.fetch.data,
+          teacher: this.fetch.data.teacher.id,
+        });
       }
     });
   });
@@ -43,10 +56,10 @@ class SchoolClassFormService {
     const classId = this.form.getValue('id');
     this.submit.fetch({
       method: classId ? 'put' : 'post',
-      url: classId ? `/schools-class/${classId}` : '/schools-class',
+      url: classId ? `/schools/${this.form.getValue('school')}/classes/${classId}` : `/schools/${this.form.getValue('school')}/classes`,
       body: {
         ...this.form.getValues(),
-        teacher: this.form.getValue('teacher').id,
+        teacher: this.form.getValue('teacher'),
       },
     }).then(() => {
       if (this.submit.data) {
@@ -54,7 +67,7 @@ class SchoolClassFormService {
         this.form.reset();
         this.form.setInitialValues(school);
         NotificationService.addNotification(
-          `Scool Class ${classId ? 'updated' : 'created'} successfully.`,
+          `School Class ${classId ? 'updated' : 'created'} successfully.`,
           null,
           null,
           'success',

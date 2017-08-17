@@ -20,7 +20,7 @@ class SchoolClassListService {
 
   load = action(() => {
     this.fetch.fetch({
-      url: '/schools-class',
+      url: `/schools/${this.schoolId}/classes`,
     }).then(() => {
       if (this.fetch.data) {
         this.classes = this.fetch.data;
@@ -31,13 +31,13 @@ class SchoolClassListService {
     });
   });
 
-  handleDelete = action((classe) => {
+  handleDelete = action((schoolClass) => {
     ConfirmationDialogService.show(
       'Delete School Class',
-      `You are about to delete the school class "${classe.name}", Do you want to continue ?`,
+      `You are about to delete the school class "${schoolClass.name}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({
-          url: `/schools-class/${classe.id}`,
+          url: `/schools/${schoolClass.school}/classses/${schoolClass.id}`,
           method: 'delete',
         }).then(() => {
           this.load();
