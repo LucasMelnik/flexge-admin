@@ -23,11 +23,13 @@ class SchoolListService {
     this.fetch.fetch({
       url: '/schools',
       query: {
-        company: this.companyId,
-        query: this.filter && {
-          name: {
-            $regex: this.filter,
-            $options: 'i',
+        query: {
+          company: this.companyId,
+          ...this.filter && {
+            name: {
+              $regex: this.filter,
+              $options: 'i',
+            },
           },
         },
       },

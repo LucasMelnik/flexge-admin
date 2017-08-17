@@ -16,6 +16,23 @@ class CompanyListService {
     this.load();
   });
 
+  loadCompaniesByDistributorId = action((distributorId) => {
+    this.fetch.fetch({
+      url: '/companies',
+      query: {
+        query: {
+          // distributor: distributorId,
+        }
+      },
+    }).then(() => {
+      if (this.fetch.data) {
+        this.companies = this.fetch.data;
+      } else {
+        this.companies = [];
+      }
+    });
+  });
+
   load = action(() => {
     this.fetch.fetch({
       url: '/companies',

@@ -33,7 +33,7 @@ const DistributorList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => alert()}
+                  onClick={() => browserHistory.push(`/v2/distributors/${row.id}`)}
                 />
               </div>
             );
@@ -42,7 +42,7 @@ const DistributorList = props => (
       ]}
       rows={props.distributors}
       selectable
-      onSelect={row => browserHistory.push(`/v2/distributors/${row.id}`)}
+      onSelect={row => browserHistory.push(`/v2/distributor-detail/${row.id}`)}
     />
   </Async>
 );

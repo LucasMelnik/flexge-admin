@@ -39,6 +39,7 @@ import CompanyDetailSceneContainer from './v2/views/company/components/CompanyDe
 
 import DistributorListSceneV2 from './v2/views/distributor/components/DistributorListScene';
 import DistributorFormScene from './v2/views/distributor/components/DistributorFormScene';
+import DistributorDetailSceneContainer from './v2/views/distributor/components/DistributorDetailSceneContainer';
 
 import TeacherListSceneV2 from './v2/views/teacher/components/TeacherListScene';
 import TeacherFormScene from './v2/views/teacher/components/TeacherFormScene';
@@ -89,6 +90,7 @@ const Routes = () => (
       <Route path="distributors" component={DistributorListSceneV2} />
       <Route path="distributors/new" component={DistributorFormScene} />
       <Route path="distributors/:distributorId" component={DistributorFormScene} />
+      <Route path="distributor-detail/:distributorId" component={DistributorDetailSceneContainer} />
       <Route path="teachers" component={TeacherListSceneV2} />
       <Route path="teachers/new" component={TeacherFormScene} />
       <Route path="teachers/:teacherId" component={TeacherFormScene} />

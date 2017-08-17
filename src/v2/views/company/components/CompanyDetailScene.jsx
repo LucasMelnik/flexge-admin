@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
-import Button from '../../../core/form/Button';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import ManagerSceneContainer from '../../managers/components/ManagerSceneContainer';
 import Separator from '../../../core/layout/Separator';
-import Card from '../../../core/layout/Card';
 import SchoolListScene from '../../school/components/SchoolListScene';
 
 const CompanyDetailScene = props => (
@@ -39,13 +37,12 @@ const CompanyDetailScene = props => (
 );
 
 CompanyDetailScene.propTypes = {
-  params: PropTypes.shape({
-    companyId: PropTypes.string,
-  }),
+  company: PropTypes.object,
+  companyId: PropTypes.string.isRequired,
 };
 
 CompanyDetailScene.defaultProps = {
-  params: null,
+  company: null,
 };
 
 export default CompanyDetailScene;
