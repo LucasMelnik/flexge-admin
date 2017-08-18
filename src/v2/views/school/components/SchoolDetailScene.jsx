@@ -24,7 +24,7 @@ const SchoolDetailScene = props => (
         ...props.companyId ? [
           {
             text: 'Companies',
-            link: '/v2/companies',
+            link: `/v2/distributor-detail/${props.distributorId}`,
           },
           {
             text: props.company ? `Company - ${props.company.name}` : 'loading...',
