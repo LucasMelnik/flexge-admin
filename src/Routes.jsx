@@ -87,6 +87,7 @@ const Routes = () => (
       <Route path="companies/new" component={CompanyFormScene} />
       <Route path="companies/:companyId" component={CompanyFormScene} />
       <Route path="company-detail/:companyId" component={CompanyDetailSceneContainer} />
+      <Route path="distributor-detail/:distributorId/company-detail/:companyId" component={CompanyDetailSceneContainer} />
       <Route path="distributors" component={DistributorListSceneV2} />
       <Route path="distributors/new" component={DistributorFormScene} />
       <Route path="distributors/:distributorId" component={DistributorFormScene} />

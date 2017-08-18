@@ -50,7 +50,7 @@ const CompanyList = props => (
       ]}
       rows={props.companies}
       selectable
-      onSelect={row => browserHistory.push(`/v2/company-detail/${row.id}/`)}
+      onSelect={row => browserHistory.push(props.distributorId ? `/v2/distributor-detail/${props.distributorId}/company-detail/${row.id}` : `/v2/company-detail/${row.id}/`)}
     />
   </Async>
 );
@@ -60,8 +60,13 @@ CompanyList.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
+  distributorId: PropTypes.string,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
+
+CompanyList.defaultProps = {
+  distributorId: null,
+}
 
 export default CompanyList;

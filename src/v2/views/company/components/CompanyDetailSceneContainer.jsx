@@ -4,7 +4,6 @@ import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import CompanyDetailScene from './CompanyDetailScene';
 import CompanyDetailService from '../services/CompanyDetailService';
-import StateService from '../../../core/services/StateService';
 
 class CompanyDetailSceneContainer extends Component {
 
@@ -21,6 +20,9 @@ class CompanyDetailSceneContainer extends Component {
   };
 
   componentWillMount() {
+    if (this.props.params.distributorId) {
+      CompanyDetailService.handleLoadDistributor(this.props.params.distributorId);
+    }
     CompanyDetailService.handleLoad(this.props.params.companyId);
   }
 
@@ -29,6 +31,8 @@ class CompanyDetailSceneContainer extends Component {
       <CompanyDetailScene
         company={CompanyDetailService.company}
         companyId={this.props.params.companyId}
+        distributor={CompanyDetailService.distributor}
+        distributorId={this.props.params.distributorId}
       />
     );
   }

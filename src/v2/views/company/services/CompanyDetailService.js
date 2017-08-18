@@ -4,10 +4,12 @@ import FetchService from '../../../../core/services/FetchService';
 
 class CompanyDetailService {
   fetch = new FetchService();
+  fetchDistributor = new FetchService();
 
   constructor() {
     extendObservable(this, {
       company: null,
+      distributor: null,
     });
   }
 
@@ -19,6 +21,14 @@ class CompanyDetailService {
         this.company = this.fetch.data;
       });
     }
+  });
+
+  handleLoadDistributor = action((distributorId) => {
+    this.fetchDistributor.fetch({
+      url: `/distributors/${distributorId}`,
+    }).then(() => {
+      this.distributor = this.fetchDistributor.data;
+    });
   });
 
 }

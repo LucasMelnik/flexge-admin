@@ -26,6 +26,7 @@ class CompanyListContainer extends Component {
   render() {
     return (
       <CompanyList
+        distributorId={this.props.distributorId}
         companies={toJS(CompanyListService.companies)}
         fetching={CompanyListService.fetch.fetching}
         onDelete={CompanyListService.handleRemove}
