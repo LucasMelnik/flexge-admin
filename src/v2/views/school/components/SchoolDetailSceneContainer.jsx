@@ -23,6 +23,9 @@ class SchoolDetailSceneContainer extends Component {
     if (this.props.params.distributorId) {
       SchoolDetailService.handleLoadDistributor(this.props.params.distributorId);
     }
+    if (this.props.params.companyId) {
+      SchoolDetailService.handleLoadCompany(this.props.params.companyId);
+    }
     SchoolDetailService.handleLoadSchool(this.props.params.schoolId);
   }
 
@@ -30,6 +33,7 @@ class SchoolDetailSceneContainer extends Component {
     return (
       <SchoolDetailScene
         school={SchoolDetailService.school}
+        company={SchoolDetailService.company}
         distributor={SchoolDetailService.distributor}
         schoolId={this.props.params.schoolId}
         companyId={this.props.params.companyId}

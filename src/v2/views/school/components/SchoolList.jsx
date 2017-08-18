@@ -46,7 +46,7 @@ const SchoolList = props => (
       ]}
       rows={props.schools}
       selectable
-      onSelect={row => browserHistory.push(props.companyId ? `/v2/company-detail/${props.companyId}/school-detail/${row.id}` : `/v2/school-detail/${row.id}`)}
+      onSelect={row => browserHistory.push(props.companyId && props.distributorId ? `/v2/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${row.id}` : `/v2/school-detail/${row.id}`)}
     />
   </Async>
 );
@@ -59,6 +59,7 @@ SchoolList.propTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
   })).isRequired,
+  distributorId: PropTypes.string,
   companyId: PropTypes.string,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,

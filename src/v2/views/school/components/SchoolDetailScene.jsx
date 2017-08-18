@@ -5,7 +5,6 @@ import SchoolClassListContainer from '../../school-class/components/SchoolClassL
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Separator from '../../../core/layout/Separator';
 import ManagerSceneContainer from '../../managers/components/ManagerSceneContainer';
-import Button from '../../../core/form/Button';
 import Card from '../../../core/layout/Card';
 
 const SchoolDetailScene = props => (
@@ -18,7 +17,7 @@ const SchoolDetailScene = props => (
             link: '/v2/distributors',
           },
           {
-            text: props.distributor ? props.distributor.name : 'loading...',
+            text: props.distributor ? `Distributor - ${props.distributor.name}` : 'loading...',
             link: `/v2/distributor-detail/${props.distributorId}`,
           },
         ] : [],
@@ -28,7 +27,7 @@ const SchoolDetailScene = props => (
             link: '/v2/companies',
           },
           {
-            text: props.school ? `Company ${props.school.company.name}` : 'loading...',
+            text: props.company ? `Company - ${props.company.name}` : 'loading...',
             link: `/v2/company-detail/${props.companyId}`,
           },
         ] : [],
@@ -41,15 +40,9 @@ const SchoolDetailScene = props => (
       <Separator size="md" />
       <Card
         title="Classes"
-        actions={[
-          <Button
-            label="New class"
-            icon="fa-plus"
-            onClick={() => browserHistory.push(`/v2/companies/${props.companyId}/schools/${props.schoolId}/classes/new`)}
-          />,
-        ]}
       >
         <SchoolClassListContainer
+          distributorId={props.distributorId}
           companyId={props.companyId}
           schoolId={props.schoolId}
         />
@@ -69,6 +62,7 @@ const SchoolDetailScene = props => (
 SchoolDetailScene.propTypes = {
   companyId: PropTypes.string,
   schoolId: PropTypes.string.isRequired,
+  company: PropTypes.object,
   school: PropTypes.object,
   distributor: PropTypes.object,
   distributorId: PropTypes.string,

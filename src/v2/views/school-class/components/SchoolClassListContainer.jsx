@@ -8,7 +8,8 @@ import SchoolClassListService from '../services/SchoolClassListService';
 class SchoolClassListContainer extends Component {
 
   static propTypes = {
-    companyId: PropTypes.string.isRequired,
+    distributorId: PropTypes.string,
+    companyId: PropTypes.string,
     schoolId: PropTypes.string.isRequired,
   }
 
@@ -19,6 +20,7 @@ class SchoolClassListContainer extends Component {
   render() {
     return (
       <SchoolClassList
+        distributorId={this.props.distributorId}
         companyId={this.props.companyId}
         schoolId={this.props.schoolId}
         schools={toJS(SchoolClassListService.classes)}

@@ -8,11 +8,13 @@ import SchoolListService from '../services/SchoolListService';
 class SchoolListContainer extends Component {
 
   static propTypes = {
+    distributorId: PropTypes.string,
     companyId: PropTypes.string,
   }
 
   static defaultProps = {
-    companyId: PropTypes.string,
+    distributorId: null,
+    companyId: null,
   }
 
   componentDidMount() {
@@ -22,6 +24,7 @@ class SchoolListContainer extends Component {
   render() {
     return (
       <SchoolList
+        distributorId={this.props.distributorId}
         companyId={this.props.companyId}
         schools={toJS(SchoolListService.schools)}
         fetching={SchoolListService.fetch.fetching}

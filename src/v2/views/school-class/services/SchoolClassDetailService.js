@@ -1,16 +1,20 @@
 import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import FormService from '../../../core/services/FormService';
+import { isRequired } from '../../../core/validations';
 
-class SchoolDetailService {
+class SchoolClassDetailService {
   fetchSchool = new FetchService();
   fetchDistributor = new FetchService();
   fetchCompany = new FetchService();
+  fetchClass = new FetchService();
 
   constructor() {
     extendObservable(this, {
       school: null,
       company: null,
       distributor: null,
+      class: null,
     });
   }
 
@@ -37,8 +41,17 @@ class SchoolDetailService {
       this.distributor = this.fetchDistributor.data;
     });
   });
+
+  handleLoadClass = action((schoolId, classId) => {
+    this.fetchClass.fetch({
+      url: `/schools/${schoolId}/classes/${classId}`,
+    }).then(() => {
+      this.class = this.fetchClass.data;
+    });
+  });
+
 }
 
-const schoolDetailService = new SchoolDetailService();
+const schoolClassDetailService = new SchoolClassDetailService();
 
-export default schoolDetailService;
+export default schoolClassDetailService;

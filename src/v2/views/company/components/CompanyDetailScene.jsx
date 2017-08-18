@@ -22,6 +22,10 @@ const CompanyDetailScene = props => (
           },
         ] : [],
         {
+          text: 'Companies',
+          link: `/v2/distributor-detail/${props.distributorId}`,
+        },
+        {
           text: `Company - ${props.company ? props.company.name : '...loading'}`,
         },
       ]}
@@ -31,7 +35,10 @@ const CompanyDetailScene = props => (
       <Card
         title="Schools"
       >
-        <SchoolListContainer companyId={props.companyId} />
+        <SchoolListContainer
+          distributorId={props.distributorId}
+          companyId={props.companyId}
+        />
       </Card>
       <Separator size="md" />
       <ManagerSceneContainer

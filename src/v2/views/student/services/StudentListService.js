@@ -11,17 +11,21 @@ class StudentListService {
     extendObservable(this, {
       students: [],
       filter: '',
+      school: null,
+      class: null,
     });
   }
 
-  init = action(() => {
+  init = action((schoolId, classId) => {
     this.filter = '';
+    this.schoolId = schoolId;
+    this.classId = classId;
     this.load();
   });
 
   load = action(() => {
     this.fetch.fetch({
-      url: '/students',
+      url: `/schools/${this.schooldId}/classes/${this.classId}`,
       query: {
         query: {
           name: {

@@ -65,7 +65,7 @@ import StudentFormScene from './v2/views/student/components/StudentFormScene';
 
 import SchoolClassListSceneV2 from './v2/views/school-class/components/SchoolClassListScene';
 import SchoolClassFormScene from './v2/views/school-class/components/SchoolClassFormScene';
-import SchoolClassDetailFormScene from './v2/views/school-class/components/SchoolClassDetailFormScene';
+import SchoolClassDetailSceneContainer from './v2/views/school-class/components/SchoolClassDetailSceneContainer';
 
 import PlacementTestListSceneV2 from './v2/views/placement-test/components/PlacementTestListScene';
 import PlacementTestFormSceneV2 from './v2/views/placement-test/components/PlacementTestFormScene';
@@ -104,7 +104,8 @@ const Routes = () => (
       <Route path="classes" component={SchoolClassListSceneV2} />
       <Route path="companies/:companyId/schools/:schoolId/classes/new" component={SchoolClassFormScene} />
       <Route path="companies/:companyId/schools/:schoolId/classes/:classId" component={SchoolClassFormScene} />
-      <Route path="companies/:companyId/schools/:schoolId/classes-detail/:classId" component={SchoolClassDetailFormScene} />
+      <Route path="class-detail/:classId" component={SchoolClassDetailSceneContainer} />
+      <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId" component={SchoolClassDetailSceneContainer} />
       <Route path="modules" component={ModuleListSceneV2} />
       <Route path="modules/new" component={ModuleFormSceneV2} />
       <Route path="modules/:moduleId" component={ModuleFormSceneV2} />
