@@ -8,7 +8,7 @@ const StudentListFilterContainer = () => (
     values={StudentListService.form.getValues()}
     onChange={StudentListService.form.setValue}
     fetching={StudentListService.fetch.fetching}
-    onSearch={StudentListService.load}
+    onSearch={StudentListService.loadAllStudents}
   />
 );
 

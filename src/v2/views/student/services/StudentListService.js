@@ -22,10 +22,38 @@ class StudentListService {
     this.filter = '';
     this.schoolId = schoolId;
     this.classId = classId;
-    this.load();
+    if (!this.schoolId && !this.classId) {
+      this.loadAllStudents();
+    } else {
+      this.loadBySchoolAndClass();
+    }
   });
 
-  load = action(() => {
+  loadAllStudents = action(() => {
+    this.fetch.fetch({
+      url: '/students',
+      query: {
+        query: {
+          ...this.form.getValue('filter') && {
+            name: {
+              $regex: this.form.getValue('filter'),
+              $options: 'i' },
+          },
+          ...this.form.getValue('company') && {
+            company: this.form.getValue('company'),
+          },
+        },
+      },
+    }).then(() => {
+      if (this.fetch.data) {
+        this.students = this.fetch.data;
+      } else {
+        this.students = [];
+      }
+    });
+  });
+
+  loadBySchoolAndClass = action(() => {
     this.fetch.fetch({
       url: `/schools/${this.schoolId}/classes/${this.classId}`,
       query: {
@@ -45,7 +73,6 @@ class StudentListService {
         this.students = this.fetch.data.students;
       } else {
         this.students = [];
-        this.total = 0;
       }
     });
   });
