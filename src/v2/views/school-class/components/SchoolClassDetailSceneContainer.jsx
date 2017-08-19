@@ -42,6 +42,7 @@ class SchoolClassDetailSceneContainer extends Component {
         distributor={SchoolClassDetailService.distributor}
         class={SchoolClassDetailService.class}
         schoolId={this.props.params.schoolId}
+        classId={this.props.params.classId}
         companyId={this.props.params.companyId}
         distributorId={this.props.params.distributorId}
       />

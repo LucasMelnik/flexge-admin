@@ -21,14 +21,21 @@ const SchoolDetailScene = props => (
             link: `/v2/distributor-detail/${props.distributorId}`,
           },
         ] : [],
-        ...props.companyId ? [
+        ...(!props.distributorId && !props.companyId) ? [
+          {
+            text: 'Schools',
+            link: '/v2/schools',
+          },
+        ] : (!props.distributorId) ? [
           {
             text: 'Companies',
-            link: `/v2/distributor-detail/${props.distributorId}`,
+            link: '/v2/companies',
           },
+        ] : [],
+        ...props.companyId ? [
           {
             text: props.company ? `Company - ${props.company.name}` : 'loading...',
-            link: `/v2/company-detail/${props.companyId}`,
+            link: `/v2/distributor-detail/${props.distributorId}/company-detail/${props.companyId}`,
           },
         ] : [],
         {

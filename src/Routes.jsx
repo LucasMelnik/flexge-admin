@@ -101,11 +101,14 @@ const Routes = () => (
       <Route path="school-detail/:schoolId" component={SchoolDetailSceneContainer} />
       <Route path="company-detail/:companyId/school-detail/:schoolId" component={SchoolDetailSceneContainer} />
       <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId" component={SchoolDetailSceneContainer} />
+      <Route path="company-detail/:companyId/school-detail/:schoolId" component={SchoolDetailSceneContainer} />
       <Route path="classes" component={SchoolClassListSceneV2} />
       <Route path="companies/:companyId/schools/:schoolId/classes/new" component={SchoolClassFormScene} />
       <Route path="companies/:companyId/schools/:schoolId/classes/:classId" component={SchoolClassFormScene} />
-      <Route path="class-detail/:classId" component={SchoolClassDetailSceneContainer} />
       <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId" component={SchoolClassDetailSceneContainer} />
+      <Route path="company-detail/:companyId/school-detail/:schoolId/class-detail/:classId" component={SchoolClassDetailSceneContainer} />
+      <Route path="school-detail/:schoolId/class-detail/:classId" component={SchoolClassDetailSceneContainer} />
+      <Route path="class-detail/:classId" component={SchoolClassDetailSceneContainer} />
       <Route path="modules" component={ModuleListSceneV2} />
       <Route path="modules/new" component={ModuleFormSceneV2} />
       <Route path="modules/:moduleId" component={ModuleFormSceneV2} />

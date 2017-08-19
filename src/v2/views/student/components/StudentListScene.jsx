@@ -17,13 +17,6 @@ const StudentListScene = () => (
     />
     <Card
       title="Students"
-      actions={[
-        <Button
-          label="New student"
-          icon="fa-plus"
-          onClick={() => browserHistory.push('/v2/students/new')}
-        />,
-      ]}
     >
       <StudentListFilterContainer />
       <StudentListContainer />

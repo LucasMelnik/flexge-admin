@@ -46,7 +46,15 @@ const SchoolClassList = props => (
       ]}
       rows={props.schools}
       selectable
-      onSelect={row => browserHistory.push(props.companyId && props.distributorId && props.schoolId ? `/v2/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${row.id}` : `/v2/class-detail/${row.id}`)}
+      onSelect={row => browserHistory.push(
+        props.companyId && props.distributorId && props.schoolId ?
+          `/v2/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${row.id}`
+        : props.companyId && props.schoolId ?
+          `/v2/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${row.id}`
+        : props.schoolId ?
+          `/v2/school-detail/${props.schoolId}/class-detail/${row.id}`
+        :
+        `/v2/class-detail/${row.id}`)}
     />
   </Async>
 );

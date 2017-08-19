@@ -20,11 +20,17 @@ const CompanyDetailScene = props => (
             text: `Distributor - ${props.distributor ? props.distributor.name : 'loading...'}`,
             link: `/v2/distributor-detail/${props.distributorId}`,
           },
+          {
+            text: 'Companies',
+            link: `/v2/distributor-detail/${props.distributorId}`,
+          },
         ] : [],
-        {
-          text: 'Companies',
-          link: `/v2/distributor-detail/${props.distributorId}`,
-        },
+        ...!props.distributorId && [
+          {
+            text: 'Companies',
+            link: '/v2/companies',
+          },
+        ],
         {
           text: `Company - ${props.company ? props.company.name : '...loading'}`,
         },

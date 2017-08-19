@@ -13,6 +13,8 @@ class StudentListService {
       filter: '',
       school: null,
       class: null,
+      schoolId: null,
+      classId: null,
     });
   }
 
@@ -25,12 +27,13 @@ class StudentListService {
 
   load = action(() => {
     this.fetch.fetch({
-      url: `/schools/${this.schooldId}/classes/${this.classId}`,
+      url: `/schools/${this.schoolId}/classes/${this.classId}`,
       query: {
         query: {
-          name: {
-            $regex: this.form.getValue('filter'),
-            $options: 'i',
+          ...this.form.getValue('filter') && {
+            name: {
+              $regex: this.form.getValue('filter'),
+              $options: 'i' },
           },
           ...this.form.getValue('company') && {
             company: this.form.getValue('company'),
@@ -39,7 +42,7 @@ class StudentListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.students = this.fetch.data;
+        this.students = this.fetch.data.students;
       } else {
         this.students = [];
         this.total = 0;

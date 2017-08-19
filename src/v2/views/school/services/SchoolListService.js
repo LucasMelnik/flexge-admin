@@ -24,7 +24,9 @@ class SchoolListService {
       url: '/schools',
       query: {
         query: {
-          company: this.companyId,
+          ...this.companyId && {
+            company: this.companyId,
+          },
           ...this.filter && {
             name: {
               $regex: this.filter,
