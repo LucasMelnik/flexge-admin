@@ -29,20 +29,22 @@ const StudentListFilter = props => (
         marginLeft: 20,
       }}
     >
-      <PermissionValidator allowedFor={['ADMIN']}>
-        <FetchSelect
-          url="/companies"
-          disabled={props.fetching}
-          label="Company"
-          fullWidth={false}
-          onChange={value => props.onChange('company', value)}
-          resultTransformer={{
-            text: 'name',
-            value: 'id',
-          }}
-          value={get(props.values, 'company')}
-        />
-      </PermissionValidator>
+      {!props.companyId && (
+        <PermissionValidator allowedFor={['ADMIN']}>
+          <FetchSelect
+            url="/companies"
+            disabled={props.fetching}
+            label="Company"
+            fullWidth={false}
+            onChange={value => props.onChange('company', value)}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+            value={get(props.values, 'company')}
+          />
+        </PermissionValidator>
+      )}
     </div>
     <div
       style={{
@@ -65,10 +67,12 @@ StudentListFilter.propTypes = {
   fetching: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
+  companyId: PropTypes.string,
 };
 
 StudentListFilter.defaultProps = {
   fetching: false,
+  companyId: null,
 };
 
 

@@ -86,7 +86,11 @@ class StudentListService {
           url: `/students/${student.id}`,
           method: 'delete',
         }).then(() => {
-          this.load();
+          if (!this.schoolId && !this.classId) {
+            this.loadAllStudents();
+          } else {
+            this.loadBySchoolAndClass();
+          }
         });
       });
   });

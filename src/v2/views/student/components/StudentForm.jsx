@@ -20,7 +20,7 @@ const StudentForm = props => (
           icon="fa-arrow-left"
           label="Back"
           type="default"
-          onClick={() => browserHistory.push('/v2/students')}
+          onClick={() => browserHistory.goBack()}
         />
       )
     }
