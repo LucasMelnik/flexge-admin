@@ -127,6 +127,10 @@ const Routes = () => (
       <Route path="students/:studentId" component={StudentFormSceneContainerV2} />
       <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainerV2} />
       <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/:studentId" component={StudentFormSceneContainerV2} />
+      <Route path="company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainerV2} />
+      <Route path="company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/:studentId" component={StudentFormSceneContainerV2} />
+      <Route path="school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainerV2} />
+      <Route path="school-detail/:schoolId/class-detail/:classId/students/:studentId" component={StudentFormSceneContainerV2} />
       <Route path="placement-test" component={PlacementTestListSceneV2} />
       <Route path="placement-test/new" component={PlacementTestFormSceneV2} />
       <Route path="placement-test/:placementTestId" component={PlacementTestFormSceneV2} />

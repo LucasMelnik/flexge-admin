@@ -30,6 +30,9 @@ class StudentFormSceneContainer extends Component {
     if (this.props.params.schoolId) {
       StudentDetailService.handleLoadSchool(this.props.params.schoolId);
     }
+    if (this.props.params.schoolId && this.props.params.classId) {
+      StudentDetailService.handleLoadClass(this.props.params.schoolId, this.props.params.classId);
+    }
   }
 
   render() {

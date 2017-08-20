@@ -43,7 +43,7 @@ const StudentFormScene = props => (
           },
           {
             text: props.class ? `Class - ${props.class.name}` : 'loading...',
-            link: `/v2/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${props.classId}`,
+            link: `/v2/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${props.classId}`,
           },
         ] : (!props.distributorId && !props.companyId && props.schoolId && props.classId) ? [
           {
@@ -52,7 +52,7 @@ const StudentFormScene = props => (
           },
           {
             text: props.class ? `Class - ${props.class.name}` : 'loading...',
-            link: `/v2/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${props.classId}`,
+            link: `/v2/school-detail/${props.schoolId}/class-detail/${props.classId}`,
           },
         ] : (!props.distributorId && !props.companyId && !props.schoolId && props.classId) ? [
           {
@@ -61,7 +61,7 @@ const StudentFormScene = props => (
           },
           {
             text: props.class ? `Class - ${props.class.name}` : 'loading...',
-            link: `/v2/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${props.classId}`,
+            link: `/v2/class-detail/${props.classId}`,
           },
         ] : [],
         {

@@ -8,7 +8,6 @@ import Card from '../../../core/layout/Card';
 
 const StudentDetailScene = props => (
   <div>
-    {console.log(props.distributorId)}
     <Card
       title="Students"
       actions={
