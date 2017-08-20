@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import StudentListContainer from './StudentListContainer';
 import StudentListFilterContainer from './StudentListFilterContainer';
-import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Button from '../../../core/form/Button';
 import Card from '../../../core/layout/Card';
-import Separator from '../../../core/layout/Separator';
 
 const SchoolClassDetailScene = props => (
   <div>
@@ -40,10 +38,6 @@ SchoolClassDetailScene.propTypes = {
   companyId: PropTypes.string,
   schoolId: PropTypes.string.isRequired,
   classId: PropTypes.string,
-  company: PropTypes.object,
-  class: PropTypes.object,
-  school: PropTypes.object,
-  distributor: PropTypes.object,
   distributorId: PropTypes.string,
 };
 
@@ -51,9 +45,6 @@ SchoolClassDetailScene.defaultProps = {
   companyId: null,
   classId: null,
   school: null,
-  company: null,
-  class: null,
-  distributor: null,
   distributorId: null,
 };
 

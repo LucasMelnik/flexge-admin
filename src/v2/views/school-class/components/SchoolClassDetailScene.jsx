@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import StudentDetailSceneContainer from '../../student/components/StudentDetailSceneContainer';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
-import Button from '../../../core/form/Button';
-import Card from '../../../core/layout/Card';
-import Separator from '../../../core/layout/Separator';
 
 const SchoolClassDetailScene = props => (
   <div>
