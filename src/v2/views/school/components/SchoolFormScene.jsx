@@ -13,12 +13,8 @@ const SchoolFormScene = props => (
     <Breadcrumb
       crumbs={[
         {
-          text: 'Companies',
-          link: '/v2/companies',
-        },
-        {
-          text: 'Detail Company',
-          link: `/v2/company-detail/${props.params.companyId}`,
+          text: 'Schools',
+          link: '/v2/schools',
         },
         {
           text: props.params.schoolId ? 'Edit School' : 'Create School',
@@ -33,7 +29,7 @@ const SchoolFormScene = props => (
             icon="fa-arrow-left"
             label="Back"
             type="default"
-            onClick={() => browserHistory.push(`/v2/company-detail/${props.params.companyId}`)}
+            onClick={() => browserHistory.goBack()}
           />
         )
       }
