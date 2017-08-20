@@ -31,6 +31,10 @@ class StudentListContainer extends Component {
         students={toJS(StudentListService.students)}
         fetching={StudentListService.fetch.fetching}
         onDelete={StudentListService.handleRemove}
+        distributorId={this.props.distributorId}
+        companyId={this.props.companyId}
+        schoolId={this.props.schoolId}
+        classId={this.props.classId}
       />
     );
   }

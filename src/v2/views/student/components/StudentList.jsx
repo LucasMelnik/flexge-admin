@@ -41,7 +41,7 @@ const StudentList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => alert()}
+                  onClick={() => browserHistory.push(`/v2/students/${row.id}`)}
                 />
               </div>
             );
@@ -50,7 +50,7 @@ const StudentList = props => (
       ]}
       rows={props.students}
       selectable
-      onSelect={row => browserHistory.push(`/v2/students/${row.id}`)}
+      onSelect={row => console.log(row)}
     />
   </Async>
 );

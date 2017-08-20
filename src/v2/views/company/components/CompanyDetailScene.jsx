@@ -20,10 +20,6 @@ const CompanyDetailScene = props => (
             text: `Distributor - ${props.distributor ? props.distributor.name : 'loading...'}`,
             link: `/v2/distributor-detail/${props.distributorId}`,
           },
-          {
-            text: 'Companies',
-            link: `/v2/distributor-detail/${props.distributorId}`,
-          },
         ] : [],
         ...!props.distributorId && [
           {
@@ -37,7 +33,6 @@ const CompanyDetailScene = props => (
       ]}
     />
     <div>
-      <Separator size="md" />
       <Card
         title="Schools"
       >

@@ -11,7 +11,12 @@ const SchoolDetailScene = props => (
   <div>
     <Breadcrumb
       crumbs={[
-        ...props.distributorId ? [
+        ...(!props.distributorId && !props.companyId) ? [
+          {
+            text: 'Schools',
+            link: '/v2/schools',
+          },
+        ] : props.distributorId ? [
           {
             text: 'Distributors',
             link: '/v2/distributors',
@@ -20,22 +25,18 @@ const SchoolDetailScene = props => (
             text: props.distributor ? `Distributor - ${props.distributor.name}` : 'loading...',
             link: `/v2/distributor-detail/${props.distributorId}`,
           },
-        ] : [],
-        ...(!props.distributorId && !props.companyId) ? [
           {
-            text: 'Schools',
-            link: '/v2/schools',
+            text: props.company ? `Company - ${props.company.name}` : 'loading...',
+            link: `/v2/distributor-detail/${props.distributorId}/company-detail/${props.companyId}`,
           },
-        ] : (!props.distributorId) ? [
+        ] : !props.distributorId && props.companyId ? [
           {
             text: 'Companies',
             link: '/v2/companies',
           },
-        ] : [],
-        ...props.companyId ? [
           {
             text: props.company ? `Company - ${props.company.name}` : 'loading...',
-            link: `/v2/distributor-detail/${props.distributorId}/company-detail/${props.companyId}`,
+            link: `/v2/company-detail/${props.companyId}`,
           },
         ] : [],
         {
@@ -44,7 +45,6 @@ const SchoolDetailScene = props => (
       ]}
     />
     <div>
-      <Separator size="md" />
       <Card
         title="Classes"
       >
