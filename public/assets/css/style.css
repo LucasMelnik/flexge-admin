@@ -1598,9 +1598,6 @@ input[type=checkbox], input[type=color], input[type=date], input[type=datetime-l
 }
 /*size*/
 
-.btn {
-    padding: 7px 18px;
-}
 .btn.btn-lg, .btn-lg, .btn-group-lg>.btn {
     padding: 10px 21px;
 }
