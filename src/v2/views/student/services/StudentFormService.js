@@ -12,11 +12,12 @@ class StudentFormService {
   constructor() {
     extendObservable(this, {
       studentId: null,
+      schoolId: null,
+      classId: null,
     });
     this.form.validations = {
       name: [isRequired],
       email: [isRequired, isValidEmail],
-      company: localStorage.role === 'COMPANY_MANAGER' ? [] : [isRequired],
     };
   }
 
@@ -29,7 +30,6 @@ class StudentFormService {
         if (this.fetch.data) {
           const data = {
             ...this.fetch.data,
-            company: this.fetch.data.company.id,
           };
           this.form.setInitialValues(data);
         }
@@ -48,20 +48,20 @@ class StudentFormService {
     const studentId = this.form.getValue('id');
     this.submit.fetch({
       method: studentId ? 'put' : 'post',
-      url: studentId ? `/students/${studentId}` : '/students',
+      url: studentId ? `/students/${studentId}` : `/schools/${this.schoolId}/classes/${this.classId}/students`,
       body: {
         ...this.form.getValues(),
-        company: this.form.getValue('company'),
+        ...this.schoolId && {
+          school: this.schoolId,
+        },
       },
     }).then(() => {
       if (this.submit.data) {
         const student = this.submit.data;
-        browserHistory.push(`/v2/students/${student.id}`);
         this.studentId = student.id;
         this.form.reset();
         this.form.setInitialValues({
           ...student,
-          company: student.company.id,
         });
         window.showSuccess(`Student ${studentId ? 'updated' : 'created'} successfully.`);
       }

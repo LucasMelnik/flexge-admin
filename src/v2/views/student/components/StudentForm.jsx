@@ -63,29 +63,6 @@ const StudentForm = props => (
             fieldValidation={get(props.errors, 'password', null) && 'error'}
           />
         </Column>
-        <PermissionValidator
-          allowedFor={[
-            'ADMIN',
-            'DISTRIBUTOR_MANAGER',
-          ]}
-        >
-          <Column lgSize={3}>
-            <FetchSelect
-              url="/companies"
-              fullWidth
-              disabled={props.submitting}
-              label="Company"
-              value={get(props.values, 'company', '')}
-              onChange={company => props.onChange('company', company)}
-              description={get(props.errors, 'company', null)}
-              fieldValidation={get(props.errors, 'company', null) && 'error'}
-              resultTransformer={{
-                text: 'name',
-                value: 'id',
-              }}
-            />
-          </Column>
-        </PermissionValidator>
       </Row>
       <div style={{ marginBottom: 20 }} />
       <FormButtons

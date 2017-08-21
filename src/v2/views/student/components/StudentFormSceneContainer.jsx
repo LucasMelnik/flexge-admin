@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import StudentFormScene from './StudentFormScene';
 import StudentDetailService from '../services/StudentDetailService';
+import StudentFormService from '../services/StudentFormService';
 
 class StudentFormSceneContainer extends Component {
 
@@ -31,6 +32,8 @@ class StudentFormSceneContainer extends Component {
       StudentDetailService.handleLoadSchool(this.props.params.schoolId);
     }
     if (this.props.params.schoolId && this.props.params.classId) {
+      StudentFormService.schoolId = this.props.params.schoolId;
+      StudentFormService.classId = this.props.params.classId;
       StudentDetailService.handleLoadClass(this.props.params.schoolId, this.props.params.classId);
     }
   }

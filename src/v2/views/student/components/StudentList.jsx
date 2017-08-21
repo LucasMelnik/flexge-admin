@@ -25,8 +25,8 @@ const StudentList = props => (
           path: 'email',
         },
         {
-          label: 'Company',
-          path: 'company.name',
+          label: 'School',
+          path: 'school.name',
         },
         {
           label: 'Actions',

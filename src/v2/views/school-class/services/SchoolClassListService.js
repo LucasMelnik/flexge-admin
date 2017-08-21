@@ -20,7 +20,7 @@ class SchoolClassListService {
 
   load = action(() => {
     this.fetch.fetch({
-      url: `/schools/${this.schoolId}/classes/`,
+      url: '/classes',
     }).then(() => {
       if (this.fetch.data) {
         this.classes = this.fetch.data;

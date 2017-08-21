@@ -1,10 +1,7 @@
 import React from 'react';
-import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import TextInput from '../../../core/form/TextInput';
-import FetchSelect from '../../../core/form/FetchSelect';
 import Button from '../../../core/form/Button';
-import PermissionValidator from '../../../../core/content/PermissionValidator';
 
 const StudentListFilter = props => (
   <div>
@@ -22,30 +19,6 @@ const StudentListFilter = props => (
       />
     </div>
 
-    <div
-      style={{
-        display: 'inline-block',
-        verticalAlign: 'top',
-        marginLeft: 20,
-      }}
-    >
-      {!props.companyId && (
-        <PermissionValidator allowedFor={['ADMIN']}>
-          <FetchSelect
-            url="/companies"
-            disabled={props.fetching}
-            label="Company"
-            fullWidth={false}
-            onChange={value => props.onChange('company', value)}
-            resultTransformer={{
-              text: 'name',
-              value: 'id',
-            }}
-            value={get(props.values, 'company')}
-          />
-        </PermissionValidator>
-      )}
-    </div>
     <div
       style={{
         display: 'inline-block',
@@ -67,12 +40,10 @@ StudentListFilter.propTypes = {
   fetching: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
-  companyId: PropTypes.string,
 };
 
 StudentListFilter.defaultProps = {
   fetching: false,
-  companyId: null,
 };
 
 

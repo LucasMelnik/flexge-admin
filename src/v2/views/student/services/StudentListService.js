@@ -39,9 +39,6 @@ class StudentListService {
               $regex: this.form.getValue('filter'),
               $options: 'i' },
           },
-          ...this.form.getValue('company') && {
-            company: this.form.getValue('company'),
-          },
         },
       },
     }).then(() => {
@@ -70,7 +67,12 @@ class StudentListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.students = this.fetch.data.students;
+        const school = this.fetch.data.school;
+        this.students = this.fetch.data.students.map((student) => {
+          const newStudent = Object.assign({}, student);
+          newStudent.school = school;
+          return newStudent;
+        });
       } else {
         this.students = [];
       }
