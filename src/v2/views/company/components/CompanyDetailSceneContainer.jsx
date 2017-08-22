@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import CompanyDetailScene from './CompanyDetailScene';
 import CompanyDetailService from '../services/CompanyDetailService';

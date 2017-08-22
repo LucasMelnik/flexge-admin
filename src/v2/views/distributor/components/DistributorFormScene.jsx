@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
 import DistributorFormContainer from './DistributorFormContainer';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 

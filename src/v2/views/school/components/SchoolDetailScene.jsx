@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
 import SchoolClassListContainer from '../../school-class/components/SchoolClassListContainer';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Separator from '../../../core/layout/Separator';

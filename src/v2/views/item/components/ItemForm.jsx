@@ -20,7 +20,6 @@ import TextItemForm from './forms/TextItemForm';
 import UnscrambleDragDropItemForm from './forms/UnscrambleDragDropItemForm';
 import UnscrambleSpeechRecognitionItemForm from './forms/UnscrambleSpeechRecognitionItemForm';
 import TrueFalseItemForm from './forms/TrueFalseItemForm';
-import TextInput from '../../../core/form/TextInput';
 import TimeInput from '../../../core/form/TimeInput';
 import Async from '../../../core/layout/Async';
 import FormButtons from '../../../core/form/FormButtons';

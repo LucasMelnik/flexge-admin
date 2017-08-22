@@ -1,5 +1,4 @@
 import { extendObservable, action } from 'mobx';
-import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 
 class DistributorFormService {
