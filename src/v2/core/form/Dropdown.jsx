@@ -25,9 +25,11 @@ const Dropdown = props => (
             key={item.label}
           >
             <a
+              style={{
+                cursor: 'pointer',
+              }}
               role="menuitem"
               tabIndex="-1"
-              href="#"
               onClick={item.onClick}
             >
               {item.label}
