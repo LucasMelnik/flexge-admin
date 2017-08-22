@@ -426,6 +426,7 @@ a:hover, a:focus {
     font-size: 14px;
     color: #ffffff;
     position: relative;
+    cursor: pointer;
 }
 .page-topbar .quick-area .info-menu li a.toggle .badge, .page-topbar .quick-area .info-menu li a.toggle_chat .badge, .page-topbar .quick-area .info-menu li a.sidebar_toggle .badge {
     position: absolute;

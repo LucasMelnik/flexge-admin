@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
 import Card from '../../../core/layout/Card';
 import Separator from '../../../core/layout/Separator';
 import Breadcrumb from '../../../core/layout/Breadcrumb';

@@ -8,7 +8,7 @@ const TopBar = () => (
       <div className="pull-left">
         <ul className="info-menu left-links list-inline list-unstyled">
           <li className="">
-            <a href="javascript:void(0)" data-toggle="sidebar" className="sidebar_toggle">
+            <a data-toggle="sidebar" className="sidebar_toggle">
               <i className="fa fa-expand" />
             </a>
           </li>
@@ -44,7 +44,7 @@ const TopBar = () => (
       <div className="pull-right">
         <ul className="info-menu right-links list-inline list-unstyled">
           <li className="profile">
-            <a href="#" data-toggle="dropdown" className="toggle">
+            <a data-toggle="dropdown" className="toggle">
               <i className="fa fa-bars"></i>
             </a>
             <ul className="dropdown-menu dropdown-menu-right profile animated fadeIn">
