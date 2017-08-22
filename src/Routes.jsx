@@ -1,6 +1,5 @@
 import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import LoginScene from './views/login/components/LoginScene';
 import MainScene from './views/main/components/MainScene';
 import DashboardScene from './views/dashboard/components/DashboardScene';
 import CompanyListScene from './views/company/components/CompanyListScene';
@@ -27,6 +26,51 @@ import PlacementTestFormSceneContainer from './views/placement-test/components/P
 import NotFoundScene from './views/not-found/NotFoundScene';
 
 
+// **** V2 **** //
+import LoginSceneV2 from './v2/views/login/components/LoginScene';
+import MainSceneV2 from './v2/views/main/components/MainScene';
+import TestComponents from './v2/TestComponents';
+import DashboardSceneV2 from './v2/views/dashboard/components/DashboardScene';
+
+import CompanyListSceneV2 from './v2/views/company/components/CompanyListScene';
+import CompanyFormScene from './v2/views/company/components/CompanyFormScene';
+import CompanyDetailSceneContainer from './v2/views/company/components/CompanyDetailSceneContainer';
+
+import DistributorListSceneV2 from './v2/views/distributor/components/DistributorListScene';
+import DistributorFormScene from './v2/views/distributor/components/DistributorFormScene';
+import DistributorDetailSceneContainer from './v2/views/distributor/components/DistributorDetailSceneContainer';
+
+import TeacherListSceneV2 from './v2/views/teacher/components/TeacherListScene';
+import TeacherFormScene from './v2/views/teacher/components/TeacherFormScene';
+
+import SchoolListSceneV2 from './v2/views/school/components/SchoolListScene';
+import SchoolFormScene from './v2/views/school/components/SchoolFormScene';
+import SchoolDetailSceneContainer from './v2/views/school/components/SchoolDetailSceneContainer';
+
+import ModuleListSceneV2 from './v2/views/module/components/ModuleListScene';
+import ModuleFormSceneV2 from './v2/views/module/components/ModuleFormScene';
+import ModuleDetailSceneContainerV2 from './v2/views/module/components/ModuleDetailSceneContainer';
+import MasteryTestFormSceneContainerV2 from './v2/views/mastery-test/components/MasteryTestFormSceneContainer';
+import UnitFormSceneContainerV2 from './v2/views/module/components/unit/UnitFormSceneContainer';
+import UnitItemListSceneContainerV2 from './v2/views/module/components/unit/unit-item/UnitItemListSceneContainer';
+import UnitItemFormSceneContainerV2 from './v2/views/module/components/unit/unit-item/UnitItemFormSceneContainer';
+import UnitReviewItemListSceneContainerV2 from './v2/views/module/components/unit/unit-item/UnitReviewItemListSceneContainer';
+
+import ReviewListSceneContainerV2 from './v2/views/unit-review/components/ReviewListSceneContainer';
+import ReviewFormSceneContainerV2 from './v2/views/unit-review/components/ReviewFormSceneContainer';
+
+import StudentListSceneV2 from './v2/views/student/components/StudentListScene';
+import StudentFormSceneContainerV2 from './v2/views/student/components/StudentFormSceneContainer';
+
+import SchoolClassListSceneV2 from './v2/views/school-class/components/SchoolClassListScene';
+import SchoolClassFormScene from './v2/views/school-class/components/SchoolClassFormScene';
+import SchoolClassDetailSceneContainer from './v2/views/school-class/components/SchoolClassDetailSceneContainer';
+
+import PlacementTestListSceneV2 from './v2/views/placement-test/components/PlacementTestListScene';
+import PlacementTestFormSceneV2 from './v2/views/placement-test/components/PlacementTestFormScene';
+
+import NotFoundSceneV2 from './v2/views/not-found/components/NotFoundScene';
+
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
     replace('/login');
@@ -35,7 +79,65 @@ function authRequired(nextState, replace) {
 
 const Routes = () => (
   <Router history={browserHistory}>
-    <Route path="/login" component={LoginScene} />
+    <Route path="/login" component={LoginSceneV2} />
+    <Route path="/v2/" component={MainSceneV2} onEnter={authRequired}>
+      <IndexRoute component={DashboardSceneV2} />
+      <Route path="companies" component={CompanyListSceneV2} />
+      <Route path="companies/new" component={CompanyFormScene} />
+      <Route path="companies/:companyId" component={CompanyFormScene} />
+      <Route path="company-detail/:companyId" component={CompanyDetailSceneContainer} />
+      <Route path="distributor-detail/:distributorId/company-detail/:companyId" component={CompanyDetailSceneContainer} />
+      <Route path="distributors" component={DistributorListSceneV2} />
+      <Route path="distributors/new" component={DistributorFormScene} />
+      <Route path="distributors/:distributorId" component={DistributorFormScene} />
+      <Route path="distributor-detail/:distributorId" component={DistributorDetailSceneContainer} />
+      <Route path="teachers" component={TeacherListSceneV2} />
+      <Route path="teachers/new" component={TeacherFormScene} />
+      <Route path="teachers/:teacherId" component={TeacherFormScene} />
+      <Route path="schools" component={SchoolListSceneV2} />
+      <Route path="schools/new" component={SchoolFormScene} />
+      <Route path="schools/:schoolId" component={SchoolFormScene} />
+      <Route path="school-detail/:schoolId" component={SchoolDetailSceneContainer} />
+      <Route path="company-detail/:companyId/school-detail/:schoolId" component={SchoolDetailSceneContainer} />
+      <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId" component={SchoolDetailSceneContainer} />
+      <Route path="company-detail/:companyId/school-detail/:schoolId" component={SchoolDetailSceneContainer} />
+      <Route path="classes" component={SchoolClassListSceneV2} />
+      <Route path="classes/new" component={SchoolClassFormScene} />
+      <Route path="classes/:classId" component={SchoolClassFormScene} />
+      <Route path="companies/:companyId/schools/:schoolId/classes/new" component={SchoolClassFormScene} />
+      <Route path="companies/:companyId/schools/:schoolId/classes/:classId" component={SchoolClassFormScene} />
+      <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId" component={SchoolClassDetailSceneContainer} />
+      <Route path="company-detail/:companyId/school-detail/:schoolId/class-detail/:classId" component={SchoolClassDetailSceneContainer} />
+      <Route path="school-detail/:schoolId/class-detail/:classId" component={SchoolClassDetailSceneContainer} />
+      <Route path="class-detail/:classId" component={SchoolClassDetailSceneContainer} />
+      <Route path="modules" component={ModuleListSceneV2} />
+      <Route path="modules/new" component={ModuleFormSceneV2} />
+      <Route path="modules/:moduleId" component={ModuleFormSceneV2} />
+      <Route path="modules/:moduleId/details" component={ModuleDetailSceneContainerV2} />
+      <Route path="modules/:moduleId/mastery-tests/new" component={MasteryTestFormSceneContainerV2} />
+      <Route path="modules/:moduleId/mastery-tests/:masteryTestId" component={MasteryTestFormSceneContainerV2} />
+      <Route path="modules/:moduleId/units/new" component={UnitFormSceneContainerV2} />
+      <Route path="modules/:moduleId/units/:unitId" component={UnitFormSceneContainerV2} />
+      <Route path="modules/:moduleId/units/:unitId/items" component={UnitItemListSceneContainerV2} />
+      <Route path="modules/:moduleId/units/:unitId/items/new" component={UnitItemFormSceneContainerV2} />
+      <Route path="modules/:moduleId/units/:unitId/review-items" component={UnitReviewItemListSceneContainerV2} />
+      <Route path="students" component={StudentListSceneV2} />
+      <Route path="students/new" component={StudentFormSceneContainerV2} />
+      <Route path="students/:studentId" component={StudentFormSceneContainerV2} />
+      <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainerV2} />
+      <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/:studentId" component={StudentFormSceneContainerV2} />
+      <Route path="company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainerV2} />
+      <Route path="company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/:studentId" component={StudentFormSceneContainerV2} />
+      <Route path="school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainerV2} />
+      <Route path="school-detail/:schoolId/class-detail/:classId/students/:studentId" component={StudentFormSceneContainerV2} />
+      <Route path="placement-test" component={PlacementTestListSceneV2} />
+      <Route path="placement-test/new" component={PlacementTestFormSceneV2} />
+      <Route path="placement-test/:placementTestId" component={PlacementTestFormSceneV2} />
+      <Route path="reviews" component={ReviewListSceneContainerV2} />
+      <Route path="modules/:moduleId/units/:unitId/reviews/:reviewId" component={ReviewFormSceneContainerV2} />
+      <Route path="*" component={NotFoundSceneV2} />
+    </Route>
+    <Route path="/v2/test" component={TestComponents} />
     <Route path="/" component={MainScene} onEnter={authRequired}>
       <IndexRoute component={DashboardScene} />
       <Route path="/companies" component={CompanyListScene} />
