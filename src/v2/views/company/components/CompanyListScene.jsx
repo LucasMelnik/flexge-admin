@@ -21,7 +21,6 @@ const CompanyListScene = () => (
         <Button
           label="New company"
           icon="fa-plus"
-          type="primary"
           onClick={() => browserHistory.push('/v2/companies/new')}
         />
       }
