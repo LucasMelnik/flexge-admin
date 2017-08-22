@@ -20,6 +20,10 @@ const SchoolClassList = props => (
           path: 'name',
         },
         {
+          label: 'School',
+          path: 'school.name',
+        },
+        {
           label: 'Teacher',
           path: 'teacher.name',
         },
@@ -51,10 +55,7 @@ const SchoolClassList = props => (
           `/v2/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${row.id}`
         : props.companyId && props.schoolId ?
           `/v2/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${row.id}`
-        : props.schoolId ?
-          `/v2/school-detail/${props.schoolId}/class-detail/${row.id}`
-        :
-        `/v2/class-detail/${row.id}`)}
+        : `/v2/school-detail/${row.school.id}/class-detail/${row.id}`)}
     />
   </Async>
 );

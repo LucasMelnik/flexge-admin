@@ -30,7 +30,7 @@ const StudentDetailScene = props => (
         )
       }
     >
-      <StudentListFilterContainer companyId={props.companyId} />
+      <StudentListFilterContainer />
       <StudentListContainer
         distributorId={props.distributorId}
         companyId={props.companyId}

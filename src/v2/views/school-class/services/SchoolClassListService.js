@@ -9,18 +9,31 @@ class SchoolClassListService {
     extendObservable(this, {
       classes: [],
       schoolId: null,
+      filter: '',
     });
   }
 
   init = action((schoolId) => {
     this.schoolId = schoolId;
     this.filter = '';
-    this.load();
+    if (!schoolId) {
+      this.loadAllClasses();
+    } else {
+      this.loadClassesBySchool();
+    }
   });
 
-  load = action(() => {
+  loadAllClasses = action(() => {
     this.fetch.fetch({
       url: '/classes',
+      query: {
+        query: this.filter && {
+          name: {
+            $regex: this.filter,
+            $options: 'i',
+          },
+        },
+      },
     }).then(() => {
       if (this.fetch.data) {
         this.classes = this.fetch.data;
@@ -29,6 +42,36 @@ class SchoolClassListService {
         this.total = 0;
       }
     });
+  });
+
+  loadClassesBySchool = action(() => {
+    this.fetch.fetch({
+      url: `/schools/${this.schoolId}/classes`,
+      query: {
+        query: this.filter && {
+          name: {
+            $regex: this.filter,
+            $options: 'i',
+          },
+        },
+      },
+    }).then(() => {
+      if (this.fetch.data) {
+        this.classes = this.fetch.data;
+      } else {
+        this.classes = [];
+        this.total = 0;
+      }
+    });
+  });
+
+  handleFilterChange = action((value) => {
+    this.filter = value;
+    if (!this.schoolId) {
+      this.loadAllClasses();
+    } else {
+      this.loadClassesBySchool();
+    }
   });
 
   handleDelete = action((schoolClass) => {

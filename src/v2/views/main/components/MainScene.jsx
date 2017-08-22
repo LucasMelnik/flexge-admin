@@ -27,10 +27,6 @@ const MainScene = props => (
             <SubMenu
               items={[
                 {
-                  label: 'Distributors',
-                  link: '/v2/distributors',
-                },
-                {
                   label: 'General Configuration',
                   link: '/v2/configs',
                 },
@@ -106,14 +102,6 @@ const MainScene = props => (
                     {
                       label: 'Modules',
                       link: '/v2/modules',
-                    },
-                    {
-                      label: 'Units',
-                      link: '/v2/units',
-                    },
-                    {
-                      label: 'Items',
-                      link: '/v2/items',
                     },
                   ]}
                 />

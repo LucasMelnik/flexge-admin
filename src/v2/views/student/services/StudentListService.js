@@ -15,6 +15,7 @@ class StudentListService {
       class: null,
       schoolId: null,
       classId: null,
+      filteredStudents: null,
     });
   }
 
@@ -33,17 +34,17 @@ class StudentListService {
     this.fetch.fetch({
       url: '/students',
       query: {
-        query: {
-          ...this.form.getValue('filter') && {
-            name: {
-              $regex: this.form.getValue('filter'),
-              $options: 'i' },
+        query: this.filter && {
+          name: {
+            $regex: this.filter,
+            $options: 'i',
           },
         },
       },
     }).then(() => {
       if (this.fetch.data) {
         this.students = this.fetch.data;
+        this.filteredStudents = this.fetch.data;
       } else {
         this.students = [];
       }
@@ -54,14 +55,10 @@ class StudentListService {
     this.fetch.fetch({
       url: `/schools/${this.schoolId}/classes/${this.classId}`,
       query: {
-        query: {
-          ...this.form.getValue('filter') && {
-            name: {
-              $regex: this.form.getValue('filter'),
-              $options: 'i' },
-          },
-          ...this.form.getValue('company') && {
-            company: this.form.getValue('company'),
+        query: this.filter && {
+          name: {
+            $regex: this.filter,
+            $options: 'i',
           },
         },
       },
@@ -73,10 +70,17 @@ class StudentListService {
           newStudent.school = school;
           return newStudent;
         });
+        this.filteredStudents = this.students;
       } else {
         this.students = [];
       }
     });
+  });
+
+  handleFilterChange = action((value) => {
+    this.filter = value;
+    this.students = this.filteredStudents.filter(student =>
+      student.name.toLowerCase().search(value) !== -1);
   });
 
   handleRemove = action((student) => {

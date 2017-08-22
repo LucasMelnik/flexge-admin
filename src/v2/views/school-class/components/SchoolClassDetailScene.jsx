@@ -64,8 +64,6 @@ const SchoolClassDetailScene = props => (
       schoolId={props.schoolId}
       classId={props.classId}
     />
-
-
   </div>
 );
 
