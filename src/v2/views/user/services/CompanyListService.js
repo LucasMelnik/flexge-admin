@@ -35,9 +35,12 @@ class CompanyListService {
 
   handleFilterChange = action((value) => {
     this.filter = value;
+    console.log(value, 'filter')
     // this.load();
     this.companies = this.filteredCompanies.filter(company =>
       company.name.toLowerCase().search(value) !== -1);
+
+      console.log(this.companies)
   });
 
   handleRemove = action((manager) => {

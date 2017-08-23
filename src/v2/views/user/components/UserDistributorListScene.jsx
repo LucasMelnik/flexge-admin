@@ -9,12 +9,12 @@ import Async from '../../../core/layout/Async';
 import Separator from '../../../core/layout/Separator';
 import CompanyListFilterContainer from './CompanyListFilterContainer';
 
-const UserListScene = props => (
+const UserDistributorListScene = props => (
   <div>
     <Breadcrumb
       crumbs={[
         {
-          text: 'Users',
+          text: 'Users Distributors',
         },
       ]}
     />
@@ -31,7 +31,7 @@ const UserListScene = props => (
               <Button
                 label="New User"
                 icon="fa-plus"
-                onClick={() => browserHistory.push(`/v2/companies/${company.id}/users/new`)}
+                onClick={() => browserHistory.push(`/v2/companies/${company.id}/distributor-users/new`)}
               />
             }
           >
@@ -45,9 +45,9 @@ const UserListScene = props => (
   </div>
 );
 
-UserListScene.propTypes = {
+UserDistributorListScene.propTypes = {
   companies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   fetching: PropTypes.bool.isRequired,
 };
 
-export default UserListScene;
+export default UserDistributorListScene;

@@ -83,13 +83,22 @@ const UserForm = props => (
                 description={get(props.errors, 'role', '')}
                 fieldValidation={get(props.errors, 'role', null) && 'error'}
                 options={
+                props.roleUser === 'ADMIN' ? (
                 [
+                  { value: 'ADMIN', label: 'Admin' },
                   { value: 'CONTENT_ADMIN', label: 'Content Admin' },
-                  { value: 'DISTRIBUTOR_MANAGER', label: 'Distributor Manager' },
-                  { value: 'SCHOOL_MANAGER', label: 'School Manager' },
-                  { value: 'COMPANY_MANAGER', label: 'Company Manager' },
-                  { value: 'TEACHER', label: 'Teacher' },
-                ]}
+                ]
+              ) : props.roleUser === 'DISTRIBUTOR' ? (
+              [
+                { value: 'DISTRIBUTOR_MANAGER', label: 'Distributor Manager' },
+              ]
+              ) : (
+              [
+                { value: 'SCHOOL_MANAGER', label: 'School Manager' },
+                { value: 'COMPANY_MANAGER', label: 'Company Manager' },
+                { value: 'TEACHER', label: 'Teacher' },
+              ]
+                )}
               />
             </Column>
           </PermissionValidator>
@@ -162,6 +171,7 @@ const UserForm = props => (
 );
 
 UserForm.propTypes = {
+  roleUser: PropTypes.string,
   onSubmit: PropTypes.func,
   onReset: PropTypes.func,
   values: PropTypes.object,
@@ -172,6 +182,7 @@ UserForm.propTypes = {
 };
 
 UserForm.defaultProps = {
+  roleUser: null,
   values: {},
   errors: {},
   submitting: false,

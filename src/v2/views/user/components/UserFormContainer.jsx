@@ -9,10 +9,12 @@ class UserFormContainer extends Component {
   static propTypes = {
     userId: PropTypes.string,
     companyId: PropTypes.string.isRequired,
+    roleUser: PropTypes.string,
   }
 
   static defaultProps = {
     userId: null,
+    roleUser: null,
   }
 
   componentWillMount() {
@@ -22,6 +24,7 @@ class UserFormContainer extends Component {
   render() {
     return (
       <UserForm
+        roleUser={this.props.roleUser}
         onSubmit={UserFormService.handleSubmit}
         onChange={UserFormService.form.setValue}
         onReset={UserFormService.form.reset}

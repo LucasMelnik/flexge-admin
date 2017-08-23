@@ -21,11 +21,11 @@ const DistributorList = props => (
         },
         {
           label: 'School',
-          path: 'school.name',
+          path: '',
           render: (cell, row) => {
             return (
               <div>
-                {row.role === 'COMPANY_MANAGER' ? 'All' : row.school ? row.school.name : '-'}
+                {row.school && (row.role === 'COMPANY_MANAGER' ? 'All' : row.school ? row.school.name : '-')}
               </div>
             );
           },
@@ -40,7 +40,7 @@ const DistributorList = props => (
         },
         {
           label: 'Company',
-          width: 120,
+          width: '120',
           path: '',
           render: (cell, row) => {
             return (
@@ -51,14 +51,14 @@ const DistributorList = props => (
                   fontSize: 25,
                 }}
               >
-                {row.role === 'COMPANY_MANAGER' ? 'X' : '-'}
+                {row.role === 'COMPANY_MANAGER' || row.role === 'ADMIN' ? 'X' : '-'}
               </div>
             );
           },
         },
         {
           label: 'School',
-          width: 120,
+          width: '120',
           path: '',
           render: (cell, row) => {
             return (
@@ -69,14 +69,14 @@ const DistributorList = props => (
                   fontSize: 25,
                 }}
               >
-                {row.role === 'SCHOOL_MANAGER' ? 'X' : '-'}
+                {row.role === 'SCHOOL_MANAGER' || row.role === 'ADMIN' ? 'X' : '-'}
               </div>
             );
           },
         },
         {
           label: 'Teacher',
-          width: 120,
+          width: '120',
           path: '',
           render: (cell, row) => {
             return (
@@ -87,7 +87,7 @@ const DistributorList = props => (
                   fontSize: 25,
                 }}
               >
-                {row.role === 'TEACHER' ? 'X' : '-'}
+                {row.role === 'TEACHER' || row.role === 'ADMIN' ? 'X' : '-'}
               </div>
             );
           },
@@ -124,7 +124,7 @@ DistributorList.propTypes = {
   users: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    school: PropTypes.object.isRequired,
+    school: PropTypes.object,
     company: PropTypes.object.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
