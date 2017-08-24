@@ -1,5 +1,5 @@
 import { action } from 'mobx';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import jwtDecode from 'jwt-decode';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
@@ -41,7 +41,7 @@ class LoginService {
         localStorage.setItem('role', decodedToken.role);
         localStorage.setItem('company', decodedToken.company);
         localStorage.setItem('distributor', decodedToken.distributor);
-        browserHistory.push('/');
+        hashHistory.push('/');
       }
       if (this.fetch.error) {
         NotificationService.addNotification('Unable to login. Please check your credentials.', null, null, 'danger');

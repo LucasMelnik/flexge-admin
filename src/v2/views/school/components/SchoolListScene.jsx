@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import SchoolListFilterContainer from './SchoolListFilterContainer';
@@ -22,7 +22,7 @@ const SchoolListScene = () => (
         <Button
           label="New school"
           icon="fa-plus"
-          onClick={() => browserHistory.push('/v2/schools/new')}
+          onClick={() => hashHistory.push('/v2/schools/new')}
         />,
       ]}
     >

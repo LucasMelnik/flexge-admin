@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import replace from 'lodash/replace';
 import ToReviewListFilterContainer from './ToReviewListFilterContainer';
@@ -90,7 +90,7 @@ const ToReviewList = props => (
       ]}
       rows={props.unitsAndReviews}
       selectable
-      onSelect={row => (row.review.status === 'PENDING' || row.review.status === 'REVIEWED') && browserHistory.push(`/v2/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
+      onSelect={row => (row.review.status === 'PENDING' || row.review.status === 'REVIEWED') && hashHistory.push(`/v2/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
     />
   </Async>
 );

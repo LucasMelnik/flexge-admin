@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import CompanyFormContainer from './CompanyFormContainer';
 import Button from '../../../core/form/Button';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
@@ -29,7 +29,7 @@ const CompanyFormScene = props => (
             icon="fa-arrow-left"
             label="Back"
             type="default"
-            onClick={() => browserHistory.push('/v2/companies')}
+            onClick={() => hashHistory.push('/v2/companies')}
           />
         )
       }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import replace from 'lodash/replace';
 import moment from 'moment';
 import 'moment-duration-format';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import Async from '../../../../core/layout/Async';
 import Table from '../../../../core/form/Table';
 import IconButton from '../../../../core/form/IconButton';
@@ -130,7 +130,7 @@ const UnitList = props => (
                 {(row.createdBy === localStorage.id || localStorage.role === 'ADMIN') && (
                   <IconButton
                     icon="fa-edit"
-                    onClick={() => browserHistory.push(`/v2/modules/${row.module}/units/${row.id}`)}
+                    onClick={() => hashHistory.push(`/v2/modules/${row.module}/units/${row.id}`)}
                   />
                 )}
               </div>
@@ -142,9 +142,9 @@ const UnitList = props => (
       selectable
       onSelect={row => {
         if (row.type.name.toLowerCase() === 'review') {
-          browserHistory.push(`/v2/modules/${row.module}/units/${row.id}/review-items`)
+          hashHistory.push(`/v2/modules/${row.module}/units/${row.id}/review-items`)
         } else {
-          browserHistory.push(`/v2/modules/${row.module}/units/${row.id}/items`)
+          hashHistory.push(`/v2/modules/${row.module}/units/${row.id}/items`)
         }
       }}
     />

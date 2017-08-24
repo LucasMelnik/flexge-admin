@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import Button from '../../../../../core/form/Button';
 import UnitItemListContainer from './UnitItemListContainer';
 import Card from '../../../../../core/layout/Card';
@@ -39,7 +39,7 @@ const UnitItemListScene = props => (
           <Button
             icon="fa-arrow-left"
             label="Back"
-            onClick={() => browserHistory.push(`/v2/modules/${props.moduleId}/details`)}
+            onClick={() => hashHistory.push(`/v2/modules/${props.moduleId}/details`)}
           />
         </div>
       }

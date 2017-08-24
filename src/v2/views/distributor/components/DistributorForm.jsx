@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
 import Async from '../../../core/layout/Async';
@@ -17,7 +17,7 @@ const DistributorForm = props => (
           icon="fa-arrow-left"
           label="Back"
           type="default"
-          onClick={() => browserHistory.push('/v2/distributors')}
+          onClick={() => hashHistory.push('/v2/distributors')}
         />
       )
     }

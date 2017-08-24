@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
@@ -49,7 +49,7 @@ const TeacherList = props => (
       ]}
       rows={props.teachers}
       selectable
-      onSelect={row => browserHistory.push(`/v2/teachers/${row.id}`)}
+      onSelect={row => hashHistory.push(`/v2/teachers/${row.id}`)}
     />
   </Async>
 );

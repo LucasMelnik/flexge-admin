@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import Button from '../../../core/form/Button';
 import ModuleFormContainer from './ModuleFormContainer';
 import Card from '../../../core/layout/Card';
@@ -25,7 +25,7 @@ const ModuleFormScene = props => (
         <Button
           icon="fa-arrow-left"
           label="Back"
-          onClick={() => browserHistory.push('/v2/modules')}
+          onClick={() => hashHistory.push('/v2/modules')}
         />
       }
     >

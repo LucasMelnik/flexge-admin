@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import Separator from '../../../core/layout/Separator';
 import Button from '../../../core/form/Button';
 import Card from '../../../core/layout/Card';
@@ -31,7 +31,7 @@ const ModuleDetailScene = props => (
         ((props.module.createdBy && props.module.createdBy.id === localStorage.id) || localStorage.role === 'ADMIN') && (
           <Button
             icon="fa-plus"
-            onClick={() => browserHistory.push(`/v2/modules/${props.module.id}/mastery-tests/new`)}
+            onClick={() => hashHistory.push(`/v2/modules/${props.module.id}/mastery-tests/new`)}
             label="New Mastery Test"
           />
         )
@@ -52,7 +52,7 @@ const ModuleDetailScene = props => (
         (props.module.createdBy && props.module.createdBy.id === localStorage.id) && (
           <Button
             icon="fa-plus"
-            onClick={() => browserHistory.push(`/v2/modules/${props.module.id}/units/new`)}
+            onClick={() => hashHistory.push(`/v2/modules/${props.module.id}/units/new`)}
             label="New Unit"
           />
         )

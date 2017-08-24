@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import moment from 'moment';
 import 'moment-duration-format';
 import Async from '../../../core/layout/Async';
@@ -50,7 +50,7 @@ const MasteryTestList = props => (
               {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => browserHistory.push(`/v2/modules/${row.module}/mastery-tests/${row.id}`)}
+                  onClick={() => hashHistory.push(`/v2/modules/${row.module}/mastery-tests/${row.id}`)}
                 />
               </div>
             );

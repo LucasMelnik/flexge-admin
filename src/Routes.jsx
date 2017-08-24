@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import MainScene from './views/main/components/MainScene';
 import DashboardScene from './views/dashboard/components/DashboardScene';
 import CompanyListScene from './views/company/components/CompanyListScene';
@@ -85,7 +85,7 @@ function authRequired(nextState, replace) {
 }
 
 const Routes = () => (
-  <Router history={browserHistory}>
+  <Router history={hashHistory}>
     <Route path="/login" component={LoginSceneV2} />
     <Route path="/v2/" component={MainSceneV2} onEnter={authRequired}>
       <IndexRoute component={DashboardSceneV2} />

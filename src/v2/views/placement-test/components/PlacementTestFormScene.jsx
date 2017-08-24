@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import Separator from '../../../core/layout/Separator';
 import PlacementTestFormContainer from './PlacementTestFormContainer';
 import PlacementTestItems from './PlacementTestItems';
@@ -29,7 +29,7 @@ const PlacementTestFormScene = props => (
             icon="fa-arrow-left"
             label="Back"
             type="default"
-            onClick={() => browserHistory.push('/v2/placement-test')}
+            onClick={() => hashHistory.push('/v2/placement-test')}
           />
         )
       }

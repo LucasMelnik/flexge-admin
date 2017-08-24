@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import SchoolFormContainer from './SchoolFormContainer';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Separator from '../../../core/layout/Separator';
@@ -29,7 +29,7 @@ const SchoolFormScene = props => (
             icon="fa-arrow-left"
             label="Back"
             type="default"
-            onClick={() => browserHistory.goBack()}
+            onClick={() => hashHistory.goBack()}
           />
         )
       }

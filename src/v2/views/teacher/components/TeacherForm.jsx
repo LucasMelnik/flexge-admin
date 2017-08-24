@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import get from 'lodash/get';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
@@ -21,7 +21,7 @@ const TeacherForm = props => (
           icon="fa-arrow-left"
           label="Back"
           type="default"
-          onClick={() => browserHistory.push('/v2/teachers')}
+          onClick={() => hashHistory.push('/v2/teachers')}
         />
       )
     }

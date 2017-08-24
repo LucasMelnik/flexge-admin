@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
 import IconButton from '../../../core/form/IconButton';
@@ -57,7 +57,7 @@ const PlacementTestList = props => (
       ]}
       rows={props.placementTests}
       selectable
-      onSelect={row => browserHistory.push(`/v2/placement-test/${row.id}`)}
+      onSelect={row => hashHistory.push(`/v2/placement-test/${row.id}`)}
     />
   </Async>
 );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
@@ -33,7 +33,7 @@ const DistributorList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => browserHistory.push(`/v2/distributors/${row.id}`)}
+                  onClick={() => hashHistory.push(`/v2/distributors/${row.id}`)}
                 />
               </div>
             );
@@ -42,7 +42,7 @@ const DistributorList = props => (
       ]}
       rows={props.distributors}
       selectable
-      onSelect={row => browserHistory.push(`/v2/distributor-detail/${row.id}`)}
+      onSelect={row => hashHistory.push(`/v2/distributor-detail/${row.id}`)}
     />
   </Async>
 );

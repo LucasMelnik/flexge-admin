@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
@@ -106,7 +106,7 @@ const DistributorList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => browserHistory.push(`/v2/companies/${row.company.id}/users/${row.id}`)}
+                  onClick={() => hashHistory.push(`/v2/companies/${row.company.id}/users/${row.id}`)}
                 />
               </div>
             );

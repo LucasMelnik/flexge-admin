@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import replace from 'lodash/replace';
 import MyReviewListFilterContainer from './MyReviewListFilterContainer';
 import Separator from '../../../core/layout/Separator';
@@ -108,7 +108,7 @@ const MyReviewList = props => (
       ]}
       rows={props.unitsAndReviews}
       selectable
-      onSelect={row => (row.review.statusFormat === 'NOT_APPROVED' || row.review.status === 'REVIEWED' || row.review.status === 'DONE' || localStorage.role === 'ADMIN') && row.review.id && browserHistory.push(`/v2/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
+      onSelect={row => (row.review.statusFormat === 'NOT_APPROVED' || row.review.status === 'REVIEWED' || row.review.status === 'DONE' || localStorage.role === 'ADMIN') && row.review.id && hashHistory.push(`/v2/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
     />
 </Async>
 );

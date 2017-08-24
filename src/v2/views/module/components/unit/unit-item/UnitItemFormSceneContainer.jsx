@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import UnitItemFormScene from './UnitItemFormScene';
 import LoadModuleService from '../../../services/LoadModuleService';
 import LoadUnitService from '../../../services/LoadUnitService';
@@ -30,9 +30,9 @@ class UnitItemsFormSceneContainer extends Component {
 
   handleBack = () => {
     if (this.props.params.reviewId) {
-      browserHistory.push(`/v2/modules/${this.props.params.moduleId}/units/${this.props.params.unitId}/reviews/${this.props.params.reviewId}`)
+      hashHistory.push(`/v2/modules/${this.props.params.moduleId}/units/${this.props.params.unitId}/reviews/${this.props.params.reviewId}`)
     } else {
-      browserHistory.push(`/v2/modules/${this.props.params.moduleId}/units/${this.props.params.unitId}/items`)
+      hashHistory.push(`/v2/modules/${this.props.params.moduleId}/units/${this.props.params.unitId}/items`)
     }
   };
 
