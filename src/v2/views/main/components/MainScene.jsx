@@ -75,16 +75,16 @@ const MainScene = props => (
             <SubMenu
               items={[
                 {
-                  label: 'Company Manager',
-                  link: '/v2/',
+                  label: 'Company Users',
+                  link: '/v2/users',
                 },
                 {
-                  label: 'School Manager',
-                  link: '/v2/',
+                  label: 'Admin Users',
+                  link: '/v2/admin-users',
                 },
                 {
-                  label: 'Teacher',
-                  link: '/v2/teachers',
+                  label: 'Distributor Users',
+                  link: '/v2/distributor-users',
                 },
               ]}
             />

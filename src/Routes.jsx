@@ -69,6 +69,13 @@ import SchoolClassDetailSceneContainer from './v2/views/school-class/components/
 import PlacementTestListSceneV2 from './v2/views/placement-test/components/PlacementTestListScene';
 import PlacementTestFormSceneV2 from './v2/views/placement-test/components/PlacementTestFormScene';
 
+import UserListSceneContainer from './v2/views/user/components/UserListSceneContainer';
+import UserFormScene from './v2/views/user/components/UserFormScene';
+import UserAdminListSceneContainer from './v2/views/user/components/UserAdminListSceneContainer';
+import UserAdminFormScene from './v2/views/user/components/UserAdminFormScene';
+import UserDistributorListSceneContainer from './v2/views/user/components/UserDistributorListSceneContainer';
+import UserDistributorFormScene from './v2/views/user/components/UserDistributorFormScene';
+
 import NotFoundSceneV2 from './v2/views/not-found/components/NotFoundScene';
 
 function authRequired(nextState, replace) {
@@ -135,6 +142,15 @@ const Routes = () => (
       <Route path="placement-test/:placementTestId" component={PlacementTestFormSceneV2} />
       <Route path="reviews" component={ReviewListSceneContainerV2} />
       <Route path="modules/:moduleId/units/:unitId/reviews/:reviewId" component={ReviewFormSceneContainerV2} />
+      <Route path="users" component={UserListSceneContainer} />
+      <Route path="admin-users" component={UserAdminListSceneContainer} />
+      <Route path="distributor-users" component={UserDistributorListSceneContainer} />
+      <Route path="companies/:companyId/users/new" component={UserFormScene} />
+      <Route path="companies/:companyId/users/:userId" component={UserFormScene} />
+      <Route path="companies/:companyId/admin-users/new" component={UserAdminFormScene} />
+      <Route path="companies/:companyId/admin-users/:userId" component={UserAdminFormScene} />
+      <Route path="companies/:companyId/distributor-users/new" component={UserDistributorFormScene} />
+      <Route path="companies/:companyId/distributor-users/:userId" component={UserDistributorFormScene} />
       <Route path="*" component={NotFoundSceneV2} />
     </Route>
     <Route path="/v2/test" component={TestComponents} />

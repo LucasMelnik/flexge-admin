@@ -60,7 +60,6 @@ class SchoolFormService {
     }).then(() => {
       if (this.submit.data) {
         const school = this.submit.data;
-        // browserHistory.push(`/v2/companies/${this.companyId}/schools/${school.id}`);
         this.schoolId = school.id;
         this.form.setInitialValues({
           ...school,

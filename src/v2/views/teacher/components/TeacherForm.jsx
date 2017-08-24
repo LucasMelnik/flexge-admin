@@ -78,7 +78,9 @@ const TeacherForm = props => (
                 disabled={props.submitting}
                 label="Company"
                 value={get(props.values, 'company', '')}
-                onChange={company => props.onChange('company', company)}
+                onChange={(company) => {
+                  props.onChange('company', company);
+                }}
                 description={get(props.errors, 'company', null)}
                 fieldValidation={get(props.errors, 'company', null) && 'error'}
                 resultTransformer={{
@@ -88,6 +90,26 @@ const TeacherForm = props => (
               />
             </Column>
           </PermissionValidator>
+        </Row>
+        <Row>
+          {get(props.values, 'company', '') && (
+            <Column lgSize={3}>
+              <FetchSelect
+                url={`/schools?query[company]=${get(props.values, 'company', '')}`}
+                fullWidth
+                disabled={props.submitting || !get(props.values, 'company', '')}
+                label="Schools"
+                value={get(props.values, 'school', '')}
+                onChange={school => props.onChange('school', school)}
+                description={get(props.errors, 'school', null)}
+                fieldValidation={get(props.errors, 'school', null) && 'error'}
+                resultTransformer={{
+                  text: 'name',
+                  value: 'id',
+                }}
+              />
+            </Column>
+          )}
         </Row>
         <div style={{ marginBottom: 20 }} />
         <FormButtons
