@@ -261,6 +261,15 @@ class ItemFormService {
           this.form.setInitialValues({
             ...this.fetch.data,
             'item.indexesToRemove': this.fetch.data, // to validation works
+            item: {
+              ...this.fetch.data.item,
+              ...this.fetch.data.item.videoStartTime && {
+                videoStartTime: this.fetch.data.item.videoStartTime.length === 4 ? `00${this.fetch.data.item.videoStartTime}` : this.fetch.data.item.videoStartTime,
+              },
+              ...this.fetch.data.item.videoEndTime && {
+                videoEndTime: this.fetch.data.item.videoEndTime.length === 4 ? `00${this.fetch.data.item.videoEndTime}` : this.fetch.data.item.videoEndTime,
+              },
+            },
           });
           this.setValidationsByItemType();
           this.createTextObserver();
