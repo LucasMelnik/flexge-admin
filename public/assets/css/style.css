@@ -8208,6 +8208,14 @@ table.dataTable.display tbody tr:first-child td {
     border-top: 1px solid #f0eff5;
 }
 
+.react-bs-table .table-bordered>tbody>tr>td:first-child, .react-bs-table .table-bordered>tbody>tr>th:first-child, .react-bs-table .table-bordered>tfoot>tr>td:first-child, .react-bs-table .table-bordered>tfoot>tr>th:first-child, .react-bs-table .table-bordered>thead>tr>td:first-child, .react-bs-table .table-bordered>thead>tr>th:first-child {
+    border-left-width: 1px !important;
+}
+
+.react-bs-table-expand-cell {
+    padding: 10px 8px !important;
+}
+
 .react-bs-table-bordered {
     border-radius: 0px !important;
     border-left: none !important;
