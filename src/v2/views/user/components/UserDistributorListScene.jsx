@@ -7,7 +7,7 @@ import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import Async from '../../../core/layout/Async';
 import Separator from '../../../core/layout/Separator';
-import CompanyListFilterContainer from './CompanyListFilterContainer';
+import DistributorCompanyListFilterContainer from './DistributorCompanyListFilterContainer';
 
 const UserDistributorListScene = props => (
   <div>
@@ -19,7 +19,7 @@ const UserDistributorListScene = props => (
       ]}
     />
     <Card title="Users">
-      <CompanyListFilterContainer />
+      <DistributorCompanyListFilterContainer />
     </Card>
     <Async fetching={props.fetching}>
       {props.companies.map(company => (
@@ -36,6 +36,7 @@ const UserDistributorListScene = props => (
             }
           >
             <UserListContainer
+              roleUser="DISTRIBUTOR_MANAGER"
               company={company}
             />
           </Card>

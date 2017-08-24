@@ -36,6 +36,7 @@ const UserListScene = props => (
             }
           >
             <UserListContainer
+              roleUser="USER"
               company={company}
             />
           </Card>

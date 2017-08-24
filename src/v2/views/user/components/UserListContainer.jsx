@@ -11,6 +11,7 @@ class UserListContainer extends Component {
 
   static propTypes = {
     company: PropTypes.object,
+    roleUser: PropTypes.oneOf(['USER', 'ADMIN', 'DISTRIBUTOR']).isRequired,
   }
 
   static defaultProps = {
@@ -18,7 +19,7 @@ class UserListContainer extends Component {
   }
 
   componentDidMount() {
-    this.userListService.init(this.props.company);
+    this.userListService.init(this.props.company, this.props.roleUser);
   }
 
   render() {

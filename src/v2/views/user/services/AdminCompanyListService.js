@@ -2,7 +2,7 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
-class CompanyListService {
+class AdminCompanyListService {
   fetch = new FetchService();
 
   constructor() {
@@ -55,6 +55,6 @@ class CompanyListService {
   });
 }
 
-const companyListService = new CompanyListService();
+const adminCompanyListService = new AdminCompanyListService();
 
-export default companyListService;
+export default adminCompanyListService;

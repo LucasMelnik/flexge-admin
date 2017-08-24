@@ -22,7 +22,7 @@ const UserForm = props => (
           icon="fa-arrow-left"
           label="Back"
           type="default"
-          onClick={() => browserHistory.push('/v2/users')}
+          onClick={() => props.roleUser === 'ADMIN' ? browserHistory.push('/v2/admin-users') : props.roleUser === 'DISTRIBUTOR_MANAGER' ? browserHistory.push('/v2/distributor-users') : browserHistory.push('/v2/admin-users')}
         />
       )
     }
@@ -88,7 +88,7 @@ const UserForm = props => (
                   { value: 'ADMIN', label: 'Admin' },
                   { value: 'CONTENT_ADMIN', label: 'Content Admin' },
                 ]
-              ) : props.roleUser === 'DISTRIBUTOR' ? (
+              ) : props.roleUser === 'DISTRIBUTOR_MANAGER' ? (
               [
                 { value: 'DISTRIBUTOR_MANAGER', label: 'Distributor Manager' },
               ]

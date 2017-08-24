@@ -9,11 +9,13 @@ class UserListService {
     extendObservable(this, {
       users: [],
       company: null,
+      roleUser: null
     });
   }
 
-  init = action((company) => {
+  init = action((company, roleUser) => {
     this.company = company;
+    this.roleUser = roleUser;
     this.load();
   });
 
@@ -27,7 +29,13 @@ class UserListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.users = this.fetch.data;
+        if (this.roleUser === 'ADMIN') {
+          this.users = this.fetch.data.filter(user => user.role === 'ADMIN' || user.role === 'CONTENT_ADMIN');
+        } else if (this.roleUser === 'DISTRIBUTOR_MANAGER') {
+          this.users = this.fetch.data.filter(user => user.role === 'DISTRIBUTOR_MANAGER');
+        } else {
+          this.users = this.fetch.data.filter(user => user.role === 'COMPANY_MANAGER' || user.role === 'SCHOOL_MANAGER' || user.role === 'TEACHER');
+        }
       }
     });
   });

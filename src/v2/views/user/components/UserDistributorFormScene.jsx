@@ -17,7 +17,7 @@ const UserFormScene = props => (
       ]}
     />
     <UserFormContainer
-      roleUser="DISTRIBUTOR"
+      roleUser="DISTRIBUTOR_MANAGER"
       userId={props.params.userId}
       companyId={props.params.companyId}
     />

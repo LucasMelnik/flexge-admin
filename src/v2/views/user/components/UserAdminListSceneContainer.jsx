@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
-import CompanyListService from '../services/CompanyListService';
+import AdminCompanyListService from '../services/AdminCompanyListService';
 import UserAdminListScene from './UserAdminListScene';
 
 class UserAdminListSceneContainer extends Component {
 
   componentDidMount() {
-    CompanyListService.load();
+    AdminCompanyListService.load();
   }
 
   render() {
     return (
       <UserAdminListScene
-        companies={toJS(CompanyListService.companies)}
-        fetching={CompanyListService.fetch.fetching}
+        companies={toJS(AdminCompanyListService.companies)}
+        fetching={AdminCompanyListService.fetch.fetching}
       />
     );
   }
