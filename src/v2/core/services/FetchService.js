@@ -1,5 +1,5 @@
 import { extendObservable, action } from 'mobx';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import get from 'lodash/get';
 import axios from 'axios';
 import qs from 'qs';
@@ -37,7 +37,7 @@ class FetchService {
     })).catch(action((error) => {
       if (error.response && error.response.status === 401) {
         localStorage.clear();
-        browserHistory.push('/login');
+        hashHistory.push('/login');
       }
       this.fetching = false;
       this.response = error.response || error;

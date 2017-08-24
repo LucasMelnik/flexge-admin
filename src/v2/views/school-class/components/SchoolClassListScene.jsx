@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
@@ -21,7 +21,7 @@ const SchoolListScene = () => (
         <Button
           label="New class"
           icon="fa-plus"
-          onClick={() => browserHistory.push('/v2/classes/new')}
+          onClick={() => hashHistory.push('/v2/classes/new')}
         />,
       ]}
     >

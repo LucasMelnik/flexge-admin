@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
 import IconButton from '../../../core/form/IconButton';
@@ -41,7 +41,7 @@ const SchoolClassList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => browserHistory.push(`/v2/companies/${props.companyId}/schools/${props.schoolId}/classes/${row.id}`)}
+                  onClick={() => hashHistory.push(`/v2/companies/${props.companyId}/schools/${props.schoolId}/classes/${row.id}`)}
                 />
               </div>
             );
@@ -50,7 +50,7 @@ const SchoolClassList = props => (
       ]}
       rows={props.schools}
       selectable
-      onSelect={row => browserHistory.push(
+      onSelect={row => hashHistory.push(
         props.companyId && props.distributorId && props.schoolId ?
           `/v2/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${row.id}`
         : props.companyId && props.schoolId ?

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import IconButton from '../../../core/form/IconButton';
 import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
@@ -77,7 +77,7 @@ const ModuleList = props => (
                   {row.createdBy.id === localStorage.id && (
                     <IconButton
                       icon="fa-edit"
-                      onClick={() => browserHistory.push(`/v2/modules/${row.id}`)}
+                      onClick={() => hashHistory.push(`/v2/modules/${row.id}`)}
                     />
                   )}
                 </div>
@@ -87,7 +87,7 @@ const ModuleList = props => (
         ]}
         rows={props.modules}
         selectable
-        onSelect={row => browserHistory.push(`/v2/modules/${row.id}/details`)}
+        onSelect={row => hashHistory.push(`/v2/modules/${row.id}/details`)}
       />
   </Async>
 );

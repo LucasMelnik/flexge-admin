@@ -1,5 +1,5 @@
 import { extendObservable, action } from 'mobx';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import FetchService from '../../../../core/services/FetchService';
 import FormService from '../../../../core/services/FormService';
 import NotificationService from '../../../../core/services/NotificationService';
@@ -61,7 +61,7 @@ class CompanyFormService {
     }).then(() => {
       if (this.submit.data) {
         const company = this.submit.data;
-        browserHistory.push(`/v2/companies/${company.id}`);
+        hashHistory.push(`/v2/companies/${company.id}`);
         this.companyId = company.id;
         this.form.reset();
         if (company.contractStart) {

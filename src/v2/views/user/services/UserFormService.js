@@ -1,5 +1,5 @@
 import { extendObservable, action } from 'mobx';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import { isRequired, isValidEmail } from '../../../../core/validations';
@@ -63,11 +63,11 @@ class UserFormService {
       if (this.submit.data) {
         const user = this.submit.data;
         if (user.role === 'ADMIN' || user.role === 'CONTENT_ADMIN') {
-          browserHistory.push(`/v2/companies/${user.company.id}/admin-users/${user.id}`);
+          hashHistory.push(`/v2/companies/${user.company.id}/admin-users/${user.id}`);
         } else if (user.role === 'DISTRIBUTOR_MANAGER') {
-          browserHistory.push(`/v2/companies/${user.company.id}/distributor-users/${user.id}`);
+          hashHistory.push(`/v2/companies/${user.company.id}/distributor-users/${user.id}`);
         } else {
-          browserHistory.push(`/v2/companies/${user.company.id}/users/${user.id}`);
+          hashHistory.push(`/v2/companies/${user.company.id}/users/${user.id}`);
         }
         this.userId = user.id;
         this.form.reset();

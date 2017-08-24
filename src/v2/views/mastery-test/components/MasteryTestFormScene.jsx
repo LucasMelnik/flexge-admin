@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import Button from '../../../core/form/Button';
 import MasteryTestFormContainer from './MasteryTestFormContainer';
 import Card from '../../../core/layout/Card';
@@ -33,7 +33,7 @@ const MasteryTestFormScene = props => (
         <Button
           label="Back"
           icon="fa-arrow-left"
-          onClick={() => browserHistory.push(`/v2/modules/${props.module.id}/details`)}
+          onClick={() => hashHistory.push(`/v2/modules/${props.module.id}/details`)}
         />
       }
     >

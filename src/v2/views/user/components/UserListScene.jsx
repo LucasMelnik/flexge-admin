@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import UserListContainer from './UserListContainer';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
@@ -31,7 +31,7 @@ const UserListScene = props => (
               <Button
                 label="New User"
                 icon="fa-plus"
-                onClick={() => browserHistory.push(`/v2/companies/${company.id}/users/new`)}
+                onClick={() => hashHistory.push(`/v2/companies/${company.id}/users/new`)}
               />
             }
           >

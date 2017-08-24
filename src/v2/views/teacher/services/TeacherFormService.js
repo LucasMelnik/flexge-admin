@@ -1,5 +1,5 @@
 import { extendObservable, action } from 'mobx';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import { isRequired, isValidEmail } from '../../../../core/validations';
@@ -58,7 +58,7 @@ class TeacherFormService {
     }).then(() => {
       if (this.submit.data) {
         const teacher = this.submit.data;
-        browserHistory.push(`/v2/teachers/${teacher.id}`);
+        hashHistory.push(`/v2/teachers/${teacher.id}`);
         this.teacherId = teacher.id;
         this.form.reset();
         this.form.setInitialValues({

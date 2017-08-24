@@ -1,5 +1,5 @@
 import { action, extendObservable } from 'mobx';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -54,7 +54,7 @@ class PlacementTestFormService {
     }).then(() => {
       if (this.submit.data) {
         const placementTest = this.submit.data;
-        browserHistory.push(`/v2/placement-test/${placementTest.id}`);
+        hashHistory.push(`/v2/placement-test/${placementTest.id}`);
         this.placementTestId = placementTest.id;
         this.form.reset();
         this.form.setInitialValues(placementTest);

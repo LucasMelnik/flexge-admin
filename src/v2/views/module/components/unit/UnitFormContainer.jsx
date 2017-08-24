@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import { observer } from 'mobx-react';
 import UnitForm from './UnitForm';
 import UnitFormService from '../../services/UnitFormService';
@@ -34,9 +34,9 @@ class UnitFormContainer extends Component {
           } else {
             UnitFormService.handleSubmit(unit => {
               if (unit.type.name.toLowerCase() === 'review') {
-                browserHistory.push(`/v2/modules/${unit.module.id}/units/${unit.id}/review-items`)
+                hashHistory.push(`/v2/modules/${unit.module.id}/units/${unit.id}/review-items`)
               } else {
-                browserHistory.push(`/v2/modules/${unit.module.id}/units/${unit.id}/items`)
+                hashHistory.push(`/v2/modules/${unit.module.id}/units/${unit.id}/items`)
               }
             });
           }

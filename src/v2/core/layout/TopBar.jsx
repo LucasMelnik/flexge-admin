@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 
 const TopBar = () => (
   <div className="page-topbar">
@@ -70,7 +70,7 @@ const TopBar = () => (
                 className="last"
                 onClick={() => {
                   localStorage.clear();
-                  browserHistory.push('/');
+                  hashHistory.push('/');
                   window.location.reload();
                 }}
               >

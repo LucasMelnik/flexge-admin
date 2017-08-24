@@ -1,5 +1,5 @@
 import { extendObservable, action } from 'mobx';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -50,7 +50,7 @@ class DistributorFormService {
     }).then(() => {
       if (this.submit.data) {
         const distributor = this.submit.data;
-        browserHistory.push(`/v2/distributors/${distributor.id}`);
+        hashHistory.push(`/v2/distributors/${distributor.id}`);
         this.distributorId = distributor.id;
         this.form.reset();
         this.form.setInitialValues(distributor);

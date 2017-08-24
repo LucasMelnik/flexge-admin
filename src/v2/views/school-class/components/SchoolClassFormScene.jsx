@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import SchoolClassFormContainer from './SchoolClassFormContainer';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Button from '../../../core/form/Button';
@@ -27,7 +27,7 @@ const SchoolClassFormScene = props => (
             icon="fa-arrow-left"
             label="Back"
             type="default"
-            onClick={() => browserHistory.goBack()}
+            onClick={() => hashHistory.goBack()}
           />
         )
       }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import get from 'lodash/get';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
@@ -22,7 +22,7 @@ const UserForm = props => (
           icon="fa-arrow-left"
           label="Back"
           type="default"
-          onClick={() => props.roleUser === 'ADMIN' ? browserHistory.push('/v2/admin-users') : props.roleUser === 'DISTRIBUTOR_MANAGER' ? browserHistory.push('/v2/distributor-users') : browserHistory.push('/v2/admin-users')}
+          onClick={() => props.roleUser === 'ADMIN' ? hashHistory.push('/v2/admin-users') : props.roleUser === 'DISTRIBUTOR_MANAGER' ? hashHistory.push('/v2/distributor-users') : hashHistory.push('/v2/admin-users')}
         />
       )
     }

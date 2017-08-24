@@ -1,4 +1,4 @@
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
@@ -95,7 +95,7 @@ class ContentReviewService {
           if (res) {
             ReviewListService.handleMyUnits();
             ReviewListService.handleAllUnits();
-            browserHistory.push('/reviews');
+            hashHistory.push('/reviews');
             NotificationService.addNotification(
               'Status changed successfully.',
               null,
@@ -143,7 +143,7 @@ class ContentReviewService {
         }).then((res) => {
           if (res) {
             this.handleLoad();
-            browserHistory.push('/reviews');
+            hashHistory.push('/reviews');
             NotificationService.addNotification(
               'Unit reviewed successfully.',
               null,
@@ -190,7 +190,7 @@ class ContentReviewService {
         }).then((res) => {
           if (res) {
             this.handleLoad();
-            browserHistory.push('/reviews');
+            hashHistory.push('/reviews');
             NotificationService.addNotification(
               'Review done.',
               null,

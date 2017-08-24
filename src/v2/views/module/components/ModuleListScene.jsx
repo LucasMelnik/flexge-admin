@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import Separator from '../../../core/layout/Separator';
 import Button from '../../../core/form/Button';
 import ModuleListContainer from './ModuleListContainer';
@@ -21,7 +21,7 @@ const ModuleListScene = () => (
       actions={
         <Button
           icon="fa-plus"
-          onClick={() => browserHistory.push('/v2/modules/new')}
+          onClick={() => hashHistory.push('/v2/modules/new')}
           label="New module"
         />
       }

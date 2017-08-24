@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
@@ -41,7 +41,7 @@ const CompanyList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => browserHistory.push(`/v2/companies/${row.id}`)}
+                  onClick={() => hashHistory.push(`/v2/companies/${row.id}`)}
                 />
               </div>
             );
@@ -50,7 +50,7 @@ const CompanyList = props => (
       ]}
       rows={props.companies}
       selectable
-      onSelect={row => browserHistory.push(props.distributorId ? `/v2/distributor-detail/${props.distributorId}/company-detail/${row.id}` : `/v2/company-detail/${row.id}/`)}
+      onSelect={row => hashHistory.push(props.distributorId ? `/v2/distributor-detail/${props.distributorId}/company-detail/${row.id}` : `/v2/company-detail/${row.id}/`)}
     />
   </Async>
 );

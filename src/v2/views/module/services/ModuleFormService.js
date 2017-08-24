@@ -1,5 +1,5 @@
 import { extendObservable, action } from 'mobx';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -57,7 +57,7 @@ class ModuleFormService {
       },
     }).then(() => {
       if (this.submit.data) {
-        browserHistory.push(`/v2/modules`);
+        hashHistory.push(`/v2/modules`);
         NotificationService.addNotification(
           `Module ${moduleId ? 'updated' : 'created'} successfully.`,
           null,

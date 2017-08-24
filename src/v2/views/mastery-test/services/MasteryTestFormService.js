@@ -1,5 +1,5 @@
 import { action } from 'mobx';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -52,7 +52,7 @@ class MasteryTestFormService {
         const masteryTest = this.submit.data;
         this.form.reset();
         this.form.setInitialValues(masteryTest);
-        browserHistory.push(`/v2/modules/${moduleId}/mastery-tests/${masteryTest.id}`);
+        hashHistory.push(`/v2/modules/${moduleId}/mastery-tests/${masteryTest.id}`);
         NotificationService.addNotification(
           `Mastery Test ${masteryTestId ? 'updated' : 'created'} successfully.`,
           null,
