@@ -23,6 +23,9 @@ const UnitItemList = props => (
           label: 'Order',
           path: 'order',
           width: '5%',
+          rowColumnStyle: {
+            overflow: 'visible',
+          },
           render: (cell, row) => {
             if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled){
               return (
@@ -45,6 +48,9 @@ const UnitItemList = props => (
           label: 'Group',
           path: 'group',
           width: '10%',
+          rowColumnStyle: {
+            overflow: 'visible',
+          },
           render: (cell, row) => {
             if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
               return (
