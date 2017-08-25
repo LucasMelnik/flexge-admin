@@ -166,7 +166,6 @@ const UnitItemList = props => (
           endpointUrl={`units/${props.unit.id}/items`}
           order={row.order}
           disabled={props.unit.type.name.toLowerCase() === 'review' || props.disabled}
-          showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
         />
       )}
     />

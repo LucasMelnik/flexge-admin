@@ -4,8 +4,8 @@ import moment from 'moment';
 import 'moment-duration-format';
 import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
-// import ItemFormContainer from '../../item/components/ItemFormContainer';
 import IconButton from '../../../core/form/IconButton';
+import ItemFormContainer from '../../item/components/ItemFormContainer';
 
 const PlacementTestItemList = props => (
   <Async fetching={props.fetching}>
@@ -41,24 +41,34 @@ const PlacementTestItemList = props => (
           path: 'item.time',
           width: '10%',
           render: (cell, row) => {
-            console.log('row', row);
             return `${row.item.time < 60 ? '00:' : ''}${moment.duration(row.item.time, "seconds").format("mm:ss", {forceLength: true})}`
           },
         },
+        {
+          label: 'Actions',
+          path: 'action',
+          width: '60',
+          render: (cell, row) => {
+            return (
+              <IconButton
+                icon="fa-trash"
+                onClick={() => props.onDelete(row)}
+              />
+            );
+          },
+        },
       ]}
+      idColumn="item.id"
       rows={props.items}
-      // renderFunction={(row) => (
-        // <ItemFormContainer
-        //   itemId={row.item.id}
-        //   itemsTypeUrl="/item-types?allowedForPlacementTest=true"
-        //   endpointUrl={`grammar-placement-test-levels/${row.grammarPlacementTestLevel.id}/items`}
-        //   isTestItem
-        // />
-      // )}
-      actionComponent={row => (
-        <IconButton
-          icon="delete"
-          onClick={() => props.onDelete(row)}
+      expandable
+      expandableComponent={(row) => (
+        <ItemFormContainer
+          itemId={row.item.id}
+          itemsTypeUrl="/item-types?query[allowedForPlacementTest]=true"
+          endpointUrl={`/grammar-placement-test-levels/${row.grammarPlacementTestLevel.id}/items`}
+          order={null}
+          onSaveSuccess={props.onSaveSuccess}
+          isTestItem
         />
       )}
     />
@@ -80,7 +90,6 @@ PlacementTestItemList.propTypes = {
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onOrderChange: PropTypes.func.isRequired,
 };
 
 export default PlacementTestItemList;

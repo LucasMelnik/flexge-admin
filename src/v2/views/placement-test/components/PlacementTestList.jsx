@@ -30,6 +30,11 @@ const PlacementTestList = props => (
           path: 'grammar.name',
         },
         {
+          label: 'Status',
+          path: 'review.status',
+          width: '15%',
+        },
+        {
           label: 'Items Count',
           path: 'items.length',
           width: '8%',

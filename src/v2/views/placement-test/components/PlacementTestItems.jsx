@@ -32,7 +32,7 @@ export default class PlacementTestItems extends Component {
         actions={this.state.actualScene === 'LIST' ? (
           <Button
             primary
-            icon="add"
+            icon="fa-plus"
             onClick={this.handleChangeToForm}
             label="Add new grammar item"
           />

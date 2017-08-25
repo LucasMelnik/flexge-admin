@@ -21,7 +21,6 @@ const PlacementTestListScene = () => (
       actions={
         <Button
           label="New Grammar"
-          type="primary"
           icon="fa-plus"
           onClick={() => hashHistory.push('/v2/placement-test/new')}
         />

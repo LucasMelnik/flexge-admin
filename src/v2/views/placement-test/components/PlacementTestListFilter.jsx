@@ -43,7 +43,7 @@ const PlacementTestListFilter = props => (
         <Separator size="md" />
         <Button
           label="Search"
-          icon="search"
+          icon="fa-search"
           priimary
           onClick={props.onSearch}
         />
