@@ -65,7 +65,7 @@ class MasteryTestFormService {
           `Error ${masteryTestId ? 'updating' : 'creating'} Mastery Test.`,
           null,
           null,
-          'danger',
+          'error',
         );
       }
     });

@@ -8,6 +8,7 @@ import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Async from '../../../core/layout/Async';
 import MasteryTestItems from './MasteryTestItems';
 import Separator from '../../../core/layout/Separator';
+import ReviewFormControlBar from './ReviewFormControlBar';
 
 const MasteryTestFormScene = props => (
   <div>
@@ -49,6 +50,12 @@ const MasteryTestFormScene = props => (
     <Separator size="md" />
     {(props.module.id && props.masteryTestId) && (
       <MasteryTestItems masteryTestId={props.masteryTestId} />
+    )}
+    {(props.module.id && props.masteryTestId) && (
+      <ReviewFormControlBar
+        masteryTestId={props.masteryTestId}
+        moduleId={props.module.id}
+      />
     )}
   </div>
 );
