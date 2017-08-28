@@ -6,6 +6,7 @@ const FormButtons = props => (
   <div
     style={{
       textAlign: 'right',
+      marginBottom: 20,
     }}
   >
     <Button
