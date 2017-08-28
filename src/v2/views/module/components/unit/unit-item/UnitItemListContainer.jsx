@@ -28,6 +28,7 @@ class UnitItemListContainer extends Component {
       <UnitItemList
         unit={this.props.unit}
         items={toJS(UnitItemListService.items)}
+        submitting={UnitItemListService.submit.fetching}
         fetching={UnitItemListService.fetch.fetching || UnitItemListService.reorderSubmitting}
         onDelete={UnitItemListService.handleUnlinkItem}
         onOrderOrGroupChange={UnitItemListService.handleOrderOrGroupChange}

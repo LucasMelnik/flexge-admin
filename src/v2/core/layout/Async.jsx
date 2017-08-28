@@ -9,6 +9,7 @@ const Async = props => (
         style={{
           position: 'relative',
           padding: '10px 0px',
+          marginLeft: 35,
         }}
       >
         <div className={`spinner spinner-${props.size}`} />

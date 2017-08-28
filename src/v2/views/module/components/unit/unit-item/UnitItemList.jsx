@@ -8,6 +8,7 @@ import IconButton from '../../../../../core/form/IconButton';
 import Table from '../../../../../core/form/Table';
 import Async from '../../../../../core/layout/Async';
 import ItemFormContainer from '../../../../item/components/ItemFormContainer';
+import './select.css';
 
 const UnitItemList = props => (
   <Async fetching={props.fetching}>
@@ -29,15 +30,18 @@ const UnitItemList = props => (
           render: (cell, row) => {
             if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled){
               return (
-                <Select
-                  label="Order"
-                  value={row.order}
-                  onChange={order => props.onOrderOrGroupChange(row, order, row.group)}
-                  options={range(1, 61).map(value => ({
-                    label: value.toString(),
-                    value,
-                  }))}
-                />
+                <Async fetching={props.submitting} size="md">
+                  <Select
+                    label="Order"
+                    disabled={props.submitting}
+                    value={row.order}
+                    onChange={order => props.onOrderOrGroupChange(row, order, row.group)}
+                    options={range(1, 61).map(value => ({
+                      label: value.toString(),
+                      value,
+                    }))}
+                  />
+                </Async>
               );
             } else {
               return row.order;
@@ -54,25 +58,28 @@ const UnitItemList = props => (
           render: (cell, row) => {
             if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
               return (
-                <Select
-                  label="Group"
-                  value={row.group}
-                  onChange={group => props.onOrderOrGroupChange(row, row.order, group)}
-                  options={[
-                    {
-                      label: 'Default',
-                      value: 1,
-                    },
-                    {
-                      label: 'First Review',
-                      value: 2,
-                    },
-                    {
-                      label: 'Second Review',
-                      value: 3,
-                    },
-                  ]}
-                />
+                <Async fetching={props.submitting} size="md">
+                  <Select
+                    label="Group"
+                    disabled={props.submitting}
+                    value={row.group}
+                    onChange={group => props.onOrderOrGroupChange(row, row.order, group)}
+                    options={[
+                      {
+                        label: 'Default',
+                        value: 1,
+                      },
+                      {
+                        label: 'First Review',
+                        value: 2,
+                      },
+                      {
+                        label: 'Second Review',
+                        value: 3,
+                      },
+                    ]}
+                  />
+                </Async>
               );
             } else {
               return ['', 'Default', 'First Review', 'Second Review'][row.group];
@@ -193,9 +200,14 @@ UnitItemList.propTypes = {
   }).isRequired,
   fetching: PropTypes.bool.isRequired,
   disabled: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool,
   onOrderOrGroupChange: PropTypes.func.isRequired,
   onAutoReorder: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
+
+UnitItemList.defaultProps = {
+  submitting: false,
+}
 
 export default UnitItemList;
