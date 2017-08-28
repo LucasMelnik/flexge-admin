@@ -31,24 +31,14 @@ const CompanyDetailScene = props => (
         },
       ]}
     />
-    <div>
-      <Card
-        title="Schools"
-      >
-        <SchoolListContainer
-          distributorId={props.distributorId}
-          companyId={props.companyId}
-        />
-      </Card>
-      <Separator size="md" />
-      <ManagerSceneContainer
-        title="Company Managers"
-        endpointUrl={`/companies/${props.companyId}/managers`}
-        initialValues={{
-          company: props.companyId,
-        }}
+    <Card
+      title="Schools"
+    >
+      <SchoolListContainer
+        distributorId={props.distributorId}
+        companyId={props.companyId}
       />
-    </div>
+    </Card>
   </div>
 );
 
