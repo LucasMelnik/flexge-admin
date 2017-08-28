@@ -2,18 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../../../core/form/TextInput';
 
-const AdminCompanyListFilter = props => (
+const UserAdminListFilter = props => (
   <TextInput
-    label="Search companies"
-    placeholder="Start type to filter the companies"
+    label="Search admin users"
+    placeholder="Start type to filter the users"
     value={props.value}
     onChange={props.onChange}
   />
 );
 
-AdminCompanyListFilter.propTypes = {
+UserAdminListFilter.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
-export default AdminCompanyListFilter;
+export default UserAdminListFilter;

@@ -23,7 +23,7 @@ class UserListService {
     this.fetch.fetch({
       url: '/users',
       query: {
-        query: {
+        query: this.roleUser !== 'ADMIN' && {
           company: this.company.id,
         },
       },

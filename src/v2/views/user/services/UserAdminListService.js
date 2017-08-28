@@ -2,51 +2,55 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
-class AdminCompanyListService {
+class UserAdminListService {
   fetch = new FetchService();
 
   constructor() {
     extendObservable(this, {
-      companies: [],
-      filteredCompanies: [],
       users: [],
+      filteredUsers: [],
       filter: '',
     });
   }
 
+  init = action(() => {
+    this.load();
+  });
+
   load = action(() => {
     this.fetch.fetch({
-      url: '/companies',
+      url: '/users',
       query: {
-        query: this.filter && {
-          name: {
-            $regex: this.filter,
-            $options: 'i',
+        query: {
+          role: ['ADMIN', 'CONTENT_ADMIN'],
+          ...this.filter && {
+            name: {
+              $regex: this.filter,
+              $options: 'i',
+            },
           },
         },
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.companies = this.fetch.data;
-        this.filteredCompanies = this.fetch.data;
+        this.users = this.fetch.data;
+        this.filteredUsers = this.users;
       }
     });
   });
 
   handleFilterChange = action((value) => {
     this.filter = value;
-    // this.load();
-    this.companies = this.filteredCompanies.filter(company =>
-      company.name.toLowerCase().search(value) !== -1);
+    this.load();
   });
 
-  handleRemove = action((manager) => {
+  handleRemove = action((user) => {
     ConfirmationDialogService.show(
       'Delete Manager',
-      `You are about to delete the manager "${manager.name}", Do you want to continue ?`,
+      `You are about to delete the user "${user.name}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({
-          url: `${this.url}/${manager.id}`,
+          url: `/users/${user.id}`,
           method: 'delete',
         }).then(() => {
           this.load();
@@ -55,6 +59,6 @@ class AdminCompanyListService {
   });
 }
 
-const adminCompanyListService = new AdminCompanyListService();
+const userAdminListService = new UserAdminListService();
 
-export default adminCompanyListService;
+export default userAdminListService;

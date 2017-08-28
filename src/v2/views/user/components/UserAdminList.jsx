@@ -7,6 +7,7 @@ import IconButton from '../../../core/form/IconButton';
 
 const UserAdminList = props => (
   <Async fetching={props.fetching}>
+    {console.log(props.users)}
     <Table
       columns={[
         {
@@ -20,77 +21,12 @@ const UserAdminList = props => (
           path: 'name',
         },
         {
-          label: 'School',
-          path: '',
-          render: (cell, row) => {
-            return (
-              <div>
-                {row.school && (row.role === 'COMPANY_MANAGER' ? 'All' : row.school ? row.school.name : '-')}
-              </div>
-            );
-          },
-        },
-        {
           label: 'Email',
           path: 'email',
         },
         {
           label: 'Role',
           path: 'role',
-        },
-        {
-          label: 'Company',
-          width: '120',
-          path: '',
-          render: (cell, row) => {
-            return (
-              <div
-                style={{
-                  textAlign: 'center',
-                  color: 'black',
-                  fontSize: 25,
-                }}
-              >
-                {row.role === 'COMPANY_MANAGER' || row.role === 'ADMIN' ? 'X' : '-'}
-              </div>
-            );
-          },
-        },
-        {
-          label: 'School',
-          width: '120',
-          path: '',
-          render: (cell, row) => {
-            return (
-              <div
-                style={{
-                  textAlign: 'center',
-                  color: 'black',
-                  fontSize: 25,
-                }}
-              >
-                {row.role === 'SCHOOL_MANAGER' || row.role === 'ADMIN' ? 'X' : '-'}
-              </div>
-            );
-          },
-        },
-        {
-          label: 'Teacher',
-          width: '120',
-          path: '',
-          render: (cell, row) => {
-            return (
-              <div
-                style={{
-                  textAlign: 'center',
-                  color: 'black',
-                  fontSize: 25,
-                }}
-              >
-                {row.role === 'TEACHER' || row.role === 'ADMIN' ? 'X' : '-'}
-              </div>
-            );
-          },
         },
         {
           label: 'Actions',
