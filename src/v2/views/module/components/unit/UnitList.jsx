@@ -21,17 +21,26 @@ const UnitList = props => (
         {
           label: 'Group',
           path: 'group',
-          width: '90',
+          width: '5%',
         },
         {
           label: 'Order',
           path: 'order',
-          width: '90',
+          width: '5%',
         },
         {
           label: 'Name',
           path: 'name',
-          width: '300',
+          width: '25%',
+          rowColumnStyle: {
+            textOverflow: 'none',
+            paddingTop: 5,
+            paddingBottom: 5,
+            paddingRight: 5,
+            whiteSpace: 'normal',
+            textAlign: 'justify',
+            lineHeight: '18px',
+          },
         },
         {
           label: 'Difficulty',
@@ -56,6 +65,15 @@ const UnitList = props => (
         {
           label: 'Unit Type',
           path: 'type.name',
+          rowColumnStyle: {
+            textOverflow: 'none',
+            paddingTop: 5,
+            paddingBottom: 5,
+            paddingRight: 5,
+            whiteSpace: 'normal',
+            textAlign: 'justify',
+            lineHeight: '18px',
+          },
         },
         {
           label: 'Status content',

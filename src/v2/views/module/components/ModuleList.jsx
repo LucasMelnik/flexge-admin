@@ -18,25 +18,22 @@ const ModuleList = props => (
           {
             label: 'Course',
             path: 'course.name',
-            width: '10%',
+            width: '6%',
           },
           {
             label: 'Group',
             path: 'group',
-            width: '10%',
+            width: '5%',
           },
           {
             label: 'Order',
             path: 'order',
-            width: '10%',
+            width: '5%',
           },
           {
             label: 'Name',
             path: 'name',
-          },
-          {
-            label: 'Description',
-            path: 'description',
+            width: '25%',
             rowColumnStyle: {
               textOverflow: 'none',
               paddingTop: 5,
@@ -45,7 +42,21 @@ const ModuleList = props => (
               whiteSpace: 'normal',
               textAlign: 'justify',
               lineHeight: '18px',
-            }
+            },
+          },
+          {
+            label: 'Description',
+            path: 'description',
+            width: '25%',
+            rowColumnStyle: {
+              textOverflow: 'none',
+              paddingTop: 5,
+              paddingBottom: 5,
+              paddingRight: 5,
+              whiteSpace: 'normal',
+              textAlign: 'justify',
+              lineHeight: '18px',
+            },
           },
           {
             label: 'Academic Plan',
@@ -58,7 +69,7 @@ const ModuleList = props => (
           {
             label: 'Units count',
             path: 'unitsCount',
-            width: '12%',
+            width: '8%',
           },
           {
             label: 'Actions',
