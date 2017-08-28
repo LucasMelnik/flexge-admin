@@ -5,6 +5,7 @@ import moment from 'moment';
 import 'moment-duration-format';
 import Select from '../../../../../core/form/Select';
 import IconButton from '../../../../../core/form/IconButton';
+import Button from '../../../../../core/form/Button';
 import Table from '../../../../../core/form/Table';
 import Async from '../../../../../core/layout/Async';
 import ItemFormContainer from '../../../../item/components/ItemFormContainer';
@@ -148,13 +149,15 @@ const UnitItemList = props => (
                     onClick={() => props.onDelete(row)}
                   />
                   {' '}
-                  <IconButton
-                    icon="fa-sort-amount-asc"
+                  <Button
+                    label="+1"
+                    type="primary"
                     onClick={() => props.onAutoReorder(index, 'ADD_LINE')}
                   />
                   {' '}
-                  <IconButton
-                    icon="fa-sort-amount-desc"
+                  <Button
+                    label="-1"
+                    type="primary"
                     onClick={() => props.onAutoReorder(index, 'REMOVE_LINE')}
                   />
                 </div>
