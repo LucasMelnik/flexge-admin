@@ -5,7 +5,6 @@ import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import SchoolListFilterContainer from './SchoolListFilterContainer';
 import SchoolListContainer from './SchoolListContainer';
-import Breadcrumb from '../../../core/layout/Breadcrumb';
 
 const SchoolListScene = props => (
   <div>
