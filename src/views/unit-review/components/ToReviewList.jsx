@@ -22,6 +22,15 @@ const ToReviewList = props => (
         {
           label: 'Name',
           path: 'unit.name',
+          rowColumnStyle: {
+            textOverflow: 'none',
+            paddingTop: 5,
+            paddingBottom: 5,
+            paddingRight: 5,
+            whiteSpace: 'normal',
+            textAlign: 'justify',
+            lineHeight: '18px',
+          },
         },
         {
           label: 'Course',
@@ -30,6 +39,15 @@ const ToReviewList = props => (
         {
           label: 'Module',
           path: 'unit.module.name',
+          rowColumnStyle: {
+            textOverflow: 'none',
+            paddingTop: 5,
+            paddingBottom: 5,
+            paddingRight: 5,
+            whiteSpace: 'normal',
+            textAlign: 'justify',
+            lineHeight: '18px',
+          },
         },
         {
           label: 'Unit Type',
@@ -46,7 +64,8 @@ const ToReviewList = props => (
             <div
               style={{
                 color: '#fff',
-                padding: 10,
+                padding: 5,
+                fontSize: 12,
                 display: 'inline-block',
                 fontWeight: 'bold',
                 borderRadius: 5,
@@ -70,7 +89,8 @@ const ToReviewList = props => (
             <div
               style={{
                 color: '#fff',
-                padding: 10,
+                padding: 5,
+                fontSize: 12,
                 display: 'inline-block',
                 fontWeight: 'bold',
                 borderRadius: 5,

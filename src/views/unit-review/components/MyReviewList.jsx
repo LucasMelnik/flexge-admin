@@ -23,6 +23,16 @@ const MyReviewList = props => (
         {
           label: 'Name',
           path: 'unit.name',
+          width: '30%',
+          rowColumnStyle: {
+            textOverflow: 'none',
+            paddingTop: 5,
+            paddingBottom: 5,
+            paddingRight: 5,
+            whiteSpace: 'normal',
+            textAlign: 'justify',
+            lineHeight: '18px',
+          },
         },
         {
           label: 'Course',
@@ -31,10 +41,28 @@ const MyReviewList = props => (
         {
           label: 'Module',
           path: 'unit.module.name',
+          rowColumnStyle: {
+            textOverflow: 'none',
+            paddingTop: 5,
+            paddingBottom: 5,
+            paddingRight: 5,
+            whiteSpace: 'normal',
+            textAlign: 'justify',
+            lineHeight: '18px',
+          },
         },
         {
           label: 'Unit Type',
           path: 'unit.type.name',
+          rowColumnStyle: {
+            textOverflow: 'none',
+            paddingTop: 5,
+            paddingBottom: 5,
+            paddingRight: 5,
+            whiteSpace: 'normal',
+            textAlign: 'justify',
+            lineHeight: '18px',
+          },
         },
         {
           label: 'Reviewed By',
@@ -43,12 +71,12 @@ const MyReviewList = props => (
         {
           label: 'Status content',
           path: 'review.status',
-          width: '235',
           render: (cell, row) => (
             <div
               style={{
                 color: '#fff',
-                padding: 10,
+                padding: 5,
+                fontSize: 12,
                 display: 'inline-block',
                 fontWeight: 'bold',
                 borderRadius: 5,
@@ -72,7 +100,8 @@ const MyReviewList = props => (
             <div
               style={{
                 color: '#fff',
-                padding: 10,
+                padding: 5,
+                fontSize: 12,
                 display: 'inline-block',
                 fontWeight: 'bold',
                 borderRadius: 5,
