@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SchoolClassListContainer from '../../school-class/components/SchoolClassListContainer';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
-import Separator from '../../../core/layout/Separator';
-import ManagerSceneContainer from '../../managers/components/ManagerSceneContainer';
 import Card from '../../../core/layout/Card';
 
 const SchoolDetailScene = props => (
