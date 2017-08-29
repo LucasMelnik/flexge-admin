@@ -1,7 +1,0 @@
-table.table td {
-  transition: background-color .35s ease;
-}
-
-table.table.selectable tr {
-  cursor: pointer;
-}

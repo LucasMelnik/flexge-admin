@@ -11,34 +11,76 @@ class StudentListService {
     extendObservable(this, {
       students: [],
       filter: '',
+      school: null,
+      class: null,
+      schoolId: null,
+      classId: null,
+      filteredStudents: null,
     });
   }
 
-  init = action(() => {
+  init = action((schoolId, classId) => {
     this.filter = '';
-    this.load();
+    this.schoolId = schoolId;
+    this.classId = classId;
+    if (!this.schoolId && !this.classId) {
+      this.loadAllStudents();
+    } else {
+      this.loadBySchoolAndClass();
+    }
   });
 
-  load = action(() => {
+  loadAllStudents = action(() => {
     this.fetch.fetch({
       url: '/students',
       query: {
-        query: {
+        query: this.filter && {
           name: {
-            $regex: this.form.getValue('filter'),
+            $regex: this.filter,
             $options: 'i',
           },
-          company: this.form.getValue('company').id,
         },
       },
     }).then(() => {
       if (this.fetch.data) {
         this.students = this.fetch.data;
+        this.filteredStudents = this.fetch.data;
       } else {
         this.students = [];
-        this.total = 0;
       }
     });
+  });
+
+  loadBySchoolAndClass = action(() => {
+    this.fetch.fetch({
+      url: `/schools/${this.schoolId}/classes/${this.classId}`,
+      query: {
+        query: this.filter && {
+          name: {
+            $regex: this.filter,
+            $options: 'i',
+          },
+        },
+      },
+    }).then(() => {
+      if (this.fetch.data) {
+        const school = this.fetch.data.school;
+        this.students = this.fetch.data.students.map((student) => {
+          const newStudent = Object.assign({}, student);
+          newStudent.school = school;
+          return newStudent;
+        });
+        this.filteredStudents = this.students;
+      } else {
+        this.students = [];
+      }
+    });
+  });
+
+  handleFilterChange = action((value) => {
+    this.filter = value;
+    this.students = this.filteredStudents.filter(student =>
+      student.name.toLowerCase().search(value) !== -1);
   });
 
   handleRemove = action((student) => {
@@ -50,7 +92,11 @@ class StudentListService {
           url: `/students/${student.id}`,
           method: 'delete',
         }).then(() => {
-          this.load();
+          if (!this.schoolId && !this.classId) {
+            this.loadAllStudents();
+          } else {
+            this.loadBySchoolAndClass();
+          }
         });
       });
   });

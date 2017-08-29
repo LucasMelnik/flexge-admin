@@ -21,6 +21,7 @@ class DistributorFormService {
 
   handleLoad = action((distributorId) => {
     this.form.reset();
+    console.log(distributorId, ' id')
     if (distributorId) {
       this.fetch.fetch({
         url: `/distributors/${distributorId}`,
@@ -38,6 +39,7 @@ class DistributorFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      window.showErrorMessage('Fill the required fields');
       return;
     }
     const distributorId = this.form.getValue('id');
@@ -52,12 +54,7 @@ class DistributorFormService {
         this.distributorId = distributor.id;
         this.form.reset();
         this.form.setInitialValues(distributor);
-        NotificationService.addNotification(
-          `Distributor ${distributorId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
-          'success',
-        );
+        window.showSuccess(`Distributor ${distributorId ? 'updated' : 'created'} successfully.`);
       }
       if (this.submit.error) {
         NotificationService.addNotification(

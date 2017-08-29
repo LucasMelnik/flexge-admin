@@ -1,35 +1,52 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
-import InlineBlock from 'jsxstyle/InlineBlock';
-import Title from '../../../core/content/Title';
-import Separator from '../../../core/layout/Separator';
-import FloatActionButton from '../../../core/form/FloatActionButton';
+import Card from '../../../core/layout/Card';
+import Button from '../../../core/form/Button';
 import SchoolListFilterContainer from './SchoolListFilterContainer';
 import SchoolListContainer from './SchoolListContainer';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
 
-const SchoolListScene = () => (
+const SchoolListScene = props => (
   <div>
-    <InlineBlock>
-      <Title>
-        Schools
-      </Title>
-    </InlineBlock>
-    <FloatActionButton
-      secondary
-      icon="add"
-      style={{ position: 'relative',
-        float: 'right',
-        top: 20,
-        right: 20,
-      }}
-      onClick={() => browserHistory.push('/schools/new')}
-    />
-    <Separator size="sm" />
-    <SchoolListFilterContainer />
-    <Separator size="sm" />
-    <SchoolListContainer />
-    <Separator size="sm" />
+    {/* <Breadcrumb
+      crumbs={[
+        {
+          text: 'Schools',
+          link: ' ',
+        },
+      ]}
+    /> */}
+    <Card
+      title="Schools"
+      actions={[
+        <Button
+          label="New school"
+          icon="fa-plus"
+          onClick={() => browserHistory.push(
+            props.distributorId ?
+          `/distributors/${props.distributorId}/companies/${props.companyId}/schools/new` :
+            props.companyId ? `/companies/${props.companyId}/schools/new` : `/schools/new`)}
+        />,
+      ]}
+    >
+      <SchoolListFilterContainer />
+      <SchoolListContainer
+        distributorId={props.distributorId}
+        companyId={props.companyId}
+      />
+    </Card>
   </div>
 );
+
+SchoolListScene.propsTypes = {
+  distributorId: PropTypes.string,
+  companyId: PropTypes.string,
+};
+
+SchoolListScene.defaultProps = {
+  distributorId: null,
+  companyId: null,
+};
 
 export default SchoolListScene;

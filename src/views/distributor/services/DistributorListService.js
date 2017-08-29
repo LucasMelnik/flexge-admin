@@ -23,7 +23,7 @@ class DistributorListService {
         query: this.filter && {
           name: {
             $regex: this.filter,
-            $options : 'i',
+            $options: 'i',
           },
         },
       },
@@ -50,6 +50,7 @@ class DistributorListService {
           url: `/distributors/${distributor.id}`,
           method: 'delete',
         }).then(() => {
+          window.showSuccess(`Distributor "${distributor.name}" deleted successfully.`);
           this.load();
         });
       });

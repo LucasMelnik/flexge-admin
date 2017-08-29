@@ -9,8 +9,8 @@ export default class TimeInput extends Component {
   static propTypes = {
     onChange: PropTypes.func,
     label: PropTypes.string,
-    errorText: PropTypes.string,
-    fullWidth: PropTypes.bool,
+    fieldValidation: PropTypes.string,
+    description: PropTypes.string,
     disabled: PropTypes.bool,
     value: PropTypes.any,
   };
@@ -18,8 +18,8 @@ export default class TimeInput extends Component {
   static defaultProps = {
     value: '',
     label: null,
-    errorText: null,
-    fullWidth: false,
+    fieldValidation: null,
+    description: null,
     disabled: false,
     onChange: () => false,
   };
@@ -48,10 +48,10 @@ export default class TimeInput extends Component {
     return (
       <MaskInput
         label={this.props.label}
-        errorText={this.props.errorText}
+        description={this.props.description}
+        fieldValidation={this.props.fieldValidation}
         value={this.state.maskedValue}
         onChange={this.handleChange}
-        fullWidth={this.props.fullWidth}
         disabled={this.props.disabled}
         maskType="custom"
         delimiters={[':']}

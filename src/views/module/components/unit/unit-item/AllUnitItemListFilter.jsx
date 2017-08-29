@@ -12,7 +12,6 @@ const AllUnitItemListFilter = props => (
   <Row>
     <Column lgSize={4}>
       <TextInput
-        fullWidth
         label="Search by text"
         value={props.values.text}
         onChange={value => props.onChange('text', value)}
@@ -22,33 +21,34 @@ const AllUnitItemListFilter = props => (
     <Column lgSize={3}>
       <FetchSelect
         url="item-types"
-        fullWidth
-        addEmptyOption
         disabled={props.fetching}
         label="Type"
-        maxHeight={350}
-        value={get(props.values, 'type.id', '')}
-        onChange={type => props.onChange('type.id', type)}
+        value={get(props.values, 'type', '')}
+        onChange={type => props.onChange('type', type)}
+        resultTransformer={{
+          text: 'name',
+          value: 'id',
+        }}
       />
     </Column>
     <Column lgSize={3}>
       <FetchSelect
         url="grammars"
-        fullWidth
-        addEmptyOption
         disabled={props.fetching}
         label="Grammar"
-        maxHeight={350}
-        value={get(props.values, 'grammar.id', '')}
-        onChange={grammar => props.onChange('grammar.id', grammar)}
+        value={get(props.values, 'grammar', '')}
+        onChange={grammar => props.onChange('grammar', grammar)}
+        resultTransformer={{
+          text: 'name',
+          value: 'id',
+        }}
       />
     </Column>
     <Column lgSize={2}>
       <Separator size="md" />
       <Button
         label="Search"
-        icon="search"
-        priimary
+        icon="fa-search"
         onClick={props.onSearch}
       />
     </Column>

@@ -1,47 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InlineBlock from 'jsxstyle/InlineBlock';
 import { browserHistory } from 'react-router';
-import Title from '../../../core/content/Title';
 import Separator from '../../../core/layout/Separator';
 import PlacementTestFormContainer from './PlacementTestFormContainer';
-import Button from '../../../core/form/Button';
 import PlacementTestItems from './PlacementTestItems';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
+import Card from '../../../core/layout/Card';
+import Button from '../../../core/form/Button';
+import ReviewFormControlBar from './ReviewFormControlBar';
 
 const PlacementTestFormScene = props => (
   <div>
-    <InlineBlock>
-      <Title>
-        {props.placementTestId ? (
-          'Grammar informations'
-        ) : (
-          'New Grammar'
-        )}
-      </Title>
-    </InlineBlock>
-    <Button
-      label="Back"
-      icon="arrow_back"
-      style={{
-        position: 'relative',
-        float: 'right',
-      }}
-      onClick={() => browserHistory.push('/placement-test')}
+    <Breadcrumb
+      crumbs={[
+        {
+          text: 'Placement Test',
+          link: '/placement-test',
+        },
+        {
+          text: props.params.placementTestId ? 'Edit Placement Test Grammar' : 'Create Placement Test Grammar',
+        },
+      ]}
     />
+    <Card
+      title={`${props.params.placementTestId ? 'Update' : 'Create'} Placement Test Grammar`}
+      actions={
+        (
+          <Button
+            icon="fa-arrow-left"
+            label="Back"
+            type="default"
+            onClick={() => browserHistory.push('/placement-test')}
+          />
+        )
+      }
+    >
+      <PlacementTestFormContainer placementTestId={props.params.placementTestId} />
+    </Card>
     <Separator size="sm" />
-    <PlacementTestFormContainer />
-    <Separator size="sm" />
-    {props.placementTestId && (
-      <PlacementTestItems placementTestId={props.placementTestId} />
+    {props.params.placementTestId && (
+      <PlacementTestItems placementTestId={props.params.placementTestId} />
+    )}
+    {props.params.placementTestId && (
+      <ReviewFormControlBar placementTestId={props.params.placementTestId} />
     )}
   </div>
 );
 
 PlacementTestFormScene.propTypes = {
-  studentId: PropTypes.string,
-};
-PlacementTestFormScene.defaultProps = {
-  studentId: null,
+  params: PropTypes.shape({
+    placementTestId: PropTypes.string,
+  }).isRequired,
 };
 
 export default PlacementTestFormScene;

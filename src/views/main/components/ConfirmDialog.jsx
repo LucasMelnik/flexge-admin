@@ -1,26 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dialog from 'material-ui/Dialog';
 import Button from '../../../core/form/Button';
+import Dialog from '../../../core/layout/Dialog';
 
 const ConfirmDialog = props => (
   <Dialog
     title={props.title}
     actions={[
       <Button
-        secondary
-        raised={false}
+        type="danger"
         label={props.confirmLabel}
         onClick={() => props.onConfirm()}
       />,
       <Button
-        raised={false}
+        type="default"
         label={props.discardLabel}
         onClick={() => props.onDiscard()}
       />
     ]}
-    modal={true}
-    open={props.isOpen}
+    isOpen={props.isOpen}
   >
     {props.message}
   </Dialog>

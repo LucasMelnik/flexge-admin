@@ -1,26 +1,35 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import InlineBlock from 'jsxstyle/InlineBlock';
 import Separator from '../../../core/layout/Separator';
 import Button from '../../../core/form/Button';
 import ModuleListContainer from './ModuleListContainer';
+import ModuleListFilterContainer from './ModuleListFilterContainer';
+import Card from '../../../core/layout/Card';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
 
 const ModuleListScene = () => (
   <div>
-    <InlineBlock height={70} />
-    <InlineBlock
-      float="right"
-      marginTop={15}
+    <Breadcrumb
+      crumbs={[
+        {
+          text: 'Modules',
+        },
+      ]}
+    />
+    <Card
+      title="Modules"
+      actions={
+        <Button
+          icon="fa-plus"
+          onClick={() => browserHistory.push('/modules/new')}
+          label="New module"
+        />
+      }
     >
-      <Button
-        icon="add"
-        primary
-        onClick={() => browserHistory.push('/modules/new')}
-        label="New module"
-      />
-    </InlineBlock>
-    <ModuleListContainer />
-    <Separator />
+      <ModuleListFilterContainer />
+      <Separator />
+      <ModuleListContainer />
+    </Card>
   </div>
 );
 

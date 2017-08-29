@@ -1,34 +1,33 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import InlineBlock from 'jsxstyle/InlineBlock';
-import Title from '../../../core/content/Title';
-import Separator from '../../../core/layout/Separator';
+import Card from '../../../core/layout/Card';
+import Button from '../../../core/form/Button';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
 import CompanyListFilterContainer from './CompanyListFilterContainer';
 import CompanyListContainer from './CompanyListContainer';
-import FloatActionButton from '../../../core/form/FloatActionButton';
 
 const CompanyListScene = () => (
   <div>
-    <InlineBlock>
-      <Title>
-        Companies
-      </Title>
-    </InlineBlock>
-    <FloatActionButton
-      secondary
-      icon="add"
-      style={{ position: 'relative',
-        float: 'right',
-        top: 20,
-        right: 20,
-      }}
-      onClick={() => browserHistory.push('/companies/new')}
+    <Breadcrumb
+      crumbs={[
+        {
+          text: 'Companies',
+        },
+      ]}
     />
-    <Separator size="sm" />
-    <CompanyListFilterContainer />
-    <Separator size="sm" />
-    <CompanyListContainer />
-    <Separator size="sm" />
+    <Card
+      title="Companies"
+      actions={
+        <Button
+          label="New company"
+          icon="fa-plus"
+          onClick={() => browserHistory.push('/companies/new')}
+        />
+      }
+    >
+      <CompanyListFilterContainer />
+      <CompanyListContainer />
+    </Card>
   </div>
 );
 

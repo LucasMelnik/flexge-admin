@@ -1,26 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InlineBlock from 'jsxstyle/InlineBlock';
 import TextInput from '../../../../core/form/TextInput';
 import Button from '../../../../core/form/Button';
+import Row from '../../../../core/layout/Row';
+import Column from '../../../../core/layout/Column';
+import Separator from '../../../../core/layout/Separator';
 
 const UnitListFilter = props => (
-  <div>
-    <InlineBlock marginRight={20}>
+  <Row>
+    <Column lgSize={10} mdSize={10} smSize={10}>
       <TextInput
         label="Search units"
         value={props.values.filter}
         onChange={value => props.onChange('filter', value)}
         disabled={props.fetching}
       />
-    </InlineBlock>
-    <Button
-      label="Search"
-      icon="search"
-      priimary
-      onClick={props.onSearch}
-    />
-  </div>
+    </Column>
+    <Column lgSize={2} mdSize={2} smSize={2}>
+      <Separator size="md" />
+      <Button
+        label="Search"
+        icon="fa-search"
+        type="primary"
+        onClick={props.onSearch}
+      />
+    </Column>
+  </Row>
 );
 
 UnitListFilter.propTypes = {

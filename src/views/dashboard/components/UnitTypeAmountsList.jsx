@@ -1,27 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from '../../../core/content/Table';
-import Paper from '../../../core/layout/Paper';
-import Async from "../../../core/content/Async";
+import Table from '../../../core/form/Table';
+import Async from '../../../core/layout/Async';
 
 const UnitTypeAmountsList = props => (
-  <Paper>
-    <Async fetching={props.fetching}>
-      <Table
-        columns={[
-          {
-            label: 'Unit Type',
-            path: 'name',
-          },
-          {
-            label: 'Amount Done',
-            path: 'amountDone',
-          },
-        ]}
-        rows={props.amounts}
-      />
-    </Async>
-  </Paper>
+  <Async fetching={props.fetching}>
+    <Table
+      columns={[
+        {
+          label: 'ID',
+          path: 'id',
+          isKey: true,
+          hidden: true,
+        },
+        {
+          label: 'Unit Type',
+          path: 'name',
+        },
+        {
+          label: 'Amount Done',
+          path: 'amountDone',
+        },
+      ]}
+      rows={props.amounts}
+    />
+  </Async>
 );
 
 UnitTypeAmountsList.propTypes = {
@@ -32,4 +35,4 @@ UnitTypeAmountsList.propTypes = {
   fetching: PropTypes.bool.isRequired,
 };
 
-export default  UnitTypeAmountsList;
+export default UnitTypeAmountsList;

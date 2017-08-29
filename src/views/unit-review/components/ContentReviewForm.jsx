@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import TextEditor from '../../../core/content/TextEditor';
 import Button from '../../../core/form/Button';
+import TextEditor from '../../../core/form/TextEditor';
 
 const ContentReviewForm = props => (
   <div>
@@ -24,16 +24,16 @@ const ContentReviewForm = props => (
         {(props.values.status === 'PENDING' && (props.values.createdBy !== localStorage.id || localStorage.role === 'ADMIN')) && (
           <div>
             <Button
-              icon="rate_review"
-              primary
+              icon="fa-comments-o"
+              type="primary"
               label="Mark as reviewed"
               onClick={props.onSendToReviewed}
               disabled={props.values.statusFormat !== 'APPROVED'}
             />
             {' '}
             <Button
-              icon="rate_review"
-              primary
+              icon="fa-check-square-o"
+              type="primary"
               label="Done"
               onClick={props.onSendToDone}
               disabled={props.values.statusFormat !== 'APPROVED'}
@@ -42,8 +42,8 @@ const ContentReviewForm = props => (
         )}
         {(props.values.status === 'REVIEWED' && (props.values.createdBy === localStorage.id || localStorage.role === 'ADMIN')) && (
           <Button
-            icon="rate_review"
-            primary
+            icon="fa-comments-o"
+            type="primary"
             label="Pending"
             onClick={props.onSendToPending}
             disabled={props.values.statusFormat !== 'APPROVED'}

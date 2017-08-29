@@ -1,50 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InlineBlock from 'jsxstyle/InlineBlock';
-import {
-  Step,
-  Stepper,
-  StepLabel,
-} from 'material-ui/Stepper';
-import ArrowForwardIcon from 'material-ui/svg-icons/navigation/arrow-forward';
 import { browserHistory } from 'react-router';
 import Button from '../../../core/form/Button';
 import ModuleFormContainer from './ModuleFormContainer';
+import Card from '../../../core/layout/Card';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
 
 const ModuleFormScene = props => (
   <div>
-    <InlineBlock>
-      <Stepper activeStep={1} connector={<ArrowForwardIcon />}>
-        <Step
-          style={{ cursor: 'pointer' }}
+    <Breadcrumb
+      crumbs={[
+        {
+          text: 'Modules',
+          link: '/modules',
+        },
+        {
+          text: props.params.moduleId ? 'Update Module' : 'New Module',
+        },
+      ]}
+    />
+    <Card
+      title={props.params.moduleId ? 'Update Module' : 'New Module'}
+      actions={
+        <Button
+          icon="fa-arrow-left"
+          label="Back"
           onClick={() => browserHistory.push('/modules')}
-        >
-          <StepLabel>Modules</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>
-            {props.moduleId ? 'Edit Module' : 'New Module'}
-          </StepLabel>
-        </Step>
-      </Stepper>
-    </InlineBlock>
-    <InlineBlock float="right" marginTop={15}>
-      <Button
-        icon="keyboard_backspace"
-        label="back"
-        onClick={() => browserHistory.push('/modules')}
-      />
-    </InlineBlock>
-    <ModuleFormContainer />
+        />
+      }
+    >
+      <ModuleFormContainer moduleId={props.params.moduleId} />
+    </Card>
   </div>
 );
 
 ModuleFormScene.propTypes = {
-  moduleId: PropTypes.string,
+  params: PropTypes.shape({
+    moduleId: PropTypes.string,
+  })
 };
 
 ModuleFormScene.defaultProps = {
-  moduleId: null,
+  params: null,
 };
 
 export default ModuleFormScene;

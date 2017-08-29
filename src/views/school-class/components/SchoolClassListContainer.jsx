@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import SchoolClassList from './SchoolClassList';
 import SchoolClassListService from '../services/SchoolClassListService';
 
-const SchoolClassListContainer = props => (
-  <SchoolClassList
-    classes={toJS(SchoolClassListService.classes)}
-    fetching={SchoolClassListService.fetch.fetching}
-    onSelect={props.onSelect}
-    onDelete={SchoolClassListService.handleDelete}
-  />
-);
+class SchoolClassListContainer extends Component {
 
-SchoolClassListContainer.propTypes = {
-  onSelect: PropTypes.func.isRequired,
-};
+  static propTypes = {
+    distributorId: PropTypes.string,
+    companyId: PropTypes.string,
+    schoolId: PropTypes.string.isRequired,
+  }
+
+  componentDidMount() {
+    SchoolClassListService.init(this.props.schoolId);
+  }
+
+  render() {
+    return (
+      <SchoolClassList
+        distributorId={this.props.distributorId}
+        companyId={this.props.companyId}
+        schoolId={this.props.schoolId}
+        schools={toJS(SchoolClassListService.classes)}
+        fetching={SchoolClassListService.fetch.fetching}
+        onDelete={SchoolClassListService.handleDelete}
+      />
+    );
+  }
+}
 
 export default observer(SchoolClassListContainer);

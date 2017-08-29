@@ -16,7 +16,7 @@ class UnitTypeAmountsListContainer extends Component {
         amounts={toJS(UnitTypeAmountsListService.unitTypesAmounts)}
         fetching={UnitTypeAmountsListService.fetch.fetching}
       />
-    )
+    );
   }
 }
 

@@ -7,12 +7,12 @@ import MasteryTestListService from '../services/MasteryTestListService';
 
 class MasteryTestListContainer extends Component {
 
-  componentDidMount() {
-    MasteryTestListService.handleLoad(this.props.moduleId);
-  }
-
   static propTypes = {
     moduleId: PropTypes.string.isRequired,
+  };
+
+  componentDidMount() {
+    MasteryTestListService.handleLoad(this.props.moduleId);
   }
 
   render() {

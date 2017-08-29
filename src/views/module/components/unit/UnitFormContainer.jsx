@@ -8,7 +8,6 @@ import UnitFormService from '../../services/UnitFormService';
 class UnitFormContainer extends Component {
 
   static propTypes = {
-    currentModule: PropTypes.object,
     unitId: PropTypes.string,
     moduleId: PropTypes.string,
     disabled: PropTypes.bool,
@@ -16,7 +15,6 @@ class UnitFormContainer extends Component {
   };
 
   static defaultProps = {
-    currentModule: null,
     unitId: null,
     moduleId: null,
     disabled: false,
@@ -27,12 +25,6 @@ class UnitFormContainer extends Component {
     UnitFormService.handleLoad(this.props.unitId, this.props.moduleId);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!UnitFormService.form.getValue('module')) {
-      UnitFormService.form.setValue('module', nextProps.currentModule);
-    }
-  }
-
   render() {
     return (
       <UnitForm
@@ -40,7 +32,13 @@ class UnitFormContainer extends Component {
           if (this.props.reviewId) {
             UnitFormService.handleSubmit();
           } else {
-            UnitFormService.handleSubmit(unitId => browserHistory.push(`/modules/${this.props.moduleId}/units/${unitId}/items`));
+            UnitFormService.handleSubmit(unit => {
+              if (unit.type.name.toLowerCase() === 'review') {
+                browserHistory.push(`/modules/${unit.module.id}/units/${unit.id}/review-items`)
+              } else {
+                browserHistory.push(`/modules/${unit.module.id}/units/${unit.id}/items`)
+              }
+            });
           }
         }}
         onChange={UnitFormService.form.setValue}

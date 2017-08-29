@@ -1,108 +1,104 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
 import { browserHistory } from 'react-router';
-import InlineBlock from 'jsxstyle/InlineBlock';
-import { Step, StepLabel, Stepper, } from 'material-ui/Stepper';
-import ArrowForwardIcon from 'material-ui/svg-icons/navigation/arrow-forward';
-import Spinner from '../../../../../core/content/Spinner';
 import Button from '../../../../../core/form/Button';
 import UnitItemListContainer from './UnitItemListContainer';
-import AllUnitItemListContainer from './AllUnitItemListContainer';
+import Card from '../../../../../core/layout/Card';
+import Breadcrumb from '../../../../../core/layout/Breadcrumb';
+import Async from '../../../../../core/layout/Async';
 import Separator from '../../../../../core/layout/Separator';
-import Title from '../../../../../core/content/Title';
+import AllUnitItemListFilterContainer from './AllUnitItemListFilterContainer';
+import AllUnitItemListContainer from './AllUnitItemListContainer';
 
-export default class UnitReviewItemListScene extends Component {
+const UnitItemListScene = props => (
+  <div>
+    <Breadcrumb
+      fetching={props.fetching}
+      crumbs={[
+        {
+          text: `Course - ${props.module.course.name}`,
+          link: '/modules',
+        },
+        {
+          text: `Module - ${props.module.name}`,
+          link: `/modules/${props.module.id}/details`,
+        },
+        {
+          text: `Review Unit - ${props.unit.name}`,
+          link: `/modules/${props.module.id}/units/${props.unit.id}`,
+        },
+        {
+          text: 'Review items',
+        }
+      ]}
+    />
+    <Card
+      title="Items in unit"
+      actions={
+        <div>
+          <Button
+            icon="fa-arrow-left"
+            label="Back"
+            onClick={() => browserHistory.push(`/modules/${props.moduleId}/details`)}
+          />
+        </div>
+      }
+    >
+      <Async fetching={props.fetching}>
+        {props.unit.id && (
+          <UnitItemListContainer
+            unit={props.unit}
+          />
+        )}
+      </Async>
+    </Card>
+    <Separator size="md" />
+    <Card
+      title="Available items"
+    >
+      <Async fetching={props.fetching}>
+        {props.unit.id && (
+          <div>
+            <AllUnitItemListFilterContainer />
+            <Separator />
+            <AllUnitItemListContainer
+              unit={props.unit}
+              moduleId={props.moduleId}
+            />
+          </div>
+        )}
+      </Async>
+    </Card>
+  </div>
+);
 
-  static propTypes = {
-    unit: PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      module: PropTypes.shape({
-        id: PropTypes.string,
-      }),
-    }),
+UnitItemListScene.propTypes = {
+  unit: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    createdBy: PropTypes.string,
     module: PropTypes.shape({
       id: PropTypes.string,
-      name: PropTypes.string,
-      course: PropTypes.shape({
-        name: PropTypes.string,
-      }),
     }),
-    fetching: PropTypes.bool,
-  };
+  }),
+  module: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    course: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  }),
+  fetching: PropTypes.bool,
+};
 
-  static defaultProps = {
-    unit: {
-      module: {},
-    },
-    module: {
-      course: {},
-    },
-    fetching: false,
-  };
+UnitItemListScene.defaultProps = {
+  unit: {
+    module: {},
+  },
+  module: {
+    course: {},
+  },
+  fetching: false,
+};
 
-  render() {
-    return (
-      <div>
-        <InlineBlock>
-          <Stepper activeStep={4} connector={<ArrowForwardIcon />}>
-            <Step>
-              <StepLabel>
-                {`Course - ${this.props.module.course.name}`}
-              </StepLabel>
-            </Step>
-            <Step
-              style={{ cursor: 'pointer' }}
-              onClick={() => browserHistory.push('/modules')}
-            >
-              <StepLabel>AllUnits</StepLabel>
-            </Step>
-            <Step
-              style={{ cursor: 'pointer' }}
-              onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units`)}
-            >
-              <StepLabel>AllUnit - {get(this.props, 'unit.module.name', '')}</StepLabel>
-            </Step>
-            <Step>
-              <StepLabel>
-                {this.props.fetching ? (
-                  <Spinner size={20} />
-                ) : `Unit Review - ${this.props.unit.name}`}
-              </StepLabel>
-            </Step>
-            <Step>
-              <StepLabel>
-                Items of Review
-              </StepLabel>
-            </Step>
-          </Stepper>
-        </InlineBlock>
-        <InlineBlock
-          marginTop={15}
-          float="right"
-        >
-          <Button
-            icon="keyboard_backspace"
-            label="back"
-            onClick={() => browserHistory.push(`/modules/${this.props.unit.module.id}/units`)}
-          />
-        </InlineBlock>
-        {this.props.unit.id && (
-          <UnitItemListContainer
-            unit={this.props.unit}
-          />
-        )}
-        <Separator />
-        <Title>Available Items to review</Title>
-        <Separator />
-        {(this.props.unit.id && this.props.module.id) && (
-          <AllUnitItemListContainer
-            moduleId={this.props.module.id}
-            unit={this.props.unit}
-          />
-        )}
-      </div>
-    );
-  }
-}
+export default UnitItemListScene;

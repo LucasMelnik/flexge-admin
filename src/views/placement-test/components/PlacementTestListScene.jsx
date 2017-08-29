@@ -1,31 +1,35 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import InlineBlock from 'jsxstyle/InlineBlock';
-import Title from '../../../core/content/Title';
-import Separator from '../../../core/layout/Separator';
+import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
+import Separator from '../../../core/layout/Separator';
 import PlacementTestListContainer from './PlacementTestListContainer';
+import PlacementTestListFilterContainer from './PlacementTestListFilterContainer';
 
 const PlacementTestListScene = () => (
   <div>
-    <InlineBlock>
-      <Title>
-        Placement Test
-      </Title>
-    </InlineBlock>
-    <Button
-      primary
-      icon="add"
-      label="New Grammar"
-      style={{
-        position: 'relative',
-        float: 'right',
-      }}
-      onClick={() => browserHistory.push('/placement-test/new')}
+    <Breadcrumb
+      crumbs={[
+        {
+          text: 'Placement Test',
+        },
+      ]}
     />
-    <Separator size="sm" />
-    <PlacementTestListContainer />
-    <Separator size="sm" />
+    <Card
+      title="Placement Test"
+      actions={
+        <Button
+          label="New Grammar"
+          icon="fa-plus"
+          onClick={() => browserHistory.push('/placement-test/new')}
+        />
+      }
+    >
+      <PlacementTestListFilterContainer />
+      <Separator />
+      <PlacementTestListContainer />
+    </Card>
   </div>
 );
 
