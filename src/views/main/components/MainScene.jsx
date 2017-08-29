@@ -253,7 +253,7 @@ class MainScene extends Component {
                 <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
                   <MenuItem
                     title="Grades"
-                    icon="fa fa-th"
+                    icon="fa fa-table"
                     link="/grades"
                   />
                 </PermissionValidator>
