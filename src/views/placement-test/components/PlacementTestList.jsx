@@ -53,7 +53,7 @@ const PlacementTestList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => alert()}
+                  onClick={() => browserHistory.push(`/placement-test/${row.id}`)}
                 />
               </div>
             );
@@ -62,7 +62,7 @@ const PlacementTestList = props => (
       ]}
       rows={props.placementTests}
       selectable
-      onSelect={row => browserHistory.push(`/placement-test/${row.id}`)}
+      onSelect={row => null}
     />
   </Async>
 );

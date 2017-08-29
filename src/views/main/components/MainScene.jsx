@@ -230,12 +230,12 @@ class MainScene extends Component {
                 <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
                   <MenuItem
                     title="Reports"
-                    icon="fa fa-book"
+                    icon="fa fa-file-o"
                     link="/reports"
                   />
                 </PermissionValidator>
                 <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
-                  <MenuItem title="Records" icon="fa fa-book">
+                  <MenuItem title="Records" icon="fa fa-list-alt">
                     <SubMenu
                       items={[
                         {
@@ -253,7 +253,7 @@ class MainScene extends Component {
                 <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
                   <MenuItem
                     title="Grades"
-                    icon="fa fa-book"
+                    icon="fa fa-table"
                     link="/grades"
                   />
                 </PermissionValidator>

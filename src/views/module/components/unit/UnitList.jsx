@@ -83,7 +83,8 @@ const UnitList = props => (
             <div
               style={{
                 color: '#fff',
-                padding: 10,
+                padding: 5,
+                fontSize: 12,
                 display: 'inline-block',
                 fontWeight: 'bold',
                 borderRadius: 5,
@@ -108,7 +109,8 @@ const UnitList = props => (
             <div
               style={{
                 color: '#fff',
-                padding: 10,
+                padding: 5,
+                fontSize: 12,
                 display: 'inline-block',
                 fontWeight: 'bold',
                 borderRadius: 5,
