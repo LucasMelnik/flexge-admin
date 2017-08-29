@@ -60,6 +60,7 @@ class SchoolListService {
           method: 'delete',
         }).then(() => {
           this.load();
+          window.showSuccess('School deleted successfully.');
         });
       });
   });

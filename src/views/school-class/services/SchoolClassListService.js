@@ -37,9 +37,6 @@ class SchoolClassListService {
     }).then(() => {
       if (this.fetch.data) {
         this.classes = this.fetch.data;
-      } else {
-        this.classes = [];
-        this.total = 0;
       }
     });
   });
@@ -58,9 +55,6 @@ class SchoolClassListService {
     }).then(() => {
       if (this.fetch.data) {
         this.classes = this.fetch.data;
-      } else {
-        this.classes = [];
-        this.total = 0;
       }
     });
   });
@@ -80,10 +74,12 @@ class SchoolClassListService {
       `You are about to delete the school class "${schoolClass.name}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({
-          url: `/schools/${schoolClass.school}/classses/${schoolClass.id}`,
+          url: `/schools/${schoolClass.school.id}/classes/${schoolClass.id}`,
           method: 'delete',
         }).then(() => {
-          this.load();
+          this.schoolId = schoolClass.school.id;
+          this.loadClassesBySchool();
+          window.showSuccess('Class deleted successfully.');
         });
       });
   });

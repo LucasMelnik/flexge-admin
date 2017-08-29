@@ -41,7 +41,10 @@ const SchoolClassList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => browserHistory.push(`/companies/${props.companyId}/schools/${props.schoolId}/classes/${row.id}`)}
+                  onClick={() => browserHistory.push(props.distributorId ?
+                `/distributors/${props.distributorId}/companies/${props.companyId}/schools/${props.schoolId}/classes/${row.id}` :
+                  props.companyId ? `/companies/${props.companyId}/schools/${props.schoolId}/classes/${row.id}` :
+                  props.schoolId ? `/schools/${props.schoolId}/classes/${row.id}` : `/classes/${row.id}`)}
                 />
               </div>
             );

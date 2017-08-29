@@ -32,7 +32,12 @@ const SchoolFormScene = props => (
             text: props.company ? `Company - ${props.company.name}` : 'loading...',
             link: `/company-detail/${props.companyId}`,
           },
-        ] : [],
+        ] : [
+          {
+            text: 'Schools',
+            link: '/schools',
+          },
+        ],
         {
           text: `${props.schoolId ? 'Update School' : 'Create School'}`,
         },

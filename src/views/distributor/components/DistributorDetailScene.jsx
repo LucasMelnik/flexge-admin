@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../../core/layout/Card';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
-import CompanyListContainer from '../../company/components/CompanyListContainer';
+import CompanyListScene from '../../company/components/CompanyListScene';
 
 const DistributorDetailScene = props => (
   <div>
@@ -17,9 +16,7 @@ const DistributorDetailScene = props => (
         },
       ]}
     />
-    <Card title="Companies">
-      <CompanyListContainer distributorId={props.distributorId} />
-    </Card>
+    <CompanyListScene distributorId={props.distributorId} />
   </div>
 );
 

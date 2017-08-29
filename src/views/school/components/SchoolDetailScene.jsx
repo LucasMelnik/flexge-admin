@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SchoolClassListContainer from '../../school-class/components/SchoolClassListContainer';
+import SchoolClassListScene from '../../school-class/components/SchoolClassListScene';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
-import Card from '../../../core/layout/Card';
 
 const SchoolDetailScene = props => (
   <div>
@@ -41,15 +40,11 @@ const SchoolDetailScene = props => (
         },
       ]}
     />
-    <Card
-      title="Classes"
-    >
-      <SchoolClassListContainer
-        distributorId={props.distributorId}
-        companyId={props.companyId}
-        schoolId={props.schoolId}
-      />
-    </Card>
+    <SchoolClassListScene
+      distributorId={props.distributorId}
+      companyId={props.companyId}
+      schoolId={props.schoolId}
+    />
   </div>
 );
 

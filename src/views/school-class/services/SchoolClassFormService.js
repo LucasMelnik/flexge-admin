@@ -13,18 +13,16 @@ class SchoolClassFormService {
     extendObservable(this, {
       schoolId: null,
       classId: null,
-      successCallback: null,
     });
     this.form.validations = {
       name: [isRequired],
     };
   }
 
-  init = action((schoolId, classId, successCallback) => {
+  init = action((schoolId, classId) => {
     this.schoolId = schoolId;
     this.classId = classId;
-    this.successCallback = successCallback;
-    if (this.classId) {
+    if (this.schoolId && this.classId) {
       this.handleLoad();
     } else {
       this.form.reset();
@@ -43,6 +41,7 @@ class SchoolClassFormService {
         this.form.setInitialValues({
           ...this.fetch.data,
           teacher: this.fetch.data.teacher.id,
+          school: this.fetch.data.school.id,
         });
       }
     });
@@ -54,9 +53,10 @@ class SchoolClassFormService {
       return;
     }
     const classId = this.form.getValue('id');
+    const schoolId = this.form.getValue('school');
     this.submit.fetch({
       method: classId ? 'put' : 'post',
-      url: classId ? `/schools/${this.form.getValue('school')}/classes/${classId}` : `/schools/${this.form.getValue('school')}/classes`,
+      url: classId ? `/schools/${schoolId}/classes/${classId}` : `/schools/${schoolId}/classes`,
       body: {
         ...this.form.getValues(),
         teacher: this.form.getValue('teacher'),
@@ -72,10 +72,6 @@ class SchoolClassFormService {
           null,
           'success',
         );
-
-        if (this.successCallback) {
-          this.successCallback();
-        }
       }
       if (this.submit.error) {
         NotificationService.addNotification(
