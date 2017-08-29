@@ -22,29 +22,29 @@ jQuery(function($) {
         var width = window.innerWidth;
         //console.log(width);
 
-        if ($("body").hasClass("chat-open") || $("body").hasClass("sidebar-collapse")) {
-
-            CRESTADMIN_SETTINGS.mainmenuCollapsed();
-
-        } else if (width <= 767) {
-
-            // small window
-            $(".page-topbar").addClass("sidebar_shift").removeClass("chat_shift");
-            $(".page-sidebar").addClass("collapseit").removeClass("expandit");
-            $("body").removeClass("menuexpanded");
-            $("#main-content").addClass("sidebar_shift").removeClass("chat_shift");
-            $(".page-chatapi").removeClass("showit").addClass("hideit");
-            $(".chatapi-windows").removeClass("showit").addClass("hideit");
-            CRESTADMIN_SETTINGS.mainmenuCollapsed();
-
-        } else {
-
-            // large window
-            $(".page-topbar").removeClass("sidebar_shift chat_shift");
-            $(".page-sidebar").removeClass("collapseit chat_shift");
-            $("#main-content").removeClass("sidebar_shift chat_shift");
-            CRESTADMIN_SETTINGS.mainmenuScroll();
-        }
+        // if ($("body").hasClass("chat-open") || $("body").hasClass("sidebar-collapse")) {
+        //
+        //     CRESTADMIN_SETTINGS.mainmenuCollapsed();
+        //
+        // } else if (width <= 767) {
+        // 
+        //     // small window
+        //     $(".page-topbar").addClass("sidebar_shift").removeClass("chat_shift");
+        //     $(".page-sidebar").addClass("collapseit").removeClass("expandit");
+        //     $("body").removeClass("menuexpanded");
+        //     $("#main-content").addClass("sidebar_shift").removeClass("chat_shift");
+        //     $(".page-chatapi").removeClass("showit").addClass("hideit");
+        //     $(".chatapi-windows").removeClass("showit").addClass("hideit");
+        //     CRESTADMIN_SETTINGS.mainmenuCollapsed();
+        //
+        // } else {
+        //
+        //     // large window
+        //     $(".page-topbar").removeClass("sidebar_shift chat_shift");
+        //     $(".page-sidebar").removeClass("collapseit chat_shift");
+        //     $("#main-content").removeClass("sidebar_shift chat_shift");
+        //     CRESTADMIN_SETTINGS.mainmenuScroll();
+        // }
 
 
     }
@@ -54,7 +54,7 @@ jQuery(function($) {
          Window Based Layout
      --------------------------------*/
     CRESTADMIN_SETTINGS.onLoadTopBar = function() {
-        
+
             $(".page-topbar .message-toggle-wrapper").addClass("showopacity");
             $(".page-topbar .notify-toggle-wrapper").addClass("showopacity");
             $(".page-topbar .searchform").addClass("showopacity");
@@ -416,36 +416,36 @@ jQuery(function($) {
          Main Menu
      --------------------------------*/
     CRESTADMIN_SETTINGS.mainMenu = function() {
-        $('#main-menu-wrapper li a').click(function(e) {
+        // $('#main-menu-wrapper li a').click(function(e) {
+        //
+        //     if ($(this).next().hasClass('sub-menu') === false) {
+        //         return;
+        //     }
+        //
+        //     var parent = $(this).parent().parent();
+        //     var sub = $(this).next();
+        //
+        //     parent.children('li.open').children('.sub-menu').slideUp(200);
+        //     parent.children('li.open').children('a').children('.arrow').removeClass('open');
+        //     parent.children('li').removeClass('open');
+        //
+        //     if (sub.is(":visible")) {
+        //         $(this).find(".arrow").removeClass("open");
+        //         sub.slideUp(200);
+        //     } else {
+        //         $(this).parent().addClass("open");
+        //         $(this).find(".arrow").addClass("open");
+        //         sub.slideDown(200);
+        //     }
+        //
+        // });
 
-            if ($(this).next().hasClass('sub-menu') === false) {
-                return;
-            }
-
-            var parent = $(this).parent().parent();
-            var sub = $(this).next();
-
-            parent.children('li.open').children('.sub-menu').slideUp(200);
-            parent.children('li.open').children('a').children('.arrow').removeClass('open');
-            parent.children('li').removeClass('open');
-
-            if (sub.is(":visible")) {
-                $(this).find(".arrow").removeClass("open");
-                sub.slideUp(200);
-            } else {
-                $(this).parent().addClass("open");
-                $(this).find(".arrow").addClass("open");
-                sub.slideDown(200);
-            }
-
-        });
-
-        $("body").click(function(e) {
-            $(".page-sidebar.collapseit .wraplist li.open .sub-menu").attr("style","");
-            $(".page-sidebar.collapseit .wraplist li.open").removeClass("open");
-            $(".page-sidebar.chat_shift .wraplist li.open .sub-menu").attr("style","");
-            $(".page-sidebar.chat_shift .wraplist li.open").removeClass("open");
-        });
+        // $("body").click(function(e) {
+        //     $(".page-sidebar.collapseit .wraplist li.open .sub-menu").attr("style","");
+        //     $(".page-sidebar.collapseit .wraplist li.open").removeClass("open");
+        //     $(".page-sidebar.chat_shift .wraplist li.open .sub-menu").attr("style","");
+        //     $(".page-sidebar.chat_shift .wraplist li.open").removeClass("open");
+        // });
 
     };
 
@@ -791,7 +791,7 @@ jQuery(function($) {
                         animate: true
                     },
                 });
-            } // Europe 
+            } // Europe
             mapid = $('#in_mill_en-map');
             if (mapid.length) {
                 mapid.vectorMap({
@@ -2277,8 +2277,8 @@ jQuery(function($) {
                     "html": true, //Button which allows you to edit the generated HTML. Default false
                     "link": true, //Button to insert a link. Default true
                     "image": true, //Button to insert an image. Default true,
-                    "color": true, //Button to change color of font  
-                    "blockquote": true, //Blockquote  
+                    "color": true, //Button to change color of font
+                    "blockquote": true, //Blockquote
                     "size": "none" //default: none, other options are xs, sm, lg
                 }
             });
@@ -2292,8 +2292,8 @@ jQuery(function($) {
                     "html": true, //Button which allows you to edit the generated HTML. Default false
                     "link": true, //Button to insert a link. Default true
                     "image": true, //Button to insert an image. Default true,
-                    "color": true, //Button to change color of font  
-                    "blockquote": false, //Blockquote  
+                    "color": true, //Button to change color of font
+                    "blockquote": false, //Blockquote
                     "size": "none" //default: none, other options are xs, sm, lg
                 }
             });
@@ -3353,7 +3353,7 @@ jQuery(function($) {
                   var switchery = new Switchery(html,defaults);
                 });
         }
- 
+
 
     };
 
@@ -3435,12 +3435,13 @@ jQuery(function($) {
 
 
     /******************************
-     initialize respective scripts 
+     initialize respective scripts
      *****************************/
     $(document).ready(function() {
+      window.$ = $;
         CRESTADMIN_SETTINGS.windowBasedLayout();
         CRESTADMIN_SETTINGS.mainmenuScroll();
-        CRESTADMIN_SETTINGS.mainMenu();
+        // CRESTADMIN_SETTINGS.mainMenu();
         CRESTADMIN_SETTINGS.mainmenuCollapsed();
         CRESTADMIN_SETTINGS.pageTopBar();
         CRESTADMIN_SETTINGS.otherScripts();
