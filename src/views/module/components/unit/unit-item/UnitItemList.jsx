@@ -12,19 +12,6 @@ import ItemFormContainer from '../../../../item/components/ItemFormContainer';
 import './select.css';
 
 const UnitItemList = props => (
-<<<<<<< HEAD
-  <Paper>
-    <Async fetching={props.fetching}>
-      <AccordionTable
-        columns={[
-          {
-            label: 'Order',
-            path: 'order',
-            width: '7%',
-            render: (row) => {
-              if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
-                return (
-=======
   <Async fetching={props.fetching}>
     <Table
       columns={[
@@ -45,7 +32,6 @@ const UnitItemList = props => (
             if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
               return (
                 <Async fetching={props.submitting} size="md">
->>>>>>> sprint-7
                   <Select
                     label="Order"
                     disabled={props.submitting}
@@ -56,20 +42,6 @@ const UnitItemList = props => (
                       value,
                     }))}
                   />
-<<<<<<< HEAD
-                );
-              }
-              return row.order;
-            },
-          },
-          {
-            label: 'Group',
-            path: 'group',
-            width: '7%',
-            render: (row) => {
-              if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
-                return (
-=======
                 </Async>
               );
             }
@@ -87,7 +59,6 @@ const UnitItemList = props => (
             if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
               return (
                 <Async fetching={props.submitting} size="md">
->>>>>>> sprint-7
                   <Select
                     label="Group"
                     disabled={props.submitting}
@@ -108,90 +79,6 @@ const UnitItemList = props => (
                       },
                     ]}
                   />
-<<<<<<< HEAD
-                );
-              }
-              return ['', 'Default', 'First Review', 'Second Review'][row.group];
-            },
-          },
-          {
-            label: 'Text',
-            path: 'item.text',
-            width: '25%',
-            render: row => (
-              <div>{row.item.text ? row.item.text : row.item.title}</div>
-            ),
-            rowColumnStyle: {
-              textOverflow: 'none',
-              paddingTop: 5,
-              paddingBottom: 5,
-              paddingRight: 15,
-              whiteSpace: 'normal',
-              textAlign: 'justify',
-              lineHeight: '18px',
-            },
-          },
-          {
-            label: 'Translation',
-            path: 'item.translation',
-            width: '25%',
-            rowColumnStyle: {
-              textOverflow: 'none',
-              paddingTop: 5,
-              paddingBottom: 5,
-              paddingRight: 15,
-              whiteSpace: 'normal',
-              textAlign: 'justify',
-              lineHeight: '18px',
-            },
-          },
-          {
-            label: 'Grammar',
-            path: 'item.grammar.name',
-            width: '10%',
-          },
-          {
-            label: 'Type',
-            path: 'item.type.name',
-            width: '9%',
-          },
-          {
-            label: 'Time',
-            path: 'item.time',
-            width: '5%',
-            render: row => (`${row.item.time < 60 ? '00:' : ''}${moment.duration(row.item.time, 'seconds').format('mm:ss', { forceLength: true })}`),
-          },
-        ]}
-        rows={props.items}
-        renderFunction={row => (
-          <ItemFormContainer
-            itemId={row.item.id}
-            itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
-            endpointUrl={`units/${props.unit.id}/items`}
-            order={row.order}
-            disabled={props.unit.type.name.toLowerCase() === 'review' || props.disabled}
-            showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
-          />
-        )}
-        actionComponent={(row, index) => {
-          if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
-            return (
-              <div>
-                <IconButton
-                  icon="delete"
-                  onClick={() => props.onDelete(row)}
-                />
-                <IconButton
-                  icon="exposure_plus_1"
-                  onClick={() => props.onAutoReorder(index, 'ADD_LINE')}
-                />
-                <IconButton
-                  icon="exposure_neg_1"
-                  onClick={() => props.onAutoReorder(index, 'REMOVE_LINE')}
-                />
-              </div>
-            );
-=======
                 </Async>
               );
             } else {
@@ -276,7 +163,6 @@ const UnitItemList = props => (
               );
             }
             return null;
->>>>>>> sprint-7
           }
         },
       ]}
