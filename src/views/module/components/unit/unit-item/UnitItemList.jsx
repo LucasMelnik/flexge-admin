@@ -29,7 +29,7 @@ const UnitItemList = props => (
             overflow: 'visible',
           },
           render: (cell, row) => {
-            if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled){
+            if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
               return (
                 <Async fetching={props.submitting} size="md">
                   <Select
@@ -44,10 +44,9 @@ const UnitItemList = props => (
                   />
                 </Async>
               );
-            } else {
-              return row.order;
             }
-          }
+            return row.order;
+          },
         },
         {
           label: 'Group',
