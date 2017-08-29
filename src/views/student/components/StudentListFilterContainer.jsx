@@ -5,10 +5,8 @@ import StudentListFilter from './StudentListFilter';
 
 const StudentListFilterContainer = () => (
   <StudentListFilter
-    values={StudentListService.form.getValues()}
-    onChange={StudentListService.form.setValue}
-    fetching={StudentListService.fetch.fetching}
-    onSearch={StudentListService.load}
+    value={StudentListService.filter}
+    onChange={StudentListService.handleFilterChange}
   />
 );
 

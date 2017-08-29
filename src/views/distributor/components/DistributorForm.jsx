@@ -1,47 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Paper from '../../../core/layout/Paper';
-import TextInput from '../../../core/form/TextInput';
+import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
-import Separator from '../../../core/layout/Separator';
+import { browserHistory } from 'react-router';
+import TextInput from '../../../core/form/TextInput';
+import FormButtons from '../../../core/form/FormButtons';
+import Async from '../../../core/layout/Async';
 
 const DistributorForm = props => (
-  <Paper>
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        props.onSubmit();
-      }}
-    >
-      <TextInput
-        floatingLabel
-        fullWidth
-        disabled={props.submitting}
-        label="Distributor Name"
-        value={get(props.values, 'name', '')}
-        onChange={value => props.onChange('name', value)}
-        errorText={get(props.errors, 'name', '')}
-      />
-      <Separator size="xs" />
-      <Button
-        icon="done"
-        secondary
-        fullWidth
-        disabled={props.submitting || !props.isDirty()}
-        type="submit"
-        label={props.values.id ? 'Update Distributor' : 'Create Distributor'}
-      />
-      <Separator size="xs" />
-      <Button
-        icon="clear"
-        fullWidth
-        disabled={props.submitting || !props.isDirty()}
-        onClick={props.onReset}
-        label="Discard Changes"
-      />
-    </form>
-  </Paper>
+  <Card
+    title={props.values.id ? 'Update Distributor' : 'Create Distributor'}
+    actions={
+      (
+        <Button
+          icon="fa-arrow-left"
+          label="Back"
+          type="default"
+          onClick={() => browserHistory.push('/distributors')}
+        />
+      )
+    }
+  >
+    <Async fetching={props.submitting}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          props.onSubmit();
+        }}
+      >
+        <TextInput
+          disabled={props.submitting}
+          label="Distributor Name"
+          value={get(props.values, 'name', '')}
+          onChange={value => props.onChange('name', value)}
+          description={get(props.errors, 'name', null)}
+          fieldValidation={get(props.errors, 'name', null) && 'error'}
+        />
+        <FormButtons
+          confirmLabel={props.values.id ? 'Update Distributor' : 'Create Distributor'}
+          isDisabled={props.submitting || !props.isDirty()}
+          onReset={props.onReset}
+        />
+      </form>
+    </Async>
+  </Card>
 );
 
 DistributorForm.propTypes = {

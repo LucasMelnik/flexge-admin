@@ -1,77 +1,134 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Block from 'jsxstyle/Block';
-import Header from '../../../core/layout/Header';
-import NotificationContainer from './NotificationContainer';
+import TopBar from '../../../core/layout/TopBar';
+import LeftSidebar from '../../../core/layout/LeftSidebar';
+import MainContent from '../../../core/layout/MainContent';
+import Menu from '../../../core/layout/Menu';
+import MenuItem from '../../../core/layout/MenuItem';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
+import MenuSection from '../../../core/layout/MenuSection';
+import SubMenu from '../../../core/layout/SubMenu';
 import ConfirmDialogContainer from './ConfirmDialogContainer';
-
-const menuItems = [
-  {
-    label: 'Distributors',
-    url: '/distributors',
-    requiredRoles: ['ADMIN'],
-  },
-  {
-    label: 'Companies',
-    url: '/companies',
-    requiredRoles: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
-  },
-  {
-    label: 'Teachers',
-    url: '/teachers',
-    requiredRoles: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
-  },
-  {
-    label: 'Schools',
-    url: '/schools',
-    requiredRoles: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
-  },
-  {
-    label: 'Students',
-    url: '/students',
-    requiredRoles: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
-  },
-  {
-    label: 'Modules',
-    url: '/modules',
-    requiredRoles: ['ADMIN', 'CONTENT_ADMIN'],
-  },
-  {
-    label: 'Reviews',
-    url: '/reviews',
-    requiredRoles: ['ADMIN', 'CONTENT_ADMIN'],
-  },
-  {
-    label: 'Placement Test',
-    url: '/placement-test',
-    requiredRoles: ['ADMIN', 'CONTENT_ADMIN'],
-  },
-];
-
-const getTitle = (props) => {
-  if (props.location.pathname === '/') {
-    return 'Dashboard';
-  }
-  return menuItems.find(menuItem => props.location.pathname.indexOf(menuItem.url) > -1).label;
-};
+import NotificationContainer from './NotificationContainer';
 
 const MainScene = props => (
   <div>
-    <Header
-      title={getTitle(props)}
-      menuItems={[
-        {
-          label: 'Dashboard',
-          url: '/',
-        },
-        ...menuItems,
-      ]}
-    />
-    <Block padding={15}>
-      {props.children}
-    </Block>
-    <NotificationContainer />
     <ConfirmDialogContainer />
+    <TopBar />
+    <LeftSidebar>
+      <Menu>
+        <PermissionValidator allowedFor={['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER']}>
+          <MenuSection>
+            Cadastros
+          </MenuSection>
+        </PermissionValidator>
+        <PermissionValidator allowedFor={['ADMIN']}>
+          <MenuItem title="Admin" icon="fa fa-user">
+            <SubMenu
+              items={[
+                {
+                  label: 'General Configuration',
+                  link: '/configs',
+                },
+              ]}
+            />
+          </MenuItem>
+        </PermissionValidator>
+        <PermissionValidator allowedFor={['ADMIN']}>
+          <MenuItem title="Partners" icon="fa fa-users">
+            <SubMenu
+              items={[
+                {
+                  label: 'Distributors',
+                  link: '/distributors',
+                },
+                {
+                  label: 'Companies',
+                  link: '/companies',
+                },
+                {
+                  label: 'Schools',
+                  link: '/schools',
+                },
+              ]}
+            />
+          </MenuItem>
+        </PermissionValidator>
+        <PermissionValidator allowedFor={['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER']}>
+          <MenuItem title="School" icon="fa fa-graduation-cap">
+            <SubMenu
+              items={[
+                {
+                  label: 'Classes',
+                  link: '/classes',
+                },
+                {
+                  label: 'Students',
+                  link: '/students',
+                },
+              ]}
+            />
+          </MenuItem>
+        </PermissionValidator>
+        <PermissionValidator allowedFor={['ADMIN']}>
+          <MenuItem title="Users" icon="fa fa-user">
+            <SubMenu
+              items={[
+                {
+                  label: 'Company Users',
+                  link: '/users',
+                },
+                {
+                  label: 'Admin Users',
+                  link: '/admin-users',
+                },
+                {
+                  label: 'Distributor Users',
+                  link: '/distributor-users',
+                },
+              ]}
+            />
+          </MenuItem>
+        </PermissionValidator>
+        <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+          <div>
+            <MenuSection>
+              Conteúdo
+            </MenuSection>
+            <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+              <MenuItem title="Course" icon="fa fa-book">
+                <SubMenu
+                  items={[
+                    {
+                      label: 'Modules',
+                      link: '/modules',
+                    },
+                  ]}
+                />
+              </MenuItem>
+            </PermissionValidator>
+            <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+              <MenuItem
+                title="Review"
+                icon="fa fa-eye"
+                link="/reviews"
+              />
+            </PermissionValidator>
+            <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+              <MenuItem
+                title="Placement Test"
+                icon="fa fa-pencil-square"
+                link="/placement-test"
+              />
+            </PermissionValidator>
+          </div>
+        </PermissionValidator>
+      </Menu>
+    </LeftSidebar>
+    <MainContent>
+      {props.children}
+    </MainContent>
+    <NotificationContainer />
   </div>
 );
 

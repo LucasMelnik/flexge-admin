@@ -11,25 +11,29 @@ const VideoInput = props => (
     <Row>
       <Column lgSize={8}>
         <TextInput
-          floatingLabel
-          fullWidth
           label="Youtube link"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'videoLink', '')}
           onChange={value => props.onChange('videoLink', value)}
-          errorText={get(props.errors, 'videoLink', '')}
+          description={get(props.errors, 'videoLink', '')}
+          fieldValidation={get(props.errors, 'videoLink', null) && 'error'}
         />
       </Column>
       {props.requiredCut && (
         <Column lgSize={2}>
           <MaskInput
+<<<<<<< HEAD
             floatingLabel
             fullWidth
             label="Start time (ex: 01:01:23)"
+=======
+            label="Start time (example 01:23)"
+>>>>>>> sprint-7
             disabled={props.submitting || props.disabled}
             value={get(props.values, 'videoStartTime', '')}
             onChange={value => props.onChange('videoStartTime', value)}
-            errorText={get(props.errors, 'videoStartTime', '')}
+            description={get(props.errors, 'videoStartTime', '')}
+            fieldValidation={get(props.errors, 'videoStartTime', null) && 'error'}
             delimiters={[':']}
             blocks={[2, 2, 2]}
             numericOnly
@@ -45,7 +49,8 @@ const VideoInput = props => (
             disabled={props.submitting || props.disabled}
             value={get(props.values, 'videoEndTime', '')}
             onChange={value => props.onChange('videoEndTime', value)}
-            errorText={get(props.errors, 'videoEndTime', '')}
+            description={get(props.errors, 'videoEndTime', '')}
+            fieldValidation={get(props.errors, 'videoEndTime', null) && 'error'}
             delimiters={[':']}
             blocks={[2, 2, 2]}
             numericOnly
@@ -56,13 +61,12 @@ const VideoInput = props => (
     <Row>
       <Column lgSize={12}>
         <TextInput
-          floatingLabel
-          fullWidth
           label="Reference (example: Universal; Harry Potter e o Prisioneiro de Azkaban (2004))"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'reference', '')}
           onChange={value => props.onChange('reference', value)}
-          errorText={get(props.errors, 'reference', '')}
+          description={get(props.errors, 'reference', '')}
+          fieldValidation={get(props.errors, 'reference', null) && 'error'}
         />
       </Column>
     </Row>

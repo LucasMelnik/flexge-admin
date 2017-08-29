@@ -28,7 +28,9 @@ class TeacherListService {
             $regex: this.form.getValue('filter'),
             $options: 'i',
           },
-          company: this.form.getValue('company').id,
+          ...this.form.getValue('company') && {
+            company: this.form.getValue('company'),
+          },
         },
       },
     }).then(() => {
@@ -49,6 +51,7 @@ class TeacherListService {
           url: `/teachers/${teacher.id}`,
           method: 'delete',
         }).then(() => {
+          window.showSuccess(`Teacher "${teacher.name}" deleted successfully.`);
           this.load();
         });
       });

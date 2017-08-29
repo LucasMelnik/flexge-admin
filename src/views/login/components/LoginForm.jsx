@@ -1,62 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
-import Paper from '../../../core/layout/Paper';
-import Separator from '../../../core/layout/Separator';
-import TextInput from '../../../core/form/TextInput';
-import Button from '../../../core/form/Button';
 
 const LoginForm = props => (
-  <Paper
-    style={{
-      width: 300,
-      textAlign: 'center',
-      padding: 15,
+  <form
+    onSubmit={(e) => {
+      e.preventDefault();
+      props.onSubmit();
     }}
   >
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        props.onSubmit();
-      }}
-    >
-      <TextInput
-        floatingLabel
-        fullWidth
-        disabled={props.submitting}
-        label="Email"
-        value={get(props.values, 'email', '')}
-        onChange={value => props.onChange('email', value)}
-        error={get(props.errors, 'email', '') || (props.error && 'Verify the email')}
-      />
-      <Separator />
-      <TextInput
-        floatingLabel
-        fullWidth
-        disabled={props.submitting}
-        label="Password"
-        value={get(props.values, 'password', '')}
-        onChange={value => props.onChange('password', value)}
-        error={get(props.errors, 'password', '') || (props.error && 'Verify the password')}
-        type="password"
-      />
-      <Separator />
-      <Button
-        fullWidth
-        primary
-        label="Login"
+    <p>
+      <label htmlFor="user_login">
+        Email
+        <br />
+        <input
+          type="text"
+          name="log"
+          id="user_login"
+          className="input"
+          value={props.values.email || ''}
+          size="20"
+          onChange={e => props.onChange('email', e.target.value)}
+        />
+      </label>
+    </p>
+    <p>
+      <label htmlFor="user_pass">
+        Password
+        <br />
+        <input
+          type="password"
+          name="pwd"
+          id="user_pass"
+          className="input"
+          value={props.values.password || ''}
+          size="20"
+          onChange={e => props.onChange('password', e.target.value)}
+        />
+      </label>
+    </p>
+    <p className="submit">
+      <button
         type="submit"
-      />
-      <Separator />
-      <Button
-        primary={false}
-        secondary={false}
-        raised={false}
-        disabled={props.submitting}
-        label="Forgot password"
-      />
-    </form>
-  </Paper>
+        name="wp-submit"
+        id="wp-submit"
+        className="btn btn-accent btn-block"
+      >
+        {props.submitting ? <i className="fa fa-spinner fa-spin" /> : 'Sign in'}
+      </button>
+    </p>
+    {props.error && (
+      <div className="alert alert-danger">
+        {props.error}
+      </div>
+    )}
+  </form>
 );
 
 LoginForm.propTypes = {

@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Paper from '../../../core/layout/Paper';
 import FetchSelect from '../../../core/form/FetchSelect';
 
 const DashboardFilter = props => (
- <Paper>
-   <FetchSelect
-     url="courses?page=1&size=100"
-     disabled={props.submitting}
-     label="Course"
-     defaultSelect
-     value={get(props.values, 'course', '')}
-     onChange={course => props.onChange('course', course)}
-   />
- </Paper>
+  <FetchSelect
+    url="/courses"
+    disabled={props.submitting}
+    label="Course"
+    value={get(props.values, 'course', '')}
+    onChange={course => props.onChange('course', course)}
+    resultTransformer={{
+      text: 'name',
+      value: 'id',
+    }}
+  />
 );
 
 DashboardFilter.propTypes = {
@@ -23,7 +23,7 @@ DashboardFilter.propTypes = {
 };
 
 DashboardFilter.defaultProps = {
-  values:{},
+  values: {},
   onChange: null,
 };
 

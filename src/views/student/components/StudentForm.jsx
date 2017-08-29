@@ -1,17 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 import get from 'lodash/get';
-import Paper from '../../../core/layout/Paper';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
-import PermissionValidator from '../../../core/content/PermissionValidator';
+import Card from '../../../core/layout/Card';
 import TextInput from '../../../core/form/TextInput';
-import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
 import Button from '../../../core/form/Button';
-import Separator from '../../../core/layout/Separator';
+import FormButtons from '../../../core/form/FormButtons';
 
 const StudentForm = props => (
-  <Paper>
+  <Card
+    title={props.values.id ? 'Update Student' : 'Create Student'}
+    actions={
+      (
+        <Button
+          icon="fa-arrow-left"
+          label="Back"
+          type="default"
+          onClick={() => browserHistory.goBack()}
+        />
+      )
+    }
+  >
     <form
       onSubmit={(event) => {
         event.preventDefault();
@@ -21,80 +32,44 @@ const StudentForm = props => (
       <Row>
         <Column lgSize={3}>
           <TextInput
-            floatingLabel
-            fullWidth
             disabled={props.submitting}
             label="Student Name"
             value={get(props.values, 'name', '')}
             onChange={value => props.onChange('name', value)}
-            errorText={get(props.errors, 'name', '')}
+            description={get(props.errors, 'name', null)}
+            fieldValidation={get(props.errors, 'name', null) && 'error'}
           />
         </Column>
         <Column lgSize={3}>
           <TextInput
-            floatingLabel
-            fullWidth
             disabled={props.submitting}
-            label="Student Email"
+            label="Email"
             value={get(props.values, 'email', '')}
             onChange={value => props.onChange('email', value)}
-            errorText={get(props.errors, 'email', '')}
+            description={get(props.errors, 'email', null)}
+            fieldValidation={get(props.errors, 'email', null) && 'error'}
           />
         </Column>
         <Column lgSize={3}>
           <TextInput
-            floatingLabel
-            fullWidth
             type="password"
             disabled={props.submitting}
             label="Password"
             value={get(props.values, 'password', '')}
             onChange={value => props.onChange('password', value)}
-            errorText={get(props.errors, 'password', '')}
+            description={get(props.errors, 'password', null)}
+            fieldValidation={get(props.errors, 'password', null) && 'error'}
           />
         </Column>
-        <PermissionValidator
-          allowedFor={[
-            'ADMIN',
-            'DISTRIBUTOR_MANAGER'
-          ]}
-        >
-          <Column lgSize={3}>
-            <FetchAutoComplete
-              url="companies?page=1&size=100"
-              fullWidth
-              disabled={props.submitting}
-              label="Company"
-              value={get(props.values, 'company.name', '')}
-              onSelect={company => props.onChange('company', company)}
-              errorText={get(props.errors, 'company', '')}
-              resultTransformer={{
-                text: 'name',
-                value: 'id',
-              }}
-            />
-          </Column>
-        </PermissionValidator>
       </Row>
-      <Separator size="xs" />
-      <Button
-        icon="done"
-        secondary
-        fullWidth
-        disabled={props.submitting || !props.isDirty()}
-        type="submit"
-        label={props.values.id ? 'Update Student' : 'Create Student'}
-      />
-      <Separator size="xs" />
-      <Button
-        icon="clear"
-        fullWidth
-        disabled={props.submitting || !props.isDirty()}
-        onClick={props.onReset}
-        label="Discard changes"
+      <div style={{ marginBottom: 20 }} />
+      <FormButtons
+        confirmLabel={props.values.id ? 'Update Student' : 'Create Student'}
+        isDisabled={props.submitting || !props.isDirty()}
+        onReset={props.onReset}
       />
     </form>
-  </Paper>
+  </Card>
 );
 
 StudentForm.propTypes = {

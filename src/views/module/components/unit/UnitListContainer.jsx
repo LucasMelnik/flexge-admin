@@ -9,7 +9,7 @@ class UnitListContainer extends Component {
 
   static propTypes = {
     moduleId: PropTypes.string.isRequired,
-  }
+  };
 
   componentDidMount() {
     UnitListService.init(this.props.moduleId);

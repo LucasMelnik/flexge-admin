@@ -12,13 +12,12 @@ const PresentationItemForm = props => (
     <Row>
       <Column lgSize={12}>
         <TextInput
-          floatingLabel
-          fullWidth
           label="Title (The field is just required for Vocabulary units.)"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'title', '')}
           onChange={value => props.onChange('title', value)}
-          errorText={get(props.errors, 'title', '')}
+          description={get(props.errors, 'title', '')}
+          fieldValidation={get(props.errors, 'title', null) && 'error'}
         />
       </Column>
     </Row>

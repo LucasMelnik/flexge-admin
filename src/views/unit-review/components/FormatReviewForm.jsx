@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Button from '../../../core/form/Button';
-import TextEditor from '../../../core/content/TextEditor';
+import TextEditor from '../../../core/form/TextEditor';
 
 const FormatReviewForm = (props) => (
   <div>
@@ -25,8 +25,8 @@ const FormatReviewForm = (props) => (
           <div>
             <Button
               label="Format Approved"
-              icon="sentiment_very_satisfied"
-              primary
+              icon="fa-smile-o"
+              type="primary"
               onClick={() => {
                 props.onChange('statusFormat', 'APPROVED');
                 props.onSaveStatusFormat();
@@ -35,7 +35,7 @@ const FormatReviewForm = (props) => (
             {' '}
             <Button
               label="Format Not Approved"
-              icon="sentiment_very_dissatisfied"
+              icon="fa-frown-o"
               onClick={() => {
                 props.onChange('statusFormat', 'NOT_APPROVED');
                 props.onSaveStatusFormat();
@@ -47,7 +47,7 @@ const FormatReviewForm = (props) => (
           <div>
             <Button
               label="Send to format review"
-              icon="assignment"
+              icon="fa-send"
               primary
               onClick={() => {
                 props.onChange('statusFormat', 'PENDING_REVIEW');

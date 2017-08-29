@@ -1,35 +1,57 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import Paper from '../../../core/layout/Paper';
-import Async from '../../../core/content/Async';
-import Table from '../../../core/content/Table';
+import Async from '../../../core/layout/Async';
+import Table from '../../../core/form/Table';
+import IconButton from '../../../core/form/IconButton';
 
 const TeacherList = props => (
-  <Paper>
-    <Async fetching={props.fetching}>
-      <Table
-        columns={[
-          {
-            label: 'Name',
-            path: 'name',
+  <Async fetching={props.fetching}>
+    <Table
+      columns={[
+        {
+          label: 'ID',
+          path: 'id',
+          isKey: true,
+          hidden: true,
+        },
+        {
+          label: 'Name',
+          path: 'name',
+        },
+        {
+          label: 'Email',
+          path: 'email',
+        },
+        {
+          label: 'Company',
+          path: 'company.name',
+        },
+        {
+          label: 'Actions',
+          width: '120',
+          render: (cell, row) => {
+            return (
+              <div>
+                <IconButton
+                  icon="fa-trash"
+                  onClick={() => props.onDelete(row)}
+                />
+                {' '}
+                <IconButton
+                  icon="fa-edit"
+                  onClick={() => alert()}
+                />
+              </div>
+            );
           },
-          {
-            label: 'Email',
-            path: 'email',
-          },
-          {
-            label: 'Company',
-            path: 'company.name',
-          },
-        ]}
-        rows={props.teachers}
-        selectable
-        onSelect={row => browserHistory.push(`/teachers/${row.id}`)}
-        onDelete={row => props.onDelete(row)}
-      />
-    </Async>
-  </Paper>
+        },
+      ]}
+      rows={props.teachers}
+      selectable
+      onSelect={row => browserHistory.push(`/teachers/${row.id}`)}
+    />
+  </Async>
 );
 
 TeacherList.propTypes = {

@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Flex from 'jsxstyle/Flex';
-import Block from 'jsxstyle/Block';
-import IconButton from 'material-ui/IconButton';
-import LinearProgress from 'material-ui/LinearProgress';
-import ErrorText from '../content/ErrorText';
-import AudioPreview from '../content/AudioPreview';
-import ImagePreview from '../content/ImagePreview';
-import Label from '../content/Label';
-import VideoPreview from '../content/VideoPreview';
+import IconButton from './IconButton';
+import Async from '../layout/Async';
+import ErrorText from '../layout/ErrorText';
+import AudioPreview from '../layout/AudioPreview';
+import ImagePreview from '../layout/ImagePreview';
+import VideoPreview from '../layout/VideoPreview';
+import ColumnSeparator from '../layout/ColumnSeparator';
 
 export default class FileInput extends Component {
 
@@ -34,11 +32,14 @@ export default class FileInput extends Component {
     disabled: false,
   };
 
-  state = { uploadPercentage: 0 }
+  state = { uploading: false };
 
   handleChange = (event) => {
     const fileData = new FormData();
     fileData.append('file', event.target.files[0]);
+    this.setState({
+      uploading: true,
+    });
 
     axios.request({
       method: 'post',
@@ -47,14 +48,9 @@ export default class FileInput extends Component {
         ...localStorage.accessToken && { Authorization: `Bearer ${localStorage.accessToken}` },
       },
       data: fileData,
-      onUploadProgress: (progressEvent) => {
-        this.setState({
-          uploadPercentage: Math.round((progressEvent.loaded * 100) / progressEvent.total),
-        });
-      }
     }).then((response) => {
       this.setState({
-        uploadPercentage: 0,
+        uploading: false,
       });
       this.props.onChange(response.data.key);
     });
@@ -77,64 +73,58 @@ export default class FileInput extends Component {
   };
 
   render() {
-    const hasValue = (this.props.value && this.state.uploadPercentage === 0);
+    const hasValue = (this.props.value && !this.state.uploading);
     return (
-      <Block
-        width={this.props.fullWidth ? '100%' : '220px'}
-        height="55px"
-        position="relative"
+      <div
+        style={{
+          width: this.props.fullWidth ? '100%' : '220px',
+          height: 85,
+          position: 'relative',
+        }}
       >
-        <Label>{this.props.label}</Label>
-        <Flex
-          alignItems="flex-end"
-          height="100%"
+        <label>{this.props.label}</label>
+        <Async
+          size="sm"
+          fetching={this.state.uploading}
         >
-          {this.state.uploadPercentage === 0 && (
-            <IconButton
-              iconClassName="material-icons"
-              tooltip="Select a file"
-              disabled={this.props.disabled}
-              onClick={() => this.fileInput.click()}
-              style={{
-              width: 36,
-              height: 36,
-              padding: 0,
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'flex-end',
+              height: '100%',
             }}
-            >
-              file_upload
-            </IconButton>
-          )}
-          {hasValue && (
-            <IconButton
-              iconClassName="material-icons"
-              tooltip="Delete the file"
-              disabled={this.props.disabled}
-              onClick={this.handleDelete}
-              style={{
-                width: 36,
-                height: 36,
-                padding: 0,
-              }}
-            >
-              delete
-            </IconButton>
-          )}
-          {this.state.uploadPercentage > 0 && (
-            <LinearProgress
-              mode="determinate"
-              value={this.state.uploadPercentage}
-            />
-          )}
-          {(this.props.accept === 'audio' && hasValue) && (
-            <AudioPreview src={this.props.value} />
-          )}
-          {(this.props.accept === 'image' && hasValue) && (
-            <ImagePreview src={this.props.value} />
-          )}
-          {(this.props.accept === 'video' && hasValue) && (
-            <VideoPreview src={this.props.value} />
-          )}
-        </Flex>
+          >
+            {(!this.state.uploading && !this.props.disabled) && (
+              <IconButton
+                tooltip="Select a file"
+                disabled={this.props.disabled}
+                onClick={() => this.fileInput.click()}
+                icon="fa-upload"
+              />
+            )}
+            {(!this.state.uploading && !this.props.disabled) && (
+              <ColumnSeparator />
+            )}
+            {(hasValue && !this.props.disabled) && (
+              <IconButton
+                tooltip="Delete the file"
+                disabled={this.props.disabled}
+                onClick={this.handleDelete}
+                icon="fa-trash"
+              />
+            )}
+            <ColumnSeparator />
+            {(this.props.accept === 'audio' && hasValue) && (
+              <AudioPreview src={this.props.value} />
+            )}
+            {(this.props.accept === 'image' && hasValue) && (
+              <ImagePreview src={this.props.value} />
+            )}
+            {(this.props.accept === 'video' && hasValue) && (
+              <VideoPreview src={this.props.value} />
+            )}
+          </div>
+        </Async>
         {this.props.errorText && (
           <ErrorText>
             {this.props.errorText}
@@ -151,7 +141,7 @@ export default class FileInput extends Component {
           ref={input => { this.fileInput = input; }}
           accept={`${this.props.accept}/*`}
         />
-      </Block>
+      </div>
     );
   }
 }

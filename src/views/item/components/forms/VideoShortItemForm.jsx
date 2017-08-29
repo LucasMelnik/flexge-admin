@@ -10,13 +10,12 @@ import TextInput from '../../../../core/form/TextInput';
 const VideoShortItemForm = props => (
   <div>
     <TextInput
-      floatingLabel
-      fullWidth
       label="Title"
       disabled={props.submitting || props.disabled}
       value={get(props.values, 'title', '')}
       onChange={value => props.onChange('title', value)}
-      errorText={get(props.errors, 'title', '')}
+      description={get(props.errors, 'title', '')}
+      fieldValidation={get(props.errors, 'title', null) && 'error'}
     />
     <Separator size="xs" />
     <TranslationInputContainer

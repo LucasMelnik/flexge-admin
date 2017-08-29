@@ -25,7 +25,8 @@ class PlacementTestListService {
       url: '/grammar-placement-test-levels',
       query: {
         query: {
-         ...this.form.getValues(),
+          ...this.form.getValue('grammar') && { grammar: this.form.getValue('grammar') },
+          ...this.form.getValue('placementTestLevel') && { placementTestLevel: this.form.getValue('placementTestLevel') },
         },
       },
     }).then(() => {

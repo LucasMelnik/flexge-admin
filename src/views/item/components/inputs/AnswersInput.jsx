@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Flex from 'jsxstyle/Flex';
 import Separator from '../../../../core/layout/Separator';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import Row from '../../../../core/layout/Row';
@@ -9,29 +8,33 @@ import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
 import Button from '../../../../core/form/Button';
 import Select from '../../../../core/form/Select';
-import Table from '../../../../core/content/Table';
-import ErrorText from '../../../../core/content/ErrorText';
 import FileInput from '../../../../core/form/FileInput';
-import AudioPreview from '../../../../core/content/AudioPreview';
-import ImagePreview from '../../../../core/content/ImagePreview';
+import Table from '../../../../core/form/Table';
+import IconButton from '../../../../core/form/IconButton';
+import AudioPreview from '../../../../core/layout/AudioPreview';
+import ImagePreview from '../../../../core/layout/ImagePreview';
+import ErrorText from '../../../../core/layout/ErrorText';
 
 const AnswersInput = props => (
   <div>
     {!props.disabled && (
-      <Flex
-        alignItems="center"
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
       >
         <TextInput
-          id="answer"
-          floatingLabel
           disabled={props.submitting}
           label={props.label}
           value={get(props.values, 'text', '')}
           onChange={value => props.onChange('text', value)}
-          errorText={get(props.errors, 'text', '')}
+          description={get(props.errors, 'text', '')}
+          fieldValidation={get(props.errors, 'text', null) && 'error'}
         />
         <ColumnSeparator size="sm" />
         <FileInput
+          disabled={props.submitting}
           label="Upload an audio to the answer"
           accept="audio"
           value={get(props.values, 'audio', '')}
@@ -40,6 +43,7 @@ const AnswersInput = props => (
         />
         <ColumnSeparator size="sm" />
         <FileInput
+          disabled={props.submitting}
           label="Upload an image to the answer"
           accept="image"
           value={get(props.values, 'image', '')}
@@ -49,6 +53,7 @@ const AnswersInput = props => (
         <ColumnSeparator size="sm" />
         {props.answerType === 'BOTH' && (
           <Select
+            disabled={props.submitting}
             label="Is this a Correct answer ?"
             value={get(props.values, 'correct', '')}
             onChange={value => props.onChange('correct', value)}
@@ -62,19 +67,19 @@ const AnswersInput = props => (
           <ColumnSeparator size="sm" />
         )}
         <Button
-          icon="done"
-          secondary
+          icon="fa-check"
+          type="primary"
           label={props.values.id ? 'Update' : 'Add'}
           disabled={!props.isDirty()}
           onClick={() => props.onSubmit()}
         />
         <ColumnSeparator size="xs" />
         <Button
-          icon="clear"
+          icon="fa-times"
           label="Cancel"
           onClick={() => props.onReset()}
         />
-      </Flex>
+      </div>
     )}
     <Separator size="xs" />
     <Row>
@@ -82,9 +87,15 @@ const AnswersInput = props => (
         <Table
           columns={[
             {
+              label: 'ID',
+              path: 'id',
+              isKey: true,
+              hidden: true,
+            },
+            {
               label: 'Answer',
               path: 'text',
-              render: row => (
+              render: (cell, row) => (
                 <div
                   style={{
                     whiteSpace: 'normal',
@@ -102,7 +113,7 @@ const AnswersInput = props => (
             },
             {
               label: 'Audio',
-              render: row => {
+              render: (cell, row) => {
                 if (row.audio) {
                   return (<AudioPreview src={row.audio} />);
                 } else {
@@ -112,7 +123,7 @@ const AnswersInput = props => (
             },
             {
               label: 'Image',
-              render: row => {
+              render: (cell, row) => {
                 if (row.image) {
                   return (<ImagePreview src={row.image} />);
                 } else {
@@ -120,11 +131,30 @@ const AnswersInput = props => (
                 }
               },
             },
+            {
+              label: 'Actions',
+              path: 'action',
+              width: '120',
+              render: (cell, row) => {
+                if (!props.disabled) {
+                  return (
+                    <div>
+                      <IconButton
+                        icon="fa-trash"
+                        onClick={() => props.onDelete(row.id)}
+                      />
+                      <IconButton
+                        icon="fa-edit"
+                        onClick={() => props.onEdit(row.id)}
+                      />
+                    </div>
+                  );
+                }
+                return null;
+              },
+            },
           ]}
           rows={props.answers}
-          allowActionValidator={(row) => row.index === undefined}
-          onDelete={!props.disabled ? (row) => props.onDelete(row.id) : null}
-          onEdit={!props.disabled ? (row) => props.onEdit(row.id) : null}
         />
         {props.errorText && (
           <ErrorText>{props.errorText}</ErrorText>

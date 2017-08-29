@@ -1,46 +1,63 @@
 import React from 'react';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
-import InlineBlock from 'jsxstyle/InlineBlock'
-import Paper from '../../../core/layout/Paper';
 import TextInput from '../../../core/form/TextInput';
-import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
+import FetchSelect from '../../../core/form/FetchSelect';
 import Button from '../../../core/form/Button';
-import PermissionValidator from '../../../core/content/PermissionValidator';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const TeacherListFilter = props => (
-  <Paper>
-    <InlineBlock marginRight={20}>
+  <div>
+    <div
+      style={{
+        display: 'inline-block',
+        minWidth: 250,
+      }}
+    >
       <TextInput
         label="Search for teachers"
         value={props.values.filter}
         onChange={value => props.onChange('filter', value)}
         disabled={props.fetching}
       />
-    </InlineBlock>
-    <PermissionValidator allowedFor={['ADMIN']}>
-      <InlineBlock marginRight={20}>
-        <FetchAutoComplete
+    </div>
+
+    <div
+      style={{
+        display: 'inline-block',
+        verticalAlign: 'top',
+        marginLeft: 20,
+      }}
+    >
+      <PermissionValidator allowedFor={['ADMIN']}>
+        <FetchSelect
           url="/companies"
           disabled={props.fetching}
           label="Company"
           fullWidth={false}
-          onSelect={value => props.onChange('company', value)}
+          onChange={value => props.onChange('company', value)}
           resultTransformer={{
             text: 'name',
             value: 'id',
           }}
-          value={get(props.values, 'company.name')}
+          value={get(props.values, 'company')}
         />
-      </InlineBlock>
-    </PermissionValidator>
-    <Button
-      label="Search"
-      icon="search"
-      priimary
-      onClick={props.onSearch}
-    />
-  </Paper>
+      </PermissionValidator>
+    </div>
+    <div
+      style={{
+        display: 'inline-block',
+        marginLeft: 20,
+      }}
+    >
+      <Button
+        label="Search"
+        icon="fa-search"
+        default
+        onClick={props.onSearch}
+      />
+    </div>
+  </div>
 );
 
 TeacherListFilter.propTypes = {

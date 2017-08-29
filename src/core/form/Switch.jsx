@@ -1,33 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Toggle from 'material-ui/Toggle';
 
-const Switch = props => (
-  <Toggle
-    toggled={props.toggled}
-    label={props.label}
-    onToggle={(event, isInputChecked) => props.onChange(isInputChecked)}
-    disabled={props.disabled}
-    labelPosition={props.labelPosition}
-    labelStyle={{
-      width: 'auto',
-    }}
-    style={props.style}
-  />
-);
+export default class Switch extends Component {
 
-Switch.propTypes = {
-  toggled: PropTypes.bool.isRequired,
-  label: PropTypes.string.isRequired,
-  labelPosition: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
-  style: PropTypes.object,
-};
+  static propTypes = {
+    value: PropTypes.bool,
+    disabled: PropTypes.bool,
+    onChange: PropTypes.func,
+    size: PropTypes.oneOf(['small', 'default']),
+  };
 
-Switch.defaultProps = {
-  disabled: false,
-  style: null,
-};
+  static defaultProps = {
+    value: false,
+    disabled: false,
+    onChange: () => null,
+    size: 'small',
+  };
 
-export default Switch;
+  componentDidMount() {
+    this.switch = new window.Switchery(this.input, {
+      disabled: this.props.disabled,
+      disabledOpacity: 0.5,
+      size: this.props.size,
+    });
+
+    if (this.props.onChange) {
+      this.input.onchange = (event) => {
+        this.props.onChange(event.target.checked)
+      };
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.disabled) {
+      this.switch.disable();
+    } else {
+      this.switch.enable();
+    }
+  };
+
+  render() {
+    return (
+      <input
+        type="checkbox"
+        ref={input => this.input = input}
+        checked={this.props.value}
+      />
+    );
+  }
+}

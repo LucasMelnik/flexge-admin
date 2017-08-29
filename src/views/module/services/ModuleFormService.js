@@ -6,9 +6,9 @@ import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
 class ModuleFormService {
-  fetch = new FetchService()
-  submit = new FetchService()
-  form = new FormService()
+  fetch = new FetchService();
+  submit = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -30,7 +30,11 @@ class ModuleFormService {
         url: `/modules/${moduleId}`,
       }).then(() => {
         if (this.fetch.data) {
-          this.form.setInitialValues(this.fetch.data);
+          this.form.setInitialValues({
+            ...this.fetch.data,
+            course: this.fetch.data.course.id,
+            academicPlan: this.fetch.data.academicPlan.id,
+          });
         }
       });
     } else {
@@ -50,16 +54,10 @@ class ModuleFormService {
       url: moduleId ? `/modules/${moduleId}` : '/modules',
       body: {
         ...this.form.getValues(),
-        course: this.form.getValue('course.id'),
-        academicPlan: this.form.getValue('academicPlan.id'),
       },
     }).then(() => {
       if (this.submit.data) {
-        const module = this.submit.data;
         browserHistory.push(`/modules`);
-        this.moduleId = module.id;
-        this.form.reset();
-        this.form.setInitialValues(module);
         NotificationService.addNotification(
           `Module ${moduleId ? 'updated' : 'created'} successfully.`,
           null,
@@ -72,7 +70,7 @@ class ModuleFormService {
           `Error ${moduleId ? 'updating' : 'creating'} module.`,
           null,
           null,
-          'danger',
+          'error',
         );
       }
     });

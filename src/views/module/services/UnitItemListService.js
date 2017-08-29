@@ -29,8 +29,6 @@ class UnitItemListService {
         this.reorderSubmitting = false;
       } else {
         this.items = [];
-        this.total = 0;
-        this.pageCount = 1;
       }
     });
   });

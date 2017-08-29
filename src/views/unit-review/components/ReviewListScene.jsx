@@ -1,35 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Tabs from '../../../core/navigation/Tabs';
 import MyReviewList from './MyReviewList';
 import ToReviewList from './ToReviewList';
+import Tabs from '../../../core/layout/Tabs';
 
 const ReviewListScene = props => (
-  <div>
-    <Tabs
-      tabs={[
-        {
-          content: (
-            <MyReviewList
-              unitsAndReviews={props.myUnitsAndReviews}
-              fetching={props.fetching}
-              onSendToReview={props.onSendToReview}
-            />
-          ),
-          label: 'My units',
-        },
-        {
-          content: (
-            <ToReviewList
-              unitsAndReviews={props.allUnitsAndReviews}
-              fetching={props.fetching}
-            />
-          ),
-          label: 'Units Pending Review',
-        },
-      ]}
-    />
-  </div>
+  <Tabs
+    tabs={[
+      {
+        content: (
+          <MyReviewList
+            unitsAndReviews={props.myUnitsAndReviews}
+            fetching={props.fetching}
+            onSendToReview={props.onSendToReview}
+          />
+        ),
+        title: 'My units',
+      },
+      {
+        content: (
+          <ToReviewList
+            unitsAndReviews={props.allUnitsAndReviews}
+            fetching={props.fetching}
+          />
+        ),
+        title: 'Units Pending Review',
+      },
+    ]}
+  />
 );
 
 ReviewListScene.propTypes = {

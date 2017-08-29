@@ -1,31 +1,63 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
-import Paper from '../../../core/layout/Paper';
-import Async from '../../../core/content/Async';
-import Table from '../../../core/content/Table';
+import Async from '../../../core/layout/Async';
+import Table from '../../../core/form/Table';
+import IconButton from '../../../core/form/IconButton';
 
 const SchoolList = props => (
-  <Paper>
-    <Async fetching={props.fetching}>
-      <Table
-        columns={[
-          {
-            label: 'Name',
-            path: 'name',
+  <Async fetching={props.fetching}>
+    <Table
+      columns={[
+        {
+          label: 'ID',
+          path: 'id',
+          isKey: true,
+          hidden: true,
+        },
+        {
+          label: 'Name',
+          path: 'name',
+        },
+        {
+          label: 'Company',
+          path: 'company.name',
+        },
+        {
+          label: 'Actions',
+          path: 'action',
+          width: '120',
+          render: (cell, row) => {
+            return (
+              <div>
+                <IconButton
+                  icon="fa-trash"
+                  onClick={() => props.onDelete(row)}
+                />
+                {' '}
+                <IconButton
+                  icon="fa-edit"
+                  onClick={() => browserHistory.push(
+                    props.distributorId ?
+                    `/distributors/${props.distributorId}/companies/${props.companyId}/schools/${row.id}` :
+                      props.companyId ? `/companies/${props.companyId}/schools/${row.id}` : `/schools/${row.id}`)}
+                />
+              </div>
+            );
           },
-          {
-            label: 'Company',
-            path: 'company.name',
-          },
-        ]}
-        rows={props.schools}
-        selectable
-        onSelect={row => browserHistory.push(`/schools/${row.id}`)}
-        onDelete={row => props.onDelete(row)}
-      />
-    </Async>
-  </Paper>
+        },
+      ]}
+      rows={props.schools}
+      selectable
+      onSelect={row => browserHistory.push(
+        props.companyId && props.distributorId ?
+          `/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${row.id}`
+          : props.companyId ?
+            `/company-detail/${props.companyId}/school-detail/${row.id}`
+          :
+            `/school-detail/${row.id}`)}
+    />
+  </Async>
 );
 
 SchoolList.propTypes = {
@@ -36,6 +68,8 @@ SchoolList.propTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
   })).isRequired,
+  distributorId: PropTypes.string,
+  companyId: PropTypes.string,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
 };

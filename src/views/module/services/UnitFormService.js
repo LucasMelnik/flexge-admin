@@ -31,11 +31,17 @@ class UnitFormService {
         url: `/modules/${moduleId}/units/${unitId}`,
       }).then(() => {
         if (this.fetch.data) {
-          this.form.setInitialValues(this.fetch.data);
+          this.form.setInitialValues({
+            ...this.fetch.data,
+            module: this.fetch.data.module.id,
+            type: this.fetch.data.type.id,
+          });
         }
       });
     } else {
-      this.form.setInitialValues({});
+      this.form.setInitialValues({
+        module: moduleId,
+      });
     }
     this.unitId = unitId;
   });
@@ -46,20 +52,20 @@ class UnitFormService {
       return;
     }
     const unitId = this.form.getValue('id');
-    const moduleId = this.form.getValue('module.id');
+    const moduleId = this.form.getValue('module');
     this.submit.fetch({
       method: unitId ? 'put' : 'post',
       url: unitId ? `/modules/${moduleId}/units/${unitId}` : `/modules/${moduleId}/units`,
       body: {
         ...this.form.getValues(),
-        type: this.form.getValue('type').id,
+        type: this.form.getValue('type'),
       },
     }).then(() => {
       if (this.submit.data) {
         const unit = this.submit.data;
         this.unitId = unit.id;
         if (callbackAfterSuccess) {
-          callbackAfterSuccess(this.unitId);
+          callbackAfterSuccess(unit);
         }
         this.form.setInitialValues({
           ...unit,

@@ -1,50 +1,77 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InlineBlock from 'jsxstyle/InlineBlock';
 import { browserHistory } from 'react-router';
 import Button from '../../../core/form/Button';
-import Title from '../../../core/content/Title';
-import Separator from '../../../core/layout/Separator';
 import MasteryTestFormContainer from './MasteryTestFormContainer';
+import Card from '../../../core/layout/Card';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
+import Async from '../../../core/layout/Async';
 import MasteryTestItems from './MasteryTestItems';
+import Separator from '../../../core/layout/Separator';
+import ReviewFormControlBar from './ReviewFormControlBar';
 
 const MasteryTestFormScene = props => (
   <div>
-    <InlineBlock>
-      <Title>
-        {props.params.masteryTestId ? (
-          'Mastery Test informations'
-        ) : (
-          'New Mastery Test'
+    <Breadcrumb
+      fetching={props.fetching}
+      crumbs={[
+        {
+          text: `Course - ${props.module.course.name}`,
+          link: '/modules',
+        },
+        {
+          text: `Module - ${props.module.name}`,
+          link: `/modules/${props.module.id}/details`,
+        },
+        {
+          text: props.masteryTestId ? 'Edit Mastery Test': 'New Mastery Test',
+        }
+      ]}
+    />
+    <Card
+      title={props.masteryTestId ? 'Mastery Test informations' : 'New Mastery Test'}
+      actions={
+        <Button
+          label="Back"
+          icon="fa-arrow-left"
+          onClick={() => browserHistory.push(`/modules/${props.module.id}/details`)}
+        />
+      }
+    >
+      <Async fetching={props.fetching}>
+        {props.module.id && (
+          <MasteryTestFormContainer
+            moduleId={props.module.id}
+            masteryTestId={props.masteryTestId}
+          />
         )}
-      </Title>
-    </InlineBlock>
-    <Button
-      label="Back"
-      icon="arrow_back"
-      style={{
-        position: 'relative',
-        float: 'right',
-      }}
-      onClick={() => browserHistory.push(`/modules/${props.params.moduleId}/units`)}
-    />
-    <Separator size="sm" />
-    <MasteryTestFormContainer
-      moduleId={props.params.moduleId}
-      masteryTestId={props.params.masteryTestId}
-    />
-    <Separator size="sm" />
-    {props.params.masteryTestId && (
-      <MasteryTestItems masteryTestId={props.params.masteryTestId} />
+      </Async>
+    </Card>
+    <Separator size="md" />
+    {(props.module.id && props.masteryTestId) && (
+      <MasteryTestItems masteryTestId={props.masteryTestId} />
+    )}
+    {(props.module.id && props.masteryTestId) && (
+      <ReviewFormControlBar
+        masteryTestId={props.masteryTestId}
+        moduleId={props.module.id}
+      />
     )}
   </div>
 );
 
 MasteryTestFormScene.propTypes = {
-  params: PropTypes.shape({
-    moduleId: PropTypes.string.isRequired,
-    masteryTestId: PropTypes.string,
-  }).isRequired,
+  fetching: PropTypes.bool,
+  masteryTestId: PropTypes.string,
+  module: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+  })
 };
 
+MasteryTestFormScene.defaultProps = {
+  fetching: false,
+  masteryTestId: null,
+  module: {},
+};
 export default MasteryTestFormScene;

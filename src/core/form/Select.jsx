@@ -1,59 +1,69 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import Select2 from 'react-select';
+import 'react-select/dist/react-select.css';
+import './Select.css';
 
-const Select = props => (
-  <SelectField
-    floatingLabelText={props.label}
-    fullWidth={props.fullWidth}
-    multiple={props.multiple}
-    value={props.value}
-    disabled={props.disabled}
-    onChange={(e, key, payload) => props.onChange(payload)}
-    errorText={props.errorText}
-    onClick={(e) => e.stopPropagation()}
-  >
-    {props.addEmptyOption && (
-      <MenuItem
-        key="empty"
-        value={null}
-        primaryText=""
-      />
-    )}
-    {props.options.map(option => (
-      <MenuItem
-        key={`${option.value}-${option.label}`}
-        value={option.value}
-        primaryText={option.label}
-      />
-    ))}
-  </SelectField>
-);
+export default class Select extends Component {
 
-Select.propTypes = {
-  label: PropTypes.string.isRequired,
-  value: PropTypes.any,
-  onChange: PropTypes.func,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
-  })).isRequired,
-  multiple: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  disabled: PropTypes.bool,
-  addEmptyOption: PropTypes.bool,
-  errorText: PropTypes.string,
-};
+  static propTypes = {
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    placeholder: PropTypes.string,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    onChange: PropTypes.func.isRequired,
+    options: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    })),
+    description: PropTypes.string,
+    fieldValidation: PropTypes.string,
+  };
 
-Select.defaultProps = {
-  value: null,
-  errorText: null,
-  fullWidth: false,
-  multiple: false,
-  disabled: false,
-  addEmptyOption: false,
-  onChange: null,
-};
+  static defaultProps = {
+    placeholder: 'Select...',
+    options: [],
+    value: '',
+    fieldValidation: null,
+    description: null,
+  };
 
-export default Select;
+  render() {
+    return (
+      <div>
+        <div
+          style={{
+            minWidth: 250,
+            fontWeight: 400,
+            display: 'flex',
+            color: '#555555',
+            marginBottom: 10,
+          }}
+        >
+          <div>
+            {this.props.label}
+          </div>
+          <div style={{
+            marginLeft: 15,
+            fontSize: 13,
+            display: 'inline-block',
+            color: 'red',
+          }}>
+            {this.props.description}
+          </div>
+        </div>
+        <div
+          style={this.props.fieldValidation ? { border: '1px solid red' } : null}
+        >
+          <Select2
+            disabled={this.props.disabled}
+            placeholder={this.props.placeholder}
+            value={this.props.value}
+            options={this.props.options}
+            resetValue=""
+            onChange={(option) => this.props.onChange && this.props.onChange(option.value || '')}
+          />
+        </div>
+      </div>
+    );
+  }
+}

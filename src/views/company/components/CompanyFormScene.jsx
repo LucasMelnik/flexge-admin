@@ -1,52 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Block from 'jsxstyle/Block';
-import InlineBlock from 'jsxstyle/InlineBlock';
 import { browserHistory } from 'react-router';
-import Separator from '../../../core/layout/Separator';
-import Title from '../../../core/content/Title';
-import FloatActionButton from '../../../core/form/FloatActionButton';
 import CompanyFormContainer from './CompanyFormContainer';
-import CompanyManagerSceneContainer from '../../company-manager/components/CompanyManagerSceneContainer';
+import Button from '../../../core/form/Button';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
+import ManagerSceneContainer from '../../managers/components/ManagerSceneContainer';
+import Separator from '../../../core/layout/Separator';
+import Card from '../../../core/layout/Card';
 
 const CompanyFormScene = props => (
   <div>
-    <InlineBlock>
-      <Title>
-        {props.companyId ? (
-          'Company Informations'
-        ) : (
-          'New Company'
-        )}
-      </Title>
-    </InlineBlock>
-    <FloatActionButton
-      secondary
-      icon="arrow_back"
-      style={{
-        position: 'relative',
-        float: 'right',
-        top: 20,
-        right: 20,
-      }}
-      onClick={() => browserHistory.push('/companies')}
+    <Breadcrumb
+      crumbs={[
+        {
+          text: 'Companies',
+          link: '/companies',
+        },
+        {
+          text: props.params.companyId ? 'Edit Company' : 'Create Company',
+        },
+      ]}
     />
-    <Separator size="sm" />
-    <CompanyFormContainer />
-    {props.companyId && (
-      <Block marginTop={20}>
-        <CompanyManagerSceneContainer companyId={props.companyId} />
-      </Block>
+    <Card
+      title={props.params.companyId ? 'Edit Company' : 'Create Company'}
+      actions={
+        (
+          <Button
+            icon="fa-arrow-left"
+            label="Back"
+            type="default"
+            onClick={() => browserHistory.push('/companies')}
+          />
+        )
+      }
+    >
+      <CompanyFormContainer companyId={props.params.companyId} />
+    </Card>
+    {props.params.companyId && (
+      <div>
+        <Separator size="md" />
+        <ManagerSceneContainer
+          title="Company Managers"
+          endpointUrl={`/companies/${props.params.companyId}/managers`}
+          initialValues={{
+            company: props.params.companyId,
+          }}
+        />
+      </div>
     )}
   </div>
 );
 
 CompanyFormScene.propTypes = {
-  companyId: PropTypes.string,
+  params: PropTypes.shape({
+    companyId: PropTypes.string,
+  }),
 };
 
 CompanyFormScene.defaultProps = {
-  companyId: null,
+  params: null,
 };
 
 export default CompanyFormScene;

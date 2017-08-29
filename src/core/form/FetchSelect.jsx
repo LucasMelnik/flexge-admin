@@ -1,42 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { orderBy } from 'lodash';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import { sortBy } from 'lodash';
+import Select from './Select';
 
 export default class FetchSelect extends Component {
 
   static propTypes = {
     url: PropTypes.string.isRequired,
-    disabled: PropTypes.bool,
-    errorText: PropTypes.string,
-    label: PropTypes.string,
-    fullWidth: PropTypes.bool,
-    onChange: PropTypes.func.isRequired,
-    multiple: PropTypes.bool,
-    defaultSelect: PropTypes.bool,
-    addEmptyOption: PropTypes.bool,
+    label: PropTypes.string.isRequired,
+    resultTransformer: PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      value: PropTypes.string,
+    }).isRequired,
+    placeholder: PropTypes.string,
     value: PropTypes.string,
-    maxHeight: PropTypes.number,
-    optionsTransformer: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
+    description: PropTypes.string,
+    fieldValidation: PropTypes.string,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
+    placeholder: 'Select...',
+    value: null,
+    fieldValidation: null,
+    description: null,
     disabled: false,
-    errorText: null,
-    label: '',
-    multiple: false,
-    defaultSelect: false,
-    addEmptyOption: false,
-    fullWidth: true,
-    style: null,
-    value: '',
-    maxHeight: 200,
-    optionsTransformer: option => ({
-      label: option.name,
-      value: option.id,
-    })
   };
 
   state = { data: [] };
@@ -49,46 +39,32 @@ export default class FetchSelect extends Component {
         ...localStorage.accessToken && { Authorization: `Bearer ${localStorage.accessToken}` },
       },
     }).then((response) => {
-      const data = response.data;
+      const data = response.data.docs || response.data;
       this.setState({
-        data: orderBy(data, ['name'], ['asc']),
+        data: sortBy(data, item => String(item[this.props.resultTransformer.text]).toLowerCase()),
       }, () => {
         if (this.props.defaultSelect) {
           this.props.onChange(this.state.data[0].id || null);
         }
       });
-      return data;
     });
   }
 
   render() {
     return (
-      <SelectField
-        floatingLabelText={this.props.label}
-        fullWidth={this.props.fullWidth}
-        multiple={this.props.multiple}
-        disabled={this.props.disabled}
+      <Select
         value={this.props.value}
-        maxHeight={this.props.maxHeight}
-        onChange={(e, key, payload) => this.props.onChange(payload)}
-        errorText={this.props.errorText}
-      >
-        {this.props.addEmptyOption && (
-          <MenuItem
-            key="empty"
-            value={null}
-            primaryText=""
-          />
-        )}
-        {this.state.data.map(this.props.optionsTransformer).map(option => (
-          <MenuItem
-            key={`${option.value}-${option.value}`}
-            value={option.value}
-            primaryText={option.label}
-            label={option.label}
-          />
-        ))}
-      </SelectField>
+        label={this.props.label}
+        disabled={this.props.disabled}
+        description={this.props.description}
+        fieldValidation={this.props.fieldValidation}
+        placeholder={this.props.placeholder}
+        onChange={(value) => this.props.onChange(value, this.state.data.find(item => item[this.props.resultTransformer.value] === value))}
+        options={this.state.data.map(option => ({
+          label: option[this.props.resultTransformer.text],
+          value: option[this.props.resultTransformer.value],
+        }))}
+      />
     );
   }
 }

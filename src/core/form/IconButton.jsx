@@ -1,22 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MaterialIconButton from 'material-ui/IconButton';
+import Icon from '../layout/Icon';
 
 const IconButton = props => (
-  <MaterialIconButton
+  <button
+    type="button"
+    className={`
+      btn
+      btn-${props.type}
+      ${props.cornered && 'btn-corner'}
+      ${props.rounded && 'btn-round'}
+      ${props.bordered && 'btn-border'}
+      ${props.size && `btn-${props.size}`}
+    `}
     style={{
-      width: 45
+      outline: 'none',
     }}
     onClick={props.onClick}
-    iconClassName="material-icons"
   >
-    {props.icon}
-  </MaterialIconButton>
+    <Icon
+      name={props.icon}
+      size="xs"
+    />
+  </button>
 );
 
 IconButton.propTypes = {
+  type: PropTypes.oneOf([
+    'default',
+    'primary',
+    'success',
+    'info',
+    'warning',
+    'danger',
+    'purple',
+    'accent',
+    'secondary',
+  ]),
+  size: PropTypes.oneOf([
+    'xs',
+    'sm',
+    'lg',
+    'block',
+  ]),
   icon: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  cornered: PropTypes.bool,
+  rounded: PropTypes.bool,
+  bordered: PropTypes.bool,
+  onClick: PropTypes.func,
+};
+
+IconButton.defaultProps = {
+  type: 'primary',
+  size: null,
+  cornered: false,
+  rounded: false,
+  bordered: false,
+  onClick: null,
 };
 
 export default IconButton;

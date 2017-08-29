@@ -30,8 +30,8 @@ class ModuleListService {
               $options: 'i',
             },
           },
-          ...this.form.getValue('course.id') && {
-            course: this.form.getValue('course.id'),
+          ...this.form.getValue('course') && {
+            course: this.form.getValue('course'),
           },
         },
       },
