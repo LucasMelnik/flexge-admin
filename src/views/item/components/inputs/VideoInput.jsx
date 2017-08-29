@@ -22,13 +22,9 @@ const VideoInput = props => (
       {props.requiredCut && (
         <Column lgSize={2}>
           <MaskInput
-<<<<<<< HEAD
             floatingLabel
             fullWidth
             label="Start time (ex: 01:01:23)"
-=======
-            label="Start time (example 01:23)"
->>>>>>> sprint-7
             disabled={props.submitting || props.disabled}
             value={get(props.values, 'videoStartTime', '')}
             onChange={value => props.onChange('videoStartTime', value)}
