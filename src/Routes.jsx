@@ -45,6 +45,7 @@ import TeacherFormScene from './v2/views/teacher/components/TeacherFormScene';
 
 import SchoolListSceneV2 from './v2/views/school/components/SchoolListScene';
 import SchoolFormScene from './v2/views/school/components/SchoolFormScene';
+import SchoolFormSceneContainerV2 from './v2/views/school/components/SchoolFormSceneContainer';
 import SchoolDetailSceneContainer from './v2/views/school/components/SchoolDetailSceneContainer';
 
 import ModuleListSceneV2 from './v2/views/module/components/ModuleListScene';
@@ -103,7 +104,11 @@ const Routes = () => (
       <Route path="teachers/:teacherId" component={TeacherFormScene} />
       <Route path="schools" component={SchoolListSceneV2} />
       <Route path="schools/new" component={SchoolFormScene} />
-      <Route path="schools/:schoolId" component={SchoolFormScene} />
+      <Route path="schools/:schoolId" component={SchoolFormSceneContainerV2} />
+      <Route path="companies/:companyId/schools/new" component={SchoolFormSceneContainerV2} />
+      <Route path="companies/:companyId/schools/:schoolId" component={SchoolFormSceneContainerV2} />
+      <Route path="distributors/:distributorId/companies/:companyId/schools/new" component={SchoolFormSceneContainerV2} />
+      <Route path="distributors/:distributorId/companies/:companyId/schools/:schoolId" component={SchoolFormSceneContainerV2} />
       <Route path="school-detail/:schoolId" component={SchoolDetailSceneContainer} />
       <Route path="company-detail/:companyId/school-detail/:schoolId" component={SchoolDetailSceneContainer} />
       <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId" component={SchoolDetailSceneContainer} />

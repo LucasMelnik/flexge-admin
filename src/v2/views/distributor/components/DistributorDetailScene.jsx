@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../../../core/layout/Card';
-import Separator from '../../../core/layout/Separator';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import CompanyListContainer from '../../company/components/CompanyListContainer';
 
@@ -18,7 +17,6 @@ const DistributorDetailScene = props => (
         },
       ]}
     />
-    <Separator size="md" />
     <Card title="Companies">
       <CompanyListContainer distributorId={props.distributorId} />
     </Card>

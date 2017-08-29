@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
-import Card from '../../../core/layout/Card';
-import ManagerSceneContainer from '../../managers/components/ManagerSceneContainer';
-import Separator from '../../../core/layout/Separator';
-import SchoolListContainer from '../../school/components/SchoolListContainer';
+import SchoolListScene from '../../school/components/SchoolListScene';
 
 const CompanyDetailScene = props => (
   <div>
@@ -19,26 +16,21 @@ const CompanyDetailScene = props => (
             text: `Distributor - ${props.distributor ? props.distributor.name : 'loading...'}`,
             link: `/v2/distributor-detail/${props.distributorId}`,
           },
-        ] : [],
-        ...!props.distributorId && [
+        ] : props.companyId ? [
           {
             text: 'Companies',
             link: '/v2/companies',
           },
-        ],
+        ] : [],
         {
           text: `Company - ${props.company ? props.company.name : '...loading'}`,
         },
       ]}
     />
-    <Card
-      title="Schools"
-    >
-      <SchoolListContainer
-        distributorId={props.distributorId}
-        companyId={props.companyId}
-      />
-    </Card>
+    <SchoolListScene
+      distributorId={props.distributorId}
+      companyId={props.companyId}
+    />
   </div>
 );
 

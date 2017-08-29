@@ -37,7 +37,10 @@ const SchoolList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => hashHistory.push(props.companyId ? `/v2/companies/${props.companyId}/schools/${row.id}` : `/v2/schools/${row.id}`)}
+                  onClick={() => hashHistory.push(
+                    props.distributorId ?
+                    `/v2/distributors/${props.distributorId}/companies/${props.companyId}/schools/${row.id}` :
+                      props.companyId ? `/v2/companies/${props.companyId}/schools/${row.id}` : `/v2/schools/${row.id}`)}
                 />
               </div>
             );

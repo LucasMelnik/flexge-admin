@@ -33,7 +33,7 @@ class SchoolFormService {
         if (this.fetch.data) {
           const data = {
             ...this.fetch.data,
-            company: this.companyId,
+            company: this.fetch.data.company.id,
           };
           this.form.setInitialValues(data);
         }

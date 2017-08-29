@@ -7,7 +7,7 @@ const SchoolClassDetailScene = props => (
   <div>
     <Breadcrumb
       crumbs={[
-        ...(props.distributorId && props.companyId && props.schoolId && props.classId) ? [
+        ...(props.distributorId) ? [
           {
             text: 'Distributors',
             link: '/v2/distributors',
@@ -24,7 +24,7 @@ const SchoolClassDetailScene = props => (
             text: props.school ? `School - ${props.school.name}` : 'loading...',
             link: `/v2/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}`,
           },
-        ] : (!props.distributorId && props.companyId && props.schoolId && props.classId) ? [
+        ] : (props.companyId) ? [
           {
             text: 'Companies',
             link: '/v2/companies',
@@ -37,7 +37,7 @@ const SchoolClassDetailScene = props => (
             text: props.school ? `School - ${props.school.name}` : 'loading...',
             link: `/v2/company-detail/${props.companyId}/school-detail/${props.schoolId}`,
           },
-        ] : (!props.distributorId && !props.companyId && props.schoolId && props.classId) ? [
+        ] : (props.schoolId) ? [
           {
             text: 'Schools',
             link: '/v2/schools',
@@ -45,7 +45,7 @@ const SchoolClassDetailScene = props => (
           {
             text: `Class - ${props.class ? props.class.name : 'loading...'}`,
           },
-        ] : (!props.distributorId && !props.companyId && !props.schoolId && props.classId) ? [
+        ] : (props.classId) ? [
           {
             text: 'Classes',
             link: '/v2/classes',
