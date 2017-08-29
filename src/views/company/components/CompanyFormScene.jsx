@@ -4,61 +4,58 @@ import { browserHistory } from 'react-router';
 import CompanyFormContainer from './CompanyFormContainer';
 import Button from '../../../core/form/Button';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
-import ManagerSceneContainer from '../../managers/components/ManagerSceneContainer';
-import Separator from '../../../core/layout/Separator';
 import Card from '../../../core/layout/Card';
 
 const CompanyFormScene = props => (
   <div>
     <Breadcrumb
       crumbs={[
+        ...(props.distributorId) ? [
+          {
+            text: 'Distributors',
+            link: '/distributors',
+          },
+          {
+            text: props.distributor ? `Distributor - ${props.distributor.name}` : 'loading...',
+            link: `/distributor-detail/${props.distributorId}`,
+          },
+        ] : [
+          {
+            text: 'Companies',
+            link: '/companies',
+          }
+        ],
         {
-          text: 'Companies',
-          link: '/companies',
-        },
-        {
-          text: props.params.companyId ? 'Edit Company' : 'Create Company',
+          text: `${props.companyId ? 'Edit Company' : 'Create Company'}`,
         },
       ]}
     />
     <Card
-      title={props.params.companyId ? 'Edit Company' : 'Create Company'}
+      title={props.companyId ? 'Edit Company' : 'Create Company'}
       actions={
         (
           <Button
             icon="fa-arrow-left"
             label="Back"
             type="default"
-            onClick={() => browserHistory.push('/companies')}
+            onClick={() => browserHistory.goBack()}
           />
         )
       }
     >
-      <CompanyFormContainer companyId={props.params.companyId} />
+      <CompanyFormContainer companyId={props.companyId} />
     </Card>
-    {props.params.companyId && (
-      <div>
-        <Separator size="md" />
-        <ManagerSceneContainer
-          title="Company Managers"
-          endpointUrl={`/companies/${props.params.companyId}/managers`}
-          initialValues={{
-            company: props.params.companyId,
-          }}
-        />
-      </div>
-    )}
   </div>
 );
 
 CompanyFormScene.propTypes = {
-  params: PropTypes.shape({
-    companyId: PropTypes.string,
-  }),
+  distributorId: PropTypes.string,
+  companyId: PropTypes.string,
 };
 
 CompanyFormScene.defaultProps = {
-  params: null,
+  distributorId: null,
+  companyId: null,
 };
 
 export default CompanyFormScene;

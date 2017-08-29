@@ -39,60 +39,6 @@ const UserAdminList = props => (
           path: 'role',
         },
         {
-          label: 'Company',
-          width: '120',
-          path: '',
-          render: (cell, row) => {
-            return (
-              <div
-                style={{
-                  textAlign: 'center',
-                  color: 'black',
-                  fontSize: 25,
-                }}
-              >
-                {row.role === 'COMPANY_MANAGER' || row.role === 'ADMIN' ? 'X' : '-'}
-              </div>
-            );
-          },
-        },
-        {
-          label: 'School',
-          width: '120',
-          path: '',
-          render: (cell, row) => {
-            return (
-              <div
-                style={{
-                  textAlign: 'center',
-                  color: 'black',
-                  fontSize: 25,
-                }}
-              >
-                {row.role === 'SCHOOL_MANAGER' || row.role === 'ADMIN' ? 'X' : '-'}
-              </div>
-            );
-          },
-        },
-        {
-          label: 'Teacher',
-          width: '120',
-          path: '',
-          render: (cell, row) => {
-            return (
-              <div
-                style={{
-                  textAlign: 'center',
-                  color: 'black',
-                  fontSize: 25,
-                }}
-              >
-                {row.role === 'TEACHER' || row.role === 'ADMIN' ? 'X' : '-'}
-              </div>
-            );
-          },
-        },
-        {
           label: 'Actions',
           path: 'action',
           width: '120',

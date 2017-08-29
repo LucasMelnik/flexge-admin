@@ -41,7 +41,9 @@ const CompanyList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => browserHistory.push(`/companies/${row.id}`)}
+                  onClick={() => browserHistory.push(props.distributorId ?
+                  `/distributors/${props.distributorId}/companies/${row.id}` :
+                  `/companies/${row.id}`)}
                 />
               </div>
             );

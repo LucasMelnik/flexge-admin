@@ -16,13 +16,13 @@ const StudentDetailScene = props => (
             icon="fa-plus"
             label="New Student"
             type="default"
-            onClick={() => props.distributorId && props.companyId ?
+            onClick={() => props.distributorId ?
               browserHistory.push(`/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${props.classId}/students/new`) :
-            !props.distributorId && props.companyId ?
+            props.companyId ?
               browserHistory.push(`/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${props.classId}/students/new`) :
-            !props.distributorId && !props.companyId && props.schoolId ?
+            props.schoolId ?
               browserHistory.push(`/school-detail/${props.schoolId}/class-detail/${props.classId}/students/new`) :
-            !props.distributorId && !props.companyId && !props.schoolId && props.classId ?
+            props.classId ?
               browserHistory.push(`/class-detail/${props.classId}/students/new`) :
               browserHistory.push(`/students/new`)
           }

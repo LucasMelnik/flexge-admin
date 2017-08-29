@@ -96,16 +96,11 @@ const MainScene = props => (
               Conteúdo
             </MenuSection>
             <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
-              <MenuItem title="Course" icon="fa fa-book">
-                <SubMenu
-                  items={[
-                    {
-                      label: 'Modules',
-                      link: '/modules',
-                    },
-                  ]}
-                />
-              </MenuItem>
+              <MenuItem
+                title="Modules"
+                icon="fa fa-book"
+                link="/modules"
+              />
             </PermissionValidator>
             <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
               <MenuItem
@@ -119,6 +114,43 @@ const MainScene = props => (
                 title="Placement Test"
                 icon="fa fa-pencil-square"
                 link="/placement-test"
+              />
+            </PermissionValidator>
+          </div>
+        </PermissionValidator>
+        <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+          <div>
+            <MenuSection>
+              Academic
+            </MenuSection>
+            <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+              <MenuItem
+                title="Reports"
+                icon="fa fa-book"
+                link="/reports"
+              />
+            </PermissionValidator>
+            <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+              <MenuItem title="Records" icon="fa fa-book">
+                <SubMenu
+                  items={[
+                    {
+                      label: 'Classes',
+                      link: '/classes-academic',
+                    },
+                    {
+                      label: 'Students',
+                      link: '/students-academic',
+                    },
+                  ]}
+                />
+              </MenuItem>
+            </PermissionValidator>
+            <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+              <MenuItem
+                title="Grades"
+                icon="fa fa-book"
+                link="/grades"
               />
             </PermissionValidator>
           </div>

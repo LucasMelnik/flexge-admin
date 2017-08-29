@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import SchoolListFilterContainer from './SchoolListFilterContainer';
@@ -8,14 +9,15 @@ import SchoolListContainer from './SchoolListContainer';
 
 const SchoolListScene = props => (
   <div>
-    {/* <Breadcrumb
-      crumbs={[
-        {
-          text: 'Schools',
-          link: ' ',
-        },
-      ]}
-    /> */}
+    {(!props.distributorId && !props.companyId) && (
+      <Breadcrumb
+        crumbs={[
+          {
+            text: 'Schools',
+          },
+        ]}
+      />
+    )}
     <Card
       title="Schools"
       actions={[

@@ -63,7 +63,7 @@ class StudentListService {
         },
       },
     }).then(() => {
-      if (this.fetch.data) {
+      if (this.fetch.data && this.fetch.data.students) {
         const school = this.fetch.data.school;
         this.students = this.fetch.data.students.map((student) => {
           const newStudent = Object.assign({}, student);

@@ -41,7 +41,15 @@ const StudentList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => browserHistory.push(`/students/${row.id}`)}
+                  onClick={() => props.distributorId ?
+                    browserHistory.push(`/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${props.classId}/students/${row.id}`) :
+                  props.companyId ?
+                    browserHistory.push(`/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${props.classId}/students/${row.id}`) :
+                  props.schoolId ?
+                    browserHistory.push(`/school-detail/${props.schoolId}/class-detail/${props.classId}/students/${row.id}`) :
+                  props.classId ?
+                    browserHistory.push(`/class-detail/${props.classId}/students/${row.id}`) :
+                    browserHistory.push(`/students/${row.id}`)}
                 />
               </div>
             );
@@ -60,8 +68,19 @@ StudentList.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
+  companyId: PropTypes.string,
+  schoolId: PropTypes.string.isRequired,
+  classId: PropTypes.string,
+  distributorId: PropTypes.string,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
+
+StudentList.defaultProps = {
+  companyId: null,
+  classId: null,
+  school: null,
+  distributorId: null,
+}
 
 export default StudentList;
