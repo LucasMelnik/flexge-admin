@@ -2,44 +2,52 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
+import { isRequired } from '../../../core/validations';
+import PlacementTestItemListService from './PlacementTestItemListService'
 
 class PlacementTestReviewService {
-  fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
 
   constructor() {
-    extendObservable(this, {});
+    extendObservable(this, {
+      status: [isRequired],
+      comments: [isRequired],
+    });
   }
 
-  handleLoad = action((placementTestId) => {
+  handleLoad = action((placementTestId, review) => {
+    this.placementTestId = placementTestId;
+    this.form.setInitialValues(review);
     this.form.reset();
-    this.fetch.fetch({
-      url: `/grammar-placement-test-levels/${placementTestId}`,
-    }).then(() => {
-      if (this.fetch.data) {
-        this.form.setInitialValues(this.fetch.data);
-      }
-    });
   });
 
   handleSubmit = action(() => {
     this.form.submitted = true;
-    if (this.form.errors) {
+    const comments = this.form.getValue('comments');
+    if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
+      NotificationService.addNotification(
+        'Please leave a comment to update the review',
+        null,
+        null,
+        'error',
+      );
       return;
     }
-    const placementTestId = this.form.getValue('id');
     this.submit.fetch({
       method: 'patch',
-      url: `/grammar-placement-test-levels/${placementTestId}/review`,
+      url: `/grammar-placement-test-levels/${this.placementTestId}/item/${this.form.getValue('forItem')}/review`,
       body: {
-        status: this.form.getValue('review.status'),
-        comments: this.form.getValue('review.comments'),
+        status: this.form.getValue('status'),
+        comments: this.form.getValue('comments'),
       },
     }).then(() => {
       if (this.submit.data) {
+        this.form.setInitialValues({
+          ...this.submit.data.reviews.find(review => review.forItem === this.form.getValue('forItem')),
+        });
         this.form.reset();
-        this.form.setInitialValues(this.submit.data);
+        PlacementTestItemListService.load();
         NotificationService.addNotification(
           'Review updated successfully.',
           null,

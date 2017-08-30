@@ -31,8 +31,11 @@ const PlacementTestList = props => (
         },
         {
           label: 'Status',
-          path: 'review.status',
+          path: 'reviews',
           width: '15%',
+          render: (cell, row) => {
+            return row.items.length ? row.reviews.find(review => review.status !== 'APPROVED') ? 'Not Approved' : 'Approved' : 'No items';
+          }
         },
         {
           label: 'Items Count',
