@@ -6,6 +6,8 @@ import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
 import IconButton from '../../../core/form/IconButton';
 import ItemFormContainer from '../../item/components/ItemFormContainer';
+import ReviewFormContainer from './ReviewFormContainer';
+import Separator from '../../../core/layout/Separator';
 
 const PlacementTestItemList = props => (
   <Async fetching={props.fetching}>
@@ -45,6 +47,14 @@ const PlacementTestItemList = props => (
           },
         },
         {
+          label: 'Status',
+          path: 'reviews',
+          width: '10%',
+          render: (cell, row) => {
+            return row.grammarPlacementTestLevel.reviews.find(review => review.forItem === row.item.id) && row.grammarPlacementTestLevel.reviews.find(review => review.forItem === row.item.id).status
+          },
+        },
+        {
           label: 'Actions',
           path: 'action',
           width: '60',
@@ -61,16 +71,33 @@ const PlacementTestItemList = props => (
       idColumn="item.id"
       rows={props.items}
       expandable
-      expandableComponent={(row) => (
-        <ItemFormContainer
-          itemId={row.item.id}
-          itemsTypeUrl="/item-types?query[allowedForPlacementTest]=true"
-          endpointUrl={`/grammar-placement-test-levels/${row.grammarPlacementTestLevel.id}/items`}
-          order={null}
-          onSaveSuccess={props.onSaveSuccess}
-          isTestItem
-        />
-      )}
+      expandableComponent={(row) => {
+        const review = row.grammarPlacementTestLevel.reviews.find(review => review.forItem === row.item.id) || { forItem: row.item.id };
+        return (
+          <div>
+            {(
+              localStorage.role === 'ADMIN' ||
+              (localStorage.role === 'CONTENT_ADMIN' && review.status && review.status !== 'APPROVED')
+            ) && (
+              <div>
+                <ReviewFormContainer
+                  review={review}
+                  placementTestId={row.grammarPlacementTestLevel.id}
+                />
+                <Separator size="md" />
+              </div>
+            )}
+            <ItemFormContainer
+              itemId={row.item.id}
+              itemsTypeUrl="/item-types?query[allowedForPlacementTest]=true"
+              endpointUrl={`/grammar-placement-test-levels/${row.grammarPlacementTestLevel.id}/items`}
+              order={null}
+              onSaveSuccess={props.onSaveSuccess}
+              isTestItem
+            />
+          </div>
+        )
+      }}
     />
   </Async>
 );

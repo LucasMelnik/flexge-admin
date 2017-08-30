@@ -7,7 +7,6 @@ import PlacementTestItems from './PlacementTestItems';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
-import ReviewFormControlBar from './ReviewFormControlBar';
 
 const PlacementTestFormScene = props => (
   <div>
@@ -40,9 +39,6 @@ const PlacementTestFormScene = props => (
     <Separator size="sm" />
     {props.params.placementTestId && (
       <PlacementTestItems placementTestId={props.params.placementTestId} />
-    )}
-    {props.params.placementTestId && (
-      <ReviewFormControlBar placementTestId={props.params.placementTestId} />
     )}
   </div>
 );

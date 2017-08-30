@@ -13,6 +13,7 @@ class ItemFormContainer extends Component {
     defaultGrammar: PropTypes.string,
     disabled: PropTypes.bool,
     isTestItem: PropTypes.bool,
+    showPostPhrase: PropTypes.bool,
     onSaveSuccess: PropTypes.func,
   };
 
@@ -21,6 +22,7 @@ class ItemFormContainer extends Component {
     defaultGrammar: null,
     disabled: false,
     isTestItem: false,
+    showPostPhrase: false,
     order: null,
     onSaveSuccess: () => {},
   };
@@ -47,6 +49,7 @@ class ItemFormContainer extends Component {
         itemsTypeUrl={this.props.itemsTypeUrl}
         disabled={this.props.disabled}
         isTestItem={this.props.isTestItem}
+        showPostPhrase={this.props.showPostPhrase}
         defaultGrammar={this.props.defaultGrammar}
       />
     );

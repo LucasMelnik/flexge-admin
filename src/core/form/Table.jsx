@@ -89,6 +89,7 @@ export default class Table extends Component {
               }
             },
           }}
+          trClassName={this.props.selectable && 'selectable-row'}
         >
           {this.props.columns.map(column => (
             <TableHeaderColumn
