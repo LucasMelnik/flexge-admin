@@ -14,7 +14,6 @@ class ItemFormContainer extends Component {
     disabled: PropTypes.bool,
     isTestItem: PropTypes.bool,
     onSaveSuccess: PropTypes.func,
-    showPostPhrase: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -22,7 +21,6 @@ class ItemFormContainer extends Component {
     defaultGrammar: null,
     disabled: false,
     isTestItem: false,
-    showPostPhrase: false,
     order: null,
     onSaveSuccess: () => {},
   };
@@ -47,7 +45,6 @@ class ItemFormContainer extends Component {
         error={this.itemFormService.submit.error}
         fetching={this.itemFormService.fetch.fetching}
         itemsTypeUrl={this.props.itemsTypeUrl}
-        showPostPhrase={this.props.showPostPhrase}
         disabled={this.props.disabled}
         isTestItem={this.props.isTestItem}
         defaultGrammar={this.props.defaultGrammar}

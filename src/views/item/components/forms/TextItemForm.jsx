@@ -10,15 +10,13 @@ const TextItemForm = props => (
     <Row>
       <Column lgSize={12}>
         <TextInput
-          rows={10}
-          multiLine
-          floatingLabel
-          fullWidth
+          fieldType="textarea"
           label="Text"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'text', '')}
           onChange={value => props.onChange('text', value)}
-          errorText={get(props.errors, 'text', '')}
+          description={get(props.errors, 'text', '')}
+          fieldValidation={get(props.errors, 'text', null) && 'error'}
         />
       </Column>
     </Row>

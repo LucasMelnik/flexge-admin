@@ -1,52 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
-import Block from 'jsxstyle/Block';
-import InlineBlock from 'jsxstyle/InlineBlock';
-import Title from '../../../core/content/Title';
-import FloatActionButton from '../../../core/form/FloatActionButton';
-import Separator from '../../../core/layout/Separator';
 import DistributorFormContainer from './DistributorFormContainer';
-import DistributorManagerSceneContainer from '../../distributor-manager/components/DistributorManagerSceneContainer';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
 
 const DistributorFormScene = props => (
   <div>
-    <InlineBlock>
-      <Title>
-        {props.distributorId ? (
-          'Distributor Informations'
-        ) : (
-          'New Distributor'
-        )}
-      </Title>
-    </InlineBlock>
-    <FloatActionButton
-      secondary
-      icon="arrow_back"
-      style={{
-        position: 'relative',
-        float: 'right',
-        top: 20,
-        right: 20,
-      }}
-      onClick={() => browserHistory.push('/distributors')}
+    <Breadcrumb
+      crumbs={[
+        {
+          text: 'Distributors',
+          link: '/distributors',
+        },
+        {
+          text: props.params.distributorId ? 'Edit Distributor' : 'Create Distributor',
+        },
+      ]}
     />
-    <Separator size="sm" />
-    <DistributorFormContainer />
-    {props.distributorId && (
-      <Block marginTop={20}>
-        <DistributorManagerSceneContainer distributorId={props.distributorId} />
-      </Block>
-    )}
+    <DistributorFormContainer distributorId={props.params.distributorId} />
   </div>
 );
 
 DistributorFormScene.propTypes = {
-  distributorId: PropTypes.string,
+  params: PropTypes.shape({
+    distributorId: PropTypes.string,
+  }),
 };
 
 DistributorFormScene.defaultProps = {
-  distributorId: null,
+  params: null,
 };
 
 export default DistributorFormScene;

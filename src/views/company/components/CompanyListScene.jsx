@@ -1,35 +1,50 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
-import InlineBlock from 'jsxstyle/InlineBlock';
-import Title from '../../../core/content/Title';
-import Separator from '../../../core/layout/Separator';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
+import Card from '../../../core/layout/Card';
+import Button from '../../../core/form/Button';
 import CompanyListFilterContainer from './CompanyListFilterContainer';
 import CompanyListContainer from './CompanyListContainer';
-import FloatActionButton from '../../../core/form/FloatActionButton';
 
-const CompanyListScene = () => (
+const CompanyListScene = props => (
   <div>
-    <InlineBlock>
-      <Title>
-        Companies
-      </Title>
-    </InlineBlock>
-    <FloatActionButton
-      secondary
-      icon="add"
-      style={{ position: 'relative',
-        float: 'right',
-        top: 20,
-        right: 20,
-      }}
-      onClick={() => browserHistory.push('/companies/new')}
-    />
-    <Separator size="sm" />
-    <CompanyListFilterContainer />
-    <Separator size="sm" />
-    <CompanyListContainer />
-    <Separator size="sm" />
+    {(!props.distributorId) && (
+      <Breadcrumb
+        crumbs={[
+          {
+            text: 'Companies',
+          },
+        ]}
+      />
+    )}
+    <Card
+      title="Companies"
+      actions={
+        <Button
+          label="New company"
+          icon="fa-plus"
+          onClick={() => browserHistory.push(props.distributorId ?
+          `/distributors/${props.distributorId}/companies/new` :
+          '/companies/new'
+        )}
+        />
+      }
+    >
+      <CompanyListFilterContainer />
+      <CompanyListContainer distributorId={props.distributorId}/>
+    </Card>
   </div>
 );
+
+CompanyListScene.propsTypes = {
+  distributorId: PropTypes.string,
+  companyId: PropTypes.string,
+};
+
+CompanyListScene.defaultProps = {
+  distributorId: null,
+  companyId: null,
+};
 
 export default CompanyListScene;

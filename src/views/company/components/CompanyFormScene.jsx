@@ -1,51 +1,60 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Block from 'jsxstyle/Block';
-import InlineBlock from 'jsxstyle/InlineBlock';
 import { browserHistory } from 'react-router';
-import Separator from '../../../core/layout/Separator';
-import Title from '../../../core/content/Title';
-import FloatActionButton from '../../../core/form/FloatActionButton';
 import CompanyFormContainer from './CompanyFormContainer';
-import CompanyManagerSceneContainer from '../../company-manager/components/CompanyManagerSceneContainer';
+import Button from '../../../core/form/Button';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
+import Card from '../../../core/layout/Card';
 
 const CompanyFormScene = props => (
   <div>
-    <InlineBlock>
-      <Title>
-        {props.companyId ? (
-          'Company Informations'
-        ) : (
-          'New Company'
-        )}
-      </Title>
-    </InlineBlock>
-    <FloatActionButton
-      secondary
-      icon="arrow_back"
-      style={{
-        position: 'relative',
-        float: 'right',
-        top: 20,
-        right: 20,
-      }}
-      onClick={() => browserHistory.push('/companies')}
+    <Breadcrumb
+      crumbs={[
+        ...(props.distributorId) ? [
+          {
+            text: 'Distributors',
+            link: '/distributors',
+          },
+          {
+            text: props.distributor ? `Distributor - ${props.distributor.name}` : 'loading...',
+            link: `/distributor-detail/${props.distributorId}`,
+          },
+        ] : [
+          {
+            text: 'Companies',
+            link: '/companies',
+          }
+        ],
+        {
+          text: `${props.companyId ? 'Edit Company' : 'Create Company'}`,
+        },
+      ]}
     />
-    <Separator size="sm" />
-    <CompanyFormContainer />
-    {props.companyId && (
-      <Block marginTop={20}>
-        <CompanyManagerSceneContainer companyId={props.companyId} />
-      </Block>
-    )}
+    <Card
+      title={props.companyId ? 'Edit Company' : 'Create Company'}
+      actions={
+        (
+          <Button
+            icon="fa-arrow-left"
+            label="Back"
+            type="default"
+            onClick={() => browserHistory.goBack()}
+          />
+        )
+      }
+    >
+      <CompanyFormContainer companyId={props.companyId} />
+    </Card>
   </div>
 );
 
 CompanyFormScene.propTypes = {
+  distributorId: PropTypes.string,
   companyId: PropTypes.string,
 };
 
 CompanyFormScene.defaultProps = {
+  distributorId: null,
   companyId: null,
 };
 

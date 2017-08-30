@@ -1,37 +1,60 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import Paper from '../../../core/layout/Paper';
-import Async from '../../../core/content/Async';
-import Table from '../../../core/content/Table';
+import Async from '../../../core/layout/Async';
+import Table from '../../../core/form/Table';
+import IconButton from '../../../core/form/IconButton';
 
 const CompanyList = props => (
-  <Paper
-    flexible
-  >
-    <Async fetching={props.fetching}>
-      <Table
-        columns={[
-          {
-            label: 'Name',
-            path: 'name',
+  <Async fetching={props.fetching}>
+    <Table
+      columns={[
+        {
+          label: 'ID',
+          path: 'id',
+          isKey: true,
+          hidden: true,
+        },
+        {
+          label: 'Name',
+          path: 'name',
+        },
+        {
+          label: 'Social Reason',
+          path: 'socialReason',
+        },
+        {
+          label: 'Phone',
+          path: 'phone',
+        },
+        {
+          label: 'Actions',
+          path: 'action',
+          width: '120',
+          render: (cell, row) => {
+            return (
+              <div>
+                <IconButton
+                  icon="fa-trash"
+                  onClick={() => props.onDelete(row)}
+                />
+                {' '}
+                <IconButton
+                  icon="fa-edit"
+                  onClick={() => browserHistory.push(props.distributorId ?
+                  `/distributors/${props.distributorId}/companies/${row.id}` :
+                  `/companies/${row.id}`)}
+                />
+              </div>
+            );
           },
-          {
-            label: 'Social Reason',
-            path: 'socialReason',
-          },
-          {
-            label: 'Phone',
-            path: 'phone',
-          },
-        ]}
-        rows={props.companies}
-        selectable
-        onSelect={row => browserHistory.push(`/companies/${row.id}`)}
-        onDelete={row => props.onDelete(row)}
-      />
-    </Async>
-  </Paper>
+        },
+      ]}
+      rows={props.companies}
+      selectable
+      onSelect={row => browserHistory.push(props.distributorId ? `/distributor-detail/${props.distributorId}/company-detail/${row.id}` : `/company-detail/${row.id}/`)}
+    />
+  </Async>
 );
 
 CompanyList.propTypes = {
@@ -39,8 +62,13 @@ CompanyList.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
+  distributorId: PropTypes.string,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
+
+CompanyList.defaultProps = {
+  distributorId: null,
+}
 
 export default CompanyList;

@@ -1,33 +1,27 @@
 import { extendObservable, action } from 'mobx';
 
 class NotificationService {
+
   constructor() {
     extendObservable(this, {
-      isOpen: false,
-      notification: {},
+      notifications: [],
     });
   }
 
-  // notification: PropTypes.shape({
-  //   message: PropTypes.string,
-  //   action: PropTypes.string,
-  //   onClick: PropTypes.func,
-  //   type: PropTypes.oneOf(['success', 'warning', 'danger']),
-  // }
   addNotification = action((message, notificationAction, onClick, type) => {
-    this.isOpen = true;
-    this.notification = {
+    this.notifications.push({
       message,
       action: notificationAction,
       onClick,
       type,
-    };
-  })
+    });
 
-  hideNotification = action(() => {
-    this.isOpen = false;
-    this.notification = {};
-  })
+    setTimeout(action(() => {
+      if (this.notifications.length) {
+        this.notifications = this.notifications.splice(1);
+      }
+    }), 3000);
+  });
 }
 
 const notificationService = new NotificationService();

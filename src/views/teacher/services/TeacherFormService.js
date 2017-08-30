@@ -2,7 +2,6 @@ import { extendObservable, action } from 'mobx';
 import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
-import NotificationService from '../../../core/services/NotificationService';
 import { isRequired, isValidEmail } from '../../../core/validations';
 
 class TeacherFormService {
@@ -29,7 +28,11 @@ class TeacherFormService {
         url: `/teachers/${teacherId}`,
       }).then(() => {
         if (this.fetch.data) {
-          this.form.setInitialValues(this.fetch.data);
+          const data = {
+            ...this.fetch.data,
+            company: this.fetch.data.company.id,
+          };
+          this.form.setInitialValues(data);
         }
       });
     } else {
@@ -41,6 +44,7 @@ class TeacherFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      window.showErrorMessage('Fill the required fields');
       return;
     }
     const teacherId = this.form.getValue('id');
@@ -49,7 +53,7 @@ class TeacherFormService {
       url: teacherId ? `/teachers/${teacherId}` : '/teachers',
       body: {
         ...this.form.getValues(),
-        company: this.form.getValue('company').id,
+        company: this.form.getValue('company'),
       },
     }).then(() => {
       if (this.submit.data) {
@@ -57,21 +61,14 @@ class TeacherFormService {
         browserHistory.push(`/teachers/${teacher.id}`);
         this.teacherId = teacher.id;
         this.form.reset();
-        this.form.setInitialValues(teacher);
-        NotificationService.addNotification(
-          `Teacher ${teacherId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
-          'success',
-        );
+        this.form.setInitialValues({
+          ...teacher,
+          company: teacher.company.id,
+        });
+        window.showSuccess(`Teacher ${teacherId ? 'updated' : 'created'} successfully.`);
       }
       if (this.submit.error) {
-        NotificationService.addNotification(
-          `Error ${teacherId ? 'updating' : 'creating'} teacher.`,
-          null,
-          null,
-          'danger',
-        );
+        window.showErrorMessage(`Error ${teacherId ? 'updating' : 'creating'} teacher.`);
       }
     });
   });

@@ -1,29 +1,50 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import Paper from '../../../core/layout/Paper';
-import Async from '../../../core/content/Async';
-import Table from '../../../core/content/Table';
+import Async from '../../../core/layout/Async';
+import Table from '../../../core/form/Table';
+import IconButton from '../../../core/form/IconButton';
 
 const DistributorList = props => (
-  <Paper
-    flexible
-  >
-    <Async fetching={props.fetching}>
-      <Table
-        columns={[
-          {
-            label: 'Name',
-            path: 'name',
+  <Async fetching={props.fetching}>
+    <Table
+      columns={[
+        {
+          label: 'ID',
+          path: 'id',
+          isKey: true,
+          hidden: true,
+        },
+        {
+          label: 'Name',
+          path: 'name',
+        },
+        {
+          label: 'Actions',
+          path: 'action',
+          width: '120',
+          render: (cell, row) => {
+            return (
+              <div>
+                <IconButton
+                  icon="fa-trash"
+                  onClick={() => props.onDelete(row)}
+                />
+                {' '}
+                <IconButton
+                  icon="fa-edit"
+                  onClick={() => browserHistory.push(`/distributors/${row.id}`)}
+                />
+              </div>
+            );
           },
-        ]}
-        rows={props.distributors}
-        selectable
-        onSelect={row => browserHistory.push(`/distributors/${row.id}`)}
-        onDelete={row => props.onDelete(row)}
-      />
-    </Async>
-  </Paper>
+        },
+      ]}
+      rows={props.distributors}
+      selectable
+      onSelect={row => browserHistory.push(`/distributor-detail/${row.id}`)}
+    />
+  </Async>
 );
 
 DistributorList.propTypes = {

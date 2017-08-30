@@ -1,34 +1,33 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import InlineBlock from 'jsxstyle/InlineBlock';
-import Title from '../../../core/content/Title';
-import Separator from '../../../core/layout/Separator';
+import Card from '../../../core/layout/Card';
+import Button from '../../../core/form/Button';
+import Breadcrumb from '../../../core/layout/Breadcrumb';
 import TeacherListFilterContainer from './TeacherListFilterContainer';
 import TeacherListContainer from './TeacherListContainer';
-import FloatActionButton from '../../../core/form/FloatActionButton';
 
 const TeacherListScene = () => (
   <div>
-    <InlineBlock>
-      <Title>
-        Teachers
-      </Title>
-    </InlineBlock>
-    <FloatActionButton
-      secondary
-      icon="add"
-      style={{ position: 'relative',
-        float: 'right',
-        top: 20,
-        right: 20,
-      }}
-      onClick={() => browserHistory.push('/teachers/new')}
+    <Breadcrumb
+      crumbs={[
+        {
+          text: 'Teachers',
+        },
+      ]}
     />
-    <Separator size="sm" />
-    <TeacherListFilterContainer />
-    <Separator size="sm" />
-    <TeacherListContainer />
-    <Separator size="sm" />
+    <Card
+      title="Teachers"
+      actions={[
+        <Button
+          label="New teacher"
+          icon="fa-plus"
+          onClick={() => browserHistory.push('/teachers/new')}
+        />,
+      ]}
+    >
+      <TeacherListFilterContainer />
+      <TeacherListContainer />
+    </Card>
   </div>
 );
 

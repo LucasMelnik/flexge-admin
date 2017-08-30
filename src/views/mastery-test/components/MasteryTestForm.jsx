@@ -1,78 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Paper from '../../../core/layout/Paper';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
-import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
 import TextInput from '../../../core/form/TextInput';
 import TimeInput from '../../../core/form/TimeInput';
+import FormButtons from '../../../core/form/FormButtons';
 
 const MasteryTestForm = props => (
-  <Paper>
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        props.onSubmit();
-      }}
-    >
-      <Row>
+  <form
+    onSubmit={(event) => {
+      event.preventDefault();
+      props.onSubmit();
+    }}
+  >
+    <Row>
+      <Column lgSize={4}>
+        <TextInput
+          step={1}
+          type="number"
+          max={100}
+          disabled={props.submitting}
+          label="Module Percentage to Activate"
+          value={get(props.values, 'modulePercentageToActive', '')}
+          onChange={value => props.onChange('modulePercentageToActive', value)}
+          description={get(props.errors, 'modulePercentageToActive', '')}
+          fieldValidation={get(props.errors, 'modulePercentageToActive', null) && 'error'}
+        />
+      </Column>
+      {props.values.id && (
         <Column lgSize={4}>
-          <TextInput
-            floatingLabel
-            fullWidth
-            step={1}
-            type="number"
-            max={100}
-            disabled={props.submitting}
-            label="Module Percentage to Activate"
-            value={get(props.values, 'modulePercentageToActive', '')}
-            onChange={value => props.onChange('modulePercentageToActive', value)}
-            errorText={get(props.errors, 'modulePercentageToActive', '')}
-          />
-        </Column>
-        {props.values.id && (
-          <Column lgSize={4}>
-            <TimeInput
-              floatingLabel
-              fullWidth
-              disabled
-              label="Deadline Time"
-              value={props.deadlineTime}
-            />
-          </Column>
-        )}
-        <Column lgSize={4}>
-          <TextInput
-            floatingLabel
-            fullWidth
-            label="Score to Pass"
+          <TimeInput
             disabled
-            value={85}
-            errorText={get(props.errors, 'scoreToPass', '')}
+            label="Deadline Time"
+            value={props.deadlineTime}
           />
         </Column>
-      </Row>
-      <Separator size="xs" />
-      <Button
-        icon="done"
-        secondary
-        fullWidth
-        disabled={props.submitting || !props.isDirty()}
-        type="submit"
-        label={props.values.id ? 'Update' : 'Create'}
-      />
-      <Separator size="xs" />
-      <Button
-        icon="clear"
-        fullWidth
-        disabled={props.submitting || !props.isDirty()}
-        onClick={props.onReset}
-        label="Discard changes"
-      />
-    </form>
-  </Paper>
+      )}
+      <Column lgSize={4}>
+        <TextInput
+          label="Score to Pass"
+          disabled
+          value="85"
+        />
+      </Column>
+    </Row>
+    <Separator size="md" />
+    <FormButtons
+      confirmLabel={props.values.id ? 'Update Mastery Test' : 'Create Mastery Test'}
+      isDisabled={props.submitting || !props.isDirty()}
+      onReset={props.onReset}
+    />
+  </form>
 );
 
 MasteryTestForm.propTypes = {

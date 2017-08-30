@@ -1,8 +1,6 @@
 import { extendObservable, action } from 'mobx';
-import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
-import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
 class SchoolFormService {
@@ -20,25 +18,35 @@ class SchoolFormService {
     };
   }
 
-  handleLoad = action((schoolId) => {
+  init = action((schoolId, companyId) => {
+    this.schoolId = schoolId;
+    this.companyId = companyId;
+    this.handleLoad();
+  });
+
+  handleLoad = action(() => {
     this.form.reset();
-    if (schoolId) {
+    if (this.schoolId) {
       this.fetch.fetch({
-        url: `/schools/${schoolId}`,
+        url: `/schools/${this.schoolId}`,
       }).then(() => {
         if (this.fetch.data) {
-          this.form.setInitialValues(this.fetch.data);
+          const data = {
+            ...this.fetch.data,
+            company: this.fetch.data.company.id,
+          };
+          this.form.setInitialValues(data);
         }
       });
     } else {
-      this.form.setInitialValues({ country: 'Brazil' });
+      this.form.setInitialValues({ country: 'Brazil', company: this.companyId });
     }
-    this.schoolId = schoolId;
   });
 
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      window.showErrorMessage('Fill the required fields');
       return;
     }
     const schoolId = this.form.getValue('id');
@@ -47,31 +55,20 @@ class SchoolFormService {
       url: schoolId ? `/schools/${schoolId}` : '/schools',
       body: {
         ...this.form.getValues(),
-        company: this.form.getValue('company').id,
+        company: this.form.getValue('company'),
       },
     }).then(() => {
       if (this.submit.data) {
         const school = this.submit.data;
-        browserHistory.push(`/schools/${school.id}`);
         this.schoolId = school.id;
         this.form.setInitialValues({
           ...school,
           company: this.form.getValue('company'),
         });
-        NotificationService.addNotification(
-          `Scool ${schoolId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
-          'success',
-        );
+        window.showSuccess(`School ${schoolId ? 'updated' : 'created'} successfully.`);
       }
       if (this.submit.error) {
-        NotificationService.addNotification(
-          `Error ${schoolId ? 'updating' : 'creating'} school.`,
-          null,
-          null,
-          'danger',
-        );
+        window.showErrorMessage(`Error ${schoolId ? 'updating' : 'creating'} school.`);
       }
     });
   })

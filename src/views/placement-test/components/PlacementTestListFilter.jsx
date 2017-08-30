@@ -18,10 +18,10 @@ const PlacementTestListFilter = props => (
           label="Level"
           value={get(props.values, 'placementTestLevel', '')}
           onChange={value => props.onChange('placementTestLevel', value)}
-          optionsTransformer={placementTestLevel => ({
-            label: placementTestLevel.level.toString(),
-            value: placementTestLevel.id,
-          })}
+          resultTransformer={{
+            text: 'level',
+            value: 'id',
+          }}
         />
       </Column>
       <Column lgSize={6}>
@@ -33,13 +33,17 @@ const PlacementTestListFilter = props => (
           maxHeight={350}
           value={get(props.values, 'grammar', '')}
           onChange={grammar => props.onChange('grammar', grammar)}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
         />
       </Column>
       <Column lgSize={2}>
         <Separator size="md" />
         <Button
           label="Search"
-          icon="search"
+          icon="fa-search"
           priimary
           onClick={props.onSearch}
         />

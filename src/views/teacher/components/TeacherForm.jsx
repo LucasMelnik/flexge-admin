@@ -1,100 +1,125 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 import get from 'lodash/get';
-import Paper from '../../../core/layout/Paper';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
-import PermissionValidator from '../../../core/content/PermissionValidator';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
+import Card from '../../../core/layout/Card';
+import FetchSelect from '../../../core/form/FetchSelect';
 import TextInput from '../../../core/form/TextInput';
-import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
 import Button from '../../../core/form/Button';
-import Separator from '../../../core/layout/Separator';
+import FormButtons from '../../../core/form/FormButtons';
+import Async from '../../../core/layout/Async';
 
 const TeacherForm = props => (
-  <Paper>
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        props.onSubmit();
-      }}
-    >
-      <Row>
-        <Column lgSize={3}>
-          <TextInput
-            floatingLabel
-            fullWidth
-            disabled={props.submitting}
-            label="Teacher Name"
-            value={get(props.values, 'name', '')}
-            onChange={value => props.onChange('name', value)}
-            errorText={get(props.errors, 'name', '')}
-          />
-        </Column>
-        <Column lgSize={3}>
-          <TextInput
-            floatingLabel
-            fullWidth
-            disabled={props.submitting}
-            label="Email"
-            value={get(props.values, 'email', '')}
-            onChange={value => props.onChange('email', value)}
-            errorText={get(props.errors, 'email', '')}
-          />
-        </Column>
-        <Column lgSize={3}>
-          <TextInput
-            floatingLabel
-            fullWidth
-            type="password"
-            disabled={props.submitting}
-            label="Password"
-            value={get(props.values, 'password', '')}
-            onChange={value => props.onChange('password', value)}
-            errorText={get(props.errors, 'password', '')}
-          />
-        </Column>
-        <PermissionValidator
-          allowedFor={[
-            'ADMIN',
-            'DISTRIBUTOR_MANAGER',
-          ]}
-        >
+  <Card
+    title={props.values.id ? 'Update Teacher' : 'Create Teacher'}
+    actions={
+      (
+        <Button
+          icon="fa-arrow-left"
+          label="Back"
+          type="default"
+          onClick={() => browserHistory.push('/teachers')}
+        />
+      )
+    }
+  >
+    <Async fetching={props.submitting}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          props.onSubmit();
+        }}
+      >
+        <Row>
           <Column lgSize={3}>
-            <FetchAutoComplete
-              url="companies?page=1&size=100"
-              fullWidth
+            <TextInput
               disabled={props.submitting}
-              label="Company"
-              value={get(props.values, 'company.name', '')}
-              onSelect={company => props.onChange('company', company)}
-              errorText={get(props.errors, 'company', '')}
-              resultTransformer={{
-                text: 'name',
-                value: 'id',
-              }}
+              label="Teacher Name"
+              value={get(props.values, 'name', '')}
+              onChange={value => props.onChange('name', value)}
+              description={get(props.errors, 'name', null)}
+              fieldValidation={get(props.errors, 'name', null) && 'error'}
             />
           </Column>
-        </PermissionValidator>
-      </Row>
-      <Separator size="xs" />
-      <Button
-        icon="done"
-        secondary
-        fullWidth
-        disabled={props.submitting || !props.isDirty()}
-        type="submit"
-        label={props.values.id ? 'Update Teacher' : 'Create Teacher'}
-      />
-      <Separator size="xs" />
-      <Button
-        icon="clear"
-        fullWidth
-        disabled={props.submitting || !props.isDirty()}
-        onClick={props.onReset}
-        label="Discard changes"
-      />
-    </form>
-  </Paper>
+          <Column lgSize={3}>
+            <TextInput
+              disabled={props.submitting}
+              label="Email"
+              value={get(props.values, 'email', '')}
+              onChange={value => props.onChange('email', value)}
+              description={get(props.errors, 'email', null)}
+              fieldValidation={get(props.errors, 'email', null) && 'error'}
+            />
+          </Column>
+          <Column lgSize={3}>
+            <TextInput
+              type="password"
+              disabled={props.submitting}
+              label="Password"
+              value={get(props.values, 'password', '')}
+              onChange={value => props.onChange('password', value)}
+              description={get(props.errors, 'password', null)}
+              fieldValidation={get(props.errors, 'password', null) && 'error'}
+            />
+          </Column>
+          <PermissionValidator
+            allowedFor={[
+              'ADMIN',
+              'DISTRIBUTOR_MANAGER',
+            ]}
+          >
+            <Column lgSize={3}>
+              <FetchSelect
+                url="/companies"
+                fullWidth
+                disabled={props.submitting}
+                label="Company"
+                value={get(props.values, 'company', '')}
+                onChange={(company) => {
+                  props.onChange('company', company);
+                }}
+                description={get(props.errors, 'company', null)}
+                fieldValidation={get(props.errors, 'company', null) && 'error'}
+                resultTransformer={{
+                  text: 'name',
+                  value: 'id',
+                }}
+              />
+            </Column>
+          </PermissionValidator>
+        </Row>
+        <Row>
+          {get(props.values, 'company', '') && (
+            <Column lgSize={3}>
+              <FetchSelect
+                url={`/schools?query[company]=${get(props.values, 'company', '')}`}
+                fullWidth
+                disabled={props.submitting || !get(props.values, 'company', '')}
+                label="Schools"
+                value={get(props.values, 'school', '')}
+                onChange={school => props.onChange('school', school)}
+                description={get(props.errors, 'school', null)}
+                fieldValidation={get(props.errors, 'school', null) && 'error'}
+                resultTransformer={{
+                  text: 'name',
+                  value: 'id',
+                }}
+              />
+            </Column>
+          )}
+        </Row>
+        <div style={{ marginBottom: 20 }} />
+        <FormButtons
+          confirmLabel={props.values.id ? 'Update Teacher' : 'Create Teacher'}
+          isDisabled={props.submitting || !props.isDirty()}
+          onReset={props.onReset}
+        />
+      </form>
+    </Async>
+  </Card>
 );
 
 TeacherForm.propTypes = {

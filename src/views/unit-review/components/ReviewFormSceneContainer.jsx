@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import ReviewFormScene from './ReviewFormScene';
 import ContentReviewService from '../services/ContentReviewService';
 import LoadUnitService from '../../module/services/LoadUnitService';
-import Async from '../../../core/content/Async';
+import LoadModuleService from '../../module/services/LoadModuleService';
 
 class ReviewFormSceneContainer extends Component {
 
@@ -28,23 +28,19 @@ class ReviewFormSceneContainer extends Component {
   };
 
   componentWillMount() {
+    LoadModuleService.handleLoad(this.props.params.moduleId);
     this.loadUnitService.handleLoad(this.props.params.moduleId, this.props.params.unitId);
     this.contentReviewService.init(this.props.params.reviewId);
   }
 
   render() {
     return (
-      <Async fetching={this.loadUnitService.fetch.fetching || this.contentReviewService.fetch.fetching}>
-        {(this.loadUnitService.unit.id  && this.contentReviewService.form.getValue('id')) ? (
-          <ReviewFormScene
-            unit={this.loadUnitService.unit}
-            moduleId={this.props.params.moduleId}
-            review={this.contentReviewService.form.getValues()}
-          />
-        ) : (
-          <div />
-        )}
-      </Async>
+      <ReviewFormScene
+        unit={this.loadUnitService.unit}
+        review={this.contentReviewService.form.getValues()}
+        module={LoadModuleService.module}
+        fetching={this.loadUnitService.fetch.fetching || this.contentReviewService.fetch.fetching || LoadModuleService.fetch.fetching}
+      />
     );
   }
 }

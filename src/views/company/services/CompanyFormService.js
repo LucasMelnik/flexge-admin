@@ -1,5 +1,4 @@
 import { extendObservable, action } from 'mobx';
-import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -16,6 +15,7 @@ class CompanyFormService {
     });
     this.form.validations = {
       name: [isRequired],
+      state: [isRequired],
       cnpj: [isRequired, isCNPJ],
     };
   }
@@ -46,17 +46,20 @@ class CompanyFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      window.showErrorMessage('Fill the required fields');
       return;
     }
     const companyId = this.form.getValue('id');
     this.submit.fetch({
       method: companyId ? 'put' : 'post',
       url: companyId ? `/companies/${companyId}` : '/companies',
-      body: this.form.getValues(),
+      body: {
+        ...this.form.getValues(),
+        state: this.form.getValue('state'),
+      },
     }).then(() => {
       if (this.submit.data) {
         const company = this.submit.data;
-        browserHistory.push(`/companies/${company.id}`);
         this.companyId = company.id;
         this.form.reset();
         if (company.contractStart) {
@@ -66,12 +69,8 @@ class CompanyFormService {
           company.contractEnd = new Date(company.contractEnd);
         }
         this.form.setInitialValues(company);
-        NotificationService.addNotification(
-          `Company ${companyId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
-          'success',
-        );
+
+        window.showSuccess(`Company ${companyId ? 'updated' : 'created'} successfully.`);
       }
       if (this.submit.error) {
         NotificationService.addNotification(

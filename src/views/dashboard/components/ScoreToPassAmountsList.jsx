@@ -1,27 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from '../../../core/content/Table';
-import Paper from '../../../core/layout/Paper';
-import Async from '../../../core/content/Async';
+import Table from '../../../core/form/Table';
+import Async from '../../../core/layout/Async';
+
 
 const ScoreToPassAmountsList = props => (
-  <Paper zDepth={0}>
-    <Async fetching={props.fetching}>
-      <Table
-        columns={[
-          {
-            label: 'ScoreToPass',
-            path: 'scoreToPass',
-          },
-          {
-            label: 'Amount',
-            path: 'amount',
-          },
-        ]}
-        rows={props.amounts}
-      />
-    </Async>
-  </Paper>
+  <Async fetching={props.fetching}>
+    <Table
+      columns={[
+        {
+          label: 'ID',
+          path: 'id',
+          isKey: true,
+          hidden: true,
+        },
+        {
+          label: 'ScoreToPass',
+          path: 'scoreToPass',
+        },
+        {
+          label: 'Amount',
+          path: 'amount',
+        },
+      ]}
+      rows={props.amounts}
+    />
+  </Async>
 );
 
 ScoreToPassAmountsList.propTypes = {
@@ -32,4 +36,4 @@ ScoreToPassAmountsList.propTypes = {
   fetching: PropTypes.bool.isRequired,
 };
 
-export default  ScoreToPassAmountsList;
+export default ScoreToPassAmountsList;

@@ -3,40 +3,41 @@ import PropTypes from 'prop-types';
 import range from 'lodash/range';
 import moment from 'moment';
 import 'moment-duration-format';
-import Paper from '../../../core/layout/Paper';
-import Async from '../../../core/content/Async';
-import AccordionTable from '../../../core/content/AccordionTable';
-import ItemFormContainer from '../../item/components/ItemFormContainer';
 import IconButton from '../../../core/form/IconButton';
 import Select from '../../../core/form/Select';
+import Async from '../../../core/layout/Async';
+import Table from '../../../core/form/Table';
+import ItemFormContainer from '../../item/components/ItemFormContainer';
 
 const MasteryTestListItems = props => (
-  <Paper
-    flexible
-  >
-    <Async fetching={props.fetching}>
-      <AccordionTable
-        columns={[
-          {
-            label: 'Order',
-            path: 'order',
-            width: '7%',
-            rowColumnStyle: {
-              paddingRight: 10,
-            },
-            render: (row) => (
-              <Select
-                fullWidth
-                label="Order"
-                value={row.order}
-                onChange={order => props.onOrderChange(row.item.id, order)}
-                options={range(1, 11).map(value => ({
-                  label: value.toString(),
-                  value,
-                }))}
-              />
-            )
+  <Async fetching={props.fetching}>
+    <Table
+      columns={[
+        {
+          label: 'ID',
+          path: 'id',
+          isKey: true,
+          hidden: true,
+        },
+        {
+          label: 'Order',
+          path: 'order',
+          width: '7%',
+          rowColumnStyle: {
+            paddingRight: 10,
           },
+          render: (cell, row) => (
+            <Select
+              label="Order"
+              value={row.order}
+              onChange={order => props.onOrderChange(row.item.id, order)}
+              options={range(1, 11).map(value => ({
+                label: value.toString(),
+                value,
+              }))}
+            />
+          )
+        },
         {
           label: 'Text',
           path: 'item.text',
@@ -74,34 +75,39 @@ const MasteryTestListItems = props => (
           label: 'Time',
           path: 'item.time',
           width: '15%',
-          render: (row) => {
+          render: (cell, row) => {
             return `${row.item.time < 60 ? '00:' : ''}${moment.duration(row.item.time, "seconds").format("mm:ss", {forceLength: true})}`
           },
         },
-        ]}
-        rows={props.items}
-        renderFunction={row =>
-          props.items && (
-            <ItemFormContainer
-              itemId={row.item.id}
-              itemsTypeUrl="/item-types?allowedForMasteryTest=true"
-              endpointUrl={`/mastery-tests/${row.masteryTest}/items`}
-              order={row.order}
-              showPostPhrase={false}
-              onSaveSuccess={props.onSaveSuccess}
-              isTestItem
-            />
-          )
-        }
-        actionComponent={row => (
-          <IconButton
-            icon="delete"
-            onClick={() => props.onDelete(row)}
-          />
-        )}
-      />
-    </Async>
-  </Paper>
+        {
+          label: 'Actions',
+          path: 'action',
+          width: '60',
+          render: (cell, row) => {
+            return (
+              <IconButton
+                icon="fa-trash"
+                onClick={() => props.onDelete(row)}
+              />
+            );
+          },
+        },
+      ]}
+      rows={props.items}
+      expandable
+      expandableComponent={(row) => (
+        <ItemFormContainer
+          itemId={row.item.id}
+          itemsTypeUrl="/item-types?query[allowedForMasteryTest]=true"
+          endpointUrl={`/mastery-tests/${row.masteryTest}/items`}
+          order={row.order}
+          showPostPhrase={false}
+          onSaveSuccess={props.onSaveSuccess}
+          isTestItem
+        />
+      )}
+    />
+  </Async>
 );
 
 MasteryTestListItems.propTypes = {

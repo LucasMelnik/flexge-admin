@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { toJS } from 'mobx';
 import SchoolClassForm from './SchoolClassForm';
 import SchoolClassFormService from '../services/SchoolClassFormService';
-import StudentListService from '../services/StudentListService';
+import StateService from '../../../core/services/StateService';
 
 class SchoolClassFormContainer extends Component {
 
+  static propTypes = {
+    schoolId: PropTypes.string,
+    classId: PropTypes.string,
+  }
+
+  static defaultProps = {
+    schoolId: null,
+    classId: null,
+  }
+
   componentWillMount() {
-    StudentListService.load();
+    SchoolClassFormService.init(this.props.schoolId, this.props.classId);
   }
 
   render() {
@@ -22,11 +33,9 @@ class SchoolClassFormContainer extends Component {
         submitting={SchoolClassFormService.submit.fetching}
         error={SchoolClassFormService.submit.error}
         isDirty={SchoolClassFormService.form.isDirty}
-        students={toJS(StudentListService.students)}
-        onAddStudent={SchoolClassFormService.handleAddStudent}
-        onRemoveStudent={SchoolClassFormService.handleRemoveStudent}
+        states={toJS(StateService.states)}
       />
-    );
+    )
   }
 }
 

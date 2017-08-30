@@ -12,25 +12,37 @@ class SchoolClassFormService {
   constructor() {
     extendObservable(this, {
       schoolId: null,
-      successCallback: null,
+      classId: null,
     });
     this.form.validations = {
       name: [isRequired],
     };
   }
 
-  init = action((schoolId, successCallback) => {
+  init = action((schoolId, classId) => {
     this.schoolId = schoolId;
-    this.successCallback = successCallback;
+    this.classId = classId;
+    if (this.schoolId && this.classId) {
+      this.handleLoad();
+    } else {
+      this.form.reset();
+      this.form.setInitialValues({
+        school: this.schoolId,
+      });
+    }
   });
 
-  handleLoad = action((classId) => {
+  handleLoad = action(() => {
     this.fetch.fetch({
-      url: `/schools/${this.schoolId}/classes/${classId}`,
+      url: `/schools/${this.schoolId}/classes/${this.classId}`,
     }).then(() => {
       if (this.fetch.data) {
         this.form.reset();
-        this.form.setInitialValues(this.fetch.data);
+        this.form.setInitialValues({
+          ...this.fetch.data,
+          teacher: this.fetch.data.teacher.id,
+          school: this.fetch.data.school.id,
+        });
       }
     });
   });
@@ -41,28 +53,25 @@ class SchoolClassFormService {
       return;
     }
     const classId = this.form.getValue('id');
+    const schoolId = this.form.getValue('school');
     this.submit.fetch({
       method: classId ? 'put' : 'post',
-      url: classId ? `/schools/${this.schoolId}/classes/${classId}` : `/schools/${this.schoolId}/classes`,
+      url: classId ? `/schools/${schoolId}/classes/${classId}` : `/schools/${schoolId}/classes`,
       body: {
         ...this.form.getValues(),
-        teacher: this.form.getValue('teacher').id,
-      }
+        teacher: this.form.getValue('teacher'),
+      },
     }).then(() => {
       if (this.submit.data) {
         const school = this.submit.data;
         this.form.reset();
         this.form.setInitialValues(school);
         NotificationService.addNotification(
-          `Scool Class ${classId ? 'updated' : 'created'} successfully.`,
+          `School Class ${classId ? 'updated' : 'created'} successfully.`,
           null,
           null,
           'success',
         );
-
-        if (this.successCallback) {
-          this.successCallback();
-        }
       }
       if (this.submit.error) {
         NotificationService.addNotification(

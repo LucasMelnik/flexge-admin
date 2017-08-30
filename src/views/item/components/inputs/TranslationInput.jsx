@@ -9,29 +9,25 @@ const TranslationInput = props => (
   <Row>
     <Column lgSize={props.isTestItem ? 12 : 6}>
       <TextInput
-        floatingLabel
-        fullWidth
         label="Text"
-        multiLine
-        rows={3}
+        fieldType="textarea"
         disabled={props.submitting || props.disabled}
         value={get(props.values, 'text', '')}
         onChange={value => props.onChange('text', value)}
-        errorText={get(props.errors, 'text', '')}
+        description={get(props.errors, 'text', '')}
+        fieldValidation={get(props.errors, 'text', null) && 'error'}
       />
     </Column>
     {!props.isTestItem && (
       <Column lgSize={6}>
         <TextInput
-          floatingLabel
-          fullWidth
           label="Translation"
-          multiLine
-          rows={3}
+          fieldType="textarea"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'translation', '')}
           onChange={value => props.onChange('translation', value)}
-          errorText={get(props.errors, 'translation', '')}
+          description={get(props.errors, 'translation', '')}
+          fieldValidation={get(props.errors, 'translation', null) && 'error'}
         />
       </Column>
     )}

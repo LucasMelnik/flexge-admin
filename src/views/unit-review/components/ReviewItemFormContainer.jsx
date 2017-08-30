@@ -17,7 +17,6 @@ class ReviewItemFormContainer extends Component {
     return (
       <ItemFormContainer
         itemsTypeUrl={`unit-types/${this.props.unit.type.id}/item-types`}
-        showPostPhrase={this.props.unit.type.name.toLowerCase() === 'vocabulary'}
         endpointUrl={`units/${this.props.unit.id}/items`}
         order={UnitItemListService.items.length + 1}
         onSaveSuccess={this.props.backToList}

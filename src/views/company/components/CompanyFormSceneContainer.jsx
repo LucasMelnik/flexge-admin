@@ -2,24 +2,29 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import CompanyFormScene from './CompanyFormScene';
-import CompanyFormService from '../services/CompanyFormService';
+import CompanyDetailService from '../services/CompanyDetailService';
 
 class CompanyFormSceneContainer extends Component {
 
   static propTypes = {
     params: PropTypes.shape({
+      distributorId: PropTypes.string,
       companyId: PropTypes.string,
     }).isRequired,
   }
 
   componentWillMount() {
-    CompanyFormService.handleLoad(this.props.params.companyId);
+    if (this.props.params.distributorId) {
+      CompanyDetailService.handleLoadDistributor(this.props.params.distributorId);
+    }
   }
 
   render() {
     return (
       <CompanyFormScene
-        companyId={CompanyFormService.companyId}
+        companyId={this.props.params.companyId}
+        distributorId={this.props.params.distributorId}
+        distributor={CompanyDetailService.distributor}
       />
     );
   }

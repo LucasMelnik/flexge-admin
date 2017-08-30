@@ -12,26 +12,23 @@ import SlicesInputContainer from '../inputs/SlicesInputContainer';
 const VideoLongTextItemForm = props => (
   <div>
     <TextInput
-      floatingLabel
-      fullWidth
       label="Title"
       disabled={props.submitting || props.disabled}
       value={get(props.values, 'title', '')}
       onChange={value => props.onChange('title', value)}
-      errorText={get(props.errors, 'title', '')}
+      description={get(props.errors, 'title', '')}
+      fieldValidation={get(props.errors, 'title', null) && 'error'}
     />
     <Row>
       <Column lgSize={6}>
         <TextInput
-          rows={10}
-          multiLine
-          floatingLabel
-          fullWidth
+          fieldType="textarea"
           label="Text"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'text', '')}
           onChange={value => props.onChange('text', value)}
-          errorText={get(props.errors, 'text', '')}
+          description={get(props.errors, 'text', '')}
+          fieldValidation={get(props.errors, 'text', null) && 'error'}
         />
       </Column>
       <Column lgSize={6}>

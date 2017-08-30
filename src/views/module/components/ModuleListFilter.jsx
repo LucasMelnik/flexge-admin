@@ -1,42 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import InlineBlock from 'jsxstyle/InlineBlock';
 import TextInput from '../../../core/form/TextInput';
 import Button from '../../../core/form/Button';
-import FetchAutoComplete from '../../../core/form/FetchAutoComplete';
+import FetchSelect from '../../../core/form/FetchSelect';
+import Row from '../../../core/layout/Row';
+import Column from '../../../core/layout/Column';
+import Separator from '../../../core/layout/Separator';
 
 const ModuleListFilter = props => (
-  <div>
-    <InlineBlock marginRight={20}>
+  <Row>
+    <Column lgSize={6} mdSize={6} smSize={6}>
       <TextInput
         label="Search modules"
         value={props.values.filter}
         onChange={value => props.onChange('filter', value)}
         disabled={props.fetching}
       />
-    </InlineBlock>
-    <InlineBlock marginRight={20}>
-      <FetchAutoComplete
+    </Column>
+    <Column lgSize={4} mdSize={4} smSize={4}>
+      <FetchSelect
         url="/courses"
         disabled={props.fetching}
         label="Course"
-        fullWidth={false}
-        onSelect={value => props.onChange('course', value)}
+        value={get(props.values, 'course')}
+        onChange={value => props.onChange('course', value)}
         resultTransformer={{
           text: 'name',
           value: 'id',
         }}
-        value={get(props.values, 'course.name')}
       />
-    </InlineBlock>
-    <Button
-      label="Search"
-      icon="search"
-      priimary
-      onClick={props.onSearch}
-    />
-  </div>
+    </Column>
+    <Column lgSize={2} mdSize={2} smSize={2}>
+      <Separator size="md" />
+      <Button
+        label="Search"
+        icon="fa-search"
+        type="primary"
+        onClick={props.onSearch}
+      />
+    </Column>
+  </Row>
 );
 
 ModuleListFilter.propTypes = {
@@ -49,6 +53,6 @@ ModuleListFilter.propTypes = {
 ModuleListFilter.defaultProps = {
   fetching: false,
   onSearch: null,
-}
+};
 
 export default ModuleListFilter;

@@ -9,11 +9,13 @@ class SchoolListService {
     extendObservable(this, {
       schools: [],
       filter: '',
+      companyId: null,
     });
   }
 
-  init = action(() => {
+  init = action((companyId) => {
     this.filter = '';
+    this.companyId = companyId;
     this.load();
   });
 
@@ -21,10 +23,15 @@ class SchoolListService {
     this.fetch.fetch({
       url: '/schools',
       query: {
-        query: this.filter && {
-          name: {
-            $regex: this.filter,
-            $options : 'i',
+        query: {
+          ...this.companyId && {
+            company: this.companyId,
+          },
+          ...this.filter && {
+            name: {
+              $regex: this.filter,
+              $options: 'i',
+            },
           },
         },
       },
@@ -53,6 +60,7 @@ class SchoolListService {
           method: 'delete',
         }).then(() => {
           this.load();
+          window.showSuccess('School deleted successfully.');
         });
       });
   });

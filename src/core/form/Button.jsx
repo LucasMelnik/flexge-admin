@@ -1,68 +1,74 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
-import './Button.css';
+import Icon from '../layout/Icon';
 
-const Button = (props) => {
-  const buttonProps = {
-    primary: props.primary,
-    secondary: props.secondary,
-    ...props.icon && {
-      icon: (
-        <FontIcon
-          className="material-icons"
-          style={{ fontSize: 18 }}
-        >
-          {props.icon}
-        </FontIcon>
-      ),
-    },
-    onClick: () => props.onClick && props.onClick(),
-    label: props.label,
-    style: props.style,
-    fullWidth: props.fullWidth,
-    className: props.mini ? 'mini-button' : '',
-    type: props.type,
-    disabled: props.disabled,
-  };
-
-  if (props.raised) {
-    return (
-      <RaisedButton {...buttonProps} />
-    );
-  }
-  return (
-    <FlatButton {...buttonProps} />
-  );
-};
+const Button = props => (
+  <button
+    disabled={props.disabled}
+    type={props.buttonType}
+    onClick={() => props.onClick && props.onClick()}
+    className={`
+      btn
+      btn-${props.type}
+      ${props.icon ? 'btn-icon' : ''}
+      ${props.cornered && 'btn-corner'}
+      ${props.rounded && 'btn-round'}
+      ${props.bordered && 'btn-border'}
+      ${props.size && `btn-${props.size}`}
+      ${props.fullWidth && 'input-block-level'}
+    `}
+    style={{
+      outline: 'none',
+    }}
+  >
+    {props.icon && (
+      <Icon name={props.icon} size="xs" />
+    )}
+    <span style={{ marginLeft: props.icon ? 10 : 0 }}>
+      {props.label}
+    </span>
+  </button>
+);
 
 Button.propTypes = {
+  type: PropTypes.oneOf([
+    'default',
+    'primary',
+    'success',
+    'info',
+    'warning',
+    'danger',
+    'purple',
+    'accent',
+    'secondary',
+  ]),
+  size: PropTypes.oneOf([
+    'xs',
+    'sm',
+    'lg',
+    'block',
+  ]),
   label: PropTypes.string.isRequired,
-  raised: PropTypes.bool,
-  secondary: PropTypes.bool,
-  primary: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  mini: PropTypes.bool,
-  disabled: PropTypes.bool,
   icon: PropTypes.string,
-  style: PropTypes.object,
   onClick: PropTypes.func,
-  type: PropTypes.oneOf(['button', 'submit']),
+  disabled: PropTypes.bool,
+  cornered: PropTypes.bool,
+  rounded: PropTypes.bool,
+  bordered: PropTypes.bool,
+  fullWidth: PropTypes.bool,
+  buttonType: PropTypes.oneOf(['button', 'submit']),
 };
 
 Button.defaultProps = {
-  raised: true,
-  secondary: false,
-  primary: false,
-  mini: false,
-  disabled: false,
-  fullWidth: false,
+  type: 'default',
+  size: null,
   icon: null,
-  style: null,
   onClick: null,
-  type: 'button',
+  cornered: false,
+  rounded: false,
+  bordered: false,
+  fullWidth: false,
+  buttonType: 'button',
 };
 
 export default Button;
