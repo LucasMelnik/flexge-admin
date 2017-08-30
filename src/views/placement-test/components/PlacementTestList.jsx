@@ -43,6 +43,11 @@ const PlacementTestList = props => (
           width: '8%',
         },
         {
+          label: 'Items to Show',
+          path: 'itemsToShow',
+          width: '8%',
+        },
+        {
           label: 'Actions',
           path: 'action',
           width: '120',
