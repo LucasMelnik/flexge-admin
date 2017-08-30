@@ -47,8 +47,8 @@ const ReviewFormScene = props => (
           unitId={props.unit.id}
           moduleId={props.module.id}
           reviewId={props.review.id}
-          disabled={(props.review.statusFormat === 'PENDING' || props.review.statusFormat === 'PENDING_REVIEW') &&
-          (props.review.status === 'PENDING' || (props.review.status === 'REVIEWED' && props.review.createdBy !== localStorage.id))}
+          disabled={(props.review.statusFormat === 'PENDING' || props.review.statusFormat === 'PENDING_REVIEW') ||
+          (localStorage.role !== 'ADMIN' && props.unit.createdBy !== localStorage.id)}
         />
       </Async>
     </Card>

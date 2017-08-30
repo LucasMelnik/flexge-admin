@@ -24,7 +24,7 @@ const UnitItemList = props => (
         {
           label: 'Order',
           path: 'order',
-          width: '5%',
+          width: '90px',
           rowColumnStyle: {
             overflow: 'visible',
           },
@@ -51,7 +51,7 @@ const UnitItemList = props => (
         {
           label: 'Group',
           path: 'group',
-          width: '10%',
+          width: '150px',
           rowColumnStyle: {
             overflow: 'visible',
           },
@@ -175,6 +175,7 @@ const UnitItemList = props => (
           endpointUrl={`units/${props.unit.id}/items`}
           order={row.order}
           disabled={props.unit.type.name.toLowerCase() === 'review' || props.disabled}
+          showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
         />
       )}
     />

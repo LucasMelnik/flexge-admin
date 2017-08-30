@@ -7,13 +7,13 @@ import './Select.css';
 export default class Select extends Component {
 
   static propTypes = {
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
     placeholder: PropTypes.string,
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     onChange: PropTypes.func.isRequired,
     options: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]).isRequired,
     })),
     description: PropTypes.string,
     fieldValidation: PropTypes.string,
@@ -60,7 +60,7 @@ export default class Select extends Component {
             value={this.props.value}
             options={this.props.options}
             resetValue=""
-            onChange={(option) => this.props.onChange && this.props.onChange(option.value || '')}
+            onChange={(option) => this.props.onChange && this.props.onChange(option.value !== undefined ? option.value : '')}
           />
         </div>
       </div>

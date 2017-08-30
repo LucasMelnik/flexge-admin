@@ -167,6 +167,7 @@ const ItemForm = props => (
           submitting={props.submitting}
           disabled={props.disabled}
           isTestItem={props.isTestItem}
+          showPostPhrase={props.showPostPhrase}
         />
       )}
       {get(props.values.item, 'type.key', '') === 'PRONUNCIATION' && (
