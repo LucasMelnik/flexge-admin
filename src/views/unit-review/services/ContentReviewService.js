@@ -71,7 +71,7 @@ class ContentReviewService {
               'Error creating review.',
               null,
               null,
-              'danger',
+              'error',
             );
           }
         });
@@ -108,7 +108,7 @@ class ContentReviewService {
               'Error changing status review.',
               null,
               null,
-              'danger',
+              'error',
             );
           }
         });
@@ -123,7 +123,7 @@ class ContentReviewService {
           'Please leave a comment to mark as reviewed',
            null,
            null,
-           'danger',
+           'error',
         );
       return;
     }
@@ -156,7 +156,7 @@ class ContentReviewService {
               'Error reviewing unit.',
               null,
               null,
-              'danger',
+              'error',
             );
           }
         });
@@ -171,7 +171,7 @@ class ContentReviewService {
          'Please leave a comment to mark as done',
           null,
           null,
-          'danger',
+          'error',
       );
       return;
     }
@@ -203,7 +203,7 @@ class ContentReviewService {
               'Error changing status review.',
               null,
               null,
-              'danger',
+              'error',
             );
           }
         });

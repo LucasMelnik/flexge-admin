@@ -44,7 +44,7 @@ class LoginService {
         browserHistory.push('/');
       }
       if (this.fetch.error) {
-        NotificationService.addNotification('Unable to login. Please check your credentials.', null, null, 'danger');
+        NotificationService.addNotification('Unable to login. Please check your credentials.', null, null, 'error');
       }
     });
   })
