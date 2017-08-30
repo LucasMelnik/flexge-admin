@@ -8212,6 +8212,10 @@ table.dataTable.display tbody tr:first-child td {
     border-left-width: 1px !important;
 }
 
+.react-bs-table .table-bordered>tbody>tr.selectable-row {
+    cursor: pointer;
+}
+
 .react-bs-table-expand-cell {
     padding: 10px 8px !important;
 }
