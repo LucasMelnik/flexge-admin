@@ -22,6 +22,7 @@ class PlacementTestItemFormContainer extends Component {
         endpointUrl={`grammar-placement-test-levels/${this.props.placementTestId}/items`}
         onSaveSuccess={this.props.onSaveSuccess}
         defaultGrammar={PlacementTestFormService.form.getValue('grammar')}
+        timeProperty="defaultPlacementTestTime"
         isTestItem
       />
     );

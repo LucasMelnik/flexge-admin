@@ -42,7 +42,7 @@ const ItemForm = props => (
             onChange={(value, type) => {
               props.onChange('item.type', type);
               if (type) {
-                props.onChange('item.time', props.isTestItem ? type.defaultTestTime : type.defaultTime);
+                props.onChange('item.time', type[props.timeProperty]);
               }
               props.setValidationsByItemType();
             }}
@@ -251,6 +251,7 @@ ItemForm.propTypes = {
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
   itemsTypeUrl: PropTypes.string.isRequired,
+  timeProperty: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   isTestItem: PropTypes.bool,
 };
