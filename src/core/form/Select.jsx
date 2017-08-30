@@ -60,7 +60,7 @@ export default class Select extends Component {
             value={this.props.value}
             options={this.props.options}
             resetValue=""
-            onChange={(option) => this.props.onChange && this.props.onChange(option.value || '')}
+            onChange={(option) => this.props.onChange && this.props.onChange(option.value !== undefined ? option.value : '')}
           />
         </div>
       </div>
