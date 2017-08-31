@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import Button from '../../../core/form/Button';
 import PracticeTestFormContainer from './PracticeTestFormContainer';
+import PracticeTestItems from './PracticeTestItems';
 import Card from '../../../core/layout/Card';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Separator from '../../../core/layout/Separator';
@@ -31,9 +32,9 @@ const PracticeTestFormScene = props => (
       />
     </Card>
     <Separator size="md" />
-    {/* {(props.params.practiceTestId) && (
+    {(props.params.practiceTestId) && (
       <PracticeTestItems practiceTestId={props.params.practiceTestId} />
-    )} */}
+    )}
   </div>
 );
 

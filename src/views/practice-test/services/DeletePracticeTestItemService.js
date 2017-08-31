@@ -12,10 +12,10 @@ class DeletePracticeTestItemService {
       `You are about to delete the practice test "Order: ${practiceTestItem.order} - ${practiceTestItem.item.text}", Do you want to continue ?`,
       () => {
         this.submit.fetch({
-          url: `/mastery-tests/${practiceTestItem.masteryTest}/items/${practiceTestItem.item.id}`,
+          url: `/practice-tests/${practiceTestItem.practiceTest}/items/${practiceTestItem.item.id}`,
           method: 'delete',
         }).then(() => {
-          PracticeTestListItemsService.handleLoad(practiceTestItem.masteryTest);
+          PracticeTestListItemsService.handleLoad(practiceTestItem.practiceTest);
         });
       });
   });
