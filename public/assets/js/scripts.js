@@ -93,31 +93,6 @@ jQuery(function($) {
                 CRESTADMIN_SETTINGS.windowBasedLayout();
             }
         });
-
-        $('.page-topbar .sidebar_toggle').on('click', function() {
-            var chatarea = $(".page-chatapi");
-            var chatwindow = $(".chatapi-windows");
-            var topbar = $(".page-topbar");
-            var mainarea = $("#main-content");
-            var menuarea = $(".page-sidebar");
-
-            if (menuarea.hasClass("collapseit") || menuarea.hasClass("chat_shift")) {
-                menuarea.addClass("expandit").removeClass("collapseit").removeClass("chat_shift");
-                $("body").addClass("menuexpanded");
-                topbar.removeClass("sidebar_shift").removeClass("chat_shift");
-                mainarea.removeClass("sidebar_shift").removeClass("chat_shift");
-                chatarea.addClass("hideit").removeClass("showit");
-                chatwindow.addClass("hideit").removeClass("showit");
-                CRESTADMIN_SETTINGS.mainmenuScroll();
-            } else {
-                menuarea.addClass("collapseit").removeClass("expandit").removeClass("chat_shift");
-                $("body").removeClass("menuexpanded");
-                topbar.addClass("sidebar_shift").removeClass("chat_shift");
-                mainarea.addClass("sidebar_shift").removeClass("chat_shift");
-                CRESTADMIN_SETTINGS.mainmenuCollapsed();
-            }
-        });
-
     };
 
 
