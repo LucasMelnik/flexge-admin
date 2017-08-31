@@ -134,11 +134,11 @@ const Routes = () => (
       <Route path="practice-tests/:practiceTestId" component={PracticeTestFormScene} />
       <Route path="users" component={UserListSceneContainer} />
       <Route path="admin-users" component={UserAdminListScene} />
+      <Route path="admin-users/new" component={UserAdminFormScene} />
+      <Route path="admin-users/:userId" component={UserAdminFormScene} />
       <Route path="distributor-users" component={UserDistributorListSceneContainer} />
       <Route path="companies/:companyId/users/new" component={UserFormScene} />
       <Route path="companies/:companyId/users/:userId" component={UserFormScene} />
-      <Route path="companies/:companyId/admin-users/new" component={UserAdminFormScene} />
-      <Route path="companies/:companyId/admin-users/:userId" component={UserAdminFormScene} />
       <Route path="companies/:companyId/distributor-users/new" component={UserDistributorFormScene} />
       <Route path="companies/:companyId/distributor-users/:userId" component={UserDistributorFormScene} />
       <Route path="*" component={NotFoundScene} />

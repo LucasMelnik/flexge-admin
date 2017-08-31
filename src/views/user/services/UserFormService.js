@@ -57,13 +57,15 @@ class UserFormService {
       url: userId ? `/users/${userId}` : '/users',
       body: {
         ...this.form.getValues(),
-        company: this.form.getValue('company'),
+        ...this.form.getValue('company') && {
+          company: this.form.getValue('company'),
+        },
       },
     }).then(() => {
       if (this.submit.data) {
         const user = this.submit.data;
         if (user.role === 'ADMIN' || user.role === 'CONTENT_ADMIN') {
-          browserHistory.push(`/companies/${user.company.id}/admin-users/${user.id}`);
+          browserHistory.push(`/admin-users/${user.id}`);
         } else if (user.role === 'DISTRIBUTOR_MANAGER') {
           browserHistory.push(`/companies/${user.company.id}/distributor-users/${user.id}`);
         } else {
@@ -73,7 +75,9 @@ class UserFormService {
         this.form.reset();
         this.form.setInitialValues({
           ...user,
-          company: user.company.id,
+          ...user.company && user.company.id && {
+            company: user.company.id,
+          }
         });
         window.showSuccess(`User ${userId ? 'updated' : 'created'} successfully.`);
       }

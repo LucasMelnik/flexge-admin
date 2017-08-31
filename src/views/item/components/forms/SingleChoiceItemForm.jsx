@@ -17,10 +17,10 @@ const SingleChoiceItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    {props.showPostPhrase && (
+    {(props.showPostPhrase && !props.isTestItem) && (
       <Separator size="xs" />
     )}
-    {props.showPostPhrase && (
+    {(props.showPostPhrase && !props.isTestItem) && (
       <TextInput
         label="Post Phrase"
         disabled={props.submitting}
@@ -30,7 +30,7 @@ const SingleChoiceItemForm = props => (
         fieldValidation={get(props.errors, 'postPhrase', null) && 'error'}
       />
     )}
-    {props.showPostPhrase && (
+    {(props.showPostPhrase && !props.isTestItem) && (
       <FileInput
         label="Upload the post phrase audio"
         accept="audio"

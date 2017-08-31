@@ -46,13 +46,16 @@ const PlacementTestList = props => (
           label: 'Items to Show',
           path: 'itemsToShow',
           width: '8%',
+          render: (cell, row) => {
+            return cell || 0;
+          }
         },
         {
           label: 'Extra Items',
           path: 'items.length',
           width: '8%',
           render: (cell, row) => {
-            return row.items.length - row.itemsToShow;
+            return (row.items.length - row.itemsToShow) || 0;
           }
         },
         {
@@ -80,6 +83,7 @@ const PlacementTestList = props => (
       selectable
       onSelect={row => null}
     />
+    <small>{props.placementTests.reduce((acc, test) => acc + (test.itemsToShow || 0), 0)} record{props.placementTests.reduce((acc, test) => acc + (test.itemsToShow || 0), 0) > 1 && 's'} to show.</small>
   </Async>
 );
 

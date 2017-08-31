@@ -25,7 +25,8 @@ class PlacementTestReviewService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     const comments = this.form.getValue('comments');
-    if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
+    const status = this.form.getValue('status');
+    if (this.form.errors || (status !== 'APPROVED' && (comments.length === 0 || comments === '<p><br></p>'))) {
       NotificationService.addNotification(
         'Please leave a comment to update the review',
         null,
