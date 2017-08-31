@@ -224,7 +224,7 @@ class MainScene extends Component {
                   <MenuItem
                     title="Practice Test"
                     icon="fa fa-book"
-                    link="/practice-test"
+                    link="/practice-tests"
                   />
                 </PermissionValidator>
               </div>

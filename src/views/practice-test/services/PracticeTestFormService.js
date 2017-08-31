@@ -15,7 +15,7 @@ class PracticeTestFormService {
     };
   }
 
-  handleLoad = action((moduleId, practiceTestId) => {
+  handleLoad = action((practiceTestId) => {
     this.form.reset();
     if (!practiceTestId) {
       this.form.setInitialValues({});
