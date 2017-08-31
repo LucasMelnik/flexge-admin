@@ -42,7 +42,7 @@ const UserAdminList = props => (
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => browserHistory.push(`/companies/${row.company.id}/users/${row.id}`)}
+                  onClick={() => browserHistory.push(`/admin-users/${row.id}`)}
                 />
               </div>
             );
