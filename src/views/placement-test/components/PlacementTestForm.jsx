@@ -67,7 +67,7 @@ const PlacementTestForm = props => (
         <Select
           floatingLabel
           fullWidth
-          disabled={props.submitting}
+          disabled={props.submitting || localStorage.role !== 'ADMIN'}
           label="Items to Show"
           value={get(props.values, 'itemsToShow', '')}
           onChange={value => props.onChange('itemsToShow', value)}
