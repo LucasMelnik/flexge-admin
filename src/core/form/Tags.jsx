@@ -33,6 +33,7 @@ const Tags = props => (
             className={`tag label ${props.disabled ? 'label-default' : 'label-primary'}`}
             style={{
               padding: '8px 5px',
+              display: 'inline-block',
             }}
           >
             {!(tag.canClick || tag.canLink) && (tag.text)}
