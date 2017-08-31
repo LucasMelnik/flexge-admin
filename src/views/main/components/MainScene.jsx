@@ -220,6 +220,13 @@ class MainScene extends Component {
                     link="/placement-test"
                   />
                 </PermissionValidator>
+                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+                  <MenuItem
+                    title="Practice Test"
+                    icon="fa fa-book"
+                    link="/practice-test"
+                  />
+                </PermissionValidator>
               </div>
             </PermissionValidator>
             <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
