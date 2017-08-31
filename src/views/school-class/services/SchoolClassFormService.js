@@ -78,7 +78,7 @@ class SchoolClassFormService {
           `Error ${classId ? 'updating' : 'creating'} school class.`,
           null,
           null,
-          'danger',
+          'error',
         );
       }
     });
@@ -104,7 +104,7 @@ class SchoolClassFormService {
           'Error trying to add Student to Class.',
           null,
           null,
-          'danger',
+          'error',
         );
       }
     });
@@ -130,7 +130,7 @@ class SchoolClassFormService {
           'Error trying to remove Student to Class.',
           null,
           null,
-          'danger',
+          'error',
         );
       }
     });

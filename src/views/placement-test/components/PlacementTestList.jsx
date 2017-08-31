@@ -43,6 +43,19 @@ const PlacementTestList = props => (
           width: '8%',
         },
         {
+          label: 'Items to Show',
+          path: 'itemsToShow',
+          width: '8%',
+        },
+        {
+          label: 'Extra Items',
+          path: 'items.length',
+          width: '8%',
+          render: (cell, row) => {
+            return row.items.length - row.itemsToShow;
+          }
+        },
+        {
           label: 'Actions',
           path: 'action',
           width: '120',

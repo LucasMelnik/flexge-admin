@@ -61,7 +61,7 @@ class DistributorFormService {
           `Error ${distributorId ? 'updating' : 'creating'} distributor.`,
           null,
           null,
-          'danger',
+          'error',
         );
       }
     });

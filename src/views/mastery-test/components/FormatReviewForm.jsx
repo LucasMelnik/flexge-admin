@@ -18,7 +18,7 @@ const FormatReviewForm = (props) => (
       Revisão de Formato
       <div
         style={{
-          marginTop: (localStorage.role === 'CONTENT_ADMIN' && props.values.review.statusFormat === 'APPROVED') && 36,
+          marginTop: (localStorage.role === 'CONTENT_ADMIN' && get(props.values, 'review.statusFormat', '') === 'APPROVED') && 36,
         }}
       >
         {localStorage.role === 'ADMIN' && (
@@ -43,7 +43,7 @@ const FormatReviewForm = (props) => (
             />
           </div>
         )}
-        {(localStorage.role === 'CONTENT_ADMIN' && props.values.review.statusFormat === 'NOT_APPROVED') && (
+        {(localStorage.role === 'CONTENT_ADMIN' && get(props.values, 'review.statusFormat', '') === 'NOT_APPROVED') && (
           <div>
             <Button
               label="Send to format review"

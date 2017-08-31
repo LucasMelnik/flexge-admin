@@ -62,7 +62,7 @@ class ManagerFormService {
           `Error ${managerId ? 'updating' : 'creating'} manager.`,
           null,
           null,
-          'danger',
+          'error',
         );
       }
     });

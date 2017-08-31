@@ -69,7 +69,7 @@ class FormatReviewService {
           'Error changing Review Status Format.',
           null,
           null,
-          'danger',
+          'error',
         );
       }
     });

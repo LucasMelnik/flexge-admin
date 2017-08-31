@@ -326,7 +326,7 @@ class ItemFormService {
           `Error ${itemId ? 'updating' : 'creating'} item.`,
           null,
           null,
-          'danger',
+          'error',
         );
       }
     });

@@ -68,7 +68,7 @@ class PlacementTestFormService {
           `Error ${placementTestId ? 'updating' : 'creating'} Placement Test Grammar.`,
           null,
           null,
-          'danger',
+          'error',
         );
       }
     });
