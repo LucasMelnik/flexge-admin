@@ -51,19 +51,17 @@ const PresentationItemForm = props => (
         />
       </Column>
     </Row>
-    <Row>
-      <Column lgSize={12}>
-        {props.showPostPhrase && (
-        <TextInput
-          label="Post Phrase"
-          disabled={props.submitting}
-          value={get(props.values, 'postPhrase', '')}
-          onChange={value => props.onChange('postPhrase', value)}
-          description={get(props.errors, 'postPhrase', '')}
-          fieldValidation={get(props.errors, 'postPhrase', null) && 'error'}
-        />
-      )}
-        {props.showPostPhrase && (
+    {(props.showPostPhrase && !props.isTestItem) && (
+      <Row>
+        <Column lgSize={12}>
+          <TextInput
+            label="Post Phrase"
+            disabled={props.submitting}
+            value={get(props.values, 'postPhrase', '')}
+            onChange={value => props.onChange('postPhrase', value)}
+            description={get(props.errors, 'postPhrase', '')}
+            fieldValidation={get(props.errors, 'postPhrase', null) && 'error'}
+          />
           <FileInput
             label="Upload the post phrase audio"
             accept="audio"
@@ -72,9 +70,9 @@ const PresentationItemForm = props => (
             errorText={get(props.errors, 'postPhraseAudio', '')}
             disabled={props.disabled}
           />
-        )}
-      </Column>
-    </Row>
+        </Column>
+      </Row>
+    )}
   </div>
 );
 

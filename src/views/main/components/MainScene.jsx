@@ -68,6 +68,30 @@ class MainScene extends Component {
         $(".page-sidebar.chat_shift .wraplist li.open .sub-menu").attr("style","");
         $(".page-sidebar.chat_shift .wraplist li.open").removeClass("open");
     });
+
+    $('.page-topbar .sidebar_toggle').on('click', () => {
+      var chatarea = $(".page-chatapi");
+      var chatwindow = $(".chatapi-windows");
+      var topbar = $(".page-topbar");
+      var mainarea = $("#main-content");
+      var menuarea = $(".page-sidebar");
+
+      if (menuarea.hasClass("collapseit") || menuarea.hasClass("chat_shift")) {
+        menuarea.addClass("expandit").removeClass("collapseit").removeClass("chat_shift");
+        $("body").addClass("menuexpanded");
+        topbar.removeClass("sidebar_shift").removeClass("chat_shift");
+        mainarea.removeClass("sidebar_shift").removeClass("chat_shift");
+        chatarea.addClass("hideit").removeClass("showit");
+        chatwindow.addClass("hideit").removeClass("showit");
+        this.mainmenuScroll();
+      } else {
+        menuarea.addClass("collapseit").removeClass("expandit").removeClass("chat_shift");
+        $("body").removeClass("menuexpanded");
+        topbar.addClass("sidebar_shift").removeClass("chat_shift");
+        mainarea.addClass("sidebar_shift").removeClass("chat_shift");
+        this.mainmenuCollapsed();
+      }
+    });
   }
 
   mainmenuCollapsed = () => {
@@ -92,7 +116,7 @@ class MainScene extends Component {
       /*hide sub menu of open menu item*/
       $('li.open .sub-menu').attr('style', '');
     }
-  }
+  };
 
   mainmenuScroll = () => {
     const $ = window.$;
@@ -112,7 +136,7 @@ class MainScene extends Component {
     /*show first sub menu of open menu item only - opened after closed*/
     // > in the selector is used to select only immediate elements and not the inner nested elements.
     $("li.open > .sub-menu").attr("style", "display:block;");
-  }
+  };
 
   render() {
     return (

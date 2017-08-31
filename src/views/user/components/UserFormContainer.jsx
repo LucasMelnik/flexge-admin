@@ -8,14 +8,15 @@ class UserFormContainer extends Component {
 
   static propTypes = {
     userId: PropTypes.string,
-    companyId: PropTypes.string.isRequired,
+    companyId: PropTypes.string,
     roleUser: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     userId: null,
     roleUser: null,
-  }
+    companyId: undefined,
+  };
 
   componentWillMount() {
     UserFormService.handleLoad(this.props.userId, this.props.companyId);
