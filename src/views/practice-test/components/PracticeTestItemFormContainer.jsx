@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import MasteryTestListItemsService from '../services/MasteryTestListItemsService';
+import PracticeTestListItemsService from '../services/PracticeTestListItemsService';
 import ItemFormContainer from '../../item/components/ItemFormContainer';
 
-class MasteryTestItemFormContainer extends Component {
+class PracticeTestItemFormContainer extends Component {
 
   static propTypes = {
     endpointUrl: PropTypes.string.isRequired,
@@ -14,16 +14,16 @@ class MasteryTestItemFormContainer extends Component {
   render() {
     return (
       <ItemFormContainer
-        itemsTypeUrl="/item-types?query[allowedForMasteryTest]=true"
+        itemsTypeUrl="/item-types"
         endpointUrl={this.props.endpointUrl}
-        order={MasteryTestListItemsService.items.length + 1}
+        order={PracticeTestListItemsService.items.length + 1}
         showPostPhrase={false}
         onSaveSuccess={this.props.onSaveSuccess}
-        timeProperty="defaultMasteryTestTime"
-        isTestItem
+        timeProperty="defaultPracticeTestTime"
+        // isTestItem
       />
     );
   }
 }
 
-export default observer(MasteryTestItemFormContainer);
+export default observer(PracticeTestItemFormContainer);

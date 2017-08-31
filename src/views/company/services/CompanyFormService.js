@@ -77,7 +77,7 @@ class CompanyFormService {
           `Error ${companyId ? 'updating' : 'creating'} company.`,
           null,
           null,
-          'danger',
+          'error',
         );
       }
     });

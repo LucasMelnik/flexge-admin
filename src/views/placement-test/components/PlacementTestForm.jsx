@@ -47,7 +47,7 @@ const PlacementTestForm = props => (
           }))}
         />
       </Column>
-      <Column lgSize={8}>
+      <Column lgSize={6}>
         <FetchSelect
           url="grammars"
           fullWidth
@@ -61,6 +61,21 @@ const PlacementTestForm = props => (
             text: 'name',
             value: 'id',
           }}
+        />
+      </Column>
+      <Column lgSize={2}>
+        <Select
+          floatingLabel
+          fullWidth
+          disabled={props.submitting}
+          label="Items to Show"
+          value={get(props.values, 'itemsToShow', '')}
+          onChange={value => props.onChange('itemsToShow', value)}
+          fieldValidation={get(props.errors, 'itemsToShow', '')}
+          options={range(1, get(props.values, 'items.length', 10) + 1).map(value => ({
+            value,
+            label: value.toString(),
+          }))}
         />
       </Column>
     </Row>

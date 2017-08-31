@@ -83,7 +83,7 @@ class UnitFormService {
           `Error ${unitId ? 'updating' : 'creating'} unit.`,
           null,
           null,
-          'danger',
+          'error',
         );
       }
     });

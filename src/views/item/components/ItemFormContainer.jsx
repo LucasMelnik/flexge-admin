@@ -8,6 +8,7 @@ class ItemFormContainer extends Component {
   static propTypes = {
     itemsTypeUrl: PropTypes.string.isRequired,
     endpointUrl: PropTypes.string.isRequired,
+    timeProperty: PropTypes.string,
     order: PropTypes.number,
     itemId: PropTypes.string,
     defaultGrammar: PropTypes.string,
@@ -19,6 +20,7 @@ class ItemFormContainer extends Component {
 
   static defaultProps = {
     itemId: null,
+    timeProperty: 'defaultTime',
     defaultGrammar: null,
     disabled: false,
     isTestItem: false,
@@ -51,6 +53,7 @@ class ItemFormContainer extends Component {
         isTestItem={this.props.isTestItem}
         showPostPhrase={this.props.showPostPhrase}
         defaultGrammar={this.props.defaultGrammar}
+        timeProperty={this.props.timeProperty}
       />
     );
   }
