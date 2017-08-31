@@ -55,7 +55,7 @@ class PracticeTestItems extends Component {
           <PracticeTestListItemsContainer practiceTestId={this.props.practiceTestId} />
         ) : (
           <PracticeTestItemFormContainer
-            endpointUrl={`/practice-tests/${this.props.practiceTestId}/items`}
+            endpointUrl={'/practice-test-items'}
             onSaveSuccess={this.handleChangeToList}
           />
         )}

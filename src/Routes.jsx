@@ -50,7 +50,6 @@ import UserAdminFormScene from './views/user/components/UserAdminFormScene';
 import UserDistributorListSceneContainer from './views/user/components/UserDistributorListSceneContainer';
 import UserDistributorFormScene from './views/user/components/UserDistributorFormScene';
 
-import PracticeTestListScene from './views/practice-test/components/PracticeTestListScene';
 import PracticeTestFormScene from './views/practice-test/components/PracticeTestFormScene';
 
 import NotFoundScene from './views/not-found/components/NotFoundScene';
@@ -129,9 +128,7 @@ const Routes = () => (
       <Route path="placement-test/:placementTestId" component={PlacementTestFormScene} />
       <Route path="reviews" component={ReviewListSceneContainer} />
       <Route path="modules/:moduleId/units/:unitId/reviews/:reviewId" component={ReviewFormSceneContainer} />
-      <Route path="practice-tests" component={PracticeTestListScene} />
-      <Route path="practice-tests/new" component={PracticeTestFormScene} />
-      <Route path="practice-tests/:practiceTestId" component={PracticeTestFormScene} />
+      <Route path="practice-tests" component={PracticeTestFormScene} />
       <Route path="users" component={UserListSceneContainer} />
       <Route path="admin-users" component={UserAdminListScene} />
       <Route path="distributor-users" component={UserDistributorListSceneContainer} />
