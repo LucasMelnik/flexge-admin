@@ -8,6 +8,7 @@ const DashboardFilter = props => (
     url="/courses"
     disabled={props.submitting}
     label="Course"
+    defaultSelect
     value={get(props.values, 'course', '')}
     onChange={course => props.onChange('course', course)}
     resultTransformer={{
