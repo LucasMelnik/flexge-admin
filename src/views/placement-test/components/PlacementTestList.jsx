@@ -83,7 +83,9 @@ const PlacementTestList = props => (
       selectable
       onSelect={row => null}
     />
-    <small>{props.placementTests.reduce((acc, test) => acc + (test.itemsToShow || 0), 0)} record{props.placementTests.reduce((acc, test) => acc + (test.itemsToShow || 0), 0) > 1 && 's'} to show.</small>
+    <small>{props.placementTests.reduce((acc, test) => acc + (test.items.length || 0), 0)} item{props.placementTests.reduce((acc, test) => acc + (test.items.length || 0), 0) > 1 && 's'} found.</small>
+    <br/>
+    <small>{props.placementTests.reduce((acc, test) => acc + (test.itemsToShow || 0), 0)} item{props.placementTests.reduce((acc, test) => acc + (test.itemsToShow || 0), 0) > 1 && 's'} to show.</small>
   </Async>
 );
 
