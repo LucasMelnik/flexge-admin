@@ -37,7 +37,7 @@ export default class FetchSelect extends Component {
   componentWillMount() {
     const fetchService = new FetchService();
     fetchService.fetch({
-      url: this.props.url,
+      url: `/${this.props.url}`,
     })
       .then(() => {
         if (fetchService.data) {

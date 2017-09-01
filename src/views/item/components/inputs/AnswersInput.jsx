@@ -18,40 +18,22 @@ import ErrorText from '../../../../core/layout/ErrorText';
 const AnswersInput = props => (
   <div>
     {!props.disabled && (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <TextInput
-          disabled={props.submitting}
-          label={props.label}
-          value={get(props.values, 'text', '')}
-          onChange={value => props.onChange('text', value)}
-          description={get(props.errors, 'text', '')}
-          fieldValidation={get(props.errors, 'text', null) && 'error'}
-        />
-        <ColumnSeparator size="sm" />
-        <FileInput
-          disabled={props.submitting}
-          label="Upload an audio to the answer"
-          accept="audio"
-          value={get(props.values, 'audio', '')}
-          onChange={(key) => props.onChange('audio', key)}
-          errorText={get(props.errors, 'audio', '')}
-        />
-        <ColumnSeparator size="sm" />
-        <FileInput
-          disabled={props.submitting}
-          label="Upload an image to the answer"
-          accept="image"
-          value={get(props.values, 'image', '')}
-          onChange={(key) => props.onChange('image', key)}
-          errorText={get(props.errors, 'image', '')}
-        />
-        <ColumnSeparator size="sm" />
+      <Row>
+        <Column
+          lgSize={props.answerType === 'BOTH' ? 7 : 10}
+          mdSize={props.answerType === 'BOTH' ? 7 : 10}
+        >
+          <TextInput
+            disabled={props.submitting}
+            label={props.label}
+            value={get(props.values, 'text', '')}
+            onChange={value => props.onChange('text', value)}
+            description={get(props.errors, 'text', '')}
+            fieldValidation={get(props.errors, 'text', null) && 'error'}
+          />
+        </Column>
         {props.answerType === 'BOTH' && (
+          <Column lgSize={2} mdSize={2}>
           <Select
             disabled={props.submitting}
             label="Is this a Correct answer ?"
@@ -62,24 +44,57 @@ const AnswersInput = props => (
               { value: true, label: 'Yes' },
             ]}
           />
-        )}
-        {props.answerType === 'BOTH' && (
           <ColumnSeparator size="sm" />
+          </Column>
         )}
-        <Button
-          icon="fa-check"
-          type="primary"
-          label={props.values.id ? 'Update' : 'Add'}
-          disabled={!props.isDirty()}
-          onClick={() => props.onSubmit()}
-        />
-        <ColumnSeparator size="xs" />
-        <Button
-          icon="fa-times"
-          label="Cancel"
-          onClick={() => props.onReset()}
-        />
-      </div>
+        <Column lgSize={3} mdSize={3}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'flex-end',
+              height: 65,
+            }}
+          >
+            <Button
+              icon="fa-check"
+              type="primary"
+              label={props.values.id ? 'Update' : 'Add'}
+              disabled={!props.isDirty()}
+              onClick={() => props.onSubmit()}
+            />
+            <ColumnSeparator size="xs" />
+            <Button
+              icon="fa-times"
+              label="Cancel"
+              onClick={() => props.onReset()}
+            />
+          </div>
+        </Column>
+      </Row>
+    )}
+    {!props.isDisabled && (
+      <Row>
+        <Column lgSize={3} mdSize={4}>
+          <FileInput
+            disabled={props.submitting}
+            label="Upload an audio to the answer"
+            accept="audio"
+            value={get(props.values, 'audio', '')}
+            onChange={(key) => props.onChange('audio', key)}
+            errorText={get(props.errors, 'audio', '')}
+          />
+        </Column>
+        <Column lgSize={3} mdSize={4}>
+          <FileInput
+            disabled={props.submitting}
+            label="Upload an image to the answer"
+            accept="image"
+            value={get(props.values, 'image', '')}
+            onChange={(key) => props.onChange('image', key)}
+            errorText={get(props.errors, 'image', '')}
+          />
+        </Column>
+      </Row>
     )}
     <Separator size="xs" />
     <Row>
