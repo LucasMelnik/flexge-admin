@@ -15,6 +15,7 @@ export default class TextInput extends Component {
     fieldType: PropTypes.oneOf(['textarea', 'static']),
     fieldValidation: PropTypes.oneOf(['error', 'warning', 'success']),
     helpText: PropTypes.string,
+    textAreaRows: PropTypes.string,
     step: PropTypes.number,
     max: PropTypes.number,
   };
@@ -32,6 +33,7 @@ export default class TextInput extends Component {
     helpText: null,
     max: null,
     step: null,
+    textAreaRows: '2',
   };
 
   render() {
@@ -56,7 +58,7 @@ export default class TextInput extends Component {
             <textarea
               className="form-control autogrow"
               cols="5"
-              rows="2"
+              rows={this.props.textAreaRows}
               disabled={this.props.disabled && 'disabled'}
               value={this.props.value}
               onChange={e => this.props.onChange && this.props.onChange(e.target.value)}
@@ -65,7 +67,6 @@ export default class TextInput extends Component {
                 overflow: 'hidden',
                 wordWrap: 'break-word',
                 resize: 'none',
-                height: 50,
               }}
             />
           ) : this.props.fieldType === 'static' ? (
