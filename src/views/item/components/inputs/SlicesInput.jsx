@@ -60,6 +60,7 @@ const SlicesInput = props => (
         <div
           style={{
             marginTop: '-10px',
+            whiteSpace: 'normal',
           }}
         >
           <small>Gap Preview</small>
