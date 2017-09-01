@@ -45,12 +45,10 @@ const UnitList = props => (
         {
           label: 'Difficulty',
           path: 'difficulty',
-          width: '100',
         },
         {
           label: 'Abilities',
           path: 'type.abilities',
-          width: '90',
           render: (cell, row) => (
             <div>
               {row.type.abilities.map((ability, index) => {
@@ -65,6 +63,7 @@ const UnitList = props => (
         {
           label: 'Unit Type',
           path: 'type.name',
+          widt: '10%',
           rowColumnStyle: {
             textOverflow: 'none',
             paddingTop: 5,
@@ -78,7 +77,6 @@ const UnitList = props => (
         {
           label: 'Status content',
           path: 'review.status',
-          width: '150',
           render: (cell, row) => row.review && (
             <div
               style={{
@@ -104,7 +102,6 @@ const UnitList = props => (
         {
           label: 'Status format',
           path: 'review.statusFormat',
-          width: '150',
           render: (cell, row) => row.review && (
             <div
               style={{
@@ -130,12 +127,10 @@ const UnitList = props => (
         {
           label: 'Items count',
           path: 'itemsCount',
-          width: '90',
         },
         {
           label: 'Unit time',
           path: 'time',
-          width: '90',
           render: (cell, row) => {
             return `${row.time < 60 ? '00:' : ''}${moment.duration(row.time, "seconds").format("mm:ss", {forceLength: true})}`
           },

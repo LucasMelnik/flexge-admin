@@ -1,9 +1,21 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 
 const TopBar = () => (
   <div className="page-topbar">
-    <div className="logo-area" />
+    <div
+      className="logo-area"
+    >
+      <Link to="/">
+        <span
+          style={{
+            width: 240,
+            height: '100%',
+            position: 'absolute',
+          }}
+        />
+      </Link>
+    </div>
     <div className="quick-area">
       <div className="pull-left">
         <ul className="info-menu left-links list-inline list-unstyled">

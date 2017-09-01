@@ -21,7 +21,7 @@ class MainScene extends Component {
     var width = window.innerWidth;
     if ($('body').hasClass('chat-open') || $('body').hasClass('sidebar-collapse')) {
       this.mainmenuCollapsed();
-    } else if (width <= 767) {
+    } else if (width <= 1280) {
       // small window
       $('.page-topbar').addClass('sidebar_shift').removeClass('chat_shift');
       $('.page-sidebar').addClass('collapseit').removeClass('expandit');

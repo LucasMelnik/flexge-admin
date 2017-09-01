@@ -24,7 +24,9 @@ const Tags = props => (
         className="bootstrap-tagsinput"
         style={{
           borderColor: props.errorText ? '#f44336' : null,
-          padding: '8px'
+          padding: '8px',
+          display: 'flex',
+          flexWrap: 'wrap'
         }}
       >
         {props.tags.map(tag => (

@@ -5,9 +5,10 @@ import FetchSelect from '../../../core/form/FetchSelect';
 
 const DashboardFilter = props => (
   <FetchSelect
-    url="/courses"
+    url="courses"
     disabled={props.submitting}
     label="Course"
+    defaultSelect
     value={get(props.values, 'course', '')}
     onChange={course => props.onChange('course', course)}
     resultTransformer={{
