@@ -64,7 +64,7 @@ export default class TextInput extends Component {
               onChange={e => this.props.onChange && this.props.onChange(e.target.value)}
               placeholder={this.props.placeholder}
               style={{
-                overflow: 'hidden',
+                overflow: 'auto',
                 wordWrap: 'break-word',
                 resize: 'none',
               }}

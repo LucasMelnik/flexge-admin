@@ -24,7 +24,7 @@ const VideoLongTextItemForm = props => (
         <TextInput
           fieldType="textarea"
           label="Text"
-          textAreaRows="15"
+          textAreaRows="25"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'text', '')}
           onChange={value => props.onChange('text', value)}
