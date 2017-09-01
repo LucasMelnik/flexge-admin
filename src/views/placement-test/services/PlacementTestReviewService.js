@@ -40,7 +40,9 @@ class PlacementTestReviewService {
       url: `/grammar-placement-test-levels/${this.placementTestId}/item/${this.form.getValue('forItem')}/review`,
       body: {
         status: this.form.getValue('status'),
-        comments: this.form.getValue('comments'),
+        ...(this.form.getValue('comments') && this.form.getValue('comments').length) && {
+          comments: this.form.getValue('comments'),
+        }
       },
     }).then(() => {
       if (this.submit.data) {

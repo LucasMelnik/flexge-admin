@@ -769,7 +769,7 @@ a:hover, a:focus {
 
 .page-sidebar {
     height: 100%;
-    width: 260px;
+    width: 220px;
     position: fixed;
     padding: 0px;
     background-color: #ffffff;
@@ -5005,7 +5005,7 @@ code {
     z-index: 99;
 }
 #main-content {
-    margin-left: 260px;
+    margin-left: 220px;
     display: block;
 }
 #main-content.hor_menu {
@@ -5247,7 +5247,8 @@ border-left: 3px solid transparent;
     display: none;
 }
 .page-sidebar.chat_shift, .page-sidebar.collapseit {
-    position: absolute !important;
+    position: fixed !important;
+    margin-top: 30px !important;
 }
 .page-sidebar.chat_shift #main-menu-wrapper, .page-sidebar.collapseit #main-menu-wrapper, .page-sidebar.chat_shift #main-menu-wrapper .wraplist, .page-sidebar.collapseit #main-menu-wrapper .wraplist {
     /*height: 3000px !important;*/

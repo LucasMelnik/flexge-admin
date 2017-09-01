@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { sortBy } from 'lodash';
+import { toJS } from 'mobx';
 import Select from './Select';
+import FetchService from '../services/FetchService';
 
 export default class FetchSelect extends Component {
 
@@ -19,6 +20,7 @@ export default class FetchSelect extends Component {
     description: PropTypes.string,
     fieldValidation: PropTypes.string,
     disabled: PropTypes.bool,
+    defaultSelect: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -27,27 +29,28 @@ export default class FetchSelect extends Component {
     fieldValidation: null,
     description: null,
     disabled: false,
+    defaultSelect: false,
   };
 
   state = { data: [] };
 
   componentWillMount() {
-    axios.request({
-      method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/${this.props.url}`,
-      headers: {
-        ...localStorage.accessToken && { Authorization: `Bearer ${localStorage.accessToken}` },
-      },
-    }).then((response) => {
-      const data = response.data.docs || response.data;
-      this.setState({
-        data: sortBy(data, item => String(item[this.props.resultTransformer.text]).toLowerCase()),
-      }, () => {
-        if (this.props.defaultSelect) {
-          this.props.onChange(this.state.data[0].id || null);
+    const fetchService = new FetchService();
+    fetchService.fetch({
+      url: `/${this.props.url}`,
+    })
+      .then(() => {
+        if (fetchService.data) {
+          const data = toJS(fetchService.data);
+          this.setState({
+            data: sortBy(data, item => String(item[this.props.resultTransformer.text]).toLowerCase()),
+          }, () => {
+            if (this.props.defaultSelect) {
+              this.props.onChange(this.state.data[0].id || null);
+            }
+          });
         }
       });
-    });
   }
 
   render() {
