@@ -20,8 +20,8 @@ const AnswersInput = props => (
     {!props.disabled && (
       <Row>
         <Column
-          lgSize={props.answerType === 'BOTH' ? 7 : 10}
-          mdSize={props.answerType === 'BOTH' ? 7 : 10}
+          lgSize={props.answerType === 'BOTH' ? 7 : 9}
+          mdSize={props.answerType === 'BOTH' ? 7 : 9}
         >
           <TextInput
             disabled={props.submitting}
