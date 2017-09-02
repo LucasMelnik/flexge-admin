@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { browserHistory, IndexRoute, Route, Router } from 'react-router';
 
 import LoginScene from './views/login/components/LoginScene';
 import MainScene from './views/main/components/MainScene';
@@ -53,6 +53,7 @@ import UserDistributorFormScene from './views/user/components/UserDistributorFor
 import PracticeTestFormScene from './views/practice-test/components/PracticeTestFormScene';
 
 import NotFoundScene from './views/not-found/components/NotFoundScene';
+import ConfigurationFormScene from './views/configuration/components/ConfigurationFormScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -138,6 +139,7 @@ const Routes = () => (
       <Route path="companies/:companyId/admin-users/:userId" component={UserAdminFormScene} />
       <Route path="companies/:companyId/distributor-users/new" component={UserDistributorFormScene} />
       <Route path="companies/:companyId/distributor-users/:userId" component={UserDistributorFormScene} />
+      <Route path="configuration" component={ConfigurationFormScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

@@ -132,7 +132,7 @@ class MainScene extends Component {
                   items={[
                     {
                       label: 'General Configuration',
-                      link: '/configs',
+                      link: '/configuration',
                     },
                   ]}
                 />
