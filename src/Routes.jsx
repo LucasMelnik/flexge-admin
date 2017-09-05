@@ -54,6 +54,7 @@ import PracticeTestFormScene from './views/practice-test/components/PracticeTest
 
 import NotFoundScene from './views/not-found/components/NotFoundScene';
 import ConfigurationFormScene from './views/configuration/components/ConfigurationFormScene';
+import StudentPlacementListScene from './views/student/components/placement/StudentPlacementListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -118,6 +119,7 @@ const Routes = () => (
       <Route path="students" component={StudentListScene} />
       <Route path="students/new" component={StudentFormSceneContainer} />
       <Route path="students/:studentId" component={StudentFormSceneContainer} />
+      <Route path="students/:studentId/placements" component={StudentPlacementListScene} />
       <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainer} />
       <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/:studentId" component={StudentFormSceneContainer} />
       <Route path="company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainer} />
