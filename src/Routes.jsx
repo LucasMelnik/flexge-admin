@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { browserHistory, IndexRoute, Route, Router } from 'react-router';
 
 import LoginScene from './views/login/components/LoginScene';
 import MainScene from './views/main/components/MainScene';
@@ -50,10 +50,11 @@ import UserAdminFormScene from './views/user/components/UserAdminFormScene';
 import UserDistributorListSceneContainer from './views/user/components/UserDistributorListSceneContainer';
 import UserDistributorFormScene from './views/user/components/UserDistributorFormScene';
 
-import PracticeTestListScene from './views/practice-test/components/PracticeTestListScene';
 import PracticeTestFormScene from './views/practice-test/components/PracticeTestFormScene';
 
 import NotFoundScene from './views/not-found/components/NotFoundScene';
+import ConfigurationFormScene from './views/configuration/components/ConfigurationFormScene';
+import StudentPlacementListScene from './views/student/components/placement/StudentPlacementListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -118,6 +119,7 @@ const Routes = () => (
       <Route path="students" component={StudentListScene} />
       <Route path="students/new" component={StudentFormSceneContainer} />
       <Route path="students/:studentId" component={StudentFormSceneContainer} />
+      <Route path="students/:studentId/placements" component={StudentPlacementListScene} />
       <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainer} />
       <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/:studentId" component={StudentFormSceneContainer} />
       <Route path="company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainer} />
@@ -129,9 +131,7 @@ const Routes = () => (
       <Route path="placement-test/:placementTestId" component={PlacementTestFormScene} />
       <Route path="reviews" component={ReviewListSceneContainer} />
       <Route path="modules/:moduleId/units/:unitId/reviews/:reviewId" component={ReviewFormSceneContainer} />
-      <Route path="practice-tests" component={PracticeTestListScene} />
-      <Route path="practice-tests/new" component={PracticeTestFormScene} />
-      <Route path="practice-tests/:practiceTestId" component={PracticeTestFormScene} />
+      <Route path="practice-tests" component={PracticeTestFormScene} />
       <Route path="users" component={UserListSceneContainer} />
       <Route path="admin-users" component={UserAdminListScene} />
       <Route path="admin-users/new" component={UserAdminFormScene} />
@@ -141,6 +141,7 @@ const Routes = () => (
       <Route path="companies/:companyId/users/:userId" component={UserFormScene} />
       <Route path="companies/:companyId/distributor-users/new" component={UserDistributorFormScene} />
       <Route path="companies/:companyId/distributor-users/:userId" component={UserDistributorFormScene} />
+      <Route path="configuration" component={ConfigurationFormScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

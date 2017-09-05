@@ -30,7 +30,7 @@ const PracticeTestListItems = props => (
             <Select
               label="Order"
               value={row.order}
-              onChange={order => props.onOrderChange(row.item.id, order)}
+              onChange={order => props.onOrderChange(row.id, order)}
               options={range(1, 11).map(value => ({
                 label: value.toString(),
                 value,
@@ -97,9 +97,9 @@ const PracticeTestListItems = props => (
       expandable
       expandableComponent={(row) => (
         <ItemFormContainer
-          itemId={row.item.id}
+          itemId={row.id}
           itemsTypeUrl="/item-types"
-          endpointUrl={`/practice-tests/${row.practiceTest}/items`}
+          endpointUrl={'practice-test-items'}
           order={row.order}
           showPostPhrase={false}
           onSaveSuccess={props.onSaveSuccess}
