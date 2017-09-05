@@ -13,7 +13,10 @@ const StudentPlacementItemList = props => (
       },
       {
         label: 'Status',
-        path: 'status',
+        path: 'correct',
+        render: (cell) => {
+          return cell ? 'Correct' : 'Wrong';
+        },
       },
       {
         label: 'Answer',
