@@ -16,6 +16,9 @@ class ItemTypeFormService {
     this.form.validations = {
       name: [isRequired],
       key: [isRequired],
+      defaultTime: [isRequired],
+      defaultPlacementTestTime: [isRequired],
+      defaultMasteryTestTime: [isRequired],
     };
   }
 
@@ -55,11 +58,11 @@ class ItemTypeFormService {
         this.form.reset();
         this.form.setInitialValues(itemType);
 
-        window.showSuccess(`ItemType ${itemTypeId ? 'updated' : 'created'} successfully.`);
+        window.showSuccess(`Item Type ${itemTypeId ? 'updated' : 'created'} successfully.`);
       }
       if (this.submit.error) {
         NotificationService.addNotification(
-          `Error ${itemTypeId ? 'updating' : 'creating'} itemType.`,
+          `Error ${itemTypeId ? 'updating' : 'creating'} item Type.`,
           null,
           null,
           'error',
