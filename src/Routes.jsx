@@ -55,6 +55,7 @@ import PracticeTestFormScene from './views/practice-test/components/PracticeTest
 import NotFoundScene from './views/not-found/components/NotFoundScene';
 import ConfigurationFormScene from './views/configuration/components/ConfigurationFormScene';
 import StudentPlacementListScene from './views/student/components/placement/StudentPlacementListScene';
+import ItemTypeListScene from './views/item-type/components/ItemTypeListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -142,6 +143,7 @@ const Routes = () => (
       <Route path="companies/:companyId/distributor-users/new" component={UserDistributorFormScene} />
       <Route path="companies/:companyId/distributor-users/:userId" component={UserDistributorFormScene} />
       <Route path="configuration" component={ConfigurationFormScene} />
+      <Route path="item-types" component={ItemTypeListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
