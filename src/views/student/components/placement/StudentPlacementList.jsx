@@ -43,7 +43,11 @@ const StudentPlacementList = props => (
       rows={props.placements}
       expandable
       expandableComponent={(row) => (
-        <StudentPlacementItemList items={row.answeredItems}/>
+        <StudentPlacementItemList
+          studentId={row.student}
+          placementTestId={row.id}
+          items={row.answeredItems}
+        />
       )}
     />
   </Async>
