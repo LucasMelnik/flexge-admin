@@ -158,6 +158,10 @@ class MainScene extends Component {
                       label: 'General Configuration',
                       link: '/configuration',
                     },
+                    {
+                      label: 'Item types',
+                      link: '/item-types',
+                    },
                   ]}
                 />
               </MenuItem>
