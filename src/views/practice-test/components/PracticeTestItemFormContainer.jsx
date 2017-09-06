@@ -17,10 +17,9 @@ class PracticeTestItemFormContainer extends Component {
         itemsTypeUrl="/item-types"
         endpointUrl={this.props.endpointUrl}
         order={PracticeTestListItemsService.items.length + 1}
-        showPostPhrase={false}
         onSaveSuccess={this.props.onSaveSuccess}
         timeProperty="defaultPracticeTestTime"
-        // isTestItem
+        isTestItem
       />
     );
   }
