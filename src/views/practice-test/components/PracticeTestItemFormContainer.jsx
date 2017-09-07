@@ -18,7 +18,7 @@ class PracticeTestItemFormContainer extends Component {
         endpointUrl={this.props.endpointUrl}
         order={PracticeTestListItemsService.items.length + 1}
         onSaveSuccess={this.props.onSaveSuccess}
-        timeProperty="defaultPracticeTestTime"
+        timeProperty="defaultPlacementTestTime"
         isTestItem
       />
     );
