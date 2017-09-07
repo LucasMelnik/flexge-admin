@@ -5,6 +5,7 @@ import Separator from "../../../../core/layout/Separator";
 import TranslationContainer from '../inputs/TranslationInputContainer';
 import SlicesInputContainer from "../inputs/SlicesInputContainer";
 import AnswersInputContainer from "../inputs/AnswersInputContainer";
+import AudioPreview from '../../../../core/layout/AudioPreview';
 
 const GapFillSelectItemForm = props => (
   <div>
@@ -16,6 +17,12 @@ const GapFillSelectItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
+    {get(props.values, 'generatedAudio', null) && (
+      <div>
+        <p>Generated Audio</p>
+        <AudioPreview src={get(props.values, 'generatedAudio', '')} />
+      </div>
+    )}
     <Separator size="xs" />
     <SlicesInputContainer
       onChange={(answers) => {
