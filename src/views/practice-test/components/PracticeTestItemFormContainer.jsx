@@ -14,7 +14,7 @@ class PracticeTestItemFormContainer extends Component {
   render() {
     return (
       <ItemFormContainer
-        itemsTypeUrl="/item-types"
+        itemsTypeUrl="/item-types?query[allowedForPlacementTest]=true"
         endpointUrl={this.props.endpointUrl}
         order={PracticeTestListItemsService.items.length + 1}
         onSaveSuccess={this.props.onSaveSuccess}
