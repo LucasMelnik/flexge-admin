@@ -110,6 +110,7 @@ const AnswersInput = props => (
             {
               label: 'Answer',
               path: 'text',
+              width: '350px',
               render: (cell, row) => (
                 <div
                   style={{
@@ -125,6 +126,18 @@ const AnswersInput = props => (
             {
               label: 'Correct',
               path: 'correct',
+              width: '100px',
+              render: (cell) => cell ? 'Yes' : 'No',
+            },
+            {
+              label: 'Generated Audio',
+              render: (cell, row) => {
+                if (row.generatedAudio) {
+                  return (<AudioPreview src={row.generatedAudio} />);
+                } else {
+                  return '-';
+                }
+              },
             },
             {
               label: 'Audio',
@@ -149,7 +162,7 @@ const AnswersInput = props => (
             {
               label: 'Actions',
               path: 'action',
-              width: '120',
+              width: '130',
               render: (cell, row) => {
                 if (!props.disabled) {
                   return (

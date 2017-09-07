@@ -57,6 +57,8 @@ import ConfigurationFormScene from './views/configuration/components/Configurati
 import StudentPlacementListScene from './views/student/components/placement/StudentPlacementListScene';
 import ItemTypeListScene from './views/item-type/components/ItemTypeListScene';
 import ItemTypeFormSceneContainer from './views/item-type/components/ItemTypeFormSceneContainer';
+import CourseListScene from './views/course/components/CourseListScene';
+import CourseFormSceneContainer from './views/course/components/CourseFormSceneContainer';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -147,6 +149,9 @@ const Routes = () => (
       <Route path="item-types" component={ItemTypeListScene} />
       <Route path="item-types/new" component={ItemTypeFormSceneContainer} />
       <Route path="item-types/:itemTypeId" component={ItemTypeFormSceneContainer} />
+      <Route path="courses" component={CourseListScene} />
+      <Route path="courses/new" component={CourseFormSceneContainer} />
+      <Route path="courses/:courseId" component={CourseFormSceneContainer} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

@@ -14,13 +14,12 @@ class PracticeTestItemFormContainer extends Component {
   render() {
     return (
       <ItemFormContainer
-        itemsTypeUrl="/item-types"
+        itemsTypeUrl="/item-types?query[allowedForPlacementTest]=true"
         endpointUrl={this.props.endpointUrl}
         order={PracticeTestListItemsService.items.length + 1}
-        showPostPhrase={false}
         onSaveSuccess={this.props.onSaveSuccess}
-        timeProperty="defaultPracticeTestTime"
-        // isTestItem
+        timeProperty="defaultPlacementTestTime"
+        isTestItem
       />
     );
   }
