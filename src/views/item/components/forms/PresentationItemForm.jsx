@@ -6,6 +6,7 @@ import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
 import TranslationInputContainer from '../inputs/TranslationInputContainer';
 import FileInput from '../../../../core/form/FileInput';
+import AudioPreview from '../../../../core/layout/AudioPreview';
 
 const PresentationItemForm = props => (
   <div>
@@ -30,7 +31,13 @@ const PresentationItemForm = props => (
       isTestItem={props.isTestItem}
     />
     <Row>
-      <Column lgSize={6}>
+      {get(props.values, 'generatedAudio', null) && (
+        <Column lgSize={2}>
+          <p>Generated Audio</p>
+          <AudioPreview src={get(props.values, 'generatedAudio', '')} />
+        </Column>
+      )}
+      <Column lgSize={4}>
         <FileInput
           label="Upload an audio to the item"
           accept="audio"
@@ -40,7 +47,7 @@ const PresentationItemForm = props => (
           errorText={get(props.errors, 'audio', '')}
         />
       </Column>
-      <Column lgSize={6}>
+      <Column lgSize={4}>
         <FileInput
           label="Upload an image to the item"
           accept="image"
