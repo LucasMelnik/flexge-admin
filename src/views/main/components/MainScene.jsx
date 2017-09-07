@@ -138,6 +138,10 @@ class MainScene extends Component {
                       label: 'Item types',
                       link: '/item-types',
                     },
+                    {
+                      label: 'Courses',
+                      link: '/courses',
+                    },
                   ]}
                 />
               </MenuItem>
