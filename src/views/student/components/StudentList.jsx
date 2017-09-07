@@ -58,7 +58,7 @@ const StudentList = props => (
       ]}
       rows={props.students}
       selectable
-      onSelect={row => console.log(row)}
+      onSelect={row => browserHistory.push(`students/${row.id}/placements`)}
     />
   </Async>
 );
@@ -81,6 +81,6 @@ StudentList.defaultProps = {
   classId: null,
   school: null,
   distributorId: null,
-}
+};
 
 export default StudentList;

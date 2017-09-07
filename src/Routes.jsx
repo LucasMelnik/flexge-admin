@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { browserHistory, IndexRoute, Route, Router } from 'react-router';
 
 import LoginScene from './views/login/components/LoginScene';
 import MainScene from './views/main/components/MainScene';
@@ -53,6 +53,10 @@ import UserDistributorFormScene from './views/user/components/UserDistributorFor
 import PracticeTestFormScene from './views/practice-test/components/PracticeTestFormScene';
 
 import NotFoundScene from './views/not-found/components/NotFoundScene';
+import ConfigurationFormScene from './views/configuration/components/ConfigurationFormScene';
+import StudentPlacementListScene from './views/student/components/placement/StudentPlacementListScene';
+import ItemTypeListScene from './views/item-type/components/ItemTypeListScene';
+import ItemTypeFormSceneContainer from './views/item-type/components/ItemTypeFormSceneContainer';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -117,6 +121,7 @@ const Routes = () => (
       <Route path="students" component={StudentListScene} />
       <Route path="students/new" component={StudentFormSceneContainer} />
       <Route path="students/:studentId" component={StudentFormSceneContainer} />
+      <Route path="students/:studentId/placements" component={StudentPlacementListScene} />
       <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainer} />
       <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/:studentId" component={StudentFormSceneContainer} />
       <Route path="company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainer} />
@@ -138,6 +143,10 @@ const Routes = () => (
       <Route path="companies/:companyId/admin-users/:userId" component={UserAdminFormScene} />
       <Route path="companies/:companyId/distributor-users/new" component={UserDistributorFormScene} />
       <Route path="companies/:companyId/distributor-users/:userId" component={UserDistributorFormScene} />
+      <Route path="configuration" component={ConfigurationFormScene} />
+      <Route path="item-types" component={ItemTypeListScene} />
+      <Route path="item-types/new" component={ItemTypeFormSceneContainer} />
+      <Route path="item-types/:itemTypeId" component={ItemTypeFormSceneContainer} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
