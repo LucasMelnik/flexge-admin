@@ -18,7 +18,7 @@ const SingleChoiceItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    {(props.showPostPhrase && !props.isTestItem) && (
+    {get(props.values, 'generatedAudio', null) && (
       <div>
         <p>Generated Audio</p>
         <AudioPreview src={get(props.values, 'generatedAudio', '')} />
