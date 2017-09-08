@@ -30,9 +30,9 @@ class PracticeTestListItemsService {
     });
   });
 
-  handleOrderChange = action((practiceTestId, order) => {
+  handleOrderChange = action((practiceTestId, itemId, order) => {
     this.submit.fetch({
-      url: `/practice-test-items/${practiceTestId}`,
+      url: `/practice-test-items/${practiceTestId}/items/${itemId}`,
       method: 'put',
       body: {
         order,

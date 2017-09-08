@@ -7,7 +7,6 @@ import ItemFormContainer from '../../item/components/ItemFormContainer';
 class PracticeTestItemFormContainer extends Component {
 
   static propTypes = {
-    endpointUrl: PropTypes.string.isRequired,
     onSaveSuccess: PropTypes.func.isRequired,
   };
 
@@ -15,7 +14,7 @@ class PracticeTestItemFormContainer extends Component {
     return (
       <ItemFormContainer
         itemsTypeUrl="/item-types?query[allowedForPlacementTest]=true"
-        endpointUrl={this.props.endpointUrl}
+        endpointUrl="/practice-test-items"
         order={PracticeTestListItemsService.items.length + 1}
         onSaveSuccess={this.props.onSaveSuccess}
         timeProperty="defaultPlacementTestTime"

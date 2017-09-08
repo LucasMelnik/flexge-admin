@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Button from '../../../core/form/Button';
 import PracticeTestListItemsContainer from './PracticeTestListItemsContainer';
-//import PracticeTestItemFormContainer from './PracticeTestItemFormContainer';
 import Card from '../../../core/layout/Card';
 import PracticeTestItemFormContainer from './PracticeTestItemFormContainer';
 
 class PracticeTestItems extends Component {
-
-  static propTypes = {
-    practiceTestId: PropTypes.string.isRequired,
-  };
 
   state = {
     actualScene: 'LIST',
@@ -52,10 +46,9 @@ class PracticeTestItems extends Component {
         }
       >
         {this.state.actualScene === 'LIST' ? (
-          <PracticeTestListItemsContainer practiceTestId={this.props.practiceTestId} />
+          <PracticeTestListItemsContainer />
         ) : (
           <PracticeTestItemFormContainer
-            endpointUrl={'/practice-test-items'}
             onSaveSuccess={this.handleChangeToList}
           />
         )}
