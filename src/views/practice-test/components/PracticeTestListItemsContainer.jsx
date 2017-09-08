@@ -9,7 +9,7 @@ import PracticeTestListItemsService from '../services/PracticeTestListItemsServi
 class PracticeTestListItemsContainer extends Component {
 
   static propTypes = {
-    practiceTestId: PropTypes.string.isRequired,
+    practiceTestId: PropTypes.string,
   };
 
   componentWillMount() {
