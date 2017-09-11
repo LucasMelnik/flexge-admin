@@ -20,6 +20,7 @@ class ReviewListService {
       query: {
         course: this.formMyReviews.getValue('course'),
         status: this.formMyReviews.getValue('status'),
+        statusImage: this.formMyReviews.getValue('statusImage'),
         statusFormat: this.formMyReviews.getValue('statusFormat'),
         ...localStorage.role !== 'ADMIN' && {
           createdBy: localStorage.id,

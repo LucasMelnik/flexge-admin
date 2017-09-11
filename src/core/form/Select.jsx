@@ -32,7 +32,7 @@ export default class Select extends Component {
       <div>
         <div
           style={{
-            minWidth: 250,
+            minWidth: 230,
             fontWeight: 400,
             display: 'flex',
             color: '#555555',
