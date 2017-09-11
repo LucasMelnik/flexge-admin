@@ -64,7 +64,7 @@ const UnitList = props => (
         {
           label: 'Unit Type',
           path: 'type.name',
-          width: '120',
+          width: '10%',
           rowColumnStyle: {
             textOverflow: 'none',
             paddingTop: 5,
