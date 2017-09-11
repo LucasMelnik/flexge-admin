@@ -9,6 +9,7 @@ import Card from '../../../core/layout/Card';
 import Async from '../../../core/layout/Async';
 import ReviewUnitItemsScene from './ReviewUnitItemScene';
 import ReviewFormControlBar from './ReviewFormControlBar';
+import ReviewUnitItemImageScene from './ReviewUnitItemImageScene';
 
 const ReviewFormScene = props => (
   <div>
@@ -59,6 +60,18 @@ const ReviewFormScene = props => (
        fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
        moduleId={props.module.id}
     />
+    {props.unit &&
+    props.unit.type &&
+    props.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key)) && (
+      <div>
+        <Separator size="md" />
+        <ReviewUnitItemImageScene
+          unit={props.unit}
+          review={props.review}
+          fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
+        />
+      </div>
+    )}
     <ReviewFormControlBar
       reviewId={props.review.id}
       unitId={props.unit.id}

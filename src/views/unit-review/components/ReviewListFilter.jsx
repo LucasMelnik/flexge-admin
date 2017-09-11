@@ -18,6 +18,16 @@ const ReviewListFilter = props => (
         value,
         label: value.replace('_', ' '),
       }))}
+      label="Status images"
+      value={get(props.values, 'statusImage', '')}
+      onChange={value => props.onChange('statusImage', value)}
+    />
+    <ColumnSeparator size="sm" />
+    <Select
+      options={['', 'PENDING', 'APPROVED', 'NOT_APPROVED', 'PENDING_REVIEW'].map(value => ({
+        value,
+        label: value.replace('_', ' '),
+      }))}
       label="Status format"
       value={get(props.values, 'statusFormat', '')}
       onChange={value => props.onChange('statusFormat', value)}

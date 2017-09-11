@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dialog from '../layout/Dialog';
 import Button from '../form/Button';
-import Async from './Async';
 import IconButton from '../form/IconButton';
 
 export default class ImagePreview extends Component {
@@ -11,18 +10,11 @@ export default class ImagePreview extends Component {
     src: PropTypes.string.isRequired,
   };
 
-  state = { isOpen: false, loading: true };
+  state = { isOpen: false };
 
   toggleModal = () => {
     this.setState({
       isOpen: !this.state.isOpen,
-      loading: true,
-    });
-  };
-
-  handleLoad = () => {
-    this.setState({
-      loading: false,
     });
   };
 
@@ -43,20 +35,18 @@ export default class ImagePreview extends Component {
           title="Image Preview"
           actions={[
             <Button
+              key="closeButton"
               icon="fa-times"
               label="Close"
               onClick={this.toggleModal}
             />,
           ]}
         >
-          <Async fetching={this.state.loading}>
-            <img
-              src={`${process.env.REACT_APP_API_URL}/files/${this.props.src}`}
-              onLoad={this.handleLoad}
-              width="100%"
-              alt=""
-            />
-          </Async>
+          <img
+            src={`${process.env.REACT_APP_API_URL}/files/${this.props.src}`}
+            width="100%"
+            alt=""
+          />
         </Dialog>
       </div>
     );

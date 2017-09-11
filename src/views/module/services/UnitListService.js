@@ -35,15 +35,23 @@ class UnitListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.units = orderBy(this.fetch.data, ['group', 'order'], ['asc', 'asc']).map((unit) => {
-          if (!unit.review) {
-            return {
-              ...unit,
-              review: { status: 'NOT SENT TO REVIEW' },
-            };
-          }
-          return unit;
-        });
+        this.units = orderBy(this.fetch.data, ['group', 'order'], ['asc', 'asc'])
+          .map((unit) => {
+            if (!unit.review) {
+              return {
+                ...unit,
+                review: { status: 'NOT SENT TO REVIEW' },
+              };
+            }
+            return unit;
+          })
+          .filter(unit => {
+            if (this.form.getValue('onlyWithImages')) {
+              return unit.type.name.toLowerCase() !== 'review' &&
+                unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => itemType.key === type));
+            }
+            return true;
+          });
       } else {
         this.units = [];
       }

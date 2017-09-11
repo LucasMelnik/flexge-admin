@@ -8,11 +8,13 @@ const ConfirmDialog = props => (
     title={props.title}
     actions={[
       <Button
+        key="confirmButton"
         type="danger"
         label={props.confirmLabel}
         onClick={() => props.onConfirm()}
       />,
       <Button
+        key="discardButton"
         type="default"
         label={props.discardLabel}
         onClick={() => props.onDiscard()}
