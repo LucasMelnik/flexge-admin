@@ -48,24 +48,33 @@ const ReviewUnitItemImageList = props => (
         {
           label: 'Image',
           path: 'item.image',
-          render: (cell, row) => (
-            <img
-              src={`${process.env.REACT_APP_API_URL}/files/${row.item.image}`}
-              alt={`for-item-${row.item.id}`}
-              style={{
-                width: 'auto',
-                height: 100,
-              }}
-            />
-          ),
+          render: (cell, row) => {
+            if (row.item.image) {
+              return (
+                <img
+                  src={`${process.env.REACT_APP_API_URL}/files/${row.item.image}`}
+                  alt={`for-item-${row.item.id}`}
+                  style={{
+                    width: 'auto',
+                    height: 100,
+                  }}
+                />
+              );
+            }
+            return 'No image uploaded';
+          }
         },
         {
           label: 'Actions',
           path: 'action',
           width: props.disabled ? '0' : '175',
-          render: (cell, row, extraData, index) => (
-            <ImagePreview src={row.item.image} />
-          ),
+          render: (cell, row) => {
+            if (row.item.image) {
+              return (
+                <ImagePreview src={row.item.image} />
+              );
+            }
+          }
         },
       ]}
       rows={props.items}
