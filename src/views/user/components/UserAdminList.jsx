@@ -7,7 +7,6 @@ import IconButton from '../../../core/form/IconButton';
 
 const UserAdminList = props => (
   <Async fetching={props.fetching}>
-    {console.log(props.users)}
     <Table
       columns={[
         {
@@ -50,8 +49,6 @@ const UserAdminList = props => (
         },
       ]}
       rows={props.users}
-      selectable
-      onSelect={() => console.log('Select')}
     />
   </Async>
 );
