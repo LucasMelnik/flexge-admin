@@ -9,7 +9,6 @@ const FormatReviewForm = (props) => (
     <div
       style={{
         marginBottom: 10,
-        marginRight: 40,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -60,7 +59,8 @@ const FormatReviewForm = (props) => (
     </div>
     <TextEditor
       style={{
-        height: props.expanded ? 600 : 220,
+        height: props.expanded ? 630 : 250,
+        paddingBottom: 40,
         transition: 'all 0.5s',
       }}
       placeholder="Comment status format review..."

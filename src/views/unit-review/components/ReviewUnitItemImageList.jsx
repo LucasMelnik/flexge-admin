@@ -15,6 +15,16 @@ const ReviewUnitItemImageList = props => (
           hidden: true,
         },
         {
+          label: 'Order',
+          path: 'order',
+          width: '50px',
+        },
+        {
+          label: 'Group',
+          path: 'group',
+          width: '100px',
+        },
+        {
           label: 'Text',
           path: 'item.text',
           width: '23%',
@@ -35,6 +45,20 @@ const ReviewUnitItemImageList = props => (
           label: 'Translation',
           path: 'item.translation',
           width: '23%',
+          rowColumnStyle: {
+            textOverflow: 'none',
+            paddingTop: 5,
+            paddingBottom: 5,
+            paddingRight: 5,
+            whiteSpace: 'normal',
+            textAlign: 'justify',
+            lineHeight: '18px',
+          },
+        },
+        {
+          label: 'Type',
+          path: 'item.type.name',
+          width: '10%',
           rowColumnStyle: {
             textOverflow: 'none',
             paddingTop: 5,
@@ -67,7 +91,7 @@ const ReviewUnitItemImageList = props => (
         {
           label: 'Actions',
           path: 'action',
-          width: props.disabled ? '0' : '175',
+          width: '75',
           render: (cell, row) => {
             if (row.item.image) {
               return (
@@ -78,6 +102,68 @@ const ReviewUnitItemImageList = props => (
         },
       ]}
       rows={props.items}
+      expandable
+      expandableComponent={row => (
+        <Table
+          columns={[
+            {
+              label: 'ID',
+              path: 'id',
+              isKey: true,
+              hidden: true,
+            },
+            {
+              label: 'Text',
+              path: 'text',
+              width: '23%',
+              rowColumnStyle: {
+                textOverflow: 'none',
+                paddingTop: 5,
+                paddingBottom: 5,
+                paddingRight: 5,
+                whiteSpace: 'normal',
+                textAlign: 'justify',
+                lineHeight: '18px',
+              },
+              render: (cell, row) => (
+                <div>{row.item.text ? row.item.text : row.item.title}</div>
+              ),
+            },
+            {
+              label: 'Image',
+              path: 'image',
+              render: (cell, row) => {
+                if (row.item.image) {
+                  return (
+                    <img
+                      src={`${process.env.REACT_APP_API_URL}/files/${row.image}`}
+                      alt={`for-item-${row.item.id}`}
+                      style={{
+                        width: 'auto',
+                        height: 100,
+                      }}
+                    />
+                  );
+                }
+                return 'No image uploaded';
+              }
+            },
+            {
+              label: 'Actions',
+              path: 'action',
+              width: '75',
+              render: (cell, row) => {
+                if (row.image) {
+                  return (
+                    <ImagePreview src={row.image} />
+                  );
+                }
+              }
+            },
+          ]}
+          rows={row.item.type.key === 'SINGLE_CHOICE_IMAGE' && row.item.answers}
+        />
+      )}
     />
   </Async>
 );

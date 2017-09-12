@@ -76,6 +76,9 @@ const ReviewFormScene = props => (
       reviewId={props.review.id}
       unitId={props.unit.id}
       fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
+      imageReview={props.unit &&
+      props.unit.type &&
+      props.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))}
     />
   </div>
 );

@@ -38,7 +38,8 @@ const ImageReviewForm = (props) => (
             />
           </div>
         )}
-        {(localStorage.role === 'CONTENT_ADMIN' && props.values.statusImage === 'NOT_APPROVED') && (
+        {(localStorage.role === 'CONTENT_ADMIN' &&
+          (!props.values.statusImage || props.values.statusImage === 'NOT_APPROVED' || props.values.statusImage === 'PENDING')) && (
           <div>
             <Button
               label="Send to image review"
@@ -54,9 +55,14 @@ const ImageReviewForm = (props) => (
       </div>
     </div>
     <TextEditor
+      style={{
+        height: props.expanded ? 630 : 250,
+        paddingBottom: 40,
+        transition: 'all 0.5s',
+      }}
       placeholder="Comment status image review..."
       isRequired
-      readOnly={localStorage.role !== 'ADMIN' && props.values.statusImage !== 'NOT_APPROVED'}
+      readOnly={localStorage.role !== 'ADMIN' && props.values.statusImage === 'APPROVED'}
       value={get(props.values, 'commentsImage', '')}
       onChange={value => props.onChange('commentsImage', value)}
     />
@@ -64,6 +70,7 @@ const ImageReviewForm = (props) => (
 );
 
 ImageReviewForm.propTypes = {
+  expanded: PropTypes.bool.isRequired,
   onSaveStatusImage: PropTypes.func.isRequired,
   values: PropTypes.object.isRequired,
   errors: PropTypes.object,
@@ -71,7 +78,6 @@ ImageReviewForm.propTypes = {
 };
 
 ImageReviewForm.defaultProps = {
-  comments: null,
   errors: null,
   onChange: null,
 };
