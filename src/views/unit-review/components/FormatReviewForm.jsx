@@ -14,7 +14,7 @@ const FormatReviewForm = (props) => (
         justifyContent: 'space-between',
       }}
     >
-      Revisão de Formato
+      Revisão de Formato ({props.values.statusFormat && props.values.statusFormat.replace('_', ' ')})
       <div
         style={{
           marginTop: (localStorage.role === 'CONTENT_ADMIN' && props.values.statusFormat === 'APPROVED') && 36,

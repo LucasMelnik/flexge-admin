@@ -14,7 +14,7 @@ const ImageReviewForm = (props) => (
         justifyContent: 'space-between',
       }}
     >
-      Revisão de Imagens
+      Revisão de Imagens ({props.values.statusImage && props.values.statusImage.replace('_', ' ')})
       <div>
         {localStorage.role === 'ADMIN' && (
           <div>
