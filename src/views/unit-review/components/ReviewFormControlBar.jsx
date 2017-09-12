@@ -74,7 +74,7 @@ export default class ReviewFormControlBar extends Component {
 
     return (
       <div>
-        <div style={{ height: 360 }} />
+        <div style={{ height: 240 }} />
         <div
           style={{
             position: 'fixed',
@@ -82,7 +82,7 @@ export default class ReviewFormControlBar extends Component {
             bottom: 0,
             left: 0,
             right: 0,
-            height: this.state.expanded ? '89%' : this.props.fetching ? 70 : 360,
+            height: this.state.expanded ? '89%' : this.props.fetching ? 70 : 230,
             maxHeight: '89%',
             transition: 'all 1s',
             backgroundColor: '#fff',

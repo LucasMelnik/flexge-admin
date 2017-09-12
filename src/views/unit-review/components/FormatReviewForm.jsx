@@ -59,7 +59,7 @@ const FormatReviewForm = (props) => (
     </div>
     <TextEditor
       style={{
-        height: props.expanded ? 630 : 250,
+        height: props.expanded ? 630 : 120,
         paddingBottom: 40,
         transition: 'all 0.5s',
       }}

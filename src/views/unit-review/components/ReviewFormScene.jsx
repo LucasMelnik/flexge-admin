@@ -11,81 +11,84 @@ import ReviewUnitItemsScene from './ReviewUnitItemScene';
 import ReviewFormControlBar from './ReviewFormControlBar';
 import ReviewUnitItemImageScene from './ReviewUnitItemImageScene';
 
-const ReviewFormScene = props => (
-  <div>
-    <Breadcrumb
-      fetching={props.fetching}
-      crumbs={[
-        {
-          text: `Course - ${props.module.course.name}`,
-          link: '/modules',
-        },
-        {
-          text: `Module - ${props.module.name}`,
-          link: `/modules/${props.module.id}/details`,
-        },
-        {
-          text: `Unit - ${props.unit.name}`,
-          link: `/modules/${props.module.id}/units/${props.unit.id}`,
-        },
-        {
-          text: 'Review Content and Format',
-        }
-      ]}
-    />
-    <Card
-      title="Unit"
-      actions={
-        <Button
-          icon="fa-arrow-left"
-          label="Back to reviews"
-          onClick={() => browserHistory.push('/reviews')}
-        />
-      }
-    >
-      <Async fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}>
-        <UnitFormContainer
-          unitId={props.unit.id}
-          moduleId={props.module.id}
-          reviewId={props.review.id}
-          disabled={(props.review.statusFormat === 'PENDING' || props.review.statusFormat === 'PENDING_REVIEW') ||
-          (localStorage.role !== 'ADMIN' && props.unit.createdBy !== localStorage.id)}
-        />
-      </Async>
-    </Card>
-    <Separator size="md" />
-    <ReviewUnitItemsScene
-       unit={props.unit}
-       review={props.review}
-       fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
-       moduleId={props.module.id}
-    />
-    {(localStorage.role === 'IMAGE_ADMIN' || localStorage.role === 'ADMIN') &&
-    props.unit &&
+const ReviewFormScene = props => {
+  const isUnitWithImage = props.unit &&
     props.unit.type &&
-    props.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key)) && (
-      <div>
-        <Separator size="md" />
-        <ReviewUnitItemImageScene
-          unit={props.unit}
-          review={props.review}
-          fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
-        />
-      </div>
-    )}
-    <ReviewFormControlBar
-      reviewId={props.review.id}
-      unitId={props.unit.id}
-      fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
-      imageReview={
-        (localStorage.role === 'IMAGE_ADMIN' || localStorage.role === 'ADMIN') &&
-        props.unit &&
-        props.unit.type &&
-        props.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))
-      }
-    />
-  </div>
-);
+    props.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key));
+
+  return (
+    <div>
+      <Breadcrumb
+        fetching={props.fetching}
+        crumbs={[
+          {
+            text: `Course - ${props.module.course.name}`,
+            link: '/modules',
+          },
+          {
+            text: `Module - ${props.module.name}`,
+            link: `/modules/${props.module.id}/details`,
+          },
+          {
+            text: `Unit - ${props.unit.name}`,
+            link: `/modules/${props.module.id}/units/${props.unit.id}`,
+          },
+          {
+            text: 'Review Content and Format',
+          }
+        ]}
+      />
+      <Card
+        title="Unit"
+        actions={
+          <Button
+            icon="fa-arrow-left"
+            label="Back to reviews"
+            onClick={() => browserHistory.push('/reviews')}
+          />
+        }
+      >
+        <Async fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}>
+          <UnitFormContainer
+            unitId={props.unit.id}
+            moduleId={props.module.id}
+            reviewId={props.review.id}
+            disabled={(props.review.statusFormat === 'PENDING' || props.review.statusFormat === 'PENDING_REVIEW') ||
+            (localStorage.role !== 'ADMIN' && props.unit.createdBy !== localStorage.id)}
+          />
+        </Async>
+      </Card>
+      <Separator size="md" />
+      <ReviewUnitItemsScene
+        unit={props.unit}
+        review={props.review}
+        fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
+        moduleId={props.module.id}
+      />
+      {((localStorage.role === 'IMAGE_ADMIN' || localStorage.role === 'ADMIN') && isUnitWithImage) && (
+        <div>
+          <Separator size="md" />
+          <ReviewUnitItemImageScene
+            unit={props.unit}
+            review={props.review}
+            fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
+          />
+        </div>
+      )}
+      {
+        (localStorage.role === 'ADMIN' ||
+        localStorage.role === 'CONTENT_ADMIN' ||
+        (localStorage.role === 'IMAGE_ADMIN' && isUnitWithImage)) && (
+          <ReviewFormControlBar
+            reviewId={props.review.id}
+            unitId={props.unit.id}
+            fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
+            imageReview={(localStorage.role === 'IMAGE_ADMIN' || localStorage.role === 'ADMIN') && isUnitWithImage}
+          />
+        )}
+    </div>
+  );
+};
 
 ReviewFormScene.propTypes = {
   fetching: PropTypes.bool,

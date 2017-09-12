@@ -38,7 +38,7 @@ const ImageReviewForm = (props) => (
             />
           </div>
         )}
-        {(localStorage.role === 'CONTENT_ADMIN' &&
+        {(localStorage.role === 'IMAGE_ADMIN' &&
           (!props.values.statusImage || props.values.statusImage === 'NOT_APPROVED' || props.values.statusImage === 'PENDING')) && (
           <div>
             <Button
@@ -56,7 +56,7 @@ const ImageReviewForm = (props) => (
     </div>
     <TextEditor
       style={{
-        height: props.expanded ? 630 : 250,
+        height: props.expanded ? 630 : 120,
         paddingBottom: 40,
         transition: 'all 0.5s',
       }}
