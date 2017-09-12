@@ -60,7 +60,8 @@ const ReviewFormScene = props => (
        fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
        moduleId={props.module.id}
     />
-    {props.unit &&
+    {(localStorage.role === 'IMAGE_ADMIN' || localStorage.role === 'ADMIN') &&
+    props.unit &&
     props.unit.type &&
     props.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key)) && (
       <div>
@@ -76,9 +77,12 @@ const ReviewFormScene = props => (
       reviewId={props.review.id}
       unitId={props.unit.id}
       fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
-      imageReview={props.unit &&
-      props.unit.type &&
-      props.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))}
+      imageReview={
+        (localStorage.role === 'IMAGE_ADMIN' || localStorage.role === 'ADMIN') &&
+        props.unit &&
+        props.unit.type &&
+        props.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))
+      }
     />
   </div>
 );

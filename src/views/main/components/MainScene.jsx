@@ -202,19 +202,19 @@ class MainScene extends Component {
                 />
               </MenuItem>
             </PermissionValidator>
-            <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+            <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}>
               <div>
                 <MenuSection>
                   Conteúdo
                 </MenuSection>
-                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}>
                   <MenuItem
                     title="Modules"
                     icon="fa fa-book"
                     link="/modules"
                   />
                 </PermissionValidator>
-                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}>
                   <MenuItem
                     title="Review"
                     icon="fa fa-eye"

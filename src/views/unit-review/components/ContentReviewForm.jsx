@@ -8,14 +8,13 @@ const ContentReviewForm = props => (
   <div>
     <div
       style={{
-        fontSize: 16,
         marginBottom: 10,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
       }}
     >
-      Revisão de conteúdo {props.values.statusFormat !== 'APPROVED' && ('(Awaiting format review)')}
+      Revisão de conteúdo {props.values.statusFormat !== 'APPROVED' ? ('(Awaiting format review)') : props.values.status.replace('_', ' ')}
       <div
         style={{
           marginTop: props.values.status === 'DONE' && 36,

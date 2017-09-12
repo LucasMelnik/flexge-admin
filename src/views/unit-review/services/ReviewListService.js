@@ -22,7 +22,7 @@ class ReviewListService {
         status: this.formMyReviews.getValue('status'),
         statusImage: this.formMyReviews.getValue('statusImage'),
         statusFormat: this.formMyReviews.getValue('statusFormat'),
-        ...localStorage.role !== 'ADMIN' && {
+        ...(localStorage.role !== 'ADMIN' && localStorage.role !== 'IMAGE_ADMIN') && {
           createdBy: localStorage.id,
         },
       },

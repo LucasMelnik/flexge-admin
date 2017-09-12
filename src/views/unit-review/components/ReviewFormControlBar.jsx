@@ -33,39 +33,40 @@ export default class ReviewFormControlBar extends Component {
   };
 
   render() {
-    const tabs = [
-      {
+    const tabs = [];
+    if (localStorage.role !== 'IMAGE_ADMIN') {
+      tabs.push({
         content: (
-                   <FormatReviewFormContainer
-                     expanded={this.state.expanded}
-                     reviewId={this.props.reviewId}
-                     unitId={this.props.unitId}
-                   />
-                 ),
+           <FormatReviewFormContainer
+             expanded={this.state.expanded}
+             reviewId={this.props.reviewId}
+             unitId={this.props.unitId}
+           />
+         ),
         title: 'Format Review'
-      },
-      {
+      });
+      tabs.push({
         content: (
-                   <ContentReviewFormContainer
-                     expanded={this.state.expanded}
-                     reviewId={this.props.reviewId}
-                     unitId={this.props.unitId}
-                   />
-                 ),
+           <ContentReviewFormContainer
+             expanded={this.state.expanded}
+             reviewId={this.props.reviewId}
+             unitId={this.props.unitId}
+           />
+         ),
         title: 'Content Review'
-      }
-    ];
+      });
+    }
 
     if (this.props.imageReview) {
       tabs.push(
         {
           content: (
-                     <ImageReviewFormContainer
-                       expanded={this.state.expanded}
-                       reviewId={this.props.reviewId}
-                       unitId={this.props.unitId}
-                     />
-                   ),
+             <ImageReviewFormContainer
+               expanded={this.state.expanded}
+               reviewId={this.props.reviewId}
+               unitId={this.props.unitId}
+             />
+           ),
           title: 'Image Review'
         }
       );
