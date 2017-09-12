@@ -53,7 +53,8 @@ const ContentReviewForm = props => (
     </div>
     <TextEditor
       style={{
-        height: props.expanded ? 600 : 220,
+        height: props.expanded ? 630 : 250,
+        paddingBottom: 40,
         transition: 'all 0.5s',
       }}
       placeholder="Comment review..."

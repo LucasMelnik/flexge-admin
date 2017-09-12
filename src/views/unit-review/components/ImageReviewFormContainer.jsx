@@ -11,11 +11,13 @@ class ImageReviewFormContainer extends Component {
   static propTypes = {
     unitId: PropTypes.string,
     reviewId: PropTypes.string,
+    expanded: PropTypes.bool,
   };
 
   static defaultProps = {
     unitId: null,
     reviewId: null,
+    expanded: false,
   };
 
   componentWillMount() {
@@ -25,6 +27,7 @@ class ImageReviewFormContainer extends Component {
   render() {
     return (
       <ImageReviewForm
+        expanded={this.props.expanded}
         values={this.reviewStatusImageService.form.getValues()}
         onChange={this.reviewStatusImageService.form.setValue}
         onSaveStatusImage={this.reviewStatusImageService.handleSaveStatusImage}
