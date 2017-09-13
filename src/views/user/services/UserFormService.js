@@ -64,7 +64,7 @@ class UserFormService {
     }).then(() => {
       if (this.submit.data) {
         const user = this.submit.data;
-        if (user.role === 'ADMIN' || user.role === 'CONTENT_ADMIN') {
+        if (user.role === 'ADMIN' || user.role === 'CONTENT_ADMIN' || user.role === 'IMAGE_ADMIN') {
           browserHistory.push(`/admin-users/${user.id}`);
         } else if (user.role === 'DISTRIBUTOR_MANAGER') {
           browserHistory.push(`/companies/${user.company.id}/distributor-users/${user.id}`);
