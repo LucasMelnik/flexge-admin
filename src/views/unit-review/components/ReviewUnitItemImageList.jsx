@@ -125,19 +125,16 @@ const ReviewUnitItemImageList = props => (
                 textAlign: 'justify',
                 lineHeight: '18px',
               },
-              render: (cell, row) => (
-                <div>{row.item.text ? row.item.text : row.item.title}</div>
-              ),
             },
             {
               label: 'Image',
               path: 'image',
               render: (cell, row) => {
-                if (row.item.image) {
+                if (row.image) {
                   return (
                     <img
                       src={`${process.env.REACT_APP_API_URL}/files/${row.image}`}
-                      alt={`for-item-${row.item.id}`}
+                      alt={`for-item-${row.id}`}
                       style={{
                         width: 'auto',
                         height: 100,
