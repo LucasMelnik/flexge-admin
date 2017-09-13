@@ -38,6 +38,8 @@ class MainScene extends Component {
       this.mainmenuScroll();
     }
 
+    $(".page-topbar li.profile").addClass("showopacity");
+
     $('#main-menu-wrapper li a').click(function(e) {
 
         if ($(this).next().hasClass('sub-menu') === false) {
