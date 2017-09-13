@@ -7,9 +7,9 @@ deployment:
     commands:
       - rm -f /home/ubuntu/english-learning-frontend-admin/.env.production
       - npm run build
-      - aws s3 sync --delete /home/ubuntu/english-learning-frontend-admin/build/ s3://staging-admin-flexge
+      - aws s3 sync --delete /home/ubuntu/english-learning-frontend-admin/build/ s3://staging-admin.flexge.com
   prod:
     branch: master
     commands:
       - npm run build
-      - aws s3 sync --delete /home/ubuntu/english-learning-frontend-admin/build/ s3://prod-admin-flexge
+      - aws s3 sync --delete /home/ubuntu/english-learning-frontend-admin/build/ s3://admin.flexge.com
