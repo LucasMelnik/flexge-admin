@@ -5,6 +5,9 @@ import Separator from '../../../../core/layout/Separator';
 import TranslationContainer from '../inputs/TranslationInputContainer';
 import AnswersContainer from '../inputs/AnswersInputContainer';
 import FileInput from '../../../../core/form/FileInput';
+import Row from '../../../../core/layout/Row';
+import Column from '../../../../core/layout/Column';
+import AudioPreview from '../../../../core/layout/AudioPreview';
 
 const DictationItemForm = props => (
   <div>
@@ -17,14 +20,23 @@ const DictationItemForm = props => (
       isTestItem={props.isTestItem}
     />
     <Separator size="xs" />
-    <FileInput
-      label="Upload an audio to item"
-      accept="audio"
-      value={get(props.values, 'audio', '')}
-      onChange={(key) => props.onChange('audio', key)}
-      errorText={get(props.errors, 'audio', '')}
-      disabled={props.disabled}
-    />
+    <Row>
+      {get(props.values, 'generatedAudio', null) && (
+        <Column lgSize={4}>
+          <AudioPreview src={get(props.values, 'generatedAudio', '')} />
+        </Column>
+      )}
+      <Column lgSize={6}>
+        <FileInput
+          label="Upload an audio to item"
+          accept="audio"
+          value={get(props.values, 'audio', '')}
+          onChange={(key) => props.onChange('audio', key)}
+          errorText={get(props.errors, 'audio', '')}
+          disabled={props.disabled}
+        />
+      </Column>
+    </Row>
     <Separator size="sm" />
     <AnswersContainer
       label="Add another possible answer"

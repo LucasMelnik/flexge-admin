@@ -5,15 +5,34 @@ import Button from '../../../../core/form/Button';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import Separator from '../../../../core/layout/Separator';
+import Select from '../../../../core/form/Select';
 
 const UnitListFilter = props => (
   <Row>
-    <Column lgSize={10} mdSize={10} smSize={10}>
+    <Column lgSize={8} mdSize={8} smSize={8}>
       <TextInput
         label="Search units"
         value={props.values.filter}
         onChange={value => props.onChange('filter', value)}
         disabled={props.fetching}
+      />
+    </Column>
+    <Column lgSize={2} mdSize={2} smSize={2}>
+      <Select
+        label="Only with images"
+        value={props.values.onlyWithImages}
+        onChange={value => props.onChange('onlyWithImages', value)}
+        disabled={props.fetching}
+        options={[
+          {
+            label: 'Yes',
+            value: true,
+          },
+          {
+            label: 'No',
+            value: false,
+          },
+        ]}
       />
     </Column>
     <Column lgSize={2} mdSize={2} smSize={2}>

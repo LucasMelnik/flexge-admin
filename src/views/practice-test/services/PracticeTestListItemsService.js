@@ -20,7 +20,7 @@ class PracticeTestListItemsService {
 
   handleLoad = action(() => {
     this.fetch.fetch({
-      url: `/practice-tests/${this.practiceTestId}/items`,
+      url: '/practice-test-items',
     }).then(() => {
       if (this.fetch.data) {
         this.items = orderBy(this.fetch.data, ['order'], ['asc']);
@@ -30,9 +30,9 @@ class PracticeTestListItemsService {
     });
   });
 
-  handleOrderChange = action((itemId, order) => {
+  handleOrderChange = action((practiceTestId, itemId, order) => {
     this.submit.fetch({
-      url: `/practice-tests/${this.practiceTestId}/items/${itemId}`,
+      url: `/practice-test-items/${practiceTestId}/items/${itemId}`,
       method: 'put',
       body: {
         order,

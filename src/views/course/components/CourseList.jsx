@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
+import PropTypes from 'prop-types';
 import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
 import IconButton from '../../../core/form/IconButton';
 
-const PracticeTestList = props => (
+const CourseList = props => (
   <Async fetching={props.fetching}>
     <Table
       columns={[
@@ -16,12 +16,12 @@ const PracticeTestList = props => (
           hidden: true,
         },
         {
-          label: 'Practice Test',
-          path: 'index',
-        },
-        {
           label: 'Name',
           path: 'name',
+        },
+        {
+          label: 'Description',
+          path: 'description',
         },
         {
           label: 'Actions',
@@ -32,34 +32,30 @@ const PracticeTestList = props => (
               <div>
                 <IconButton
                   icon="fa-trash"
-                  onClick={() => props.onDelete(row.id)}
+                  onClick={() => props.onDelete(row)}
                 />
                 {' '}
                 <IconButton
                   icon="fa-edit"
-                  onClick={() => browserHistory.push(`/practice-tests/${row.id}`)}
+                  onClick={() => browserHistory.push(`/courses/${row.id}`)}
                 />
               </div>
             );
           },
         },
       ]}
-      rows={props.practiceTests}
+      rows={props.courses}
     />
   </Async>
 );
 
-PracticeTestList.propTypes = {
-  practiceTests: PropTypes.arrayOf(PropTypes.shape({
+CourseList.propTypes = {
+  courses: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
-  onDelete: PropTypes.func,
+  onDelete: PropTypes.func.isRequired,
 };
 
-PracticeTestList.defaultProps = {
-  onDelete: null,
-};
-
-export default PracticeTestList;
+export default CourseList;

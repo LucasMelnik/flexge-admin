@@ -119,6 +119,35 @@ const MyReviewList = props => (
           ),
         },
         {
+          label: 'Status image',
+          path: 'review.statusImage',
+          render: (cell, row) => {
+            if (row.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))) {
+              return (
+                <div
+                  style={{
+                    color: '#fff',
+                    padding: 5,
+                    fontSize: 12,
+                    display: 'inline-block',
+                    fontWeight: 'bold',
+                    borderRadius: 5,
+                    backgroundColor: {
+                       PENDING: '#ef8c3b',
+                       PENDING_REVIEW: '#ef8c3b',
+                       APPROVED: '#009687',
+                       NOT_APPROVED: '#FF5233',
+                     }[row.review.statusImage || 'PENDING'],
+                  }}
+                >
+                  {replace(row.review.statusImage || 'PENDING', '_', ' ')}
+                </div>
+              );
+            }
+            return 'N/A';
+          }
+        },
+        {
           label: 'Actions',
           path: 'action',
           width: '70',

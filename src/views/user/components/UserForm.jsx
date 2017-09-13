@@ -87,6 +87,7 @@ const UserForm = props => (
                 [
                   { value: 'ADMIN', label: 'Admin' },
                   { value: 'CONTENT_ADMIN', label: 'Content Admin' },
+                  { value: 'IMAGE_ADMIN', label: 'Image Admin' },
                 ]
               ) : props.roleUser === 'DISTRIBUTOR_MANAGER' ? (
               [

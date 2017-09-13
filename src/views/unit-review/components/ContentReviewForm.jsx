@@ -8,14 +8,13 @@ const ContentReviewForm = props => (
   <div>
     <div
       style={{
-        fontSize: 16,
         marginBottom: 10,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
       }}
     >
-      Revisão de conteúdo {props.values.statusFormat !== 'APPROVED' && ('(Awaiting format review)')}
+      Revisão de conteúdo {props.values.statusFormat !== 'APPROVED' ? ('(Awaiting format review)') : props.values.status.replace('_', ' ')}
       <div
         style={{
           marginTop: props.values.status === 'DONE' && 36,
@@ -53,7 +52,8 @@ const ContentReviewForm = props => (
     </div>
     <TextEditor
       style={{
-        height: props.expanded ? 600 : 220,
+        height: props.expanded ? 630 : 120,
+        paddingBottom: 40,
         transition: 'all 0.5s',
       }}
       placeholder="Comment review..."

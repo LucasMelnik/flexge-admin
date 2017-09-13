@@ -6,6 +6,7 @@ import AnswersInputContainer from "../inputs/AnswersInputContainer";
 import TranslationInputContainer from "../inputs/TranslationInputContainer";
 import TextInput from '../../../../core/form/TextInput';
 import FileInput from '../../../../core/form/FileInput';
+import AudioPreview from '../../../../core/layout/AudioPreview';
 
 const SingleChoiceItemForm = props => (
   <div>
@@ -18,8 +19,12 @@ const SingleChoiceItemForm = props => (
       isTestItem={props.isTestItem}
     />
     {(props.showPostPhrase && !props.isTestItem) && (
-      <Separator size="xs" />
+      <div>
+        <p>Generated Audio</p>
+        <AudioPreview src={get(props.values, 'generatedAudio', '')} />
+      </div>
     )}
+    <Separator size="xs" />
     {(props.showPostPhrase && !props.isTestItem) && (
       <TextInput
         label="Post Phrase"

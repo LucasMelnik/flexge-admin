@@ -30,7 +30,7 @@ const PracticeTestListItems = props => (
             <Select
               label="Order"
               value={row.order}
-              onChange={order => props.onOrderChange(row.item.id, order)}
+              onChange={order => props.onOrderChange(row.id, row.item.id, order)}
               options={range(1, 11).map(value => ({
                 label: value.toString(),
                 value,
@@ -98,8 +98,8 @@ const PracticeTestListItems = props => (
       expandableComponent={(row) => (
         <ItemFormContainer
           itemId={row.item.id}
-          itemsTypeUrl="/item-types"
-          endpointUrl={`/practice-tests/${row.practiceTest}/items`}
+          itemsTypeUrl="/item-types?query[allowedForPlacementTest]=true"
+          endpointUrl={`practice-test-items/${row.id}/items`}
           order={row.order}
           showPostPhrase={false}
           onSaveSuccess={props.onSaveSuccess}
@@ -112,7 +112,7 @@ const PracticeTestListItems = props => (
 
 PracticeTestListItems.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
-    practiceTest: PropTypes.string.isRequired,
+    practiceTest: PropTypes.string,
     item: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }).isRequired,

@@ -156,7 +156,15 @@ class MainScene extends Component {
                   items={[
                     {
                       label: 'General Configuration',
-                      link: '/configs',
+                      link: '/configuration',
+                    },
+                    {
+                      label: 'Item types',
+                      link: '/item-types',
+                    },
+                    {
+                      label: 'Courses',
+                      link: '/courses',
                     },
                   ]}
                 />
@@ -218,33 +226,33 @@ class MainScene extends Component {
                 />
               </MenuItem>
             </PermissionValidator>
-            <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+            <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}>
               <div>
                 <MenuSection>
                   Conteúdo
                 </MenuSection>
-                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}>
                   <MenuItem
                     title="Modules"
                     icon="fa fa-book"
                     link="/modules"
                   />
                 </PermissionValidator>
-                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}>
                   <MenuItem
                     title="Review"
                     icon="fa fa-eye"
                     link="/reviews"
                   />
                 </PermissionValidator>
-                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}>
                   <MenuItem
                     title="Placement Test"
                     icon="fa fa-pencil-square"
                     link="/placement-test"
                   />
                 </PermissionValidator>
-                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}>
                   <MenuItem
                     title="Practice Test"
                     icon="fa fa-book"

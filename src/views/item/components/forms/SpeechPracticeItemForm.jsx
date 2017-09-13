@@ -4,6 +4,9 @@ import get from 'lodash/get';
 import TranslationInputContainer from '../inputs/TranslationInputContainer';
 import FileInput from '../../../../core/form/FileInput';
 import Separator from '../../../../core/layout/Separator';
+import Row from '../../../../core/layout/Row';
+import Column from '../../../../core/layout/Column';
+import AudioPreview from '../../../../core/layout/AudioPreview';
 
 const SpeechPracticeItemForm = props => (
   <div>
@@ -16,13 +19,23 @@ const SpeechPracticeItemForm = props => (
       isTestItem={props.isTestItem}
     />
     <Separator size="xs" />
-    <FileInput
-      accept="audio"
-      value={get(props.values, 'audio', '')}
-      onChange={(key) => props.onChange('audio', key)}
-      errorText={get(props.errors, 'audio', '')}
-      disabled={props.disabled}
-    />
+    <Row>
+      {get(props.values, 'generatedAudio', null) && (
+        <Column lgSize={2}>
+          <p>Generated Audio</p>
+          <AudioPreview src={get(props.values, 'generatedAudio', '')} />
+        </Column>
+      )}
+      <Column lgSize={6}>
+        <FileInput
+          accept="audio"
+          value={get(props.values, 'audio', '')}
+          onChange={(key) => props.onChange('audio', key)}
+          errorText={get(props.errors, 'audio', '')}
+          disabled={props.disabled}
+        />
+      </Column>
+    </Row>
   </div>
 );
 
