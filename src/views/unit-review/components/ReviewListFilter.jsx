@@ -14,7 +14,7 @@ const ReviewListFilter = props => (
     }}
   >
     <Select
-      options={['', 'PENDING', 'APPROVED', 'NOT_APPROVED', 'PENDING_REVIEW'].map(value => ({
+      options={['', 'NOT_SENT_TO_REVIEW', 'APPROVED', 'NOT_APPROVED', 'PENDING_REVIEW'].map(value => ({
         value,
         label: value.replace('_', ' '),
       }))}

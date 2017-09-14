@@ -44,6 +44,19 @@ export default class SlicesInputContainer extends Component {
     if (nextProps.text.length > 0) {
       this.setState({
         slices: nextProps.text.trim().split(' '),
+      }, () => {
+        const lastWord = this.state.slices.slice(-1)[0];
+        if (lastWord.length > 1 && lastWord.substr(lastWord.length - 1).includes(['?','.','/'].find(a => a))) {
+          const wordWithoutSpecialCharacter = lastWord.split(['?','.','/'].find(a => a))[0];
+          const specialCharacter = lastWord.substr(lastWord.length - 1);
+          this.state.slices.pop();
+          const newArray = this.state.slices.slice();
+          newArray.push(wordWithoutSpecialCharacter);
+          newArray.push(specialCharacter);
+          this.setState({
+            slices: newArray
+          });
+        }
       });
     }
     if (nextProps.value) {
@@ -60,7 +73,7 @@ export default class SlicesInputContainer extends Component {
         index,
         id: new Date().toISOString(),
         text: this.state.slices[index],
-        correct: true ,
+        correct: true,
       },
     ], 'index');
 

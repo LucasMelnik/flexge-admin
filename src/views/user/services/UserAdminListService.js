@@ -22,7 +22,7 @@ class UserAdminListService {
       url: '/users',
       query: {
         query: {
-          role: ['ADMIN', 'CONTENT_ADMIN'],
+          role: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN'],
           ...this.filter && {
             name: {
               $regex: this.filter,
