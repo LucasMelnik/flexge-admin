@@ -39,7 +39,7 @@ const ImageReviewForm = (props) => (
           </div>
         )}
         {(localStorage.role === 'IMAGE_ADMIN' &&
-          (!props.values.statusImage || props.values.statusImage === 'NOT_APPROVED' || props.values.statusImage === 'PENDING')) && (
+          (!props.values.statusImage || props.values.statusImage === 'NOT_APPROVED' || props.values.statusImage === 'NOT_SEND_TO_REVIEW')) && (
           <div>
             <Button
               label="Send to image review"

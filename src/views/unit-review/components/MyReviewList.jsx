@@ -133,14 +133,14 @@ const MyReviewList = props => (
                     fontWeight: 'bold',
                     borderRadius: 5,
                     backgroundColor: {
-                       PENDING: '#ef8c3b',
+                       NOT_SEND_TO_REVIEW: '#758C98',
                        PENDING_REVIEW: '#ef8c3b',
                        APPROVED: '#009687',
                        NOT_APPROVED: '#FF5233',
-                     }[row.review.statusImage || 'PENDING'],
+                     }[row.review.statusImage || 'NOT_SEND_TO_REVIEW'],
                   }}
                 >
-                  {replace(row.review.statusImage || 'PENDING', '_', ' ')}
+                  {replace(row.review.statusImage || 'NOT_SEND_TO_REVIEW', '_', ' ')}
                 </div>
               );
             }
@@ -152,7 +152,7 @@ const MyReviewList = props => (
           path: 'action',
           width: '70',
           render: (cell, row) => {
-            if (localStorage.role !== 'ADMIN' && !row.review.id) {
+            if (localStorage.role === 'CONTENT_ADMIN' && !row.review.id) {
               return (
                 <IconButton
                   icon="fa-send"

@@ -60,7 +60,7 @@ export default class SlicesInputContainer extends Component {
         index,
         id: new Date().toISOString(),
         text: this.state.slices[index],
-        correct: true ,
+        correct: true,
       },
     ], 'index');
 
