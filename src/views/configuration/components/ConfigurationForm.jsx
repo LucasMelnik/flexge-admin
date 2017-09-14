@@ -110,6 +110,7 @@ const ConfigurationForm = props => (
           onChange={messages => props.onChange('firstTryAudios', messages)}
         />
       </Column>
+    </Row>
     <Row>
       <Column lgSize={12}>
         <AudioMessageFormContainer
