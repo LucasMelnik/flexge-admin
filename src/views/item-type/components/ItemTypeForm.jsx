@@ -78,7 +78,7 @@ const ItemTypeForm = props => (
         <Column lgSize={4}>
           <TextInput
             type="number"
-            label="Time"
+            label="Unit Time"
             disabled={props.submitting}
             value={get(props.values, 'defaultTime', '')}
             onChange={value => props.onChange('defaultTime', value)}

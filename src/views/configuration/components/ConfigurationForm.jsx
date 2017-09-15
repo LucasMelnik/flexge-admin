@@ -105,6 +105,15 @@ const ConfigurationForm = props => (
     <Row>
       <Column lgSize={12}>
         <AudioMessageFormContainer
+          title="First Try Audios"
+          messages={get(props.values, 'firstTryAudios', [])}
+          onChange={messages => props.onChange('firstTryAudios', messages)}
+        />
+      </Column>
+    </Row>
+    <Row>
+      <Column lgSize={12}>
+        <AudioMessageFormContainer
           title="Second Try Audios"
           messages={get(props.values, 'secondTryAudios', [])}
           onChange={messages => props.onChange('secondTryAudios', messages)}
