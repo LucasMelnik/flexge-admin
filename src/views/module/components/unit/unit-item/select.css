@@ -1,3 +1,7 @@
 .Select-clear-zone {
   display: none !important;
 }
+
+.Select-placeholder, .Select--single > .Select-control .Select-value {
+  text-overflow: clip;
+}

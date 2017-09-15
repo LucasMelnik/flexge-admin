@@ -55,6 +55,9 @@ class SchoolFormService {
       url: schoolId ? `/schools/${schoolId}` : '/schools',
       body: {
         ...this.form.getValues(),
+        ...this.form.getValue('logoUrl') && {
+          logoUrl: this.form.getValue('logoUrl'),
+        },
         company: this.form.getValue('company'),
       },
     }).then(() => {

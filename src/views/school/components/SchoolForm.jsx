@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import PermissionValidator from '../../../core/layout/PermissionValidator';
@@ -9,123 +9,143 @@ import MaskInput from '../../../core/form/MaskInput';
 import Select from '../../../core/form/Select';
 import FetchSelect from '../../../core/form/FetchSelect';
 import FormButtons from '../../../core/form/FormButtons';
+import FileInput from '../../../core/form/FileInput';
 
-const SchoolForm = props => (
-  <form
-    onSubmit={(event) => {
-      event.preventDefault();
-      props.onSubmit();
-    }}
-  >
-    <Row>
-      <Column lgSize={6}>
-        <TextInput
-          disabled={props.submitting}
-          label="School Name"
-          value={get(props.values, 'name', '')}
-          onChange={value => props.onChange('name', value)}
-          description={get(props.errors, 'name', null)}
-          fieldValidation={get(props.errors, 'name', null) && 'error'}
-        />
-      </Column>
-      <PermissionValidator
-        allowedFor={[
-          'ADMIN',
-          'DISTRIBUTOR_MANAGER',
-        ]}
+class SchoolForm extends Component {
+
+  render() {
+    return (
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          this.props.onSubmit();
+        }}
       >
-        <Column lgSize={4}>
-          <FetchSelect
-            url="/companies"
-            disabled={props.submitting}
-            label="Company"
-            value={get(props.values, 'company', '')}
-            onChange={company => props.onChange('company', company)}
-            description={get(props.errors, 'company', null)}
-            fieldValidation={get(props.errors, 'company', null) && 'error'}
-            resultTransformer={{
-              text: 'name',
-              value: 'id',
-            }}
-          />
-        </Column>
-      </PermissionValidator>
-      <Column lgSize={2}>
-        <MaskInput
-          disabled={props.submitting}
-          label="Foundation Year"
-          value={get(props.values, 'foundationYear', '')}
-          onChange={value => props.onChange('foundationYear', value)}
-          description={get(props.errors, 'foundationYear', null)}
-          fieldValidation={get(props.errors, 'foundationYear', null) && 'error'}
-          blocks={[4]}
-          numericOnly
+        <Row>
+          <Column lgSize={6}>
+            <TextInput
+              disabled={this.props.submitting}
+              label="School Name"
+              value={get(this.props.values, 'name', '')}
+              onChange={value => this.props.onChange('name', value)}
+              description={get(this.props.errors, 'name', null)}
+              fieldValidation={get(this.props.errors, 'name', null) && 'error'}
+            />
+          </Column>
+          <PermissionValidator
+            allowedFor={[
+              'ADMIN',
+              'DISTRIBUTOR_MANAGER',
+            ]}
+          >
+            <Column lgSize={4}>
+              <FetchSelect
+                url="/companies"
+                disabled={this.props.submitting}
+                label="Company"
+                value={get(this.props.values, 'company', '')}
+                onChange={company => this.props.onChange('company', company)}
+                description={get(this.props.errors, 'company', null)}
+                fieldValidation={get(this.props.errors, 'company', null) && 'error'}
+                resultTransformer={{
+                  text: 'name',
+                  value: 'id',
+                }}
+              />
+            </Column>
+          </PermissionValidator>
+          <Column lgSize={2}>
+            <MaskInput
+              disabled={this.props.submitting}
+              label="Foundation Year"
+              value={get(this.props.values, 'foundationYear', '')}
+              onChange={value => this.props.onChange('foundationYear', value)}
+              description={get(this.props.errors, 'foundationYear', null)}
+              fieldValidation={get(this.props.errors, 'foundationYear', null) && 'error'}
+              blocks={[4]}
+              numericOnly
+            />
+          </Column>
+        </Row>
+        <Row>
+          <Column lgSize={3}>
+            <TextInput
+              disabled
+              label="Country"
+              value={get(this.props.values, 'country', '')}
+              onChange={value => this.props.onChange('country', value)}
+              description={get(this.props.errors, 'country', null)}
+              fieldValidation={get(this.props.errors, 'country', null) && 'error'}
+            />
+          </Column>
+          <Column lgSize={3}>
+            <Select
+              disabled={this.props.submitting}
+              label="State"
+              value={get(this.props.values, 'state', '')}
+              onChange={value => this.props.onChange('state', value)}
+              description={get(this.props.errors, 'state', '')}
+              fieldValidation={get(this.props.errors, 'state', null) && 'error'}
+              options={this.props.states}
+            />
+          </Column>
+          <Column lgSize={6}>
+            <TextInput
+              disabled={this.props.submitting}
+              label="City"
+              value={get(this.props.values, 'city', '')}
+              onChange={value => this.props.onChange('city', value)}
+              description={get(this.props.errors, 'city', null)}
+              fieldValidation={get(this.props.errors, 'city', null) && 'error'}
+            />
+          </Column>
+        </Row>
+        <Row>
+          <Column lgSize={9}>
+            <TextInput
+              disabled={this.props.submitting}
+              label="Address"
+              value={get(this.props.values, 'address', '')}
+              onChange={value => this.props.onChange('address', value)}
+              description={get(this.props.errors, 'address', null)}
+              fieldValidation={get(this.props.errors, 'address', null) && 'error'}
+            />
+          </Column>
+          <Column lgSize={3}>
+            <MaskInput
+              disabled={this.props.submitting}
+              label="Phone"
+              value={get(this.props.values, 'phone', '')}
+              onChange={value => this.props.onChange('phone', value)}
+              description={get(this.props.errors, 'phone', null)}
+              fieldValidation={get(this.props.errors, 'phone', null) && 'error'}
+              maskType="phone"
+            />
+          </Column>
+        </Row>
+        {get(this.props.values, 'id', '') && (
+          <Row>
+            <Column lgSize={4}>
+              <FileInput
+                label="Upload an image to the item"
+                accept="image"
+                disabled={this.props.submitting}
+                value={get(this.props.values, 'logoUrl', '')}
+                onChange={(key) => this.props.onChange('logoUrl', key)}
+                errorText={get(this.props.errors, 'logoUrl', '')}
+              />
+            </Column>
+          </Row>
+        )}
+        <FormButtons
+          confirmLabel={this.props.values.id ? 'Update School' : 'Create School'}
+          isDisabled={this.props.submitting || !this.props.isDirty()}
+          onReset={this.props.onReset}
         />
-      </Column>
-    </Row>
-    <Row>
-      <Column lgSize={3}>
-        <TextInput
-          disabled
-          label="Country"
-          value={get(props.values, 'country', '')}
-          onChange={value => props.onChange('country', value)}
-          description={get(props.errors, 'country', null)}
-          fieldValidation={get(props.errors, 'country', null) && 'error'}
-        />
-      </Column>
-      <Column lgSize={3}>
-        <Select
-          disabled={props.submitting}
-          label="State"
-          value={get(props.values, 'state', '')}
-          onChange={value => props.onChange('state', value)}
-          description={get(props.errors, 'state', '')}
-          fieldValidation={get(props.errors, 'state', null) && 'error'}
-          options={props.states}
-        />
-      </Column>
-      <Column lgSize={6}>
-        <TextInput
-          disabled={props.submitting}
-          label="City"
-          value={get(props.values, 'city', '')}
-          onChange={value => props.onChange('city', value)}
-          description={get(props.errors, 'city', null)}
-          fieldValidation={get(props.errors, 'city', null) && 'error'}
-        />
-      </Column>
-    </Row>
-    <Row>
-      <Column lgSize={9}>
-        <TextInput
-          disabled={props.submitting}
-          label="Address"
-          value={get(props.values, 'address', '')}
-          onChange={value => props.onChange('address', value)}
-          description={get(props.errors, 'address', null)}
-          fieldValidation={get(props.errors, 'address', null) && 'error'}
-        />
-      </Column>
-      <Column lgSize={3}>
-        <MaskInput
-          disabled={props.submitting}
-          label="Phone"
-          value={get(props.values, 'phone', '')}
-          onChange={value => props.onChange('phone', value)}
-          description={get(props.errors, 'phone', null)}
-          fieldValidation={get(props.errors, 'phone', null) && 'error'}
-          maskType="phone"
-        />
-      </Column>
-    </Row>
-    <FormButtons
-      confirmLabel={props.values.id ? 'Update School' : 'Create School'}
-      isDisabled={props.submitting || !props.isDirty()}
-      onReset={props.onReset}
-    />
-  </form>
-);
+      </form>
+    )
+  }
+}
 
 SchoolForm.propTypes = {
   onSubmit: PropTypes.func,
