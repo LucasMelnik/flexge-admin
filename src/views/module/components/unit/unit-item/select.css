@@ -2,6 +2,6 @@
   display: none !important;
 }
 
-.Select-placeholder, .Select--single > .Select-control .Select-value {
-  text-overflow: clip;
+.Select--single>.Select-control .Select-value, .Select-placeholder {
+  text-overflow: clip !important;
 }
