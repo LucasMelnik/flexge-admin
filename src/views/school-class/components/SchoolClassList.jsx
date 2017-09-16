@@ -72,10 +72,16 @@ SchoolClassList.propTypes = {
     }).isRequired,
   })).isRequired,
   distributorId: PropTypes.string,
-  companyId: PropTypes.string.isRequired,
-  schoolId: PropTypes.string.isRequired,
+  companyId: PropTypes.string,
+  schoolId: PropTypes.string,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
+};
+
+SchoolClassList.defaultProps = {
+  distributorId: null,
+  schoolId: null,
+  companyId: null,
 };
 
 export default SchoolClassList;

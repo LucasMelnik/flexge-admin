@@ -10,8 +10,14 @@ class SchoolClassListContainer extends Component {
   static propTypes = {
     distributorId: PropTypes.string,
     companyId: PropTypes.string,
-    schoolId: PropTypes.string.isRequired,
-  }
+    schoolId: PropTypes.string,
+  };
+
+  static defaultProps = {
+    distributorId: null,
+    companyId: null,
+    schoolId: null,
+  };
 
   componentDidMount() {
     SchoolClassListService.init(this.props.schoolId);

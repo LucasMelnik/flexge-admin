@@ -20,7 +20,7 @@ const SchoolClassListScene = props => (
     )}
     <Card
       title="Classes"
-      actions={[
+      actions={
         <Button
           label="New class"
           icon="fa-plus"
@@ -30,8 +30,8 @@ const SchoolClassListScene = props => (
             props.companyId ? `/companies/${props.companyId}/schools/${props.schoolId}/classes/new` :
             props.schoolId ? `/schools/${props.schoolId}/classes/new` : '/classes/new'
           )}
-        />,
-      ]}
+        />
+      }
     >
       <SchoolClassListFilterContainer />
       <SchoolClassListContainer
