@@ -6,6 +6,7 @@ import Button from '../../../core/form/Button';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import SchoolClassListFilterContainer from './SchoolClassListFilterContainer';
 import SchoolClassListContainer from './SchoolClassListContainer';
+import SchoolClassFileImportContainer from './SchoolClassFileImportContainer';
 
 const SchoolClassListScene = props => (
   <div>
@@ -20,18 +21,22 @@ const SchoolClassListScene = props => (
     )}
     <Card
       title="Classes"
-      actions={[
-        <Button
-          label="New class"
-          icon="fa-plus"
-          onClick={() => browserHistory.push(
-            props.distributorId ?
-          `/distributors/${props.distributorId}/companies/${props.companyId}/schools/${props.schoolId}/classes/new` :
-            props.companyId ? `/companies/${props.companyId}/schools/${props.schoolId}/classes/new` :
-            props.schoolId ? `/schools/${props.schoolId}/classes/new` : '/classes/new'
-          )}
-        />,
-      ]}
+      actions={
+       <div>
+         <Button
+           label="New class"
+           icon="fa-plus"
+           onClick={() => browserHistory.push(
+             props.distributorId ?
+               `/distributors/${props.distributorId}/companies/${props.companyId}/schools/${props.schoolId}/classes/new` :
+               props.companyId ? `/companies/${props.companyId}/schools/${props.schoolId}/classes/new` :
+                 props.schoolId ? `/schools/${props.schoolId}/classes/new` : '/classes/new'
+           )}
+         />
+         {' '}
+         {props.schoolId && (<SchoolClassFileImportContainer schoolId={props.schoolId} />)}
+       </div>
+      }
     >
       <SchoolClassListFilterContainer />
       <SchoolClassListContainer

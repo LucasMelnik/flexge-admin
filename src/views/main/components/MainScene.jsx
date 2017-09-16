@@ -165,6 +165,10 @@ class MainScene extends Component {
                       link: '/item-types',
                     },
                     {
+                      label: 'Placement test level',
+                      link: '/placement-test-levels',
+                    },
+                    {
                       label: 'Courses',
                       link: '/courses',
                     },
