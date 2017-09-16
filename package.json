@@ -25,6 +25,7 @@
     "react-select": "^1.0.0-rc.5",
     "react-spinkit": "^3.0.0",
     "react-tap-event-plugin": "2.0.1",
+    "react-toggle": "^4.0.1",
     "select2": "^4.0.3",
     "validator": "7.0.0"
   },

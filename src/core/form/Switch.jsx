@@ -1,51 +1,57 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Toggle from 'react-toggle';
+import 'react-toggle/style.css';
+import './Switch.css';
 
 export default class Switch extends Component {
 
   static propTypes = {
     value: PropTypes.bool,
+    icons: PropTypes.bool,
+    titleOn: PropTypes.string,
+    titleOff: PropTypes.string,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
-    size: PropTypes.oneOf(['small', 'default']),
   };
 
   static defaultProps = {
     value: false,
+    icons: false,
+    titleOn: '',
+    titleOff: '',
     disabled: false,
     onChange: () => null,
-    size: 'small',
-  };
-
-  componentDidMount() {
-    this.switch = new window.Switchery(this.input, {
-      disabled: this.props.disabled,
-      disabledOpacity: 0.5,
-      size: this.props.size,
-    });
-
-    if (this.props.onChange) {
-      this.input.onchange = (event) => {
-        this.props.onChange(event.target.checked)
-      };
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.disabled) {
-      this.switch.disable();
-    } else {
-      this.switch.enable();
-    }
   };
 
   render() {
     return (
-      <input
-        type="checkbox"
-        ref={input => this.input = input}
-        checked={this.props.value}
-      />
+      <div
+        style={{
+          display: 'flex',
+        }}
+      >
+        <span
+          style={{
+            marginRight: 10,
+          }}
+        >
+          {this.props.titleOff}
+        </span>
+        <Toggle
+          defaultChecked={this.props.value}
+          icons={this.props.icons}
+          onChange={event => this.props.onChange(event.target.checked)}
+          disabled={this.props.disabled}
+        />
+        <span
+          style={{
+            marginLeft: 10,
+          }}
+        >
+          {this.props.titleOn}
+        </span>
+      </div>
     );
   }
 }
