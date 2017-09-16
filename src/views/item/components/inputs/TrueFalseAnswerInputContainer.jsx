@@ -50,6 +50,7 @@ export default class TrueFalseAnswerInputContainer extends Component {
   }
 
   handleChange = (checked) => {
+    console.log(checked)
     let answers = null;
     if (this.state.answers.length) {
       const isTrueAnswer = this.state.answers[0];
