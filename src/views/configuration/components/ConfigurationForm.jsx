@@ -6,6 +6,7 @@ import FormButtons from '../../../core/form/FormButtons';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import AudioMessageFormContainer from './AudioMessageFormContainer';
+import FileInput from '../../../core/form/FileInput';
 
 const ConfigurationForm = props => (
   <form
@@ -24,17 +25,6 @@ const ConfigurationForm = props => (
           onChange={value => props.onChange('pointsToIncreaseAfterTestFailure', value)}
           description={get(props.errors, 'pointsToIncreaseAfterTestFailure', null)}
           fieldValidation={get(props.errors, 'pointsToIncreaseAfterTestFailure', null) && 'error'}
-        />
-      </Column>
-      <Column lgSize={4}>
-        <TextInput
-          type="number"
-          disabled={props.submitting}
-          label="Level error percentage to end Placement Test"
-          value={get(props.values, 'levelPercentageToFinishPlacementTest', '')}
-          onChange={value => props.onChange('levelPercentageToFinishPlacementTest', value)}
-          description={get(props.errors, 'levelPercentageToFinishPlacementTest', null)}
-          fieldValidation={get(props.errors, 'levelPercentageToFinishPlacementTest', null) && 'error'}
         />
       </Column>
     </Row>
@@ -126,6 +116,17 @@ const ConfigurationForm = props => (
           title="Option Audios"
           messages={get(props.values, 'optionAudios', [])}
           onChange={messages => props.onChange('optionAudios', messages)}
+        />
+      </Column>
+    </Row>
+    <Row>
+      <Column lgSize={12}>
+        <FileInput
+          label="Upload a video"
+          accept="video"
+          value={get(props.values, 'videoUrl', '')}
+          onChange={(key) => props.onChange('videoUrl', key)}
+          errorText={get(props.errors, 'videoUrl', '')}
         />
       </Column>
     </Row>
