@@ -59,6 +59,8 @@ import ItemTypeListScene from './views/item-type/components/ItemTypeListScene';
 import ItemTypeFormSceneContainer from './views/item-type/components/ItemTypeFormSceneContainer';
 import CourseListScene from './views/course/components/CourseListScene';
 import CourseFormSceneContainer from './views/course/components/CourseFormSceneContainer';
+import PlacementTestLevelFormSceneContainer from './views/placement-test-level/components/PlacementTestLevelFormSceneContainer';
+import PlacementTestLevelListScene from './views/placement-test-level/components/PlacementTestLevelListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -149,6 +151,9 @@ const Routes = () => (
       <Route path="item-types" component={ItemTypeListScene} />
       <Route path="item-types/new" component={ItemTypeFormSceneContainer} />
       <Route path="item-types/:itemTypeId" component={ItemTypeFormSceneContainer} />
+      <Route path="placement-test-levels" component={PlacementTestLevelListScene} />
+      <Route path="placement-test-levels/new" component={PlacementTestLevelFormSceneContainer} />
+      <Route path="placement-test-levels/:placementTestLevelId" component={PlacementTestLevelFormSceneContainer} />
       <Route path="courses" component={CourseListScene} />
       <Route path="courses/new" component={CourseFormSceneContainer} />
       <Route path="courses/:courseId" component={CourseFormSceneContainer} />
