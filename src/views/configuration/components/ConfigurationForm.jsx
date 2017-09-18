@@ -27,17 +27,6 @@ const ConfigurationForm = props => (
           fieldValidation={get(props.errors, 'pointsToIncreaseAfterTestFailure', null) && 'error'}
         />
       </Column>
-      <Column lgSize={4}>
-        <TextInput
-          type="number"
-          disabled={props.submitting}
-          label="Level error percentage to end Placement Test"
-          value={get(props.values, 'levelPercentageToFinishPlacementTest', '')}
-          onChange={value => props.onChange('levelPercentageToFinishPlacementTest', value)}
-          description={get(props.errors, 'levelPercentageToFinishPlacementTest', null)}
-          fieldValidation={get(props.errors, 'levelPercentageToFinishPlacementTest', null) && 'error'}
-        />
-      </Column>
     </Row>
     <Row>
       <Column lgSize={2}>
