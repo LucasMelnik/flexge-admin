@@ -6,6 +6,7 @@ import FormButtons from '../../../core/form/FormButtons';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import AudioMessageFormContainer from './AudioMessageFormContainer';
+import FileInput from '../../../core/form/FileInput';
 
 const ConfigurationForm = props => (
   <form
@@ -126,6 +127,17 @@ const ConfigurationForm = props => (
           title="Option Audios"
           messages={get(props.values, 'optionAudios', [])}
           onChange={messages => props.onChange('optionAudios', messages)}
+        />
+      </Column>
+    </Row>
+    <Row>
+      <Column lgSize={12}>
+        <FileInput
+          label="Upload a video"
+          accept="video"
+          value={get(props.values, 'videoUrl', '')}
+          onChange={(key) => props.onChange('videoUrl', key)}
+          errorText={get(props.errors, 'videoUrl', '')}
         />
       </Column>
     </Row>
