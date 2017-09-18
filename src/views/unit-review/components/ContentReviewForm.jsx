@@ -39,6 +39,15 @@ const ContentReviewForm = props => (
             />
           </div>
         )}
+        {(props.values.status === 'PENDING' && (props.values.createdBy === localStorage.id || localStorage.role !== 'ADMIN')) && (
+          <Button
+            icon="fa-comments-o"
+            type="primary"
+            label="Update Comment"
+            onClick={props.onSendToPending}
+            disabled={props.values.statusFormat !== 'APPROVED'}
+          />
+        )}
         {(props.values.status === 'REVIEWED' && (props.values.createdBy === localStorage.id || localStorage.role === 'ADMIN')) && (
           <Button
             icon="fa-comments-o"
