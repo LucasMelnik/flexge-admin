@@ -272,12 +272,20 @@ class MainScene extends Component {
                 <MenuSection>
                   Academic
                 </MenuSection>
-                <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
+                <PermissionValidator allowedFor={['ADMIN']}>
                   <MenuItem
                     title="Reports"
                     icon="fa fa-file-o"
-                    link="/reports"
-                  />
+                  >
+                    <SubMenu
+                      items={[
+                        {
+                          label: 'Placement Item History',
+                          link: '/placement-test-items-history'
+                        }
+                      ]}
+                    />
+                  </MenuItem>
                 </PermissionValidator>
                 <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
                   <MenuItem title="Records" icon="fa fa-list-alt">
