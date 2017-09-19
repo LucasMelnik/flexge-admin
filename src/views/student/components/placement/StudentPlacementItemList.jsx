@@ -19,6 +19,7 @@ const StudentPlacementItemList = props => (
       {
         label: 'Status',
         path: 'correct',
+        width: '100',
         render: cell =>
         (
           <div

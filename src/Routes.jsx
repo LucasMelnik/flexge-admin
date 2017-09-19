@@ -61,6 +61,7 @@ import CourseListScene from './views/course/components/CourseListScene';
 import CourseFormSceneContainer from './views/course/components/CourseFormSceneContainer';
 import PlacementTestLevelFormSceneContainer from './views/placement-test-level/components/PlacementTestLevelFormSceneContainer';
 import PlacementTestLevelListScene from './views/placement-test-level/components/PlacementTestLevelListScene';
+import PlacementTestItemsListScene from './views/placement-test-items/components/PlacementTestListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -157,6 +158,7 @@ const Routes = () => (
       <Route path="courses" component={CourseListScene} />
       <Route path="courses/new" component={CourseFormSceneContainer} />
       <Route path="courses/:courseId" component={CourseFormSceneContainer} />
+      <Route path="placement-test-items-history" component={PlacementTestItemsListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
