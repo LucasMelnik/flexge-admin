@@ -15,7 +15,7 @@ const StudentPlacementItemList = props => (
       {
         label: 'Status',
         path: 'correct',
-        render: (cell, row) =>
+        render: cell =>
         (
           <div
             style={{
@@ -35,6 +35,15 @@ const StudentPlacementItemList = props => (
       {
         label: 'Answer',
         path: 'answer',
+        rowColumnStyle: {
+          textOverflow: 'none',
+          paddingTop: 5,
+          paddingBottom: 5,
+          paddingRight: 5,
+          whiteSpace: 'normal',
+          textAlign: 'justify',
+          lineHeight: '18px',
+        },
       },
     ]}
     rows={props.items}
