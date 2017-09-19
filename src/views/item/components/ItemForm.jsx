@@ -230,9 +230,10 @@ const ItemForm = props => (
         />
       )}
       <Separator size="xs" />
+      {console.log(props.values)}
       {!props.disabled && (
         <FormButtons
-          confirmLabel={props.values.id ? 'Update Item' : 'Create Item'}
+          confirmLabel={props.values.id || get(props.values, 'item.id', '') ? 'Update Item' : 'Create Item'}
           isDisabled={props.submitting || !props.isDirty()}
           onReset={props.onReset}
         />
