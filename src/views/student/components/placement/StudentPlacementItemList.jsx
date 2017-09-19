@@ -15,9 +15,22 @@ const StudentPlacementItemList = props => (
       {
         label: 'Status',
         path: 'correct',
-        render: (cell) => {
-          return cell ? 'Correct' : 'Wrong';
-        },
+        render: (cell, row) =>
+        (
+          <div
+            style={{
+              color: '#fff',
+              padding: 5,
+              fontSize: 12,
+              display: 'inline-block',
+              fontWeight: 'bold',
+              borderRadius: 5,
+              backgroundColor: cell ? '#009687' : '#FF5233',
+            }}
+          >
+            {cell ? 'Correct' : 'Wrong'}
+          </div>
+      ),
       },
       {
         label: 'Answer',
