@@ -80,7 +80,7 @@ class StudentListService {
   handleFilterChange = action((value) => {
     this.filter = value;
     this.students = this.filteredStudents.filter(student =>
-      student.name.toLowerCase().search(value) !== -1);
+      student.name.toLowerCase().search(value.toLowerCase()) !== -1);
   });
 
   handleRemove = action((student) => {
