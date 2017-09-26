@@ -13,6 +13,10 @@ const StudentPlacementItemList = props => (
         hidden: true,
       },
       {
+        label: 'Item Location',
+        render: (cell, row) => `Level: ${row.level} Order: ${row.order}`,
+      },
+      {
         label: 'Status',
         path: 'correct',
         width: '100',
