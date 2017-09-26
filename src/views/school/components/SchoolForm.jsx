@@ -127,7 +127,7 @@ class SchoolForm extends Component {
           <Row>
             <Column lgSize={4}>
               <FileInput
-                label="Upload an image to the item"
+                label="Upload a logo to the school"
                 accept="image"
                 disabled={this.props.submitting}
                 value={get(this.props.values, 'logoUrl', '')}
