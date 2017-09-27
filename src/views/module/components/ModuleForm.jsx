@@ -9,6 +9,7 @@ import TextInput from '../../../core/form/TextInput';
 import FetchSelect from '../../../core/form/FetchSelect';
 import Select from '../../../core/form/Select';
 import FormButtons from '../../../core/form/FormButtons';
+import FileInput from '../../../core/form/FileInput';
 
 const ModuleForm = props => (
     <form
@@ -100,6 +101,21 @@ const ModuleForm = props => (
           />
         </Column>
       </Row>
+      <Separator size="md" />
+      {get(props.values, 'id', '') && (
+        <Row>
+          <Column lgSize={12}>
+            <FileInput
+              label="Upload a background image"
+              accept="image"
+              disabled={props.submitting}
+              value={get(props.values, 'backgroundUrl', '')}
+              onChange={(key) => props.onChange('backgroundUrl', key)}
+              errorText={get(props.errors, 'backgroundUrl', '')}
+            />
+          </Column>
+        </Row>
+      )}
       <Separator size="md" />
       <FormButtons
         confirmLabel={props.values.id ? 'Update Module' : 'Create Module'}
