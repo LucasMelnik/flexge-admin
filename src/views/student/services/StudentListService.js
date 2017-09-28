@@ -2,6 +2,7 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import { isRequired } from '../../../core/validations';
 
 class StudentListService {
   fetch = new FetchService();
@@ -10,41 +11,66 @@ class StudentListService {
   constructor() {
     extendObservable(this, {
       students: [],
-      filter: '',
+      name: '',
+      email: '',
       school: null,
       class: null,
       schoolId: null,
       classId: null,
       filteredStudents: null,
     });
+    this.form.validations = {
+      school: [isRequired],
+    };
   }
 
   init = action((schoolId, classId) => {
-    this.filter = '';
+    this.name = '';
+    this.email = '';
     this.schoolId = schoolId;
     this.classId = classId;
+    if (this.schoolId && this.classId) {
+      this.loadBySchoolAndClass();
+    }
+  });
+
+  load = () => {
     if (!this.schoolId && !this.classId) {
       this.loadAllStudents();
     } else {
       this.loadBySchoolAndClass();
     }
-  });
+  }
 
   loadAllStudents = action(() => {
+    this.form.submitted = true;
+    if (this.form.errors) {
+      return;
+    }
     this.fetch.fetch({
       url: '/students',
       query: {
-        query: this.filter && {
-          name: {
-            $regex: this.filter,
-            $options: 'i',
+        query: {
+          ...this.form.getValue('name') && {
+            name: {
+              $regex: this.form.getValue('name'),
+              $options: 'i',
+            },
+          },
+          ...this.form.getValue('email') && {
+            email: {
+              $regex: this.form.getValue('email'),
+              $options: 'i',
+            },
+          },
+          ...this.form.getValue('school') && {
+            school: this.form.getValue('school'),
           },
         },
       },
     }).then(() => {
       if (this.fetch.data) {
         this.students = this.fetch.data;
-        this.filteredStudents = this.fetch.data;
       } else {
         this.students = [];
       }
@@ -55,11 +81,7 @@ class StudentListService {
     this.fetch.fetch({
       url: `/schools/${this.schoolId}/classes/${this.classId}`,
       query: {
-        query: this.filter && {
-          name: {
-            $regex: this.filter,
-            $options: 'i',
-          },
+        query: {
         },
       },
     }).then(() => {
@@ -70,7 +92,11 @@ class StudentListService {
           newStudent.school = school;
           return newStudent;
         });
-        this.filteredStudents = this.students;
+        if (this.form.getValue('name') || this.form.getValue('email')) {
+          this.students = this.students.filter(student =>
+            (student.name.toLowerCase().search(this.form.getValue('name').toLowerCase()) !== -1) && (student.email.toLowerCase().search(this.form.getValue('email').toLowerCase()) !== -1)
+          );
+        }
       } else {
         this.students = [];
       }

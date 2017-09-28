@@ -201,10 +201,6 @@ class MainScene extends Component {
                 <SubMenu
                   items={[
                     {
-                      label: 'Classes',
-                      link: '/classes',
-                    },
-                    {
                       label: 'Students',
                       link: '/students',
                     },
