@@ -284,20 +284,11 @@ class MainScene extends Component {
                   </MenuItem>
                 </PermissionValidator>
                 <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
-                  <MenuItem title="Records" icon="fa fa-list-alt">
-                    <SubMenu
-                      items={[
-                        {
-                          label: 'Classes',
-                          link: '/classes-academic',
-                        },
-                        {
-                          label: 'Students',
-                          link: '/students-academic',
-                        },
-                      ]}
-                    />
-                  </MenuItem>
+                  <MenuItem
+                    title="Records"
+                    icon="fa fa-list-alt"
+                    link="/records"
+                  />
                 </PermissionValidator>
                 <PermissionValidator allowedFor={['ADMIN', 'CONTENT_ADMIN']}>
                   <MenuItem
