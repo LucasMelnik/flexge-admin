@@ -6,10 +6,9 @@ const MainContent = props => (
     <section
       className="wrapper"
       style={{
-        marginTop: 60,
         display: 'inline-block',
         width: '100%',
-        padding: '15px',
+        padding: '120px 15px 15px 15px',
       }}
     >
       {props.children}

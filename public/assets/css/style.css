@@ -4985,7 +4985,6 @@ code {
 }
 
 .main-wrapper{
-    margin-top:60px;
     display:inline-block;
     width:100%;
     padding:15px 15px 0 15px;
@@ -5005,7 +5004,6 @@ code {
     z-index: 99;
 }
 #main-content {
-    margin-left: 220px;
     display: block;
 }
 #main-content.hor_menu {
@@ -7903,189 +7901,6 @@ border-left: 3px solid transparent;
     margin: 0 15px 15px 0;
 }
 
-
-/*----------------------------------------
-    Mobile Menu Since - 3.1
-------------------------------------------*/
-
-        .page-topbar .chat-toggle-wrapper .fa-times{
-            display: none;
-        }
-
-@media (max-width: 767px) {
-
-    .main-wrapper{
-        padding:15px 0 0 0px;
-    }
-
-    .page-topbar .logo-area,
-    .page-topbar.sidebar_shift .logo-area{
-        width: 100%;
-    }
-
-    .page-topbar.sidebar_shift .logo-area{
-        background-position: left top;
-    }
-
-    .page-topbar .quick-area .info-menu li.sidebar-toggle-wrap{
-        position: fixed;
-        top: 0px;
-        right: 0px;
-    }
-
-    .page-topbar .quick-area .info-menu li.notify-toggle-wrapper a,
-    .page-topbar .quick-area .info-menu li.message-toggle-wrapper a,
-    .page-topbar .quick-area .info-menu li a.toggle_chat,
-    .page-topbar .quick-area .info-menu li.sidebar-toggle-wrap a.sidebar_toggle{
-        color: #ffffff;
-    }
-
-    .page-topbar .quick-area .pull-right{
-        position: fixed;
-        top: 0px;
-        right: 30px;
-    }
-
-    .page-topbar .quick-area .info-menu li.message-toggle-wrapper{
-            position: fixed;
-            top: 0px;
-            right: 190px;
-        }
-
-    .page-topbar .quick-area .info-menu li.notify-toggle-wrapper{
-            position: fixed;
-            top: 0px;
-            right: 140px;
-        }
-
-        .page-sidebar{
-            z-index: 5;
-        }
-
-        #main-content{
-            margin-left: 60px;
-            z-index: 2;
-        }
-
-        #main-content.chat_shift {
-            margin-left: 60px !important;
-            margin-right: 0px !important;
-        }
-
-
-        .page-topbar.chat_shift {
-            margin-left: 0px !important;
-        }
-
-        .page-topbar.chat_shift .quick-area .pull-right{
-            margin-right: 0px !important;
-        }
-
-        .page-topbar.chat_shift .chat-toggle-wrapper{
-            position: fixed;
-            right: 220px;
-        }
-
-        #main-content, .page-chatapi, .page-topbar, .page-sidebar, .page-topbar .logo-area, .page-topbar .quick-area .pull-right, .collapse-wraplist, .profile-info, .wraplist, .chatapi-windows {
-            -webkit-transition: 0ms;
-            -moz-transition: 0ms;
-            -o-transition: 0ms;
-            transition: 0ms;
-        }
-
-        .page-topbar.chat_shift .chat-toggle-wrapper .badge,
-        .page-topbar.chat_shift .chat-toggle-wrapper .fa-comments{
-            display: none;
-        }
-
-        .page-topbar.chat_shift .chat-toggle-wrapper .fa-times{
-            display: inline-block;
-        }
-
-        .page-topbar .logo-area {
-            background-image: url('../images/logo-folded.png');
-            background-repeat: no-repeat;
-            background-position: left top;
-        }
-
-        .menuexpanded .page-topbar .logo-area {
-            background-image: url('../images/logo.png');
-            background-repeat: no-repeat;
-        }
-
-
-    .page-topbar .quick-area .info-menu li .dropdown-menu{
-        width: 280px;
-        left: -120px;
-    }
-
-    .page-topbar .quick-area .info-menu li.open{
-        background-color: #ffffff;
-    }
-
-        .page-topbar .quick-area .info-menu li.open a{
-            color: #009688;
-        }
-
-    .page-topbar .quick-area .info-menu li .dropdown-menu:before,
-        .page-topbar .quick-area .info-menu li .dropdown-menu:after{
-        display: none;
-    }
-
-
-
-
-}
-
-
-
-
-
-
-
-/*
-.bg-muted{ background: #eaeaea; padding: 3px 8px;}
-.bg-primary{ background: rgba(63,81,181,1); padding: 3px 8px; color: #ffffff;} #009688
-.bg-info{ background: rgba(35,183,229,1.0); padding: 3px 8px; color: #ffffff;}
-.bg-warning{ background: #FFC107; padding: 3px 8px; color: #ffffff;}
-.bg-danger{ background: rgba(240,80,80,1.0); padding: 3px 8px; color: #ffffff;}
-.bg-success{ background: rgba(102,189,120,1.0); padding: 3px 8px; color: #ffffff;}
-.bg-purple{ background: rgba(103,58,183,1.0); padding: 3px 8px; color: #ffffff;} #4bb5ff
-.bg-accent{ background: #ff5f74; padding: 3px 8px; color: #ffffff;} #ff5f74
-.bg-secondary{ background: #9e9e9e; padding: 3px 8px; color: #555555;}
-
-#FFC107 - #FFC107
-*/
-/*
-.screen-type {
-    display: block;
-    width: 30px;
-    height: 30px;
-    padding: 3px 8px;
-    color: #ffffff;
-    position: fixed;
-    z-index: 9999999999999999999999999;
-    top: 0px;
-    right: 0px;
-    font-size: 12px;
-}
-.screen-type.visible-xs {
-    background-color: rgba(102, 189, 120, 0.7);
-}
-.screen-type.visible-sm {
-    background-color: rgba(35, 183, 229, 0.7);
-}
-.screen-type.visible-md {
-    background-color: rgba(240, 80, 80, 0.7);
-}
-.screen-type.visible-lg {
-    background-color: rgba(153, 114, 181, .7);
-}
-*/
-
-
-
-
 table.dataTable{
     border: 1px solid #f0eff5;
     border-right: 0px solid transparent;
@@ -8236,4 +8051,12 @@ table.dataTable.display tbody tr:first-child td {
 .table>tbody>tr>td {
     vertical-align: middle;
     font-family: 'Poppins', sans-serif, Arial, Helvetica, sans-serif;
+}
+
+.navbar-default .navbar-nav>li>a>span.title {
+    margin: 0 5px 0px 8px;
+}
+
+.breadcrumb {
+    padding: 0px;
 }
