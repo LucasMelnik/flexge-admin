@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import orderBy from 'lodash/orderBy';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import Icon from '../layout/Icon';
@@ -30,9 +31,22 @@ export default class Table extends Component {
     expandable: false,
     selectable: false,
     onSelect: null,
+    expandableComponent: null,
   };
 
-  state = { expandedRows: [] };
+  state = { expandedRows: [], data: [] };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      data: orderBy(nextProps.rows, 'id', 'asc'),
+    });
+  }
+
+  handleSort = (path, order) => {
+    this.setState({
+      data: orderBy(this.state.data, path, order),
+    });
+  };
 
   renderColumnValue = (cell, row, path) => {
     return get(row, path, '');
@@ -46,17 +60,19 @@ export default class Table extends Component {
     return (
       <div>
         <BootstrapTable
-          data={this.props.rows}
+          data={this.state.data}
           striped
           hover
           search={false}
+          remote
           options={{
             expandBy: 'column',
+            onSortChange: this.handleSort,
           }}
           expandableRow={() => this.props.expandable}
-          expandComponent={row => {
+          expandComponent={(row) => {
             if (this.state.expandedRows.find(id => id === row.id)) {
-              return this.props.expandableComponent(row)
+              return this.props.expandableComponent(row);
             } else {
               return null;
             }
@@ -64,7 +80,7 @@ export default class Table extends Component {
           expandColumnOptions={{
             expandColumnVisible: this.props.expandable,
             expandColumnComponent: this.renderExpandableIcon,
-            columnWidth: 40
+            columnWidth: 40,
           }}
           selectRow={{
             mode: 'checkbox',
@@ -76,7 +92,7 @@ export default class Table extends Component {
                 this.setState({
                   expandedRows: [
                     ...this.state.expandedRows,
-                    row.id
+                    row.id,
                   ],
                 });
               }

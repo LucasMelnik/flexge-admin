@@ -28,6 +28,17 @@ const SchoolClassList = props => (
           path: 'teacher.name',
         },
         {
+          label: 'Number Students',
+          path: 'students',
+          render: (cell, row) => {
+            return (
+              <div>
+                {cell.length}
+              </div>
+            );
+          },
+        },
+        {
           label: 'Actions',
           path: 'action',
           width: '120',

@@ -41,6 +41,7 @@ class SchoolClassFormService {
         this.form.setInitialValues({
           ...this.fetch.data,
           teacher: this.fetch.data.teacher.id,
+          isPlacementTestClass: this.fetch.data.isPlacementTestClass,
           school: this.fetch.data.school.id,
         });
       }
@@ -60,6 +61,7 @@ class SchoolClassFormService {
       body: {
         ...this.form.getValues(),
         teacher: this.form.getValue('teacher'),
+        isPlacementTestClass: this.form.getValue('isPlacementTestClass') ? this.form.getValue('isPlacementTestClass') : false,
       },
     }).then(() => {
       if (this.submit.data) {

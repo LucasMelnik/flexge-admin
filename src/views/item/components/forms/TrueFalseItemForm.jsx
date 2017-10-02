@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Separator from "../../../../core/layout/Separator";
+import Separator from '../../../../core/layout/Separator';
 import TranslationInputContainer from '../inputs/TranslationInputContainer';
-import TrueFalseAnswerInputContainer from "../inputs/TrueFalseAnswerInputContainer";
+import TrueFalseAnswerInputContainer from '../inputs/TrueFalseAnswerInputContainer';
 import AudioPreview from '../../../../core/layout/AudioPreview';
 
 const TrueFalseItemForm = props => (
