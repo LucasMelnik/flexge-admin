@@ -46,6 +46,10 @@ class ContentReviewService {
           url: `/modules/${this.moduleId}/mastery-tests/${this.masteryTestId}`,
           body: {
             ...this.form.getValues(),
+            review: {
+              ...this.form.getValue('review'),
+              statusContent: 'PENDING',
+            },
           },
         }).then((res) => {
           if (res) {
@@ -90,6 +94,10 @@ class ContentReviewService {
           url: `/modules/${this.moduleId}/mastery-tests/${this.masteryTestId}`,
           body: {
             ...this.form.getValues(),
+            review: {
+              ...this.form.getValue('review'),
+              statusContent: 'NOT_APPROVED',
+            },
           },
         }).then((res) => {
           if (res) {
@@ -134,6 +142,10 @@ class ContentReviewService {
           url: `/modules/${this.moduleId}/mastery-tests/${this.masteryTestId}`,
           body: {
             ...this.form.getValues(),
+            review: {
+              ...this.form.getValue('review'),
+              statusContent: 'APPROVED',
+            },
           },
         }).then((res) => {
           if (res) {
