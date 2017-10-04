@@ -54,6 +54,10 @@ const ToReviewList = props => (
           path: 'unit.type.name',
         },
         {
+          label: 'Unit creator',
+          path: 'unit.createdBy.name',
+        },
+        {
           label: 'Created By',
           path: 'review.createdBy.name',
         },
@@ -157,7 +161,7 @@ ToReviewList.propTypes = {
       group: PropTypes.string,
       scoreToPass: PropTypes.number,
       time: PropTypes.number,
-      createdBy: PropTypes.string,
+      createdBy: PropTypes.object,
     }),
   })).isRequired,
   fetching: PropTypes.bool.isRequired,

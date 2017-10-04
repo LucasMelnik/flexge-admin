@@ -65,6 +65,10 @@ const MyReviewList = props => (
           },
         },
         {
+          label: 'Unit creator',
+          path: 'unit.createdBy.name',
+        },
+        {
           label: 'Reviewed By',
           path: 'review.reviewedBy.name',
         },
@@ -168,13 +172,13 @@ const MyReviewList = props => (
       selectable
       onSelect={row => (row.review.statusFormat === 'NOT_APPROVED' || row.review.status === 'REVIEWED' || row.review.status === 'PENDING' || row.review.status === 'DONE' || localStorage.role === 'ADMIN') && row.review.id && browserHistory.push(`/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
     />
-</Async>
+  </Async>
 );
 
 MyReviewList.propTypes = {
   onSendToReview: PropTypes.func,
   unitsAndReviews: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetching: PropTypes.bool,
+  fetching: PropTypes.bool.isRequired,
 };
 
 MyReviewList.defaultProps = {
