@@ -25,17 +25,17 @@ const StudentMasteryList = props => (
         {
           label: 'Available Since',
           path: 'availableAt',
-          render: cell => moment(cell).format('DD/MM/YYYY hh:mm:ss'),
+          render: (cell) => cell ? moment(cell).format('DD/MM/YYYY hh:mm:ss') : 'N/A',
         },
         {
           label: 'Last Failed',
           path: 'failedAt',
-          render: cell => moment(cell).format('DD/MM/YYYY hh:mm:ss'),
+          render: (cell) => cell ? moment(cell).format('DD/MM/YYYY hh:mm:ss') : 'N/A',
         },
         {
           label: 'Approved At',
           path: 'approvedAt',
-          render: cell => moment(cell).format('DD/MM/YYYY hh:mm:ss'),
+          render: (cell) => cell ? moment(cell).format('DD/MM/YYYY hh:mm:ss') : 'N/A',
         },
       ]}
       rows={props.masteries}
@@ -48,9 +48,9 @@ const StudentMasteryList = props => (
 StudentMasteryList.propTypes = {
   masteries: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    availableAt: PropTypes.string.isRequired,
-    failedAt: PropTypes.string.isRequired,
-    approvedAt: PropTypes.string.isRequired,
+    availableAt: PropTypes.string,
+    failedAt: PropTypes.string,
+    approvedAt: PropTypes.string,
     masteryTest: PropTypes.shape({
       modulePercentageToActive: PropTypes.number.isRequired,
       module: PropTypes.shape({

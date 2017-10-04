@@ -25,15 +25,17 @@ const StudentMasteryResultList = props => (
       {
         label: 'Started At',
         path: 'startedAt',
-        render: cell => moment(cell).format('DD/MM/YYYY hh:mm:ss'),
+        render: (cell) => cell ? moment(cell).format('DD/MM/YYYY hh:mm:ss') : 'N/A',
       },
       {
         label: 'Completed  At',
         path: 'completedAt',
-        render: cell => moment(cell).format('DD/MM/YYYY hh:mm:ss'),
+        render: (cell) => cell ? moment(cell).format('DD/MM/YYYY hh:mm:ss') : 'N/A',
       },
     ]}
     rows={props.executions}
+    selectable
+    onSelect={row => props.onSelect(row)}
   />
 );
 
@@ -41,10 +43,11 @@ StudentMasteryResultList.propTypes = {
   executions: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     startedAt: PropTypes.string.isRequired,
-    completedAt: PropTypes.string.isRequired,
-    score: PropTypes.number.isRequired,
+    completedAt: PropTypes.string,
+    score: PropTypes.number,
     scoreToPass: PropTypes.number.isRequired,
   })).isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
 export default StudentMasteryResultList;

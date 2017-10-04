@@ -9,6 +9,8 @@ class StudentMasteryResultListContainer extends Component {
 
   static propTypes = {
     masteryId: PropTypes.string.isRequired,
+    studentId: PropTypes.string.isRequired,
+    onSelect: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -20,6 +22,9 @@ class StudentMasteryResultListContainer extends Component {
       <StudentMasteryResultList
         executions={toJS(StudentMasteryListService.executions)}
         fetching={StudentMasteryListService.fetch.fetching}
+        masteryId={this.props.masteryId}
+        studentId={this.props.studentId}
+        onSelect={this.props.onSelect}
       />
     );
   }
