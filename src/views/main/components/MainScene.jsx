@@ -138,6 +138,10 @@ class MainScene extends Component {
                     link: '/placement-test-items-history',
                   },
                   {
+                    label: 'Student Placement/Mastery Tests',
+                    link: '/student-tests',
+                  },
+                  {
                     label: 'Records',
                     link: '/records',
                   },
