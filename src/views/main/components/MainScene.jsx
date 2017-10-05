@@ -134,16 +134,20 @@ class MainScene extends Component {
               <SubMenu
                 items={[
                   {
+                    label: 'Schools Records',
+                    link: '/reports/schools',
+                  },
+                  {
+                    label: 'School Classes Records',
+                    link: '/reports/school-classes',
+                  },
+                  {
                     label: 'Placement Item History',
                     link: '/placement-test-items-history',
                   },
                   {
                     label: 'Student Placement/Mastery Tests',
                     link: '/student-tests',
-                  },
-                  {
-                    label: 'Records',
-                    link: '/records',
                   },
                   {
                     label: 'Grades',

@@ -64,6 +64,9 @@ import PlacementTestItemsListScene from './views/placement-test-items/components
 import StudentTestListScene from './views/student-test/components/StudentTestListScene';
 import StudentTestDetailsScene from './views/student-test/components/StudentTestDetailsScene';
 
+import SchoolReportListScene from './views/reports/components/school/SchoolReportListScene';
+import SchoolClassReportListScene from './views/reports/components/school-class/SchoolClassReportListScene';
+
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
     replace('/login');
@@ -161,6 +164,8 @@ const Routes = () => (
       <Route path="placement-test-items-history" component={PlacementTestItemsListScene} />
       <Route path="student-tests" component={StudentTestListScene} />
       <Route path="student-tests/:studentId" component={StudentTestDetailsScene} />
+      <Route path="reports/schools" component={SchoolReportListScene} />
+      <Route path="reports/school-classes" component={SchoolClassReportListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
