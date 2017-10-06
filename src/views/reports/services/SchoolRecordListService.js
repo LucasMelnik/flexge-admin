@@ -1,12 +1,12 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
-class SchoolClassReportListService {
+class SchoolRecordListService {
   fetch = new FetchService();
 
   constructor() {
     extendObservable(this, {
-      schoolClasses: [],
+      schools: [],
     });
   }
 
@@ -16,18 +16,18 @@ class SchoolClassReportListService {
 
   load = action(() => {
     this.fetch.fetch({
-      url: '/reports/school-classes',
+      url: '/reports/schools',
     }).then(() => {
       if (this.fetch.data) {
-        this.schoolClasses = this.fetch.data;
+        this.schools = this.fetch.data;
       } else {
-        this.schoolClasses = [];
+        this.schools = [];
       }
     });
   });
 
 }
 
-const schoolClassReportListService = new SchoolClassReportListService();
+const schoolRecordListService = new SchoolRecordListService();
 
-export default schoolClassReportListService;
+export default schoolRecordListService;

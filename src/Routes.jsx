@@ -64,9 +64,9 @@ import PlacementTestItemsListScene from './views/placement-test-items/components
 import StudentTestListScene from './views/student-test/components/StudentTestListScene';
 import StudentTestDetailsScene from './views/student-test/components/StudentTestDetailsScene';
 
-import SchoolReportListScene from './views/reports/components/school/SchoolReportListScene';
-import SchoolClassReportListScene from './views/reports/components/school-class/SchoolClassReportListScene';
-import StudentReportListScene from './views/reports/components/student/StudentReportListScene';
+import FilterRecordScene from './views/reports/components/FilterRecordScene';
+import SchoolClassRecordScene from './views/reports/components/school-class/SchoolClassRecordScene';
+import StudentRecordScene from './views/reports/components/student/StudentRecordScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -165,9 +165,9 @@ const Routes = () => (
       <Route path="placement-test-items-history" component={PlacementTestItemsListScene} />
       <Route path="student-tests" component={StudentTestListScene} />
       <Route path="student-tests/:studentId" component={StudentTestDetailsScene} />
-      <Route path="reports/schools" component={SchoolReportListScene} />
-      <Route path="reports/school-classes" component={SchoolClassReportListScene} />
-      <Route path="reports/students" component={StudentReportListScene} />
+      <Route path="records" component={FilterRecordScene} />
+      <Route path="records/school/:schoolId" component={SchoolClassRecordScene} />
+      <Route path="records/school/:schoolId/class/:classId" component={StudentRecordScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

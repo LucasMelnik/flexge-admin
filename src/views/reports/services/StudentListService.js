@@ -1,7 +1,7 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
-class StudentReportListService {
+class StudentListService {
   fetch = new FetchService();
 
   constructor() {
@@ -10,13 +10,17 @@ class StudentReportListService {
     });
   }
 
-  init = action(() => {
-    this.load();
-  });
-
-  load = action(() => {
+  searchStudents = action((search) => {
     this.fetch.fetch({
-      url: '/reports/students',
+      url: '/students',
+      query: {
+        query: {
+          name: {
+            $regex: search,
+            $options: 'i',
+          },
+        },
+      },
     }).then(() => {
       if (this.fetch.data) {
         this.students = this.fetch.data;
@@ -25,9 +29,8 @@ class StudentReportListService {
       }
     });
   });
-
 }
 
-const studentReportListService = new StudentReportListService();
+const studentListService = new StudentListService();
 
-export default studentReportListService;
+export default studentListService;

@@ -1,33 +1,35 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
-class SchoolReportListService {
+class StudentRecordListService {
   fetch = new FetchService();
 
   constructor() {
     extendObservable(this, {
-      schools: [],
+      classId: null,
+      students: [],
     });
   }
 
-  init = action(() => {
+  init = action((classId) => {
+    this.classId = classId;
     this.load();
   });
 
   load = action(() => {
     this.fetch.fetch({
-      url: '/reports/schools',
+      url: '/reports/students',
     }).then(() => {
       if (this.fetch.data) {
-        this.schools = this.fetch.data;
+        this.students = this.fetch.data;
       } else {
-        this.schools = [];
+        this.students = [];
       }
     });
   });
 
 }
 
-const schoolReportListService = new SchoolReportListService();
+const studentRecordListService = new StudentRecordListService();
 
-export default schoolReportListService;
+export default studentRecordListService;
