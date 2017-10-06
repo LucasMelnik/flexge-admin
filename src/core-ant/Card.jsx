@@ -9,8 +9,12 @@ const Card = props => (
 );
 
 Card.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   children: PropTypes.node.isRequired,
+};
+
+Card.defaultProps = {
+  title: null,
 };
 
 export default Card;

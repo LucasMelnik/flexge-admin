@@ -67,6 +67,7 @@ import StudentTestDetailsScene from './views/student-test/components/StudentTest
 import FilterRecordScene from './views/reports/components/FilterRecordScene';
 import SchoolClassRecordScene from './views/reports/components/school-class/SchoolClassRecordScene';
 import StudentRecordScene from './views/reports/components/student/StudentRecordScene';
+import StudentDetailRecordScene from './views/reports/components/student-detail/StudentDetailRecordScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -168,6 +169,7 @@ const Routes = () => (
       <Route path="records" component={FilterRecordScene} />
       <Route path="records/school/:schoolId" component={SchoolClassRecordScene} />
       <Route path="records/school/:schoolId/class/:classId" component={StudentRecordScene} />
+      <Route path="records/school/:schoolId/class/:classId/student/:studentId" component={StudentDetailRecordScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

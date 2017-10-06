@@ -30,6 +30,7 @@ const Table = props => (
     }))}
     onRowClick={props.onSelect}
     loading={props.fetching}
+    expandedRowRender={props.expandableComponent}
   />
 );
 
@@ -38,11 +39,13 @@ Table.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   onSelect: PropTypes.func,
   fetching: PropTypes.bool,
+  expandableComponent: PropTypes.func,
 };
 
 Table.defaultProps = {
   onSelect: null,
   fetching: false,
+  expandableComponent: null,
 };
 
 export default Table;
