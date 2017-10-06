@@ -170,6 +170,7 @@ const Routes = () => (
       <Route path="records/school/:schoolId" component={SchoolClassRecordScene} />
       <Route path="records/school/:schoolId/class/:classId" component={StudentRecordScene} />
       <Route path="records/school/:schoolId/class/:classId/student/:studentId" component={StudentDetailRecordScene} />
+      <Route path="records/student/:studentId" component={StudentDetailRecordScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

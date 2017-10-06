@@ -19,7 +19,7 @@ class StudentRecordSelectContainer extends Component {
   };
 
   handleSelect = (value) => {
-    browserHistory.push(`reports/records/student/${value}/details`);
+    browserHistory.push(`/records/student/${value}`);
   };
 
   render() {
