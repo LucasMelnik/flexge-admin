@@ -142,6 +142,10 @@ class MainScene extends Component {
                     link: '/reports/school-classes',
                   },
                   {
+                    label: 'Students Records',
+                    link: '/reports/students',
+                  },
+                  {
                     label: 'Placement Item History',
                     link: '/placement-test-items-history',
                   },

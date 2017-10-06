@@ -66,6 +66,7 @@ import StudentTestDetailsScene from './views/student-test/components/StudentTest
 
 import SchoolReportListScene from './views/reports/components/school/SchoolReportListScene';
 import SchoolClassReportListScene from './views/reports/components/school-class/SchoolClassReportListScene';
+import StudentReportListScene from './views/reports/components/student/StudentReportListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -166,6 +167,7 @@ const Routes = () => (
       <Route path="student-tests/:studentId" component={StudentTestDetailsScene} />
       <Route path="reports/schools" component={SchoolReportListScene} />
       <Route path="reports/school-classes" component={SchoolClassReportListScene} />
+      <Route path="reports/students" component={StudentReportListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
