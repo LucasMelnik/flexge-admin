@@ -5,7 +5,7 @@ import StudentDetailContentRecordListContainer from './StudentDetailContentRecor
 import Card from '../../../../core-ant/Card';
 import StudentDetailDateRecordListContainer from './StudentDetailDateRecordListContainer';
 
-const StudentDetailRecordScene = () => (
+const StudentDetailRecordScene = props => (
   <Tabs
     tabs={[
       {
@@ -22,7 +22,7 @@ const StudentDetailRecordScene = () => (
         content:
           (
             <Card>
-              <StudentDetailDateRecordListContainer />
+              <StudentDetailDateRecordListContainer studentId={props.params.studentId} />
             </Card>
           ),
       },

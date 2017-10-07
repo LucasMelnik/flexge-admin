@@ -26,6 +26,7 @@ const Table = props => (
     columns={props.columns.map(column => ({
       title: column.label,
       dataIndex: column.path,
+      render: column.render,
       sorter: column.sort ? (a, b) => sort(a, b, column.path) : null,
     }))}
     onRowClick={props.onSelect}

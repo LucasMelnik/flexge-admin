@@ -29,7 +29,6 @@ class StudentRecordListService {
       }
     });
   });
-
 }
 
 const studentRecordListService = new StudentRecordListService();
