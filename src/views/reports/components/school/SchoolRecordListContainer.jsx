@@ -12,7 +12,7 @@ class SchoolRecordListContainer extends Component {
   }
 
   handleSelect = (school) => {
-    browserHistory.push(`/records/school/${school.id}`);
+    browserHistory.push(`/records/schools/${school.id}/classes`);
   };
 
   render() {

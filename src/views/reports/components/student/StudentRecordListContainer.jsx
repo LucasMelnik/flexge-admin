@@ -14,11 +14,11 @@ class StudentRecordListContainer extends Component {
   };
 
   componentDidMount() {
-    StudentRecordListService.init(this.props.classId);
+    StudentRecordListService.init(this.props.schoolId, this.props.classId);
   }
 
   handleSelect = (student) => {
-    browserHistory.push(`/records/school/${this.props.schoolId}/class/${this.props.classId}/student/${student.id}`);
+    browserHistory.push(`/records/schools/${this.props.schoolId}/classes/${this.props.classId}/students/${student.id}/detail`);
   };
 
   render() {

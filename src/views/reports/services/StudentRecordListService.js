@@ -6,19 +6,21 @@ class StudentRecordListService {
 
   constructor() {
     extendObservable(this, {
+      schoolId: null,
       classId: null,
       students: [],
     });
   }
 
-  init = action((classId) => {
+  init = action((schoolId, classId) => {
+    this.schoolId = schoolId;
     this.classId = classId;
     this.load();
   });
 
   load = action(() => {
     this.fetch.fetch({
-      url: '/reports/students',
+      url: `/reports/schools/${this.schoolId}/school-classes/${this.classId}/students`,
     }).then(() => {
       if (this.fetch.data) {
         this.students = this.fetch.data;

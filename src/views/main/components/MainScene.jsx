@@ -143,7 +143,7 @@ class MainScene extends Component {
                   },
                   {
                     label: 'Records',
-                    link: '/records',
+                    link: '/records/schools',
                   },
                   {
                     label: 'Grades',

@@ -166,11 +166,11 @@ const Routes = () => (
       <Route path="placement-test-items-history" component={PlacementTestItemsListScene} />
       <Route path="student-tests" component={StudentTestListScene} />
       <Route path="student-tests/:studentId" component={StudentTestDetailsScene} />
-      <Route path="records" component={FilterRecordScene} />
-      <Route path="records/school/:schoolId" component={SchoolClassRecordScene} />
-      <Route path="records/school/:schoolId/class/:classId" component={StudentRecordScene} />
-      <Route path="records/school/:schoolId/class/:classId/student/:studentId" component={StudentDetailRecordScene} />
-      <Route path="records/student/:studentId" component={StudentDetailRecordScene} />
+      <Route path="records/schools" component={FilterRecordScene} />
+      <Route path="records/schools/:schoolId/classes" component={SchoolClassRecordScene} />
+      <Route path="records/schools/:schoolId/classes/:classId/students" component={StudentRecordScene} />
+      <Route path="records/schools/:schoolId/classes/:classId/students/:studentId/detail" component={StudentDetailRecordScene} />
+      <Route path="records/students/:studentId/detail" component={StudentDetailRecordScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

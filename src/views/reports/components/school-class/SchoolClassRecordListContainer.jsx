@@ -17,7 +17,7 @@ class SchoolClassRecordListContainer extends Component {
   }
 
   handleSelect = (schoolClass) => {
-    browserHistory.push(`/records/school/${this.props.schoolId}/class/${schoolClass.id}`);
+    browserHistory.push(`/records/schools/${this.props.schoolId}/classes/${schoolClass.id}/students`);
   };
 
   render() {

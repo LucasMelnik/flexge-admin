@@ -13,6 +13,7 @@ const StudentRecordList = props => (
       },
       {
         label: 'Nível inicial (PT)',
+        path: 'reachedLevel',
       },
       {
         label: 'Tempo de estudo',
