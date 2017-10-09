@@ -25,6 +25,9 @@ class ReviewListService {
         ...(localStorage.role !== 'ADMIN' && localStorage.role !== 'IMAGE_ADMIN') && {
           createdBy: localStorage.id,
         },
+        ...(localStorage.role === 'ADMIN' && this.formMyReviews.getValue('createdBy')) && {
+          unitCreatedBy: this.formMyReviews.getValue('createdBy'),
+        },
       },
     }).then(() => {
       if (this.fetch.data && this.fetch.data.units) {
@@ -48,6 +51,9 @@ class ReviewListService {
         course: this.formAllReviews.getValue('course'),
         status: this.formAllReviews.getValue('status'),
         statusFormat: this.formAllReviews.getValue('statusFormat'),
+        ...(localStorage.role === 'ADMIN' && this.formAllReviews.getValue('createdBy')) && {
+          unitCreatedBy: this.formAllReviews.getValue('createdBy'),
+        },
       },
     }).then(() => {
       if (this.fetch.data && this.fetch.data.units) {

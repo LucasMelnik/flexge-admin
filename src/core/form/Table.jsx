@@ -36,6 +36,12 @@ export default class Table extends Component {
 
   state = { expandedRows: [], data: [] };
 
+  componentDidMount() {
+    this.setState({
+      data: orderBy(this.props.rows, 'id', 'asc'),
+    });
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       data: orderBy(nextProps.rows, 'id', 'asc'),

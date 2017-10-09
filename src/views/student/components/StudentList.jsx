@@ -5,12 +5,11 @@ import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
 import IconButton from '../../../core/form/IconButton';
 
-
 const StudentList = props => (
   <Async fetching={props.fetching}>
     <Table
       columns={[
-        {
+        ...[{
           label: 'ID',
           path: 'id',
           isKey: true,
@@ -31,21 +30,20 @@ const StudentList = props => (
         {
           label: 'Last PT',
           path: 'lastPlacementResult',
-        },
-        {
+        }],
+        ...props.editable && [{
           label: 'Actions',
           width: '120',
-          render: (cell, row) => {
-            return (
-              <div>
-                <IconButton
-                  icon="fa-trash"
-                  onClick={() => props.onDelete(row)}
-                />
-                {' '}
-                <IconButton
-                  icon="fa-edit"
-                  onClick={() => props.distributorId ?
+          render: (cell, row) => (
+            <div>
+              <IconButton
+                icon="fa-trash"
+                onClick={() => props.onDelete(row)}
+              />
+              {' '}
+              <IconButton
+                icon="fa-edit"
+                onClick={() => props.distributorId ?
                     browserHistory.push(`/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${props.classId}/students/${row.id}`) :
                   props.companyId ?
                     browserHistory.push(`/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${props.classId}/students/${row.id}`) :
@@ -54,15 +52,14 @@ const StudentList = props => (
                   props.classId ?
                     browserHistory.push(`/class-detail/${props.classId}/students/${row.id}`) :
                     browserHistory.push(`/students/${row.id}`)}
-                />
-              </div>
-            );
-          },
-        },
+              />
+            </div>
+            ),
+        }],
       ]}
       rows={props.students}
-      selectable
-      onSelect={row => browserHistory.push(`students/${row.id}/placements`)}
+      selectable={!!props.onSelect}
+      onSelect={row => props.onSelect && props.onSelect(row.id)}
     />
   </Async>
 );
@@ -73,18 +70,21 @@ StudentList.propTypes = {
     name: PropTypes.string.isRequired,
   })).isRequired,
   companyId: PropTypes.string,
-  schoolId: PropTypes.string.isRequired,
+  schoolId: PropTypes.string,
   classId: PropTypes.string,
   distributorId: PropTypes.string,
   fetching: PropTypes.bool.isRequired,
+  editable: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onSelect: PropTypes.func,
 };
 
 StudentList.defaultProps = {
   companyId: null,
   classId: null,
-  school: null,
+  schoolId: null,
   distributorId: null,
+  onSelect: null,
 };
 
 export default StudentList;
