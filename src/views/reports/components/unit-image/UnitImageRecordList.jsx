@@ -3,27 +3,31 @@ import PropTypes from 'prop-types';
 import Table from '../../../../core-ant/Table';
 
 const UnitImagesRecordList = props => (
-  <Table
-    fetching={props.fetching}
-    columns={[
-      {
-        label: 'Name',
-        path: 'name',
-        sort: true,
-      },
-      {
-        label: 'Total items',
-        path: 'totalUnitItems',
-        sort: true,
-      },
-      {
-        label: 'Images Unit Count',
-        path: 'imagesCount',
-        sort: true,
-      },
-    ]}
-    dataSource={props.units}
-  />
+  <div>
+    <Table
+      fetching={props.fetching}
+      columns={[
+        {
+          label: 'Name',
+          path: 'name',
+          sort: true,
+        },
+        {
+          label: 'Approved Images Count',
+          path: 'imagesCount',
+          sort: true,
+        },
+      ]}
+      dataSource={props.units}
+    />
+    <div
+      style={{
+        float: 'right',
+      }}
+    >
+      Total approved images: {props.totalApprovedImagesCount}
+    </div>
+  </div>
 );
 
 UnitImagesRecordList.propTypes = {
@@ -34,6 +38,7 @@ UnitImagesRecordList.propTypes = {
     imagesUnitCount: PropTypes.number.isRequired,
     children: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   })).isRequired,
+  totalApprovedImagesCount: PropTypes.number.isRequired,
   fetching: PropTypes.bool.isRequired,
 };
 

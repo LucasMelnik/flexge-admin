@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
-import { browserHistory } from 'react-router';
 import UnitImageRecordList from './UnitImageRecordList';
 import UnitImageReportListService from '../../services/UnitImageRecordListService';
 
@@ -15,6 +14,7 @@ class UnitImageRecordListContainer extends Component {
     return (
       <UnitImageRecordList
         units={toJS(UnitImageReportListService.units)}
+        totalApprovedImagesCount={UnitImageReportListService.totalApprovedImagesCount}
         fetching={UnitImageReportListService.fetch.fetching}
       />
     );

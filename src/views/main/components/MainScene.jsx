@@ -146,7 +146,7 @@ class MainScene extends Component {
                     link: '/records/schools',
                   },
                   {
-                    label: 'Unit Images Records',
+                    label: 'Approved Images Records',
                     link: '/records/unit-images',
                   },
                   {
