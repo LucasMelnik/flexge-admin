@@ -14,10 +14,12 @@ const UnitImagesRecordList = props => (
       {
         label: 'Total items',
         path: 'totalUnitItems',
+        sort: true,
       },
       {
         label: 'Images Unit Count',
         path: 'imagesCount',
+        sort: true,
       },
     ]}
     dataSource={props.units}
