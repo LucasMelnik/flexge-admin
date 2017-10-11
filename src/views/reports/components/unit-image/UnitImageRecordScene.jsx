@@ -4,9 +4,7 @@ import UnitImageRecordListContainer from './UnitImageRecordListContainer';
 
 const UnitImageRecordScene = () => (
   <div>
-    <Card
-      title="Unit Images Reports"
-    >
+    <Card title="Unit Images Reports">
       <UnitImageRecordListContainer />
     </Card>
   </div>
