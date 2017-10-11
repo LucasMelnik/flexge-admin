@@ -168,7 +168,7 @@ const Routes = () => (
       <Route path="student-tests" component={StudentTestListScene} />
       <Route path="student-tests/:studentId" component={StudentTestDetailsScene} />
       <Route path="records/schools" component={FilterRecordScene} />
-      <Route path="records/unit-images" component={UnitImageRecordScene} />
+      <Route path="records/units-images" component={UnitImageRecordScene} />
       <Route path="records/schools/:schoolId/classes" component={SchoolClassRecordScene} />
       <Route path="records/schools/:schoolId/classes/:classId/students" component={StudentRecordScene} />
       <Route path="records/schools/:schoolId/classes/:classId/students/:studentId/detail" component={StudentDetailRecordScene} />
