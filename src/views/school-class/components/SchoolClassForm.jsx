@@ -7,6 +7,7 @@ import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
 import FetchSelect from '../../../core/form/FetchSelect';
 import FormButtons from '../../../core/form/FormButtons';
+import Switch from '../../../core/form/Switch';
 
 const SchoolClassForm = props => (
   <form
@@ -70,6 +71,19 @@ const SchoolClassForm = props => (
           />
         </Column>
       </PermissionValidator>
+    </Row>
+    <Row>
+      <Column lgSize={4}>
+        <Switch
+          label="Is Placement Test Class?"
+          icons={false}
+          titleOff="False"
+          titleOn="True"
+          onChange={value => props.onChange('isPlacementTestClass', value)}
+          value={get(props.values, 'isPlacementTestClass', false)}
+          disabled={props.disabled}
+        />
+      </Column>
     </Row>
     <FormButtons
       confirmLabel={props.values.id ? 'Update School Class' : 'Create School Class'}

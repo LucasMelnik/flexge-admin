@@ -26,31 +26,43 @@ export default class Switch extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          display: 'flex',
-        }}
-      >
-        <span
+      <div>
+        <div
           style={{
-            marginRight: 10,
+            fontWeight: 400,
+            color: '#555555',
+            marginBottom: 10,
           }}
         >
-          {this.props.titleOff}
-        </span>
-        <Toggle
-          defaultChecked={this.props.value}
-          icons={this.props.icons}
-          onChange={event => this.props.onChange(event.target.checked)}
-          disabled={this.props.disabled}
-        />
-        <span
+          {this.props.label}
+        </div>
+        <div
           style={{
-            marginLeft: 10,
+            display: 'flex',
           }}
         >
-          {this.props.titleOn}
-        </span>
+          <span
+            style={{
+              marginRight: 10,
+            }}
+          >
+            {this.props.titleOff}
+          </span>
+          <Toggle
+            defaultChecked={false}
+            checked={this.props.value}
+            icons={this.props.icons}
+            onChange={event => this.props.onChange(event.target.checked)}
+            disabled={this.props.disabled}
+          />
+          <span
+            style={{
+              marginLeft: 10,
+            }}
+          >
+            {this.props.titleOn}
+          </span>
+        </div>
       </div>
     );
   }

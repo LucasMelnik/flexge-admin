@@ -139,11 +139,11 @@ const UnitList = props => (
                     fontWeight: 'bold',
                     borderRadius: 5,
                     backgroundColor: {
-                       NOT_SEND_TO_REVIEW: '#758C98',
-                       PENDING_REVIEW: '#ef8c3b',
-                       APPROVED: '#009687',
-                       NOT_APPROVED: '#FF5233',
-                     }[row.review.statusImage || 'NOT_SEND_TO_REVIEW'],
+                      NOT_SEND_TO_REVIEW: '#758C98',
+                      PENDING_REVIEW: '#ef8c3b',
+                      APPROVED: '#009687',
+                      NOT_APPROVED: '#FF5233',
+                    }[row.review.statusImage || 'NOT_SEND_TO_REVIEW'],
                   }}
                 >
                   {replace(row.review.statusImage || 'NOT_SEND_TO_REVIEW', '_', ' ')}
@@ -151,7 +151,7 @@ const UnitList = props => (
               );
             }
             return row.review ? 'N/A' : '';
-          }
+          },
         },
         {
           label: 'Items count',
@@ -160,42 +160,38 @@ const UnitList = props => (
         {
           label: 'Unit time',
           path: 'time',
-          render: (cell, row) => {
-            return `${row.time < 60 ? '00:' : ''}${moment.duration(row.time, "seconds").format("mm:ss", {forceLength: true})}`
-          },
+          render: (cell, row) => `${row.time < 60 ? '00:' : ''}${moment.duration(row.time, 'seconds').format('mm:ss', { forceLength: true })}`,
         },
         {
           label: 'Actions',
           path: 'action',
           width: '120',
-          render: (cell, row) => {
-            return (
-              <div>
-                {(row.createdBy === localStorage.id || localStorage.role === 'ADMIN') && (
-                  <IconButton
-                    icon="fa-trash"
-                    onClick={() => props.onDelete(row)}
-                  />
-                )}
-                {' '}
-                {(row.createdBy === localStorage.id || localStorage.role === 'ADMIN') && (
-                  <IconButton
-                    icon="fa-edit"
-                    onClick={() => browserHistory.push(`/modules/${row.module}/units/${row.id}`)}
-                  />
-                )}
-              </div>
-            );
-          },
+          render: (cell, row) => (
+            <div>
+              {(row.createdBy === localStorage.id || localStorage.role === 'ADMIN') && (
+                <IconButton
+                  icon="fa-trash"
+                  onClick={() => props.onDelete(row)}
+                />
+              )}
+              {' '}
+              {(row.createdBy === localStorage.id || localStorage.role === 'ADMIN') && (
+                <IconButton
+                  icon="fa-edit"
+                  onClick={() => browserHistory.push(`/modules/${row.module}/units/${row.id}`)}
+                />
+              )}
+            </div>
+          ),
         },
       ]}
       rows={props.units}
       selectable
-      onSelect={row => {
+      onSelect={(row) => {
         if (row.type.name.toLowerCase() === 'review') {
-          browserHistory.push(`/modules/${row.module}/units/${row.id}/review-items`)
+          browserHistory.push(`/modules/${row.module}/units/${row.id}/review-items`);
         } else {
-          browserHistory.push(`/modules/${row.module}/units/${row.id}/items`)
+          browserHistory.push(`/modules/${row.module}/units/${row.id}/items`);
         }
       }}
     />

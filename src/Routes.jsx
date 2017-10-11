@@ -54,7 +54,6 @@ import PracticeTestFormScene from './views/practice-test/components/PracticeTest
 
 import NotFoundScene from './views/not-found/components/NotFoundScene';
 import ConfigurationFormScene from './views/configuration/components/ConfigurationFormScene';
-import StudentPlacementListScene from './views/student/components/placement/StudentPlacementListScene';
 import ItemTypeListScene from './views/item-type/components/ItemTypeListScene';
 import ItemTypeFormSceneContainer from './views/item-type/components/ItemTypeFormSceneContainer';
 import CourseListScene from './views/course/components/CourseListScene';
@@ -62,6 +61,13 @@ import CourseFormSceneContainer from './views/course/components/CourseFormSceneC
 import PlacementTestLevelFormSceneContainer from './views/placement-test-level/components/PlacementTestLevelFormSceneContainer';
 import PlacementTestLevelListScene from './views/placement-test-level/components/PlacementTestLevelListScene';
 import PlacementTestItemsListScene from './views/placement-test-items/components/PlacementTestListScene';
+import StudentTestListScene from './views/student-test/components/StudentTestListScene';
+import StudentTestDetailsScene from './views/student-test/components/StudentTestDetailsScene';
+
+import FilterRecordScene from './views/reports/components/FilterRecordScene';
+import SchoolClassRecordScene from './views/reports/components/school-class/SchoolClassRecordScene';
+import StudentRecordScene from './views/reports/components/student/StudentRecordScene';
+import StudentDetailRecordScene from './views/reports/components/student-detail/StudentDetailRecordScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -126,7 +132,6 @@ const Routes = () => (
       <Route path="students" component={StudentListScene} />
       <Route path="students/new" component={StudentFormSceneContainer} />
       <Route path="students/:studentId" component={StudentFormSceneContainer} />
-      <Route path="students/:studentId/placements" component={StudentPlacementListScene} />
       <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainer} />
       <Route path="distributor-detail/:distributorId/company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/:studentId" component={StudentFormSceneContainer} />
       <Route path="company-detail/:companyId/school-detail/:schoolId/class-detail/:classId/students/new" component={StudentFormSceneContainer} />
@@ -159,6 +164,13 @@ const Routes = () => (
       <Route path="courses/new" component={CourseFormSceneContainer} />
       <Route path="courses/:courseId" component={CourseFormSceneContainer} />
       <Route path="placement-test-items-history" component={PlacementTestItemsListScene} />
+      <Route path="student-tests" component={StudentTestListScene} />
+      <Route path="student-tests/:studentId" component={StudentTestDetailsScene} />
+      <Route path="records/schools" component={FilterRecordScene} />
+      <Route path="records/schools/:schoolId/classes" component={SchoolClassRecordScene} />
+      <Route path="records/schools/:schoolId/classes/:classId/students" component={StudentRecordScene} />
+      <Route path="records/schools/:schoolId/classes/:classId/students/:studentId/detail" component={StudentDetailRecordScene} />
+      <Route path="records/students/:studentId/detail" component={StudentDetailRecordScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

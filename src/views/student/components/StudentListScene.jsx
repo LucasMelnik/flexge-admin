@@ -16,8 +16,8 @@ const StudentListScene = () => (
     <Card
       title="Students"
     >
-      <StudentListFilterContainer />
-      <StudentListContainer />
+      <StudentListFilterContainer hasSchoolClass={false} />
+      <StudentListContainer editable />
     </Card>
   </div>
 );

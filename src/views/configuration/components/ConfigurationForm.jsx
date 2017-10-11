@@ -27,6 +27,17 @@ const ConfigurationForm = props => (
           fieldValidation={get(props.errors, 'pointsToIncreaseAfterTestFailure', null) && 'error'}
         />
       </Column>
+      <Column lgSize={4}>
+        <TextInput
+          type="number"
+          disabled={props.submitting}
+          label="SR Score to Pass"
+          value={get(props.values, 'scoreToPassOfSpeechRecognition', '')}
+          onChange={value => props.onChange('scoreToPassOfSpeechRecognition', value)}
+          description={get(props.errors, 'scoreToPassOfSpeechRecognition', null)}
+          fieldValidation={get(props.errors, 'scoreToPassOfSpeechRecognition', null) && 'error'}
+        />
+      </Column>
     </Row>
     <Row>
       <Column lgSize={2}>

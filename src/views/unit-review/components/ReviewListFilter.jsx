@@ -5,6 +5,7 @@ import ColumnSeparator from '../../../core/layout/ColumnSeparator';
 import Select from '../../../core/form/Select';
 import Button from '../../../core/form/Button';
 import FetchSelect from '../../../core/form/FetchSelect';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const ReviewListFilter = props => (
   <div
@@ -55,6 +56,22 @@ const ReviewListFilter = props => (
       }}
     />
     <ColumnSeparator size="sm" />
+    <PermissionValidator allowedFor={['ADMIN']}>
+      <FetchSelect
+        url="/users?query[role]=CONTENT_ADMIN"
+        label="Unit Creator"
+        disabled={props.fetching}
+        value={get(props.values, 'createdBy')}
+        onChange={value => props.onChange('createdBy', value)}
+        resultTransformer={{
+          text: 'name',
+          value: 'id',
+        }}
+      />
+    </PermissionValidator>
+    <PermissionValidator allowedFor={['ADMIN']}>
+      <ColumnSeparator size="sm" />
+    </PermissionValidator>
     <Button
       label="Search"
       icon="fa-search"

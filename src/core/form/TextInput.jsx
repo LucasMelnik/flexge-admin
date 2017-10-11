@@ -18,6 +18,7 @@ export default class TextInput extends Component {
     textAreaRows: PropTypes.string,
     step: PropTypes.number,
     max: PropTypes.number,
+    height: PropTypes.number,
   };
 
   static defaultProps = {
@@ -32,6 +33,7 @@ export default class TextInput extends Component {
     fieldValidation: null,
     helpText: null,
     max: null,
+    height: 34,
     step: null,
     textAreaRows: '2',
   };
@@ -86,6 +88,9 @@ export default class TextInput extends Component {
               disabled={this.props.disabled && 'disabled'}
               step={this.props.step}
               max={this.props.max}
+              style={{
+                height: this.props.height,
+              }}
             />
           )}
           {this.props.helpText && (

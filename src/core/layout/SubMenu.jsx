@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 const SubMenu = props => (
-  <ul className="sub-menu">
+  <ul className="dropdown-menu">
     {props.items.map(item => (
       <li key={`sub-menu-${item.link}`}>
         <Link to={item.link}>

@@ -12,14 +12,18 @@ class StudentListContainer extends Component {
     companyId: PropTypes.string,
     schoolId: PropTypes.string,
     classId: PropTypes.string,
-  }
+    editable: PropTypes.bool,
+    onSelect: PropTypes.func,
+  };
 
   static defaultProps = {
     distributorId: null,
     companyId: null,
     schoolId: null,
     classId: null,
-  }
+    editable: false,
+    onSelect: null,
+  };
 
   componentDidMount() {
     StudentListService.init(this.props.schoolId, this.props.classId);
@@ -30,7 +34,9 @@ class StudentListContainer extends Component {
       <StudentList
         students={toJS(StudentListService.students)}
         fetching={StudentListService.fetch.fetching}
+        editable={this.props.editable}
         onDelete={StudentListService.handleRemove}
+        onSelect={this.props.onSelect}
         distributorId={this.props.distributorId}
         companyId={this.props.companyId}
         schoolId={this.props.schoolId}
