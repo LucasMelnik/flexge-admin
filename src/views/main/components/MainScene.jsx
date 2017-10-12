@@ -147,7 +147,7 @@ class MainScene extends Component {
                   },
                   {
                     label: 'Approved Images Records',
-                    link: '/records/units-images',
+                    link: '/records/unit-images',
                   },
                   {
                     label: 'Grades',
