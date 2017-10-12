@@ -49,6 +49,10 @@ class MainScene extends Component {
                     label: 'Characters',
                     link: '/characters',
                   },
+                  {
+                    label: 'Regions',
+                    link: '/regions',
+                  },
                 ]}
               />
             </MenuItem>
@@ -148,6 +152,10 @@ class MainScene extends Component {
                   {
                     label: 'Records',
                     link: '/records/schools',
+                  },
+                  {
+                    label: 'Approved Images Records',
+                    link: '/records/unit-images',
                   },
                   {
                     label: 'Grades',

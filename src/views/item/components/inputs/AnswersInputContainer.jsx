@@ -23,6 +23,10 @@ class AnswersInputContainer extends Component {
       text: PropTypes.string.isRequired,
       correct: PropTypes.bool.isRequired,
     })),
+    type: PropTypes.oneOf([
+      'SINGLE_CHOICE_TEXT',
+      'SINGLE_CHOICE_AUDIO',
+      'SINGLE_CHOICE_IMAGE']).isRequired,
   };
 
   static defaultProps = {
@@ -147,6 +151,7 @@ class AnswersInputContainer extends Component {
         answerType={this.props.answerType}
         errorText={this.props.errorText}
         label={this.props.label}
+        type={this.props.type}
         disabled={this.props.disabled}
       />
     );

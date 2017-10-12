@@ -115,6 +115,7 @@ const ItemForm = props => (
           values={props.values.item}
           submitting={props.submitting}
           disabled={props.disabled}
+          type={get(props.values.item, 'type.key')}
           isTestItem={props.isTestItem}
           showPostPhrase={get(props.values.item, 'type.key') === 'SINGLE_CHOICE_IMAGE'}
         />

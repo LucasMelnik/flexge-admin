@@ -154,7 +154,7 @@ const AnswersInput = props => (
               render: (cell, row) => {
                 if (row.image) {
                   return (<ImagePreview src={row.image} />);
-                } else {
+                } else if (props.type === 'SINGLE_CHOICE_IMAGE') {
                   return 'No Image uploaded';
                 }
               },
@@ -205,6 +205,10 @@ AnswersInput.propTypes = {
   ]).isRequired,
   disabled: PropTypes.bool,
   label: PropTypes.string.isRequired,
+  type: PropTypes.oneOf([
+    'SINGLE_CHOICE_TEXT',
+    'SINGLE_CHOICE_AUDIO',
+    'SINGLE_CHOICE_IMAGE']).isRequired,
   errorText: PropTypes.string,
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
