@@ -63,6 +63,8 @@ import PlacementTestLevelListScene from './views/placement-test-level/components
 import PlacementTestItemsListScene from './views/placement-test-items/components/PlacementTestListScene';
 import StudentTestListScene from './views/student-test/components/StudentTestListScene';
 import StudentTestDetailsScene from './views/student-test/components/StudentTestDetailsScene';
+import RegionListScene from './views/region/components/RegionListScene';
+import RegionFormSceneContainer from './views/region/components/RegionFormSceneContainer';
 
 import FilterRecordScene from './views/reports/components/FilterRecordScene';
 import SchoolClassRecordScene from './views/reports/components/school-class/SchoolClassRecordScene';
@@ -164,6 +166,9 @@ const Routes = () => (
       <Route path="courses" component={CourseListScene} />
       <Route path="courses/new" component={CourseFormSceneContainer} />
       <Route path="courses/:courseId" component={CourseFormSceneContainer} />
+      <Route path="regions" component={RegionListScene} />
+      <Route path="regions/new" component={RegionFormSceneContainer} />
+      <Route path="regions/:regionId" component={RegionFormSceneContainer} />
       <Route path="placement-test-items-history" component={PlacementTestItemsListScene} />
       <Route path="student-tests" component={StudentTestListScene} />
       <Route path="student-tests/:studentId" component={StudentTestDetailsScene} />

@@ -17,7 +17,7 @@ class SchoolRecordListService {
 
   load = action(() => {
     this.fetch.fetch({
-      url: '/reports/units-image',
+      url: '/reports/unit-images',
     }).then(() => {
       if (this.fetch.data) {
         this.units = this.fetch.data.unitsWithCountImages;

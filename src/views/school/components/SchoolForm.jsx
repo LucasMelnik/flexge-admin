@@ -41,15 +41,19 @@ class SchoolForm extends Component {
             <Column lgSize={4}>
               <FetchSelect
                 url="/companies"
+                fullWidth
                 disabled={this.props.submitting}
                 label="Company"
                 value={get(this.props.values, 'company', '')}
-                onChange={company => this.props.onChange('company', company)}
+                onChange={(company) => {
+                  this.props.onChange('company', company);
+                }}
                 description={get(this.props.errors, 'company', null)}
                 fieldValidation={get(this.props.errors, 'company', null) && 'error'}
                 resultTransformer={{
                   text: 'name',
                   value: 'id',
+                  country: 'country',
                 }}
               />
             </Column>
@@ -69,13 +73,19 @@ class SchoolForm extends Component {
         </Row>
         <Row>
           <Column lgSize={3}>
-            <TextInput
-              disabled
-              label="Country"
-              value={get(this.props.values, 'country', '')}
-              onChange={value => this.props.onChange('country', value)}
-              description={get(this.props.errors, 'country', null)}
-              fieldValidation={get(this.props.errors, 'country', null) && 'error'}
+            <FetchSelect
+              url={`/regions?query[company]=${get(this.props.values, 'company.country', '')}`}
+              fullWidth
+              disabled={this.props.submitting || !get(this.props.values, 'company', '')}
+              label="Regions"
+              value={get(this.props.values, 'region', '')}
+              onChange={value => this.props.onChange('region', value)}
+              description={get(this.props.errors, 'region', null)}
+              fieldValidation={get(this.props.errors, 'region', null) && 'error'}
+              resultTransformer={{
+                text: 'name',
+                value: 'id',
+              }}
             />
           </Column>
           <Column lgSize={3}>

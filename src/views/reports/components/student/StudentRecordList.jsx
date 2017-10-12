@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '../../../../core-ant/Table';
+import moment from 'moment';
 
 const StudentRecordList = props => (
   <Table
@@ -19,7 +20,13 @@ const StudentRecordList = props => (
         label: 'Tempo de estudo',
       },
       {
-        label: 'Dias sem estudos',
+        label: 'Last time studied',
+        path: 'lastStudentAccess',
+        render: (cell, row) => {
+          return (
+            <div>{moment(row.lastStudentAccess).fromNow()}</div>
+          )
+        },
       },
       {
         label: 'Curso atual',
