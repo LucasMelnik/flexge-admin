@@ -45,6 +45,10 @@ class MainScene extends Component {
                     label: 'Courses',
                     link: '/courses',
                   },
+                  {
+                    label: 'Characters',
+                    link: '/characters',
+                  },
                 ]}
               />
             </MenuItem>
