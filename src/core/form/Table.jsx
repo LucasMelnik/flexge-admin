@@ -38,13 +38,13 @@ export default class Table extends Component {
 
   componentDidMount() {
     this.setState({
-      data: orderBy(this.props.rows, 'id', 'asc'),
+      data: this.props.rows,
     });
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      data: orderBy(nextProps.rows, 'id', 'asc'),
+      data: nextProps.rows,
     });
   }
 
