@@ -1,8 +1,10 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import FormService from '../../../core/services/FormService';
 
 class SchoolRecordListService {
   fetch = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -18,6 +20,11 @@ class SchoolRecordListService {
   load = action(() => {
     this.fetch.fetch({
       url: '/reports/units-image',
+      query: {
+        ...this.form.getValue('imageOwner') && {
+          imageOwner: this.form.getValue('imageOwner'),
+        },
+      },
     }).then(() => {
       if (this.fetch.data) {
         this.units = this.fetch.data.unitsWithCountImages;
