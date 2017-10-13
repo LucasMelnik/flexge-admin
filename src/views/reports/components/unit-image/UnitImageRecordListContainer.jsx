@@ -14,6 +14,8 @@ class UnitImageRecordListContainer extends Component {
     return (
       <UnitImageRecordList
         units={toJS(UnitImageReportListService.units)}
+        totalImagesPresentationCount={UnitImageReportListService.totalImagesPresentationCount}
+        totalImagesSingleChoiceCount={UnitImageReportListService.totalImagesSingleChoiceCount}
         totalApprovedImagesCount={UnitImageReportListService.totalApprovedImagesCount}
         fetching={UnitImageReportListService.fetch.fetching}
       />

@@ -51,7 +51,17 @@ const UnitImagesRecordList = props => (
           },
         },
         {
-          label: 'Approved Images Count',
+          label: 'Approved Images Count (Presentation)',
+          path: 'imagesPresentationCount',
+          sort: true,
+        },
+        {
+          label: 'Approved Images Count (Single Choice Image)',
+          path: 'imagesSingleChoiceImageCount',
+          sort: true,
+        },
+        {
+          label: 'Total Approved Images Count',
           path: 'imagesCount',
           sort: true,
         },
@@ -61,9 +71,27 @@ const UnitImagesRecordList = props => (
     <div
       style={{
         float: 'right',
+        fontSize: 14,
+        margin: 10,
       }}
     >
-      Total approved images: {props.totalApprovedImagesCount}
+      <div
+        style={{
+          marginRight: 10,
+        }}
+      >
+        Total presentation images: {props.totalImagesPresentationCount}
+      </div>
+      <div
+        style={{
+          marginRight: 10,
+        }}
+      >
+        Total single choice images: {props.totalImagesSingleChoiceCount}
+      </div>
+      <div>
+        Total images: {props.totalApprovedImagesCount}
+      </div>
     </div>
   </div>
 );
@@ -76,6 +104,8 @@ UnitImagesRecordList.propTypes = {
     imagesUnitCount: PropTypes.number.isRequired,
     children: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   })).isRequired,
+  totalImagesPresentationCount: PropTypes.number.isRequired,
+  totalImagesSingleChoiceCount: PropTypes.number.isRequired,
   totalApprovedImagesCount: PropTypes.number.isRequired,
   fetching: PropTypes.bool.isRequired,
 };
