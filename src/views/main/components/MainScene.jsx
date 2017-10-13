@@ -158,6 +158,10 @@ class MainScene extends Component {
                     link: '/records/unit-images',
                   },
                   {
+                    label: 'Item Audios',
+                    link: '/item-audios',
+                  },
+                  {
                     label: 'Grades',
                     link: '/grades',
                   },

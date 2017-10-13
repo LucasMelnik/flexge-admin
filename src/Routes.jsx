@@ -73,6 +73,7 @@ import StudentDetailRecordScene from './views/reports/components/student-detail/
 import CharacterListScene from './views/character/components/CharacterListScene';
 import CharacterFormSceneContainer from './views/character/components/CharacterFormSceneContainer';
 import UnitImageRecordScene from './views/reports/components/unit-image/UnitImageRecordScene';
+import ItemAudioListScene from './views/item-audio/components/ItemAudioListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -183,6 +184,7 @@ const Routes = () => (
       <Route path="records/schools/:schoolId/classes/:classId/students" component={StudentRecordScene} />
       <Route path="records/schools/:schoolId/classes/:classId/students/:studentId/detail" component={StudentDetailRecordScene} />
       <Route path="records/students/:studentId/detail" component={StudentDetailRecordScene} />
+      <Route path="item-audios" component={ItemAudioListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
