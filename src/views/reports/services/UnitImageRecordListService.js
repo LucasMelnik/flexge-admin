@@ -9,6 +9,8 @@ class SchoolRecordListService {
   constructor() {
     extendObservable(this, {
       units: [],
+      totalImagesPresentationCount: 0,
+      totalImagesSingleChoiceCount: 0,
       totalApprovedImagesCount: 0,
     });
   }
@@ -28,10 +30,14 @@ class SchoolRecordListService {
     }).then(() => {
       if (this.fetch.data) {
         this.units = this.fetch.data.unitsWithCountImages;
+        this.totalImagesPresentationCount = this.fetch.data.totalImagesPresentationCount;
+        this.totalImagesSingleChoiceCount = this.fetch.data.totalImagesSingleChoiceCount;
         this.totalApprovedImagesCount = this.fetch.data.totalImagesCount;
       } else {
         this.units = [];
         this.totalApprovedImagesCount = 0;
+        this.totalImagesPresentationCount = 0;
+        this.totalImagesSingleChoiceCount = 0;
       }
     });
   });
