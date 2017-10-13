@@ -27,6 +27,11 @@ const ItemAudioList = props => (
         render: (text, record) => record.audio && <AudioPreviewButton src={record.audio} />,
       },
       {
+        label: 'Comments',
+        path: 'commentsAudio',
+        render: text => <div dangerouslySetInnerHTML={{ __html: text }} />,
+      },
+      {
         label: 'Status',
         path: 'statusAudio',
         render: text => (
@@ -54,7 +59,11 @@ const ItemAudioList = props => (
         title: 'Action',
         key: 'action',
         render: (text, record) => (
-          <div>
+          <div
+            style={{
+              minWidth: 120,
+            }}
+          >
             {(
               localStorage.getItem('role') === 'AUDIO_CONTENT' &&
               (!record.statusAudio || record.statusAudio === 'PENDING' || record.statusAudio === 'NOT_APPROVED')

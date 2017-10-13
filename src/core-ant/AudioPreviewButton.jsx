@@ -38,7 +38,6 @@ export default class AudioPreview extends Component {
         <Button
           type="primary"
           shape="circle"
-          tooltip="Play/Pause"
           onClick={this.togglePlay}
           icon={this.state.playing ? 'pause' : 'caret-right'}
         />

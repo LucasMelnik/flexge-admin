@@ -9,7 +9,7 @@ const Button = props => (
     htmlType={props.buttonType}
     onClick={() => props.onClick && props.onClick()}
     icon={props.icon}
-    shape={props.circle && 'circle'}
+    shape={props.circle ? 'circle' : null}
   >
     {props.children}
   </AntButton>
@@ -28,7 +28,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   circle: PropTypes.bool,
   buttonType: PropTypes.oneOf(['button', 'submit']),
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 Button.defaultProps = {
@@ -38,6 +38,7 @@ Button.defaultProps = {
   circle: false,
   onClick: null,
   icon: null,
+  children: null,
 };
 
 export default Button;

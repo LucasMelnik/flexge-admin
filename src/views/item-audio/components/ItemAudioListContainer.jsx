@@ -3,6 +3,7 @@ import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import ItemAudioList from './ItemAudioList';
 import ItemAudioListService from '../services/ItemAudioListService';
+import ItemAudioStatusService from '../services/ItemAudioStatusService';
 
 class ItemAudioListContainer extends Component {
 
@@ -18,7 +19,7 @@ class ItemAudioListContainer extends Component {
         pagination={ItemAudioListService.pagination}
         onChange={ItemAudioListService.load}
         onAudioUpload={ItemAudioListService.handleAudioUpload}
-        onChangeStatus={() => console.log('aaaa')}
+        onChangeStatus={ItemAudioStatusService.init}
       />
     );
   }

@@ -3,6 +3,7 @@ import Card from '../../../core-ant/Card';
 import Separator from '../../../core/layout/Separator';
 import ItemAudioListContainer from './ItemAudioListContainer';
 import ItemAudioListFilterContainer from './ItemAudioListFilterContainer';
+import ItemAudioStatusDialogContainer from './ItemAudioStatusDialogContainer';
 
 const ItemAudioListScene = () => (
   <div>
@@ -12,6 +13,7 @@ const ItemAudioListScene = () => (
       <ItemAudioListContainer />
     </Card>
     <Separator />
+    <ItemAudioStatusDialogContainer />
   </div>
 );
 
