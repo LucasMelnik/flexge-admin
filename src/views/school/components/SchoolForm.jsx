@@ -74,10 +74,10 @@ class SchoolForm extends Component {
         <Row>
           <Column lgSize={3}>
             <FetchSelect
-              url={`/regions?query[company]=${get(this.props.values, 'company.country', '')}`}
+              url={this.props.values.company && `/regions?query[company]=${get(this.props.values, 'company', '')}`}
               fullWidth
               disabled={this.props.submitting || !get(this.props.values, 'company', '')}
-              label="Regions"
+              label="Region"
               value={get(this.props.values, 'region', '')}
               onChange={value => this.props.onChange('region', value)}
               description={get(this.props.errors, 'region', null)}
