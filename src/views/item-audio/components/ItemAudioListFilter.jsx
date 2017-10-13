@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Select from '../../../core-ant/Select';
 import ColumnSeparator from '../../../core/layout/ColumnSeparator';
+import FetchSelect from '../../../core-ant/FetchSelect';
 
 const ItemAudioListFilter = props => (
   <div
@@ -13,6 +14,27 @@ const ItemAudioListFilter = props => (
     <div
       style={{
         width: 250,
+      }}
+    >
+      Filter by Character
+      <FetchSelect
+        url="/characters"
+        disabled={props.fetching}
+        value={get(props.values, 'character')}
+        onChange={(value) => {
+          props.onChange('character', value);
+          props.onSearch();
+        }}
+        resultTransformer={{
+          text: 'name',
+          value: 'id',
+        }}
+      />
+    </div>
+    <ColumnSeparator />
+    <div
+      style={{
+        width: 200,
       }}
     >
       Filter by status
@@ -69,7 +91,6 @@ const ItemAudioListFilter = props => (
     </div>
   </div>
 );
-
 
 ItemAudioListFilter.propTypes = {
   values: PropTypes.object.isRequired,

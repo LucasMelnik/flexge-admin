@@ -36,6 +36,9 @@ class ItemAudioListService {
           ...this.form.getValue('hasAudio') && {
             audio: { [this.form.getValue('hasAudio')]: 'null' },
           },
+          ...this.form.getValue('character') && {
+            character: this.form.getValue('character'),
+          },
         },
       },
     }).then(() => {
