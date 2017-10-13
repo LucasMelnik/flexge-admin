@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Table from '../../../core-ant/Table';
 import AudioPreviewButton from '../../../core-ant/AudioPreviewButton';
 import UploadButton from '../../../core-ant/UploadButton';
+import Button from '../../../core-ant/Button';
 
 const ItemAudioList = props => (
   <Table
@@ -26,15 +27,67 @@ const ItemAudioList = props => (
         render: (text, record) => record.audio && <AudioPreviewButton src={record.audio} />,
       },
       {
+        label: 'Status',
+        path: 'statusAudio',
+        render: text => (
+          <div
+            style={{
+              color: '#fff',
+              padding: 5,
+              fontSize: 12,
+              display: 'inline-block',
+              fontWeight: 'bold',
+              borderRadius: 5,
+              minWidth: 'max-content',
+              backgroundColor: {
+                PENDING: '#ef8c3b',
+                NOT_APPROVED: '#758C98',
+                APPROVED: '#009687',
+              }[text],
+            }}
+          >
+            {text}
+          </div>
+        ),
+      },
+      {
         title: 'Action',
         key: 'action',
         render: (text, record) => (
-          (!record.audioStatus || record.audioStatus === 'PENDING' || record.audioStatus === 'NOT_APPROVED') && (
-            <UploadButton
-              label="Click to upload an audio"
-              onChange={key => props.onAudioUpload(key, record)}
-            />
-          )
+          <div>
+            {(
+              localStorage.getItem('role') === 'AUDIO_CONTENT' &&
+              (!record.statusAudio || record.statusAudio === 'PENDING' || record.statusAudio === 'NOT_APPROVED')
+            ) && (
+              <UploadButton
+                label="Click to upload an audio"
+                onChange={key => props.onAudioUpload(key, record)}
+              />
+            )}
+            {(localStorage.getItem('role') === 'ADMIN') && (
+              <div>
+                <UploadButton
+                  label="Click to upload an audio"
+                  onChange={key => props.onAudioUpload(key, record)}
+                />
+                {' '}
+                {record.statusAudio === 'PENDING' && (
+                  <Button
+                    onClick={() => props.onChangeStatus('APPROVED', record)}
+                    type="primary"
+                    icon="like-o"
+                  />
+                )}
+                {' '}
+                {record.statusAudio === 'PENDING' && (
+                  <Button
+                    onClick={() => props.onChangeStatus('NOT_APPROVED', record)}
+                    icon="dislike-o"
+                  />
+                )}
+              </div>
+            )}
+          </div>
         ),
       },
     ]}
@@ -57,6 +110,7 @@ ItemAudioList.propTypes = {
   }).isRequired,
   fetching: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
+  onChangeStatus: PropTypes.func.isRequired,
   onAudioUpload: PropTypes.func.isRequired,
 };
 

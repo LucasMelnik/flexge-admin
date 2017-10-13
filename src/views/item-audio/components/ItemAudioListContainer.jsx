@@ -18,6 +18,7 @@ class ItemAudioListContainer extends Component {
         pagination={ItemAudioListService.pagination}
         onChange={ItemAudioListService.load}
         onAudioUpload={ItemAudioListService.handleAudioUpload}
+        onChangeStatus={() => console.log('aaaa')}
       />
     );
   }

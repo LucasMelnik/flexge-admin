@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Button, Icon } from 'antd';
+import { Button } from 'antd';
 
 export default class FileInput extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    label: PropTypes.string.isRequired,
+    // label: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -42,23 +42,19 @@ export default class FileInput extends Component {
     return (
       <Button
         onClick={() => this.fileInput.click()}
+        icon={this.state.uploading ? 'loading' : 'upload'}
       >
-        {!this.state.uploading ? (
-          <div>
-            <Icon type="upload" /> {this.props.label}
-          </div>
-        ) : (
-          <Icon type="loading" />
-        )}
         <input
           type="file"
           style={{
             visibility: 'hidden',
             width: 0,
             height: 0,
+            position: 'absolute',
+            top: 0,
           }}
           onChange={this.handleChange}
-          ref={input => { this.fileInput = input; }}
+          ref={(input) => { this.fileInput = input; }}
           accept="audio/*"
         />
       </Button>

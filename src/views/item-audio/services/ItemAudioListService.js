@@ -59,21 +59,34 @@ class ItemAudioListService {
   });
 
   handleAudioUpload = (key, item) => {
-    this.fetch.fetch({
-      url: `/item-audio-reviews/${item.id}`,
+    this.submit = new FetchService();
+    this.submit.fetch({
+      url: `/item-audio-reviews/${item.itemId || item.id}/audio`,
       method: 'put',
       body: {
         audio: key,
         statusAudio: 'PENDING',
+        type: item.type,
+        typeId: item.id,
       },
     }).then(() => {
-      NotificationService.addNotification(
-        'Audio uploaded.',
-        null,
-        null,
-        'success',
-      );
-      this.load();
+      if (this.submit.data) {
+        NotificationService.addNotification(
+          'Audio uploaded.',
+          null,
+          null,
+          'success',
+        );
+        this.load();
+      }
+      if (this.submit.error) {
+        NotificationService.addNotification(
+          'Error to update the audio',
+          null,
+          null,
+          'error',
+        );
+      }
     });
   };
 }
