@@ -46,6 +46,10 @@ class MainScene extends Component {
                     link: '/courses',
                   },
                   {
+                    label: 'Characters',
+                    link: '/characters',
+                  },
+                  {
                     label: 'Regions',
                     link: '/regions',
                   },

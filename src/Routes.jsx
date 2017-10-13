@@ -70,6 +70,8 @@ import FilterRecordScene from './views/reports/components/FilterRecordScene';
 import SchoolClassRecordScene from './views/reports/components/school-class/SchoolClassRecordScene';
 import StudentRecordScene from './views/reports/components/student/StudentRecordScene';
 import StudentDetailRecordScene from './views/reports/components/student-detail/StudentDetailRecordScene';
+import CharacterListScene from './views/character/components/CharacterListScene';
+import CharacterFormSceneContainer from './views/character/components/CharacterFormSceneContainer';
 import UnitImageRecordScene from './views/reports/components/unit-image/UnitImageRecordScene';
 
 function authRequired(nextState, replace) {
@@ -166,6 +168,9 @@ const Routes = () => (
       <Route path="courses" component={CourseListScene} />
       <Route path="courses/new" component={CourseFormSceneContainer} />
       <Route path="courses/:courseId" component={CourseFormSceneContainer} />
+      <Route path="characters" component={CharacterListScene} />
+      <Route path="characters/new" component={CharacterFormSceneContainer} />
+      <Route path="characters/:characterId" component={CharacterFormSceneContainer} />
       <Route path="regions" component={RegionListScene} />
       <Route path="regions/new" component={RegionFormSceneContainer} />
       <Route path="regions/:regionId" component={RegionFormSceneContainer} />
