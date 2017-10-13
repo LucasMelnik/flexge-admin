@@ -17,6 +17,7 @@ class ItemAudioListContainer extends Component {
         fetching={ItemAudioListService.fetch.fetching}
         pagination={ItemAudioListService.pagination}
         onChange={ItemAudioListService.load}
+        onAudioUpload={ItemAudioListService.handleAudioUpload}
       />
     );
   }

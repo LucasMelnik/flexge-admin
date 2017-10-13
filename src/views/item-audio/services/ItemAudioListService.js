@@ -1,9 +1,11 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class ItemAudioListService {
   fetch = new FetchService();
+  submit = new FetchService();
   form = new FormService();
 
   constructor() {
@@ -27,7 +29,7 @@ class ItemAudioListService {
     }
 
     this.fetch.fetch({
-      url: `/reports/item-audios?page=${this.pagination.current}`,
+      url: `/item-audio-reviews?page=${this.pagination.current}`,
       query: {
         query: {
           ...this.form.getValue('status') && {
@@ -56,6 +58,24 @@ class ItemAudioListService {
     });
   });
 
+  handleAudioUpload = (key, item) => {
+    this.fetch.fetch({
+      url: `/item-audio-reviews/${item.id}`,
+      method: 'put',
+      body: {
+        audio: key,
+        statusAudio: 'PENDING',
+      },
+    }).then(() => {
+      NotificationService.addNotification(
+        'Audio uploaded.',
+        null,
+        null,
+        'success',
+      );
+      this.load();
+    });
+  };
 }
 
 const itemAudioListService = new ItemAudioListService();

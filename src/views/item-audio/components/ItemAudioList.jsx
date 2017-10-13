@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '../../../core-ant/Table';
+import AudioPreviewButton from '../../../core-ant/AudioPreviewButton';
+import UploadButton from '../../../core-ant/UploadButton';
 
 const ItemAudioList = props => (
   <Table
@@ -21,6 +23,19 @@ const ItemAudioList = props => (
       {
         label: 'Audio',
         path: 'audio',
+        render: (text, record) => record.audio && <AudioPreviewButton src={record.audio} />,
+      },
+      {
+        title: 'Action',
+        key: 'action',
+        render: (text, record) => (
+          (!record.audioStatus || record.audioStatus === 'PENDING' || record.audioStatus === 'NOT_APPROVED') && (
+            <UploadButton
+              label="Click to upload an audio"
+              onChange={key => props.onAudioUpload(key, record)}
+            />
+          )
+        ),
       },
     ]}
     dataSource={props.items}
@@ -42,6 +57,7 @@ ItemAudioList.propTypes = {
   }).isRequired,
   fetching: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
+  onAudioUpload: PropTypes.func.isRequired,
 };
 
 export default ItemAudioList;
