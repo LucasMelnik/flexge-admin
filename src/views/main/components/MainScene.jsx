@@ -169,6 +169,18 @@ class MainScene extends Component {
               />
             </MenuItem>
           </PermissionValidator>
+          <PermissionValidator allowedFor={['AUDIO_CONTENT']}>
+            <MenuItem title="Reports" icon="fa fa-file-o">
+              <SubMenu
+                items={[
+                  {
+                    label: 'Item Audios',
+                    link: '/item-audios',
+                  },
+                ]}
+              />
+            </MenuItem>
+          </PermissionValidator>
         </Menu>
         <MainContent>
           {this.props.children}

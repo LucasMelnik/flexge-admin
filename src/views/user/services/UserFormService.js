@@ -43,8 +43,8 @@ class UserFormService {
   handleSubmit = action(() => {
     this.form.validations = {
       ...this.form.validations,
-      school: this.form.getValue('role') === 'ADMIN' || this.form.getValue('role') === 'IMAGE_ADMIN' || this.form.getValue('role') === 'CONTENT_ADMIN' || this.form.getValue('role') === 'DISTRIBUTOR_MANAGER' || this.form.getValue('role') === 'COMPANY_MANAGER' ? [] : [isRequired],
-      company: this.form.getValue('role') === 'ADMIN' || this.form.getValue('role') === 'IMAGE_ADMIN' || this.form.getValue('role') === 'CONTENT_ADMIN' || this.form.getValue('role') === 'DISTRIBUTOR_MANAGER' ? [] : [isRequired],
+      school: this.form.getValue('role') === 'ADMIN' || this.form.getValue('role') === 'IMAGE_ADMIN' || this.form.getValue('role') === 'CONTENT_ADMIN' || this.form.getValue('role') === 'DISTRIBUTOR_MANAGER' || this.form.getValue('role') === 'COMPANY_MANAGER' || this.form.getValue('role') === 'AUDIO_CONTENT' ? [] : [isRequired],
+      company: this.form.getValue('role') === 'ADMIN' || this.form.getValue('role') === 'IMAGE_ADMIN' || this.form.getValue('role') === 'CONTENT_ADMIN' || this.form.getValue('role') === 'DISTRIBUTOR_MANAGER' || this.form.getValue('role') === 'AUDIO_CONTENT' ? [] : [isRequired],
     };
     this.form.submitted = true;
     if (this.form.errors) {
@@ -64,7 +64,7 @@ class UserFormService {
     }).then(() => {
       if (this.submit.data) {
         const user = this.submit.data;
-        if (user.role === 'ADMIN' || user.role === 'CONTENT_ADMIN' || user.role === 'IMAGE_ADMIN') {
+        if (user.role === 'ADMIN' || user.role === 'CONTENT_ADMIN' || user.role === 'IMAGE_ADMIN' || user.role === 'AUDIO_CONTENT') {
           browserHistory.push(`/admin-users/${user.id}`);
         } else if (user.role === 'DISTRIBUTOR_MANAGER') {
           browserHistory.push(`/companies/${user.company.id}/distributor-users/${user.id}`);
