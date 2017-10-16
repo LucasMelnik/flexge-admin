@@ -5392,8 +5392,8 @@ rc-notification@~2.0.0:
     rc-util "^4.0.4"
 
 rc-pagination@~1.12.4:
-  version "1.12.9"
-  resolved "https://registry.yarnpkg.com/rc-pagination/-/rc-pagination-1.12.9.tgz#cebfa53946dcf8ad9e615db15d5e72ceecb3e197"
+  version "1.12.10"
+  resolved "https://registry.yarnpkg.com/rc-pagination/-/rc-pagination-1.12.10.tgz#212c24107fb0bea0ca86fbd6dcfda0ea709a45a2"
   dependencies:
     babel-runtime "6.x"
     prop-types "^15.5.7"

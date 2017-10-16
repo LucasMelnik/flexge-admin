@@ -24,6 +24,13 @@ import TimeInput from '../../../core/form/TimeInput';
 import Async from '../../../core/layout/Async';
 import FormButtons from '../../../core/form/FormButtons';
 
+const needCharacter = itemType => localStorage.getItem('role') === 'ADMIN' && ![
+  'VIDEO',
+  'VIDEO_SHORT',
+  'VIDEO_TEXT_AREA',
+  'TEXT',
+].find(type => type === itemType);
+
 const ItemForm = props => (
   <form
     onSubmit={(event) => {
@@ -64,7 +71,7 @@ const ItemForm = props => (
             fieldValidation={get(props.errors, 'item.time', null) && 'error'}
           />
         </Column>
-        <Column lgSize={6}>
+        <Column lgSize={needCharacter(get(props.values.item, 'type.key')) ? 3 : 6}>
           <FetchSelect
             url="grammars"
             disabled={props.submitting || props.disabled || !!props.defaultGrammar}
@@ -79,6 +86,23 @@ const ItemForm = props => (
             }}
           />
         </Column>
+        {needCharacter(get(props.values.item, 'type.key')) && (
+          <Column lgSize={3}>
+            <FetchSelect
+              url="characters"
+              disabled={props.submitting || props.disabled}
+              label="Character"
+              value={get(props.values, 'item.character', '')}
+              onChange={(character) => props.onChange('item.character', character)}
+              description={get(props.errors, 'item.character', '')}
+              fieldValidation={get(props.errors, 'item.character', null) && 'error'}
+              resultTransformer={{
+                text: 'name',
+                value: 'id',
+              }}
+            />
+          </Column>
+        )}
       </Row>
       {get(props.values.item, 'type.key', '') === 'VIDEO' && (
         <VideoItemForm
@@ -115,6 +139,7 @@ const ItemForm = props => (
           values={props.values.item}
           submitting={props.submitting}
           disabled={props.disabled}
+          type={get(props.values.item, 'type.key')}
           isTestItem={props.isTestItem}
           showPostPhrase={get(props.values.item, 'type.key') === 'SINGLE_CHOICE_IMAGE'}
         />

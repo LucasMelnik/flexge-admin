@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import { sortBy } from 'lodash';
 import { toJS } from 'mobx';
 import Select from './Select';
-import FetchService from '../services/FetchService';
+import FetchService from '../core/services/FetchService';
 
 export default class FetchSelect extends Component {
 
   static propTypes = {
     url: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
     resultTransformer: PropTypes.shape({
       text: PropTypes.string.isRequired,
       value: PropTypes.string,
@@ -17,8 +16,6 @@ export default class FetchSelect extends Component {
     placeholder: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
-    description: PropTypes.string,
-    fieldValidation: PropTypes.string,
     disabled: PropTypes.bool,
     defaultSelect: PropTypes.bool,
   };
@@ -51,7 +48,7 @@ export default class FetchSelect extends Component {
           });
         }
       });
-  }
+  };
 
   componentWillReceiveProps(nextProps) {
     if (this.props.url !== nextProps.url) {
@@ -69,10 +66,7 @@ export default class FetchSelect extends Component {
     return (
       <Select
         value={this.props.value}
-        label={this.props.label}
         disabled={this.props.disabled}
-        description={this.props.description}
-        fieldValidation={this.props.fieldValidation}
         placeholder={this.props.placeholder}
         onChange={(value) => this.props.onChange(value, this.state.data.find(item => item[this.props.resultTransformer.value] === value))}
         options={this.state.data.map(option => ({

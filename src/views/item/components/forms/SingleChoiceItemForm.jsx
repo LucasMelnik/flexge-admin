@@ -50,6 +50,7 @@ const SingleChoiceItemForm = props => (
       value={get(props.values, 'answers', [])}
       onChange={answers => props.onChange('answers', answers)}
       errorText={get(props.errors, 'answers', '')}
+      type={props.type}
       disabled={props.disabled}
     />
   </div>
@@ -62,6 +63,10 @@ SingleChoiceItemForm.propTypes = {
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
   isTestItem: PropTypes.bool,
+  type: PropTypes.oneOf([
+    'SINGLE_CHOICE_TEXT',
+    'SINGLE_CHOICE_AUDIO',
+    'SINGLE_CHOICE_IMAGE']).isRequired,
   showPostPhrase: PropTypes.bool,
 };
 

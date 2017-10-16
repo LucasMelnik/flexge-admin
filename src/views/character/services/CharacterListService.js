@@ -2,13 +2,12 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 
-class UserAdminListService {
+class CharacterListService {
   fetch = new FetchService();
 
   constructor() {
     extendObservable(this, {
-      users: [],
-      filteredUsers: [],
+      characters: [],
       filter: '',
     });
   }
@@ -19,22 +18,20 @@ class UserAdminListService {
 
   load = action(() => {
     this.fetch.fetch({
-      url: '/users',
+      url: '/characters',
       query: {
-        query: {
-          role: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
-          ...this.filter && {
-            name: {
-              $regex: this.filter,
-              $options: 'i',
-            },
+        query: this.filter && {
+          name: {
+            $regex: this.filter,
+            $options: 'i',
           },
         },
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.users = this.fetch.data;
-        this.filteredUsers = this.users;
+        this.characters = this.fetch.data;
+      } else {
+        this.characters = [];
       }
     });
   });
@@ -44,21 +41,22 @@ class UserAdminListService {
     this.load();
   });
 
-  handleRemove = action((user) => {
+  handleRemove = action((character) => {
     ConfirmationDialogService.show(
-      'Delete Manager',
-      `You are about to delete the user "${user.name}", Do you want to continue ?`,
+      'Delete Character',
+      `You are about to delete the Character "${character.name}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({
-          url: `/users/${user.id}`,
+          url: `/characters/${character.id}`,
           method: 'delete',
         }).then(() => {
+          window.showSuccess(`Character "${character.name}" deleted successfully.`);
           this.load();
         });
       });
   });
 }
 
-const userAdminListService = new UserAdminListService();
+const characterListService = new CharacterListService();
 
-export default userAdminListService;
+export default characterListService;

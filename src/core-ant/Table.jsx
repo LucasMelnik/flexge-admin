@@ -13,7 +13,7 @@ const sort = (a, b, path) => {
 
 const Table = props => (
   <AntTable
-    pagination={false}
+    pagination={props.pagination || false}
     size="middle"
     rowKey="id"
     bordered
@@ -29,7 +29,8 @@ const Table = props => (
       render: column.render,
       sorter: column.sort ? (a, b) => sort(a, b, column.path) : null,
     }))}
-    onRowClick={props.onSelect}
+    onChange={props.onChange}
+    onRowClick={() => props.onSelect && props.onSelect()}
     loading={props.fetching}
     expandedRowRender={props.expandableComponent}
   />
@@ -38,14 +39,22 @@ const Table = props => (
 Table.propTypes = {
   dataSource: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  pagination: PropTypes.shape({
+    current: PropTypes.number,
+    total: PropTypes.number,
+    pageSize: PropTypes.number,
+  }),
   onSelect: PropTypes.func,
+  onChange: PropTypes.func,
   fetching: PropTypes.bool,
   expandableComponent: PropTypes.func,
 };
 
 Table.defaultProps = {
   onSelect: null,
+  onChange: null,
   fetching: false,
+  pagination: null,
   expandableComponent: null,
 };
 
