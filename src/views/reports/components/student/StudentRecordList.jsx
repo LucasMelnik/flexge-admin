@@ -15,11 +15,11 @@ const StudentRecordList = props => (
           sort: true,
         },
         {
-          label: 'Nível inicial (PT)',
+          label: 'Reached Level (PT)',
           path: 'reachedLevel',
         },
         {
-          label: 'Tempo de estudo',
+          label: 'Time Studied',
           render: (cell, row) => {
             if (row.studentCourses) {
               const timeStudied = [];
@@ -70,7 +70,7 @@ const StudentRecordList = props => (
           },
         },
         {
-          label: 'Actual course',
+          label: 'Current Course',
           render: (cell, row) => {
             if (row.studentCourses) {
               if (row.studentCourses.find(studentCourse => !studentCourse.completedAt)) {
@@ -99,11 +99,10 @@ const StudentRecordList = props => (
                   return (
                     <div>{hours}:{minutes === 0 ? '00' : minutes}</div>
                   );
-                } else {
-                  return (
-                    <div>Current</div>
-                  );
                 }
+                return (
+                  <div>Current</div>
+                );
               }
               return (
                 <div>-</div>
@@ -125,11 +124,10 @@ const StudentRecordList = props => (
                   return (
                     <div>{hours}:{minutes === 0 ? '00' : minutes}</div>
                   );
-                } else {
-                  return (
-                    <div>Current</div>
-                  );
                 }
+                return (
+                  <div>Current</div>
+                );
               }
               return (
                 <div>-</div>
@@ -151,11 +149,10 @@ const StudentRecordList = props => (
                   return (
                     <div>{hours}:{minutes === 0 ? '00' : minutes}</div>
                   );
-                } else {
-                  return (
-                    <div>Current</div>
-                  );
                 }
+                return (
+                  <div>Current</div>
+                );
               }
               return (
                 <div>-</div>
@@ -177,11 +174,10 @@ const StudentRecordList = props => (
                   return (
                     <div>{hours}:{minutes === 0 ? '00' : minutes}</div>
                   );
-                } else {
-                  return (
-                    <div>Current</div>
-                  );
                 }
+                return (
+                  <div>Current</div>
+                );
               }
               return (
                 <div>-</div>
@@ -203,11 +199,10 @@ const StudentRecordList = props => (
                   return (
                     <div>{hours}:{minutes === 0 ? '00' : minutes}</div>
                   );
-                } else {
-                  return (
-                    <div>Current</div>
-                  );
                 }
+                return (
+                  <div>Current</div>
+                );
               }
               return (
                 <div>-</div>
@@ -229,11 +224,10 @@ const StudentRecordList = props => (
                   return (
                     <div>{hours}:{minutes === 0 ? '00' : minutes}</div>
                   );
-                } else {
-                  return (
-                    <div>Current</div>
-                  );
                 }
+                return (
+                  <div>Current</div>
+                );
               }
               return (
                 <div>-</div>
@@ -255,11 +249,10 @@ const StudentRecordList = props => (
                   return (
                     <div>{hours}:{minutes === 0 ? '00' : minutes}</div>
                   );
-                } else {
-                  return (
-                    <div>Current</div>
-                  );
                 }
+                return (
+                  <div>Current</div>
+                );
               }
               return (
                 <div>-</div>
@@ -281,11 +274,10 @@ const StudentRecordList = props => (
                   return (
                     <div>{hours}:{minutes === 0 ? '00' : minutes}</div>
                   );
-                } else {
-                  return (
-                    <div>Current</div>
-                  );
                 }
+                return (
+                  <div>Current</div>
+                );
               }
               return (
                 <div>-</div>
@@ -307,11 +299,10 @@ const StudentRecordList = props => (
                   return (
                     <div>{hours}:{minutes === 0 ? '00' : minutes}</div>
                   );
-                } else {
-                  return (
-                    <div>Current</div>
-                  );
                 }
+                return (
+                  <div>Current</div>
+                );
               }
               return (
                 <div>-</div>
@@ -333,11 +324,10 @@ const StudentRecordList = props => (
                   return (
                     <div>{hours}:{minutes === 0 ? '00' : minutes}</div>
                   );
-                } else {
-                  return (
-                    <div>Current</div>
-                  );
                 }
+                return (
+                  <div>Current</div>
+                );
               }
               return (
                 <div>-</div>
@@ -350,17 +340,23 @@ const StudentRecordList = props => (
       onSelect={props.onSelect}
     />
     <Separator />
-    <div>Total</div>
+    <div
+      style={{
+        fontSize: 14,
+      }}
+    >
+      Total Average
+    </div>
     <Separator />
     <Table
       fetching={props.fetching}
       columns={[
         {
-          label: 'Reached level',
+          label: 'Reached Level',
           path: 'totalReachedLevel',
         },
         {
-          label: 'Time studied',
+          label: 'Time Studied',
           render: (cell, row) => {
             const hours = Math.floor(moment.duration(row.totalTime).asHours());
             const minutes = Math.floor(moment.duration(row.totalTime).asMinutes()) - (hours * 60);
@@ -371,7 +367,7 @@ const StudentRecordList = props => (
           },
         },
         {
-          label: 'Time A1',
+          label: 'A1',
           render: (cell, row) => {
             const hours = Math.floor(moment.duration(row.totalA1).asHours());
             const minutes = Math.floor(moment.duration(row.totalA1).asMinutes()) - (hours * 60);
@@ -382,7 +378,7 @@ const StudentRecordList = props => (
           },
         },
         {
-          label: 'Time A1+',
+          label: 'A1+',
           render: (cell, row) => {
             const hours = Math.floor(moment.duration(row.totalA1Plus).asHours());
             const minutes = Math.floor(moment.duration(row.totalA1Plus).asMinutes()) - (hours * 60);
@@ -393,7 +389,7 @@ const StudentRecordList = props => (
           },
         },
         {
-          label: 'Time A2',
+          label: 'A2',
           render: (cell, row) => {
             const hours = Math.floor(moment.duration(row.totalA2).asHours());
             const minutes = Math.floor(moment.duration(row.totalA2).asMinutes()) - (hours * 60);
@@ -404,7 +400,7 @@ const StudentRecordList = props => (
           },
         },
         {
-          label: 'Time A2+',
+          label: 'A2+',
           render: (cell, row) => {
             const hours = Math.floor(moment.duration(row.totalA2Plus).asHours());
             const minutes = Math.floor(moment.duration(row.totalA2Plus).asMinutes()) - (hours * 60);
@@ -415,7 +411,7 @@ const StudentRecordList = props => (
           },
         },
         {
-          label: 'Time B1',
+          label: 'B1',
           render: (cell, row) => {
             const hours = Math.floor(moment.duration(row.totalB1).asHours());
             const minutes = Math.floor(moment.duration(row.totalB1).asMinutes()) - (hours * 60);
@@ -426,7 +422,7 @@ const StudentRecordList = props => (
           },
         },
         {
-          label: 'Time B1+',
+          label: 'B1+',
           render: (cell, row) => {
             const hours = Math.floor(moment.duration(row.totalB1Plus).asHours());
             const minutes = Math.floor(moment.duration(row.totalB1Plus).asMinutes()) - (hours * 60);
@@ -437,7 +433,7 @@ const StudentRecordList = props => (
           },
         },
         {
-          label: 'Time B2',
+          label: 'B2',
           render: (cell, row) => {
             const hours = Math.floor(moment.duration(row.totalB2).asHours());
             const minutes = Math.floor(moment.duration(row.totalB2).asMinutes()) - (hours * 60);
@@ -448,7 +444,7 @@ const StudentRecordList = props => (
           },
         },
         {
-          label: 'Time B2+',
+          label: 'B2+',
           render: (cell, row) => {
             const hours = Math.floor(moment.duration(row.totalB2Plus).asHours());
             const minutes = Math.floor(moment.duration(row.totalB2Plus).asMinutes()) - (hours * 60);
@@ -459,7 +455,7 @@ const StudentRecordList = props => (
           },
         },
         {
-          label: 'Time C1',
+          label: 'C1',
           render: (cell, row) => {
             const hours = Math.floor(moment.duration(row.totalC1).asHours());
             const minutes = Math.floor(moment.duration(row.totalC1).asMinutes()) - (hours * 60);
@@ -470,7 +466,7 @@ const StudentRecordList = props => (
           },
         },
         {
-          label: 'Time C2',
+          label: 'C2',
           render: (cell, row) => {
             const hours = Math.floor(moment.duration(row.totalC2Plus).asHours());
             const minutes = Math.floor(moment.duration(row.totalC2Plus).asMinutes()) - (hours * 60);

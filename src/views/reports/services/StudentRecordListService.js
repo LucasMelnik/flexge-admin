@@ -10,7 +10,7 @@ class StudentRecordListService {
       schoolId: null,
       classId: null,
       students: [],
-      allValues: {},
+      averageData: {},
       totalValues: [],
     });
   }
@@ -27,7 +27,7 @@ class StudentRecordListService {
     }).then(() => {
       if (this.fetch.data) {
         this.students = this.fetch.data;
-        this.allValues = Object.assign({
+        this.averageData = Object.assign({
           totalReachedLevel: 0,
           totalTime: 0,
           totalA1: 0,
@@ -53,7 +53,7 @@ class StudentRecordListService {
         const totalC1 = [];
         const totalC2 = [];
         this.students.forEach((student) => {
-          this.allValues.totalReachedLevel += student.reachedLevel;
+          this.averageData.totalReachedLevel += student.reachedLevel;
           student.studentCourses.forEach((studentCourse) => {
             if (studentCourse.startedAt && studentCourse.completedAt) {
               const startDate = moment(studentCourse.startedAt);
@@ -135,62 +135,62 @@ class StudentRecordListService {
         });
 
         timeStudied.forEach((duration) => {
-          this.allValues.totalTime += duration.as('milliseconds');
+          this.averageData.totalTime += duration.as('milliseconds');
         });
 
         totalA1.forEach((duration) => {
-          this.allValues.totalA1 += duration.as('milliseconds');
+          this.averageData.totalA1 += duration.as('milliseconds');
         });
 
         totalA1Plus.forEach((duration) => {
-          this.allValues.totalA1Plus += duration.as('milliseconds');
+          this.averageData.totalA1Plus += duration.as('milliseconds');
         });
 
         totalA2.forEach((duration) => {
-          this.allValues.totalA2 += duration.as('milliseconds');
+          this.averageData.totalA2 += duration.as('milliseconds');
         });
 
         totalA2Plus.forEach((duration) => {
-          this.allValues.totalA2Plus += duration.as('milliseconds');
+          this.averageData.totalA2Plus += duration.as('milliseconds');
         });
 
         totalB1.forEach((duration) => {
-          this.allValues.totalB1 += duration.as('milliseconds');
+          this.averageData.totalB1 += duration.as('milliseconds');
         });
 
         totalB1Plus.forEach((duration) => {
-          this.allValues.totalB1Plus += duration.as('milliseconds');
+          this.averageData.totalB1Plus += duration.as('milliseconds');
         });
 
         totalB2.forEach((duration) => {
-          this.allValues.totalB2 += duration.as('milliseconds');
+          this.averageData.totalB2 += duration.as('milliseconds');
         });
 
         totalB2Plus.forEach((duration) => {
-          this.allValues.totalB2Plus += duration.as('milliseconds');
+          this.averageData.totalB2Plus += duration.as('milliseconds');
         });
 
         totalC1.forEach((duration) => {
-          this.allValues.totalC1 += duration.as('milliseconds');
+          this.averageData.totalC1 += duration.as('milliseconds');
         });
 
         totalC2.forEach((duration) => {
-          this.allValues.totalC2 += duration.as('milliseconds');
+          this.averageData.totalC2 += duration.as('milliseconds');
         });
 
-        this.allValues.totalTime = this.allValues.totalTime / this.students.length;
-        this.allValues.totalA1 = this.allValues.totalA1 / this.students.length;
-        this.allValues.totalA1Plus = this.allValues.totalA1Plus / this.students.length;
-        this.allValues.totalA2 = this.allValues.totalA2 / this.students.length;
-        this.allValues.totalA2Plus = this.allValues.totalA2Plus / this.students.length;
-        this.allValues.totalB1 = this.allValues.totalB1 / this.students.length;
-        this.allValues.totalB1Plus = this.allValues.totalB1Plus / this.students.length;
-        this.allValues.totalB2 = this.allValues.totalB2 / this.students.length;
-        this.allValues.totalB2Plus = this.allValues.totalB2Plus / this.students.length;
-        this.allValues.totalC1 = this.allValues.totalC1 / this.students.length;
-        this.allValues.totalC2 = this.allValues.totalC2 / this.students.length;
-        this.allValues.totalReachedLevel = this.allValues.totalReachedLevel / this.students.length;
-        this.totalValues.push(this.allValues);
+        this.averageData.totalTime = this.averageData.totalTime / this.students.length;
+        this.averageData.totalA1 = this.averageData.totalA1 / this.students.length;
+        this.averageData.totalA1Plus = this.averageData.totalA1Plus / this.students.length;
+        this.averageData.totalA2 = this.averageData.totalA2 / this.students.length;
+        this.averageData.totalA2Plus = this.averageData.totalA2Plus / this.students.length;
+        this.averageData.totalB1 = this.averageData.totalB1 / this.students.length;
+        this.averageData.totalB1Plus = this.averageData.totalB1Plus / this.students.length;
+        this.averageData.totalB2 = this.averageData.totalB2 / this.students.length;
+        this.averageData.totalB2Plus = this.averageData.totalB2Plus / this.students.length;
+        this.averageData.totalC1 = this.averageData.totalC1 / this.students.length;
+        this.averageData.totalC2 = this.averageData.totalC2 / this.students.length;
+        this.averageData.totalReachedLevel = this.averageData.totalReachedLevel / this.students.length;
+        this.totalValues.push(this.averageData);
       } else {
         this.students = [];
       }
