@@ -30,7 +30,7 @@ const Table = props => (
       sorter: column.sort ? (a, b) => sort(a, b, column.path) : null,
     }))}
     onChange={props.onChange}
-    onRowClick={() => props.onSelect && props.onSelect()}
+    onRowClick={row => props.onSelect && props.onSelect(row)}
     loading={props.fetching}
     expandedRowRender={props.expandableComponent}
   />
