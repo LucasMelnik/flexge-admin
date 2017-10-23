@@ -30,6 +30,14 @@ const StudentList = props => (
         {
           label: 'Last PT',
           path: 'lastPlacementResult',
+          render: (cell) => {
+            if (cell === -2) {
+              return 'N/A';
+            } else if (cell === -1) {
+              return 'Não Finalizado';
+            }
+            return cell;
+          },
         }],
         ...props.editable && [{
           label: 'Actions',
