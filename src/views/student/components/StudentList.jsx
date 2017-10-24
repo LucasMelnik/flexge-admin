@@ -28,6 +28,10 @@ const StudentList = props => (
           path: 'school.name',
         },
         {
+          label: 'School Class',
+          path: 'schoolClass.name',
+        },
+        {
           label: 'Last PT',
           path: 'lastPlacementResult',
           render: (cell) => {

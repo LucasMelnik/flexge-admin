@@ -9,6 +9,7 @@ import DateInput from '../../../core/form/DateInput';
 import FormButtons from '../../../core/form/FormButtons';
 import MaskInput from '../../../core/form/MaskInput';
 import Async from '../../../core/layout/Async';
+import FetchSelect from '../../../core/form/FetchSelect';
 
 const CompanyForm = props => (
   <Async fetching={props.submitting}>
@@ -65,13 +66,18 @@ const CompanyForm = props => (
       </Row>
       <Row>
         <Column lgSize={3}>
-          <TextInput
-            disabled
+          <FetchSelect
+            url="countries"
+            disabled={props.submitting}
             label="Country"
             value={get(props.values, 'country', '')}
-            onChange={value => props.onChange('country', value)}
+            onChange={country => props.onChange('country', country)}
             description={get(props.errors, 'country', '')}
             fieldValidation={get(props.errors, 'country', null) && 'error'}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
           />
         </Column>
         <Column lgSize={3}>
