@@ -79,24 +79,26 @@ class StudentListService {
 
   loadBySchoolAndClass = action(() => {
     this.fetch.fetch({
-      url: `/schools/${this.schoolId}/classes/${this.classId}`,
+      url: `/schools/${this.schoolId}/classes/${this.classId}/students`,
       query: {
         query: {
+          ...this.form.getValue('name') && {
+            name: {
+              $regex: this.form.getValue('name'),
+              $options: 'i',
+            },
+          },
+          ...this.form.getValue('email') && {
+            email: {
+              $regex: this.form.getValue('email'),
+              $options: 'i',
+            },
+          },
         },
       },
     }).then(() => {
-      if (this.fetch.data && this.fetch.data.students) {
-        const school = this.fetch.data.school;
-        this.students = this.fetch.data.students.map((student) => {
-          const newStudent = Object.assign({}, student);
-          newStudent.school = school;
-          return newStudent;
-        });
-        if (this.form.getValue('name') || this.form.getValue('email')) {
-          this.students = this.students.filter(student =>
-            (student.name.toLowerCase().search(this.form.getValue('name').toLowerCase()) !== -1) && (student.email.toLowerCase().search(this.form.getValue('email').toLowerCase()) !== -1)
-          );
-        }
+      if (this.fetch.data) {
+        this.students = this.fetch.data;
       } else {
         this.students = [];
       }
