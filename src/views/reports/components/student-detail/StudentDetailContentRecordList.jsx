@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '../../../../core-ant/Table';
+import moment from 'moment';
 
 const StudentDetailContentRecordList = props => (
   <Table
