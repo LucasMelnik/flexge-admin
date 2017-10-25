@@ -13,7 +13,7 @@ const StudentDetailRecordScene = props => (
         content:
           (
             <Card>
-              <StudentDetailContentRecordListContainer />
+              <StudentDetailContentRecordListContainer studentId={props.params.studentId} />
             </Card>
           ),
       },

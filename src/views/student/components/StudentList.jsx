@@ -25,7 +25,7 @@ const StudentList = props => (
         },
         {
           label: 'School',
-          path: 'school.name',
+          path: 'schoolClass.school.name',
         },
         {
           label: 'School Class',

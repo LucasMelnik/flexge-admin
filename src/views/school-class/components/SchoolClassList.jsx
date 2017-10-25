@@ -29,14 +29,7 @@ const SchoolClassList = props => (
         },
         {
           label: 'Number Students',
-          path: 'students',
-          render: (cell, row) => {
-            return (
-              <div>
-                {cell.length}
-              </div>
-            );
-          },
+          path: 'studentCount',
         },
         {
           label: 'Actions',
