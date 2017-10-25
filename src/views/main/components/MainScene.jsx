@@ -165,7 +165,7 @@ class MainScene extends Component {
               />
             </MenuItem>
           </PermissionValidator>
-          <PermissionValidator allowedFor={['AUDIO_CONTENT']}>
+          <PermissionValidator allowedFor={['AUDIO_CONTENT', 'ADMIN']}>
             <MenuItem title="Audio" icon="fa fa-file-o">
               <SubMenu
                 items={[
