@@ -166,11 +166,11 @@ class MainScene extends Component {
             </MenuItem>
           </PermissionValidator>
           <PermissionValidator allowedFor={['AUDIO_CONTENT']}>
-            <MenuItem title="Reports" icon="fa fa-file-o">
+            <MenuItem title="Audio" icon="fa fa-file-o">
               <SubMenu
                 items={[
                   {
-                    label: 'Item Audios',
+                    label: 'Upload Management',
                     link: '/item-audios',
                   },
                 ]}

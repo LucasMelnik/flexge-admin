@@ -14,17 +14,23 @@ const UnitImageListFilter = props => (
     }}
   >
     <PermissionValidator allowedFor={['ADMIN']}>
-      <FetchSelect
-        url="/users?query[role]=IMAGE_ADMIN"
-        label="Unit Image Owner"
-        disabled={props.fetching}
-        value={get(props.values, 'imageOwner')}
-        onChange={value => props.onChange('imageOwner', value)}
-        resultTransformer={{
-          text: 'name',
-          value: 'id',
+      <div
+        style={{
+          zIndex: 3,
         }}
-      />
+      >
+        <FetchSelect
+          url="/users?query[role]=IMAGE_ADMIN"
+          label="Unit Image Owner"
+          disabled={props.fetching}
+          value={get(props.values, 'imageOwner')}
+          onChange={value => props.onChange('imageOwner', value)}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </div>
     </PermissionValidator>
     <PermissionValidator allowedFor={['ADMIN']}>
       <ColumnSeparator size="sm" />
