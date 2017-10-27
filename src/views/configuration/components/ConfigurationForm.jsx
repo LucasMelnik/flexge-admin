@@ -132,6 +132,15 @@ const ConfigurationForm = props => (
     </Row>
     <Row>
       <Column lgSize={12}>
+        <AudioMessageFormContainer
+          title="Speech Recognition Error Audios"
+          messages={get(props.values, 'speechRecognitionErrorAudios', [])}
+          onChange={messages => props.onChange('speechRecognitionErrorAudios', messages)}
+        />
+      </Column>
+    </Row>
+    <Row>
+      <Column lgSize={12}>
         <FileInput
           label="Upload a video"
           accept="video"
