@@ -12,7 +12,7 @@ const PlacementTestListFilter = props => (
     <Row>
       <Column lgSize={2}>
         <FetchSelect
-          url="placement-test-levels"
+          url="placement-test-levels?query[level][$ne]=5.5"
           fullWidth
           disabled={props.fetching}
           label="Level"
