@@ -51,6 +51,7 @@ class StudentFormService {
       url: studentId ? `/students/${studentId}` : `/schools/${this.schoolId}/classes/${this.classId}/students`,
       body: {
         ...this.form.getValues(),
+        schoolClass: this.form.getValue('schoolClass.id'),
       },
     }).then(() => {
       if (this.submit.data) {
