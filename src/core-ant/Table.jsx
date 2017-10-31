@@ -25,6 +25,7 @@ const Table = props => (
     dataSource={props.dataSource}
     columns={props.columns.map(column => ({
       title: column.label,
+      width: column.width,
       dataIndex: column.path,
       render: column.render,
       sorter: column.sort ? (a, b) => sort(a, b, column.path) : null,
@@ -44,6 +45,7 @@ Table.propTypes = {
     total: PropTypes.number,
     pageSize: PropTypes.number,
   }),
+  width: PropTypes.number,
   onSelect: PropTypes.func,
   onChange: PropTypes.func,
   fetching: PropTypes.bool,
@@ -55,6 +57,7 @@ Table.defaultProps = {
   onChange: null,
   fetching: false,
   pagination: null,
+  width: null,
   expandableComponent: null,
 };
 

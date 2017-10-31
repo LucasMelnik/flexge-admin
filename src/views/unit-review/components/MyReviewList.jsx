@@ -149,12 +149,40 @@ const MyReviewList = props => (
               );
             }
             return 'N/A';
-          }
+          },
+        },
+        {
+          label: 'Final Status',
+          path: 'review.finalStatus',
+          render: (cell, row) => {
+            if (row.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))) {
+              return (
+                <div
+                  style={{
+                    color: '#fff',
+                    padding: 5,
+                    fontSize: 12,
+                    display: 'inline-block',
+                    fontWeight: 'bold',
+                    borderRadius: 5,
+                    backgroundColor: {
+                       PENDING: '#ef8c3b',
+                       APPROVED: '#009687',
+                       NOT_APPROVED: '#FF5233',
+                     }[row.review.finalStatus || 'PENDING'],
+                  }}
+                >
+                  {replace(row.review.finalStatus || 'PENDING', '_', ' ')}
+                </div>
+              );
+            }
+            return 'N/A';
+          },
         },
         {
           label: 'Actions',
           path: 'action',
-          width: '70',
+          width: localStorage.role === 'ADMIN' ? '120' : '70',
           render: (cell, row) => {
             if (localStorage.role === 'CONTENT_ADMIN' && !row.review.id) {
               return (
@@ -162,6 +190,25 @@ const MyReviewList = props => (
                   icon="fa-send"
                   onClick={() => props.onSendToReview(row.unit)}
                 />
+              );
+            } else if (
+              localStorage.role === 'ADMIN' &&
+              row.review.status === 'DONE' &&
+              row.review.statusFormat === 'APPROVED' &&
+              row.review.finalStatus !== 'APPROVED'
+            ) {
+              return (
+                <div>
+                  <IconButton
+                    icon="fa-thumbs-up"
+                    onClick={() => props.onFinalReview(row.review.id, row.unit.id, 'APPROVED')}
+                  />
+                  {' '}
+                  <IconButton
+                    icon="fa-thumbs-down"
+                    onClick={() => props.onFinalReview(row.review.id, row.unit.id, 'NOT_APPROVED')}
+                  />
+                </div>
               );
             }
             return null;
@@ -176,7 +223,8 @@ const MyReviewList = props => (
 );
 
 MyReviewList.propTypes = {
-  onSendToReview: PropTypes.func,
+  onSendToReview: PropTypes.func.isRequired,
+  onFinalReview: PropTypes.func.isRequired,
   unitsAndReviews: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetching: PropTypes.bool.isRequired,
 };
