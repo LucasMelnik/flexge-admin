@@ -4,10 +4,12 @@ import { observer } from 'mobx-react';
 import ReviewListScene from './ReviewListScene';
 import ReviewListService from '../services/ReviewListService';
 import ContentReviewService from '../services/ContentReviewService';
+import FinalReviewService from '../services/FinalReviewService';
 
 class ReviewListSceneContainer extends Component {
 
   contentReviewService = new ContentReviewService();
+  finalReviewService = new FinalReviewService();
 
   componentDidMount() {
     ReviewListService.handleMyUnits();
@@ -21,6 +23,7 @@ class ReviewListSceneContainer extends Component {
         allUnitsAndReviews={toJS(ReviewListService.allUnitsAndReviews)}
         fetching={ReviewListService.fetch.fetching}
         onSendToReview={this.contentReviewService.handleSendToReview}
+        onFinalReview={this.finalReviewService.handleSaveFinalReview}
       />
     );
   }

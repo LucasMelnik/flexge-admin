@@ -17,7 +17,7 @@ const ReviewUnitItemImageScene = props => (
 );
 
 ReviewUnitItemImageScene.propTypes = {
-  fetching: PropTypes.bool,
+  fetching: PropTypes.bool.isRequired,
   unit: PropTypes.shape({
     id: PropTypes.string,
   }).isRequired,

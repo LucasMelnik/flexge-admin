@@ -84,9 +84,26 @@ const ReviewUnitItemImageList = props => (
                   }}
                 />
               );
+            } else if (row.item.type.key === 'SINGLE_CHOICE_IMAGE') {
+              return (
+                <div>
+                  {row.item.answers.map(answer => (
+                    <img
+                      key={`for-item-answer-${answer.id}`}
+                      src={`${process.env.REACT_APP_API_URL}/files/${answer.image}`}
+                      alt={`for-item-answer-${answer.id}`}
+                      style={{
+                        width: 'auto',
+                        height: 50,
+                        display: 'inline-block',
+                      }}
+                    />
+                  ))}
+                </div>
+              );
             }
             return 'No image uploaded';
-          }
+          },
         },
         {
           label: 'Actions',
@@ -98,7 +115,7 @@ const ReviewUnitItemImageList = props => (
                 <ImagePreview src={row.item.image} />
               );
             }
-          }
+          },
         },
       ]}
       rows={props.items}
@@ -143,7 +160,7 @@ const ReviewUnitItemImageList = props => (
                   );
                 }
                 return 'No image uploaded';
-              }
+              },
             },
             {
               label: 'Actions',
@@ -172,7 +189,7 @@ ReviewUnitItemImageList.propTypes = {
     item: PropTypes.shape({
       text: PropTypes.string,
       translation: PropTypes.string,
-      image: PropTypes.string.isRequired,
+      image: PropTypes.string,
     }),
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
