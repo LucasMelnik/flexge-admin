@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
-import Button from '../../../../core/form/Button';
-import FetchSelect from '../../../../core/form/FetchSelect';
 import PermissionValidator from '../../../../core/layout/PermissionValidator';
+import FetchSelect from '../../../../core-ant/FetchSelect';
 
 const UnitItemErrorListFilter = props => (
   <div
@@ -14,53 +13,61 @@ const UnitItemErrorListFilter = props => (
     }}
   >
     <PermissionValidator allowedFor={['ADMIN']}>
+
       <div
         style={{
           display: 'flex',
           zIndex: 3,
         }}
       >
-        <FetchSelect
-          url="/courses"
-          label="Course"
-          disabled={props.fetching}
-          value={get(props.values, 'course')}
-          onChange={value => props.onChange('course', value)}
-          resultTransformer={{
-            text: 'name',
-            value: 'id',
+        <div
+          style={{
+            width: 250,
           }}
-        />
+        >
+          Filter by Course
+          <FetchSelect
+            url="/courses"
+            disabled={props.fetching}
+            value={get(props.values, 'course')}
+            onChange={(value) => {
+              props.onChange('course', value);
+              props.onSearch();
+            }}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </div>
         <div
           style={{
             width: 20,
           }}
         />
-        <FetchSelect
-          url={props.values.course && `/modules?query[course]=${get(props.values, 'course', '')}`}
-          label="Module"
-          disabled={props.fetching || !props.values.course}
-          value={get(props.values, 'module')}
-          onChange={value => props.onChange('module', value)}
-          resultTransformer={{
-            text: 'name',
-            value: 'id',
+        <div
+          style={{
+            width: 250,
           }}
-        />
+        >
+          Filter by Module
+          <FetchSelect
+            url={props.values.course && `/modules?query[course]=${get(props.values, 'course', '')}`}
+            disabled={props.fetching || !props.values.course}
+            value={get(props.values, 'module')}
+            onChange={(value) => {
+              props.onChange('module', value);
+              props.onSearch();
+            }}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </div>
         <div
           style={{
             width: 20,
-          }}
-        />
-        <FetchSelect
-          url={props.values.module && `/modules/${get(props.values, 'module', '')}/units`}
-          label="Unit"
-          disabled={props.fetching || !props.values.module}
-          value={get(props.values, 'unit')}
-          onChange={value => props.onChange('unit', value)}
-          resultTransformer={{
-            text: 'name',
-            value: 'id',
           }}
         />
       </div>
@@ -68,11 +75,6 @@ const UnitItemErrorListFilter = props => (
     <PermissionValidator allowedFor={['ADMIN']}>
       <ColumnSeparator size="sm" />
     </PermissionValidator>
-    <Button
-      label="Search"
-      icon="fa-search"
-      onClick={props.onSearch}
-    />
   </div>
 );
 
