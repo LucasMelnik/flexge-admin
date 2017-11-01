@@ -9,6 +9,11 @@ class UnitItemErrorRecordListService {
   constructor() {
     extendObservable(this, {
       items: [],
+      pagination: {
+        current: 1,
+        total: 0,
+        pageSize: 15,
+      },
     });
   }
 
@@ -16,9 +21,13 @@ class UnitItemErrorRecordListService {
     this.load();
   });
 
-  load = action(() => {
+  load = action((page) => {
+    if (page && page.current) {
+      this.pagination.current = page.current;
+    }
     this.fetch.fetch({
       url: '/reports/units-errors',
+      // url: `/reports/units-errors?skip=${this.pagination.current}&skip=${this.pagination.pageSize}`,
       query: {
         ...this.form.getValue('course') && {
           course: this.form.getValue('course'),

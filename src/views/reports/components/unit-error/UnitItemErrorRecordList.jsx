@@ -48,6 +48,7 @@ const UnitItemErrorsRecordList = props => (
         },
       ]}
       dataSource={props.items}
+      onSelect={row => window.open(`/modules/${row.module.id}/units/${row.unit.id}/items/`, '_blank')}
     />
   </div>
 );
