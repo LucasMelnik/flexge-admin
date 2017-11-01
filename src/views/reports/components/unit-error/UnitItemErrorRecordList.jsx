@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory, Link } from 'react-router';
 import Table from '../../../../core-ant/Table';
 import UnitItemErrorListFilterContainer from './UnitItemErrorListFilterContainer';
 import Separator from '../../../../core/layout/Separator';
@@ -11,8 +10,6 @@ const UnitItemErrorsRecordList = props => (
     <Separator />
     <Table
       fetching={props.fetching}
-      // onChange={props.onChange}
-      // pagination={props.pagination}
       columns={[
         {
           label: 'Course',

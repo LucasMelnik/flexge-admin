@@ -32,6 +32,7 @@ const UnitItemErrorListFilter = props => (
             value={get(props.values, 'course')}
             onChange={(value) => {
               props.onChange('course', value);
+              props.onChange('module', null);
               props.onSearch();
             }}
             resultTransformer={{
