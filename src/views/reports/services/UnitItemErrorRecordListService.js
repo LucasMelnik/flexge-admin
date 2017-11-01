@@ -32,7 +32,8 @@ class UnitItemErrorRecordListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.items = this.fetch.data;
+        const filteredItems = this.fetch.data.filter(item => item.id);
+        this.items = filteredItems;
       } else {
         this.items = [];
       }

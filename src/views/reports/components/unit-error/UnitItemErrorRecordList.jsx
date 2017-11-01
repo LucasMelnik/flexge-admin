@@ -38,10 +38,12 @@ const UnitItemErrorsRecordList = props => (
           path: 'errors',
           width: '20%',
           render: (cell, row) => {
-            const errors = row.errors.join(', ');
-            return (
-              <div>{errors}</div>
-            );
+            if (row && row.errors) {
+              const errors = row.errors.join(', ');
+              return (
+                <div>{errors}</div>
+              );
+            }
           },
         },
       ]}

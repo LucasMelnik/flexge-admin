@@ -39,7 +39,7 @@ const UnitItemErrorListFilter = props => (
         <FetchSelect
           url={props.values.course && `/modules?query[course]=${get(props.values, 'course', '')}`}
           label="Module"
-          disabled={props.fetching}
+          disabled={props.fetching || !props.values.course}
           value={get(props.values, 'module')}
           onChange={value => props.onChange('module', value)}
           resultTransformer={{
@@ -55,7 +55,7 @@ const UnitItemErrorListFilter = props => (
         <FetchSelect
           url={props.values.module && `/modules/${get(props.values, 'module', '')}/units`}
           label="Unit"
-          disabled={props.fetching}
+          disabled={props.fetching || !props.values.module}
           value={get(props.values, 'unit')}
           onChange={value => props.onChange('unit', value)}
           resultTransformer={{
