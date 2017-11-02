@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import VideoInputContainer from '../inputs/VideoInputContainer';
 import Separator from '../../../../core/layout/Separator';
-import FileInput from '../../../../core/form/FileInput';
 import TextInput from '../../../../core/form/TextInput';
-import Row from '../../../../core/layout/Row'
-import Column from '../../../../core/layout/Column'
+import Row from '../../../../core/layout/Row';
+import Column from '../../../../core/layout/Column';
 import SlicesInputContainer from '../inputs/SlicesInputContainer';
 
 const VideoLongTextItemForm = props => (
@@ -53,15 +52,6 @@ const VideoLongTextItemForm = props => (
       submitting={props.submitting}
       requiredCut
       disabled={props.disabled}
-    />
-    <Separator size="xs" />
-    <FileInput
-      label="Upload a video to the item"
-      accept="video"
-      disabled={props.disabled}
-      value={get(props.values, 'video', '')}
-      onChange={(key) => props.onChange('video', key)}
-      errorText={get(props.errors, 'video', '')}
     />
   </div>
 );
