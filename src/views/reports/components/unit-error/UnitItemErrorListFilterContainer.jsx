@@ -8,6 +8,7 @@ const UnitItemErrorListFilterContainer = () => (
     values={UnitItemErrorRecordListService.form.getValues()}
     onChange={UnitItemErrorRecordListService.form.setValue}
     onSearch={UnitItemErrorRecordListService.load}
+    onFilter={UnitItemErrorRecordListService.filter}
     fetching={UnitItemErrorRecordListService.fetch.fetching}
   />
 );

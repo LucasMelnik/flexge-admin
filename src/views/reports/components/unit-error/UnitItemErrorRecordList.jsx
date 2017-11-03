@@ -39,7 +39,7 @@ const UnitItemErrorsRecordList = props => (
           width: '20%',
           render: (cell, row) => {
             if (row && row.errors) {
-              const errors = row.errors.join(', ');
+              const errors = row.errors.map(error => error.label).join(', ');
               return (
                 <div>{errors}</div>
               );
