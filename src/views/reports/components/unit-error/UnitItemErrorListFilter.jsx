@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import PermissionValidator from '../../../../core/layout/PermissionValidator';
+import Select from '../../../../core-ant/Select';
 import FetchSelect from '../../../../core-ant/FetchSelect';
 
 const UnitItemErrorListFilter = props => (
@@ -33,6 +34,7 @@ const UnitItemErrorListFilter = props => (
             onChange={(value) => {
               props.onChange('course', value);
               props.onChange('module', null);
+              props.onChange('type', null);
               props.onSearch();
             }}
             resultTransformer={{
@@ -41,11 +43,7 @@ const UnitItemErrorListFilter = props => (
             }}
           />
         </div>
-        <div
-          style={{
-            width: 20,
-          }}
-        />
+        <ColumnSeparator />
         <div
           style={{
             width: 250,
@@ -58,6 +56,7 @@ const UnitItemErrorListFilter = props => (
             value={get(props.values, 'module')}
             onChange={(value) => {
               props.onChange('module', value);
+              props.onChange('type', null);
               props.onSearch();
             }}
             resultTransformer={{
@@ -66,12 +65,62 @@ const UnitItemErrorListFilter = props => (
             }}
           />
         </div>
+        <ColumnSeparator />
         <div
           style={{
-            width: 20,
+            width: 200,
           }}
-        />
+        >
+          Filter by type
+          <Select
+            placeholder="Filter by type"
+            value={get(props.values, 'type', '')}
+            onChange={(value) => {
+              props.onChange('type', value);
+              props.onFilter();
+            }}
+            disabled={props.fetching || !props.values.course || !props.values.module}
+            options={[
+              {
+                label: 'END_WHITE_SPACE',
+                value: 'END_WHITE_SPACE',
+              },
+              {
+                label: 'LINE_BREAK',
+                value: 'LINE_BREAK',
+              },
+              {
+                label: 'NO_AUDIO',
+                value: 'NO_AUDIO',
+              },
+              {
+                label: 'START_WHITE_SPACE',
+                value: 'START_WHITE_SPACE',
+              },
+              {
+                label: 'ORDER_GAP',
+                value: 'ORDER_GAP',
+              },
+              {
+                label: 'WRONG_ACCENT',
+                value: 'WRONG_ACCENT',
+              },
+              {
+                label: 'DUPLICATE_ORDER_GROUP',
+                value: 'DUPLICATE_ORDER_GROUP',
+              },
+              {
+                label: 'WRONG_FINAL_PUNCTUATION_TEXT',
+                value: 'WRONG_FINAL_PUNCTUATION_TEXT',
+              },
+              {
+                label: 'WRONG_FINAL_PUNCTUATION_TRANSLATION',
+                value: 'WRONG_FINAL_PUNCTUATION_TRANSLATION',
+              },
+            ]}
+          />
       </div>
+    </div>
     </PermissionValidator>
     <PermissionValidator allowedFor={['ADMIN']}>
       <ColumnSeparator size="sm" />

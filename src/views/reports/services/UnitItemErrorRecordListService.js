@@ -9,11 +9,7 @@ class UnitItemErrorRecordListService {
   constructor() {
     extendObservable(this, {
       items: [],
-      pagination: {
-        current: 1,
-        total: 0,
-        pageSize: 15,
-      },
+      filteredItems: [],
     });
   }
 
@@ -21,13 +17,19 @@ class UnitItemErrorRecordListService {
     this.load();
   });
 
-  load = action((page) => {
-    if (page && page.current) {
-      this.pagination.current = page.current;
+  filter = action(() => {
+    const type = this.form.getValue('type');
+    if (type) {
+      this.items = this.filteredItems.filter(item =>
+        item.errors.findIndex(i => i.value === type) > -1).map(item => item);
+    } else {
+      this.items = this.filteredItems;
     }
+  });
+
+  load = action(() => {
     this.fetch.fetch({
       url: '/reports/units-errors',
-      // url: `/reports/units-errors?skip=${this.pagination.current}&skip=${this.pagination.pageSize}`,
       query: {
         ...this.form.getValue('course') && {
           course: this.form.getValue('course'),
@@ -41,8 +43,8 @@ class UnitItemErrorRecordListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        const filteredItems = this.fetch.data.filter(item => item.id);
-        this.items = filteredItems;
+        this.items = this.fetch.data.filter(item => item.id);
+        this.filteredItems = this.items;
       } else {
         this.items = [];
       }
