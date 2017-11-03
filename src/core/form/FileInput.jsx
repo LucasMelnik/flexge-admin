@@ -6,7 +6,6 @@ import Async from '../layout/Async';
 import ErrorText from '../layout/ErrorText';
 import AudioPreview from '../layout/AudioPreview';
 import ImagePreview from '../layout/ImagePreview';
-import VideoPreview from '../layout/VideoPreview';
 import ColumnSeparator from '../layout/ColumnSeparator';
 
 export default class FileInput extends Component {
@@ -20,7 +19,6 @@ export default class FileInput extends Component {
     fullWidth: PropTypes.bool,
     accept: PropTypes.oneOf([
       'audio',
-      'video',
       'image',
     ]),
   };
@@ -119,9 +117,6 @@ export default class FileInput extends Component {
             )}
             {(this.props.accept === 'image' && hasValue) && (
               <ImagePreview src={this.props.value} />
-            )}
-            {(this.props.accept === 'video' && hasValue) && (
-              <VideoPreview src={this.props.value} />
             )}
           </div>
         </Async>
