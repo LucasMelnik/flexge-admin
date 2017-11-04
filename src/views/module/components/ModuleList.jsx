@@ -78,14 +78,14 @@ const ModuleList = props => (
             render: (cell, row) => {
               return (
                 <div>
-                  {row.createdBy.id === localStorage.id && (
+                  {(localStorage.role === 'ADMIN' || row.createdBy.id === localStorage.id) && (
                     <IconButton
                       icon="fa-trash"
                       onClick={() => props.onDelete(row)}
                     />
                   )}
                   {' '}
-                  {row.createdBy.id === localStorage.id && (
+                  {(localStorage.role === 'ADMIN' || row.createdBy.id === localStorage.id) && (
                     <IconButton
                       icon="fa-edit"
                       onClick={() => browserHistory.push(`/modules/${row.id}`)}
