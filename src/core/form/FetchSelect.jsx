@@ -34,10 +34,10 @@ export default class FetchSelect extends Component {
 
   state = { data: [] };
 
-  componentWillMount() {
+  searchService = (url) => {
     const fetchService = new FetchService();
     fetchService.fetch({
-      url: `/${this.props.url}`,
+      url: `/${url}`,
     })
       .then(() => {
         if (fetchService.data) {
@@ -51,6 +51,18 @@ export default class FetchSelect extends Component {
           });
         }
       });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.url !== nextProps.url) {
+      this.searchService(nextProps.url);
+    }
+  }
+
+  componentWillMount() {
+    if (this.props.url !== null) {
+      this.searchService(this.props.url);
+    }
   }
 
   render() {

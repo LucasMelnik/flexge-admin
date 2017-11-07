@@ -1,12 +1,13 @@
 import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
+import NotificationService from '../../../core/services/NotificationService';
 import { isRequired, isValidEmail } from '../../../core/validations';
 
 class StudentFormService {
-  fetch = new FetchService()
-  submit = new FetchService()
-  form = new FormService()
+  fetch = new FetchService();
+  submit = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -50,9 +51,7 @@ class StudentFormService {
       url: studentId ? `/students/${studentId}` : `/schools/${this.schoolId}/classes/${this.classId}/students`,
       body: {
         ...this.form.getValues(),
-        ...this.schoolId && {
-          school: this.schoolId,
-        },
+        schoolClass: this.form.getValue('schoolClass.id'),
       },
     }).then(() => {
       if (this.submit.data) {
@@ -62,10 +61,29 @@ class StudentFormService {
         this.form.setInitialValues({
           ...student,
         });
-        window.showSuccess(`Student ${studentId ? 'updated' : 'created'} successfully.`);
+        NotificationService.addNotification(
+          `Student ${studentId ? 'updated' : 'created'} successfully.`,
+          null,
+          null,
+          'success',
+        );
       }
       if (this.submit.error) {
-        window.showErrorMessage(`Error ${studentId ? 'updating' : 'creating'} student.`);
+        if (this.submit.error && this.submit.error.indexOf('E11000') > -1) {
+          NotificationService.addNotification(
+            'We already have an student with this email.',
+            null,
+            null,
+            'error',
+          );
+        } else {
+          NotificationService.addNotification(
+            `Error ${studentId ? 'updating' : 'creating'} student.`,
+            null,
+            null,
+            'error',
+          );
+        }
       }
     });
   })

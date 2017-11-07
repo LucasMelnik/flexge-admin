@@ -39,7 +39,7 @@ class SchoolFormService {
         }
       });
     } else {
-      this.form.setInitialValues({ country: 'Brazil', company: this.companyId });
+      this.form.setInitialValues({ company: this.companyId });
     }
   });
 

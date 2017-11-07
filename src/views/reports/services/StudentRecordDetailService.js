@@ -9,12 +9,26 @@ class StudentRecordDetailService {
       studentId: null,
       classId: null,
       contents: [],
+      contentsDetail: [],
     });
   }
 
   init = action((studentId) => {
     this.studentId = studentId;
     this.loadByDates();
+    this.loadByContent();
+  });
+
+  loadByContent = action(() => {
+    this.fetch.fetch({
+      url: `/reports/students/${this.studentId}/content-details`,
+    }).then(() => {
+      if (this.fetch.data) {
+        this.contentsDetail = this.fetch.data;
+      } else {
+        this.contentsDetail = [];
+      }
+    });
   });
 
   loadByDates = action(() => {

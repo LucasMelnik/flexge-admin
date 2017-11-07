@@ -13,6 +13,7 @@ const ReviewListScene = props => (
             unitsAndReviews={props.myUnitsAndReviews}
             fetching={props.fetching}
             onSendToReview={props.onSendToReview}
+            onFinalReview={props.onFinalReview}
           />
         ),
         title: 'My units',
@@ -34,6 +35,7 @@ ReviewListScene.propTypes = {
   myUnitsAndReviews: PropTypes.array.isRequired,
   allUnitsAndReviews: PropTypes.array.isRequired,
   onSendToReview: PropTypes.func,
+  onFinalReview: PropTypes.func,
   fetching: PropTypes.bool,
 };
 

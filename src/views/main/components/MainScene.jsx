@@ -45,6 +45,14 @@ class MainScene extends Component {
                     label: 'Courses',
                     link: '/courses',
                   },
+                  {
+                    label: 'Characters',
+                    link: '/characters',
+                  },
+                  {
+                    label: 'Regions',
+                    link: '/regions',
+                  },
                 ]}
               />
             </MenuItem>
@@ -150,8 +158,24 @@ class MainScene extends Component {
                     link: '/records/unit-images',
                   },
                   {
+                    label: 'Unit Items Errors',
+                    link: '/records/unit-errors',
+                  },
+                  {
                     label: 'Grades',
                     link: '/grades',
+                  },
+                ]}
+              />
+            </MenuItem>
+          </PermissionValidator>
+          <PermissionValidator allowedFor={['AUDIO_CONTENT', 'ADMIN']}>
+            <MenuItem title="Audio" icon="fa fa-file-o">
+              <SubMenu
+                items={[
+                  {
+                    label: 'Upload Management',
+                    link: '/item-audios',
                   },
                 ]}
               />

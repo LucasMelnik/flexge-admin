@@ -8,7 +8,7 @@ export const minFilteredLength = (minLengthInformed, filterPrediction, message) 
 
 export const isValidEmail = (valueue) => {
   if (valueue && !isEmail(valueue)) {
-    return 'Invalueid email';
+    return 'Invalid email';
   }
   return null;
 };

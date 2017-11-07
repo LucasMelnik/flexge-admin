@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '../../../../core-ant/Table';
+import moment from 'moment';
 
 const SchoolRecordList = props => (
   <Table
@@ -25,6 +26,13 @@ const SchoolRecordList = props => (
       },
       {
         label: 'Last any student access',
+        path: 'lastAccessAt',
+        render: (cell, row) => {
+          if (row.lastAccessAt) {
+            return `${moment(row.lastAccessAt).format('LLL')}`;
+          }
+          return '-';
+        },
       },
       {
         label: 'Status',

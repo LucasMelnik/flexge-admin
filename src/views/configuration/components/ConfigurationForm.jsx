@@ -6,7 +6,6 @@ import FormButtons from '../../../core/form/FormButtons';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import AudioMessageFormContainer from './AudioMessageFormContainer';
-import FileInput from '../../../core/form/FileInput';
 
 const ConfigurationForm = props => (
   <form
@@ -36,6 +35,16 @@ const ConfigurationForm = props => (
           onChange={value => props.onChange('scoreToPassOfSpeechRecognition', value)}
           description={get(props.errors, 'scoreToPassOfSpeechRecognition', null)}
           fieldValidation={get(props.errors, 'scoreToPassOfSpeechRecognition', null) && 'error'}
+        />
+      </Column>
+      <Column lgSize={4}>
+        <TextInput
+          label="Placement Introduction video"
+          disabled={props.submitting}
+          value={get(props.values, 'videoUrl', '')}
+          onChange={(key) => props.onChange('videoUrl', key)}
+          description={get(props.errors, 'videoUrl', null)}
+          fieldValidation={get(props.errors, 'videoUrl', null) && 'error'}
         />
       </Column>
     </Row>
@@ -132,12 +141,10 @@ const ConfigurationForm = props => (
     </Row>
     <Row>
       <Column lgSize={12}>
-        <FileInput
-          label="Upload a video"
-          accept="video"
-          value={get(props.values, 'videoUrl', '')}
-          onChange={(key) => props.onChange('videoUrl', key)}
-          errorText={get(props.errors, 'videoUrl', '')}
+        <AudioMessageFormContainer
+          title="Speech Recognition Error Audios"
+          messages={get(props.values, 'speechRecognitionErrorAudios', [])}
+          onChange={messages => props.onChange('speechRecognitionErrorAudios', messages)}
         />
       </Column>
     </Row>

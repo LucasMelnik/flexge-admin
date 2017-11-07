@@ -9,7 +9,7 @@ class UserListService {
     extendObservable(this, {
       users: [],
       company: null,
-      roleUser: null
+      roleUser: null,
     });
   }
 
@@ -30,7 +30,7 @@ class UserListService {
     }).then(() => {
       if (this.fetch.data) {
         if (this.roleUser === 'ADMIN') {
-          this.users = this.fetch.data.filter(user => user.role === 'ADMIN' || user.role === 'CONTENT_ADMIN' || user.role === 'IMAGE_ADMIN');
+          this.users = this.fetch.data.filter(user => user.role === 'ADMIN' || user.role === 'CONTENT_ADMIN' || user.role === 'IMAGE_ADMIN' || user.role === 'AUDIO_CONTENT');
         } else if (this.roleUser === 'DISTRIBUTOR_MANAGER') {
           this.users = this.fetch.data.filter(user => user.role === 'DISTRIBUTOR_MANAGER');
         } else {
