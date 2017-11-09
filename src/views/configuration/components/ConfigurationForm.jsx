@@ -148,6 +148,15 @@ const ConfigurationForm = props => (
         />
       </Column>
     </Row>
+    <Row>
+      <Column lgSize={12}>
+        <AudioMessageFormContainer
+          title="User Away Audios"
+          messages={get(props.values, 'userAwayAudios', [])}
+          onChange={messages => props.onChange('userAwayAudios', messages)}
+        />
+      </Column>
+    </Row>
     <FormButtons
       confirmLabel={props.values.id ? 'Update Configuration' : 'Create Configuration'}
       isDisabled={props.submitting || !props.isDirty()}
