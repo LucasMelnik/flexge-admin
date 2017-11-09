@@ -7,6 +7,9 @@ import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import FileInput from '../../../core/form/FileInput';
 import Select from '../../../core/form/Select';
+import Switch from '../../../core/form/Switch';
+import Separator from '../../../core/layout/Separator';
+import AchievementIconFormContainer from './AchievementIconFormContainer';
 
 const AchievementForm = props => (
   <form
@@ -16,7 +19,7 @@ const AchievementForm = props => (
     }}
   >
     <Row>
-      <Column lgSize={8}>
+      <Column lgSize={6}>
         <TextInput
           disabled={props.submitting}
           label="Achievement Description"
@@ -26,20 +29,10 @@ const AchievementForm = props => (
           fieldValidation={get(props.errors, 'description', null) && 'error'}
         />
       </Column>
-      <Column lgSize={4}>
-        <FileInput
-          label="Achievement Icon"
-          accept="image"
-          value={get(props.values, 'icon', '')}
-          onChange={key => props.onChange('icon', key)}
-          errorText={get(props.errors, 'icon', '')}
-        />
-      </Column>
-    </Row>
-    <Row>
-      <Column lgSize={4}>
+      <Column lgSize={3}>
         <Select
           label="Achievement Type"
+          disabled={props.submitting}
           value={get(props.values, 'type', '')}
           onChange={value => props.onChange('type', value)}
           description={get(props.errors, 'type', null)}
@@ -50,9 +43,10 @@ const AchievementForm = props => (
           }))}
         />
       </Column>
-      <Column lgSize={4}>
+      <Column lgSize={3}>
         <Select
           label="Achievement Level"
+          disabled={props.submitting}
           value={get(props.values, 'level', '')}
           onChange={value => props.onChange('level', value)}
           description={get(props.errors, 'level', null)}
@@ -63,6 +57,45 @@ const AchievementForm = props => (
           }))}
         />
       </Column>
+    </Row>
+    <Row>
+      <Column lgSize={4}>
+        <Switch
+          label="Achievement Icon Type"
+          icons={false}
+          titleOff="Icon to Achievement"
+          titleOn="Icons by Position"
+          onChange={(value) => {
+            props.onChange('manyIcons', value);
+            props.onChange('icon', undefined);
+            props.onChange('iconByPosition', undefined);
+          }}
+          value={get(props.values, 'manyIcons', false)}
+          disabled={props.submitting}
+        />
+      </Column>
+    </Row>
+    <Separator />
+    <Row>
+      {!get(props.values, 'manyIcons', false) ? (
+        <Column lgSize={4}>
+          <FileInput
+            label="Achievement Icon"
+            accept="image"
+            disabled={props.submitting}
+            value={get(props.values, 'icon', '')}
+            onChange={key => props.onChange('icon', key)}
+            errorText={get(props.errors, 'icon', '')}
+          />
+        </Column>
+      ) : (
+        <Column lgSize={12}>
+          <AchievementIconFormContainer
+            onChange={icons => props.onChange('iconByPosition', icons)}
+            icons={get(props.values, 'iconByPosition', [])}
+          />
+        </Column>
+      )}
     </Row>
     <FormButtons
       confirmLabel={props.values.id ? 'Update Achievement' : 'Create Achievement'}

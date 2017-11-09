@@ -27,11 +27,14 @@ class AchievementFormService {
         url: `/achievements/${achievementId}`,
       }).then(() => {
         if (this.fetch.data) {
-          this.form.setInitialValues(this.fetch.data);
+          this.form.setInitialValues({
+            ...this.fetch.data,
+            manyIcons: !!this.fetch.data.iconByPosition,
+          });
         }
       });
     } else {
-      this.form.setInitialValues({});
+      this.form.setInitialValues({ manyIcons: false });
     }
     this.achievementId = achievementId;
   });
@@ -47,6 +50,16 @@ class AchievementFormService {
       );
       return;
     }
+    if (!this.form.getValue('icon') && !this.form.getValue('iconByPosition')) {
+      NotificationService.addNotification(
+        'Add an Icon to the Achievement',
+        null,
+        null,
+        'error',
+      );
+      return;
+    }
+
     const achievementId = this.form.getValue('id');
     this.submit.fetch({
       method: achievementId ? 'put' : 'post',
@@ -58,7 +71,10 @@ class AchievementFormService {
         browserHistory.push(`/achievements/${achievement.id}`);
         this.achievementId = achievement.id;
         this.form.reset();
-        this.form.setInitialValues(achievement);
+        this.form.setInitialValues({
+          ...achievement,
+          manyIcons: !!achievement.iconByPosition,
+        });
         NotificationService.addNotification(
           `Achievement ${achievementId ? 'updated' : 'created'} successfully.`,
           null,

@@ -32,13 +32,17 @@ const AchievementList = props => (
           path: 'icon',
           width: '80px',
           render: cell => (
-            <img
-              src={`${process.env.REACT_APP_API_URL}/files/${cell}`}
-              alt="icon"
-              style={{
-                height: 40,
-              }}
-            />
+            cell ? (
+              <img
+                src={`${process.env.REACT_APP_API_URL}/files/${cell}`}
+                alt="icon"
+                style={{
+                  height: 40,
+                }}
+              />
+            ) : (
+              'No Icon'
+            )
           ),
         },
         {
@@ -63,6 +67,38 @@ const AchievementList = props => (
         },
       ]}
       rows={props.achievements}
+      expandable
+      expandableComponent={row => (
+        <Table
+          columns={[
+            {
+              label: 'ID',
+              path: 'id',
+              isKey: true,
+              hidden: true,
+            },
+            {
+              label: 'Position',
+              path: 'position',
+            },
+            {
+              label: 'Icon',
+              path: 'icon',
+              width: '100px',
+              render: cell => (
+                <img
+                  src={`${process.env.REACT_APP_API_URL}/files/${cell}`}
+                  alt="icon"
+                  style={{
+                    height: 40,
+                  }}
+                />
+              ),
+            },
+          ]}
+          rows={row.iconByPosition}
+        />
+      )}
     />
   </Async>
 );
