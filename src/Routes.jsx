@@ -75,6 +75,8 @@ import UnitItemErrorRecordScene from './views/reports/components/unit-error/Unit
 import CharacterListScene from './views/character/components/CharacterListScene';
 import CharacterFormSceneContainer from './views/character/components/CharacterFormSceneContainer';
 import ItemAudioListScene from './views/item-audio/components/ItemAudioListScene';
+import AchievementListScene from './views/achievement/components/AchievementListScene';
+import AchievementFormScene from './views/achievement/components/AchievementFormScene';
 
 
 function authRequired(nextState, replace) {
@@ -188,6 +190,9 @@ const Routes = () => (
       <Route path="records/schools/:schoolId/classes/:classId/students/:studentId/detail" component={StudentDetailRecordScene} />
       <Route path="records/students/:studentId/detail" component={StudentDetailRecordScene} />
       <Route path="item-audios" component={ItemAudioListScene} />
+      <Route path="achievements" component={AchievementListScene} />
+      <Route path="achievements/new" component={AchievementFormScene} />
+      <Route path="achievements/:achievementId" component={AchievementFormScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
