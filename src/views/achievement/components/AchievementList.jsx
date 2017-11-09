@@ -30,7 +30,16 @@ const AchievementList = props => (
         {
           label: 'Icon',
           path: 'icon',
-          render: cell => <img src={`${process.env.REACT_APP_API_URL}/files/${cell}`} alt="icon" />,
+          width: '80px',
+          render: cell => (
+            <img
+              src={`${process.env.REACT_APP_API_URL}/files/${cell}`}
+              alt="icon"
+              style={{
+                height: 40,
+              }}
+            />
+          ),
         },
         {
           label: 'Actions',
