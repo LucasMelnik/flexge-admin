@@ -40,7 +40,9 @@ class SchoolClassFormService {
         this.form.reset();
         this.form.setInitialValues({
           ...this.fetch.data,
-          teacher: this.fetch.data.teacher.id,
+          ...this.fetch.data.teacher && {
+            teacher: this.fetch.data.teacher.id,
+          },
           isPlacementTestClass: this.fetch.data.isPlacementTestClass,
           school: this.fetch.data.school.id,
         });
@@ -60,7 +62,9 @@ class SchoolClassFormService {
       url: classId ? `/schools/${schoolId}/classes/${classId}` : `/schools/${schoolId}/classes`,
       body: {
         ...this.form.getValues(),
-        teacher: this.form.getValue('teacher'),
+        ...this.form.getValue('teacher') && {
+          teacher: this.form.getValue('teacher'),
+        },
         isPlacementTestClass: this.form.getValue('isPlacementTestClass') ? this.form.getValue('isPlacementTestClass') : false,
       },
     }).then(() => {
