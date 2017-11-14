@@ -31,6 +31,8 @@ class StudentListService {
     this.classId = classId;
     if (this.schoolId && this.classId) {
       this.loadBySchoolAndClass();
+    } else {
+      this.loadAllStudents();
     }
   });
 
