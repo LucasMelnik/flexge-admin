@@ -53,6 +53,10 @@ class MainScene extends Component {
                     label: 'Regions',
                     link: '/regions',
                   },
+                  {
+                    label: 'Achievements',
+                    link: '/achievements',
+                  },
                 ]}
               />
             </MenuItem>
