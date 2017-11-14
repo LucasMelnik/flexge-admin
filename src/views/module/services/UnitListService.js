@@ -26,10 +26,12 @@ class UnitListService {
     this.fetch.fetch({
       url: `/modules/${this.moduleId}/units`,
       query: {
-        query: {
-          name: {
-            $regex: this.form.getValue('filter'),
-            $options: 'i',
+        ...this.form.getValue('filter') && {
+          query: {
+            name: {
+              $regex: this.form.getValue('filter'),
+              $options: 'i',
+            },
           },
         },
       },
