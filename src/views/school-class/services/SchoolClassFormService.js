@@ -5,9 +5,9 @@ import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
 class SchoolClassFormService {
-  fetch = new FetchService()
-  submit = new FetchService()
-  form = new FormService()
+  fetch = new FetchService();
+  submit = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -40,7 +40,7 @@ class SchoolClassFormService {
         this.form.reset();
         this.form.setInitialValues({
           ...this.fetch.data,
-          teacher: this.fetch.data.teacher.id,
+          teacher: this.fetch.data.teacher && this.fetch.data.teacher.id,
           isPlacementTestClass: this.fetch.data.isPlacementTestClass,
           school: this.fetch.data.school.id,
         });
