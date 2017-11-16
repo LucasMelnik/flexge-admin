@@ -54,10 +54,13 @@ class ModuleFormService {
       url: moduleId ? `/modules/${moduleId}` : '/modules',
       body: {
         ...this.form.getValues(),
+        ...this.form.getValue('createdBy') && {
+          createdBy: this.form.getValue('createdBy.id'),
+        },
       },
     }).then(() => {
       if (this.submit.data) {
-        browserHistory.push(`/modules`);
+        browserHistory.push('/modules');
         NotificationService.addNotification(
           `Module ${moduleId ? 'updated' : 'created'} successfully.`,
           null,
