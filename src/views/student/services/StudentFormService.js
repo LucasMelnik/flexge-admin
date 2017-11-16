@@ -71,7 +71,7 @@ class StudentFormService {
       if (this.submit.error) {
         if (this.submit.error && this.submit.error.indexOf('E11000') > -1) {
           NotificationService.addNotification(
-            'We already have an student with this email.',
+            'We already have a student with this email.',
             null,
             null,
             'error',

@@ -2,12 +2,13 @@ import { extendObservable, action } from 'mobx';
 import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
+import NotificationService from '../../../core/services/NotificationService';
 import { isRequired, isValidEmail } from '../../../core/validations';
 
 class UserFormService {
-  fetch = new FetchService()
-  submit = new FetchService()
-  form = new FormService()
+  fetch = new FetchService();
+  submit = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -77,12 +78,31 @@ class UserFormService {
           ...user,
           ...user.company && user.company.id && {
             company: user.company.id,
-          }
+          },
         });
-        window.showSuccess(`User ${userId ? 'updated' : 'created'} successfully.`);
+        NotificationService.addNotification(
+          `User ${userId ? 'updated' : 'created'} successfully.`,
+          null,
+          null,
+          'success',
+        );
       }
       if (this.submit.error) {
-        window.showErrorMessage(`Error ${userId ? 'updating' : 'creating'} user.`);
+        if (this.submit.error && this.submit.error.indexOf('E11000') > -1) {
+          NotificationService.addNotification(
+            'We already have an user with this email.',
+            null,
+            null,
+            'error',
+          );
+        } else {
+          NotificationService.addNotification(
+            `Error ${userId ? 'updating' : 'creating'} student.`,
+            null,
+            null,
+            'error',
+          );
+        }
       }
     });
   });
