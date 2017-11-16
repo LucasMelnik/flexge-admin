@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { observe } from 'mobx';
 import Button from '../../../core/form/Button';
-import MasteryTestListItemsContainer from './MasteryTestListItemsContainer';
-//import MasteryTestItemFormContainer from './MasteryTestItemFormContainer';
 import Card from '../../../core/layout/Card';
+import MasteryTestListItemsContainer from './MasteryTestListItemsContainer';
 import MasteryTestItemFormContainer from './MasteryTestItemFormContainer';
+import MasteryTestListItemsService from '../services/MasteryTestListItemsService';
 
 class MasteryTestItems extends Component {
 
@@ -14,7 +15,16 @@ class MasteryTestItems extends Component {
 
   state = {
     actualScene: 'LIST',
+    totalItems: 0,
   };
+
+  componentDidMount() {
+    observe(MasteryTestListItemsService, 'items', () => {
+      this.setState({
+        totalItems: MasteryTestListItemsService.items.length,
+      });
+    });
+  }
 
   handleChangeToForm = () => {
     this.setState({
@@ -34,7 +44,7 @@ class MasteryTestItems extends Component {
         title={this.state.actualScene === 'LIST' ? 'Mastery Test items' : 'New Mastery Test item'}
         actions={
           <div>
-            {this.state.actualScene === 'LIST' && (
+            {(this.state.actualScene === 'LIST' && this.state.totalItems < 3) && (
               <Button
                 icon="fa-plus"
                 onClick={this.handleChangeToForm}
@@ -54,7 +64,7 @@ class MasteryTestItems extends Component {
         {this.state.actualScene === 'LIST' ? (
           <MasteryTestListItemsContainer masteryTestId={this.props.masteryTestId} />
         ) : (
-         <MasteryTestItemFormContainer
+          <MasteryTestItemFormContainer
             endpointUrl={`/mastery-tests/${this.props.masteryTestId}/items`}
             onSaveSuccess={this.handleChangeToList}
           />

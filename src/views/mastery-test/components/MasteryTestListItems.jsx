@@ -25,13 +25,14 @@ const MasteryTestListItems = props => (
           width: '7%',
           rowColumnStyle: {
             paddingRight: 10,
+            overflow: 'visible',
           },
           render: (cell, row) => (
             <Select
               label="Order"
               value={row.order}
               onChange={order => props.onOrderChange(row.item.id, order)}
-              options={range(1, 11).map(value => ({
+              options={range(1, props.items.length + 1).map(value => ({
                 label: value.toString(),
                 value,
               }))}
