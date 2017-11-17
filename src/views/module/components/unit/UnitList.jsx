@@ -7,6 +7,7 @@ import { browserHistory } from 'react-router';
 import Async from '../../../../core/layout/Async';
 import Table from '../../../../core/form/Table';
 import IconButton from '../../../../core/form/IconButton';
+import Button from '../../../../core/form/Button';
 
 const UnitList = props => (
   <Async fetching={props.fetching}>
@@ -165,8 +166,8 @@ const UnitList = props => (
         {
           label: 'Actions',
           path: 'action',
-          width: '120',
-          render: (cell, row) => (
+          width: props.allowReorder ? '200' : '120',
+          render: (cell, row, extraData, index) => (
             <div>
               {(row.createdBy === localStorage.id || localStorage.role === 'ADMIN') && (
                 <IconButton
@@ -179,6 +180,22 @@ const UnitList = props => (
                 <IconButton
                   icon="fa-edit"
                   onClick={() => browserHistory.push(`/modules/${row.module}/units/${row.id}`)}
+                />
+              )}
+              {' '}
+              {props.allowReorder && (
+                <Button
+                  label="+1"
+                  type="primary"
+                  onClick={() => props.onAutoReorder(index, 'ADD_LINE')}
+                />
+              )}
+              {' '}
+              {props.allowReorder && (
+                <Button
+                  label="-1"
+                  type="primary"
+                  onClick={() => props.onAutoReorder(index, 'REMOVE_LINE')}
                 />
               )}
             </div>
@@ -204,7 +221,9 @@ UnitList.propTypes = {
     name: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
+  allowReorder: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onAutoReorder: PropTypes.func.isRequired,
 };
 
 export default UnitList;

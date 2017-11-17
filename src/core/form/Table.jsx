@@ -103,7 +103,7 @@ export default class Table extends Component {
                 });
               }
 
-              if (window.$(e.target).is('button') || window.$(e.target).is('i')) {
+              if (window.$(e.target).is('button') || window.$(e.target).is('i') || window.$(e.target).is('span')) {
                 return false;
               }
               if (this.props.selectable && this.props.onSelect) {

@@ -44,7 +44,7 @@ class MasteryTestItems extends Component {
         title={this.state.actualScene === 'LIST' ? 'Mastery Test items' : 'New Mastery Test item'}
         actions={
           <div>
-            {(this.state.actualScene === 'LIST' && this.state.totalItems < 3) && (
+            {(this.state.actualScene === 'LIST' && this.state.totalItems < 50) && (
               <Button
                 icon="fa-plus"
                 onClick={this.handleChangeToForm}

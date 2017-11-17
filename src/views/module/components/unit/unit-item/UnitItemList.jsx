@@ -163,7 +163,7 @@ const UnitItemList = props => (
               );
             }
             return null;
-          }
+          },
         },
       ]}
       rows={props.items}

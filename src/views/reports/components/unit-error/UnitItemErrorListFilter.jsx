@@ -14,7 +14,6 @@ const UnitItemErrorListFilter = props => (
     }}
   >
     <PermissionValidator allowedFor={['ADMIN']}>
-
       <div
         style={{
           display: 'flex',
@@ -117,10 +116,18 @@ const UnitItemErrorListFilter = props => (
                 label: 'WRONG_FINAL_PUNCTUATION_TRANSLATION',
                 value: 'WRONG_FINAL_PUNCTUATION_TRANSLATION',
               },
+              {
+                label: 'START_LOWER_CASE_TEXT',
+                value: 'START_LOWER_CASE_TEXT',
+              },
+              {
+                label: 'START_LOWER_CASE_TRANSLATION',
+                value: 'START_LOWER_CASE_TRANSLATION',
+              },
             ]}
           />
+        </div>
       </div>
-    </div>
     </PermissionValidator>
     <PermissionValidator allowedFor={['ADMIN']}>
       <ColumnSeparator size="sm" />
@@ -138,6 +145,6 @@ UnitItemErrorListFilter.propTypes = {
 UnitItemErrorListFilter.defaultProps = {
   fetching: false,
   onSearch: null,
-}
+};
 
 export default UnitItemErrorListFilter;
