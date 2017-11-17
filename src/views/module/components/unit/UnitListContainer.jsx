@@ -4,6 +4,7 @@ import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import UnitList from './UnitList';
 import UnitListService from '../../services/UnitListService';
+import LoadModuleService from '../../services/LoadModuleService';
 
 class UnitListContainer extends Component {
 
@@ -21,6 +22,8 @@ class UnitListContainer extends Component {
         units={toJS(UnitListService.units)}
         fetching={UnitListService.fetch.fetching}
         onDelete={UnitListService.handleRemove}
+        onAutoReorder={UnitListService.handleAutoReorder}
+        allowReorder={LoadModuleService.module.createdBy.id === localStorage.id || localStorage.role === 'ADMIN'}
       />
     );
   }

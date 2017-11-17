@@ -6,6 +6,7 @@ import ConfirmationDialogService from '../../../core/services/ConfirmationDialog
 
 class UnitListService {
   fetch = new FetchService();
+  submit = new FetchService();
   form = new FormService();
 
   constructor() {
@@ -72,6 +73,42 @@ class UnitListService {
           this.load();
         });
       });
+  });
+
+  handleAutoReorder = action((startIndex, reorderAction) => {
+    this.reorderSubmitting = true;
+
+    const reorderPromises = [];
+    this.units.forEach((unit, index) => {
+      const body = {
+        id: unit.id,
+        name: unit.name,
+        module: unit.module,
+        type: unit.type.id,
+        order: unit.order,
+        group: unit.group,
+        scoreToPass: unit.scoreToPass,
+        createdBy: unit.createdBy,
+        difficulty: unit.difficulty,
+      };
+
+      if (reorderAction === 'ADD_LINE' && index >= startIndex) {
+        body.order = unit.order + 1;
+      } else if (reorderAction === 'REMOVE_LINE' && index >= startIndex) {
+        body.order = unit.order - 1;
+      }
+
+      reorderPromises.push(
+        this.submit.fetch({
+          url: `/modules/${unit.module}/units/${unit.id}`,
+          method: 'put',
+          body,
+        }),
+      );
+    });
+
+    Promise.all(reorderPromises)
+      .then(() => this.load());
   });
 }
 
