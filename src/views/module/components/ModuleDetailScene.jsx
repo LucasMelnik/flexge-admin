@@ -22,9 +22,17 @@ const ModuleDetailScene = props => (
         {
           text: `Module - ${props.module.name}`,
           link: `/modules/${props.module.id}`,
-        }
+        },
       ]}
     />
+    {props.module.pedagogicGoal && (
+      <div>
+        <Card title="Pedagogic Goal">
+          <p>{props.module.pedagogicGoal}</p>
+        </Card>
+        <Separator size="md" />
+      </div>
+    )}
     <Card
       title="Mastery test"
       actions={
@@ -68,6 +76,7 @@ ModuleDetailScene.propTypes = {
   module: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
+    pedagogicGoal: PropTypes.string,
   }),
   fetching: PropTypes.bool.isRequired,
 };
