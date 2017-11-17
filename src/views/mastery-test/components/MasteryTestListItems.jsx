@@ -83,7 +83,7 @@ const MasteryTestListItems = props => (
         {
           label: 'Actions',
           path: 'action',
-          width: '60',
+          width: '70',
           render: (cell, row) => {
             return (
               <IconButton
