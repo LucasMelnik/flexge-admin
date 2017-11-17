@@ -5,6 +5,8 @@ import UnitFormContainer from './UnitFormContainer';
 import Button from '../../../../core/form/Button';
 import Card from '../../../../core/layout/Card';
 import Breadcrumb from '../../../../core/layout/Breadcrumb';
+import MoveUnitFormContainer from './MoveUnitFormContainer';
+import Separator from '../../../../core/layout/Separator';
 
 const UnitFormScene = props => (
   <div>
@@ -20,8 +22,8 @@ const UnitFormScene = props => (
           link: `/modules/${props.module.id}/details`,
         },
         {
-          text: props.masteryTestId ? 'Edit Mastery Test': 'New Mastery Test',
-        }
+          text: props.unitId ? 'Edit Unit' : 'New Unit',
+        },
       ]}
     />
     <Card
@@ -39,6 +41,17 @@ const UnitFormScene = props => (
         moduleId={props.moduleId}
       />
     </Card>
+    {(localStorage.role === 'ADMIN' && props.unitId) && (
+      <div>
+        <Separator />
+        <Card title="Move Unit to other Course/Module">
+          <MoveUnitFormContainer
+            unitId={props.unitId}
+            moduleId={props.moduleId}
+          />
+        </Card>
+      </div>
+    )}
   </div>
 );
 
