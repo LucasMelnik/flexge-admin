@@ -1,107 +1,61 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Input, Form } from 'antd';
 
-export default class TextInput extends Component {
+const TextInput = (props) => (
+  <Form.Item
+    help={props.errorText}
+    validateStatus={props.errorText && 'error'}
+  >
+    {(props.fieldType === 'textarea') ? (
+      <Input.TextArea
+        cols="5"
+        rows={props.textAreaRows}
+        disabled={props.disabled}
+        value={props.value}
+        onChange={e => props.onChange && props.onChange(e.target.value)}
+        placeholder={props.placeholder}
+        style={{
+          overflow: 'auto',
+          wordWrap: 'break-word',
+          resize: 'none',
+        }}
+      />
+    ) : (
+      <Input
+        type={props.type}
+        value={props.value}
+        onChange={e => props.onChange && props.onChange(e.target.value)}
+        onFocus={props.onFocus}
+        placeholder={props.placeholder}
+        disabled={props.disabled}
+      />
+    )}
+  </Form.Item>
+);
 
-  static propTypes = {
-    label: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    type: PropTypes.oneOf(['text', 'password', 'number']),
-    placeholder: PropTypes.string,
-    description: PropTypes.string,
-    disabled: PropTypes.bool,
-    fieldType: PropTypes.oneOf(['textarea', 'static']),
-    fieldValidation: PropTypes.oneOf(['error', 'warning', 'success']),
-    helpText: PropTypes.string,
-    textAreaRows: PropTypes.string,
-    step: PropTypes.number,
-    max: PropTypes.number,
-    height: PropTypes.number,
-  };
+TextInput.propTypes = {
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  type: PropTypes.oneOf(['text', 'password', 'number']),
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
+  fieldType: PropTypes.oneOf(['textarea', 'input']),
+  errorText: PropTypes.string,
+  textAreaRows: PropTypes.string,
+};
 
-  static defaultProps = {
-    description: null,
-    onChange: null,
-    onFocus: null,
-    value: '',
-    placeholder: null,
-    type: 'text',
-    disabled: false,
-    fieldType: null,
-    fieldValidation: null,
-    helpText: null,
-    max: null,
-    height: 34,
-    step: null,
-    textAreaRows: '2',
-  };
+TextInput.defaultProps = {
+  onChange: null,
+  onFocus: null,
+  value: '',
+  placeholder: null,
+  type: 'text',
+  disabled: false,
+  fieldType: 'input',
+  errorText: null,
+  textAreaRows: '2',
+};
 
-  render() {
-    return (
-      <div className={`form-group has-${this.props.fieldValidation}`}>
-        <label
-          className="form-label"
-          htmlFor={this.props.id}
-        >
-          {this.props.label}
-        </label>
-        <span
-          className="desc"
-          style={{
-            color: 'red',
-          }}
-        >
-          {this.props.description}
-        </span>
-        <div className="controls">
-          {this.props.fieldType === 'textarea' ? (
-            <textarea
-              className="form-control autogrow"
-              cols="5"
-              rows={this.props.textAreaRows}
-              disabled={this.props.disabled && 'disabled'}
-              value={this.props.value}
-              onChange={e => this.props.onChange && this.props.onChange(e.target.value)}
-              placeholder={this.props.placeholder}
-              style={{
-                overflow: 'auto',
-                wordWrap: 'break-word',
-                resize: 'none',
-              }}
-            />
-          ) : this.props.fieldType === 'static' ? (
-            <p
-              className="form-control-static"
-            >
-              {this.props.placeholder}
-            </p>
-          ) : (
-            <input
-              className="form-control"
-              type={this.props.type}
-              value={this.props.value}
-              onChange={e => this.props.onChange && this.props.onChange(e.target.value)}
-              onFocus={this.props.onFocus}
-              placeholder={this.props.placeholder}
-              disabled={this.props.disabled && 'disabled'}
-              step={this.props.step}
-              max={this.props.max}
-              style={{
-                height: this.props.height,
-              }}
-            />
-          )}
-          {this.props.helpText && (
-            <span
-              className="help-block"
-            >
-                {this.props.helpText}
-            </span>
-          )}
-        </div>
-      </div>
-    );
-  }
-}
+export default TextInput;
