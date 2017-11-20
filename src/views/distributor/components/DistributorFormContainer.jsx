@@ -8,11 +8,11 @@ class DistributorFormContainer extends Component {
 
   static propTypes = {
     distributorId: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     distributorId: null,
-  }
+  };
 
   componentWillMount() {
     DistributorFormService.handleLoad(this.props.distributorId);
