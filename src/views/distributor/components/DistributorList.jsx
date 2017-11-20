@@ -1,50 +1,43 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
-import IconButton from '../../../core/form/IconButton';
+import Button from '../../../core/form/Button';
 
 const DistributorList = props => (
-  <Async fetching={props.fetching}>
-    <Table
-      columns={[
-        {
-          label: 'ID',
-          path: 'id',
-          isKey: true,
-          hidden: true,
+  <Table
+    loading={props.fetching}
+    columns={[
+      {
+        label: 'Name',
+        path: 'name',
+        sort: true,
+      },
+      {
+        label: 'Actions',
+        path: 'action',
+        width: '85px',
+        render: (cell, row) => {
+          return (
+            <div>
+              <Button
+                icon="edit"
+                onClick={() => browserHistory.push(`/distributors/${row.id}`)}
+              />
+              {' '}
+              <Button
+                icon="delete"
+                onClick={() => props.onDelete(row)}
+              />
+            </div>
+          );
         },
-        {
-          label: 'Name',
-          path: 'name',
-        },
-        {
-          label: 'Actions',
-          path: 'action',
-          width: '120',
-          render: (cell, row) => {
-            return (
-              <div>
-                <IconButton
-                  icon="fa-trash"
-                  onClick={() => props.onDelete(row)}
-                />
-                {' '}
-                <IconButton
-                  icon="fa-edit"
-                  onClick={() => browserHistory.push(`/distributors/${row.id}`)}
-                />
-              </div>
-            );
-          },
-        },
-      ]}
-      rows={props.distributors}
-      selectable
-      onSelect={row => browserHistory.push(`/distributor-detail/${row.id}`)}
-    />
-  </Async>
+      },
+    ]}
+    rows={props.distributors}
+    selectable
+    onSelect={row => browserHistory.push(`/distributor-detail/${row.id}`)}
+  />
 );
 
 DistributorList.propTypes = {

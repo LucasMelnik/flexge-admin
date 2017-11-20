@@ -8,22 +8,23 @@ import DistributorListContainer from './DistributorListContainer';
 
 const DistributorListScene = () => (
   <div>
-    <Breadcrumb
-      crumbs={[
-        {
-          text: 'Distributors',
-        },
-      ]}
-    />
+    {/*<Breadcrumb*/}
+      {/*crumbs={[*/}
+        {/*{*/}
+          {/*text: 'Distributors',*/}
+        {/*},*/}
+      {/*]}*/}
+    {/*/>*/}
     <Card
       title="Distributors"
-      actions={[
+      actions={
         <Button
+          type="primary"
           label="New distributor"
-          icon="fa-plus"
+          icon="plus"
           onClick={() => browserHistory.push('/distributors/new')}
-        />,
-      ]}
+        />
+      }
     >
       <DistributorListFilterContainer />
       <DistributorListContainer />
