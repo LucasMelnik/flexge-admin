@@ -20,6 +20,7 @@ const FormButtons = props => (
       icon="check"
       type="primary"
       disabled={props.isDisabled}
+      loading={props.isSubmitting}
       buttonType="submit"
       label={props.confirmLabel}
     />
@@ -29,6 +30,7 @@ const FormButtons = props => (
 FormButtons.propTypes = {
   confirmLabel: PropTypes.string.isRequired,
   isDisabled: PropTypes.bool.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
   onReset: PropTypes.func.isRequired,
 };
 
