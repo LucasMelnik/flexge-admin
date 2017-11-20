@@ -1,64 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from './IconButton';
+import { Tag, Form } from 'antd';
+import Button from './Button';
 import ColumnSeparator from '../layout/ColumnSeparator';
 
 const Tags = props => (
-  <div className="form-group">
-    <label
-      className="form-label"
-      htmlFor="label"
-    >
-      {props.label}
-    </label>
-    <span
-      className="desc"
-      style={{
-        color: 'red',
-      }}
-    >
-      {props.errorText}
-    </span>
-    <div className="controls">
-      <div
-        className="bootstrap-tagsinput"
-        style={{
-          borderColor: props.errorText ? '#f44336' : null,
-          padding: '8px',
-          display: 'flex',
-          flexWrap: 'wrap'
-        }}
+  <Form.Item
+    label={props.label}
+    help={props.errorText}
+    validateStatus={props.errorText && 'error'}
+  >
+    {props.tags.map(tag => (
+      <Tag
+        key={`tag-${tag.index}`}
+        closable={!props.disabled && tag.canDelete}
+        onClose={props.onDelete(tag.index, tag)}
       >
-        {props.tags.map(tag => (
-          <span
-            key={`tag-${tag.index}`}
-            className={`tag label ${props.disabled ? 'label-default' : 'label-primary'}`}
-            style={{
-              padding: '8px 5px',
-              display: 'inline-block',
+        {!(tag.canClick || tag.canLink) && (tag.text)}
+        {!(tag.canClick || tag.canLink) && (<ColumnSeparator size="sm" />)}
+        {(!props.disabled && (tag.canClick || tag.canLink)) && (
+          <Button
+            size="xs"
+            rounded
+            icon={tag.icon}
+            onClick={() => {
+              if (tag.canLink) {
+                props.onLink(tag.index, tag);
+              } else {
+                props.onClick(tag.index, tag);
+              }
             }}
-          >
-            {!(tag.canClick || tag.canLink) && (tag.text)}
-            {!(tag.canClick || tag.canLink) && (<ColumnSeparator size="sm" />)}
-            {(!props.disabled && (tag.canClick || tag.canLink)) && (
-              <IconButton
-                size="xs"
-                icon={tag.icon}
-                onClick={() => tag.canLink ? props.onLink(tag.index, tag) : props.onClick(tag.index, tag)}
-              />
-            )}
-            {(!props.disabled && tag.canDelete) && (
-              <IconButton
-                size="xs"
-                icon="fa-times"
-                onClick={() => props.onDelete(tag.index, tag)}
-              />
-            )}
-          </span>
-        ))}
-      </div>
-    </div>
-  </div>
+          />
+        )}
+      </Tag>
+    ))}
+  </Form.Item>
 );
 
 Tags.propTypes = {

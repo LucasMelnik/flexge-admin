@@ -11,6 +11,11 @@ const Button = props => (
     icon={props.icon}
     shape={props.rounded ? 'circle' : null}
     loading={props.loading}
+    size={{
+      sm: 'small',
+      md: 'default',
+      lg: 'large',
+    }[props.size]}
   >
     {props.label}
   </AntButton>
@@ -22,6 +27,7 @@ Button.propTypes = {
     'primary',
     'danger',
   ]),
+  size: PropTypes.oneOf(['sm','md','lg']),
   label: PropTypes.string,
   icon: PropTypes.string,
   onClick: PropTypes.func,
@@ -40,6 +46,7 @@ Button.defaultProps = {
   disabled: false,
   loading: false,
   buttonType: 'button',
+  size: 'md',
 };
 
 export default Button;
