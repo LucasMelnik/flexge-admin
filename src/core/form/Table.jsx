@@ -16,6 +16,7 @@ const Table = props => (
     pagination={props.pagination || false}
     rowKey="id"
     bordered
+    indentSize={10}
     locale={{
       filterConfirm: 'Ok',
       filterReset: 'Reset',
