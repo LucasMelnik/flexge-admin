@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './row.css';
+import { Row as AntRow } from 'antd';
 
 const Row = props => (
-  <div className="row">
+  <AntRow className="row">
     {props.children}
-  </div>
+  </AntRow>
 );
 
 Row.propTypes = {
