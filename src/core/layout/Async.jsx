@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 
 const Async = props => (
-  <div>
+  <div
+    style={{
+      textAlign: 'center',
+    }}
+  >
     {props.fetching ? (
       <Spin
         size={{
