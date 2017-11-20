@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Input, Form } from 'antd';
 
-const TextInput = (props) => (
+const TextInput = props => (
   <Form.Item
+    label={props.label}
     help={props.errorText}
     validateStatus={props.errorText && 'error'}
   >
@@ -35,8 +36,9 @@ const TextInput = (props) => (
 );
 
 TextInput.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onChange: PropTypes.func,
   onFocus: PropTypes.func,
   type: PropTypes.oneOf(['text', 'password', 'number']),
   placeholder: PropTypes.string,
@@ -47,7 +49,6 @@ TextInput.propTypes = {
 };
 
 TextInput.defaultProps = {
-  onChange: null,
   onFocus: null,
   value: '',
   placeholder: null,
