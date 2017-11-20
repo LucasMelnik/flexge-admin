@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Row as AntRow } from 'antd';
 
 const Row = props => (
-  <AntRow className="row">
+  <AntRow gutter={8}>
     {props.children}
   </AntRow>
 );
