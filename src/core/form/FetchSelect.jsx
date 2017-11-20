@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { sortBy } from 'lodash';
+import sortBy from 'lodash/sortBy';
+import toLower from 'lodash/toLower';
 import { toJS } from 'mobx';
 import Select from './Select';
 import FetchService from '../services/FetchService';
@@ -15,10 +16,9 @@ export default class FetchSelect extends Component {
       value: PropTypes.string,
     }).isRequired,
     placeholder: PropTypes.string,
+    errorText: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
-    description: PropTypes.string,
-    fieldValidation: PropTypes.string,
     disabled: PropTypes.bool,
     defaultSelect: PropTypes.bool,
   };
@@ -26,8 +26,7 @@ export default class FetchSelect extends Component {
   static defaultProps = {
     placeholder: 'Select...',
     value: null,
-    fieldValidation: null,
-    description: null,
+    errorText: null,
     disabled: false,
     defaultSelect: false,
   };
@@ -43,7 +42,7 @@ export default class FetchSelect extends Component {
         if (fetchService.data) {
           const data = toJS(fetchService.data);
           this.setState({
-            data: sortBy(data, item => String(item[this.props.resultTransformer.text]).toLowerCase()),
+            data: sortBy(data, item => toLower(item[this.props.resultTransformer.text])),
           }, () => {
             if (this.props.defaultSelect) {
               this.props.onChange(this.state.data[0].id || null);
@@ -51,7 +50,7 @@ export default class FetchSelect extends Component {
           });
         }
       });
-  }
+  };
 
   componentWillReceiveProps(nextProps) {
     if (this.props.url !== nextProps.url) {
@@ -71,10 +70,9 @@ export default class FetchSelect extends Component {
         value={this.props.value}
         label={this.props.label}
         disabled={this.props.disabled}
-        description={this.props.description}
-        fieldValidation={this.props.fieldValidation}
+        errorText={this.props.errorText}
         placeholder={this.props.placeholder}
-        onChange={(value) => this.props.onChange(value, this.state.data.find(item => item[this.props.resultTransformer.value] === value))}
+        onChange={value => this.props.onChange(value, this.state.data.find(item => item[this.props.resultTransformer.value] === value))}
         options={this.state.data.map(option => ({
           label: option[this.props.resultTransformer.text],
           value: option[this.props.resultTransformer.value],

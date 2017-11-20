@@ -1,69 +1,53 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Select2 from 'react-select';
-import 'react-select/dist/react-select.css';
-import './Select.css';
+import { Select as AntSelect, Form } from 'antd';
 
-export default class Select extends Component {
+const Select = props => (
+  <Form.Item
+    label={props.label}
+    help={props.errorText}
+    validateStatus={props.errorText && 'error'}
+  >
+    <AntSelect
+      allowClear
+      style={{
+        width: '100%',
+      }}
+      placeholder={props.placeholder}
+      disabled={props.disabled}
+      value={props.value}
+      onChange={value => props.onChange && props.onChange(value)}
+    >
+      {props.options.map(option => (
+        <AntSelect.Option
+          key={`option-${option.value}`}
+          value={option.value}
+        >
+          {option.label}
+        </AntSelect.Option>
+      ))}
+    </AntSelect>
+  </Form.Item>
+);
 
-  static propTypes = {
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
-    placeholder: PropTypes.string,
+Select.propTypes = {
+  label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.oneOfType([PropTypes.string]).isRequired,
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    onChange: PropTypes.func.isRequired,
-    options: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]).isRequired,
-    })),
-    description: PropTypes.string,
-    fieldValidation: PropTypes.string,
-  };
+  })).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string]),
+  disabled: PropTypes.bool,
+  placeholder: PropTypes.string,
+  errorText: PropTypes.string,
+};
 
-  static defaultProps = {
-    placeholder: 'Select...',
-    options: [],
-    value: '',
-    fieldValidation: null,
-    description: null,
-  };
+Select.defaultProps = {
+  disabled: false,
+  value: null,
+  errorText: null,
+  placeholder: '',
+};
 
-  render() {
-    return (
-      <div>
-        <div
-          style={{
-            minWidth: 230,
-            fontWeight: 400,
-            display: 'flex',
-            color: '#555555',
-            marginBottom: 10,
-          }}
-        >
-          <div>
-            {this.props.label}
-          </div>
-          <div style={{
-            marginLeft: 15,
-            fontSize: 13,
-            display: 'inline-block',
-            color: 'red',
-          }}>
-            {this.props.description}
-          </div>
-        </div>
-        <div
-          style={this.props.fieldValidation ? { border: '1px solid red' } : null}
-        >
-          <Select2
-            disabled={this.props.disabled}
-            placeholder={this.props.placeholder}
-            value={this.props.value}
-            options={this.props.options}
-            resetValue=""
-            onChange={(option) => this.props.onChange && this.props.onChange(option.value !== undefined ? option.value : '')}
-          />
-        </div>
-      </div>
-    );
-  }
-}
+export default Select;
