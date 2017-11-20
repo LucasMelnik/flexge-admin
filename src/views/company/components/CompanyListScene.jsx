@@ -9,42 +9,36 @@ import CompanyListContainer from './CompanyListContainer';
 
 const CompanyListScene = props => (
   <div>
-    {(!props.distributorId) && (
-      <Breadcrumb
-        crumbs={[
-          {
-            text: 'Companies',
-          },
-        ]}
-      />
-    )}
+    <Breadcrumb
+      crumbs={[
+        {
+          text: 'Companies',
+        },
+      ]}
+    />
     <Card
       title="Companies"
       actions={
         <Button
           label="New company"
-          icon="fa-plus"
-          onClick={() => browserHistory.push(props.distributorId ?
-          `/distributors/${props.distributorId}/companies/new` :
-          '/companies/new'
-        )}
+          type="primary"
+          icon="plus"
+          onClick={() => browserHistory.push('/companies/new')}
         />
       }
     >
       <CompanyListFilterContainer />
-      <CompanyListContainer distributorId={props.distributorId}/>
+      <CompanyListContainer distributorId={props.distributorId} />
     </Card>
   </div>
 );
 
 CompanyListScene.propsTypes = {
   distributorId: PropTypes.string,
-  companyId: PropTypes.string,
 };
 
 CompanyListScene.defaultProps = {
   distributorId: null,
-  companyId: null,
 };
 
 export default CompanyListScene;

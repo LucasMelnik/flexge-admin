@@ -9,18 +9,14 @@ class CompanyListContainer extends Component {
 
   static propTypes = {
     distributorId: PropTypes.string,
-  }
+  };
 
-  static defaultProps ={
+  static defaultProps = {
     distributorId: null,
-  }
+  };
 
   componentDidMount() {
-    if (this.props.distributorId) {
-      CompanyListService.loadCompaniesByDistributorId(this.props.distributorId);
-    } else {
-      CompanyListService.init();
-    }
+    CompanyListService.init(this.props.distributorId);
   }
 
   render() {
