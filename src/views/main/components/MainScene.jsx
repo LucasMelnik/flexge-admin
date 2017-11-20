@@ -5,7 +5,6 @@ import Menu from '../../../core/layout/Menu';
 import MenuItem from '../../../core/layout/MenuItem';
 import SubMenu from '../../../core/layout/SubMenu';
 import ConfirmDialogContainer from './ConfirmDialogContainer';
-import NotificationContainer from './NotificationContainer';
 
 const MainScene = props => (
   <Layout>
@@ -171,7 +170,6 @@ const MainScene = props => (
     >
       {props.children}
       <ConfirmDialogContainer />
-      <NotificationContainer />
     </Layout.Content>
   </Layout>
 );
