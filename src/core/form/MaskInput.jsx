@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
 import Cleave from 'cleave.js';
 import 'cleave.js/dist/addons/cleave-phone.br';
 import TextInput from './TextInput';
@@ -49,7 +50,7 @@ export default class MaskInput extends Component {
     };
     maskOptions[this.props.maskType] = true;
 
-    this.maskedField = new Cleave(window.$(ReactDOM.findDOMNode(this.textInput)).find('input'), maskOptions);
+    this.maskedField = new Cleave($(ReactDOM.findDOMNode(this.textInput)).find('input'), maskOptions);
     this.maskedField.setRawValue(this.props.value);
     this.setState({
       maskedValue: this.maskedField.getFormattedValue(),
