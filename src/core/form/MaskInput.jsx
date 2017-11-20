@@ -9,7 +9,9 @@ export default class MaskInput extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    label: PropTypes.string,
+    label: PropTypes.string.isRequired,
+    errorText: PropTypes.string,
+    placeholder: PropTypes.string,
     disabled: PropTypes.bool,
     value: PropTypes.any,
     maskType: PropTypes.oneOf([
@@ -21,23 +23,18 @@ export default class MaskInput extends Component {
     blocks: PropTypes.arrayOf(PropTypes.number),
     numericOnly: PropTypes.bool,
     numeralPositiveOnly: PropTypes.bool,
-    fieldValidation: PropTypes.oneOf(['error', 'warning', 'success']),
-    helpText: PropTypes.string,
-    description: PropTypes.string,
   };
 
   static defaultProps = {
     value: '',
-    label: null,
     disabled: false,
-    maskType: 'custom',
+    errorText: null,
+    placeholder: null,
     delimiters: [],
     numericOnly: false,
     numeralPositiveOnly: false,
+    maskType: 'custom',
     blocks: [],
-    fieldValidation: null,
-    helpText: null,
-    description: null,
   };
 
   state = { maskedValue: '' };
@@ -48,7 +45,7 @@ export default class MaskInput extends Component {
       numericOnly: this.props.numericOnly,
       blocks: this.props.blocks,
       numeralPositiveOnly: this.props.numeralPositiveOnly,
-      phoneRegionCode: 'BR'
+      phoneRegionCode: 'BR',
     };
     maskOptions[this.props.maskType] = true;
 
@@ -82,9 +79,7 @@ export default class MaskInput extends Component {
         onChange={this.handleChange}
         disabled={this.props.disabled}
         placeholder={this.props.placeholder}
-        fieldValidation={this.props.fieldValidation}
-        helpText={this.props.helpText}
-        description={this.props.description}
+        errorText={this.props.errorText}
         type="text"
         ref={input => { this.textInput = input; }}
       />
