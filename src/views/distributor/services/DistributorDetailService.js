@@ -2,11 +2,11 @@ import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
 class DistributorFormService {
-  fetch = new FetchService()
+  fetch = new FetchService();
 
   constructor() {
     extendObservable(this, {
-      distributor: null,
+      distributor: {},
     });
   }
 
