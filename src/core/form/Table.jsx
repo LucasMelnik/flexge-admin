@@ -29,9 +29,9 @@ const Table = props => (
       dataIndex: column.path,
       render: column.render,
       sorter: column.sort ? (a, b) => sort(a, b, column.path) : null,
+      onCellClick: props.selectable && column.path !== 'action' ? row => props.onSelect(row) : null,
     }))}
     onChange={props.onChange}
-    onRowClick={row => props.selectable && props.onSelect(row)}
     loading={props.fetching}
     expandedRowRender={props.expandableComponent}
   />
