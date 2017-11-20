@@ -14,7 +14,6 @@ const sort = (a, b, path) => {
 const Table = props => (
   <AntTable
     pagination={props.pagination || false}
-    size="middle"
     rowKey="id"
     bordered
     locale={{
