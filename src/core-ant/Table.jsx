@@ -22,7 +22,7 @@ const Table = props => (
       filterReset: 'Reset',
       emptyText: 'No Data',
     }}
-    dataSource={props.dataSource}
+    dataSource={props.rows}
     columns={props.columns.map(column => ({
       title: column.label,
       width: column.width,
@@ -31,24 +31,24 @@ const Table = props => (
       sorter: column.sort ? (a, b) => sort(a, b, column.path) : null,
     }))}
     onChange={props.onChange}
-    onRowClick={row => props.onSelect && props.onSelect(row)}
+    onRowClick={row => props.selectable && props.onSelect(row)}
     loading={props.fetching}
     expandedRowRender={props.expandableComponent}
   />
 );
 
 Table.propTypes = {
-  dataSource: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  rows: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   pagination: PropTypes.shape({
     current: PropTypes.number,
     total: PropTypes.number,
     pageSize: PropTypes.number,
   }),
-  width: PropTypes.number,
   onSelect: PropTypes.func,
   onChange: PropTypes.func,
   fetching: PropTypes.bool,
+  selectable: PropTypes.bool,
   expandableComponent: PropTypes.func,
 };
 
@@ -57,7 +57,7 @@ Table.defaultProps = {
   onChange: null,
   fetching: false,
   pagination: null,
-  width: null,
+  selectable: false,
   expandableComponent: null,
 };
 
