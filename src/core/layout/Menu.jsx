@@ -10,11 +10,18 @@ export default class Menu extends Component {
 
   state = {
     current: '',
+    openSubMenu: [],
   };
 
   handleClick = (e) => {
     this.setState({
       current: e.key,
+    });
+  };
+
+  handleOpenSubmenu = (e) => {
+    this.setState({
+      openSubMenu: [e[e.length - 1]],
     });
   };
 
@@ -24,7 +31,9 @@ export default class Menu extends Component {
         theme="dark"
         mode="horizontal"
         onClick={this.handleClick}
+        onOpenChange={this.handleOpenSubmenu}
         selectedKeys={[this.state.current]}
+        openKeys={this.state.openSubMenu}
         triggerSubMenuAction="click"
         style={{ lineHeight: '64px' }}
       >
