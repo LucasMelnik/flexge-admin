@@ -10,11 +10,14 @@ const DateInput = props =>  (
     validateStatus={props.errorText && 'error'}
   >
     <DatePicker
-      value={moment(props.value)}
+      value={props.value && moment(props.value)}
       onChange={props.onChange}
       format={props.format}
       placeholder={props.placeholder}
       disabled={props.disabled}
+      style={{
+        width: '100%',
+      }}
     />
   </Form.Item>
 );
