@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dialog from '../layout/Dialog';
 import Button from '../form/Button';
-import IconButton from '../form/IconButton';
 
 export default class ImagePreview extends Component {
 
@@ -25,10 +24,10 @@ export default class ImagePreview extends Component {
           display: 'inline-block',
         }}
       >
-        <IconButton
+        <Button
           tooltip="Image Preview"
           onClick={this.toggleModal}
-          icon="fa-picture-o"
+          icon="picture"
         />
         <Dialog
           isOpen={this.state.isOpen}
