@@ -17,21 +17,19 @@ const DistributorList = props => (
         label: 'Actions',
         path: 'action',
         width: '85px',
-        render: (cell, row) => {
-          return (
-            <div>
-              <Button
-                icon="edit"
-                onClick={() => browserHistory.push(`/distributors/${row.id}`)}
-              />
-              {' '}
-              <Button
-                icon="delete"
-                onClick={() => props.onDelete(row)}
-              />
-            </div>
-          );
-        },
+        render: (cell, row) => (
+          <div>
+            <Button
+              icon="edit"
+              onClick={() => browserHistory.push(`/distributors/${row.id}`)}
+            />
+            {' '}
+            <Button
+              icon="delete"
+              onClick={() => props.onDelete(row)}
+            />
+          </div>
+        ),
       },
     ]}
     rows={props.distributors}

@@ -8,17 +8,17 @@ import Button from '../../../core/form/Button';
 
 const DistributorFormScene = props => (
   <div>
-    {/*<Breadcrumb*/}
-      {/*crumbs={[*/}
-        {/*{*/}
-          {/*text: 'Distributors',*/}
-          {/*link: '/distributors',*/}
-        {/*},*/}
-        {/*{*/}
-          {/*text: props.params.distributorId ? 'Edit Distributor' : 'Create Distributor',*/}
-        {/*},*/}
-      {/*]}*/}
-    {/*/>*/}
+    <Breadcrumb
+      crumbs={[
+        {
+          text: 'Distributors',
+          link: '/distributors',
+        },
+        {
+          text: props.params.distributorId ? 'Edit Distributor' : 'Create Distributor',
+        },
+      ]}
+    />
     <Card
       title={props.params.distributorId ? 'Update Distributor' : 'Create Distributor'}
       actions={

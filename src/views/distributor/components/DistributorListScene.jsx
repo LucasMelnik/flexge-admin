@@ -8,13 +8,13 @@ import DistributorListContainer from './DistributorListContainer';
 
 const DistributorListScene = () => (
   <div>
-    {/*<Breadcrumb*/}
-      {/*crumbs={[*/}
-        {/*{*/}
-          {/*text: 'Distributors',*/}
-        {/*},*/}
-      {/*]}*/}
-    {/*/>*/}
+    <Breadcrumb
+      crumbs={[
+        {
+          text: 'Distributors',
+        },
+      ]}
+    />
     <Card
       title="Distributors"
       actions={
