@@ -39,7 +39,7 @@ class DistributorFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      window.showErrorMessage('Fill the required fields');
+      // window.showErrorMessage('Fill the required fields');
       return;
     }
     const distributorId = this.form.getValue('id');
@@ -54,7 +54,7 @@ class DistributorFormService {
         this.distributorId = distributor.id;
         this.form.reset();
         this.form.setInitialValues(distributor);
-        window.showSuccess(`Distributor ${distributorId ? 'updated' : 'created'} successfully.`);
+        // window.showSuccess(`Distributor ${distributorId ? 'updated' : 'created'} successfully.`);
       }
       if (this.submit.error) {
         NotificationService.addNotification(
