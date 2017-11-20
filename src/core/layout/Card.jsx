@@ -1,35 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Card as AntCard } from 'antd';
 
 const Card = props => (
-  <section
-    className="box"
-    style={{
-      height: '100%',
-      margin: 0,
-    }}
+  <AntCard
+    noHovering
+    loading={props.loading}
+    title={props.title}
+    extra={props.actions}
   >
-    {props.title && (
-      <header className="panel_header">
-        <h2 className="title pull-left">{props.title}</h2>
-        <div
-          className="pull-right"
-          style={{
-            padding: '25px 30px 0px 0px',
-          }}
-        >
-          {props.actions}
-        </div>
-      </header>
-    )}
-    <div className="content-body">
-      {props.children}
-    </div>
-  </section>
+    {props.children}
+  </AntCard>
 );
 
 Card.propTypes = {
   title: PropTypes.string,
+  loading: PropTypes.bool,
   actions: PropTypes.node,
   children: PropTypes.node.isRequired,
 };
@@ -37,6 +23,7 @@ Card.propTypes = {
 Card.defaultProps = {
   title: null,
   actions: null,
+  loading: false,
 };
 
 export default Card;
