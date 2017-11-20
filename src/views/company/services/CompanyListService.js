@@ -23,10 +23,12 @@ class CompanyListService {
     this.fetch.fetch({
       url: '/companies',
       query: {
-        query: this.filter && {
-          name: {
-            $regex: this.filter,
-            $options: 'i',
+        query: {
+          ...this.filter && {
+            name: {
+              $regex: this.filter,
+              $options: 'i',
+            },
           },
           ...this.distributorId && {
             distributor: this.distributorId,
