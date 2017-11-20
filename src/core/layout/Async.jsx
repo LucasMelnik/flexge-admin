@@ -5,7 +5,7 @@ import { Spin } from 'antd';
 const Async = props => (
   <div
     style={{
-      textAlign: 'center',
+      textAlign: props.fetching ? 'center' : 'inherited',
     }}
   >
     {props.fetching ? (

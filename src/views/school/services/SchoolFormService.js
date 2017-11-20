@@ -4,9 +4,9 @@ import FormService from '../../../core/services/FormService';
 import { isRequired } from '../../../core/validations';
 
 class SchoolFormService {
-  fetch = new FetchService()
-  submit = new FetchService()
-  form = new FormService()
+  fetch = new FetchService();
+  submit = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
