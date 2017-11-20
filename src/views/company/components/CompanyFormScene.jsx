@@ -10,21 +10,10 @@ const CompanyFormScene = props => (
   <div>
     <Breadcrumb
       crumbs={[
-        ...(props.distributorId) ? [
-          {
-            text: 'Distributors',
-            link: '/distributors',
-          },
-          {
-            text: props.distributor ? `Distributor - ${props.distributor.name}` : 'loading...',
-            link: `/distributor-detail/${props.distributorId}`,
-          },
-        ] : [
-          {
-            text: 'Companies',
-            link: '/companies',
-          }
-        ],
+        {
+          text: 'Companies',
+          link: '/companies',
+        },
         {
           text: `${props.companyId ? 'Edit Company' : 'Create Company'}`,
         },
@@ -35,7 +24,7 @@ const CompanyFormScene = props => (
       actions={
         (
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back"
             type="default"
             onClick={() => browserHistory.goBack()}
@@ -49,12 +38,10 @@ const CompanyFormScene = props => (
 );
 
 CompanyFormScene.propTypes = {
-  distributorId: PropTypes.string,
   companyId: PropTypes.string,
 };
 
 CompanyFormScene.defaultProps = {
-  distributorId: null,
   companyId: null,
 };
 
