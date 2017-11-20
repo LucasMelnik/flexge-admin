@@ -22,7 +22,7 @@ Button.propTypes = {
     'primary',
     'danger',
   ]),
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   icon: PropTypes.string,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
@@ -34,6 +34,7 @@ Button.propTypes = {
 Button.defaultProps = {
   type: 'default',
   icon: null,
+  label: null,
   onClick: null,
   rounded: false,
   disabled: false,
