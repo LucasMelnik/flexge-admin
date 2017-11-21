@@ -17,13 +17,14 @@ const AchievementListScene = () => (
     />
     <Card
       title="Achievements"
-      actions={[
+      actions={
         <Button
+          type="primary"
           label="New Achievement"
-          icon="fa-plus"
+          icon="plus"
           onClick={() => browserHistory.push('/achievements/new')}
-        />,
-      ]}
+        />
+      }
     >
       <AchievementListFilterContainer />
       <AchievementListContainer />

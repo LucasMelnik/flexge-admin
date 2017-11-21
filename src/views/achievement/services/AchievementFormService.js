@@ -42,21 +42,11 @@ class AchievementFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      NotificationService.addNotification(
-        'Fill the required fields',
-        null,
-        null,
-        'error',
-      );
+      NotificationService.addNotification( 'Fill the required fields', 'error');
       return;
     }
     if (!this.form.getValue('icon') && !this.form.getValue('iconByPosition')) {
-      NotificationService.addNotification(
-        'Add an Icon to the Achievement',
-        null,
-        null,
-        'error',
-      );
+      NotificationService.addNotification('Add an Icon to the Achievement', 'error');
       return;
     }
 
@@ -75,20 +65,10 @@ class AchievementFormService {
           ...achievement,
           manyIcons: !!achievement.iconByPosition,
         });
-        NotificationService.addNotification(
-          `Achievement ${achievementId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
-          'success',
-        );
+        NotificationService.addNotification(`Achievement ${achievementId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
-        NotificationService.addNotification(
-          `Error ${achievementId ? 'updating' : 'creating'} achievement.`,
-          null,
-          null,
-          'error',
-        );
+        NotificationService.addNotification(`Error ${achievementId ? 'updating' : 'creating'} achievement.`, 'error');
       }
     });
   })
