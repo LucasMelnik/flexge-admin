@@ -5,31 +5,36 @@ import Table from '../../../core/form/Table';
 import AudioPreview from '../../../core/layout/AudioPreview';
 import TextInput from '../../../core/form/TextInput';
 import Button from '../../../core/form/Button';
-import IconButton from '../../../core/form/IconButton';
-import Separator from '../../../core/layout/Separator';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 
 const AudioMessageForm = props => (
-  <div>
+  <div
+    style={{
+      marginBottom: 20,
+    }}
+  >
     <div
       style={{
         display: 'flex',
         justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: props.showForm ? 0 : 20,
       }}
     >
-      <h4>{props.title}</h4>
+      <h3>{props.title}</h3>
       {!props.showForm && (
         <Button
+          type="primary"
           label="New Message"
-          icon="fa-plus"
+          icon="plus"
           onClick={props.onNew}
         />
       )}
     </div>
     {props.showForm && (
       <Row>
-        <Column lgSize={9} mdSize={9}>
+        <Column size={9}>
           <TextInput
             label="Text"
             value={get(props.values, 'text', '')}
@@ -38,17 +43,17 @@ const AudioMessageForm = props => (
             fieldValidation={get(props.errors, 'text', null) && 'error'}
           />
         </Column>
-        <Column lgSize={3} mdSize={3}>
-          <div style={{ padding: '32px 0px 0px' }}>
+        <Column size={3}>
+          <div style={{ marginTop: 32 }}>
             <Button
-              icon="fa fa-check"
+              icon="check"
               type="primary"
               label="Save"
               onClick={props.onSave}
             />
             {' '}
             <Button
-              icon="fa fa-ban"
+              icon="reload"
               label="Discard"
               onClick={props.onDiscard}
             />
@@ -56,13 +61,12 @@ const AudioMessageForm = props => (
         </Column>
       </Row>
     )}
-    <Separator />
     <Table
       columns={[
         {
           label: 'Text',
           path: 'text',
-          isKey: true,
+          sort: true,
         },
         {
           label: 'Audio',
@@ -80,17 +84,17 @@ const AudioMessageForm = props => (
         {
           label: 'Actions',
           path: 'action',
-          width: '120',
+          width: '85px',
           render: (cell, row) => {
             return (
               <div>
-                <IconButton
-                  icon="fa-trash"
+                <Button
+                  icon="delete"
                   onClick={() => props.onDelete(row)}
                 />
                 {' '}
-                <IconButton
-                  icon="fa-edit"
+                <Button
+                  icon="edit"
                   onClick={() => props.onEdit(row)}
                 />
               </div>

@@ -18,10 +18,9 @@ class ConfigurationFormContainer extends Component {
         values={ConfigurationFormService.form.getValues()}
         errors={ConfigurationFormService.form.errors}
         submitting={ConfigurationFormService.submit.fetching}
-        error={ConfigurationFormService.submit.error}
         isDirty={ConfigurationFormService.form.isDirty}
       />
-    )
+    );
   }
 }
 

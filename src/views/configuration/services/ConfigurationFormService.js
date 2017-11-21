@@ -36,6 +36,7 @@ class ConfigurationFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      NotificationService.addNotification( 'Fill the required fields', 'error');
       return;
     }
     const configurationId = this.form.getValue('id');
@@ -51,16 +52,12 @@ class ConfigurationFormService {
         this.form.reset();
         NotificationService.addNotification(
           `Configuration ${configurationId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
           `Error ${configurationId ? 'updating' : 'creating'} module.`,
-          null,
-          null,
           'error',
         );
       }
