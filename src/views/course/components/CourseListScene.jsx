@@ -6,7 +6,7 @@ import Button from '../../../core/form/Button';
 import CourseListFilterContainer from './CourseListFilterContainer';
 import CourseListContainer from './CourseListContainer';
 
-const CourseListScene = props => (
+const CourseListScene = () => (
   <div>
     <Breadcrumb
       crumbs={[
@@ -20,7 +20,7 @@ const CourseListScene = props => (
       actions={
         <Button
           label="New course"
-          icon="fa-plus"
+          icon="plus"
           onClick={() => browserHistory.push('/courses/new')}
         />
       }

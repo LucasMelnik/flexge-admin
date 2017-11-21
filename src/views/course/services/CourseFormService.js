@@ -38,7 +38,7 @@ class CourseFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      window.showErrorMessage('Fill the required fields');
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const courseId = this.form.getValue('id');
@@ -55,15 +55,10 @@ class CourseFormService {
         this.form.reset();
         this.form.setInitialValues(course);
 
-        window.showSuccess(`Course ${courseId ? 'updated' : 'created'} successfully.`);
+        NotificationService.addNotification(`Course ${courseId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
-        NotificationService.addNotification(
-          `Error ${courseId ? 'updating' : 'creating'} course.`,
-          null,
-          null,
-          'error',
-        );
+        NotificationService.addNotification(`Error ${courseId ? 'updating' : 'creating'} course.`, 'error');
       }
     });
   });
