@@ -12,7 +12,7 @@ class SchoolFormSceneContainer extends Component {
       distributorId: PropTypes.string,
       companyId: PropTypes.string,
     }).isRequired,
-  }
+  };
 
   componentWillMount() {
     if (this.props.params.distributorId) {

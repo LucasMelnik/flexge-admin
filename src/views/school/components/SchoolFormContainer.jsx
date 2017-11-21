@@ -11,11 +11,11 @@ class SchoolFormContainer extends Component {
   static propTypes = {
     companyId: PropTypes.string.isRequired,
     schoolId: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     schoolId: null,
-  }
+  };
 
   componentWillMount() {
     SchoolFormService.init(this.props.schoolId, this.props.companyId);

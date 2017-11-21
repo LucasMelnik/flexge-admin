@@ -1,6 +1,7 @@
 import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
+import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
 class SchoolFormService {
@@ -46,7 +47,7 @@ class SchoolFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      window.showErrorMessage('Fill the required fields');
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const schoolId = this.form.getValue('id');
@@ -68,10 +69,10 @@ class SchoolFormService {
           ...school,
           company: this.form.getValue('company'),
         });
-        window.showSuccess(`School ${schoolId ? 'updated' : 'created'} successfully.`);
+        NotificationService.addNotification(`School ${schoolId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
-        window.showErrorMessage(`Error ${schoolId ? 'updating' : 'creating'} school.`);
+        NotificationService.addNotification(`Error ${schoolId ? 'updating' : 'creating'} school.`, 'error');
       }
     });
   })

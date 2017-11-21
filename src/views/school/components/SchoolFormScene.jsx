@@ -10,34 +10,10 @@ const SchoolFormScene = props => (
   <div>
     <Breadcrumb
       crumbs={[
-        ...(props.distributorId) ? [
-          {
-            text: 'Distributors',
-            link: '/distributors',
-          },
-          {
-            text: props.distributor ? `Distributor - ${props.distributor.name}` : 'loading...',
-            link: `/distributor-detail/${props.distributorId}`,
-          },
-          {
-            text: props.company ? `Company - ${props.company.name}` : 'loading...',
-            link: `/distributor-detail/${props.distributorId}/company-detail/${props.companyId}`,
-          },
-        ] : (props.companyId) ? [
-          {
-            text: 'Companies',
-            link: '/companies',
-          },
-          {
-            text: props.company ? `Company - ${props.company.name}` : 'loading...',
-            link: `/company-detail/${props.companyId}`,
-          },
-        ] : [
-          {
-            text: 'Schools',
-            link: '/schools',
-          },
-        ],
+        {
+          text: 'Schools',
+          link: '/schools',
+        },
         {
           text: `${props.schoolId ? 'Update School' : 'Create School'}`,
         },
@@ -48,7 +24,7 @@ const SchoolFormScene = props => (
       actions={
         (
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back"
             type="default"
             onClick={() => browserHistory.goBack()}
@@ -57,27 +33,20 @@ const SchoolFormScene = props => (
       }
     >
       <SchoolFormContainer
-        companyId={props.companyId}
-        schoolId={props.schoolId}
+        schoolId={props.params.schoolId}
       />
     </Card>
   </div>
 );
 
 SchoolFormScene.propTypes = {
-  companyId: PropTypes.string,
-  distributorId: PropTypes.string,
-  schoolId: PropTypes.string,
-  company: PropTypes.object,
-  distributor: PropTypes.object,
+  params: PropTypes.shape({
+    schoolId: PropTypes.string,
+  }),
 };
 
 SchoolFormScene.defaultProps = {
-  companyId: null,
-  distributorId: null,
-  schoolId: null,
-  company: null,
-  distributor: null,
+  params: null,
 };
 
 export default SchoolFormScene;
