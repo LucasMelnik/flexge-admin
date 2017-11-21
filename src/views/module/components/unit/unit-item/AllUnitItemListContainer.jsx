@@ -17,7 +17,7 @@ class AllUnitItemListContainer extends Component {
 
   componentWillMount() {
     AllUnitItemListService.init(this.props.moduleId, this.props.unit.id);
-    //when the items change, we reload the available items to link
+    // when the items change, we reload the available items to link
     observe(UnitItemListService, 'items', () => {
       AllUnitItemListService.load();
     });

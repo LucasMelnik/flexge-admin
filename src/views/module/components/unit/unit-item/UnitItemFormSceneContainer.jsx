@@ -6,7 +6,6 @@ import UnitItemFormScene from './UnitItemFormScene';
 import LoadModuleService from '../../../services/LoadModuleService';
 import LoadUnitService from '../../../services/LoadUnitService';
 import UnitItemListService from '../../../services/UnitItemListService';
-// import SendUnitToReviewService from '../../../../unit-review/services/ContentReviewService';
 
 class UnitItemsFormSceneContainer extends Component {
 
@@ -20,12 +19,10 @@ class UnitItemsFormSceneContainer extends Component {
   };
 
   loadUnitService = new LoadUnitService();
-  // sendUnitToReviewService = new SendUnitToReviewService();
 
   componentWillMount() {
     this.loadUnitService.handleLoad(this.props.params.moduleId, this.props.params.unitId);
     LoadModuleService.handleLoad(this.props.params.moduleId);
-    // this.sendUnitToReviewService.handleLoad(this.props.params.reviewId);
   }
 
   handleBack = () => {
