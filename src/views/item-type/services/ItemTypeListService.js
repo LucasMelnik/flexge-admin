@@ -1,6 +1,7 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class ItemTypeListService {
   fetch = new FetchService();
@@ -50,7 +51,7 @@ class ItemTypeListService {
           url: `/item-types/${itemType.id}`,
           method: 'delete',
         }).then(() => {
-          window.showSuccess(`Item Type "${itemType.name}" deleted successfully.`);
+          NotificationService.addNotification(`Item Type "${itemType.name}" deleted successfully.`, 'success');
           this.load();
         });
       });

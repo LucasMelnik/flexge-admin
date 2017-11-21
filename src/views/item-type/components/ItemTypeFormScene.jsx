@@ -11,16 +11,16 @@ const ItemTypeFormScene = props => (
     <Breadcrumb
       crumbs={[
         {
-          text: `${props.itemTypeId ? 'Edit Item Type' : 'Create Item Type'}`,
+          text: `${props.params.itemTypeId ? 'Edit Item Type' : 'Create Item Type'}`,
         },
       ]}
     />
     <Card
-      title={props.itemTypeId ? 'Edit Item Type' : 'Create Item Type'}
+      title={props.params.itemTypeId ? 'Edit Item Type' : 'Create Item Type'}
       actions={
         (
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back"
             type="default"
             onClick={() => browserHistory.goBack()}
@@ -28,17 +28,19 @@ const ItemTypeFormScene = props => (
         )
       }
     >
-      <ItemTypeFormContainer itemTypeId={props.itemTypeId} />
+      <ItemTypeFormContainer itemTypeId={props.params.itemTypeId} />
     </Card>
   </div>
 );
 
 ItemTypeFormScene.propTypes = {
-  itemTypeId: PropTypes.string,
+  params: PropTypes.shape({
+    itemTypeId: PropTypes.string,
+  }),
 };
 
 ItemTypeFormScene.defaultProps = {
-  itemTypeId: null,
+  params: null,
 };
 
 export default ItemTypeFormScene;

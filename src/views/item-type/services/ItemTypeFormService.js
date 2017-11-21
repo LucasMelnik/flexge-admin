@@ -41,7 +41,7 @@ class ItemTypeFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      window.showErrorMessage('Fill the required fields');
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const itemTypeId = this.form.getValue('id');
@@ -58,15 +58,10 @@ class ItemTypeFormService {
         this.form.reset();
         this.form.setInitialValues(itemType);
 
-        window.showSuccess(`Item Type ${itemTypeId ? 'updated' : 'created'} successfully.`);
+        NotificationService.addNotification(`Item Type ${itemTypeId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
-        NotificationService.addNotification(
-          `Error ${itemTypeId ? 'updating' : 'creating'} item Type.`,
-          null,
-          null,
-          'error',
-        );
+        NotificationService.addNotification(`Error ${itemTypeId ? 'updating' : 'creating'} item Type.`, 'error');
       }
     });
   });
