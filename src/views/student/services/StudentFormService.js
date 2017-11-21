@@ -21,7 +21,9 @@ class StudentFormService {
     };
   }
 
-  handleLoad = action((studentId) => {
+  handleLoad = action((studentId, schoolId, classId) => {
+    this.schoolId = schoolId;
+    this.classId = classId;
     this.form.reset();
     if (studentId) {
       this.fetch.fetch({
@@ -43,6 +45,7 @@ class StudentFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const studentId = this.form.getValue('id');
@@ -63,8 +66,6 @@ class StudentFormService {
         });
         NotificationService.addNotification(
           `Student ${studentId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
           'success',
         );
       }
@@ -72,15 +73,11 @@ class StudentFormService {
         if (this.submit.error && this.submit.error.indexOf('E11000') > -1) {
           NotificationService.addNotification(
             'We already have a student with this email.',
-            null,
-            null,
             'error',
           );
         } else {
           NotificationService.addNotification(
             `Error ${studentId ? 'updating' : 'creating'} student.`,
-            null,
-            null,
             'error',
           );
         }

@@ -8,14 +8,18 @@ class StudentFormContainer extends Component {
 
   static propTypes = {
     studentId: PropTypes.string,
-  }
+    schoolId: PropTypes.string,
+    classId: PropTypes.string,
+  };
 
   static defaultProps = {
     studentId: null,
-  }
+    schoolId: null,
+    classId: null,
+  };
 
   componentWillMount() {
-    StudentFormService.handleLoad(this.props.studentId);
+    StudentFormService.handleLoad(this.props.studentId, this.props.schoolId, this.props.classId);
   }
 
   render() {
@@ -27,7 +31,6 @@ class StudentFormContainer extends Component {
         values={StudentFormService.form.getValues()}
         errors={StudentFormService.form.errors}
         submitting={StudentFormService.fetch.fetching}
-        error={StudentFormService.fetch.error}
         isDirty={StudentFormService.form.isDirty}
       />
     );
