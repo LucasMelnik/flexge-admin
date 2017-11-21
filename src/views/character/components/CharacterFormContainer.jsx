@@ -27,7 +27,6 @@ class CharacterFormContainer extends Component {
         values={CharacterFormService.form.getValues()}
         errors={CharacterFormService.form.errors}
         submitting={CharacterFormService.fetch.fetching}
-        error={CharacterFormService.submit.error}
         isDirty={CharacterFormService.form.isDirty}
       />
     );

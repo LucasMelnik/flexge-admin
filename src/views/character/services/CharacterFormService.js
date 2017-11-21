@@ -37,7 +37,7 @@ class CharacterFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      window.showErrorMessage('Fill the required fields');
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const characterId = this.form.getValue('id');
@@ -54,15 +54,10 @@ class CharacterFormService {
         this.form.reset();
         this.form.setInitialValues(character);
 
-        window.showSuccess(`Character ${characterId ? 'updated' : 'created'} successfully.`);
+        NotificationService.addNotification(`Character ${characterId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
-        NotificationService.addNotification(
-          `Error ${characterId ? 'updating' : 'creating'} character.`,
-          null,
-          null,
-          'error',
-        );
+        NotificationService.addNotification(`Error ${characterId ? 'updating' : 'creating'} character.`, 'error');
       }
     });
   });

@@ -11,16 +11,16 @@ const CharacterFormScene = props => (
     <Breadcrumb
       crumbs={[
         {
-          text: `${props.characterId ? 'Edit Character' : 'Create Character'}`,
+          text: `${props.params.characterId ? 'Edit Character' : 'Create Character'}`,
         },
       ]}
     />
     <Card
-      title={props.characterId ? 'Edit Character' : 'Create Character'}
+      title={props.params.characterId ? 'Edit Character' : 'Create Character'}
       actions={
         (
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back"
             type="default"
             onClick={() => browserHistory.goBack()}
@@ -28,17 +28,19 @@ const CharacterFormScene = props => (
         )
       }
     >
-      <CharacterFormContainer characterId={props.characterId} />
+      <CharacterFormContainer characterId={props.params.characterId} />
     </Card>
   </div>
 );
 
 CharacterFormScene.propTypes = {
-  characterId: PropTypes.string,
+  params: PropTypes.shape({
+    characterId: PropTypes.string,
+  }),
 };
 
 CharacterFormScene.defaultProps = {
-  characterId: null,
+  params: null,
 };
 
 export default CharacterFormScene;
