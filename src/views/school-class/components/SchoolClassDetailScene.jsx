@@ -1,87 +1,89 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StudentDetailSceneContainer from '../../student/components/StudentDetailSceneContainer';
+import { browserHistory } from 'react-router';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
+import Card from '../../../core/layout/Card';
+import StudentListContainer from '../../student/components/StudentListContainer';
+import Button from '../../../core/form/Button';
 
 const SchoolClassDetailScene = props => (
   <div>
     <Breadcrumb
+      fetching={props.fetching}
       crumbs={[
-        ...(props.distributorId) ? [
+        ...(props.distributor && props.distributor.name) ? [
           {
             text: 'Distributors',
             link: '/distributors',
           },
           {
-            text: props.distributor ? `Distributor - ${props.distributor.name}` : 'loading...',
-            link: `/distributor-detail/${props.distributorId}`,
+            text: `Distributor - ${props.distributor.name}`,
+            link: `/distributors/${props.distributor.id}/details`,
           },
-          {
-            text: props.company ? `Company - ${props.company.name}` : 'loading...',
-            link: `/distributor-detail/${props.distributorId}/company-detail/${props.companyId}`,
-          },
-          {
-            text: props.school ? `School - ${props.school.name}` : 'loading...',
-            link: `/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}`,
-          },
-        ] : (props.companyId) ? [
+        ] : [],
+        ...(props.company && props.company.name) ? [
           {
             text: 'Companies',
             link: '/companies',
           },
           {
-            text: props.company ? `Company - ${props.company.name}` : 'loading...',
-            link: `/company-detail/${props.companyId}`,
-          },
-          {
-            text: props.school ? `School - ${props.school.name}` : 'loading...',
-            link: `/company-detail/${props.companyId}/school-detail/${props.schoolId}`,
-          },
-        ] : (props.schoolId) ? [
-          {
-            text: 'Schools',
-            link: '/schools',
-          },
-          {
-            text: `Class - ${props.class ? props.class.name : 'loading...'}`,
-          },
-        ] : (props.classId) ? [
-          {
-            text: 'Classes',
-            link: '/classes',
+            text: `Company - ${props.company.name}`,
+            link: `/companies/${props.company.id}/details`,
           },
         ] : [],
         {
-          text: `Class - ${props.class ? props.class.name : 'loading...'}`,
+          text: 'Schools',
+          link: '/schools',
+        },
+        {
+          text: `School - ${props.school.name}`,
+          link: `/schools/${props.school.id}/details`,
+        },
+        {
+          text: `Class - ${props.class.name}`,
         },
       ]}
     />
-
-    <StudentDetailSceneContainer
-      distributorId={props.distributorId}
-      companyId={props.companyId}
-      schoolId={props.schoolId}
-      classId={props.classId}
-    />
+    <Card
+      title="Students"
+      loading={props.fetching}
+      actions={
+        <div>
+          <Button
+            type="primary"
+            label="New Student"
+            icon="plus"
+            onClick={() => browserHistory.push(`${props.baseUrl}/students/new`)}
+          />
+        </div>
+      }
+    >
+      {props.school.id ? (
+        <StudentListContainer
+          editable
+          baseUrl={props.baseUrl}
+          schoolId={props.school.id}
+          classId={props.class.id}
+        />
+      ) : (<div />)}
+    </Card>
   </div>
 );
 
 SchoolClassDetailScene.propTypes = {
-  companyId: PropTypes.string,
-  schoolId: PropTypes.string.isRequired,
-  classId: PropTypes.string,
-  company: PropTypes.object,
-  class: PropTypes.object,
-  school: PropTypes.object,
+  baseUrl: PropTypes.string.isRequired,
+  fetching: PropTypes.bool.isRequired,
   distributor: PropTypes.object,
-  distributorId: PropTypes.string,
+  company: PropTypes.object,
+  school: PropTypes.object,
+  class: PropTypes.object,
 };
 
 SchoolClassDetailScene.defaultProps = {
-  companyId: null,
-  school: null,
-  distributor: null,
-  distributorId: null,
+  distributor: {},
+  company: {},
+  school: {},
+  class: {},
 };
 
 export default SchoolClassDetailScene;

@@ -51,6 +51,7 @@ class SchoolClassFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const classId = this.form.getValue('id');
@@ -70,68 +71,12 @@ class SchoolClassFormService {
         this.form.setInitialValues(school);
         NotificationService.addNotification(
           `School Class ${classId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
           `Error ${classId ? 'updating' : 'creating'} school class.`,
-          null,
-          null,
-          'error',
-        );
-      }
-    });
-  })
-
-  handleAddStudent = action((studentId) => {
-    const classId = this.form.getValue('id');
-    this.submit.fetch({
-      method: 'put',
-      url: `/schools/${this.schoolId}/classes/${classId}/students/${studentId}`,
-    }).then(() => {
-      if (this.submit.data) {
-        this.handleLoad(classId);
-        NotificationService.addNotification(
-          'Student added to Class successfully.',
-          null,
-          null,
-          'success',
-        );
-      }
-      if (this.submit.error) {
-        NotificationService.addNotification(
-          'Error trying to add Student to Class.',
-          null,
-          null,
-          'error',
-        );
-      }
-    });
-  });
-
-  handleRemoveStudent = action((studentId) => {
-    const classId = this.form.getValue('id');
-    this.submit.fetch({
-      method: 'delete',
-      url: `/schools/${this.schoolId}/classes/${classId}/students/${studentId}`,
-    }).then(() => {
-      if (this.submit.data) {
-        this.handleLoad(classId);
-        NotificationService.addNotification(
-          'Student removed from Class successfully.',
-          null,
-          null,
-          'success',
-        );
-      }
-      if (this.submit.error) {
-        NotificationService.addNotification(
-          'Error trying to remove Student to Class.',
-          null,
-          null,
           'error',
         );
       }

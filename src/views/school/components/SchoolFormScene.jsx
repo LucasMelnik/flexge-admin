@@ -9,18 +9,40 @@ import Card from '../../../core/layout/Card';
 const SchoolFormScene = props => (
   <div>
     <Breadcrumb
+      fetching={props.fetching}
       crumbs={[
+        ...(props.distributor && props.distributor.name) ? [
+          {
+            text: 'Distributors',
+            link: '/distributors',
+          },
+          {
+            text: `Distributor - ${props.distributor.name}`,
+            link: `/distributors/${props.distributor.id}/details`,
+          },
+        ] : [],
+        ...(props.company && props.company.name) ? [
+          {
+            text: 'Companies',
+            link: '/companies',
+          },
+          {
+            text: `Company - ${props.company.name}`,
+            link: `/companies/${props.company.id}/details`,
+          },
+        ] : [],
         {
           text: 'Schools',
           link: '/schools',
         },
         {
-          text: `${props.params.schoolId ? 'Update School' : 'Create School'}`,
+          text: `${props.schoolId ? 'Update School' : 'Create School'}`,
         },
       ]}
     />
     <Card
-      title={props.params.schoolId ? 'Update School' : 'Create School'}
+      title={props.schoolId ? 'Update School' : 'Create School'}
+      loading={props.fetching}
       actions={
         (
           <Button
@@ -33,20 +55,23 @@ const SchoolFormScene = props => (
       }
     >
       <SchoolFormContainer
-        schoolId={props.params.schoolId}
+        schoolId={props.schoolId}
       />
     </Card>
   </div>
 );
 
 SchoolFormScene.propTypes = {
-  params: PropTypes.shape({
-    schoolId: PropTypes.string,
-  }),
+  fetching: PropTypes.bool.isRequired,
+  distributor: PropTypes.object,
+  company: PropTypes.object,
+  schoolId: PropTypes.string,
 };
 
 SchoolFormScene.defaultProps = {
-  params: null,
+  distributor: {},
+  company: {},
+  schoolId: null,
 };
 
 export default SchoolFormScene;

@@ -35,9 +35,7 @@ const CompanyList = props => (
               {' '}
               <Button
                 icon="edit"
-                onClick={() => browserHistory.push(props.distributorId ?
-                `/distributors/${props.distributorId}/companies/${row.id}` :
-                `/companies/${row.id}`)}
+                onClick={() => browserHistory.push(`${props.baseUrl}/companies/${row.id}`)}
               />
             </div>
           );
@@ -46,7 +44,7 @@ const CompanyList = props => (
     ]}
     rows={props.companies}
     selectable
-    onSelect={row => browserHistory.push(props.distributorId ? `/distributor-detail/${props.distributorId}/company-detail/${row.id}` : `/company-detail/${row.id}/`)}
+    onSelect={row => browserHistory.push(`${props.baseUrl}/companies/${row.id}/details`)}
   />
 );
 
@@ -55,13 +53,9 @@ CompanyList.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
-  distributorId: PropTypes.string,
+  baseUrl: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
-};
-
-CompanyList.defaultProps = {
-  distributorId: null,
 };
 
 export default CompanyList;

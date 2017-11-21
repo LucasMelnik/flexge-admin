@@ -9,7 +9,18 @@ import Card from '../../../core/layout/Card';
 const CompanyFormScene = props => (
   <div>
     <Breadcrumb
+      fetching={props.fetching}
       crumbs={[
+        ...(props.distributor && props.distributor.name) ? [
+          {
+            text: 'Distributors',
+            link: '/distributors',
+          },
+          {
+            text: `Distributor - ${props.distributor.name}`,
+            link: `/distributors/${props.distributor.id}/details`,
+          },
+        ] : [],
         {
           text: 'Companies',
           link: '/companies',
@@ -21,6 +32,7 @@ const CompanyFormScene = props => (
     />
     <Card
       title={props.companyId ? 'Edit Company' : 'Create Company'}
+      loading={props.fetching}
       actions={
         (
           <Button
@@ -38,11 +50,14 @@ const CompanyFormScene = props => (
 );
 
 CompanyFormScene.propTypes = {
+  fetching: PropTypes.bool.isRequired,
   companyId: PropTypes.string,
+  distributor: PropTypes.object,
 };
 
 CompanyFormScene.defaultProps = {
   companyId: null,
+  distributor: {},
 };
 
 export default CompanyFormScene;

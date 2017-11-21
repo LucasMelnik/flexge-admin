@@ -9,47 +9,36 @@ import Card from '../../../core/layout/Card';
 const SchoolClassFormScene = props => (
   <div>
     <Breadcrumb
+      fetching={props.fetching}
       crumbs={[
-        ...(props.distributorId) ? [
+        ...(props.distributor && props.distributor.name) ? [
           {
             text: 'Distributors',
             link: '/distributors',
           },
           {
-            text: props.distributor ? `Distributor - ${props.distributor.name}` : 'loading...',
-            link: `/distributor-detail/${props.distributorId}`,
+            text: `Distributor - ${props.distributor.name}`,
+            link: `/distributors/${props.distributor.id}/details`,
           },
-          {
-            text: props.company ? `Company - ${props.company.name}` : 'loading...',
-            link: `/distributor-detail/${props.distributorId}/company-detail/${props.companyId}`,
-          },
-          {
-            text: props.school ? `School - ${props.school.name}` : 'loading...',
-            link: `/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}`,
-          },
-        ] : (props.companyId) ? [
+        ] : [],
+        ...(props.company && props.company.name) ? [
           {
             text: 'Companies',
             link: '/companies',
           },
           {
-            text: props.company ? `Company - ${props.company.name}` : 'loading...',
-            link: `/company-detail/${props.companyId}`,
+            text: `Company - ${props.company.name}`,
+            link: `/companies/${props.company.id}/details`,
           },
-          {
-            text: props.school ? `School - ${props.school.name}` : 'loading...',
-            link: `/company-detail/${props.companyId}/school-detail/${props.schoolId}`,
-          },
-        ] : [
-          {
-            text: 'Schools',
-            link: '/schools',
-          },
-          {
-            text: props.school ? `School - ${props.school.name}` : 'loading...',
-            link: `/company-detail/${props.companyId}/school-detail/${props.schoolId}`,
-          },
-        ],
+        ] : [],
+        {
+          text: 'Schools',
+          link: '/schools',
+        },
+        {
+          text: `School - ${props.school.name}`,
+          link: `/schools/${props.school.id}/details`,
+        },
         {
           text: `${props.classId ? 'Update Class' : 'Create Class'}`,
         },
@@ -57,10 +46,11 @@ const SchoolClassFormScene = props => (
     />
     <Card
       title={props.classId ? 'Update Class' : 'Create Class'}
+      loading={props.fetching}
       actions={
         (
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back"
             type="default"
             onClick={() => browserHistory.goBack()}
@@ -68,18 +58,18 @@ const SchoolClassFormScene = props => (
         )
       }
     >
-      <SchoolClassFormContainer
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
+      {props.school.id ? (
+        <SchoolClassFormContainer
+          schoolId={props.school.id}
+          classId={props.classId}
+        />
+      ) : (<div />)}
     </Card>
   </div>
 );
 
 SchoolClassFormScene.propTypes = {
-  companyId: PropTypes.string,
-  distributorId: PropTypes.string,
-  schoolId: PropTypes.string,
+  fetching: PropTypes.bool.isRequired,
   classId: PropTypes.string,
   company: PropTypes.object,
   distributor: PropTypes.object,
@@ -87,13 +77,10 @@ SchoolClassFormScene.propTypes = {
 };
 
 SchoolClassFormScene.defaultProps = {
-  companyId: null,
-  distributorId: null,
-  schoolId: null,
   classId: null,
-  company: null,
-  distributor: null,
-  school: null,
+  company: {},
+  distributor: {},
+  school: {},
 };
 
 export default SchoolClassFormScene;

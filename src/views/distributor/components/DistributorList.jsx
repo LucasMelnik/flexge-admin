@@ -34,7 +34,7 @@ const DistributorList = props => (
     ]}
     rows={props.distributors}
     selectable
-    onSelect={row => browserHistory.push(`/distributor-detail/${row.id}`)}
+    onSelect={row => browserHistory.push(`/distributors/${row.id}/details`)}
   />
 );
 

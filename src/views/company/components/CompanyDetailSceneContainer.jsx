@@ -8,30 +8,32 @@ class CompanyDetailSceneContainer extends Component {
 
   static propTypes = {
     params: PropTypes.shape({
-      schoolId: PropTypes.string.isRequired,
-      companyId: PropTypes.string,
+      companyId: PropTypes.string.isRequired,
       distributorId: PropTypes.string,
     }).isRequired,
   };
 
-  static defaultProps = {
-
-  };
+  baseUrl = '';
 
   componentWillMount() {
     if (this.props.params.distributorId) {
       CompanyDetailService.handleLoadDistributor(this.props.params.distributorId);
+      this.baseUrl += `/distributors/${this.props.params.distributorId}`;
     }
     CompanyDetailService.handleLoad(this.props.params.companyId);
+    this.baseUrl += `/companies/${this.props.params.companyId}`;
   }
 
   render() {
     return (
       <CompanyDetailScene
         company={CompanyDetailService.company}
-        companyId={this.props.params.companyId}
         distributor={CompanyDetailService.distributor}
-        distributorId={this.props.params.distributorId}
+        fetching={
+          CompanyDetailService.fetchDistributor.fetching ||
+          CompanyDetailService.fetch.fetching
+        }
+        baseUrl={this.baseUrl}
       />
     );
   }

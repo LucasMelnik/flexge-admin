@@ -9,10 +9,12 @@ class CompanyListContainer extends Component {
 
   static propTypes = {
     distributorId: PropTypes.string,
+    baseUrl: PropTypes.string,
   };
 
   static defaultProps = {
     distributorId: null,
+    baseUrl: '',
   };
 
   componentDidMount() {
@@ -23,6 +25,7 @@ class CompanyListContainer extends Component {
     return (
       <CompanyList
         distributorId={this.props.distributorId}
+        baseUrl={this.props.baseUrl}
         companies={toJS(CompanyListService.companies)}
         fetching={CompanyListService.fetch.fetching}
         onDelete={CompanyListService.handleRemove}

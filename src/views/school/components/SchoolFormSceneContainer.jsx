@@ -27,11 +27,13 @@ class SchoolFormSceneContainer extends Component {
   render() {
     return (
       <SchoolFormScene
-        companyId={this.props.params.companyId}
         schoolId={this.props.params.schoolId}
         company={SchoolDetailService.company}
-        distributorId={this.props.params.distributorId}
         distributor={SchoolDetailService.distributor}
+        fetching={
+          SchoolDetailService.fetchCompany.fetching ||
+          SchoolDetailService.fetchDistributor.fetching
+        }
       />
     );
   }

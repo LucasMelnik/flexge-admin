@@ -32,7 +32,12 @@ const DistributorDetailScene = props => (
         />
       }
     >
-      <CompanyListContainer distributorId={props.distributor.id} />
+      {props.distributor.id ? (
+        <CompanyListContainer
+          baseUrl={`/distributors/${props.distributor.id}`}
+          distributorId={props.distributor.id}
+        />
+      ) : (<div />)}
     </Card>
   </div>
 );

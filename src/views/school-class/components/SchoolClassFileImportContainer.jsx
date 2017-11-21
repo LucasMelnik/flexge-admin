@@ -11,7 +11,7 @@ class SchoolClassFileImportContainer extends Component {
   };
 
   componentWillMount() {
-    SchoolClassFileImportService.init(this.props.schoolId)
+    SchoolClassFileImportService.init(this.props.schoolId);
   }
 
   render() {

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import PermissionValidator from '../../../core/layout/PermissionValidator';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
@@ -17,77 +16,46 @@ const SchoolClassForm = props => (
     }}
   >
     <Row>
-      <Column lgSize={4}>
+      <Column size={4}>
         <TextInput
           disabled={props.submitting}
           label="Class Name"
           value={get(props.values, 'name', '')}
           onChange={value => props.onChange('name', value)}
-          description={get(props.errors, 'name', null)}
-          fieldValidation={get(props.errors, 'name', null) && 'error'}
+          errorText={get(props.errors, 'name', null)}
         />
       </Column>
-      <PermissionValidator
-        allowedFor={[
-          'ADMIN',
-          'DISTRIBUTOR_MANAGER',
-        ]}
-      >
-        <Column lgSize={4}>
-          <FetchSelect
-            url="/teachers"
-            disabled={props.submitting}
-            label="Teacher"
-            value={get(props.values, 'teacher', '')}
-            onChange={teacher => props.onChange('teacher', teacher)}
-            description={get(props.errors, 'teacher', null)}
-            fieldValidation={get(props.errors, 'teacher', null) && 'error'}
-            resultTransformer={{
-              text: 'name',
-              value: 'id',
-            }}
-          />
-        </Column>
-      </PermissionValidator>
-      <PermissionValidator
-        allowedFor={[
-          'ADMIN',
-          'DISTRIBUTOR_MANAGER',
-        ]}
-      >
-        <Column lgSize={4}>
-          <FetchSelect
-            url="/schools"
-            // disabled
-            label="School"
-            value={get(props.values, 'school', '')}
-            onChange={school => props.onChange('school', school)}
-            description={get(props.errors, 'school', null)}
-            fieldValidation={get(props.errors, 'school', null) && 'error'}
-            resultTransformer={{
-              text: 'name',
-              value: 'id',
-            }}
-          />
-        </Column>
-      </PermissionValidator>
+      <Column size={4}>
+        <FetchSelect
+          url="/teachers"
+          disabled={props.submitting}
+          label="Teacher"
+          value={get(props.values, 'teacher', '')}
+          onChange={teacher => props.onChange('teacher', teacher)}
+          errorText={get(props.errors, 'teacher', null)}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
     </Row>
     <Row>
-      <Column lgSize={4}>
+      <Column size={4}>
         <Switch
           label="Is Placement Test Class?"
-          icons={false}
           titleOff="False"
           titleOn="True"
           onChange={value => props.onChange('isPlacementTestClass', value)}
           value={get(props.values, 'isPlacementTestClass', false)}
-          disabled={props.disabled}
+          disabled={props.submitting}
         />
       </Column>
     </Row>
     <FormButtons
       confirmLabel={props.values.id ? 'Update School Class' : 'Create School Class'}
       isDisabled={props.submitting || !props.isDirty()}
+      isSubmitting={props.submitting}
       onReset={props.onReset}
     />
   </form>
@@ -101,7 +69,6 @@ SchoolClassForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
-  states: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 SchoolClassForm.defaultProps = {
@@ -111,7 +78,6 @@ SchoolClassForm.defaultProps = {
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
   onReset: () => false,
-  onChange: () => false,
 };
 
 export default SchoolClassForm;

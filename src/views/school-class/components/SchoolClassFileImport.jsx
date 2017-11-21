@@ -7,7 +7,7 @@ export default class SchoolClassFileImport extends Component {
   static propTypes = {
     label: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    disabled: PropTypes.bool,
+    disabled: PropTypes.bool.isRequired,
   };
 
   handleChange = (event) => {
@@ -25,7 +25,7 @@ export default class SchoolClassFileImport extends Component {
           label={this.props.label}
           disabled={this.props.disabled}
           onClick={() => this.fileInput.click()}
-          icon="fa-upload"
+          icon="file-add"
         />
         <input
           type="file"
@@ -35,7 +35,7 @@ export default class SchoolClassFileImport extends Component {
             height: 0,
           }}
           onChange={this.handleChange}
-          ref={input => { this.fileInput = input; }}
+          ref={(input) => { this.fileInput = input; }}
           accept="xlsx/*"
         />
       </div>

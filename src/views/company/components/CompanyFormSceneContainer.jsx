@@ -23,8 +23,8 @@ class CompanyFormSceneContainer extends Component {
     return (
       <CompanyFormScene
         companyId={this.props.params.companyId}
-        distributorId={this.props.params.distributorId}
         distributor={CompanyDetailService.distributor}
+        fetching={CompanyDetailService.fetchDistributor.fetching}
       />
     );
   }

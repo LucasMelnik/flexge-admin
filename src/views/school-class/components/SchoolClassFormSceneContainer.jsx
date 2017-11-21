@@ -13,7 +13,7 @@ class SchoolClassFormSceneContainer extends Component {
       companyId: PropTypes.string,
       classId: PropTypes.string,
     }).isRequired,
-  }
+  };
 
   componentWillMount() {
     if (this.props.params.distributorId) {
@@ -32,13 +32,15 @@ class SchoolClassFormSceneContainer extends Component {
   render() {
     return (
       <SchoolClassFormScene
-        companyId={this.props.params.companyId}
-        schoolId={this.props.params.schoolId}
-        distributorId={this.props.params.distributorId}
         classId={this.props.params.classId}
         company={SchoolClassDetailService.company}
         distributor={SchoolClassDetailService.distributor}
         school={SchoolClassDetailService.school}
+        fetching={
+          SchoolClassDetailService.fetchDistributor.fetching ||
+          SchoolClassDetailService.fetchCompany.fetching ||
+          SchoolClassDetailService.fetchSchool.fetching
+        }
       />
     );
   }

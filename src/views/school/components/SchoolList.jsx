@@ -32,10 +32,7 @@ const SchoolList = props => (
               {' '}
               <Button
                 icon="edit"
-                onClick={() => browserHistory.push(
-                  props.distributorId ?
-                  `/distributors/${props.distributorId}/companies/${props.companyId}/schools/${row.id}` :
-                    props.companyId ? `/companies/${props.companyId}/schools/${row.id}` : `/schools/${row.id}`)}
+                onClick={() => browserHistory.push(`${props.baseUrl}/schools/${row.id}`)}
               />
             </div>
           );
@@ -44,13 +41,7 @@ const SchoolList = props => (
     ]}
     rows={props.schools}
     selectable
-    onSelect={row => browserHistory.push(
-      props.companyId && props.distributorId ?
-        `/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${row.id}`
-        : props.companyId ?
-          `/company-detail/${props.companyId}/school-detail/${row.id}`
-        :
-          `/school-detail/${row.id}`)}
+    onSelect={row => browserHistory.push(`${props.baseUrl}/schools/${row.id}/details`)}
   />
 );
 
@@ -62,8 +53,7 @@ SchoolList.propTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
   })).isRequired,
-  distributorId: PropTypes.string,
-  companyId: PropTypes.string,
+  baseUrl: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
 };

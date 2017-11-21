@@ -27,16 +27,12 @@ class SchoolClassFileImportService {
       if (this.submit.data) {
         NotificationService.addNotification(
           'File imported successfully.',
-          null,
-          null,
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
           'Error to import file successfully.',
-          null,
-          null,
           'error',
         );
       }
