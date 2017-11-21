@@ -9,18 +9,18 @@ import MaskInput from '../../../../core/form/MaskInput';
 const VideoInput = props => (
   <div>
     <Row>
-      <Column lgSize={8}>
+      <Column size={8}>
         <TextInput
           label="Youtube link"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'videoLink', '')}
           onChange={value => props.onChange('videoLink', value)}
-          description={get(props.errors, 'videoLink', '')}
+          errorText={get(props.errors, 'videoLink', '')}
           fieldValidation={get(props.errors, 'videoLink', null) && 'error'}
         />
       </Column>
       {props.requiredCut && (
-        <Column lgSize={2}>
+        <Column size={2}>
           <MaskInput
             floatingLabel
             fullWidth
@@ -28,7 +28,7 @@ const VideoInput = props => (
             disabled={props.submitting || props.disabled}
             value={get(props.values, 'videoStartTime', '')}
             onChange={value => props.onChange('videoStartTime', value)}
-            description={get(props.errors, 'videoStartTime', '')}
+            errorText={get(props.errors, 'videoStartTime', '')}
             fieldValidation={get(props.errors, 'videoStartTime', null) && 'error'}
             delimiters={[':']}
             blocks={[2, 2, 2]}
@@ -37,7 +37,7 @@ const VideoInput = props => (
         </Column>
       )}
       {props.requiredCut && (
-        <Column lgSize={2}>
+        <Column size={2}>
           <MaskInput
             floatingLabel
             fullWidth
@@ -45,7 +45,7 @@ const VideoInput = props => (
             disabled={props.submitting || props.disabled}
             value={get(props.values, 'videoEndTime', '')}
             onChange={value => props.onChange('videoEndTime', value)}
-            description={get(props.errors, 'videoEndTime', '')}
+            errorText={get(props.errors, 'videoEndTime', '')}
             fieldValidation={get(props.errors, 'videoEndTime', null) && 'error'}
             delimiters={[':']}
             blocks={[2, 2, 2]}
@@ -55,13 +55,13 @@ const VideoInput = props => (
       )}
     </Row>
     <Row>
-      <Column lgSize={12}>
+      <Column size={12}>
         <TextInput
           label="Reference (example: Universal; Harry Potter e o Prisioneiro de Azkaban (2004))"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'reference', '')}
           onChange={value => props.onChange('reference', value)}
-          description={get(props.errors, 'reference', '')}
+          errorText={get(props.errors, 'reference', '')}
           fieldValidation={get(props.errors, 'reference', null) && 'error'}
         />
       </Column>

@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Separator from "../../../../core/layout/Separator";
 import TranslationContainer from '../inputs/TranslationInputContainer';
-import SlicesInputContainer from "../inputs/SlicesInputContainer";
-import AnswersInputContainer from "../inputs/AnswersInputContainer";
 import AudioPreview from '../../../../core/layout/AudioPreview';
+import SlicesInputContainer from '../inputs/SlicesInputContainer';
+import AnswersInputContainer from '../inputs/AnswersInputContainer';
 
 const GapFillSelectItemForm = props => (
   <div>
@@ -23,11 +22,10 @@ const GapFillSelectItemForm = props => (
         <AudioPreview src={get(props.values, 'generatedAudio', '')} />
       </div>
     )}
-    <Separator size="xs" />
     <SlicesInputContainer
       onChange={(answers) => {
         props.onChange('answers', answers);
-        props.onChange('indexesToRemove', answers.filter(slice => slice.index !== undefined)); //this is to show errors
+        props.onChange('indexesToRemove', answers.filter(slice => slice.index !== undefined)); // this is to show errors
       }}
       text={get(props.values, 'text', '')}
       value={get(props.values, 'answers', [])}
@@ -36,7 +34,6 @@ const GapFillSelectItemForm = props => (
       sequenceRemove
       disabled={props.disabled}
     />
-    <Separator size="xs" />
     <AnswersInputContainer
       answerType="WRONG"
       value={get(props.values, 'answers', [])}
@@ -60,7 +57,6 @@ GapFillSelectItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  onChange: () => false,
   disabled: false,
   isTestItem: false,
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Separator from "../../../../core/layout/Separator";
 import TranslationInputContainer from '../inputs/TranslationInputContainer';
 import AnswersInputContainer from '../inputs/AnswersInputContainer';
 import SlicesInputContainer from '../inputs/SlicesInputContainer';
@@ -23,11 +22,10 @@ const UnscrambleSpeechRecognitionItemForm = props => (
         <AudioPreview src={get(props.values, 'generatedAudio', '')} />
       </div>
     )}
-    <Separator size="xs" />
     <SlicesInputContainer
       onChange={(answers) => {
         props.onChange('answers', answers);
-        props.onChange('indexesToRemove', answers.filter(slice => slice.index !== undefined)); //this is to show errors
+        props.onChange('indexesToRemove', answers.filter(slice => slice.index !== undefined)); // this is to show errors
       }}
       text={get(props.values, 'text', '')}
       value={get(props.values, 'answers', [])}
@@ -35,7 +33,6 @@ const UnscrambleSpeechRecognitionItemForm = props => (
       allowLinkSlices
       disabled={props.disabled}
     />
-    <Separator size="xs" />
     <AnswersInputContainer
       value={get(props.values, 'answers', [])}
       onChange={answers => props.onChange('answers', answers)}
@@ -58,7 +55,6 @@ UnscrambleSpeechRecognitionItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  onChange: () => false,
   disabled: false,
   isTestItem: false,
 };

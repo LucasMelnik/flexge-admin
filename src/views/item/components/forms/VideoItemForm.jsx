@@ -11,8 +11,7 @@ const VideoItemForm = props => (
       disabled={props.submitting || props.disabled}
       value={get(props.values, 'title', '')}
       onChange={value => props.onChange('title', value)}
-      description={get(props.errors, 'title', '')}
-      fieldValidation={get(props.errors, 'title', null) && 'error'}
+      errorText={get(props.errors, 'title', '')}
     />
     <VideoInputContainer
       onChange={props.onChange}
@@ -37,7 +36,6 @@ VideoItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  onChange: () => false,
   disabled: false,
 };
 

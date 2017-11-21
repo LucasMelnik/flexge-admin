@@ -7,27 +7,25 @@ import TextInput from '../../../../core/form/TextInput';
 
 const TranslationInput = props => (
   <Row>
-    <Column lgSize={props.isTestItem ? 12 : 6}>
+    <Column size={props.isTestItem ? 12 : 6}>
       <TextInput
         label="Text"
         fieldType="textarea"
         disabled={props.submitting || props.disabled}
         value={get(props.values, 'text', '')}
         onChange={value => props.onChange('text', value)}
-        description={get(props.errors, 'text', '')}
-        fieldValidation={get(props.errors, 'text', null) && 'error'}
+        errorText={get(props.errors, 'text', '')}
       />
     </Column>
     {!props.isTestItem && (
-      <Column lgSize={6}>
+      <Column size={6}>
         <TextInput
           label="Translation"
           fieldType="textarea"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'translation', '')}
           onChange={value => props.onChange('translation', value)}
-          description={get(props.errors, 'translation', '')}
-          fieldValidation={get(props.errors, 'translation', null) && 'error'}
+          errorText={get(props.errors, 'translation', '')}
         />
       </Column>
     )}

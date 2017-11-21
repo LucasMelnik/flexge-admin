@@ -9,7 +9,6 @@ const TrueFalseAnswerInput = props => (
     <Column lgsize={12}>
       <Switch
         label=""
-        icons={false}
         titleOff="False"
         titleOn="True"
         onChange={props.onChange}
@@ -21,6 +20,7 @@ const TrueFalseAnswerInput = props => (
 );
 
 TrueFalseAnswerInput.propTypes = {
+  disabled: PropTypes.bool.isRequired,
   checked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
 };

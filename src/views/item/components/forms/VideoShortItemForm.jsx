@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Separator from '../../../../core/layout/Separator';
 import VideoInputContainer from '../inputs/VideoInputContainer';
 import TranslationInputContainer from '../inputs/TranslationInputContainer';
 import TextInput from '../../../../core/form/TextInput';
@@ -13,10 +12,8 @@ const VideoShortItemForm = props => (
       disabled={props.submitting || props.disabled}
       value={get(props.values, 'title', '')}
       onChange={value => props.onChange('title', value)}
-      description={get(props.errors, 'title', '')}
-      fieldValidation={get(props.errors, 'title', null) && 'error'}
+      errorText={get(props.errors, 'title', '')}
     />
-    <Separator size="xs" />
     <TranslationInputContainer
       onChange={props.onChange}
       errors={props.errors}
@@ -25,7 +22,6 @@ const VideoShortItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    <Separator size="xs" />
     <VideoInputContainer
       onChange={props.onChange}
       errors={props.errors}
@@ -50,7 +46,6 @@ VideoShortItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  onChange: () => false,
   disabled: false,
   isTestItem: false,
 };

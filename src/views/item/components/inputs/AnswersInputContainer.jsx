@@ -26,19 +26,20 @@ class AnswersInputContainer extends Component {
     type: PropTypes.oneOf([
       'SINGLE_CHOICE_TEXT',
       'SINGLE_CHOICE_AUDIO',
-      'SINGLE_CHOICE_IMAGE']).isRequired,
+      'SINGLE_CHOICE_IMAGE']),
   };
 
   static defaultProps = {
     answerType: 'BOTH',
     label: 'Add Other Answers',
     errorText: null,
+    type: null,
     disabled: false,
     value: [],
   };
 
   formService = new FormService();
-  state = { answers: [] }
+  state = { answers: [] };
 
   componentWillMount() {
     this.formService.validations = {

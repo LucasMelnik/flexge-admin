@@ -25,6 +25,7 @@ TranslationInputContainer.propTypes = {
 TranslationInputContainer.defaultProps = {
   values: {},
   errors: {},
+  submitting: false,
   disabled: false,
   isTestItem: false,
 };

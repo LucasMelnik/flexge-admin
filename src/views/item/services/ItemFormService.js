@@ -316,16 +316,12 @@ class ItemFormService {
         this.onSaveSuccess();
         NotificationService.addNotification(
           `Item ${itemId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
           `Error ${itemId ? 'updating' : 'creating'} item.`,
-          null,
-          null,
           'error',
         );
       }
