@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import IconButton from './IconButton';
-import Async from '../layout/Async';
-import ErrorText from '../layout/ErrorText';
+import { Form } from 'antd';
+import Button from './Button';
 import AudioPreview from '../layout/AudioPreview';
 import ImagePreview from '../layout/ImagePreview';
-import ColumnSeparator from '../layout/ColumnSeparator';
 
 export default class FileInput extends Component {
 
@@ -16,7 +14,6 @@ export default class FileInput extends Component {
     label: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
     errorText: PropTypes.string,
-    fullWidth: PropTypes.bool,
     accept: PropTypes.oneOf([
       'audio',
       'image',
@@ -26,7 +23,6 @@ export default class FileInput extends Component {
   static defaultProps = {
     accept: 'audio',
     errorText: null,
-    fullWidth: false,
     disabled: false,
   };
 
@@ -73,58 +69,42 @@ export default class FileInput extends Component {
   render() {
     const hasValue = (this.props.value && !this.state.uploading);
     return (
-      <div
-        style={{
-          width: this.props.fullWidth ? '100%' : '220px',
-          height: 85,
-          position: 'relative',
-        }}
+      <Form.Item
+        label={this.props.label}
+        help={this.props.errorText}
+        validateStatus={this.props.errorText && 'error'}
       >
-        <label>{this.props.label}</label>
-        <Async
-          size="sm"
-          fetching={this.state.uploading}
+        <div
+          style={{
+            display: 'inline-block',
+          }}
         >
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'flex-end',
-              height: '100%',
-            }}
-          >
-            {(!this.state.uploading && !this.props.disabled) && (
-              <IconButton
-                tooltip="Select a file"
-                disabled={this.props.disabled}
-                onClick={() => this.fileInput.click()}
-                icon="fa-upload"
-              />
-            )}
-            {(!this.state.uploading && !this.props.disabled) && (
-              <ColumnSeparator />
-            )}
-            {(hasValue && !this.props.disabled) && (
-              <IconButton
-                tooltip="Delete the file"
-                disabled={this.props.disabled}
-                onClick={this.handleDelete}
-                icon="fa-trash"
-              />
-            )}
-            <ColumnSeparator />
-            {(this.props.accept === 'audio' && hasValue) && (
-              <AudioPreview src={this.props.value} />
-            )}
-            {(this.props.accept === 'image' && hasValue) && (
-              <ImagePreview src={this.props.value} />
-            )}
-          </div>
-        </Async>
-        {this.props.errorText && (
-          <ErrorText>
-            {this.props.errorText}
-          </ErrorText>
-        )}
+          {(!this.props.disabled) && (
+            <Button
+              label={!this.state.uploading && 'Select a file'}
+              loading={this.state.uploading}
+              disabled={this.props.disabled}
+              onClick={() => this.fileInput.click()}
+              icon="upload"
+            />
+          )}
+          {' '}
+          {(hasValue && !this.props.disabled) && (
+            <Button
+              tooltip="Delete the file"
+              disabled={this.props.disabled}
+              onClick={this.handleDelete}
+              icon="delete"
+            />
+          )}
+          {' '}
+          {(this.props.accept === 'audio' && hasValue) && (
+            <AudioPreview src={this.props.value} />
+          )}
+          {(this.props.accept === 'image' && hasValue) && (
+            <ImagePreview src={this.props.value} />
+          )}
+        </div>
         <input
           type="file"
           style={{
@@ -136,7 +116,7 @@ export default class FileInput extends Component {
           ref={input => { this.fileInput = input; }}
           accept={`${this.props.accept}/*`}
         />
-      </div>
+      </Form.Item>
     );
   }
 }
