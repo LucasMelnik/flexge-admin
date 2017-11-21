@@ -1,57 +1,51 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
-import IconButton from '../../../core/form/IconButton';
+import Button from '../../../core/form/Button';
 
 const PlacementTestLevelList = props => (
-  <Async fetching={props.fetching}>
-    <Table
-      columns={[
-        {
-          label: 'ID',
-          path: 'id',
-          isKey: true,
-          hidden: true,
+  <Table
+    loading={props.fetching}
+    columns={[
+      {
+        label: 'Level',
+        path: 'level',
+        width: '120px',
+        sort: true,
+      },
+      {
+        label: 'Course',
+        path: 'course.name',
+        sort: true,
+      },
+      {
+        label: 'Placement % Error',
+        path: 'placementPercentageError',
+      },
+      {
+        label: 'Actions',
+        path: 'action',
+        width: '85',
+        render: (cell, row) => {
+          return (
+            <div>
+              <Button
+                icon="delete"
+                onClick={() => props.onDelete(row)}
+              />
+              {' '}
+              <Button
+                icon="edit"
+                onClick={() => browserHistory.push(`/placement-test-levels/${row.id}`)}
+              />
+            </div>
+          );
         },
-        {
-          label: 'Level',
-          path: 'level',
-          width: '120'
-        },
-        {
-          label: 'Course',
-          path: 'course.name',
-        },
-        {
-          label: 'Placement % Error',
-          path: 'placementPercentageError',
-        },
-        {
-          label: 'Actions',
-          path: 'action',
-          width: '120',
-          render: (cell, row) => {
-            return (
-              <div>
-                <IconButton
-                  icon="fa-trash"
-                  onClick={() => props.onDelete(row)}
-                />
-                {' '}
-                <IconButton
-                  icon="fa-edit"
-                  onClick={() => browserHistory.push(`/placement-test-levels/${row.id}`)}
-                />
-              </div>
-            );
-          },
-        },
-      ]}
-      rows={props.levels}
-    />
-  </Async>
+      },
+    ]}
+    rows={props.levels}
+  />
 );
 
 PlacementTestLevelList.propTypes = {

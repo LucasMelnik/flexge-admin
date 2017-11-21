@@ -5,9 +5,8 @@ import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import PlacementTestLevelListFilterContainer from './PlacementTestLevelListFilterContainer';
 import PlacementTestLevelListContainer from './PlacementTestLevelListContainer';
-import Separator from '../../../core/layout/Separator';
 
-const PlacementTestLevelListScene = props => (
+const PlacementTestLevelListScene = () => (
   <div>
     <Breadcrumb
       crumbs={[
@@ -20,14 +19,14 @@ const PlacementTestLevelListScene = props => (
       title="Placement test levels"
       actions={
         <Button
+          type="primary"
           label="New placement tet level"
-          icon="fa-plus"
+          icon="plus"
           onClick={() => browserHistory.push('/placement-test-levels/new')}
         />
       }
     >
       <PlacementTestLevelListFilterContainer />
-      <Separator/>
       <PlacementTestLevelListContainer />
     </Card>
   </div>

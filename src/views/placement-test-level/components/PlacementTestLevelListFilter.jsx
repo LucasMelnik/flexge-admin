@@ -5,7 +5,6 @@ import FetchSelect from '../../../core/form/FetchSelect';
 const PlacementTestLevelListFilter = props => (
   <FetchSelect
     url="courses"
-    disabled={props.submitting}
     label="Course"
     value={props.course}
     onChange={props.onChange}

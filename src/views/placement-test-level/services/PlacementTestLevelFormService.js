@@ -37,12 +37,7 @@ class PlacementTestLevelFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      NotificationService.addNotification(
-        'Fill the required fields',
-        null,
-        null,
-        'error',
-      );
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const placementTestLevelId = this.form.getValue('id');
@@ -59,15 +54,10 @@ class PlacementTestLevelFormService {
         this.form.reset();
         this.form.setInitialValues(placementTestLevel);
 
-        window.showSuccess(`Placement Test Level ${placementTestLevelId ? 'updated' : 'created'} successfully.`);
+        NotificationService.addNotification(`Placement Test Level ${placementTestLevelId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
-        NotificationService.addNotification(
-          `Error ${placementTestLevelId ? 'updating' : 'creating'} placement test level.`,
-          null,
-          null,
-          'error',
-        );
+        NotificationService.addNotification(`Error ${placementTestLevelId ? 'updating' : 'creating'} placement test level.`, 'error');
       }
     });
   });
