@@ -4,7 +4,6 @@ import get from 'lodash/get';
 import range from 'lodash/range';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
-import Separator from '../../../core/layout/Separator';
 import Select from '../../../core/form/Select';
 import FormButtons from '../../../core/form/FormButtons';
 import FetchSelect from '../../../core/form/FetchSelect';
@@ -17,7 +16,7 @@ const PlacementTestForm = props => (
     }}
   >
     <Row>
-      <Column lgSize={2}>
+      <Column size={2}>
         <FetchSelect
           url="placement-test-levels?query[level][$ne]=5.5"
           fullWidth
@@ -25,14 +24,14 @@ const PlacementTestForm = props => (
           label="Level"
           value={get(props.values, 'placementTestLevel', '')}
           onChange={value => props.onChange('placementTestLevel', value)}
-          fieldValidation={get(props.errors, 'placementTestLevel', '')}
+          errorText={get(props.errors, 'placementTestLevel', '')}
           resultTransformer={{
             text: 'level',
             value: 'id',
           }}
         />
       </Column>
-      <Column lgSize={2}>
+      <Column size={2}>
         <Select
           floatingLabel
           fullWidth
@@ -40,14 +39,14 @@ const PlacementTestForm = props => (
           label="Order"
           value={get(props.values, 'order', '')}
           onChange={value => props.onChange('order', value)}
-          fieldValidation={get(props.errors, 'order', '')}
+          errorText={get(props.errors, 'order', '')}
           options={range(1, 21).map(value => ({
             value,
             label: value.toString(),
           }))}
         />
       </Column>
-      <Column lgSize={6}>
+      <Column size={6}>
         <FetchSelect
           url="grammars"
           fullWidth
@@ -56,14 +55,14 @@ const PlacementTestForm = props => (
           maxHeight={350}
           value={get(props.values, 'grammar', '')}
           onChange={grammar => props.onChange('grammar', grammar)}
-          fieldValidation={get(props.errors, 'grammar', '')}
+          errorText={get(props.errors, 'grammar', '')}
           resultTransformer={{
             text: 'name',
             value: 'id',
           }}
         />
       </Column>
-      <Column lgSize={2}>
+      <Column size={2}>
         <Select
           floatingLabel
           fullWidth
@@ -71,7 +70,7 @@ const PlacementTestForm = props => (
           label="Items to Show"
           value={get(props.values, 'itemsToShow', '')}
           onChange={value => props.onChange('itemsToShow', value)}
-          fieldValidation={get(props.errors, 'itemsToShow', '')}
+          errorText={get(props.errors, 'itemsToShow', '')}
           options={range(1, get(props.values, 'items.length', 10) + 1).map(value => ({
             value,
             label: value.toString(),
@@ -79,10 +78,10 @@ const PlacementTestForm = props => (
         />
       </Column>
     </Row>
-    <Separator />
     <FormButtons
       confirmLabel={props.values.id ? 'Update Grammar' : 'Create Grammar'}
       isDisabled={props.submitting || !props.isDirty()}
+      isSubmitting={props.submitting}
       onReset={props.onReset}
     />
   </form>
@@ -105,7 +104,6 @@ PlacementTestForm.defaultProps = {
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
   onReset: () => false,
-  onChange: () => false,
 };
 
 export default PlacementTestForm;

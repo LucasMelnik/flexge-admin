@@ -5,12 +5,11 @@ import Button from '../../../core/form/Button';
 import Column from '../../../core/layout/Column';
 import Row from '../../../core/layout/Row';
 import FetchSelect from '../../../core/form/FetchSelect';
-import Separator from '../../../core/layout/Separator';
 
 const PlacementTestListFilter = props => (
   <div>
     <Row>
-      <Column lgSize={2}>
+      <Column size={2}>
         <FetchSelect
           url="placement-test-levels?query[level][$ne]=5.5"
           fullWidth
@@ -24,13 +23,12 @@ const PlacementTestListFilter = props => (
           }}
         />
       </Column>
-      <Column lgSize={6}>
+      <Column size={6}>
         <FetchSelect
           url="grammars"
           fullWidth
           disabled={props.fetching}
           label="Grammar"
-          maxHeight={350}
           value={get(props.values, 'grammar', '')}
           onChange={grammar => props.onChange('grammar', grammar)}
           resultTransformer={{
@@ -39,12 +37,11 @@ const PlacementTestListFilter = props => (
           }}
         />
       </Column>
-      <Column lgSize={2}>
-        <Separator size="md" />
+      <Column size={2}>
+        <div style={{ height: 33 }} />
         <Button
           label="Search"
-          icon="fa-search"
-          priimary
+          icon="search"
           onClick={props.onSearch}
         />
       </Column>
@@ -62,6 +59,5 @@ PlacementTestListFilter.propTypes = {
 PlacementTestListFilter.defaultProps = {
   fetching: false,
 };
-
 
 export default PlacementTestListFilter;

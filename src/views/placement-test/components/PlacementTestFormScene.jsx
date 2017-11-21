@@ -26,9 +26,8 @@ const PlacementTestFormScene = props => (
       actions={
         (
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back"
-            type="default"
             onClick={() => browserHistory.push('/placement-test')}
           />
         )

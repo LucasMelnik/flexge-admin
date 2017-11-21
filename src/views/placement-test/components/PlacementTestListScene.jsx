@@ -3,7 +3,6 @@ import { browserHistory } from 'react-router';
 import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
-import Separator from '../../../core/layout/Separator';
 import PlacementTestListContainer from './PlacementTestListContainer';
 import PlacementTestListFilterContainer from './PlacementTestListFilterContainer';
 
@@ -20,14 +19,14 @@ const PlacementTestListScene = () => (
       title="Placement Test"
       actions={
         <Button
+          type="primary"
           label="New Grammar"
-          icon="fa-plus"
+          icon="plus"
           onClick={() => browserHistory.push('/placement-test/new')}
         />
       }
     >
       <PlacementTestListFilterContainer />
-      <Separator />
       <PlacementTestListContainer />
     </Card>
   </div>

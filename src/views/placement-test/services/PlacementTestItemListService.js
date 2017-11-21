@@ -2,6 +2,7 @@ import { action, extendObservable } from 'mobx';
 import { orderBy } from 'lodash';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class PlacementTestItemListService {
   fetch = new FetchService();
@@ -39,7 +40,7 @@ class PlacementTestItemListService {
       method: 'put',
       body: {
         order,
-      }
+      },
     }).then(() => {
       this.load();
     });
@@ -54,6 +55,7 @@ class PlacementTestItemListService {
           url: `/grammar-placement-test-levels/${this.placementTestId}/items/${unitItem.item.id}`,
           method: 'delete',
         }).then(() => {
+          NotificationService.addNotification('Item deleted', 'success');
           this.load();
         });
       });

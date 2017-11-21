@@ -40,6 +40,7 @@ class PlacementTestFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const placementTestId = this.form.getValue('id');
@@ -58,16 +59,12 @@ class PlacementTestFormService {
         this.form.setInitialValues(placementTest);
         NotificationService.addNotification(
           `Placement Test Grammar ${placementTestId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
           `Error ${placementTestId ? 'updating' : 'creating'} Placement Test Grammar.`,
-          null,
-          null,
           'error',
         );
       }
