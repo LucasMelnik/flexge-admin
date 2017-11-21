@@ -165,7 +165,7 @@ const MainScene = props => (
     <Layout.Content
       style={{
         padding: 10,
-        height: '100vh',
+        minHeight: '100vh',
       }}
     >
       {props.children}

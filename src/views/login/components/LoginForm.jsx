@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import get from 'lodash/get';
+import TextInput from '../../../core/form/TextInput';
+import Button from '../../../core/form/Button';
 
 const LoginForm = props => (
   <form
@@ -8,51 +11,38 @@ const LoginForm = props => (
       props.onSubmit();
     }}
   >
-    <p>
-      <label htmlFor="user_login">
-        Email
-        <br />
-        <input
-          type="text"
-          name="log"
-          id="user_login"
-          className="input"
-          value={props.values.email || ''}
-          size="20"
-          onChange={e => props.onChange('email', e.target.value)}
-        />
-      </label>
-    </p>
-    <p>
-      <label htmlFor="user_pass">
-        Password
-        <br />
-        <input
-          type="password"
-          name="pwd"
-          id="user_pass"
-          className="input"
-          value={props.values.password || ''}
-          size="20"
-          onChange={e => props.onChange('password', e.target.value)}
-        />
-      </label>
-    </p>
-    <p className="submit">
-      <button
-        type="submit"
-        name="wp-submit"
-        id="wp-submit"
-        className="btn btn-accent btn-block"
-      >
-        {props.submitting ? <i className="fa fa-spinner fa-spin" /> : 'Sign in'}
-      </button>
-    </p>
-    {props.error && (
-      <div className="alert alert-danger">
-        {props.error}
-      </div>
-    )}
+    <TextInput
+      label="Email"
+      placeholder="Email"
+      disabled={props.submitting}
+      value={get(props.values, 'email', '')}
+      onChange={value => props.onChange('email', value)}
+      errorText={get(props.errors, 'email', '')}
+    />
+    <TextInput
+      type="password"
+      label="Password"
+      placeholder="Password"
+      disabled={props.submitting}
+      value={get(props.values, 'password', '')}
+      onChange={value => props.onChange('password', value)}
+      errorText={get(props.errors, 'password', '')}
+    />
+    <div
+      style={{
+        float: 'right',
+        marginTop: 10,
+      }}
+    >
+      <Button
+        type="primary"
+        label="Login"
+        size="lg"
+        icon="login"
+        loading={props.submitting}
+        buttonType="submit"
+      />
+    </div>
   </form>
 );
 
@@ -62,14 +52,12 @@ LoginForm.propTypes = {
   values: PropTypes.object,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
-  error: PropTypes.string,
 };
 
 LoginForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  error: null,
 };
 
 export default LoginForm;

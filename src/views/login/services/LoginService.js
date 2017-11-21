@@ -7,8 +7,8 @@ import NotificationService from '../../../core/services/NotificationService';
 import { isRequired, isValidEmail } from '../../../core/validations';
 
 class LoginService {
-  fetch = new FetchService()
-  form = new FormService()
+  fetch = new FetchService();
+  form = new FormService();
 
   constructor() {
     this.form.validations = {
@@ -23,6 +23,7 @@ class LoginService {
   handleLogin = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      NotificationService.addNotification('Inform your login and password', 'error');
       return;
     }
     localStorage.clear();
@@ -42,9 +43,10 @@ class LoginService {
         localStorage.setItem('company', decodedToken.company);
         localStorage.setItem('distributor', decodedToken.distributor);
         browserHistory.push('/');
+        NotificationService.addNotification('Welcome again!', 'info');
       }
       if (this.fetch.error) {
-        NotificationService.addNotification('Unable to login. Please check your credentials.', null, null, 'error');
+        NotificationService.addNotification('Unable to login. Please check your credentials.', 'error');
       }
     });
   })
