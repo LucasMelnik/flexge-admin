@@ -17,7 +17,7 @@ class TextInput extends Component {
     textAreaRows: PropTypes.string,
   };
 
-  static defaultprops = {
+  static defaultProps = {
     onFocus: null,
     value: '',
     placeholder: null,
