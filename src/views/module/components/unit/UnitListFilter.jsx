@@ -4,12 +4,11 @@ import TextInput from '../../../../core/form/TextInput';
 import Button from '../../../../core/form/Button';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
-import Separator from '../../../../core/layout/Separator';
 import Select from '../../../../core/form/Select';
 
 const UnitListFilter = props => (
   <Row>
-    <Column lgSize={8} mdSize={8} smSize={8}>
+    <Column size={8}>
       <TextInput
         label="Search units"
         value={props.values.filter}
@@ -17,7 +16,7 @@ const UnitListFilter = props => (
         disabled={props.fetching}
       />
     </Column>
-    <Column lgSize={2} mdSize={2} smSize={2}>
+    <Column size={2}>
       <Select
         label="Only with images"
         value={props.values.onlyWithImages}
@@ -35,12 +34,11 @@ const UnitListFilter = props => (
         ]}
       />
     </Column>
-    <Column lgSize={2} mdSize={2} smSize={2}>
-      <Separator size="md" />
+    <Column size={2}>
+      <div style={{ height: 34 }} />
       <Button
         label="Search"
-        icon="fa-search"
-        type="primary"
+        icon="search"
         onClick={props.onSearch}
       />
     </Column>
