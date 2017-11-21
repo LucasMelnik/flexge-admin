@@ -8,10 +8,9 @@ const PracticeTestFormScene = () => (
       crumbs={[
         {
           text: 'Practice Test',
-        }
+        },
       ]}
     />
-
     <PracticeTestItems />
   </div>
 );
