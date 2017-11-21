@@ -46,6 +46,7 @@ class ModuleFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const moduleId = this.form.getValue('id');
@@ -63,16 +64,12 @@ class ModuleFormService {
         browserHistory.push('/modules');
         NotificationService.addNotification(
           `Module ${moduleId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
           `Error ${moduleId ? 'updating' : 'creating'} module.`,
-          null,
-          null,
           'error',
         );
       }

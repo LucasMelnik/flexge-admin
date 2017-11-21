@@ -6,7 +6,6 @@ import Button from '../../../core/form/Button';
 import FetchSelect from '../../../core/form/FetchSelect';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
-import Separator from '../../../core/layout/Separator';
 
 const ModuleListFilter = props => (
   <Row>
