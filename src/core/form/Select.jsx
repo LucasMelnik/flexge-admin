@@ -21,7 +21,7 @@ const Select = props => (
       {props.options.map(option => (
         <AntSelect.Option
           key={`option-${option.value}`}
-          value={option.value.toString()}
+          value={option.value}
         >
           {option.label}
         </AntSelect.Option>
