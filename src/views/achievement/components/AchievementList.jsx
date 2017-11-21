@@ -6,7 +6,7 @@ import Button from '../../../core/form/Button';
 
 const AchievementList = props => (
   <Table
-    loading={props.fetching}
+    fetching={props.fetching}
     columns={[
       {
         label: 'Description',

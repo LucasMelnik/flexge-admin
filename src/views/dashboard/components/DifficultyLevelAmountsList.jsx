@@ -4,7 +4,7 @@ import Table from '../../../core/form/Table';
 
 const DifficultyLevelAmountsList = props => (
   <Table
-    loading={props.fetching}
+    fetching={props.fetching}
     columns={[
       {
         label: 'Difficulty Level',

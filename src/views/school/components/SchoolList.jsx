@@ -6,7 +6,7 @@ import Button from '../../../core/form/Button';
 
 const SchoolList = props => (
   <Table
-    loading={props.fetching}
+    fetching={props.fetching}
     columns={[
       {
         label: 'Name',

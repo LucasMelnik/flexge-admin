@@ -4,7 +4,7 @@ import Table from '../../../core/form/Table';
 
 const UnitTypeAmountsList = props => (
   <Table
-    loading={props.fetching}
+    fetching={props.fetching}
     columns={[
       {
         label: 'Unit Type',

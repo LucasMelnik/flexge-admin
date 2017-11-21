@@ -4,7 +4,7 @@ import Table from '../../../core/form/Table';
 
 const ScoreToPassAmountsList = props => (
   <Table
-    loading={props.fetching}
+    fetching={props.fetching}
     columns={[
       {
         label: 'ScoreToPass',
