@@ -15,12 +15,12 @@ const SchoolFormScene = props => (
           link: '/schools',
         },
         {
-          text: `${props.schoolId ? 'Update School' : 'Create School'}`,
+          text: `${props.params.schoolId ? 'Update School' : 'Create School'}`,
         },
       ]}
     />
     <Card
-      title={props.schoolId ? 'Update School' : 'Create School'}
+      title={props.params.schoolId ? 'Update School' : 'Create School'}
       actions={
         (
           <Button
