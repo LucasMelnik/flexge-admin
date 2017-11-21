@@ -13,14 +13,21 @@ const Tags = props => (
     {props.tags.map(tag => (
       <Tag
         key={`tag-${tag.index}`}
-        closable={!props.disabled && tag.canDelete}
-        onClose={props.onDelete(tag.index, tag)}
+        closable={false}
       >
         {!(tag.canClick || tag.canLink) && (tag.text)}
         {!(tag.canClick || tag.canLink) && (<ColumnSeparator size="sm" />)}
+        {(!props.disabled && tag.canDelete) && (
+          <Button
+            size="sm"
+            rounded
+            icon="close"
+            onClick={() => props.onDelete(tag.index, tag)}
+          />
+        )}
         {(!props.disabled && (tag.canClick || tag.canLink)) && (
           <Button
-            size="xs"
+            size="sm"
             rounded
             icon={tag.icon}
             onClick={() => {
@@ -53,7 +60,6 @@ Tags.propTypes = {
   onClick: PropTypes.func.isRequired,
   onLink: PropTypes.func.isRequired,
 };
-
 
 Tags.defaultProps = {
   tags: [],

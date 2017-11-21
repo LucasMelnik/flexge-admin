@@ -31,14 +31,14 @@ export default class TimeInput extends Component {
   }
 
   handleChange = (rawValue, formattedValue) => {
-    //only trigger the onChange when the user typed an complete time
+    // only trigger the onChange when the user typed an complete time
     if (formattedValue.length === 5) {
       console.log(moment.duration(`00:${formattedValue}`).asSeconds());
       this.props.onChange(moment.duration(`00:${formattedValue}`).asSeconds(), formattedValue);
     }
     this.setState({
       maskedValue: formattedValue,
-    })
+    });
   };
 
   render() {

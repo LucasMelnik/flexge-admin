@@ -5,7 +5,7 @@ import { Input, Form } from 'antd';
 class TextInput extends Component {
 
   static propTypes = {
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     label: PropTypes.string.isRequired,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onFocus: PropTypes.func,
@@ -26,6 +26,7 @@ class TextInput extends Component {
     fieldType: 'input',
     errorText: null,
     textAreaRows: '2',
+    onChange: () => false,
   };
 
   render() {
