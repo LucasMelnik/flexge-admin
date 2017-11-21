@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router';
 import { formatTimeFromSeconds } from '../../../../core/util';
 import Table from '../../../../core/form/Table';
 import Button from '../../../../core/form/Button';
+import StatusItem from '../../../../core/layout/StatusItem';
 
 const UnitList = props => (
   <Table
@@ -56,50 +57,32 @@ const UnitList = props => (
         label: 'Status content',
         path: 'review.status',
         render: (cell, row) => row.review && (
-          <div
-            style={{
-              color: '#fff',
-              padding: 5,
-              fontSize: 12,
-              display: 'inline-block',
-              fontWeight: 'bold',
-              borderRadius: 5,
-              backgroundColor: {
-                PENDING: '#ef8c3b',
-                REVIEWED: '#1188FF',
-                DONE: '#009687',
-                'NOT SENT TO REVIEW': '#758C98',
-                'AWAITING FORMAT REVIEW': '#758C98',
-              }[row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status],
-            }}
-          >
-            {row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status}
-          </div>
+          <StatusItem
+            color={{
+              PENDING: '#ef8c3b',
+              REVIEWED: '#1188FF',
+              DONE: '#009687',
+              'NOT SENT TO REVIEW': '#758C98',
+              'AWAITING FORMAT REVIEW': '#758C98',
+            }[row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status]}
+            text={row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status}
+          />
         ),
       },
       {
         label: 'Status format',
         path: 'review.statusFormat',
         render: (cell, row) => row.review && (
-          <div
-            style={{
-              color: '#fff',
-              padding: 5,
-              fontSize: 12,
-              display: 'inline-block',
-              fontWeight: 'bold',
-              borderRadius: 5,
-              backgroundColor: {
-                PENDING: '#ef8c3b',
-                PENDING_REVIEW: '#ef8c3b',
-                APPROVED: '#009687',
-                NOT_APPROVED: '#FF5233',
-                DONE: '#009687',
-              }[row.review.statusFormat],
-            }}
-          >
-            {replace(row.review.statusFormat, '_', ' ')}
-          </div>
+          <StatusItem
+            color={{
+              PENDING: '#ef8c3b',
+              PENDING_REVIEW: '#ef8c3b',
+              APPROVED: '#009687',
+              NOT_APPROVED: '#FF5233',
+              DONE: '#009687',
+            }[row.review.statusFormat]}
+            text={replace(row.review.statusFormat, '_', ' ')}
+          />
         ),
       },
       {
@@ -108,24 +91,15 @@ const UnitList = props => (
         render: (cell, row) => {
           if (row.review && row.type.name !== 'Review' && row.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))) {
             return (
-              <div
-                style={{
-                  color: '#fff',
-                  padding: 5,
-                  fontSize: 12,
-                  display: 'inline-block',
-                  fontWeight: 'bold',
-                  borderRadius: 5,
-                  backgroundColor: {
-                    NOT_SEND_TO_REVIEW: '#758C98',
-                    PENDING_REVIEW: '#ef8c3b',
-                    APPROVED: '#009687',
-                    NOT_APPROVED: '#FF5233',
-                  }[row.review.statusImage || 'NOT_SEND_TO_REVIEW'],
-                }}
-              >
-                {replace(row.review.statusImage || 'NOT_SEND_TO_REVIEW', '_', ' ')}
-              </div>
+              <StatusItem
+                color={{
+                  NOT_SEND_TO_REVIEW: '#758C98',
+                  PENDING_REVIEW: '#ef8c3b',
+                  APPROVED: '#009687',
+                  NOT_APPROVED: '#FF5233',
+                }[row.review.statusImage || 'NOT_SEND_TO_REVIEW']}
+                text={replace(row.review.statusImage || 'NOT_SEND_TO_REVIEW', '_', ' ')}
+              />
             );
           }
           return row.review ? 'N/A' : '';
