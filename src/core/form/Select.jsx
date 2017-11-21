@@ -34,7 +34,7 @@ Select.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.oneOfType([PropTypes.string]).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   })).isRequired,
   value: PropTypes.oneOfType([PropTypes.string]),
