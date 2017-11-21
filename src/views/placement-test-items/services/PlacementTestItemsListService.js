@@ -21,7 +21,7 @@ class PlacementTestItemsListService {
       url: '/placement-test-stats',
     }).then(() => {
       if (this.fetch.data) {
-        const items = orderBy(this.fetch.data, ['placementTestLevel.level', 'order'], ['asc',  'asc']);
+        const items = orderBy(this.fetch.data, ['placementTestLevel.level', 'order'], ['asc', 'asc']);
         this.items = items.map(item => ({
           ...item,
           errorPercentage: !item.errorPercentage ? 'N/A' : numeral(item.errorPercentage).format('0.00%'),
