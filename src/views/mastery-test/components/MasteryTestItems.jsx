@@ -46,14 +46,15 @@ class MasteryTestItems extends Component {
           <div>
             {(this.state.actualScene === 'LIST' && this.state.totalItems < 50) && (
               <Button
-                icon="fa-plus"
+                type="primary"
+                icon="plus"
                 onClick={this.handleChangeToForm}
                 label="Add new mastery test item"
               />
             )}
             {this.state.actualScene === 'FORM' && (
               <Button
-                icon="fa-arrow-left"
+                icon="arrow-left"
                 label="Back to Items"
                 onClick={this.handleChangeToList}
               />

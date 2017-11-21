@@ -14,6 +14,10 @@ class ContentReviewFormContainer extends Component {
     expanded: PropTypes.bool,
   };
 
+  static defaultProps = {
+    expanded: false,
+  };
+
   componentWillMount() {
     this.contentReviewService.init(this.props.moduleId, this.props.masteryTestId);
   }

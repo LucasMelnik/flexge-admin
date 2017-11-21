@@ -16,7 +16,7 @@ const MasteryTestForm = props => (
     }}
   >
     <Row>
-      <Column lgSize={4}>
+      <Column size={4}>
         <TextInput
           step={1}
           type="number"
@@ -25,12 +25,11 @@ const MasteryTestForm = props => (
           label="Module Percentage to Activate"
           value={get(props.values, 'modulePercentageToActive', '')}
           onChange={value => props.onChange('modulePercentageToActive', value)}
-          description={get(props.errors, 'modulePercentageToActive', '')}
-          fieldValidation={get(props.errors, 'modulePercentageToActive', null) && 'error'}
+          errorText={get(props.errors, 'modulePercentageToActive', '')}
         />
       </Column>
       {props.values.id && (
-        <Column lgSize={4}>
+        <Column size={4}>
           <TimeInput
             disabled
             label="Deadline Time"
@@ -38,7 +37,7 @@ const MasteryTestForm = props => (
           />
         </Column>
       )}
-      <Column lgSize={4}>
+      <Column size={4}>
         <TextInput
           label="Score to Pass"
           disabled
@@ -50,6 +49,7 @@ const MasteryTestForm = props => (
     <FormButtons
       confirmLabel={props.values.id ? 'Update Mastery Test' : 'Create Mastery Test'}
       isDisabled={props.submitting || !props.isDirty()}
+      isSubmitting={props.submitting}
       onReset={props.onReset}
     />
   </form>
@@ -73,7 +73,6 @@ MasteryTestForm.defaultProps = {
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
   onReset: () => false,
-  onChange: () => false,
 };
 
 export default MasteryTestForm;

@@ -5,7 +5,6 @@ import Button from '../../../core/form/Button';
 import MasteryTestFormContainer from './MasteryTestFormContainer';
 import Card from '../../../core/layout/Card';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
-import Async from '../../../core/layout/Async';
 import MasteryTestItems from './MasteryTestItems';
 import Separator from '../../../core/layout/Separator';
 import ReviewFormControlBar from './ReviewFormControlBar';
@@ -24,28 +23,27 @@ const MasteryTestFormScene = props => (
           link: `/modules/${props.module.id}/details`,
         },
         {
-          text: props.masteryTestId ? 'Edit Mastery Test': 'New Mastery Test',
-        }
+          text: props.masteryTestId ? 'Edit Mastery Test' : 'New Mastery Test',
+        },
       ]}
     />
     <Card
       title={props.masteryTestId ? 'Mastery Test informations' : 'New Mastery Test'}
+      loading={props.fetching}
       actions={
         <Button
           label="Back"
-          icon="fa-arrow-left"
+          icon="arrow-left"
           onClick={() => browserHistory.push(`/modules/${props.module.id}/details`)}
         />
       }
     >
-      <Async fetching={props.fetching}>
-        {props.module.id && (
-          <MasteryTestFormContainer
-            moduleId={props.module.id}
-            masteryTestId={props.masteryTestId}
-          />
-        )}
-      </Async>
+      {props.module.id ? (
+        <MasteryTestFormContainer
+          moduleId={props.module.id}
+          masteryTestId={props.masteryTestId}
+        />
+      ) : (<div />)}
     </Card>
     <Separator size="md" />
     {(props.module.id && props.masteryTestId) && (
@@ -66,12 +64,17 @@ MasteryTestFormScene.propTypes = {
   module: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
-  })
+    course: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  }),
 };
 
 MasteryTestFormScene.defaultProps = {
   fetching: false,
   masteryTestId: null,
-  module: {},
+  module: {
+    course: {},
+  },
 };
 export default MasteryTestFormScene;

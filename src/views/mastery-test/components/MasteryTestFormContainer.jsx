@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import MasteryTestForm from './MasteryTestForm';
@@ -43,7 +43,6 @@ class MasteryTestFormContainer extends Component {
         values={MasteryTestFormService.form.getValues()}
         errors={MasteryTestFormService.form.errors}
         submitting={MasteryTestFormService.submit.fetching}
-        error={MasteryTestFormService.submit.error}
         isDirty={MasteryTestFormService.form.isDirty}
       />
     );

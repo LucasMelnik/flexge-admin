@@ -22,3 +22,8 @@ body {
 html, body, #root {
   height: 100%;
 }
+
+.ant-tag {
+    height: 28px;
+    line-height: 26px;
+}

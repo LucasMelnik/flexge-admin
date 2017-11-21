@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import IconButton from '../../../core/form/IconButton';
-import Card from '../../../core/layout/Card';
-import Separator from '../../../core/layout/Separator';
+import Button from '../../../core/form/Button';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import ContentReviewFormContainer from './ContentReviewFormContainer';
@@ -32,47 +30,46 @@ export default class ReviewFormControlBar extends Component {
         <div
           style={{
             position: 'fixed',
+            backgroundColor: '#fff',
+            borderTop: '1px solid #cecece',
             zIndex: 3,
             bottom: 0,
             left: 0,
             right: 0,
-            height: this.state.expanded ? '89%' : 360,
-            maxHeight: '89%',
+            height: this.state.expanded ? '80%' : 330,
             transition: 'all 1s',
+            padding: '20px 10px 10px',
           }}
         >
-          <Card>
-            <Separator size="xs" />
-            <div
-              style={{
-                position: 'absolute',
-                right: 15,
-                top: -15,
-              }}
-            >
-              <IconButton
-                type="primary"
-                icon={this.state.expanded ? 'fa-arrow-down' : 'fa-arrow-up'}
-                onClick={() => this.handleExpandOrRetractComment()}
+          <div
+            style={{
+              position: 'absolute',
+              right: 15,
+              top: -15,
+            }}
+          >
+            <Button
+              type="primary"
+              icon={this.state.expanded ? 'down-square-o' : 'up-square-o'}
+              onClick={() => this.handleExpandOrRetractComment()}
+            />
+          </div>
+          <Row>
+            <Column size={6}>
+              <ContentReviewFormContainer
+                expanded={this.state.expanded}
+                masteryTestId={this.props.masteryTestId}
+                moduleId={this.props.moduleId}
               />
-            </div>
-            <Row>
-              <Column lgSize={6} mdSize={6}>
-                <ContentReviewFormContainer
-                  expanded={this.state.expanded}
-                  masteryTestId={this.props.masteryTestId}
-                  moduleId={this.props.moduleId}
-                />
-              </Column>
-              <Column lgSize={6} mdSize={6}>
-                <FormatReviewFormContainer
-                  expanded={this.state.expanded}
-                  masteryTestId={this.props.masteryTestId}
-                  moduleId={this.props.moduleId}
-                />
-              </Column>
-            </Row>
-          </Card>
+            </Column>
+            <Column size={6}>
+              <FormatReviewFormContainer
+                expanded={this.state.expanded}
+                masteryTestId={this.props.masteryTestId}
+                moduleId={this.props.moduleId}
+              />
+            </Column>
+          </Row>
         </div>
       </div>
     );
