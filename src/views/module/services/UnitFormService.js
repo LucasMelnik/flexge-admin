@@ -49,6 +49,7 @@ class UnitFormService {
   handleSubmit = action((callbackAfterSuccess) => {
     this.form.submitted = true;
     if (this.form.errors) {
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const unitId = this.form.getValue('id');
@@ -73,16 +74,12 @@ class UnitFormService {
         });
         NotificationService.addNotification(
           `Unit ${unitId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
           `Error ${unitId ? 'updating' : 'creating'} unit.`,
-          null,
-          null,
           'error',
         );
       }

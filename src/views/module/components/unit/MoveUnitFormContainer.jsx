@@ -24,7 +24,6 @@ class MoveUnitFormContainer extends Component {
         values={MoveUnitFormService.form.getValues()}
         errors={MoveUnitFormService.form.errors}
         submitting={MoveUnitFormService.fetch.fetching}
-        error={MoveUnitFormService.fetch.error}
         isDirty={MoveUnitFormService.form.isDirty}
       />
     );
