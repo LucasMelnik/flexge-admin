@@ -21,7 +21,7 @@ const Select = props => (
       {props.options.map(option => (
         <AntSelect.Option
           key={`option-${option.value}`}
-          value={option.value}
+          value={option.value.toString()}
         >
           {option.label}
         </AntSelect.Option>
@@ -34,10 +34,10 @@ Select.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]).isRequired,
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   })).isRequired,
-  value: PropTypes.oneOfType([PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]),
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
   errorText: PropTypes.string,
