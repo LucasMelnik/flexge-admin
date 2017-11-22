@@ -1,46 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import Button from '../../../../core/form/Button';
 import FetchSelect from '../../../../core/form/FetchSelect';
-import PermissionValidator from '../../../../core/layout/PermissionValidator';
+import Column from '../../../../core/layout/Column';
+import Row from '../../../../core/layout/Row';
 
 const UnitImageListFilter = props => (
-  <div
-    style={{
-      display: 'flex',
-      alignItems: 'flex-end',
-    }}
-  >
-    <PermissionValidator allowedFor={['ADMIN']}>
-      <div
-        style={{
-          zIndex: 3,
+  <Row>
+    <Column size={4}>
+      <FetchSelect
+        url="/users?query[role]=IMAGE_ADMIN"
+        label="Unit Image Owner"
+        disabled={props.fetching}
+        value={get(props.values, 'imageOwner')}
+        onChange={value => props.onChange('imageOwner', value)}
+        resultTransformer={{
+          text: 'name',
+          value: 'id',
         }}
-      >
-        <FetchSelect
-          url="/users?query[role]=IMAGE_ADMIN"
-          label="Unit Image Owner"
-          disabled={props.fetching}
-          value={get(props.values, 'imageOwner')}
-          onChange={value => props.onChange('imageOwner', value)}
-          resultTransformer={{
-            text: 'name',
-            value: 'id',
-          }}
-        />
-      </div>
-    </PermissionValidator>
-    <PermissionValidator allowedFor={['ADMIN']}>
-      <ColumnSeparator size="sm" />
-    </PermissionValidator>
-    <Button
-      label="Search"
-      icon="fa-search"
-      onClick={props.onSearch}
-    />
-  </div>
+      />
+    </Column>
+    <Column size={2}>
+      <div style={{ height: 33 }} />
+      <Button
+        label="Search"
+        icon="search"
+        onClick={props.onSearch}
+      />
+    </Column>
+  </Row>
 );
 
 UnitImageListFilter.propTypes = {
@@ -53,6 +42,6 @@ UnitImageListFilter.propTypes = {
 UnitImageListFilter.defaultProps = {
   fetching: false,
   onSearch: null,
-}
+};
 
 export default UnitImageListFilter;

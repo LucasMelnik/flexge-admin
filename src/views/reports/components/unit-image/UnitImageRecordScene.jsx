@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from '../../../../core-ant/Card';
 import UnitImageRecordListContainer from './UnitImageRecordListContainer';
+import Card from '../../../../core/layout/Card';
 
 const UnitImageRecordScene = () => (
   <div>

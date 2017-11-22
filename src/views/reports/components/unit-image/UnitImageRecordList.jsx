@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from '../../../../core-ant/Table';
 import UnitImageListFilterContainer from './UnitImageListFilterContainer';
 import Separator from '../../../../core/layout/Separator';
+import Table from '../../../../core/form/Table';
 
 const UnitImagesRecordList = props => (
   <div>
@@ -66,7 +66,7 @@ const UnitImagesRecordList = props => (
           sort: true,
         },
       ]}
-      dataSource={props.units}
+      rows={props.units}
     />
     <div
       style={{
