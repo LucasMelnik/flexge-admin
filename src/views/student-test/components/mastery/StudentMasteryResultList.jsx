@@ -7,12 +7,6 @@ const StudentMasteryResultList = props => (
   <Table
     columns={[
       {
-        label: 'ID',
-        path: 'id',
-        isKey: true,
-        hidden: true,
-      },
-      {
         label: 'Score',
         path: 'score',
         width: '80',
@@ -34,7 +28,6 @@ const StudentMasteryResultList = props => (
       },
     ]}
     rows={props.executions}
-    selectable
     onSelect={row => props.onSelect(row)}
   />
 );

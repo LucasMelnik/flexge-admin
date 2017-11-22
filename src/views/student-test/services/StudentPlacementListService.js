@@ -34,13 +34,13 @@ class StudentPlacementListService {
   handleRemove = action((placement) => {
     ConfirmationDialogService.show(
       'Delete Placement Test',
-      `You are about to delete the placement test, Do you want to continue ?`,
+      'You are about to delete the placement test, Do you want to continue ?',
       () => {
         this.fetch.fetch({
           url: `/students/${this.studentId}/placement-tests/${placement.id}`,
           method: 'delete',
         }).then(() => {
-            this.loadPlacements();
+          this.loadPlacements();
         });
       });
   });

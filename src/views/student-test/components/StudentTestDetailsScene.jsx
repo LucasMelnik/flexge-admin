@@ -4,6 +4,7 @@ import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Tabs from '../../../core/layout/Tabs';
 import StudentPlacementListContainer from './placement/StudentPlacementListContainer';
 import StudentMasteryDetails from './mastery/StudentMasteryDetails';
+import Card from '../../../core/layout/Card';
 
 const StudentTestDetailsScene = props => (
   <div>
@@ -22,11 +23,19 @@ const StudentTestDetailsScene = props => (
       tabs={[
         {
           title: 'Placement Tests',
-          content: <StudentPlacementListContainer studentId={props.params.studentId} />,
+          content: (
+            <Card>
+              <StudentPlacementListContainer studentId={props.params.studentId} />
+            </Card>
+                   ),
         },
         {
           title: 'Mastery Tests',
-          content: <StudentMasteryDetails studentId={props.params.studentId} />,
+          content: (
+            <Card>
+              <StudentMasteryDetails studentId={props.params.studentId} />
+            </Card>
+                   ),
         },
       ]}
     />
