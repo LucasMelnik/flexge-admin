@@ -1,80 +1,62 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
-import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
-import IconButton from '../../../core/form/IconButton';
+import Button from '../../../core/form/Button';
 
-const UserAdminList = props => (
-  <Async fetching={props.fetching}>
-    <Table
-      columns={[
-        {
-          label: 'ID',
-          path: 'id',
-          isKey: true,
-          hidden: true,
+const UserList = props => (
+  <Table
+    fetching={props.fetching}
+    columns={[
+      {
+        label: 'Name',
+        path: 'name',
+        sort: true,
+      },
+      {
+        label: 'Email',
+        path: 'email',
+        sort: true,
+      },
+      {
+        label: 'Role',
+        path: 'role',
+        sort: true,
+      },
+      {
+        label: 'Actions',
+        path: 'action',
+        width: '85px',
+        render: (cell, row) => {
+          return (
+            <div>
+              <Button
+                icon="delete"
+                onClick={() => props.onDelete(row)}
+              />
+              {' '}
+              <Button
+                icon="edit"
+                onClick={() => browserHistory.push(`${props.baseUrl}/${row.id}`)}
+              />
+            </div>
+          );
         },
-        {
-          label: 'Name',
-          path: 'name',
-        },
-        {
-          label: 'School',
-          path: '',
-          render: (cell, row) => {
-            return (
-              <div>
-                {row.school && (row.role === 'COMPANY_MANAGER' ? 'All' : row.school ? row.school.name : '-')}
-              </div>
-            );
-          },
-        },
-        {
-          label: 'Email',
-          path: 'email',
-        },
-        {
-          label: 'Role',
-          path: 'role',
-        },
-        {
-          label: 'Actions',
-          path: 'action',
-          width: '120',
-          render: (cell, row) => {
-            return (
-              <div>
-                <IconButton
-                  icon="fa-trash"
-                  onClick={() => props.onDelete(row)}
-                />
-                {' '}
-                <IconButton
-                  icon="fa-edit"
-                  onClick={() => browserHistory.push(`/companies/${row.company.id}/users/${row.id}`)}
-                />
-              </div>
-            );
-          },
-        },
-      ]}
-      rows={props.users}
-      selectable
-      onSelect={() => console.log('Select')}
-    />
-  </Async>
+      },
+    ]}
+    rows={props.users}
+  />
 );
 
-UserAdminList.propTypes = {
+UserList.propTypes = {
   users: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    school: PropTypes.object,
-    company: PropTypes.object.isRequired,
+    name: PropTypes.string,
+    role: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
+  baseUrl: PropTypes.string.isRequired,
 };
 
-export default UserAdminList;
+export default UserList;

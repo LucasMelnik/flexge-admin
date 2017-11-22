@@ -2,18 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../../../core/form/TextInput';
 
-const DistributorCompanyListFilter = props => (
+const ListFilter = props => (
   <TextInput
-    label="Search companies"
-    placeholder="Start type to filter the companies"
+    label={props.label}
+    placeholder={props.placeholder}
     value={props.value}
     onChange={props.onChange}
   />
 );
 
-DistributorCompanyListFilter.propTypes = {
+ListFilter.propTypes = {
+  label: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
-export default DistributorCompanyListFilter;
+export default ListFilter;

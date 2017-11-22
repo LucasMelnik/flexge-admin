@@ -2,16 +2,15 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
-import UserAdminListFilterContainer from './UserAdminListFilterContainer';
-import UserAdminListContainer from './UserAdminListContainer';
 import Button from '../../../core/form/Button';
+import UserListContainer from './UserListContainer';
 
-const UserAdminListScene = () => (
+const AdminUserListScene = () => (
   <div>
     <Breadcrumb
       crumbs={[
         {
-          text: 'Users Admin',
+          text: 'Admin Users',
         },
       ]}
     />
@@ -19,16 +18,21 @@ const UserAdminListScene = () => (
       title="Users"
       actions={
         <Button
-          label="New User"
-          icon="fa-plus"
+          type="primary"
+          label="Add User"
+          icon="plus"
           onClick={() => browserHistory.push('/admin-users/new')}
         />
       }
     >
-      <UserAdminListFilterContainer />
-      <UserAdminListContainer />
+      <UserListContainer
+        baseUrl="/admin-users"
+        baseQuery={{
+          role: { $in: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'] },
+        }}
+      />
     </Card>
   </div>
 );
 
-export default UserAdminListScene;
+export default AdminUserListScene;

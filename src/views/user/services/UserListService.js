@@ -1,21 +1,20 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class UserListService {
   fetch = new FetchService();
+  baseQuery = {};
 
   constructor() {
     extendObservable(this, {
       users: [],
-      company: null,
-      roleUser: null,
     });
   }
 
-  init = action((company, roleUser) => {
-    this.company = company;
-    this.roleUser = roleUser;
+  init = action((baseQuery) => {
+    this.baseQuery = baseQuery;
     this.load();
   });
 
@@ -23,32 +22,27 @@ class UserListService {
     this.fetch.fetch({
       url: '/users',
       query: {
-        query: this.roleUser !== 'ADMIN' && {
-          company: this.company.id,
-        },
+        query: this.baseQuery,
       },
     }).then(() => {
       if (this.fetch.data) {
-        if (this.roleUser === 'ADMIN') {
-          this.users = this.fetch.data.filter(user => user.role === 'ADMIN' || user.role === 'CONTENT_ADMIN' || user.role === 'IMAGE_ADMIN' || user.role === 'AUDIO_CONTENT');
-        } else if (this.roleUser === 'DISTRIBUTOR_MANAGER') {
-          this.users = this.fetch.data.filter(user => user.role === 'DISTRIBUTOR_MANAGER');
-        } else {
-          this.users = this.fetch.data.filter(user => user.role === 'COMPANY_MANAGER' || user.role === 'SCHOOL_MANAGER' || user.role === 'TEACHER');
-        }
+        this.users = this.fetch.data;
+      } else {
+        this.users = [];
       }
     });
   });
 
   handleRemove = action((user) => {
     ConfirmationDialogService.show(
-      'Delete Manager',
+      'Delete User',
       `You are about to delete the user "${user.name}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({
           url: `/users/${user.id}`,
           method: 'delete',
         }).then(() => {
+          NotificationService.addNotification('User deleted', 'success');
           this.load();
         });
       });

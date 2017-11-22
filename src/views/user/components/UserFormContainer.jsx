@@ -9,30 +9,30 @@ class UserFormContainer extends Component {
   static propTypes = {
     userId: PropTypes.string,
     companyId: PropTypes.string,
-    roleUser: PropTypes.string,
+    distributorId: PropTypes.string,
+    type: PropTypes.oneOf(['ADMIN','DISTRIBUTOR', 'COMPANY']).isRequired,
   };
 
   static defaultProps = {
     userId: null,
-    roleUser: null,
     companyId: undefined,
+    distributorId: undefined,
   };
 
   componentWillMount() {
-    UserFormService.handleLoad(this.props.userId, this.props.companyId);
+    UserFormService.handleLoad(this.props.userId, this.props.companyId, this.props.distributorId);
   }
 
   render() {
     return (
       <UserForm
-        roleUser={this.props.roleUser}
+        type={this.props.type}
         onSubmit={UserFormService.handleSubmit}
         onChange={UserFormService.form.setValue}
         onReset={UserFormService.form.reset}
         values={UserFormService.form.getValues()}
         errors={UserFormService.form.errors}
         submitting={UserFormService.fetch.fetching}
-        error={UserFormService.submit.error}
         isDirty={UserFormService.form.isDirty}
       />
     );

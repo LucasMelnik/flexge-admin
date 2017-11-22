@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import CompanyListService from '../services/CompanyListService';
-import UserListScene from './UserListScene';
+import CompanyUserListScene from './CompanyUserListScene';
 
-class UserListSceneContainer extends Component {
+class CompanyUserListSceneContainer extends Component {
 
   componentDidMount() {
     CompanyListService.load();
@@ -12,12 +12,12 @@ class UserListSceneContainer extends Component {
 
   render() {
     return (
-      <UserListScene
-        companies={toJS(CompanyListService.companies)}
+      <CompanyUserListScene
+        companies={toJS(CompanyListService.filteredCompanies)}
         fetching={CompanyListService.fetch.fetching}
       />
     );
   }
 }
 
-export default observer(UserListSceneContainer);
+export default observer(CompanyUserListSceneContainer);
