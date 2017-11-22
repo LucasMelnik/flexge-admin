@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Menu as AntMenu } from 'antd';
 import { Link } from 'react-router';
 import PermissionValidator from './PermissionValidator';
+import Icon from './Icon';
 
 const MenuItem = props => (
   <PermissionValidator allowedFor={props.allowedFor}>
@@ -11,7 +12,10 @@ const MenuItem = props => (
       key={props.link}
     >
       <Link to={props.link}>
-        {props.title}
+        <span>
+          <span><Icon name={props.icon} /></span>
+          {props.title}
+        </span>
       </Link>
     </AntMenu.Item>
   </PermissionValidator>
@@ -20,6 +24,7 @@ const MenuItem = props => (
 MenuItem.propTypes = {
   allowedFor: PropTypes.arrayOf(PropTypes.string).isRequired,
   title: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
 };
 

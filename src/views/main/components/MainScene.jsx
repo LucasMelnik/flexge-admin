@@ -12,7 +12,7 @@ const MainScene = props => (
       <Menu>
         <SubMenu
           title="Admin"
-          icon="fa fa-user"
+          icon="user"
           allowedFor={['ADMIN']}
           items={[
             {
@@ -47,7 +47,7 @@ const MainScene = props => (
         />
         <SubMenu
           title="Partners"
-          icon="fa fa-users"
+          icon="team"
           allowedFor={['ADMIN']}
           items={[
             {
@@ -66,7 +66,7 @@ const MainScene = props => (
         />
         <SubMenu
           title="Users"
-          icon="fa fa-user"
+          icon="usergroup-add"
           allowedFor={['ADMIN']}
           items={[
             {
@@ -85,7 +85,7 @@ const MainScene = props => (
         />
         <SubMenu
           title="School"
-          icon="fa fa-graduation-cap"
+          icon="idcard"
           allowedFor={['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER']}
           items={[
             {
@@ -96,31 +96,31 @@ const MainScene = props => (
         />
         <MenuItem
           title="Modules"
-          icon="fa fa-book"
+          icon="book"
           link="/modules"
           allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}
         />
         <MenuItem
           title="Review"
-          icon="fa fa-eye"
+          icon="eye-o"
           link="/reviews"
           allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}
         />
         <MenuItem
           title="Placement Test"
-          icon="fa fa-pencil-square"
+          icon="solution"
           link="/placement-test"
           allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}
         />
         <MenuItem
           title="Practice Test"
-          icon="fa fa-book"
+          icon="database"
           link="/practice-tests"
           allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}
         />
         <SubMenu
           title="Reports"
-          icon="fa fa-file-o"
+          icon="folder-open"
           allowedFor={['ADMIN']}
           items={[
             {
@@ -151,7 +151,7 @@ const MainScene = props => (
         />
         <SubMenu
           title="Audio"
-          icon="fa fa-file-o"
+          icon="sound"
           allowedFor={['AUDIO_CONTENT', 'ADMIN']}
           items={[
             {
