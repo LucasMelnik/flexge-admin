@@ -4,148 +4,93 @@ import { browserHistory } from 'react-router';
 import replace from 'lodash/replace';
 import MyReviewListFilterContainer from './MyReviewListFilterContainer';
 import Separator from '../../../core/layout/Separator';
-import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
-import IconButton from '../../../core/form/IconButton';
+import Button from '../../../core/form/Button';
+import StatusItem from '../../../core/layout/StatusItem';
 
 const MyReviewList = props => (
-  <Async fetching={props.fetching}>
+  <div>
     <MyReviewListFilterContainer />
     <Separator />
     <Table
+      fetching={props.fetching}
       columns={[
-        {
-          label: 'id',
-          path: 'id',
-          isKey: true,
-          hidden: true,
-        },
         {
           label: 'Name',
           path: 'unit.name',
-          width: '30%',
-          rowColumnStyle: {
-            textOverflow: 'none',
-            paddingTop: 5,
-            paddingBottom: 5,
-            paddingRight: 5,
-            whiteSpace: 'normal',
-            textAlign: 'justify',
-            lineHeight: '18px',
-          },
+          sort: true,
         },
         {
           label: 'Course',
           path: 'unit.module.course.name',
+          width: '80px',
+          sort: true,
         },
         {
           label: 'Module',
           path: 'unit.module.name',
-          rowColumnStyle: {
-            textOverflow: 'none',
-            paddingTop: 5,
-            paddingBottom: 5,
-            paddingRight: 5,
-            whiteSpace: 'normal',
-            textAlign: 'justify',
-            lineHeight: '18px',
-          },
+          width: '150px',
         },
         {
           label: 'Unit Type',
           path: 'unit.type.name',
-          rowColumnStyle: {
-            textOverflow: 'none',
-            paddingTop: 5,
-            paddingBottom: 5,
-            paddingRight: 5,
-            whiteSpace: 'normal',
-            textAlign: 'justify',
-            lineHeight: '18px',
-          },
+          width: '100px',
         },
         {
           label: 'Unit creator',
           path: 'unit.createdBy.name',
+          width: '100px',
         },
         {
-          label: 'Reviewed By',
-          path: 'review.reviewedBy.name',
-        },
-        {
-          label: 'Status content',
+          label: 'Status Content',
           path: 'review.status',
+          width: '140px',
           render: (cell, row) => (
-            <div
-              style={{
-                color: '#fff',
-                padding: 5,
-                fontSize: 12,
-                display: 'inline-block',
-                fontWeight: 'bold',
-                borderRadius: 5,
-                backgroundColor: {
-                  PENDING: '#ef8c3b',
-                  REVIEWED: '#1188FF',
-                  DONE: '#009687',
-                  'NOT SENT TO REVIEW': '#758C98',
-                  'AWAITING FORMAT REVIEW': '#758C98',
-                }[row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status],
-              }}
-            >
-              {row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status}
-            </div>
+            <StatusItem
+              color={{
+                PENDING: '#ef8c3b',
+                REVIEWED: '#1188FF',
+                DONE: '#009687',
+                'NOT SENT TO REVIEW': '#758C98',
+                'AWAITING FORMAT REVIEW': '#758C98',
+              }[row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status]}
+              text={row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status}
+            />
           ),
         },
         {
           label: 'Status format',
           path: 'review.statusFormat',
-          render: (cell, row) => (
-            <div
-              style={{
-                color: '#fff',
-                padding: 5,
-                fontSize: 12,
-                display: 'inline-block',
-                fontWeight: 'bold',
-                borderRadius: 5,
-                backgroundColor: {
-                  PENDING: '#ef8c3b',
-                  PENDING_REVIEW: '#ef8c3b',
-                  APPROVED: '#009687',
-                  NOT_APPROVED: '#FF5233',
-                  DONE: '#009687',
-                }[row.review.statusFormat],
-              }}
-            >
-              {replace(row.review.statusFormat, '_', ' ')}
-            </div>
+          width: '140px',
+          render: (cell,row) => (
+            <StatusItem
+              color={{
+                PENDING: '#ef8c3b',
+                PENDING_REVIEW: '#ef8c3b',
+                APPROVED: '#009687',
+                NOT_APPROVED: '#FF5233',
+                DONE: '#009687',
+              }[row.review.statusFormat]}
+              text={replace(row.review.statusFormat, '_', ' ')}
+            />
           ),
         },
         {
           label: 'Status image',
           path: 'review.statusImage',
+          width: '140px',
           render: (cell, row) => {
             if (row.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))) {
               return (
-                <div
-                  style={{
-                    color: '#fff',
-                    padding: 5,
-                    fontSize: 12,
-                    display: 'inline-block',
-                    fontWeight: 'bold',
-                    borderRadius: 5,
-                    backgroundColor: {
-                       NOT_SEND_TO_REVIEW: '#758C98',
-                       PENDING_REVIEW: '#ef8c3b',
-                       APPROVED: '#009687',
-                       NOT_APPROVED: '#FF5233',
-                     }[row.review.statusImage || 'NOT_SEND_TO_REVIEW'],
-                  }}
-                >
-                  {replace(row.review.statusImage || 'NOT_SEND_TO_REVIEW', '_', ' ')}
-                </div>
+                <StatusItem
+                  color={{
+                    NOT_SEND_TO_REVIEW: '#758C98',
+                    PENDING_REVIEW: '#ef8c3b',
+                    APPROVED: '#009687',
+                    NOT_APPROVED: '#FF5233',
+                  }[row.review.statusImage || 'NOT_SEND_TO_REVIEW']}
+                  text={replace(row.review.statusImage || 'NOT_SEND_TO_REVIEW', '_', ' ')}
+                />
               );
             }
             return 'N/A';
@@ -154,40 +99,27 @@ const MyReviewList = props => (
         {
           label: 'Final Status',
           path: 'review.finalStatus',
-          render: (cell, row) => {
-            if (row.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))) {
-              return (
-                <div
-                  style={{
-                    color: '#fff',
-                    padding: 5,
-                    fontSize: 12,
-                    display: 'inline-block',
-                    fontWeight: 'bold',
-                    borderRadius: 5,
-                    backgroundColor: {
-                       PENDING: '#ef8c3b',
-                       APPROVED: '#009687',
-                       NOT_APPROVED: '#FF5233',
-                     }[row.review.finalStatus || 'PENDING'],
-                  }}
-                >
-                  {replace(row.review.finalStatus || 'PENDING', '_', ' ')}
-                </div>
-              );
-            }
-            return 'N/A';
-          },
+          width: '140px',
+          render: (cell, row) => (
+            <StatusItem
+              color={{
+                PENDING: '#ef8c3b',
+                APPROVED: '#009687',
+                NOT_APPROVED: '#FF5233',
+              }[row.review.finalStatus || 'PENDING']}
+              text={replace(row.review.finalStatus || 'PENDING', '_', ' ')}
+            />
+          ),
         },
         {
           label: 'Actions',
           path: 'action',
-          width: localStorage.role === 'ADMIN' ? '120' : '70',
+          width: localStorage.role === 'ADMIN' ? '120px' : '70px',
           render: (cell, row) => {
             if (localStorage.role === 'CONTENT_ADMIN' && !row.review.id) {
               return (
-                <IconButton
-                  icon="fa-send"
+                <Button
+                  icon="export"
                   onClick={() => props.onSendToReview(row.unit)}
                 />
               );
@@ -199,13 +131,13 @@ const MyReviewList = props => (
             ) {
               return (
                 <div>
-                  <IconButton
-                    icon="fa-thumbs-up"
+                  <Button
+                    icon="like"
                     onClick={() => props.onFinalReview(row.review.id, row.unit.id, 'APPROVED')}
                   />
                   {' '}
-                  <IconButton
-                    icon="fa-thumbs-down"
+                  <Button
+                    icon="dislike"
                     onClick={() => props.onFinalReview(row.review.id, row.unit.id, 'NOT_APPROVED')}
                   />
                 </div>
@@ -219,7 +151,7 @@ const MyReviewList = props => (
       selectable
       onSelect={row => (row.review.statusFormat === 'NOT_APPROVED' || row.review.status === 'REVIEWED' || row.review.status === 'PENDING' || row.review.status === 'DONE' || localStorage.role === 'ADMIN') && row.review.id && browserHistory.push(`/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
     />
-  </Async>
+  </div>
 );
 
 MyReviewList.propTypes = {
@@ -227,10 +159,6 @@ MyReviewList.propTypes = {
   onFinalReview: PropTypes.func.isRequired,
   unitsAndReviews: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetching: PropTypes.bool.isRequired,
-};
-
-MyReviewList.defaultProps = {
-  onSendToReview: null,
 };
 
 export default MyReviewList;

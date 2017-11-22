@@ -59,16 +59,12 @@ class ImageReviewService {
       if (res) {
         NotificationService.addNotification(
           'Review Status Image changed successfully.',
-          null,
-          null,
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
           'Error changing Review Status Image.',
-          null,
-          null,
           'error',
         );
       }

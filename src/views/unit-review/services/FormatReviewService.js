@@ -59,16 +59,12 @@ class FormatReviewService {
       if (res) {
         NotificationService.addNotification(
           'Review Status Format changed successfully.',
-          null,
-          null,
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
           'Error changing Review Status Format.',
-          null,
-          null,
           'error',
         );
       }

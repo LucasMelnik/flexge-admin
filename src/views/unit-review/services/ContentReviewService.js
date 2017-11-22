@@ -62,16 +62,12 @@ class ContentReviewService {
             ReviewListService.handleAllUnits();
             NotificationService.addNotification(
               'Review sent successfully.',
-              null,
-              null,
               'success',
             );
           }
           if (this.submit.error) {
             NotificationService.addNotification(
               'Error creating review.',
-              null,
-              null,
               'error',
             );
           }
@@ -99,16 +95,12 @@ class ContentReviewService {
             browserHistory.push('/reviews');
             NotificationService.addNotification(
               'Status changed successfully.',
-              null,
-              null,
               'success',
             );
           }
           if (this.submit.error) {
             NotificationService.addNotification(
               'Error changing status review.',
-              null,
-              null,
               'error',
             );
           }
@@ -121,11 +113,9 @@ class ContentReviewService {
     const comments = this.form.getValue('comments');
     if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
       NotificationService.addNotification(
-          'Please leave a comment to mark as reviewed',
-           null,
-           null,
-           'error',
-        );
+        'Please leave a comment to mark as reviewed',
+        'error',
+      );
       return;
     }
 
@@ -147,16 +137,12 @@ class ContentReviewService {
             browserHistory.push('/reviews');
             NotificationService.addNotification(
               'Unit reviewed successfully.',
-              null,
-              null,
               'success',
             );
           }
           if (this.submit.error) {
             NotificationService.addNotification(
               'Error reviewing unit.',
-              null,
-              null,
               'error',
             );
           }
@@ -169,10 +155,8 @@ class ContentReviewService {
     const comments = this.form.getValue('comments');
     if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
       NotificationService.addNotification(
-         'Please leave a comment to mark as done',
-          null,
-          null,
-          'error',
+        'Please leave a comment to mark as done',
+        'error',
       );
       return;
     }
@@ -194,16 +178,12 @@ class ContentReviewService {
             browserHistory.push('/reviews');
             NotificationService.addNotification(
               'Review done.',
-              null,
-              null,
               'success',
             );
           }
           if (this.submit.error) {
             NotificationService.addNotification(
               'Error changing status review.',
-              null,
-              null,
               'error',
             );
           }

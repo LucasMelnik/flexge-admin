@@ -23,7 +23,7 @@ const ContentReviewForm = props => (
         {(props.values.status === 'PENDING' && (props.values.createdBy !== localStorage.id || localStorage.role === 'ADMIN')) && (
           <div>
             <Button
-              icon="fa-comments-o"
+              icon="message"
               type="primary"
               label="Mark as reviewed"
               onClick={props.onSendToReviewed}
@@ -31,7 +31,7 @@ const ContentReviewForm = props => (
             />
             {' '}
             <Button
-              icon="fa-check-square-o"
+              icon="check-square-o"
               type="primary"
               label="Done"
               onClick={props.onSendToDone}
@@ -41,7 +41,7 @@ const ContentReviewForm = props => (
         )}
         {(props.values.status === 'PENDING' && (props.values.createdBy === localStorage.id || localStorage.role !== 'ADMIN')) && (
           <Button
-            icon="fa-comments-o"
+            icon="message"
             type="primary"
             label="Update Comment"
             onClick={props.onSendToPending}
@@ -50,7 +50,7 @@ const ContentReviewForm = props => (
         )}
         {(props.values.status === 'REVIEWED' && (props.values.createdBy === localStorage.id || localStorage.role === 'ADMIN')) && (
           <Button
-            icon="fa-comments-o"
+            icon="message"
             type="primary"
             label="Pending"
             onClick={props.onSendToPending}

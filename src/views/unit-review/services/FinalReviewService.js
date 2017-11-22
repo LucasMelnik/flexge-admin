@@ -22,16 +22,12 @@ class FinalReviewService {
         browserHistory.push('/reviews');
         NotificationService.addNotification(
           'Status changed successfully.',
-          null,
-          null,
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
           'Error changing status review.',
-          null,
-          null,
           'error',
         );
       }

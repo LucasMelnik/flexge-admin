@@ -31,9 +31,9 @@ import UnitFormSceneContainer from './views/module/components/unit/UnitFormScene
 import UnitItemListSceneContainer from './views/module/components/unit/unit-item/UnitItemListSceneContainer';
 import UnitItemFormSceneContainer from './views/module/components/unit/unit-item/UnitItemFormSceneContainer';
 import UnitReviewItemListSceneContainer from './views/module/components/unit/unit-item/UnitReviewItemListSceneContainer';
-//
-// import ReviewListSceneContainer from './views/unit-review/components/ReviewListSceneContainer';
-// import ReviewFormSceneContainer from './views/unit-review/components/ReviewFormSceneContainer';
+
+import ReviewListSceneContainer from './views/unit-review/components/ReviewListSceneContainer';
+import ReviewFormSceneContainer from './views/unit-review/components/ReviewFormSceneContainer';
 
 import PlacementTestListScene from './views/placement-test/components/PlacementTestListScene';
 import PlacementTestFormScene from './views/placement-test/components/PlacementTestFormScene';
@@ -56,7 +56,7 @@ import CharacterListScene from './views/character/components/CharacterListScene'
 import CharacterFormScene from './views/character/components/CharacterFormScene';
 import AchievementListScene from './views/achievement/components/AchievementListScene';
 import AchievementFormScene from './views/achievement/components/AchievementFormScene';
-//
+
 import FilterRecordScene from './views/reports/components/FilterRecordScene';
 import SchoolClassRecordScene from './views/reports/components/school-class/SchoolClassRecordScene';
 import StudentRecordScene from './views/reports/components/student/StudentRecordScene';
@@ -138,8 +138,8 @@ const Routes = () => (
       <Route path="placement-test" component={PlacementTestListScene} />
       <Route path="placement-test/new" component={PlacementTestFormScene} />
       <Route path="placement-test/:placementTestId" component={PlacementTestFormScene} />
-      {/*<Route path="reviews" component={ReviewListSceneContainer} />*/}
-      {/*<Route path="modules/:moduleId/units/:unitId/reviews/:reviewId" component={ReviewFormSceneContainer} />*/}
+      <Route path="reviews" component={ReviewListSceneContainer} />
+      <Route path="modules/:moduleId/units/:unitId/reviews/:reviewId" component={ReviewFormSceneContainer} />
       <Route path="practice-tests" component={PracticeTestFormScene} />
       <Route path="admin-users" component={AdminUserListScene} />
       <Route path="admin-users/new" component={AdminUserFormScene} />
