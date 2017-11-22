@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Select from '../../../core-ant/Select';
 import ColumnSeparator from '../../../core/layout/ColumnSeparator';
-import FetchSelect from '../../../core-ant/FetchSelect';
+import FetchSelect from '../../../core/form/FetchSelect';
+import Select from '../../../core/form/Select';
 
 const ItemAudioListFilter = props => (
   <div
