@@ -4,79 +4,65 @@ import get from 'lodash/get';
 import TextInput from '../../../core/form/TextInput';
 import FetchSelect from '../../../core/form/FetchSelect';
 import Button from '../../../core/form/Button';
+import Row from '../../../core/layout/Row';
+import Column from '../../../core/layout/Column';
 
 const StudentListFilter = props => (
-  <div
-    style={{
-      display: 'flex',
-    }}
-  >
-    <div
-      style={{
-        marginRight: 10,
-        width: '20%',
-      }}
-    >
+  <Row>
+    <Column size={3}>
       <TextInput
         label="Name"
         placeholder="Name student"
         value={get(props.values, 'name', '')}
         onChange={name => props.onChange('name', name)}
-        description={get(props.errors, 'name', '')}
-        fieldValidation={get(props.errors, 'name', null) && 'error'}
-        height={36}
+        disabled={props.fetching}
       />
-    </div>
-    <div
-      style={{
-        marginRight: 10,
-        width: '20%',
-      }}
-    >
+    </Column>
+    <Column size={3}>
       <TextInput
         label="Email"
         placeholder="Email student"
         value={get(props.values, 'email', '')}
         onChange={email => props.onChange('email', email)}
-        height={36}
+        disabled={props.fetching}
       />
-    </div>
-    {!props.hasSchoolClass && (
+    </Column>
+    <Column size={4}>
       <FetchSelect
         url="/schools"
         label="School"
+        disabled={props.fetching}
         value={get(props.values, 'school', '')}
         onChange={school => props.onChange('school', school)}
-        description={get(props.errors, 'school', '')}
-        fieldValidation={get(props.errors, 'school', null) && 'error'}
+        errorText={get(props.errors, 'school', '')}
         resultTransformer={{
           text: 'name',
           value: 'id',
         }}
       />
-    )}
-    <div
-      style={{
-        marginLeft: 10,
-        marginTop: 33,
-      }}
-    >
+    </Column>
+    <Column size={2}>
+      <div style={{ height: 33 }} />
       <Button
-        icon="fa-search"
+        icon="search"
         label="Search"
-        type="default"
         onClick={props.onSearch}
       />
-    </div>
-  </div>
+    </Column>
+  </Row>
 );
 
 StudentListFilter.propTypes = {
   values: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
-  hasSchoolClass: PropTypes.bool.isRequired,
+  errors: PropTypes.object,
   fetching: PropTypes.bool,
-  onSearch: PropTypes.func,
+  onSearch: PropTypes.func.isRequired,
+};
+
+StudentListFilter.defaultProps = {
+  errors: {},
+  fetching: false,
 };
 
 export default StudentListFilter;
