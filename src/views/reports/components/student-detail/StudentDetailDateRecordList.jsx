@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import Table from '../../../../core-ant/Table';
+import Table from '../../../../core/form/Table';
 
 const StudentDetailDateRecordList = props => (
   <Table
@@ -38,7 +38,7 @@ const StudentDetailDateRecordList = props => (
         path: 'unit.module.course.name',
       },
     ]}
-    dataSource={props.contents}
+    rows={props.contents}
   />
 );
 

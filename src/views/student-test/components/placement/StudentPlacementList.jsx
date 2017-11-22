@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Async from '../../../../core/layout/Async';
 import Table from '../../../../core/form/Table';
 import Button from '../../../../core/form/Button';
 import StudentPlacementItemList from './StudentPlacementItemList';

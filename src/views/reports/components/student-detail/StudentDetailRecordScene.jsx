@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Tabs from '../../../../core-ant/Tabs';
+import Tabs from '../../../../core/layout/Tabs';
+import Card from '../../../../core/layout/Card';
 import StudentDetailContentRecordListContainer from './StudentDetailContentRecordListContainer';
-import Card from '../../../../core-ant/Card';
 import StudentDetailDateRecordListContainer from './StudentDetailDateRecordListContainer';
 
 const StudentDetailRecordScene = props => (

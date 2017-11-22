@@ -27,3 +27,7 @@ html, body, #root {
     height: 28px;
     line-height: 26px;
 }
+
+.ant-tabs-bar {
+    margin-bottom: 0;
+}

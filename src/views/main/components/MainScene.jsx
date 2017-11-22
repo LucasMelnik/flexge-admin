@@ -70,16 +70,16 @@ const MainScene = props => (
           allowedFor={['ADMIN']}
           items={[
             {
-              label: 'Company Users',
-              link: '/users',
-            },
-            {
               label: 'Admin Users',
               link: '/admin-users',
             },
             {
               label: 'Distributor Users',
               link: '/distributor-users',
+            },
+            {
+              label: 'Company Users',
+              link: '/users',
             },
           ]}
         />
@@ -133,7 +133,7 @@ const MainScene = props => (
             },
             {
               label: 'Records',
-              link: '/records/schools',
+              link: '/records/filters',
             },
             {
               label: 'Approved Images Records',

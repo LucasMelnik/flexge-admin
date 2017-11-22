@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import Table from '../../../../core-ant/Table';
+import Table from '../../../../core/form/Table';
 import Separator from '../../../../core/layout/Separator';
 
 const StudentRecordList = props => (
@@ -336,7 +336,8 @@ const StudentRecordList = props => (
           },
         },
       ]}
-      dataSource={props.students}
+      rows={props.students}
+      selectable
       onSelect={props.onSelect}
     />
     <Separator />
@@ -477,7 +478,7 @@ const StudentRecordList = props => (
           },
         },
       ]}
-      dataSource={props.totalValues}
+      rows={props.totalValues}
     />
   </div>
 );
