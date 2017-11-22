@@ -63,7 +63,7 @@ import StudentRecordScene from './views/reports/components/student/StudentRecord
 import StudentDetailRecordScene from './views/reports/components/student-detail/StudentDetailRecordScene';
 // import UnitImageRecordScene from './views/reports/components/unit-image/UnitImageRecordScene';
 // import UnitItemErrorRecordScene from './views/reports/components/unit-error/UnitItemErrorRecordScene';
-// import ItemAudioListScene from './views/item-audio/components/ItemAudioListScene';
+import ItemAudioListScene from './views/item-audio/components/ItemAudioListScene';
 
 import AdminUserListScene from './views/user/components/AdminUserListScene';
 import AdminUserFormScene from './views/user/components/AdminUserFormScene';
@@ -176,7 +176,7 @@ const Routes = () => (
       <Route path="records/students/:studentId/detail" component={StudentDetailRecordScene} />
       {/*<Route path="records/unit-images" component={UnitImageRecordScene} />*/}
       {/*<Route path="records/unit-errors" component={UnitItemErrorRecordScene} />*/}
-      {/*<Route path="item-audios" component={ItemAudioListScene} />*/}
+      <Route path="item-audios" component={ItemAudioListScene} />
       <Route path="achievements" component={AchievementListScene} />
       <Route path="achievements/new" component={AchievementFormScene} />
       <Route path="achievements/:achievementId" component={AchievementFormScene} />
