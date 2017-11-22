@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from '../../../../core-ant/Table';
-import UnitItemErrorListFilterContainer from './UnitItemErrorListFilterContainer';
 import Separator from '../../../../core/layout/Separator';
+import Table from '../../../../core/form/Table';
+import UnitItemErrorListFilterContainer from './UnitItemErrorListFilterContainer';
 
 const UnitItemErrorsRecordList = props => (
   <div>
@@ -47,7 +47,8 @@ const UnitItemErrorsRecordList = props => (
           },
         },
       ]}
-      dataSource={props.items}
+      rows={props.items}
+      selectable
       onSelect={row => window.open(`/modules/${row.module.id}/units/${row.unit.id}/items/`, '_blank')}
     />
   </div>
