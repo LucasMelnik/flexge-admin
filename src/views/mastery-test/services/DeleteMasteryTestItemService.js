@@ -1,6 +1,7 @@
 import { action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 import MasteryTestListItemsService from './MasteryTestListItemsService';
 
 class DeleteMasteryTestItemService {
@@ -15,6 +16,7 @@ class DeleteMasteryTestItemService {
           url: `/mastery-tests/${masteryTestItem.masteryTest}/items/${masteryTestItem.item.id}`,
           method: 'delete',
         }).then(() => {
+          NotificationService.addNotification('Mastery test item deleted', 'success');
           MasteryTestListItemsService.handleLoad(masteryTestItem.masteryTest);
         });
       });
