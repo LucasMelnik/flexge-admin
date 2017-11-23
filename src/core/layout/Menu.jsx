@@ -35,7 +35,10 @@ export default class Menu extends Component {
         selectedKeys={[this.state.current]}
         openKeys={this.state.openSubMenu}
         triggerSubMenuAction="click"
-        style={{ lineHeight: '64px' }}
+        style={{
+          display: 'inline-block',
+          lineHeight: '64px',
+        }}
       >
         {this.props.children}
       </AntMenu>

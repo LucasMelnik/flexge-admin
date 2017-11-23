@@ -5,6 +5,7 @@ import Menu from '../../../core/layout/Menu';
 import MenuItem from '../../../core/layout/MenuItem';
 import SubMenu from '../../../core/layout/SubMenu';
 import ConfirmDialogContainer from './ConfirmDialogContainer';
+import Button from '../../../core/form/Button';
 
 const MainScene = props => (
   <Layout>
@@ -161,6 +162,19 @@ const MainScene = props => (
           ]}
         />
       </Menu>
+      <div
+        style={{
+          float: 'right',
+        }}
+      >
+        <Button
+          icon="poweroff"
+          onClick={() => {
+            localStorage.clear();
+            window.location.reload();
+          }}
+        />
+      </div>
     </Layout.Header>
     <Layout.Content
       style={{
