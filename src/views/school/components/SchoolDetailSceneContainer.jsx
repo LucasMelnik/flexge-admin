@@ -15,30 +15,31 @@ class SchoolDetailSceneContainer extends Component {
   };
 
   baseUrl = '';
+  schoolDetailService = new SchoolDetailService();
 
   componentWillMount() {
     if (this.props.params.distributorId) {
-      SchoolDetailService.handleLoadDistributor(this.props.params.distributorId);
+      this.schoolDetailService.handleLoadDistributor(this.props.params.distributorId);
       this.baseUrl += `/distributors/${this.props.params.distributorId}`;
     }
     if (this.props.params.companyId) {
-      SchoolDetailService.handleLoadCompany(this.props.params.companyId);
+      this.schoolDetailService.handleLoadCompany(this.props.params.companyId);
       this.baseUrl += `/companies/${this.props.params.companyId}`;
     }
-    SchoolDetailService.handleLoadSchool(this.props.params.schoolId);
+    this.schoolDetailService.handleLoadSchool(this.props.params.schoolId);
     this.baseUrl += `/schools/${this.props.params.schoolId}`;
   }
 
   render() {
     return (
       <SchoolDetailScene
-        school={SchoolDetailService.school}
-        company={SchoolDetailService.company}
-        distributor={SchoolDetailService.distributor}
+        school={this.schoolDetailService.school}
+        company={this.schoolDetailService.company}
+        distributor={this.schoolDetailService.distributor}
         fetching={
-          SchoolDetailService.fetchSchool.fetching ||
-          SchoolDetailService.fetchCompany.fetching ||
-          SchoolDetailService.fetchDistributor.fetching
+          this.schoolDetailService.fetchSchool.fetching ||
+          this.schoolDetailService.fetchCompany.fetching ||
+          this.schoolDetailService.fetchDistributor.fetching
         }
         baseUrl={this.baseUrl}
       />

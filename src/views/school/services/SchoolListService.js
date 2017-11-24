@@ -60,8 +60,13 @@ class SchoolListService {
           url: `/schools/${school.id}`,
           method: 'delete',
         }).then(() => {
-          this.load();
-          NotificationService.addNotification('School deleted successfully.', 'success');
+          if (this.fetch.data) {
+            NotificationService.addNotification('School deleted successfully.', 'success');
+            this.load();
+          }
+          if (this.fetch.error) {
+            NotificationService.addNotification(this.fetch.error, 'error');
+          }
         });
       });
   });

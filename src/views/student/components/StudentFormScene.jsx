@@ -49,7 +49,7 @@ const StudentFormScene = props => (
     />
     <Card
       title={props.studentId ? 'Update Student' : 'Create Student'}
-      loading={props.fetching}
+      loading={props.fetching || !props.class.id || !props.school.id}
       actions={
         (
           <Button

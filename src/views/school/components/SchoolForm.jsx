@@ -38,7 +38,7 @@ const SchoolForm = props => (
           <FetchSelect
             url="/companies"
             fullWidth
-            disabled={props.submitting}
+            disabled={props.submitting || props.disableCompany}
             label="Company"
             value={get(props.values, 'company', '')}
             onChange={(company) => {
@@ -152,6 +152,7 @@ SchoolForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
+  disableCompany: PropTypes.bool,
   isDirty: PropTypes.func,
   states: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
@@ -160,10 +161,10 @@ SchoolForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
+  disableCompany: false,
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
   onReset: () => false,
-  onChange: () => false,
 };
 
 export default SchoolForm;

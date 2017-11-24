@@ -1,7 +1,7 @@
 import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
-class SchoolDetailService {
+export default class SchoolDetailService {
   fetchSchool = new FetchService();
   fetchDistributor = new FetchService();
   fetchCompany = new FetchService();
@@ -38,7 +38,3 @@ class SchoolDetailService {
     });
   });
 }
-
-const schoolDetailService = new SchoolDetailService();
-
-export default schoolDetailService;

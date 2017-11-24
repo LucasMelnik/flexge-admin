@@ -10,14 +10,16 @@ class SchoolFormContainer extends Component {
 
   static propTypes = {
     schoolId: PropTypes.string,
+    currentCompany: PropTypes.string,
   };
 
   static defaultProps = {
     schoolId: null,
+    currentCompany: null,
   };
 
   componentWillMount() {
-    SchoolFormService.init(this.props.schoolId);
+    SchoolFormService.init(this.props.schoolId, this.props.currentCompany);
   }
 
   render() {
@@ -31,8 +33,9 @@ class SchoolFormContainer extends Component {
         submitting={SchoolFormService.submit.fetching}
         isDirty={SchoolFormService.form.isDirty}
         states={toJS(StateService.states)}
+        disableCompany={!!this.props.currentCompany}
       />
-    )
+    );
   }
 }
 

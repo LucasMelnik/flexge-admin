@@ -42,8 +42,14 @@ class MasteryTestListService {
           url: `/modules/${moduleId}/mastery-tests/${masteryTestId}`,
           method: 'delete',
         }).then(() => {
-          NotificationService.addNotification('Mastery test deleted.', 'success');
-          this.handleLoad(moduleId);
+          if (this.fetch.data) {
+            NotificationService.addNotification('Mastery test deleted.', 'success');
+            this.handleLoad(moduleId);
+          }
+          if (this.fetch.error) {
+            NotificationService.addNotification(this.fetch.error, 'error');
+          }
+
         });
       });
   });

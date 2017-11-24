@@ -8,6 +8,7 @@ import Breadcrumb from '../../../core/layout/Breadcrumb';
 import MasteryTestListContainer from '../../mastery-test/components/MasteryTestListContainer';
 import UnitListContainer from './unit/UnitListContainer';
 import UnitListFilterContainer from './unit/UnitListFilterContainer';
+import Alert from '../../../core/layout/Alert';
 
 const ModuleDetailScene = props => (
   <div>
@@ -25,9 +26,13 @@ const ModuleDetailScene = props => (
       ]}
     />
     {props.module.educationGoal && (
-      <Card title="Educational Goal">
-        <p>{props.module.educationGoal}</p>
-      </Card>
+      <div>
+        <Alert
+          title="Educational Goal"
+          description={props.module.educationGoal}
+        />
+        <Separator />
+      </div>
     )}
     <Card
       title="Mastery test"
