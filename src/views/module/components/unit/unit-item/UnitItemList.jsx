@@ -85,6 +85,7 @@ const UnitItemList = props => (
         label: 'Type',
         path: 'item.type.name',
         width: '150px',
+        sort: true,
       },
       {
         label: 'Time',

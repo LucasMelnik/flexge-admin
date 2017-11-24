@@ -17,20 +17,24 @@ const ToReviewList = props => (
         {
           label: 'Name',
           path: 'unit.name',
+          sort: true,
         },
         {
           label: 'Course',
           path: 'unit.module.course.name',
           width: '80px',
+          sort: true,
         },
         {
           label: 'Module',
           path: 'unit.module.name',
+          sort: true,
         },
         {
           label: 'Unit Type',
           path: 'unit.type.name',
           width: '100px',
+          sort: true,
         },
         {
           label: 'Unit creator',
@@ -45,6 +49,7 @@ const ToReviewList = props => (
         {
           label: 'Status content',
           path: 'review.status',
+          sort: true,
           render: (cell, row) => (
             <StatusItem
               color={{
@@ -61,6 +66,7 @@ const ToReviewList = props => (
         {
           label: 'Status format',
           path: 'review.statusFormat',
+          sort: true,
           render: (cell, row) => (
             <StatusItem
               color={{
@@ -77,6 +83,7 @@ const ToReviewList = props => (
         {
           label: 'Status image',
           path: 'review.statusImage',
+          sort: true,
           render: (cell, row) => {
             if (row.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))) {
               return (

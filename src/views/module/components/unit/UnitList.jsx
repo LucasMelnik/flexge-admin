@@ -52,6 +52,7 @@ const UnitList = props => (
         label: 'Unit Type',
         path: 'type.name',
         width: '135px',
+        sort: true,
       },
       {
         label: 'Status content',
