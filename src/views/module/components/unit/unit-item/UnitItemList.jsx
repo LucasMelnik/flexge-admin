@@ -97,7 +97,7 @@ const UnitItemList = props => (
         label: 'Actions',
         path: 'action',
         width: props.disabled ? '0px' : '150px',
-        render: (cell, row, extraData, index) => {
+        render: (cell, row, index) => {
           if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
             return (
               <div>

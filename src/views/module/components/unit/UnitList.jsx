@@ -121,7 +121,7 @@ const UnitList = props => (
         label: 'Actions',
         path: 'action',
         width: props.allowReorder ? '180px' : '85px',
-        render: (cell, row, extraData, index) => (
+        render: (cell, row, index) => (
           <div>
             {(row.createdBy === localStorage.id || localStorage.role === 'ADMIN') && (
               <Button

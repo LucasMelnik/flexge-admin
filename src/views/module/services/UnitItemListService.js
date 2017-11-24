@@ -41,13 +41,13 @@ class UnitItemListService {
       body: {
         order,
         group,
-      }
+      },
     }).then(() => {
       this.load();
     });
   });
 
-  handleAutoReorder = action((startIndex, action) => {
+  handleAutoReorder = action((startIndex, sortAction) => {
     this.reorderSubmitting = true;
 
     const reorderPromises = [];
@@ -56,9 +56,9 @@ class UnitItemListService {
         group: unitItem.group,
       };
 
-      if (action === 'ADD_LINE' && index >= startIndex) {
+      if (sortAction === 'ADD_LINE' && index >= startIndex) {
         body.order = unitItem.order + 1;
-      } else if (action === 'REMOVE_LINE' && index >= startIndex) {
+      } else if (sortAction === 'REMOVE_LINE' && index >= startIndex) {
         body.order = unitItem.order - 1;
       }
 
@@ -67,7 +67,7 @@ class UnitItemListService {
           url: `/units/${unitItem.unit}/items/${unitItem.item.id}`,
           method: 'put',
           body,
-        })
+        }),
       );
     });
 
