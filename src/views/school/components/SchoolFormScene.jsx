@@ -56,6 +56,7 @@ const SchoolFormScene = props => (
     >
       <SchoolFormContainer
         schoolId={props.schoolId}
+        currentCompany={props.currentCompany}
       />
     </Card>
   </div>
@@ -66,12 +67,14 @@ SchoolFormScene.propTypes = {
   distributor: PropTypes.object,
   company: PropTypes.object,
   schoolId: PropTypes.string,
+  currentCompany: PropTypes.string,
 };
 
 SchoolFormScene.defaultProps = {
   distributor: {},
   company: {},
   schoolId: null,
+  currentCompany: null,
 };
 
 export default SchoolFormScene;

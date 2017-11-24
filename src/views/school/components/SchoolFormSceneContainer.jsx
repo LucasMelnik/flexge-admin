@@ -14,13 +14,15 @@ class SchoolFormSceneContainer extends Component {
     }).isRequired,
   };
 
+  schoolDetailService = new SchoolDetailService();
+
   componentWillMount() {
     if (this.props.params.distributorId) {
-      SchoolDetailService.handleLoadDistributor(this.props.params.distributorId);
+      this.schoolDetailService.handleLoadDistributor(this.props.params.distributorId);
     }
 
     if (this.props.params.companyId) {
-      SchoolDetailService.handleLoadCompany(this.props.params.companyId);
+      this.schoolDetailService.handleLoadCompany(this.props.params.companyId);
     }
   }
 
@@ -28,11 +30,12 @@ class SchoolFormSceneContainer extends Component {
     return (
       <SchoolFormScene
         schoolId={this.props.params.schoolId}
-        company={SchoolDetailService.company}
-        distributor={SchoolDetailService.distributor}
+        currentCompany={this.props.params.companyId}
+        company={this.schoolDetailService.company}
+        distributor={this.schoolDetailService.distributor}
         fetching={
-          SchoolDetailService.fetchCompany.fetching ||
-          SchoolDetailService.fetchDistributor.fetching
+          this.schoolDetailService.fetchCompany.fetching ||
+          this.schoolDetailService.fetchDistributor.fetching
         }
       />
     );
