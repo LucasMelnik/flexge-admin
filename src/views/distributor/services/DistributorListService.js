@@ -51,8 +51,13 @@ class DistributorListService {
           url: `/distributors/${distributor.id}`,
           method: 'delete',
         }).then(() => {
-          NotificationService.addNotification(`Distributor "${distributor.name}" deleted successfully.`, 'success');
-          this.load();
+          if (this.fetch.data) {
+            NotificationService.addNotification(`Distributor "${distributor.name}" deleted successfully.`, 'success');
+            this.load();
+          }
+          if (this.fetch.error) {
+            NotificationService.addNotification(this.fetch.error, 'error');
+          }
         }).catch(() => NotificationService.addNotification('Error deleting the distributor.', 'error'));
       });
   });

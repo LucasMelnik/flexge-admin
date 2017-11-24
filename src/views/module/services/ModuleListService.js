@@ -54,8 +54,13 @@ class ModuleListService {
           url: `/modules/${module.id}`,
           method: 'delete',
         }).then(() => {
-          NotificationService.addNotification(`Module ${module.name} deleted.`, 'success');
-          this.load();
+          if (this.fetch.data) {
+            NotificationService.addNotification(`Module ${module.name} deleted.`, 'success');
+            this.load();
+          }
+          if (this.fetch.error) {
+            NotificationService.addNotification(this.fetch.error, 'error');
+          }
         });
       });
   });

@@ -51,8 +51,13 @@ class CharacterListService {
           url: `/characters/${character.id}`,
           method: 'delete',
         }).then(() => {
-          NotificationService.addNotification(`Character "${character.name}" deleted successfully.`, 'success');
-          this.load();
+          if (this.fetch.data) {
+            NotificationService.addNotification(`Character "${character.name}" deleted successfully.`, 'success');
+            this.load();
+          }
+          if (this.fetch.error) {
+            NotificationService.addNotification(this.fetch.error, 'error');
+          }
         });
       });
   });
