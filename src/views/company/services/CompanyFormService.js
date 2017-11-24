@@ -46,7 +46,7 @@ class CompanyFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      window.showErrorMessage('Fill the required fields');
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const companyId = this.form.getValue('id');
@@ -70,15 +70,10 @@ class CompanyFormService {
         }
         this.form.setInitialValues(company);
 
-        window.showSuccess(`Company ${companyId ? 'updated' : 'created'} successfully.`);
+        NotificationService.addNotification(`Company ${companyId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
-        NotificationService.addNotification(
-          `Error ${companyId ? 'updating' : 'creating'} company.`,
-          null,
-          null,
-          'error',
-        );
+        NotificationService.addNotification( `Error ${companyId ? 'updating' : 'creating'} company.`, 'error');
       }
     });
   });

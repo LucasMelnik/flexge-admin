@@ -1,5 +1,4 @@
 import React from 'react';
-import Flex from 'jsxstyle/Flex';
 import Separator from '../../../core/layout/Separator';
 import Card from '../../../core/layout/Card';
 import UnitTypeAmountsListContainer from './UnitTypeAmountsListContainer';
@@ -18,51 +17,68 @@ const DashboardScene = () => (
         <DashboardFilterContainer />
       </Card>
       <Separator size="sm" />
-      <Flex
-        justifyContent="space-between"
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
       >
-        <Flex
-          width="49.3%"
+        <div
+          style={{
+            width: '49.3%',
+          }}
         >
           <Card title="Unit Type Amounts">
             <UnitTypeAmountsListContainer />
           </Card>
-        </Flex>
-        <Flex
-          flexDirection="column"
-          justifyContent="space-between"
-          width="49.3%"
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: 'column',
+            width: '49.3%',
+          }}
         >
-          <Flex
-            flexDirection="column"
-            boxShadow="rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px"
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px',
+            }}
           >
             <Card title="Time Amounts">
               <TimeAmountsListContainer />
             </Card>
-          </Flex>
+          </div>
           <Separator />
-          <Flex
-            flexDirection="column"
-            boxShadow="rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px"
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px',
+            }}
           >
             <Card title="Difficulty Level Amounts">
               <DifficultyLevelAmountsListContainer />
               <DifficultyLevelAverageContainer />
             </Card>
-          </Flex>
+          </div>
           <Separator />
-          <Flex
-            flexDirection="column"
-            boxShadow="rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px"
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px',
+            }}
           >
             <Card title="Score To Pass Amounts">
               <ScoreToPassAmountsListContainer />
               <ScoreToPassAverageContainer />
             </Card>
-          </Flex>
-        </Flex>
-      </Flex>
+          </div>
+        </div>
+      </div>
       <Separator size="sm" />
     </div>
   )

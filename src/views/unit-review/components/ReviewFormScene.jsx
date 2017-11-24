@@ -42,7 +42,7 @@ const ReviewFormScene = props => {
         title="Unit"
         actions={
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back to reviews"
             onClick={() => browserHistory.push('/reviews')}
           />

@@ -9,22 +9,22 @@ import Card from '../../../core/layout/Card';
 const CompanyFormScene = props => (
   <div>
     <Breadcrumb
+      fetching={props.fetching}
       crumbs={[
-        ...(props.distributorId) ? [
+        ...(props.distributor && props.distributor.name) ? [
           {
             text: 'Distributors',
             link: '/distributors',
           },
           {
-            text: props.distributor ? `Distributor - ${props.distributor.name}` : 'loading...',
-            link: `/distributor-detail/${props.distributorId}`,
+            text: `Distributor - ${props.distributor.name}`,
+            link: `/distributors/${props.distributor.id}/details`,
           },
-        ] : [
-          {
-            text: 'Companies',
-            link: '/companies',
-          }
-        ],
+        ] : [],
+        {
+          text: 'Companies',
+          link: '/companies',
+        },
         {
           text: `${props.companyId ? 'Edit Company' : 'Create Company'}`,
         },
@@ -32,10 +32,11 @@ const CompanyFormScene = props => (
     />
     <Card
       title={props.companyId ? 'Edit Company' : 'Create Company'}
+      loading={props.fetching}
       actions={
         (
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back"
             type="default"
             onClick={() => browserHistory.goBack()}
@@ -49,13 +50,14 @@ const CompanyFormScene = props => (
 );
 
 CompanyFormScene.propTypes = {
-  distributorId: PropTypes.string,
+  fetching: PropTypes.bool.isRequired,
   companyId: PropTypes.string,
+  distributor: PropTypes.object,
 };
 
 CompanyFormScene.defaultProps = {
-  distributorId: null,
   companyId: null,
+  distributor: {},
 };
 
 export default CompanyFormScene;

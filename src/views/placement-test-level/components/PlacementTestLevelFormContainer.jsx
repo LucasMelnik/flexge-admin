@@ -27,7 +27,6 @@ class PlacementTestLevelFormContainer extends Component {
         values={PlacementTestLevelFormService.form.getValues()}
         errors={PlacementTestLevelFormService.form.errors}
         submitting={PlacementTestLevelFormService.fetch.fetching}
-        error={PlacementTestLevelFormService.submit.error}
         isDirty={PlacementTestLevelFormService.form.isDirty}
       />
     );

@@ -21,7 +21,7 @@ class UserFormService {
     };
   }
 
-  handleLoad = action((userId, companyId) => {
+  handleLoad = action((userId, companyId, distributorId) => {
     this.form.reset();
     if (userId) {
       this.fetch.fetch({
@@ -30,13 +30,25 @@ class UserFormService {
         if (this.fetch.data) {
           const data = {
             ...this.fetch.data,
-            company: companyId,
+            ...companyId && {
+              company: companyId,
+            },
+            ...distributorId && {
+              distributor: distributorId,
+            },
           };
           this.form.setInitialValues(data);
         }
       });
     } else {
-      this.form.setInitialValues({ company: companyId });
+      this.form.setInitialValues({
+        ...companyId && {
+          company: companyId,
+        },
+        ...distributorId && {
+          distributor: distributorId,
+        },
+      });
     }
     this.userId = userId;
   });
@@ -49,7 +61,7 @@ class UserFormService {
     };
     this.form.submitted = true;
     if (this.form.errors) {
-      window.showErrorMessage('Fill the required fields');
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const userId = this.form.getValue('id');
@@ -68,7 +80,7 @@ class UserFormService {
         if (user.role === 'ADMIN' || user.role === 'CONTENT_ADMIN' || user.role === 'IMAGE_ADMIN' || user.role === 'AUDIO_CONTENT') {
           browserHistory.push(`/admin-users/${user.id}`);
         } else if (user.role === 'DISTRIBUTOR_MANAGER') {
-          browserHistory.push(`/companies/${user.company.id}/distributor-users/${user.id}`);
+          browserHistory.push(`/distributors/${user.distributor.id}/users/${user.id}`);
         } else {
           browserHistory.push(`/companies/${user.company.id}/users/${user.id}`);
         }
@@ -82,8 +94,6 @@ class UserFormService {
         });
         NotificationService.addNotification(
           `User ${userId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
           'success',
         );
       }
@@ -91,15 +101,11 @@ class UserFormService {
         if (this.submit.error && this.submit.error.indexOf('E11000') > -1) {
           NotificationService.addNotification(
             'We already have an user with this email.',
-            null,
-            null,
             'error',
           );
         } else {
           NotificationService.addNotification(
             `Error ${userId ? 'updating' : 'creating'} student.`,
-            null,
-            null,
             'error',
           );
         }

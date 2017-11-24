@@ -6,11 +6,10 @@ import Button from '../../../core/form/Button';
 import FetchSelect from '../../../core/form/FetchSelect';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
-import Separator from '../../../core/layout/Separator';
 
 const ModuleListFilter = props => (
   <Row>
-    <Column lgSize={6} mdSize={6} smSize={6}>
+    <Column size={6}>
       <TextInput
         label="Search modules"
         value={props.values.filter}
@@ -18,7 +17,7 @@ const ModuleListFilter = props => (
         disabled={props.fetching}
       />
     </Column>
-    <Column lgSize={4} mdSize={4} smSize={4}>
+    <Column size={4}>
       <FetchSelect
         url="/courses"
         disabled={props.fetching}
@@ -31,12 +30,11 @@ const ModuleListFilter = props => (
         }}
       />
     </Column>
-    <Column lgSize={2} mdSize={2} smSize={2}>
-      <Separator size="md" />
+    <Column size={2}>
+      <div style={{ height: 33 }} />
       <Button
         label="Search"
-        icon="fa-search"
-        type="primary"
+        icon="search"
         onClick={props.onSearch}
       />
     </Column>

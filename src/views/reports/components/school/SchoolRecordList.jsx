@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from '../../../../core-ant/Table';
 import moment from 'moment';
+import Table from '../../../../core/form/Table';
 
 const SchoolRecordList = props => (
   <Table
@@ -38,7 +38,8 @@ const SchoolRecordList = props => (
         label: 'Status',
       },
     ]}
-    dataSource={props.schools}
+    rows={props.schools}
+    selectable
     onSelect={props.onSelect}
   />
 );

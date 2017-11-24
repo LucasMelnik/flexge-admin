@@ -38,11 +38,10 @@ class RegionFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      window.showErrorMessage('Fill the required fields');
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const regionId = this.form.getValue('id');
-    console.log(regionId, "REGIONID")
     this.submit.fetch({
       method: regionId ? 'put' : 'post',
       url: regionId ? `/regions/${regionId}` : '/regions',
@@ -56,15 +55,10 @@ class RegionFormService {
         this.form.reset();
         this.form.setInitialValues(region);
 
-        window.showSuccess(`Region ${regionId ? 'updated' : 'created'} successfully.`);
+        NotificationService.addNotification(`Region ${regionId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
-        NotificationService.addNotification(
-          `Error ${regionId ? 'updating' : 'creating'} region.`,
-          null,
-          null,
-          'error',
-        );
+        NotificationService.addNotification(`Error ${regionId ? 'updating' : 'creating'} region.`, 'error');
       }
     });
   });

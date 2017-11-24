@@ -3,6 +3,7 @@ import { orderBy } from 'lodash';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class ModuleListService {
   fetch = new FetchService();
@@ -53,6 +54,7 @@ class ModuleListService {
           url: `/modules/${module.id}`,
           method: 'delete',
         }).then(() => {
+          NotificationService.addNotification(`Module ${module.name} deleted.`, 'success');
           this.load();
         });
       });

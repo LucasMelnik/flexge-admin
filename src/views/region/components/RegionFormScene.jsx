@@ -11,16 +11,16 @@ const RegionFormScene = props => (
     <Breadcrumb
       crumbs={[
         {
-          text: `${props.regionId ? 'Edit Region' : 'Create Region'}`,
+          text: `${props.params.regionId ? 'Edit Region' : 'Create Region'}`,
         },
       ]}
     />
     <Card
-      title={props.regionId ? 'Edit Region' : 'Create Region'}
+      title={props.params.regionId ? 'Edit Region' : 'Create Region'}
       actions={
         (
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back"
             type="default"
             onClick={() => browserHistory.goBack()}
@@ -28,17 +28,19 @@ const RegionFormScene = props => (
         )
       }
     >
-      <RegionFormContainer regionId={props.regionId} />
+      <RegionFormContainer regionId={props.params.regionId} />
     </Card>
   </div>
 );
 
 RegionFormScene.propTypes = {
-  regionId: PropTypes.string,
+  params: PropTypes.shape({
+    regionId: PropTypes.string,
+  }),
 };
 
 RegionFormScene.defaultProps = {
-  regionId: null,
+  params: null,
 };
 
 export default RegionFormScene;

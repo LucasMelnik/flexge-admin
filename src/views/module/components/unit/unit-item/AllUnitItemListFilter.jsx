@@ -10,7 +10,7 @@ import Separator from '../../../../../core/layout/Separator';
 
 const AllUnitItemListFilter = props => (
   <Row>
-    <Column lgSize={4}>
+    <Column size={4}>
       <TextInput
         label="Search by text"
         value={props.values.text}
@@ -18,7 +18,7 @@ const AllUnitItemListFilter = props => (
         disabled={props.fetching}
       />
     </Column>
-    <Column lgSize={3}>
+    <Column size={3}>
       <FetchSelect
         url="item-types"
         disabled={props.fetching}
@@ -31,7 +31,7 @@ const AllUnitItemListFilter = props => (
         }}
       />
     </Column>
-    <Column lgSize={3}>
+    <Column size={3}>
       <FetchSelect
         url="grammars"
         disabled={props.fetching}
@@ -44,11 +44,12 @@ const AllUnitItemListFilter = props => (
         }}
       />
     </Column>
-    <Column lgSize={2}>
+    <Column size={2}>
       <Separator size="md" />
       <Button
+        type="primary"
         label="Search"
-        icon="fa-search"
+        icon="search"
         onClick={props.onSearch}
       />
     </Column>

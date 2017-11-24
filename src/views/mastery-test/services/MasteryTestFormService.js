@@ -35,6 +35,7 @@ class MasteryTestFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const masteryTestId = this.form.getValue('id');
@@ -55,16 +56,12 @@ class MasteryTestFormService {
         browserHistory.push(`/modules/${moduleId}/mastery-tests/${masteryTest.id}`);
         NotificationService.addNotification(
           `Mastery Test ${masteryTestId ? 'updated' : 'created'} successfully.`,
-          null,
-          null,
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
           `Error ${masteryTestId ? 'updating' : 'creating'} Mastery Test.`,
-          null,
-          null,
           'error',
         );
       }

@@ -33,8 +33,6 @@ class ItemAudioStatusService {
     if (this.form.errors || commentsAudios.length === 0 || commentsAudios === '<p><br></p>') {
       NotificationService.addNotification(
         'Please leave a comment to mark as reviewed',
-        null,
-        null,
         'error',
       );
       return;
@@ -52,8 +50,6 @@ class ItemAudioStatusService {
       if (this.submit.data) {
         NotificationService.addNotification(
           'Audio uploaded.',
-          null,
-          null,
           'success',
         );
         this.isOpen = false;
@@ -63,8 +59,6 @@ class ItemAudioStatusService {
       if (this.submit.error) {
         NotificationService.addNotification(
           'Error to update the audio',
-          null,
-          null,
           'error',
         );
       }

@@ -73,8 +73,6 @@ class ItemAudioListService {
       if (this.submit.data) {
         NotificationService.addNotification(
           'Audio uploaded.',
-          null,
-          null,
           'success',
         );
         this.load();
@@ -82,8 +80,6 @@ class ItemAudioListService {
       if (this.submit.error) {
         NotificationService.addNotification(
           'Error to update the audio',
-          null,
-          null,
           'error',
         );
       }

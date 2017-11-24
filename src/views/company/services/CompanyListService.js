@@ -1,46 +1,37 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class CompanyListService {
   fetch = new FetchService();
 
   constructor() {
     extendObservable(this, {
+      distributorId: null,
       companies: [],
       filter: '',
     });
   }
 
-  init = action(() => {
+  init = action((distributorId) => {
+    this.distributorId = distributorId;
     this.load();
-  });
-
-  loadCompaniesByDistributorId = action((distributorId) => {
-    this.fetch.fetch({
-      url: '/companies',
-      query: {
-        query: {
-          // distributor: distributorId,
-        }
-      },
-    }).then(() => {
-      if (this.fetch.data) {
-        this.companies = this.fetch.data;
-      } else {
-        this.companies = [];
-      }
-    });
   });
 
   load = action(() => {
     this.fetch.fetch({
       url: '/companies',
       query: {
-        query: this.filter && {
-          name: {
-            $regex: this.filter,
-            $options: 'i',
+        query: {
+          ...this.filter && {
+            name: {
+              $regex: this.filter,
+              $options: 'i',
+            },
+          },
+          ...this.distributorId && {
+            distributor: this.distributorId,
           },
         },
       },
@@ -67,7 +58,7 @@ class CompanyListService {
           url: `/companies/${company.id}`,
           method: 'delete',
         }).then(() => {
-          window.showSuccess(`Company "${company.name}" deleted successfully.`);
+          NotificationService.addNotification(`Company "${company.name}" deleted successfully.`, 'success');
           this.load();
         });
       });

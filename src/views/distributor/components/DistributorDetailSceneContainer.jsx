@@ -10,7 +10,7 @@ class DistributorFormContainer extends Component {
     params: PropTypes.shape({
       distributorId: PropTypes.string.isRequired,
     }).isRequired,
-  }
+  };
 
   componentWillMount() {
     DistributorDetailService.handleLoad(this.props.params.distributorId);
@@ -20,7 +20,7 @@ class DistributorFormContainer extends Component {
     return (
       <DistributorDetailScene
         distributor={DistributorDetailService.distributor}
-        distributorId={this.props.params.distributorId}
+        fetching={DistributorDetailService.fetch.fetching}
       />
     );
   }

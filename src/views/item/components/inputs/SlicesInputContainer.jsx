@@ -65,11 +65,11 @@ export default class SlicesInputContainer extends Component {
     ], 'index');
 
     if (this.props.sequenceRemove) {
-      updatedRemovedSlice = updatedRemovedSlice.map(slice => {
+      updatedRemovedSlice = updatedRemovedSlice.map((slice) => {
         return {
           ...slice,
           linkTo: slice.index + 1,
-        }
+        };
       });
     }
 
@@ -90,12 +90,12 @@ export default class SlicesInputContainer extends Component {
   };
 
   handleLinkSlice = (index) => {
-    const updatedRemovedSlice = this.state.removedSlices.map(slice => {
+    const updatedRemovedSlice = this.state.removedSlices.map((slice) => {
       if (slice.index === index) {
         return {
           ...slice,
           linkTo: index + 1,
-        }
+        };
       }
       return slice;
     });

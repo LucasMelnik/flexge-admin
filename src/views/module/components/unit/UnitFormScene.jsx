@@ -27,10 +27,11 @@ const UnitFormScene = props => (
       ]}
     />
     <Card
+      loading={props.fetching}
       title={props.unitId ? 'Edit Unit' : 'New unit'}
       actions={
         <Button
-          icon="fa-arrow-left"
+          icon="arrow-left"
           label="back"
           onClick={() => browserHistory.push(`/modules/${props.moduleId}/details`)}
         />

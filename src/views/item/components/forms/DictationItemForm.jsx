@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Separator from '../../../../core/layout/Separator';
 import TranslationContainer from '../inputs/TranslationInputContainer';
 import AnswersContainer from '../inputs/AnswersInputContainer';
 import FileInput from '../../../../core/form/FileInput';
@@ -19,14 +18,13 @@ const DictationItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    <Separator size="xs" />
     <Row>
       {get(props.values, 'generatedAudio', null) && (
-        <Column lgSize={4}>
+        <Column size={4}>
           <AudioPreview src={get(props.values, 'generatedAudio', '')} />
         </Column>
       )}
-      <Column lgSize={6}>
+      <Column size={6}>
         <FileInput
           label="Upload an audio to item"
           accept="audio"
@@ -37,7 +35,6 @@ const DictationItemForm = props => (
         />
       </Column>
     </Row>
-    <Separator size="sm" />
     <AnswersContainer
       label="Add another possible answer"
       answerType="CORRECT"
@@ -62,7 +59,6 @@ DictationItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  onChange: () => false,
   disabled: false,
   isTestItem: false,
 };

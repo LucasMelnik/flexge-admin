@@ -15,87 +15,80 @@ const ConfigurationForm = props => (
     }}
   >
     <Row>
-      <Column lgSize={4}>
+      <Column size={4}>
         <TextInput
           type="number"
           disabled={props.submitting}
           label="Points to increase after test failure"
           value={get(props.values, 'pointsToIncreaseAfterTestFailure', '')}
           onChange={value => props.onChange('pointsToIncreaseAfterTestFailure', value)}
-          description={get(props.errors, 'pointsToIncreaseAfterTestFailure', null)}
-          fieldValidation={get(props.errors, 'pointsToIncreaseAfterTestFailure', null) && 'error'}
+          errorText={get(props.errors, 'pointsToIncreaseAfterTestFailure', null)}
         />
       </Column>
-      <Column lgSize={4}>
+      <Column size={4}>
         <TextInput
           type="number"
           disabled={props.submitting}
           label="SR Score to Pass"
           value={get(props.values, 'scoreToPassOfSpeechRecognition', '')}
           onChange={value => props.onChange('scoreToPassOfSpeechRecognition', value)}
-          description={get(props.errors, 'scoreToPassOfSpeechRecognition', null)}
-          fieldValidation={get(props.errors, 'scoreToPassOfSpeechRecognition', null) && 'error'}
+          errorText={get(props.errors, 'scoreToPassOfSpeechRecognition', null)}
         />
       </Column>
-      <Column lgSize={4}>
+      <Column size={4}>
         <TextInput
           label="Placement Introduction video"
           disabled={props.submitting}
           value={get(props.values, 'videoUrl', '')}
           onChange={(key) => props.onChange('videoUrl', key)}
-          description={get(props.errors, 'videoUrl', null)}
-          fieldValidation={get(props.errors, 'videoUrl', null) && 'error'}
+          errorText={get(props.errors, 'videoUrl', null)}
         />
       </Column>
     </Row>
     <Row>
-      <Column lgSize={2}>
+      <Column size={2}>
         <TextInput
           type="number"
           disabled={props.submitting}
           label="Days to 1 Review"
           value={get(props.values, 'numberOfDayBeforeFirstReview', '')}
           onChange={value => props.onChange('numberOfDayBeforeFirstReview', value)}
-          description={get(props.errors, 'numberOfDayBeforeFirstReview', null)}
-          fieldValidation={get(props.errors, 'numberOfDayBeforeFirstReview', null) && 'error'}
+          errorText={get(props.errors, 'numberOfDayBeforeFirstReview', null)}
         />
       </Column>
-      <Column lgSize={2}>
+      <Column size={2}>
         <TextInput
           type="number"
           disabled={props.submitting}
           label="Days to 2 Review"
           value={get(props.values, 'numberOfDayBeforeSecondReview', '')}
           onChange={value => props.onChange('numberOfDayBeforeSecondReview', value)}
-          description={get(props.errors, 'numberOfDayBeforeSecondReview', null)}
-          fieldValidation={get(props.errors, 'numberOfDayBeforeSecondReview', null) && 'error'}
+          errorText={get(props.errors, 'numberOfDayBeforeSecondReview', null)}
         />
       </Column>
-      <Column lgSize={4}>
+      <Column size={4}>
         <TextInput
           type="number"
           disabled={props.submitting}
           label="Percentage to enable next group of Modules"
           value={get(props.values, 'percentageToEnableNextModuleGroup', '')}
           onChange={value => props.onChange('percentageToEnableNextModuleGroup', value)}
-          description={get(props.errors, 'percentageToEnableNextModuleGroup', null)}
-          fieldValidation={get(props.errors, 'percentageToEnableNextModuleGroup', null) && 'error'}
+          errorText={get(props.errors, 'percentageToEnableNextModuleGroup', null)}
         />
       </Column>
-      <Column lgSize={4}>
+      <Column size={4}>
         <TextInput
           type="number"
           disabled={props.submitting}
           label="Percentage to enable next group of Units"
           value={get(props.values, 'percentageToEnableNextUnitGroup', '')}
           onChange={value => props.onChange('percentageToEnableNextUnitGroup', value)}
-          description={get(props.errors, 'percentageToEnableNextUnitGroup', null)}
-          fieldValidation={get(props.errors, 'percentageToEnableNextUnitGroup', null) && 'error'}
+          errorText={get(props.errors, 'percentageToEnableNextUnitGroup', null)}
         />
       </Column>
     </Row>
     <Row>
-      <Column lgSize={12}>
+      <Column size={12}>
         <AudioMessageFormContainer
           title="Correct Audios"
           messages={get(props.values, 'correctAudios', [])}
@@ -104,7 +97,7 @@ const ConfigurationForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column lgSize={12}>
+      <Column size={12}>
         <AudioMessageFormContainer
           title="Error Audios"
           messages={get(props.values, 'errorAudios', [])}
@@ -113,7 +106,7 @@ const ConfigurationForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column lgSize={12}>
+      <Column size={12}>
         <AudioMessageFormContainer
           title="First Try Audios"
           messages={get(props.values, 'firstTryAudios', [])}
@@ -122,7 +115,7 @@ const ConfigurationForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column lgSize={12}>
+      <Column size={12}>
         <AudioMessageFormContainer
           title="Second Try Audios"
           messages={get(props.values, 'secondTryAudios', [])}
@@ -131,7 +124,7 @@ const ConfigurationForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column lgSize={12}>
+      <Column size={12}>
         <AudioMessageFormContainer
           title="Option Audios"
           messages={get(props.values, 'optionAudios', [])}
@@ -140,7 +133,7 @@ const ConfigurationForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column lgSize={12}>
+      <Column size={12}>
         <AudioMessageFormContainer
           title="Speech Recognition Error Audios"
           messages={get(props.values, 'speechRecognitionErrorAudios', [])}
@@ -149,7 +142,7 @@ const ConfigurationForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column lgSize={12}>
+      <Column size={12}>
         <AudioMessageFormContainer
           title="User Away Audios"
           messages={get(props.values, 'userAwayAudios', [])}
@@ -160,6 +153,7 @@ const ConfigurationForm = props => (
     <FormButtons
       confirmLabel={props.values.id ? 'Update Configuration' : 'Create Configuration'}
       isDisabled={props.submitting || !props.isDirty()}
+      isSubmitting={props.submitting}
       onReset={props.onReset}
     />
   </form>
@@ -182,7 +176,6 @@ ConfigurationForm.defaultProps = {
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
   onReset: () => false,
-  onChange: () => false,
 };
 
 export default ConfigurationForm;

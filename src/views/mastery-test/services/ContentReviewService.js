@@ -55,16 +55,12 @@ class ContentReviewService {
           if (res) {
             NotificationService.addNotification(
               'Status changed successfully.',
-              null,
-              null,
               'success',
             );
           }
           if (this.submit.error) {
             NotificationService.addNotification(
               'Error changing status review.',
-              null,
-              null,
               'error',
             );
           }
@@ -77,11 +73,9 @@ class ContentReviewService {
     const comments = this.form.getValue('review.contentComments');
     if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
       NotificationService.addNotification(
-          'Please leave a comment to mark as reviewed',
-           null,
-           null,
-           'error',
-        );
+        'Please leave a comment to mark as reviewed',
+        'error',
+      );
       return;
     }
 
@@ -104,16 +98,12 @@ class ContentReviewService {
             this.handleLoad();
             NotificationService.addNotification(
               'Mastery Test reviewed successfully.',
-              null,
-              null,
               'success',
             );
           }
           if (this.submit.error) {
             NotificationService.addNotification(
               'Error reviewing unit.',
-              null,
-              null,
               'error',
             );
           }
@@ -126,10 +116,8 @@ class ContentReviewService {
     const comments = this.form.getValue('review.contentComments');
     if (this.form.errors || comments.length === 0 || comments === '<p><br></p>') {
       NotificationService.addNotification(
-         'Please leave a comment to mark as done',
-          null,
-          null,
-          'error',
+        'Please leave a comment to mark as done',
+        'error',
       );
       return;
     }
@@ -152,16 +140,12 @@ class ContentReviewService {
             this.handleLoad();
             NotificationService.addNotification(
               'Review done.',
-              null,
-              null,
               'success',
             );
           }
           if (this.submit.error) {
             NotificationService.addNotification(
               'Error changing status review.',
-              null,
-              null,
               'error',
             );
           }

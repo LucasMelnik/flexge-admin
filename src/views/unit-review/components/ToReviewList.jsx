@@ -4,110 +4,74 @@ import PropTypes from 'prop-types';
 import replace from 'lodash/replace';
 import ToReviewListFilterContainer from './ToReviewListFilterContainer';
 import Separator from '../../../core/layout/Separator';
-import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
+import StatusItem from '../../../core/layout/StatusItem';
 
 const ToReviewList = props => (
-  <Async fetching={props.fetching}>
+  <div>
     <ToReviewListFilterContainer />
     <Separator />
     <Table
+      fetching={props.fetching}
       columns={[
-        {
-          label: 'id',
-          path: 'id',
-          isKey: true,
-          hidden: true,
-        },
         {
           label: 'Name',
           path: 'unit.name',
-          rowColumnStyle: {
-            textOverflow: 'none',
-            paddingTop: 5,
-            paddingBottom: 5,
-            paddingRight: 5,
-            whiteSpace: 'normal',
-            textAlign: 'justify',
-            lineHeight: '18px',
-          },
         },
         {
           label: 'Course',
           path: 'unit.module.course.name',
+          width: '80px',
         },
         {
           label: 'Module',
           path: 'unit.module.name',
-          rowColumnStyle: {
-            textOverflow: 'none',
-            paddingTop: 5,
-            paddingBottom: 5,
-            paddingRight: 5,
-            whiteSpace: 'normal',
-            textAlign: 'justify',
-            lineHeight: '18px',
-          },
         },
         {
           label: 'Unit Type',
           path: 'unit.type.name',
+          width: '100px',
         },
         {
           label: 'Unit creator',
           path: 'unit.createdBy.name',
+          width: '100px',
         },
         {
           label: 'Created By',
           path: 'review.createdBy.name',
+          width: '100px',
         },
         {
           label: 'Status content',
           path: 'review.status',
           render: (cell, row) => (
-            <div
-              style={{
-                color: '#fff',
-                padding: 5,
-                fontSize: 12,
-                display: 'inline-block',
-                fontWeight: 'bold',
-                borderRadius: 5,
-                backgroundColor: {
-                  PENDING: '#ef8c3b',
-                  REVIEWED: '#1188FF',
-                  DONE: '#009687',
-                  'NOT SENT TO REVIEW': '#758C98',
-                  'AWAITING FORMAT REVIEW': '#758C98',
-                }[row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status],
-              }}
-            >
-              {row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status}
-            </div>
+            <StatusItem
+              color={{
+                PENDING: '#ef8c3b',
+                REVIEWED: '#1188FF',
+                DONE: '#009687',
+                'NOT SENT TO REVIEW': '#758C98',
+                'AWAITING FORMAT REVIEW': '#758C98',
+              }[row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status]}
+              text={row.review.statusFormat !== 'APPROVED' && row.review.status !== 'NOT SENT TO REVIEW' ? 'AWAITING FORMAT REVIEW' : row.review.status}
+            />
           ),
         },
         {
           label: 'Status format',
           path: 'review.statusFormat',
           render: (cell, row) => (
-            <div
-              style={{
-                color: '#fff',
-                padding: 5,
-                fontSize: 12,
-                display: 'inline-block',
-                fontWeight: 'bold',
-                borderRadius: 5,
-                backgroundColor: {
-                  PENDING: '#ef8c3b',
-                  PENDING_REVIEW: '#ef8c3b',
-                  APPROVED: '#009687',
-                  NOT_APPROVED: '#FF5233',
-                }[row.review.statusFormat],
-              }}
-            >
-              {replace(row.review.statusFormat, '_', ' ')}
-            </div>
+            <StatusItem
+              color={{
+                PENDING: '#ef8c3b',
+                PENDING_REVIEW: '#ef8c3b',
+                APPROVED: '#009687',
+                NOT_APPROVED: '#FF5233',
+                DONE: '#009687',
+              }[row.review.statusFormat]}
+              text={replace(row.review.statusFormat, '_', ' ')}
+            />
           ),
         },
         {
@@ -116,35 +80,26 @@ const ToReviewList = props => (
           render: (cell, row) => {
             if (row.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))) {
               return (
-                <div
-                  style={{
-                    color: '#fff',
-                    padding: 5,
-                    fontSize: 12,
-                    display: 'inline-block',
-                    fontWeight: 'bold',
-                    borderRadius: 5,
-                    backgroundColor: {
-                      PENDING: '#ef8c3b',
-                      PENDING_REVIEW: '#ef8c3b',
-                      APPROVED: '#009687',
-                      NOT_APPROVED: '#FF5233',
-                    }[row.review.statusImage || 'PENDING'],
-                  }}
-                >
-                  {replace(row.review.statusImage || 'PENDING', '_', ' ')}
-                </div>
+                <StatusItem
+                  color={{
+                    NOT_SEND_TO_REVIEW: '#758C98',
+                    PENDING_REVIEW: '#ef8c3b',
+                    APPROVED: '#009687',
+                    NOT_APPROVED: '#FF5233',
+                  }[row.review.statusImage || 'NOT_SEND_TO_REVIEW']}
+                  text={replace(row.review.statusImage || 'NOT_SEND_TO_REVIEW', '_', ' ')}
+                />
               );
             }
             return 'N/A';
-          }
+          },
         },
       ]}
       rows={props.unitsAndReviews}
       selectable
       onSelect={row => (row.review.status === 'PENDING' || row.review.status === 'REVIEWED') && browserHistory.push(`/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
     />
-  </Async>
+  </div>
 );
 
 ToReviewList.propTypes = {

@@ -7,11 +7,11 @@ import Tags from '../../../../core/form/Tags';
 
 const SlicesInput = props => (
   <Row>
-    <Column lgSize={12}>
+    <Column size={12}>
       {props.texts.length > 0 && (
         <div>
           <Tags
-            label="Here you must click on the X button to select the word(s) to hide."
+            label="Here you must click on the X button to select the word(s) to hide"
             errorText={props.errorText}
             disabled={props.disabled}
             onDelete={props.onRemoveSlice}
@@ -40,13 +40,13 @@ const SlicesInput = props => (
                 }
               } else {
                 if (!props.allowLink || (props.allowLink && !props.value.find(answer => answer.linkTo === index))) {
-                  tag.icon = 'fa-undo';
+                  tag.icon = 'rollback';
                   tag.canClick = true;
                 }
                 if (props.allowLink && !props.value.find(answer => answer.linkTo === index + 1) &&
                   props.value.find(answer => index === answer.index) &&
                   props.value.find(answer => index === (answer.index - 1))) {
-                  tag.icon = 'fa-link';
+                  tag.icon = 'link';
                   tag.canLink = true;
                 }
               }
@@ -67,10 +67,9 @@ const SlicesInput = props => (
           <Separator size="xs" />
           {props.texts.map((sliceText, index) => {
             if (props.value.find(removedSlice => removedSlice.index === index)) {
-              return `__ `;
-            } else {
-              return `${sliceText} `;
+              return '__ ';
             }
+            return `${sliceText} `;
           })}
         </div>
       ))}
@@ -80,7 +79,7 @@ const SlicesInput = props => (
 
 SlicesInput.propTypes = {
   texts: PropTypes.arrayOf(PropTypes.string).isRequired,
-  value:PropTypes.arrayOf(PropTypes.shape({
+  value: PropTypes.arrayOf(PropTypes.shape({
     index: PropTypes.number,
     text: PropTypes.string,
     correct: PropTypes.bool,

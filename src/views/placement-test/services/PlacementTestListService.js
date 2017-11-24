@@ -3,6 +3,7 @@ import orderBy from 'lodash/orderBy';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class PlacementTestListService {
   fetch = new FetchService();
@@ -47,6 +48,7 @@ class PlacementTestListService {
           url: `/grammar-placement-test-levels/${grammarPlacementTest.id}`,
           method: 'delete',
         }).then(() => {
+          NotificationService.addNotification('Grammar deleted', 'success');
           this.load();
         });
       });

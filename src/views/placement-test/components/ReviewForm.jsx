@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import Button from '../../../core/form/Button';
 import TextEditor from '../../../core/form/TextEditor';
 
-const FormatReviewForm = (props) => (
+const FormatReviewForm = props => (
   <div>
     <div
       style={{
@@ -20,7 +20,7 @@ const FormatReviewForm = (props) => (
           <div>
             <Button
               label="Approved"
-              icon="fa-smile-o"
+              icon="smile-o"
               type="primary"
               onClick={() => {
                 props.onChange('status', 'APPROVED');
@@ -30,7 +30,7 @@ const FormatReviewForm = (props) => (
             {' '}
             <Button
               label="Not Approved"
-              icon="fa-frown-o"
+              icon="frown-o"
               onClick={() => {
                 props.onChange('status', 'NOT_APPROVED');
                 props.onSaveStatus();
@@ -42,8 +42,8 @@ const FormatReviewForm = (props) => (
           <div>
             <Button
               label="Send to review"
-              icon="fa-send"
-              primary
+              icon="export"
+              type="primary"
               onClick={() => {
                 props.onChange('status', 'PENDING');
                 props.onSaveStatus();
@@ -66,12 +66,10 @@ const FormatReviewForm = (props) => (
 FormatReviewForm.propTypes = {
   onSaveStatus: PropTypes.func.isRequired,
   values: PropTypes.object.isRequired,
-  errors: PropTypes.object,
   onChange: PropTypes.func,
 };
 
 FormatReviewForm.defaultProps = {
-  errors: null,
   onChange: null,
 };
 

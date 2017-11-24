@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FormatReviewFormContainer from './FormatReviewFormContainer';
 import ContentReviewFormContainer from './ContentReviewFormContainer';
-import IconButton from '../../../core/form/IconButton';
+import Button from '../../../core/form/Button';
 import Async from '../../../core/layout/Async';
 import Tabs from '../../../core/layout/Tabs';
 import ImageReviewFormContainer from './ImageReviewFormContainer';
@@ -37,23 +37,27 @@ export default class ReviewFormControlBar extends Component {
     if (localStorage.role !== 'IMAGE_ADMIN') {
       tabs.push({
         content: (
-           <FormatReviewFormContainer
-             expanded={this.state.expanded}
-             reviewId={this.props.reviewId}
-             unitId={this.props.unitId}
-           />
+          <div style={{ padding: 10 }}>
+             <FormatReviewFormContainer
+               expanded={this.state.expanded}
+               reviewId={this.props.reviewId}
+               unitId={this.props.unitId}
+             />
+          </div>
          ),
-        title: 'Format Review'
+        title: 'Format Review',
       });
       tabs.push({
         content: (
-           <ContentReviewFormContainer
-             expanded={this.state.expanded}
-             reviewId={this.props.reviewId}
-             unitId={this.props.unitId}
-           />
+           <div style={{ padding: 10 }}>
+             <ContentReviewFormContainer
+               expanded={this.state.expanded}
+               reviewId={this.props.reviewId}
+               unitId={this.props.unitId}
+             />
+           </div>
          ),
-        title: 'Content Review'
+        title: 'Content Review',
       });
     }
 
@@ -61,13 +65,15 @@ export default class ReviewFormControlBar extends Component {
       tabs.push(
         {
           content: (
-             <ImageReviewFormContainer
-               expanded={this.state.expanded}
-               reviewId={this.props.reviewId}
-               unitId={this.props.unitId}
-             />
+             <div style={{ padding: 10 }}>
+               <ImageReviewFormContainer
+                 expanded={this.state.expanded}
+                 reviewId={this.props.reviewId}
+                 unitId={this.props.unitId}
+               />
+             </div>
            ),
-          title: 'Image Review'
+          title: 'Image Review',
         }
       );
     }
@@ -96,9 +102,9 @@ export default class ReviewFormControlBar extends Component {
               zIndex: 1,
             }}
           >
-            <IconButton
+            <Button
               type="primary"
-              icon={this.state.expanded ? 'fa-arrow-down' : 'fa-arrow-up'}
+              icon={this.state.expanded ? 'arrow-down' : 'arrow-up'}
               onClick={() => this.handleExpandOrRetractComment()}
             />
           </div>

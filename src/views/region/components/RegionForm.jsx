@@ -5,51 +5,47 @@ import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
-import Async from '../../../core/layout/Async';
 import FetchSelect from '../../../core/form/FetchSelect';
 
 const RegionForm = props => (
-  <Async fetching={props.submitting}>
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        props.onSubmit();
-      }}
-    >
-      <Row>
-        <Column lgSize={6}>
-          <TextInput
-            disabled={props.submitting}
-            label="Name"
-            value={get(props.values, 'name', '')}
-            onChange={value => props.onChange('name', value)}
-            description={get(props.errors, 'name', null)}
-            fieldValidation={get(props.errors, 'name', null) && 'error'}
-          />
-        </Column>
-        <Column lgSize={6}>
-          <FetchSelect
-            url="countries"
-            disabled={props.submitting}
-            label="Country"
-            value={get(props.values, 'country', '')}
-            onChange={country => props.onChange('country', country)}
-            description={get(props.errors, 'country', '')}
-            fieldValidation={get(props.errors, 'country', null) && 'error'}
-            resultTransformer={{
-              text: 'name',
-              value: 'id',
-            }}
-          />
-        </Column>
-      </Row>
-      <FormButtons
-        confirmLabel={props.values.id ? 'Update Region' : 'Create Region'}
-        isDisabled={props.submitting || !props.isDirty()}
-        onReset={props.onReset}
-      />
-    </form>
-  </Async>
+  <form
+    onSubmit={(event) => {
+      event.preventDefault();
+      props.onSubmit();
+    }}
+  >
+    <Row>
+      <Column size={6}>
+        <TextInput
+          disabled={props.submitting}
+          label="Name"
+          value={get(props.values, 'name', '')}
+          onChange={value => props.onChange('name', value)}
+          errorText={get(props.errors, 'name', null)}
+        />
+      </Column>
+      <Column size={6}>
+        <FetchSelect
+          url="countries"
+          disabled={props.submitting}
+          label="Country"
+          value={get(props.values, 'country', '')}
+          onChange={country => props.onChange('country', country)}
+          errorText={get(props.errors, 'country', '')}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
+    </Row>
+    <FormButtons
+      confirmLabel={props.values.id ? 'Update Region' : 'Create Region'}
+      isDisabled={props.submitting || !props.isDirty()}
+      isSubmitting={props.submitting}
+      onReset={props.onReset}
+    />
+  </form>
 );
 
 RegionForm.propTypes = {
@@ -68,7 +64,6 @@ RegionForm.defaultProps = {
   submitting: false,
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
-  onChange: () => false,
   onReset: () => false,
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from '../../../../core-ant/Table';
 import moment from 'moment';
+import Table from '../../../../core/form/Table';
 
 const StudentDetailContentRecordList = props => (
   <Table
@@ -61,7 +61,7 @@ const StudentDetailContentRecordList = props => (
         path: 'translateCount',
       },
     ]}
-    dataSource={props.contents}
+    rows={props.contents}
   />
 );
 

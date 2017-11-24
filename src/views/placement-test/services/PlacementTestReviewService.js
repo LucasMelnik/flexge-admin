@@ -29,8 +29,6 @@ class PlacementTestReviewService {
     if (this.form.errors || (status !== 'APPROVED' && (comments.length === 0 || comments === '<p><br></p>'))) {
       NotificationService.addNotification(
         'Please leave a comment to update the review',
-        null,
-        null,
         'error',
       );
       return;
@@ -42,7 +40,7 @@ class PlacementTestReviewService {
         status: this.form.getValue('status'),
         ...(this.form.getValue('comments') && this.form.getValue('comments').length) && {
           comments: this.form.getValue('comments'),
-        }
+        },
       },
     }).then(() => {
       if (this.submit.data) {
@@ -53,16 +51,12 @@ class PlacementTestReviewService {
         PlacementTestItemListService.load();
         NotificationService.addNotification(
           'Review updated successfully.',
-          null,
-          null,
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
           'Error to updated Review.',
-          null,
-          null,
           'error',
         );
       }

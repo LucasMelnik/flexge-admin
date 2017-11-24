@@ -25,7 +25,7 @@ const FormatReviewForm = (props) => (
           <div>
             <Button
               label="Format Approved"
-              icon="fa-smile-o"
+              icon="smile-o"
               type="primary"
               onClick={() => {
                 props.onChange('review.statusFormat', 'APPROVED');
@@ -35,7 +35,7 @@ const FormatReviewForm = (props) => (
             {' '}
             <Button
               label="Format Not Approved"
-              icon="fa-frown-o"
+              icon="frown-o"
               onClick={() => {
                 props.onChange('review.statusFormat', 'NOT_APPROVED');
                 props.onSaveStatusFormat();
@@ -47,7 +47,7 @@ const FormatReviewForm = (props) => (
           <div>
             <Button
               label="Send to format review"
-              icon="fa-send"
+              icon="export"
               primary
               onClick={() => {
                 props.onChange('review.statusFormat', 'PENDING');
@@ -60,7 +60,7 @@ const FormatReviewForm = (props) => (
     </div>
     <TextEditor
       style={{
-        height: props.expanded ? 600 : 220,
+        height: props.expanded ? 550 : 220,
         transition: 'all 0.5s',
       }}
       placeholder="Comment status format review..."
@@ -76,16 +76,13 @@ FormatReviewForm.propTypes = {
   expanded: PropTypes.bool.isRequired,
   onSaveStatusFormat: PropTypes.func.isRequired,
   values: PropTypes.object.isRequired,
-  currentStatusFormat: PropTypes.string,
   errors: PropTypes.object,
   onChange: PropTypes.func,
 };
 
 FormatReviewForm.defaultProps = {
-  comments: null,
   errors: null,
   onChange: null,
-  currentStatusFormat: null,
 };
 
 export default FormatReviewForm;

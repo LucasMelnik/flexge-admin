@@ -2,6 +2,7 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
 class StudentListService {
@@ -13,8 +14,6 @@ class StudentListService {
       students: [],
       name: '',
       email: '',
-      school: null,
-      class: null,
       schoolId: null,
       classId: null,
       filteredStudents: null,
@@ -29,20 +28,16 @@ class StudentListService {
     this.email = '';
     this.schoolId = schoolId;
     this.classId = classId;
+    this.load();
+  });
+
+  load = action(() => {
     if (this.schoolId && this.classId) {
       this.loadBySchoolAndClass();
     } else {
       this.loadAllStudents();
     }
   });
-
-  load = () => {
-    if (!this.schoolId && !this.classId) {
-      this.loadAllStudents();
-    } else {
-      this.loadBySchoolAndClass();
-    }
-  }
 
   loadAllStudents = action(() => {
     this.form.submitted = true;
@@ -122,11 +117,8 @@ class StudentListService {
           url: `/students/${student.id}`,
           method: 'delete',
         }).then(() => {
-          if (!this.schoolId && !this.classId) {
-            this.loadAllStudents();
-          } else {
-            this.loadBySchoolAndClass();
-          }
+          NotificationService.addNotification('Student deleted', 'success');
+          this.load();
         });
       });
   });

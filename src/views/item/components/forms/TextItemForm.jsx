@@ -1,22 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Row from "../../../../core/layout/Row";
-import Column from "../../../../core/layout/Column";
-import TextInput from "../../../../core/form/TextInput";
+import Row from '../../../../core/layout/Row';
+import Column from '../../../../core/layout/Column';
+import TextInput from '../../../../core/form/TextInput';
 
 const TextItemForm = props => (
   <div>
     <Row>
-      <Column lgSize={12}>
+      <Column size={12}>
         <TextInput
           fieldType="textarea"
           label="Text"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'text', '')}
           onChange={value => props.onChange('text', value)}
-          description={get(props.errors, 'text', '')}
-          fieldValidation={get(props.errors, 'text', null) && 'error'}
+          errorText={get(props.errors, 'text', '')}
         />
       </Column>
     </Row>
@@ -35,7 +34,6 @@ TextItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  onChange: () => false,
   disabled: false,
 };
 

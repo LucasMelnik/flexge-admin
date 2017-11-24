@@ -12,21 +12,21 @@ class SchoolDetailSceneContainer extends Component {
       companyId: PropTypes.string,
       distributorId: PropTypes.string,
     }).isRequired,
-  }
+  };
 
-  static defaultProps = {
-    schoolId: null,
-    distributorId: null,
-  }
+  baseUrl = '';
 
   componentWillMount() {
     if (this.props.params.distributorId) {
       SchoolDetailService.handleLoadDistributor(this.props.params.distributorId);
+      this.baseUrl += `/distributors/${this.props.params.distributorId}`;
     }
     if (this.props.params.companyId) {
       SchoolDetailService.handleLoadCompany(this.props.params.companyId);
+      this.baseUrl += `/companies/${this.props.params.companyId}`;
     }
     SchoolDetailService.handleLoadSchool(this.props.params.schoolId);
+    this.baseUrl += `/schools/${this.props.params.schoolId}`;
   }
 
   render() {
@@ -35,9 +35,12 @@ class SchoolDetailSceneContainer extends Component {
         school={SchoolDetailService.school}
         company={SchoolDetailService.company}
         distributor={SchoolDetailService.distributor}
-        schoolId={this.props.params.schoolId}
-        companyId={this.props.params.companyId}
-        distributorId={this.props.params.distributorId}
+        fetching={
+          SchoolDetailService.fetchSchool.fetching ||
+          SchoolDetailService.fetchCompany.fetching ||
+          SchoolDetailService.fetchDistributor.fetching
+        }
+        baseUrl={this.baseUrl}
       />
     );
   }

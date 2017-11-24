@@ -2,6 +2,7 @@ import { action, extendObservable } from 'mobx';
 import orderBy from 'lodash/orderBy';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class PlacementTestLevelListService {
   fetch = new FetchService();
@@ -48,7 +49,7 @@ class PlacementTestLevelListService {
           url: `/placement-test-levels/${placementTestLevel.id}`,
           method: 'delete',
         }).then(() => {
-          window.showSuccess(`Placement Test Level "${placementTestLevel.name}" deleted successfully.`);
+          NotificationService.addNotification(`Placement Test Level "${placementTestLevel.name}" deleted successfully.`, 'success');
           this.load();
         });
       });

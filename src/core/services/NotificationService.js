@@ -1,26 +1,12 @@
-import { extendObservable, action } from 'mobx';
+import { action } from 'mobx';
+import { notification } from 'antd';
 
 class NotificationService {
 
-  constructor() {
-    extendObservable(this, {
-      notifications: [],
-    });
-  }
-
-  addNotification = action((message, notificationAction, onClick, type) => {
-    this.notifications.push({
+  addNotification = action((message, type) => {
+    notification[type]({
       message,
-      action: notificationAction,
-      onClick,
-      type,
     });
-
-    setTimeout(action(() => {
-      if (this.notifications.length) {
-        this.notifications = this.notifications.splice(1);
-      }
-    }), 3000);
   });
 }
 

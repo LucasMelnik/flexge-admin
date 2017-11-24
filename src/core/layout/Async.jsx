@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './async.css';
+import { Spin } from 'antd';
 
 const Async = props => (
-  <div>
+  <div
+    style={{
+      textAlign: props.fetching ? 'center' : 'left',
+    }}
+  >
     {props.fetching ? (
-      <div
-        style={{
-          position: 'relative',
-          padding: '10px 0px',
-          marginLeft: 35,
-        }}
-      >
-        <div className={`spinner spinner-${props.size}`} />
-      </div>
+      <Spin
+        size={{
+          xs: 'small',
+          sm: 'default',
+          md: 'large',
+        }[props.size]}
+      />
     ) : (
       props.children
     )}

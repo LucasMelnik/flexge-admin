@@ -6,7 +6,6 @@ import FetchSelect from '../../../core/form/FetchSelect';
 const DashboardFilter = props => (
   <FetchSelect
     url="courses"
-    disabled={props.submitting}
     label="Course"
     defaultSelect
     value={get(props.values, 'course', '')}

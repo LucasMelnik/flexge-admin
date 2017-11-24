@@ -8,9 +8,9 @@ class SchoolDetailService {
 
   constructor() {
     extendObservable(this, {
-      school: null,
-      company: null,
-      distributor: null,
+      school: {},
+      company: {},
+      distributor: {},
     });
   }
 

@@ -9,10 +9,10 @@ class StudentDetailService {
 
   constructor() {
     extendObservable(this, {
-      school: null,
-      company: null,
-      distributor: null,
-      class: null,
+      school: {},
+      company: {},
+      distributor: {},
+      class: {},
     });
   }
 

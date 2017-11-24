@@ -6,9 +6,9 @@ import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
 class DistributorFormService {
-  fetch = new FetchService()
-  submit = new FetchService()
-  form = new FormService()
+  fetch = new FetchService();
+  submit = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -21,7 +21,7 @@ class DistributorFormService {
 
   handleLoad = action((distributorId) => {
     this.form.reset();
-    console.log(distributorId, ' id')
+
     if (distributorId) {
       this.fetch.fetch({
         url: `/distributors/${distributorId}`,
@@ -39,7 +39,7 @@ class DistributorFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      window.showErrorMessage('Fill the required fields');
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const distributorId = this.form.getValue('id');
@@ -54,15 +54,10 @@ class DistributorFormService {
         this.distributorId = distributor.id;
         this.form.reset();
         this.form.setInitialValues(distributor);
-        window.showSuccess(`Distributor ${distributorId ? 'updated' : 'created'} successfully.`);
+        NotificationService.addNotification(`Distributor ${distributorId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
-        NotificationService.addNotification(
-          `Error ${distributorId ? 'updating' : 'creating'} distributor.`,
-          null,
-          null,
-          'error',
-        );
+        NotificationService.addNotification(`Error ${distributorId ? 'updating' : 'creating'} distributor.`, 'error');
       }
     });
   })

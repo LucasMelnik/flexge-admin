@@ -24,14 +24,14 @@ const ContentReviewForm = props => (
         {((props.values.review && props.values.review.statusContent === 'PENDING') || localStorage.role === 'ADMIN') && (
           <div>
             <Button
-              icon="fa-times-circle"
+              icon="close-circle-o"
               label="Content Reproved"
               onClick={props.onSendToNotApproved}
               disabled={props.values.review && props.values.review.statusFormat !== 'APPROVED'}
             />
             {' '}
             <Button
-              icon="fa-check-square"
+              icon="check-square-o"
               type="primary"
               label="Content Approved"
               onClick={props.onSendToApproved}
@@ -41,7 +41,7 @@ const ContentReviewForm = props => (
         )}
         {(props.values.review && props.values.review.statusContent === 'NOT_APPROVED' && (props.values.createdBy === localStorage.id || localStorage.role === 'ADMIN')) && (
           <Button
-            icon="fa-comments-o"
+            icon="message"
             type="primary"
             label="Pending"
             onClick={props.onSendToPending}
@@ -52,7 +52,7 @@ const ContentReviewForm = props => (
     </div>
     <TextEditor
       style={{
-        height: props.expanded ? 600 : 220,
+        height: props.expanded ? 550 : 220,
         transition: 'all 0.5s',
       }}
       placeholder="Comment review..."
@@ -70,6 +70,7 @@ ContentReviewForm.propTypes = {
   onSendToApproved: PropTypes.func.isRequired,
   values: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
+  expanded: PropTypes.bool.isRequired,
 };
 
 export default ContentReviewForm;

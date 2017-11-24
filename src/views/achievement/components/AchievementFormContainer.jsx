@@ -27,7 +27,6 @@ class AchievementFormContainer extends Component {
         values={AchievementFormService.form.getValues()}
         errors={AchievementFormService.form.errors}
         submitting={AchievementFormService.fetch.fetching}
-        error={AchievementFormService.fetch.error}
         isDirty={AchievementFormService.form.isDirty}
       />
     );

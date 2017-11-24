@@ -17,10 +17,10 @@ const StudentListFilterContainer = props => (
 
 StudentListFilterContainer.propTypes = {
   hasSchoolClass: PropTypes.bool,
-}
+};
 
 StudentListFilterContainer.defaultProps = {
   hasSchoolClass: true,
-}
+};
 
 export default observer(StudentListFilterContainer);

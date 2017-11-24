@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import IconButton from '../form/IconButton';
+import Button from '../form/Button';
 
 export default class AudioPreview extends Component {
 
@@ -35,10 +35,10 @@ export default class AudioPreview extends Component {
           display: 'inline-block',
         }}
       >
-        <IconButton
+        <Button
           tooltip="Play/Pause"
           onClick={this.togglePlay}
-          icon={this.state.playing ? 'fa-stop' : 'fa-play'}
+          icon={this.state.playing ? 'pause' : 'caret-right'}
         />
         <audio
           src={`${process.env.REACT_APP_API_URL}/files/${this.props.src}`}

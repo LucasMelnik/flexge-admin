@@ -27,7 +27,6 @@ class CourseFormContainer extends Component {
         values={CourseFormService.form.getValues()}
         errors={CourseFormService.form.errors}
         submitting={CourseFormService.fetch.fetching}
-        error={CourseFormService.submit.error}
         isDirty={CourseFormService.form.isDirty}
       />
     );

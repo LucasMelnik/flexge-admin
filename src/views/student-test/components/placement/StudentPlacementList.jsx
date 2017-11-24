@@ -1,60 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Async from '../../../../core/layout/Async';
 import Table from '../../../../core/form/Table';
-import IconButton from '../../../../core/form/IconButton';
+import Button from '../../../../core/form/Button';
 import StudentPlacementItemList from './StudentPlacementItemList';
 
 const StudentPlacementList = props => (
-  <Async fetching={props.fetching}>
-    <Table
-      columns={[
-        {
-          label: 'ID',
-          path: 'id',
-          isKey: true,
-          hidden: true,
+  <Table
+    fetching={props.fetching}
+    columns={[
+      {
+        label: 'Started at',
+        path: 'startedAt',
+        srt: true,
+      },
+      {
+        label: 'Completed at',
+        path: 'completedAt',
+      },
+      {
+        label: 'Reached Level',
+        path: 'reachedLevel.level',
+      },
+      {
+        label: 'Stop Reason',
+        path: 'stopReason',
+      },
+      {
+        label: 'Actions',
+        width: '70px',
+        render: (cell, row) => {
+          return (
+            <Button
+              icon="delete"
+              onClick={() => props.onDelete(row)}
+            />
+          );
         },
-        {
-          label: 'Started at',
-          path: 'startedAt',
-        },
-        {
-          label: 'Completed at',
-          path: 'completedAt',
-        },
-        {
-          label: 'Reached Level',
-          path: 'reachedLevel.level',
-        },
-        {
-          label: 'Stop Reason',
-          path: 'stopReason',
-        },
-        {
-          label: 'Actions',
-          width: '70',
-          render: (cell, row) => {
-            return (
-              <IconButton
-                icon="fa-trash"
-                onClick={() => props.onDelete(row)}
-              />
-            );
-          },
-        },
-      ]}
-      rows={props.placements}
-      expandable
-      expandableComponent={(row) => (
-        <StudentPlacementItemList
-          studentId={row.student}
-          placementTestId={row.id}
-          items={row.answeredItems}
-        />
-      )}
-    />
-  </Async>
+      },
+    ]}
+    rows={props.placements}
+    expandableComponent={(row) => (
+      <StudentPlacementItemList
+        studentId={row.student}
+        placementTestId={row.id}
+        items={row.answeredItems}
+      />
+    )}
+  />
 );
 
 StudentPlacementList.propTypes = {

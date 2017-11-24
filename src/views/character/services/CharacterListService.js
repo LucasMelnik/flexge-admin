@@ -1,6 +1,7 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class CharacterListService {
   fetch = new FetchService();
@@ -50,7 +51,7 @@ class CharacterListService {
           url: `/characters/${character.id}`,
           method: 'delete',
         }).then(() => {
-          window.showSuccess(`Character "${character.name}" deleted successfully.`);
+          NotificationService.addNotification(`Character "${character.name}" deleted successfully.`, 'success');
           this.load();
         });
       });

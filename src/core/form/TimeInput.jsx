@@ -8,18 +8,15 @@ export default class TimeInput extends Component {
 
   static propTypes = {
     onChange: PropTypes.func,
-    label: PropTypes.string,
-    fieldValidation: PropTypes.string,
-    description: PropTypes.string,
+    label: PropTypes.string.isRequired,
+    errorText: PropTypes.string,
     disabled: PropTypes.bool,
     value: PropTypes.any,
   };
 
   static defaultProps = {
     value: '',
-    label: null,
-    fieldValidation: null,
-    description: null,
+    errorText: null,
     disabled: false,
     onChange: () => false,
   };
@@ -34,22 +31,21 @@ export default class TimeInput extends Component {
   }
 
   handleChange = (rawValue, formattedValue) => {
-    //only trigger the onChange when the user typed an complete time
+    // only trigger the onChange when the user typed an complete time
     if (formattedValue.length === 5) {
       console.log(moment.duration(`00:${formattedValue}`).asSeconds());
       this.props.onChange(moment.duration(`00:${formattedValue}`).asSeconds(), formattedValue);
     }
     this.setState({
       maskedValue: formattedValue,
-    })
+    });
   };
 
   render() {
     return (
       <MaskInput
         label={this.props.label}
-        description={this.props.description}
-        fieldValidation={this.props.fieldValidation}
+        errorText={this.props.errorText}
         value={this.state.maskedValue}
         onChange={this.handleChange}
         disabled={this.props.disabled}

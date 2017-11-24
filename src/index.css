@@ -1,4 +1,4 @@
-@import '~antd/dist/antd.css';
+/*@import '~antd/dist/antd.css';*/
 
 * {
   -webkit-box-sizing: border-box;
@@ -21,4 +21,13 @@ body {
 
 html, body, #root {
   height: 100%;
+}
+
+.ant-tag {
+    height: 28px;
+    line-height: 26px;
+}
+
+.ant-tabs-bar {
+    margin-bottom: 0;
 }

@@ -1,23 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
+import { Breadcrumb as AntBreadcrumb } from 'antd';
 import Icon from './Icon';
 import Async from './Async';
+import Separator from './Separator';
 
 const Breadcrumb = props => (
   <Async
     fetching={props.fetching}
     size="xs"
   >
-    <ol className="breadcrumb">
-      <li>
+    <AntBreadcrumb separator=">">
+      <AntBreadcrumb.Item>
         <Link to="/">
-          <Icon name="fa-home" />
+          <Icon
+            name="home"
+            style={{
+              marginRight: 5,
+            }}
+          />
           Home
         </Link>
-      </li>
+      </AntBreadcrumb.Item>
       {props.crumbs.map((crumb, index) => (
-        <li
+        <AntBreadcrumb.Item
           key={`crumb-${crumb.link}`}
           className={`${(index === props.crumbs.length - 1) ? 'active' : ''}`}
         >
@@ -31,9 +38,10 @@ const Breadcrumb = props => (
                 {crumb.text}
               </Link>
             )}
-        </li>
+        </AntBreadcrumb.Item>
       ))}
-    </ol>
+    </AntBreadcrumb>
+    <Separator size="xs" />
   </Async>
 );
 
@@ -48,6 +56,7 @@ Breadcrumb.propTypes = {
 
 Breadcrumb.defaultProps = {
   fetching: false,
+  crumbs: [],
 };
 
 export default Breadcrumb;

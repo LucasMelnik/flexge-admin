@@ -6,7 +6,7 @@ import Button from '../../../core/form/Button';
 import RegionListFilterContainer from './RegionListFilterContainer';
 import RegionListContainer from './RegionListContainer';
 
-const RegionListScene = props => (
+const RegionListScene = () => (
   <div>
     <Breadcrumb
       crumbs={[
@@ -19,8 +19,9 @@ const RegionListScene = props => (
       title="Regions"
       actions={
         <Button
+          type="primary"
           label="New region"
-          icon="fa-plus"
+          icon="plus"
           onClick={() => browserHistory.push('/regions/new')}
         />
       }

@@ -27,7 +27,6 @@ class RegionFormContainer extends Component {
         values={RegionFormService.form.getValues()}
         errors={RegionFormService.form.errors}
         submitting={RegionFormService.fetch.fetching}
-        error={RegionFormService.submit.error}
         isDirty={RegionFormService.form.isDirty}
       />
     );

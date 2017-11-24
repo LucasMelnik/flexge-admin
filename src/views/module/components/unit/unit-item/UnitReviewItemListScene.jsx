@@ -5,12 +5,11 @@ import Button from '../../../../../core/form/Button';
 import UnitItemListContainer from './UnitItemListContainer';
 import Card from '../../../../../core/layout/Card';
 import Breadcrumb from '../../../../../core/layout/Breadcrumb';
-import Async from '../../../../../core/layout/Async';
 import Separator from '../../../../../core/layout/Separator';
 import AllUnitItemListFilterContainer from './AllUnitItemListFilterContainer';
 import AllUnitItemListContainer from './AllUnitItemListContainer';
 
-const UnitItemListScene = props => (
+const UnitReviewItemListScene = props => (
   <div>
     <Breadcrumb
       fetching={props.fetching}
@@ -29,50 +28,48 @@ const UnitItemListScene = props => (
         },
         {
           text: 'Review items',
-        }
+        },
       ]}
     />
     <Card
       title="Items in unit"
+      loading={props.fetching}
       actions={
         <div>
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back"
-            onClick={() => browserHistory.push(`/modules/${props.moduleId}/details`)}
+            onClick={() => browserHistory.push(`/modules/${props.module.id}/details`)}
           />
         </div>
       }
     >
-      <Async fetching={props.fetching}>
-        {props.unit.id && (
-          <UnitItemListContainer
-            unit={props.unit}
-          />
-        )}
-      </Async>
+      {props.unit.id ? (
+        <UnitItemListContainer
+          unit={props.unit}
+        />
+      ) : (<div />)}
     </Card>
     <Separator size="md" />
     <Card
       title="Available items"
+      loading={props.fetching}
     >
-      <Async fetching={props.fetching}>
-        {props.unit.id && (
-          <div>
-            <AllUnitItemListFilterContainer />
-            <Separator />
-            <AllUnitItemListContainer
-              unit={props.unit}
-              moduleId={props.moduleId}
-            />
-          </div>
-        )}
-      </Async>
+      {props.unit.id && (
+        <div>
+          <AllUnitItemListFilterContainer />
+          <Separator />
+          <AllUnitItemListContainer
+            unit={props.unit}
+            moduleId={props.module.id}
+          />
+        </div>
+      )}
     </Card>
   </div>
 );
 
-UnitItemListScene.propTypes = {
+UnitReviewItemListScene.propTypes = {
   unit: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
@@ -91,7 +88,7 @@ UnitItemListScene.propTypes = {
   fetching: PropTypes.bool,
 };
 
-UnitItemListScene.defaultProps = {
+UnitReviewItemListScene.defaultProps = {
   unit: {
     module: {},
   },
@@ -101,4 +98,4 @@ UnitItemListScene.defaultProps = {
   fetching: false,
 };
 
-export default UnitItemListScene;
+export default UnitReviewItemListScene;

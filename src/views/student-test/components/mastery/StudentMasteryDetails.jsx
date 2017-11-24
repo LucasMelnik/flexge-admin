@@ -63,7 +63,7 @@ export default class StudentMasteryDetails extends Component {
             >
               <Button
                 label="Back"
-                icon="fa fa-arrow-left"
+                icon="arrow-left"
                 onClick={this.handleBack}
               />
             </div>
@@ -85,7 +85,7 @@ export default class StudentMasteryDetails extends Component {
             >
               <Button
                 label="Back"
-                icon="fa fa-arrow-left"
+                icon="arrow-left"
                 onClick={this.handleBackMastery}
               />
             </div>

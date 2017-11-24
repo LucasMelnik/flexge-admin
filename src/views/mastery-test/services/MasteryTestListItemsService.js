@@ -36,7 +36,7 @@ class MasteryTestListItemsService {
       method: 'put',
       body: {
         order,
-      }
+      },
     }).then(() => {
       this.handleLoad();
     });

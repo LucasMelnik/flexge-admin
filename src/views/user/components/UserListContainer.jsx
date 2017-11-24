@@ -10,21 +10,18 @@ class UserListContainer extends Component {
   userListService = new UserListService();
 
   static propTypes = {
-    company: PropTypes.object,
-    roleUser: PropTypes.oneOf(['USER', 'ADMIN', 'DISTRIBUTOR']).isRequired,
-  }
-
-  static defaultProps = {
-    company: null,
-  }
+    baseQuery: PropTypes.object.isRequired,
+    baseUrl: PropTypes.string.isRequired,
+  };
 
   componentDidMount() {
-    this.userListService.init(this.props.company, this.props.roleUser);
+    this.userListService.init(this.props.baseQuery);
   }
 
   render() {
     return (
       <UserList
+        baseUrl={this.props.baseUrl}
         users={toJS(this.userListService.users)}
         fetching={this.userListService.fetch.fetching}
         onDelete={this.userListService.handleRemove}

@@ -10,18 +10,17 @@ const FormButtons = props => (
     }}
   >
     <Button
-      icon="fa fa-ban"
-      fullWidth
+      icon="reload"
       disabled={props.isDisabled}
       onClick={props.onReset}
       label="Discard changes"
     />
     &emsp;
     <Button
-      icon="fa fa-check"
+      icon="check"
       type="primary"
-      fullWidth
       disabled={props.isDisabled}
+      loading={props.isSubmitting}
       buttonType="submit"
       label={props.confirmLabel}
     />
@@ -31,6 +30,7 @@ const FormButtons = props => (
 FormButtons.propTypes = {
   confirmLabel: PropTypes.string.isRequired,
   isDisabled: PropTypes.bool.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
   onReset: PropTypes.func.isRequired,
 };
 

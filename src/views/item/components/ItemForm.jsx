@@ -40,7 +40,7 @@ const ItemForm = props => (
   >
     <Async fetching={props.fetching}>
       <Row>
-        <Column lgSize={4}>
+        <Column size={4}>
           <FetchSelect
             url={props.itemsTypeUrl}
             disabled={props.submitting || props.disabled}
@@ -53,33 +53,30 @@ const ItemForm = props => (
               }
               props.setValidationsByItemType();
             }}
-            description={get(props.errors, 'item.type', '')}
-            fieldValidation={get(props.errors, 'item.type', null) && 'error'}
+            errorText={get(props.errors, 'item.type', '')}
             resultTransformer={{
               text: 'name',
               value: 'id',
             }}
           />
         </Column>
-        <Column lgSize={2}>
+        <Column size={2}>
           <TimeInput
             disabled={props.submitting || props.disabled || props.isTestItem}
             label="Time (minutes)"
             value={get(props.values, 'item.time', '')}
             onChange={value => props.onChange('item.time', value)}
-            description={get(props.errors, 'item.time', '')}
-            fieldValidation={get(props.errors, 'item.time', null) && 'error'}
+            errorText={get(props.errors, 'item.time', '')}
           />
         </Column>
-        <Column lgSize={needCharacter(get(props.values.item, 'type.key')) ? 3 : 6}>
+        <Column size={needCharacter(get(props.values.item, 'type.key')) ? 3 : 6}>
           <FetchSelect
             url="grammars"
             disabled={props.submitting || props.disabled || !!props.defaultGrammar}
             label="Grammar"
             value={get(props.values, 'item.grammar.id', '')}
             onChange={(value, grammar) => props.onChange('item.grammar', grammar)}
-            description={get(props.errors, 'item.grammar', '')}
-            fieldValidation={get(props.errors, 'item.grammar', null) && 'error'}
+            errorText={get(props.errors, 'item.grammar', '')}
             resultTransformer={{
               text: 'name',
               value: 'id',
@@ -87,15 +84,14 @@ const ItemForm = props => (
           />
         </Column>
         {needCharacter(get(props.values.item, 'type.key')) && (
-          <Column lgSize={3}>
+          <Column size={3}>
             <FetchSelect
               url="characters"
               disabled={props.submitting || props.disabled}
               label="Character"
               value={get(props.values, 'item.character', '')}
               onChange={(character) => props.onChange('item.character', character)}
-              description={get(props.errors, 'item.character', '')}
-              fieldValidation={get(props.errors, 'item.character', null) && 'error'}
+              errorText={get(props.errors, 'item.character', '')}
               resultTransformer={{
                 text: 'name',
                 value: 'id',
@@ -259,6 +255,7 @@ const ItemForm = props => (
         <FormButtons
           confirmLabel={props.values.id || get(props.values, 'item.id', '') ? 'Update Item' : 'Create Item'}
           isDisabled={props.submitting || !props.isDirty()}
+          isSubmitting={props.submitting}
           onReset={props.onReset}
         />
       )}
@@ -274,6 +271,7 @@ ItemForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
+  fetching: PropTypes.bool,
   isDirty: PropTypes.func,
   itemsTypeUrl: PropTypes.string.isRequired,
   timeProperty: PropTypes.string.isRequired,
@@ -285,12 +283,11 @@ ItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  showPostPhrase: false,
+  fetching: false,
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
   setValidationsByItemType: () => false,
   onReset: () => false,
-  onChange: () => false,
   disabled: false,
   isTestItem: false,
 };

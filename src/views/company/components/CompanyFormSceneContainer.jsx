@@ -11,20 +11,20 @@ class CompanyFormSceneContainer extends Component {
       distributorId: PropTypes.string,
       companyId: PropTypes.string,
     }).isRequired,
-  }
+  };
 
   componentWillMount() {
     if (this.props.params.distributorId) {
       CompanyDetailService.handleLoadDistributor(this.props.params.distributorId);
     }
-  }
+  };
 
   render() {
     return (
       <CompanyFormScene
         companyId={this.props.params.companyId}
-        distributorId={this.props.params.distributorId}
         distributor={CompanyDetailService.distributor}
+        fetching={CompanyDetailService.fetchDistributor.fetching}
       />
     );
   }

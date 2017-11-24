@@ -2,6 +2,7 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class MasteryTestListService {
   fetch = new FetchService();
@@ -41,6 +42,7 @@ class MasteryTestListService {
           url: `/modules/${moduleId}/mastery-tests/${masteryTestId}`,
           method: 'delete',
         }).then(() => {
+          NotificationService.addNotification('Mastery test deleted.', 'success');
           this.handleLoad(moduleId);
         });
       });

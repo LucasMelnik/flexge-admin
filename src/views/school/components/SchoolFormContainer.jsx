@@ -9,16 +9,15 @@ import StateService from '../../../core/services/StateService';
 class SchoolFormContainer extends Component {
 
   static propTypes = {
-    companyId: PropTypes.string.isRequired,
     schoolId: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     schoolId: null,
-  }
+  };
 
   componentWillMount() {
-    SchoolFormService.init(this.props.schoolId, this.props.companyId);
+    SchoolFormService.init(this.props.schoolId);
   }
 
   render() {
@@ -30,7 +29,6 @@ class SchoolFormContainer extends Component {
         values={SchoolFormService.form.getValues()}
         errors={SchoolFormService.form.errors}
         submitting={SchoolFormService.submit.fetching}
-        error={SchoolFormService.submit.error}
         isDirty={SchoolFormService.form.isDirty}
         states={toJS(StateService.states)}
       />

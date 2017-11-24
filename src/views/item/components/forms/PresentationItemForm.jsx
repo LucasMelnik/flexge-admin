@@ -11,7 +11,7 @@ import AudioPreview from '../../../../core/layout/AudioPreview';
 const PresentationItemForm = props => (
   <div>
     <Row>
-      <Column lgSize={12}>
+      <Column size={12}>
         <TextInput
           label="Title (The field is just required for Vocabulary units.)"
           disabled={props.submitting || props.disabled}
@@ -32,12 +32,12 @@ const PresentationItemForm = props => (
     />
     <Row>
       {get(props.values, 'generatedAudio', null) && (
-        <Column lgSize={2}>
+        <Column size={2}>
           <p>Generated Audio</p>
           <AudioPreview src={get(props.values, 'generatedAudio', '')} />
         </Column>
       )}
-      <Column lgSize={4}>
+      <Column size={4}>
         <FileInput
           label="Upload an audio to the item"
           accept="audio"
@@ -47,7 +47,7 @@ const PresentationItemForm = props => (
           errorText={get(props.errors, 'audio', '')}
         />
       </Column>
-      <Column lgSize={4}>
+      <Column size={4}>
         <FileInput
           label="Upload an image to the item"
           accept="image"
@@ -60,7 +60,7 @@ const PresentationItemForm = props => (
     </Row>
     {(props.showPostPhrase && !props.isTestItem) && (
       <Row>
-        <Column lgSize={12}>
+        <Column size={12}>
           <TextInput
             label="Post Phrase"
             disabled={props.submitting}
@@ -98,7 +98,6 @@ PresentationItemForm.defaultProps = {
   errors: {},
   submitting: false,
   showPostPhrase: false,
-  onChange: () => false,
   disabled: false,
   isTestItem: false,
 };

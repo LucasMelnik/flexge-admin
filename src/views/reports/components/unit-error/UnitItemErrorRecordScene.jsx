@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from '../../../../core-ant/Card';
 import UnitItemErrorRecordListContainer from './UnitItemErrorRecordListContainer';
+import Card from '../../../../core/layout/Card';
 
 const UnitItemErrorRecordScene = () => (
   <div>

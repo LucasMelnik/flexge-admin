@@ -1,16 +1,24 @@
 import React from 'react';
-import InlineBlock from 'jsxstyle/InlineBlock';
 import PropTypes from 'prop-types';
 
 const Average = props => (
   <div>
-    <InlineBlock><b>Average: </b> {props.average.toFixed(2)}</InlineBlock>
+    <div
+      style={{
+        display: 'inline-block',
+      }}
+    >
+      <b>Average: </b> {props.average.toFixed(2)}
+    </div>
     {props.from && props.to && (
-      <InlineBlock
-        marginLeft="15px"
+      <div
+        style={{
+          display: 'inline-block',
+          marginLeft: 15,
+        }}
       >
         <small>The average must be between {props.from} and {props.to}</small>
-      </InlineBlock>
+      </div>
     )}
   </div>
 );

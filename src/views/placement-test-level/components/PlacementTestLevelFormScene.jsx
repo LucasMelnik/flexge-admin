@@ -11,16 +11,16 @@ const PlacementTestLevelFormScene = props => (
     <Breadcrumb
       crumbs={[
         {
-          text: `${props.placementTestLevelId ? 'Edit Placement Test Level' : 'Create Placement Test Level'}`,
+          text: `${props.params.placementTestLevelId ? 'Edit Placement Test Level' : 'Create Placement Test Level'}`,
         },
       ]}
     />
     <Card
-      title={props.placementTestLevelId ? 'Edit Placement Test Level' : 'Create Placement Test Level'}
+      title={props.params.placementTestLevelId ? 'Edit Placement Test Level' : 'Create Placement Test Level'}
       actions={
         (
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back"
             type="default"
             onClick={() => browserHistory.goBack()}
@@ -28,17 +28,19 @@ const PlacementTestLevelFormScene = props => (
         )
       }
     >
-      <PlacementTestLevelFormContainer placementTestLevelId={props.placementTestLevelId} />
+      <PlacementTestLevelFormContainer placementTestLevelId={props.params.placementTestLevelId} />
     </Card>
   </div>
 );
 
 PlacementTestLevelFormScene.propTypes = {
-  placementTestLevelId: PropTypes.string,
+  params: PropTypes.shape({
+    placementTestLevelId: PropTypes.string,
+  }),
 };
 
 PlacementTestLevelFormScene.defaultProps = {
-  placementTestLevelId: null,
+  params: null,
 };
 
 export default PlacementTestLevelFormScene;

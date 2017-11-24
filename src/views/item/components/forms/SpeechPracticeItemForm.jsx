@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import TranslationInputContainer from '../inputs/TranslationInputContainer';
 import FileInput from '../../../../core/form/FileInput';
-import Separator from '../../../../core/layout/Separator';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import AudioPreview from '../../../../core/layout/AudioPreview';
@@ -18,15 +17,14 @@ const SpeechPracticeItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    <Separator size="xs" />
     <Row>
       {get(props.values, 'generatedAudio', null) && (
-        <Column lgSize={2}>
+        <Column size={2}>
           <p>Generated Audio</p>
           <AudioPreview src={get(props.values, 'generatedAudio', '')} />
         </Column>
       )}
-      <Column lgSize={6}>
+      <Column size={6}>
         <FileInput
           accept="audio"
           value={get(props.values, 'audio', '')}
@@ -52,7 +50,6 @@ SpeechPracticeItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  onChange: () => false,
   disabled: false,
   isTestItem: false,
 };

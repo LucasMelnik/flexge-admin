@@ -14,7 +14,6 @@ class LoginFormContainer extends Component {
         values={this.loginService.form.getValues()}
         errors={this.loginService.form.errors}
         submitting={this.loginService.fetch.fetching}
-        error={this.loginService.fetch.error}
       />
     );
   }

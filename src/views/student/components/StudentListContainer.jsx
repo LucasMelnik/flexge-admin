@@ -8,17 +8,15 @@ import StudentListService from '../services/StudentListService';
 class StudentListContainer extends Component {
 
   static propTypes = {
-    distributorId: PropTypes.string,
-    companyId: PropTypes.string,
     schoolId: PropTypes.string,
     classId: PropTypes.string,
     editable: PropTypes.bool,
     onSelect: PropTypes.func,
+    baseUrl: PropTypes.string,
   };
 
   static defaultProps = {
-    distributorId: null,
-    companyId: null,
+    baseUrl: '',
     schoolId: null,
     classId: null,
     editable: false,
@@ -34,13 +32,10 @@ class StudentListContainer extends Component {
       <StudentList
         students={toJS(StudentListService.students)}
         fetching={StudentListService.fetch.fetching}
-        editable={this.props.editable}
         onDelete={StudentListService.handleRemove}
+        editable={this.props.editable}
         onSelect={this.props.onSelect}
-        distributorId={this.props.distributorId}
-        companyId={this.props.companyId}
-        schoolId={this.props.schoolId}
-        classId={this.props.classId}
+        baseUrl={this.props.baseUrl}
       />
     );
   }

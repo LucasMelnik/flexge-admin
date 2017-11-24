@@ -1,6 +1,7 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class DistributorListService {
   fetch = new FetchService();
@@ -50,9 +51,9 @@ class DistributorListService {
           url: `/distributors/${distributor.id}`,
           method: 'delete',
         }).then(() => {
-          window.showSuccess(`Distributor "${distributor.name}" deleted successfully.`);
+          NotificationService.addNotification(`Distributor "${distributor.name}" deleted successfully.`, 'success');
           this.load();
-        });
+        }).catch(() => NotificationService.addNotification('Error deleting the distributor.', 'error'));
       });
   });
 }

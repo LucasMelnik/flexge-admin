@@ -31,16 +31,15 @@ export default class PlacementTestItems extends Component {
         title={this.state.actualScene === 'LIST' ? 'Grammar Items' : 'Grammar Item Form'}
         actions={this.state.actualScene === 'LIST' ? (
           <Button
-            primary
-            icon="fa-plus"
+            type="primary"
+            icon="plus"
             onClick={this.handleChangeToForm}
             label="Add new grammar item"
           />
         ) : (
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back"
-            type="default"
             onClick={this.handleChangeToList}
           />
         )}

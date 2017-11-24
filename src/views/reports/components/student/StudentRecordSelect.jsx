@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AutoComplete from '../../../../core-ant/AutoComplete';
+import AutoComplete from '../../../../core/form/AutoComplete';
 
 const StudentRecordSelect = props => (
   <AutoComplete

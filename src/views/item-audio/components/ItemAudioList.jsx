@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from '../../../core-ant/Table';
-import AudioPreviewButton from '../../../core-ant/AudioPreviewButton';
-import UploadButton from '../../../core-ant/UploadButton';
-import Button from '../../../core-ant/Button';
+import Table from '../../../core/form/Table';
+import AudioPreview from '../../../core/layout/AudioPreview';
+import StatusItem from '../../../core/layout/StatusItem';
+import Button from '../../../core/form/Button';
+import UploadButton from '../../../core/form/UploadButton';
 
 const ItemAudioList = props => (
   <Table
@@ -20,39 +21,34 @@ const ItemAudioList = props => (
         label: 'Character',
         path: 'character.name',
         sort: true,
+        width: '150px',
       },
       {
         label: 'Audio',
         path: 'audio',
-        render: (text, record) => record.audio && <AudioPreviewButton src={record.audio} />,
+        width: '70px',
+        render: (text, record) => record.audio && <AudioPreview src={record.audio} />,
       },
       {
         label: 'Comments',
         path: 'commentsAudio',
+        width: '300px',
         render: text => <div dangerouslySetInnerHTML={{ __html: text }} />,
       },
       {
         label: 'Status',
         path: 'statusAudio',
+        width: '130px',
+        sort: true,
         render: text => (
-          <div
-            style={{
-              color: '#fff',
-              padding: 5,
-              fontSize: 12,
-              display: 'inline-block',
-              fontWeight: 'bold',
-              borderRadius: 5,
-              minWidth: 'max-content',
-              backgroundColor: {
-                PENDING: '#ef8c3b',
-                NOT_APPROVED: '#758C98',
-                APPROVED: '#009687',
-              }[text],
-            }}
-          >
-            {text}
-          </div>
+          <StatusItem
+            color={{
+              PENDING: '#ef8c3b',
+              NOT_APPROVED: '#758C98',
+              APPROVED: '#009687',
+            }[text]}
+            text={text}
+          />
         ),
       },
       {
@@ -100,7 +96,7 @@ const ItemAudioList = props => (
         ),
       },
     ]}
-    dataSource={props.items}
+    rows={props.items}
   />
 );
 

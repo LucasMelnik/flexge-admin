@@ -23,7 +23,7 @@ const ModuleFormScene = props => (
       title={props.params.moduleId ? 'Update Module' : 'New Module'}
       actions={
         <Button
-          icon="fa-arrow-left"
+          icon="arrow-left"
           label="Back"
           onClick={() => browserHistory.push('/modules')}
         />
@@ -37,7 +37,7 @@ const ModuleFormScene = props => (
 ModuleFormScene.propTypes = {
   params: PropTypes.shape({
     moduleId: PropTypes.string,
-  })
+  }),
 };
 
 ModuleFormScene.defaultProps = {

@@ -27,7 +27,6 @@ class ModuleFormContainer extends Component {
         values={ModuleFormService.form.getValues()}
         errors={ModuleFormService.form.errors}
         submitting={ModuleFormService.fetch.fetching}
-        error={ModuleFormService.submit.error}
         isDirty={ModuleFormService.form.isDirty}
       />
     );

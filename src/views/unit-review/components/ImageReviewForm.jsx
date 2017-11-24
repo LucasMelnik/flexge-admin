@@ -20,7 +20,7 @@ const ImageReviewForm = (props) => (
           <div>
             <Button
               label="Image Approved"
-              icon="fa-smile-o"
+              icon="smile-o"
               type="primary"
               onClick={() => {
                 props.onChange('statusImage', 'APPROVED');
@@ -30,7 +30,7 @@ const ImageReviewForm = (props) => (
             {' '}
             <Button
               label="Image Not Approved"
-              icon="fa-frown-o"
+              icon="frown-o"
               onClick={() => {
                 props.onChange('statusImage', 'NOT_APPROVED');
                 props.onSaveStatusImage();
@@ -43,7 +43,7 @@ const ImageReviewForm = (props) => (
           <div>
             <Button
               label="Send to image review"
-              icon="fa-send"
+              icon="export"
               primary
               onClick={() => {
                 props.onChange('statusImage', 'PENDING_REVIEW');

@@ -1,74 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../layout/Icon';
+import { Button as AntButton } from 'antd';
 
 const Button = props => (
-  <button
+  <AntButton
     disabled={props.disabled}
-    type={props.buttonType}
+    type={props.type}
+    htmlType={props.buttonType}
     onClick={() => props.onClick && props.onClick()}
-    className={`
-      btn
-      btn-${props.type}
-      ${props.icon ? 'btn-icon' : ''}
-      ${props.cornered && 'btn-corner'}
-      ${props.rounded && 'btn-round'}
-      ${props.bordered && 'btn-border'}
-      ${props.size && `btn-${props.size}`}
-      ${props.fullWidth && 'input-block-level'}
-    `}
-    style={{
-      outline: 'none',
-    }}
+    icon={props.icon}
+    shape={props.rounded ? 'circle' : null}
+    loading={props.loading}
+    size={{
+      sm: 'small',
+      md: 'default',
+      lg: 'large',
+    }[props.size]}
   >
-    {props.icon && (
-      <Icon name={props.icon} size="xs" />
-    )}
-    <span style={{ marginLeft: props.icon ? 10 : 0 }}>
-      {props.label}
-    </span>
-  </button>
+    {props.label}
+  </AntButton>
 );
 
 Button.propTypes = {
   type: PropTypes.oneOf([
     'default',
     'primary',
-    'success',
-    'info',
-    'warning',
     'danger',
-    'purple',
-    'accent',
-    'secondary',
   ]),
-  size: PropTypes.oneOf([
-    'xs',
-    'sm',
-    'lg',
-    'block',
-  ]),
-  label: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(['sm','md','lg']),
+  label: PropTypes.string,
   icon: PropTypes.string,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
-  cornered: PropTypes.bool,
   rounded: PropTypes.bool,
-  bordered: PropTypes.bool,
-  fullWidth: PropTypes.bool,
+  loading: PropTypes.bool,
   buttonType: PropTypes.oneOf(['button', 'submit']),
 };
 
 Button.defaultProps = {
   type: 'default',
-  size: null,
   icon: null,
+  label: null,
   onClick: null,
-  cornered: false,
   rounded: false,
-  bordered: false,
-  fullWidth: false,
+  disabled: false,
+  loading: false,
   buttonType: 'button',
+  size: 'md',
 };
 
 export default Button;

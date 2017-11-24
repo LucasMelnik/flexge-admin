@@ -6,7 +6,7 @@ import Button from '../../../core/form/Button';
 import ItemTypeListFilterContainer from './ItemTypeListFilterContainer';
 import ItemTypeListContainer from './ItemTypeListContainer';
 
-const ItemTypeListScene = props => (
+const ItemTypeListScene = () => (
   <div>
     <Breadcrumb
       crumbs={[
@@ -19,8 +19,9 @@ const ItemTypeListScene = props => (
       title="Item Types"
       actions={
         <Button
+          type="primary"
           label="New item type"
-          icon="fa-plus"
+          icon="plus"
           onClick={() => browserHistory.push('/item-types/new')}
         />
       }

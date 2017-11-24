@@ -17,7 +17,7 @@ const StudentTestListScene = () => (
     <Card
       title="Student Tests"
     >
-      <StudentListFilterContainer hasSchoolClass={false} />
+      <StudentListFilterContainer />
       <StudentListContainer
         onSelect={idStudent => browserHistory.push(`/student-tests/${idStudent}`)}
       />

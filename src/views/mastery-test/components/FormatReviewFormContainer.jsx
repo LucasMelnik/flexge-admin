@@ -15,8 +15,7 @@ class FormatReviewFormContainer extends Component {
   };
 
   static defaultProps = {
-    unitId: null,
-    reviewId: null,
+    expanded: false,
   };
 
   componentWillMount() {

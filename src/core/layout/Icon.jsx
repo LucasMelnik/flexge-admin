@@ -1,29 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Icon as AntIcon } from 'antd';
 
 const Icon = props => (
-  <i
-    className={`
-      fa ${props.name}
-      icon-${props.size}
-      ${props.backgroundStyle ? `icon-${props.backgroundStyle}` : ''}
-    `}
-    style={{
-      marginRight: 5,
-      marginLeft: 5,
-    }}
+  <AntIcon
+    type={props.name}
+    style={props.style}
   />
 );
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xlg']),
-  backgroundStyle: PropTypes.oneOf(['rounded', 'cornered', 'square', 'bordered']),
+  style: PropTypes.shape({}),
 };
 
 Icon.defaultProps = {
-  size: 'sm',
-  backgroundStyle: null
+  style: {},
 };
 
 export default Icon;

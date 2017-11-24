@@ -51,12 +51,7 @@ class AchievementListService {
           url: `/achievements/${achievement.id}`,
           method: 'delete',
         }).then(() => {
-          NotificationService.addNotification(
-            `Achievement "${achievement.name}" deleted successfully.`,
-            null,
-            null,
-            'success',
-          );
+          NotificationService.addNotification(`Achievement "${achievement.name}" deleted successfully.`, 'success');
           this.load();
         });
       });

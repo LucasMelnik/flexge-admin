@@ -3,7 +3,7 @@ import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import ConfigurationFormContainer from './ConfigurationFormContainer';
 
-const ConfigurationScene = props => (
+const ConfigurationScene = () => (
   <div>
     <Breadcrumb
       crumbs={[

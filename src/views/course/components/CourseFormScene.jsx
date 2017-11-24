@@ -11,12 +11,12 @@ const CourseFormScene = props => (
     <Breadcrumb
       crumbs={[
         {
-          text: `${props.courseId ? 'Edit Course' : 'Create Course'}`,
+          text: `${props.params.courseId ? 'Edit Course' : 'Create Course'}`,
         },
       ]}
     />
     <Card
-      title={props.courseId ? 'Edit Course' : 'Create Course'}
+      title={props.params.courseId ? 'Edit Course' : 'Create Course'}
       actions={
         (
           <Button
@@ -28,17 +28,19 @@ const CourseFormScene = props => (
         )
       }
     >
-      <CourseFormContainer courseId={props.courseId} />
+      <CourseFormContainer courseId={props.params.courseId} />
     </Card>
   </div>
 );
 
 CourseFormScene.propTypes = {
-  courseId: PropTypes.string,
+  params: PropTypes.shape({
+    courseId: PropTypes.string,
+  }),
 };
 
 CourseFormScene.defaultProps = {
-  courseId: null,
+  params: null,
 };
 
 export default CourseFormScene;

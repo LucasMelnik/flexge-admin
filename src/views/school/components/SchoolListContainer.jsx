@@ -8,14 +8,14 @@ import SchoolListService from '../services/SchoolListService';
 class SchoolListContainer extends Component {
 
   static propTypes = {
-    distributorId: PropTypes.string,
+    baseUrl: PropTypes.string,
     companyId: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
-    distributorId: null,
+    baseUrl: '',
     companyId: null,
-  }
+  };
 
   componentDidMount() {
     SchoolListService.init(this.props.companyId);
@@ -24,8 +24,7 @@ class SchoolListContainer extends Component {
   render() {
     return (
       <SchoolList
-        distributorId={this.props.distributorId}
-        companyId={this.props.companyId}
+        baseUrl={this.props.baseUrl}
         schools={toJS(SchoolListService.schools)}
         fetching={SchoolListService.fetch.fetching}
         onDelete={SchoolListService.handleRemove}

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Separator from "../../../../core/layout/Separator";
-import AnswersInputContainer from "../inputs/AnswersInputContainer";
-import TranslationInputContainer from "../inputs/TranslationInputContainer";
+import Separator from '../../../../core/layout/Separator';
+import AnswersInputContainer from '../inputs/AnswersInputContainer';
+import TranslationInputContainer from '../inputs/TranslationInputContainer';
 import TextInput from '../../../../core/form/TextInput';
 import FileInput from '../../../../core/form/FileInput';
 import AudioPreview from '../../../../core/layout/AudioPreview';
@@ -45,7 +45,6 @@ const SingleChoiceItemForm = props => (
         disabled={props.disabled}
       />
     )}
-    <Separator size="xs" />
     <AnswersInputContainer
       value={get(props.values, 'answers', [])}
       onChange={answers => props.onChange('answers', answers)}
@@ -66,7 +65,8 @@ SingleChoiceItemForm.propTypes = {
   type: PropTypes.oneOf([
     'SINGLE_CHOICE_TEXT',
     'SINGLE_CHOICE_AUDIO',
-    'SINGLE_CHOICE_IMAGE']).isRequired,
+    'SINGLE_CHOICE_IMAGE',
+  ]).isRequired,
   showPostPhrase: PropTypes.bool,
 };
 
@@ -74,8 +74,8 @@ SingleChoiceItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  onChange: () => false,
   disabled: false,
+  showPostPhrase: false,
   isTestItem: false,
 };
 

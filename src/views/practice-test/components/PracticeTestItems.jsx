@@ -30,14 +30,15 @@ class PracticeTestItems extends Component {
           <div>
             {this.state.actualScene === 'LIST' && (
               <Button
-                icon="fa-plus"
+                icon="plus"
+                type="primary"
                 onClick={this.handleChangeToForm}
                 label="Add new practice test item"
               />
             )}
             {this.state.actualScene === 'FORM' && (
               <Button
-                icon="fa-arrow-left"
+                icon="arrow-left"
                 label="Back to Items"
                 onClick={this.handleChangeToList}
               />

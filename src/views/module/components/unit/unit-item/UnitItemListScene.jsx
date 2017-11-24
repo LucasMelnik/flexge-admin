@@ -5,7 +5,6 @@ import Button from '../../../../../core/form/Button';
 import UnitItemListContainer from './UnitItemListContainer';
 import Card from '../../../../../core/layout/Card';
 import Breadcrumb from '../../../../../core/layout/Breadcrumb';
-import Async from '../../../../../core/layout/Async';
 
 const UnitItemListScene = props => (
   <div>
@@ -26,37 +25,36 @@ const UnitItemListScene = props => (
         },
         {
           text: 'Unit items',
-        }
+        },
       ]}
     />
     <Card
       title="Items"
+      loading={props.fetching}
       actions={
         <div>
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back"
-            onClick={() => browserHistory.push(`/modules/${props.moduleId}/details`)}
+            onClick={() => browserHistory.push(`/modules/${props.module.id}/details`)}
           />
           {' '}
           {(localStorage.role === 'ADMIN' || props.unit.createdBy === localStorage.id) && (
             <Button
-              icon="fa-plus"
+              icon="plus"
               type="primary"
-              onClick={() => browserHistory.push(`/modules/${props.moduleId}/units/${props.unitId}/items/new`)}
+              onClick={() => browserHistory.push(`/modules/${props.module.id}/units/${props.unit.id}/items/new`)}
               label="Add new item"
             />
           )}
         </div>
       }
     >
-      <Async fetching={props.fetching}>
-        {props.unit.id && (
-          <UnitItemListContainer
-            unit={props.unit}
-          />
-        )}
-      </Async>
+      {props.unit.id ? (
+        <UnitItemListContainer
+          unit={props.unit}
+        />
+      ) : (<div />)}
     </Card>
   </div>
 );

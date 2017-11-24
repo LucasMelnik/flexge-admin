@@ -1,12 +1,13 @@
 import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
+import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
 class SchoolFormService {
-  fetch = new FetchService()
-  submit = new FetchService()
-  form = new FormService()
+  fetch = new FetchService();
+  submit = new FetchService();
+  form = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -14,13 +15,13 @@ class SchoolFormService {
     });
     this.form.validations = {
       name: [isRequired],
-      company: localStorage.role === 'COMPANY_MANAGER' ? [] : [isRequired],
+      // company: localStorage.role === 'COMPANY_MANAGER' ? [] : [isRequired],
     };
   }
 
-  init = action((schoolId, companyId) => {
+  init = action((schoolId) => {
     this.schoolId = schoolId;
-    this.companyId = companyId;
+    // this.companyId = companyId;
     this.handleLoad();
   });
 
@@ -39,14 +40,14 @@ class SchoolFormService {
         }
       });
     } else {
-      this.form.setInitialValues({ company: this.companyId });
+      this.form.setInitialValues({});
     }
   });
 
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      window.showErrorMessage('Fill the required fields');
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const schoolId = this.form.getValue('id');
@@ -68,10 +69,10 @@ class SchoolFormService {
           ...school,
           company: this.form.getValue('company'),
         });
-        window.showSuccess(`School ${schoolId ? 'updated' : 'created'} successfully.`);
+        NotificationService.addNotification(`School ${schoolId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
-        window.showErrorMessage(`Error ${schoolId ? 'updating' : 'creating'} school.`);
+        NotificationService.addNotification(`Error ${schoolId ? 'updating' : 'creating'} school.`, 'error');
       }
     });
   })

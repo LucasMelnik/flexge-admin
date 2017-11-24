@@ -4,9 +4,7 @@ import get from 'lodash/get';
 import range from 'lodash/range';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
-import Separator from '../../../core/layout/Separator';
 import Table from '../../../core/form/Table';
-import IconButton from '../../../core/form/IconButton';
 import FileInput from '../../../core/form/FileInput';
 import Button from '../../../core/form/Button';
 import Select from '../../../core/form/Select';
@@ -14,7 +12,7 @@ import Select from '../../../core/form/Select';
 const AchievementIconForm = props => (
   <div>
     <Row>
-      <Column lgSize={2} mdSize={3}>
+      <Column size={2}>
         <FileInput
           label="Icon"
           accept="image"
@@ -23,29 +21,26 @@ const AchievementIconForm = props => (
           errorText={get(props.errors, 'icon', '')}
         />
       </Column>
-      <Column lgSize={2} mdSize={3}>
+      <Column size={2}>
         <Select
           label="Position"
           value={get(props.values, 'position', '')}
           onChange={value => props.onChange('position', value)}
-          description={get(props.errors, 'position', null)}
-          fieldValidation={get(props.errors, 'position', null) && 'error'}
+          errorText={get(props.errors, 'position', null)}
           options={range(1, props.icons.length + 2, 1).map(value => ({
             label: value.toString(),
             value,
           }))}
         />
       </Column>
-      <Column lgSize={6} mdSize={6}>
+      <Column size={6}>
         <div
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            height: 90,
+            marginTop: 34,
           }}
         >
           <Button
-            icon="fa fa-ban"
+            icon="reload"
             fullWidth
             disabled={!props.isDirty()}
             onClick={props.onReset}
@@ -53,7 +48,7 @@ const AchievementIconForm = props => (
           />
           &emsp;
           <Button
-            icon="fa fa-check"
+            icon="check"
             type="primary"
             fullWidth
             disabled={!props.isDirty()}
@@ -63,14 +58,8 @@ const AchievementIconForm = props => (
         </div>
       </Column>
     </Row>
-    <Separator />
     <Table
       columns={[
-        {
-          label: 'Position',
-          path: 'position',
-          isKey: true,
-        },
         {
           label: 'Icon',
           path: 'icon',
@@ -88,17 +77,17 @@ const AchievementIconForm = props => (
         {
           label: 'Actions',
           path: 'action',
-          width: '120',
+          width: '85px',
           render: (cell, row) => {
             return (
               <div>
-                <IconButton
-                  icon="fa-trash"
+                <Button
+                  icon="delete"
                   onClick={() => props.onDelete(row)}
                 />
                 {' '}
-                <IconButton
-                  icon="fa-edit"
+                <Button
+                  icon="edit"
                   onClick={() => props.onEdit(row)}
                 />
               </div>

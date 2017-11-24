@@ -1,69 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Toggle from 'react-toggle';
-import 'react-toggle/style.css';
-import './Switch.css';
+import { Switch as AntSwitch, Form } from 'antd';
 
-export default class Switch extends Component {
+const Switch = props => (
+  <Form.Item
+    label={props.label}
+    help={props.errorText}
+    validateStatus={props.errorText && 'error'}
+  >
+    <AntSwitch
+      checked={props.value}
+      disabled={props.disabled}
+      onChange={props.onChange}
+      checkedChildren={props.titleOn}
+      unCheckedChildren={props.titleOff}
+    />
+  </Form.Item>
+);
 
-  static propTypes = {
-    value: PropTypes.bool,
-    icons: PropTypes.bool,
-    titleOn: PropTypes.string,
-    titleOff: PropTypes.string,
-    disabled: PropTypes.bool,
-    onChange: PropTypes.func,
-  };
+Switch.propTypes = {
+  label: PropTypes.string.isRequired,
+  errorText: PropTypes.string,
+  value: PropTypes.bool,
+  disabled: PropTypes.bool,
+  titleOn: PropTypes.string,
+  titleOff: PropTypes.string,
+  onChange: PropTypes.func,
+};
 
-  static defaultProps = {
-    value: false,
-    icons: false,
-    titleOn: '',
-    titleOff: '',
-    disabled: false,
-    onChange: () => null,
-  };
+Switch.defaultProps = {
+  value: false,
+  titleOn: '',
+  titleOff: '',
+  errorText: null,
+  disabled: false,
+  onChange: () => null,
+};
 
-  render() {
-    return (
-      <div>
-        <div
-          style={{
-            fontWeight: 400,
-            color: '#555555',
-            marginBottom: 10,
-          }}
-        >
-          {this.props.label}
-        </div>
-        <div
-          style={{
-            display: 'flex',
-          }}
-        >
-          <span
-            style={{
-              marginRight: 10,
-            }}
-          >
-            {this.props.titleOff}
-          </span>
-          <Toggle
-            defaultChecked={false}
-            checked={this.props.value}
-            icons={this.props.icons}
-            onChange={event => this.props.onChange(event.target.checked)}
-            disabled={this.props.disabled}
-          />
-          <span
-            style={{
-              marginLeft: 10,
-            }}
-          >
-            {this.props.titleOn}
-          </span>
-        </div>
-      </div>
-    );
-  }
-}
+export default Switch;

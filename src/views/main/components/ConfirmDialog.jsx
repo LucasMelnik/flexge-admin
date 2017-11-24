@@ -18,7 +18,7 @@ const ConfirmDialog = props => (
         type="default"
         label={props.discardLabel}
         onClick={() => props.onDiscard()}
-      />
+      />,
     ]}
     isOpen={props.isOpen}
   >

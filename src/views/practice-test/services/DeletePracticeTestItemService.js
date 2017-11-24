@@ -1,6 +1,7 @@
 import { action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 import PracticeTestListItemsService from './PracticeTestListItemsService';
 
 class DeletePracticeTestItemService {
@@ -15,6 +16,7 @@ class DeletePracticeTestItemService {
           url: `/practice-test-items/${practiceTestItem.id}`,
           method: 'delete',
         }).then(() => {
+          NotificationService.addNotification('Practice Item deleted', 'success');
           PracticeTestListItemsService.handleLoad(practiceTestItem.id);
         });
       });

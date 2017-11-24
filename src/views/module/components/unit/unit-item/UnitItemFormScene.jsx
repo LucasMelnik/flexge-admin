@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Button from '../../../../../core/form/Button';
 import ItemFormContainer from '../../../../item/components/ItemFormContainer';
 import Card from '../../../../../core/layout/Card';
-import Async from '../../../../../core/layout/Async';
 import Breadcrumb from '../../../../../core/layout/Breadcrumb';
 
 const UnitItemFormScene = props => (
@@ -25,32 +24,31 @@ const UnitItemFormScene = props => (
         },
         {
           text: 'New item',
-        }
+        },
       ]}
     />
     <Card
       title="New Item"
+      loading={props.fetching}
       actions={
         <Button
-          icon="fa-arrow-left"
+          icon="arrow-left"
           label="Back"
           onClick={() => props.onBack()}
         />
       }
     >
-      <Async fetching={props.fetching}>
-        {props.unit.id && (
-          <ItemFormContainer
-            itemId={props.itemId}
-            disabled={localStorage.role === 'ADMIN' ? false : props.unit.createdBy !== localStorage.id}
-            itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
-            endpointUrl={`units/${props.unit.id}/items`}
-            order={props.itemOrder}
-            onSaveSuccess={props.onBack}
-            showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
-          />
-        )}
-      </Async>
+      {props.unit.id ? (
+        <ItemFormContainer
+          itemId={props.itemId}
+          disabled={localStorage.role === 'ADMIN' ? false : props.unit.createdBy !== localStorage.id}
+          itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
+          endpointUrl={`units/${props.unit.id}/items`}
+          order={props.itemOrder}
+          onSaveSuccess={props.onBack}
+          showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
+        />
+      ) : (<div />)}
     </Card>
   </div>
 );
@@ -61,13 +59,11 @@ UnitItemFormScene.propTypes = {
   itemOrder: PropTypes.number.isRequired,
   onBack: PropTypes.func.isRequired,
   itemId: PropTypes.string,
-  reviewId: PropTypes.string,
   fetching: PropTypes.bool,
 };
 
 UnitItemFormScene.defaultProps = {
   itemId: null,
-  reviewId: null,
   fetching: false,
 };
 

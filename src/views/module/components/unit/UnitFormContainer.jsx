@@ -50,7 +50,6 @@ class UnitFormContainer extends Component {
         values={UnitFormService.form.getValues()}
         errors={UnitFormService.form.errors}
         submitting={UnitFormService.fetch.fetching}
-        error={UnitFormService.fetch.error}
         isDirty={UnitFormService.form.isDirty}
         disabled={this.props.disabled}
       />

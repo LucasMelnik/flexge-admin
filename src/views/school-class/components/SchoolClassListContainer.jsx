@@ -8,15 +8,8 @@ import SchoolClassListService from '../services/SchoolClassListService';
 class SchoolClassListContainer extends Component {
 
   static propTypes = {
-    distributorId: PropTypes.string,
-    companyId: PropTypes.string,
-    schoolId: PropTypes.string,
-  };
-
-  static defaultProps = {
-    distributorId: null,
-    companyId: null,
-    schoolId: null,
+    baseUrl: PropTypes.string.isRequired,
+    schoolId: PropTypes.string.isRequired,
   };
 
   componentDidMount() {
@@ -26,12 +19,10 @@ class SchoolClassListContainer extends Component {
   render() {
     return (
       <SchoolClassList
-        distributorId={this.props.distributorId}
-        companyId={this.props.companyId}
-        schoolId={this.props.schoolId}
-        schools={toJS(SchoolClassListService.classes)}
+        classes={toJS(SchoolClassListService.classes)}
         fetching={SchoolClassListService.fetch.fetching}
         onDelete={SchoolClassListService.handleDelete}
+        baseUrl={this.props.baseUrl}
       />
     );
   }

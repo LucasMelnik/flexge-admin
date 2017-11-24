@@ -1,106 +1,85 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
-import IconButton from '../../../core/form/IconButton';
-import Async from '../../../core/layout/Async';
+import Button from '../../../core/form/Button';
 import Table from '../../../core/form/Table';
 
 const ModuleList = props => (
-  <Async fetching={props.fetching}>
-      <Table
-        columns={[
-          {
-            label: 'ID',
-            path: 'id',
-            isKey: true,
-            hidden: true,
-          },
-          {
-            label: 'Course',
-            path: 'course.name',
-            width: '6%',
-          },
-          {
-            label: 'Group',
-            path: 'group',
-            width: '5%',
-          },
-          {
-            label: 'Order',
-            path: 'order',
-            width: '5%',
-          },
-          {
-            label: 'Name',
-            path: 'name',
-            width: '25%',
-            rowColumnStyle: {
-              textOverflow: 'none',
-              paddingTop: 5,
-              paddingBottom: 5,
-              paddingRight: 5,
-              whiteSpace: 'normal',
-              textAlign: 'justify',
-              lineHeight: '18px',
-            },
-          },
-          {
-            label: 'Description',
-            path: 'description',
-            width: '25%',
-            rowColumnStyle: {
-              textOverflow: 'none',
-              paddingTop: 5,
-              paddingBottom: 5,
-              paddingRight: 5,
-              whiteSpace: 'normal',
-              textAlign: 'justify',
-              lineHeight: '18px',
-            },
-          },
-          {
-            label: 'Academic Plan',
-            path: 'academicPlan.name',
-          },
-          {
-            label: 'Created By',
-            path: 'createdBy.name',
-          },
-          {
-            label: 'Units count',
-            path: 'unitsCount',
-            width: '8%',
-          },
-          {
-            label: 'Actions',
-            path: 'action',
-            width: '120',
-            render: (cell, row) => {
-              return (
-                <div>
-                  {(localStorage.role === 'ADMIN' || row.createdBy.id === localStorage.id) && (
-                    <IconButton
-                      icon="fa-trash"
-                      onClick={() => props.onDelete(row)}
-                    />
-                  )}
-                  {' '}
-                  {(localStorage.role === 'ADMIN' || row.createdBy.id === localStorage.id) && (
-                    <IconButton
-                      icon="fa-edit"
-                      onClick={() => browserHistory.push(`/modules/${row.id}`)}
-                    />
-                  )}
-                </div>
-              );
-            },
-          },
-        ]}
-        rows={props.modules}
-        selectable
-        onSelect={row => browserHistory.push(`/modules/${row.id}/details`)}
-      />
-  </Async>
+  <Table
+    fetching={props.fetching}
+    columns={[
+      {
+        label: 'Course',
+        path: 'course.name',
+        width: '6%',
+        sort: true,
+      },
+      {
+        label: 'Group',
+        path: 'group',
+        width: '6%',
+        sort: true,
+      },
+      {
+        label: 'Order',
+        path: 'order',
+        width: '6%',
+        sort: true,
+      },
+      {
+        label: 'Name',
+        path: 'name',
+        width: '25%',
+        sort: true,
+      },
+      {
+        label: 'Description',
+        path: 'description',
+        width: '25%',
+      },
+      {
+        label: 'Academic Plan',
+        path: 'academicPlan.name',
+        width: '10%',
+      },
+      {
+        label: 'Created By',
+        path: 'createdBy.name',
+      },
+      {
+        label: 'Units count',
+        path: 'unitsCount',
+        width: '8%',
+      },
+      {
+        label: 'Actions',
+        path: 'action',
+        width: '85px',
+        render: (cell, row) => {
+          return (
+            <div>
+              {(localStorage.role === 'ADMIN' || row.createdBy.id === localStorage.id) && (
+                <Button
+                  icon="delete"
+                  onClick={() => props.onDelete(row)}
+                />
+              )}
+              {' '}
+              {(localStorage.role === 'ADMIN' || row.createdBy.id === localStorage.id) && (
+                <Button
+                  icon="edit"
+                  onClick={() => browserHistory.push(`/modules/${row.id}`)}
+                />
+              )}
+            </div>
+          );
+        },
+      },
+    ]}
+    rows={props.modules}
+    selectable
+    onSelect={row => browserHistory.push(`/modules/${row.id}/details`)}
+  />
 );
 
 ModuleList.propTypes = {

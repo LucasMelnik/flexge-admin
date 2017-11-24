@@ -6,7 +6,7 @@ import Button from '../../../core/form/Button';
 import CharacterListFilterContainer from './CharacterListFilterContainer';
 import CharacterListContainer from './CharacterListContainer';
 
-const CharacterListScene = props => (
+const CharacterListScene = () => (
   <div>
     <Breadcrumb
       crumbs={[
@@ -19,8 +19,9 @@ const CharacterListScene = props => (
       title="Characters"
       actions={
         <Button
+          type="primary"
           label="New character"
-          icon="fa-plus"
+          icon="plus"
           onClick={() => browserHistory.push('/characters/new')}
         />
       }

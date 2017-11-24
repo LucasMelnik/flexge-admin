@@ -9,35 +9,32 @@ import Card from '../../../core/layout/Card';
 const SchoolFormScene = props => (
   <div>
     <Breadcrumb
+      fetching={props.fetching}
       crumbs={[
-        ...(props.distributorId) ? [
+        ...(props.distributor && props.distributor.name) ? [
           {
             text: 'Distributors',
             link: '/distributors',
           },
           {
-            text: props.distributor ? `Distributor - ${props.distributor.name}` : 'loading...',
-            link: `/distributor-detail/${props.distributorId}`,
+            text: `Distributor - ${props.distributor.name}`,
+            link: `/distributors/${props.distributor.id}/details`,
           },
-          {
-            text: props.company ? `Company - ${props.company.name}` : 'loading...',
-            link: `/distributor-detail/${props.distributorId}/company-detail/${props.companyId}`,
-          },
-        ] : (props.companyId) ? [
+        ] : [],
+        ...(props.company && props.company.name) ? [
           {
             text: 'Companies',
             link: '/companies',
           },
           {
-            text: props.company ? `Company - ${props.company.name}` : 'loading...',
-            link: `/company-detail/${props.companyId}`,
+            text: `Company - ${props.company.name}`,
+            link: `/companies/${props.company.id}/details`,
           },
-        ] : [
-          {
-            text: 'Schools',
-            link: '/schools',
-          },
-        ],
+        ] : [],
+        {
+          text: 'Schools',
+          link: '/schools',
+        },
         {
           text: `${props.schoolId ? 'Update School' : 'Create School'}`,
         },
@@ -45,10 +42,11 @@ const SchoolFormScene = props => (
     />
     <Card
       title={props.schoolId ? 'Update School' : 'Create School'}
+      loading={props.fetching}
       actions={
         (
           <Button
-            icon="fa-arrow-left"
+            icon="arrow-left"
             label="Back"
             type="default"
             onClick={() => browserHistory.goBack()}
@@ -57,7 +55,6 @@ const SchoolFormScene = props => (
       }
     >
       <SchoolFormContainer
-        companyId={props.companyId}
         schoolId={props.schoolId}
       />
     </Card>
@@ -65,19 +62,16 @@ const SchoolFormScene = props => (
 );
 
 SchoolFormScene.propTypes = {
-  companyId: PropTypes.string,
-  distributorId: PropTypes.string,
-  schoolId: PropTypes.string,
-  company: PropTypes.object,
+  fetching: PropTypes.bool.isRequired,
   distributor: PropTypes.object,
+  company: PropTypes.object,
+  schoolId: PropTypes.string,
 };
 
 SchoolFormScene.defaultProps = {
-  companyId: null,
-  distributorId: null,
+  distributor: {},
+  company: {},
   schoolId: null,
-  company: null,
-  distributor: null,
 };
 
 export default SchoolFormScene;

@@ -3,6 +3,7 @@ import { orderBy } from 'lodash';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class UnitListService {
   fetch = new FetchService();
@@ -48,7 +49,7 @@ class UnitListService {
             }
             return unit;
           })
-          .filter(unit => {
+          .filter((unit) => {
             if (this.form.getValue('onlyWithImages')) {
               return unit.type.name.toLowerCase() !== 'review' &&
                 unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => itemType.key === type));
@@ -70,6 +71,7 @@ class UnitListService {
           url: `/modules/${unit.module}/units/${unit.id}`,
           method: 'delete',
         }).then(() => {
+          NotificationService.addNotification('Unit deleted.', 'success');
           this.load();
         });
       });

@@ -1,91 +1,67 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
-import Async from '../../../core/layout/Async';
 import Table from '../../../core/form/Table';
-import IconButton from '../../../core/form/IconButton';
+import Button from '../../../core/form/Button';
 
 const SchoolClassList = props => (
-  <Async fetching={props.fetching}>
-    <Table
-      columns={[
-        {
-          label: 'ID',
-          path: 'id',
-          isKey: true,
-          hidden: true,
+  <Table
+    fetching={props.fetching}
+    columns={[
+      {
+        label: 'Name',
+        path: 'name',
+      },
+      {
+        label: 'School',
+        path: 'school.name',
+      },
+      {
+        label: 'Teacher',
+        path: 'teacher.name',
+      },
+      {
+        label: 'Number Students',
+        path: 'studentCount',
+      },
+      {
+        label: 'Actions',
+        path: 'action',
+        width: '85px',
+        render: (cell, row) => {
+          return (
+            <div>
+              <Button
+                icon="delete"
+                onClick={() => props.onDelete(row)}
+              />
+              {' '}
+              <Button
+                icon="edit"
+                onClick={() => browserHistory.push(`${props.baseUrl}/classes/${row.id}`)}
+              />
+            </div>
+          );
         },
-        {
-          label: 'Name',
-          path: 'name',
-        },
-        {
-          label: 'School',
-          path: 'school.name',
-        },
-        {
-          label: 'Teacher',
-          path: 'teacher.name',
-        },
-        {
-          label: 'Number Students',
-          path: 'studentCount',
-        },
-        {
-          label: 'Actions',
-          path: 'action',
-          width: '120',
-          render: (cell, row) => {
-            return (
-              <div>
-                <IconButton
-                  icon="fa-trash"
-                  onClick={() => props.onDelete(row)}
-                />
-                {' '}
-                <IconButton
-                  icon="fa-edit"
-                  onClick={() => browserHistory.push(props.distributorId ?
-                `/distributors/${props.distributorId}/companies/${props.companyId}/schools/${props.schoolId}/classes/${row.id}` :
-                  props.companyId ? `/companies/${props.companyId}/schools/${props.schoolId}/classes/${row.id}` :
-                  props.schoolId ? `/schools/${props.schoolId}/classes/${row.id}` : `/classes/${row.id}`)}
-                />
-              </div>
-            );
-          },
-        },
-      ]}
-      rows={props.schools}
-      selectable
-      onSelect={row => browserHistory.push(
-        props.companyId && props.distributorId && props.schoolId ?
-          `/distributor-detail/${props.distributorId}/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${row.id}`
-        : props.companyId && props.schoolId ?
-          `/company-detail/${props.companyId}/school-detail/${props.schoolId}/class-detail/${row.id}`
-        : `/school-detail/${row.school.id}/class-detail/${row.id}`)}
-    />
-  </Async>
+      },
+    ]}
+    rows={props.classes}
+    selectable
+    onSelect={row => browserHistory.push(`${props.baseUrl}/classes/${row.id}/details`)}
+  />
 );
 
 SchoolClassList.propTypes = {
-  schools: PropTypes.arrayOf(PropTypes.shape({
+  classes: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    company: PropTypes.shape({
+    school: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,
   })).isRequired,
-  distributorId: PropTypes.string,
-  companyId: PropTypes.string,
-  schoolId: PropTypes.string,
+  baseUrl: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
-};
-
-SchoolClassList.defaultProps = {
-  distributorId: null,
-  schoolId: null,
-  companyId: null,
 };
 
 export default SchoolClassList;

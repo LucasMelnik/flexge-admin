@@ -1,6 +1,5 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import Separator from '../../../core/layout/Separator';
 import Button from '../../../core/form/Button';
 import ModuleListContainer from './ModuleListContainer';
 import ModuleListFilterContainer from './ModuleListFilterContainer';
@@ -20,14 +19,14 @@ const ModuleListScene = () => (
       title="Modules"
       actions={
         <Button
-          icon="fa-plus"
+          type="primary"
+          icon="plus"
           onClick={() => browserHistory.push('/modules/new')}
           label="New module"
         />
       }
     >
       <ModuleListFilterContainer />
-      <Separator />
       <ModuleListContainer />
     </Card>
   </div>
