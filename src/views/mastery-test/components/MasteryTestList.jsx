@@ -12,10 +12,12 @@ const MasteryTestList = props => (
       {
         label: 'Mastery Test',
         path: 'index',
+        sort: true,
       },
       {
         label: 'Percentage to Activate',
         path: 'modulePercentageToActive',
+        sort: true,
       },
       {
         label: 'Deadline Time',
@@ -25,6 +27,11 @@ const MasteryTestList = props => (
       {
         label: 'Score to Pass',
         path: 'scoreToPass',
+      },
+      {
+        label: 'Items Count',
+        path: 'itemsCount',
+        width: '100px',
       },
       {
         label: 'Actions',
