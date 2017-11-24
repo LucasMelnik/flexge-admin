@@ -16,11 +16,12 @@ class CompanyFormService {
     this.form.validations = {
       name: [isRequired],
       state: [isRequired],
+      distributor: [isRequired],
       cnpj: [isRequired, isCNPJ],
     };
   }
 
-  handleLoad = action((companyId) => {
+  handleLoad = action((companyId, distributorId) => {
     this.form.reset();
     if (companyId) {
       this.fetch.fetch({
@@ -38,7 +39,14 @@ class CompanyFormService {
         }
       });
     } else {
-      this.form.setInitialValues({ country: 'Brazil' });
+      this.form.setInitialValues({
+        ...distributorId && {
+          distributor: distributorId,
+        },
+        ...localStorage.role === 'DISTRIBUTOR_MANAGER' && {
+          distributor: localStorage.distributor,
+        },
+      });
     }
     this.companyId = companyId;
   });

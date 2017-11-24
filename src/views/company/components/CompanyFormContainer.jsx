@@ -10,14 +10,16 @@ class CompanyFormContainer extends Component {
 
   static propTypes = {
     companyId: PropTypes.string,
+    currentDistributor: PropTypes.string,
   };
 
   static defaultProps = {
     companyId: null,
+    currentDistributor: null,
   };
 
   componentWillMount() {
-    CompanyFormService.handleLoad(this.props.companyId);
+    CompanyFormService.handleLoad(this.props.companyId, this.props.currentDistributor);
   }
 
   render() {
@@ -32,6 +34,7 @@ class CompanyFormContainer extends Component {
         error={CompanyFormService.submit.error}
         isDirty={CompanyFormService.form.isDirty}
         states={toJS(StateService.states)}
+        disableDistributor={!!this.props.currentDistributor}
       />
     );
   }

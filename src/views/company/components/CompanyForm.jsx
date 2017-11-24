@@ -9,6 +9,7 @@ import DateInput from '../../../core/form/DateInput';
 import FormButtons from '../../../core/form/FormButtons';
 import MaskInput from '../../../core/form/MaskInput';
 import FetchSelect from '../../../core/form/FetchSelect';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const CompanyForm = props => (
   <form
@@ -18,7 +19,7 @@ const CompanyForm = props => (
     }}
   >
     <Row>
-      <Column>
+      <Column size={localStorage.role === 'ADMIN' ? 8 : 12}>
         <TextInput
           disabled={props.submitting}
           label="Company Name"
@@ -27,6 +28,25 @@ const CompanyForm = props => (
           errorText={get(props.errors, 'name', null)}
         />
       </Column>
+      <PermissionValidator allowedFor={['ADMIN']}>
+        <Column size={4}>
+          <FetchSelect
+            url="/distributors"
+            fullWidth
+            disabled={props.submitting || props.disableDistributor}
+            label="Distributor"
+            value={get(props.values, 'distributor', '')}
+            onChange={(distributor) => {
+              props.onChange('distributor', distributor);
+            }}
+            errorText={get(props.errors, 'distributor', null)}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </Column>
+      </PermissionValidator>
     </Row>
     <Row>
       <Column size={4}>
@@ -211,6 +231,7 @@ CompanyForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
+  disableDistributor: PropTypes.bool,
   isDirty: PropTypes.func,
   states: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
@@ -219,9 +240,9 @@ CompanyForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
+  disableDistributor: false,
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
-  onChange: () => false,
   onReset: () => false,
 };
 

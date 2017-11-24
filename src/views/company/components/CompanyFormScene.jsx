@@ -44,7 +44,10 @@ const CompanyFormScene = props => (
         )
       }
     >
-      <CompanyFormContainer companyId={props.companyId} />
+      <CompanyFormContainer
+        companyId={props.companyId}
+        currentDistributor={props.currentDistributor}
+      />
     </Card>
   </div>
 );
@@ -52,11 +55,13 @@ const CompanyFormScene = props => (
 CompanyFormScene.propTypes = {
   fetching: PropTypes.bool.isRequired,
   companyId: PropTypes.string,
+  currentDistributor: PropTypes.string,
   distributor: PropTypes.object,
 };
 
 CompanyFormScene.defaultProps = {
   companyId: null,
+  currentDistributor: null,
   distributor: {},
 };
 

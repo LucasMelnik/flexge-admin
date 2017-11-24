@@ -13,9 +13,11 @@ class CompanyFormSceneContainer extends Component {
     }).isRequired,
   };
 
+  companyDetailService = new CompanyDetailService();
+
   componentWillMount() {
     if (this.props.params.distributorId) {
-      CompanyDetailService.handleLoadDistributor(this.props.params.distributorId);
+      this.companyDetailService.handleLoadDistributor(this.props.params.distributorId);
     }
   };
 
@@ -23,8 +25,9 @@ class CompanyFormSceneContainer extends Component {
     return (
       <CompanyFormScene
         companyId={this.props.params.companyId}
-        distributor={CompanyDetailService.distributor}
-        fetching={CompanyDetailService.fetchDistributor.fetching}
+        currentDistributor={this.props.params.distributorId}
+        distributor={this.companyDetailService.distributor}
+        fetching={this.companyDetailService.fetchDistributor.fetching}
       />
     );
   }
