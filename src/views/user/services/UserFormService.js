@@ -56,8 +56,9 @@ class UserFormService {
   handleSubmit = action(() => {
     this.form.validations = {
       ...this.form.validations,
-      school: this.form.getValue('role') === 'ADMIN' || this.form.getValue('role') === 'IMAGE_ADMIN' || this.form.getValue('role') === 'CONTENT_ADMIN' || this.form.getValue('role') === 'DISTRIBUTOR_MANAGER' || this.form.getValue('role') === 'COMPANY_MANAGER' || this.form.getValue('role') === 'AUDIO_CONTENT' ? [] : [isRequired],
-      company: this.form.getValue('role') === 'ADMIN' || this.form.getValue('role') === 'IMAGE_ADMIN' || this.form.getValue('role') === 'CONTENT_ADMIN' || this.form.getValue('role') === 'DISTRIBUTOR_MANAGER' || this.form.getValue('role') === 'AUDIO_CONTENT' ? [] : [isRequired],
+      distributor: this.form.getValue('role') === 'DISTRIBUTOR_MANAGER' ? [isRequired] : [],
+      company: this.form.getValue('role') === 'COMPANY_MANAGER' || this.form.getValue('role') === 'TEACHER' ? [isRequired] : [],
+      school: this.form.getValue('role') === 'SCHOOL_MANAGER' ? [isRequired] : [],
     };
     this.form.submitted = true;
     if (this.form.errors) {

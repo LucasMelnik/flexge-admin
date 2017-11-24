@@ -30,11 +30,13 @@ const MyReviewList = props => (
           label: 'Module',
           path: 'unit.module.name',
           width: '150px',
+          sort: true,
         },
         {
           label: 'Unit Type',
           path: 'unit.type.name',
           width: '100px',
+          sort: true,
         },
         {
           label: 'Unit creator',
@@ -44,6 +46,7 @@ const MyReviewList = props => (
         {
           label: 'Status Content',
           path: 'review.status',
+          sort: true,
           width: '140px',
           render: (cell, row) => (
             <StatusItem
@@ -61,6 +64,7 @@ const MyReviewList = props => (
         {
           label: 'Status format',
           path: 'review.statusFormat',
+          sort: true,
           width: '140px',
           render: (cell,row) => (
             <StatusItem
@@ -78,6 +82,7 @@ const MyReviewList = props => (
         {
           label: 'Status image',
           path: 'review.statusImage',
+          sort: true,
           width: '140px',
           render: (cell, row) => {
             if (row.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))) {
@@ -99,6 +104,7 @@ const MyReviewList = props => (
         {
           label: 'Final Status',
           path: 'review.finalStatus',
+          sort: true,
           width: '140px',
           render: (cell, row) => (
             <StatusItem
