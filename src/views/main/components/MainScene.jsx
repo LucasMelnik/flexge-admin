@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import Menu from '../../../core/layout/Menu';
-import MenuItem from '../../../core/layout/MenuItem';
 import SubMenu from '../../../core/layout/SubMenu';
 import ConfirmDialogContainer from './ConfirmDialogContainer';
 import Button from '../../../core/form/Button';
@@ -15,112 +14,185 @@ const MainScene = props => (
           title="Admin"
           icon="user"
           allowedFor={['ADMIN']}
+          groups={[
+            {
+              group: 'System Configuration',
+            },
+            {
+              group: 'Admin Register',
+            },
+          ]}
           items={[
             {
               label: 'General Configuration',
               link: '/configuration',
-            },
-            {
-              label: 'Item types',
-              link: '/item-types',
-            },
-            {
-              label: 'Placement test level',
-              link: '/placement-test-levels',
-            },
-            {
-              label: 'Courses',
-              link: '/courses',
-            },
-            {
-              label: 'Characters',
-              link: '/characters',
-            },
-            {
-              label: 'Regions',
-              link: '/regions',
+              group: 'System Configuration',
+              icon: 'tool',
             },
             {
               label: 'Achievements',
               link: '/achievements',
+              group: 'System Configuration',
+              icon: 'trophy',
+            },
+            {
+              label: 'Item types',
+              link: '/item-types',
+              group: 'System Configuration',
+              icon: 'layout',
+            },
+            {
+              label: 'Placement test level',
+              link: '/placement-test-levels',
+              group: 'System Configuration',
+              icon: 'arrow-up',
+            },
+            {
+              label: 'Courses',
+              link: '/courses',
+              group: 'Admin Register',
+              icon: 'book',
+            },
+            {
+              label: 'Characters',
+              link: '/characters',
+              group: 'Admin Register',
+              icon: 'user',
+            },
+            {
+              label: 'Regions',
+              link: '/regions',
+              group: 'Admin Register',
+              icon: 'compass',
             },
           ]}
         />
         <SubMenu
-          title="Partners"
-          icon="team"
+          title="Basic Register"
+          icon="folder"
           allowedFor={['ADMIN']}
+          groups={[
+            {
+              group: 'Organizations',
+            },
+            {
+              group: 'Users',
+            },
+          ]}
           items={[
             {
               label: 'Distributors',
               link: '/distributors',
+              allowedFor: ['ADMIN'],
+              group: 'Organizations',
+              icon: 'share-alt',
             },
             {
               label: 'Companies',
               link: '/companies',
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
+              group: 'Organizations',
+              icon: 'bank',
             },
             {
               label: 'Schools',
               link: '/schools',
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
+              group: 'Organizations',
+              icon: 'contacts',
             },
-          ]}
-        />
-        <SubMenu
-          title="Users"
-          icon="usergroup-add"
-          allowedFor={['ADMIN']}
-          items={[
             {
               label: 'Admin Users',
               link: '/admin-users',
+              allowedFor: ['ADMIN'],
+              group: 'Users',
             },
             {
               label: 'Distributor Users',
               link: '/distributor-users',
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
+              group: 'Users',
             },
             {
               label: 'Company Users',
               link: '/company-users',
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
+              group: 'Users',
             },
-          ]}
-        />
-        <SubMenu
-          title="School"
-          icon="idcard"
-          allowedFor={['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER']}
-          items={[
             {
               label: 'Students',
               link: '/students',
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
+              group: 'Users',
             },
           ]}
         />
-        <MenuItem
-          title="Modules"
+        <SubMenu
+          title="Content"
           icon="book"
-          link="/modules"
           allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}
-        />
-        <MenuItem
-          title="Review"
-          icon="eye-o"
-          link="/reviews"
-          allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}
-        />
-        <MenuItem
-          title="Placement Test"
-          icon="solution"
-          link="/placement-test"
-          allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}
-        />
-        <MenuItem
-          title="Practice Test"
-          icon="database"
-          link="/practice-tests"
-          allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}
+          groups={[
+            {
+              group: 'Content',
+            },
+            {
+              group: 'Tests',
+            },
+            {
+              group: 'Admin',
+              allowedFor: ['ADMIN'],
+            },
+          ]}
+          items={[
+            {
+              label: 'Modules',
+              link: '/modules',
+              group: 'Content',
+              icon: 'book',
+            },
+            {
+              label: 'Review',
+              link: '/review',
+              group: 'Content',
+              icon: 'eye-o',
+            },
+            {
+              label: 'Placement Test',
+              link: '/placement-test',
+              group: 'Tests',
+              icon: 'solution',
+            },
+            {
+              label: 'Practice Test',
+              link: '/practice-test',
+              group: 'Tests',
+              icon: 'database',
+            },
+            {
+              label: 'Approved Images Records',
+              link: '/records/unit-images',
+              group: 'Admin',
+              icon: 'picture',
+              allowedFor: ['ADMIN'],
+            },
+            {
+              label: 'Unit Items Errors',
+              link: '/records/unit-errors',
+              group: 'Admin',
+              icon: 'exclamation-circle',
+              allowedFor: ['ADMIN'],
+            },
+            {
+              label: 'Audio',
+              link: '/audio',
+              group: 'Admin',
+              icon: 'sound',
+              allowedFor: ['AUDIO_CONTENT', 'ADMIN'],
+            },
+          ]}
         />
         <SubMenu
-          title="Reports"
+          title="Records"
           icon="folder-open"
           allowedFor={['ADMIN']}
           items={[
@@ -137,27 +209,8 @@ const MainScene = props => (
               link: '/records/filters',
             },
             {
-              label: 'Approved Images Records',
-              link: '/records/unit-images',
-            },
-            {
-              label: 'Unit Items Errors',
-              link: '/records/unit-errors',
-            },
-            {
               label: 'Grades',
               link: '/grades',
-            },
-          ]}
-        />
-        <SubMenu
-          title="Audio"
-          icon="sound"
-          allowedFor={['AUDIO_CONTENT', 'ADMIN']}
-          items={[
-            {
-              label: 'Upload Management',
-              link: '/item-audios',
             },
           ]}
         />
