@@ -46,7 +46,7 @@ const SchoolClassDetailScene = props => (
     />
     <Card
       title="Students"
-      loading={props.fetching}
+      loading={props.fetching || !props.school.id || !props.class.id}
       actions={
         <div>
           <Button
@@ -58,14 +58,12 @@ const SchoolClassDetailScene = props => (
         </div>
       }
     >
-      {props.school.id ? (
-        <StudentListContainer
-          editable
-          baseUrl={props.baseUrl}
-          schoolId={props.school.id}
-          classId={props.class.id}
-        />
-      ) : (<div />)}
+      <StudentListContainer
+        editable
+        baseUrl={props.baseUrl}
+        schoolId={props.school.id}
+        classId={props.class.id}
+      />
     </Card>
   </div>
 );

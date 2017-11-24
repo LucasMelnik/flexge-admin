@@ -5,6 +5,7 @@ import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
+import FetchSelect from '../../../core/form/FetchSelect';
 
 const StudentForm = props => (
   <form
@@ -40,6 +41,21 @@ const StudentForm = props => (
           value={get(props.values, 'password', '')}
           onChange={value => props.onChange('password', value)}
           errorText={get(props.errors, 'password', null)}
+        />
+      </Column>
+      <Column size={3}>
+        <FetchSelect
+          url="courses"
+          fullWidth
+          disabled={props.submitting || (props.values.id && props.values.currentCourse)}
+          label="Current course"
+          value={get(props.values, 'currentCourse', '')}
+          onChange={value => props.onChange('currentCourse', value)}
+          errorText={get(props.errors, 'currentCourse', '')}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
         />
       </Column>
     </Row>

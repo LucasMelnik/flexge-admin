@@ -1,4 +1,5 @@
 import { extendObservable, action } from 'mobx';
+import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -64,6 +65,7 @@ class StudentFormService {
         this.form.setInitialValues({
           ...student,
         });
+        browserHistory.goBack();
         NotificationService.addNotification(
           `Student ${studentId ? 'updated' : 'created'} successfully.`,
           'success',
