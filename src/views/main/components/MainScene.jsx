@@ -80,7 +80,7 @@ const MainScene = props => (
             },
             {
               label: 'Company Users',
-              link: '/users',
+              link: '/company-users',
             },
           ]}
         />

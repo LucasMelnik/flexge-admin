@@ -83,7 +83,7 @@ const UserForm = props => (
         <Column size={4}>
           <FetchSelect
             url="distributors"
-            disabled
+            disabled={localStorage.role !== 'ADMIN' || props.submitting}
             label="Distributor"
             value={get(props.values, 'distributor', '')}
             onChange={school => props.onChange('distributor', school)}
@@ -99,7 +99,7 @@ const UserForm = props => (
         <Column size={4}>
           <FetchSelect
             url="companies"
-            disabled
+            disabled={localStorage.role === 'COMPANY_MANAGER' || props.submitting}
             label="Company"
             value={get(props.values, 'company', '')}
             onChange={school => props.onChange('company', school)}
@@ -115,7 +115,7 @@ const UserForm = props => (
         <Column size={4}>
           <FetchSelect
             url={`schools?query[company]=${get(props.values, 'company', '')}`}
-            disabled
+            disabled={props.submitting}
             label="School"
             value={get(props.values, 'school', '')}
             onChange={school => props.onChange('school', school)}
