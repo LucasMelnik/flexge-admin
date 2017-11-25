@@ -152,7 +152,7 @@ const MainScene = props => (
             },
             {
               label: 'Review',
-              link: '/review',
+              link: '/reviews',
               group: 'Content',
               icon: 'eye-o',
             },
