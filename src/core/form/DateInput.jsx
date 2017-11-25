@@ -15,6 +15,7 @@ const DateInput = props =>  (
       format={props.format}
       placeholder={props.placeholder}
       disabled={props.disabled}
+      disabledDate={props.disabledDate}
       style={{
         width: '100%',
       }}
@@ -30,6 +31,7 @@ DateInput.propTypes = {
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
+  disabledDate: PropTypes.func,
 };
 
 DateInput.defaultProps = {
@@ -38,6 +40,7 @@ DateInput.defaultProps = {
   value: null,
   placeholder: null,
   disabled: false,
+  disabledDate: null,
 };
 
 export default DateInput;
