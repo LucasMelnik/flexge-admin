@@ -15,6 +15,7 @@ class UnitListService {
       units: [],
       filter: '',
       moduleId: null,
+      reorderSubmitting: false,
     });
   }
 
@@ -39,6 +40,7 @@ class UnitListService {
       },
     }).then(() => {
       if (this.fetch.data) {
+        this.reorderSubmitting = false;
         this.units = orderBy(this.fetch.data, ['group', 'order'], ['asc', 'asc'])
           .map((unit) => {
             if (!unit.review) {

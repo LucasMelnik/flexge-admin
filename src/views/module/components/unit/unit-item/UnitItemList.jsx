@@ -165,6 +165,6 @@ UnitItemList.propTypes = {
 
 UnitItemList.defaultProps = {
   submitting: false,
-}
+};
 
 export default UnitItemList;
