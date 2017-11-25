@@ -20,7 +20,7 @@ class UnitListContainer extends Component {
     return (
       <UnitList
         units={toJS(UnitListService.units)}
-        fetching={UnitListService.fetch.fetching}
+        fetching={UnitListService.fetch.fetching || UnitListService.reorderSubmitting}
         onDelete={UnitListService.handleRemove}
         onAutoReorder={UnitListService.handleAutoReorder}
         allowReorder={LoadModuleService.module.createdBy.id === localStorage.id || localStorage.role === 'ADMIN'}

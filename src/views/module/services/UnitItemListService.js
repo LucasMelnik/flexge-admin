@@ -54,6 +54,7 @@ class UnitItemListService {
     this.items.forEach((unitItem, index) => {
       const body = {
         group: unitItem.group,
+        order: unitItem.order,
       };
 
       if (sortAction === 'ADD_LINE' && index >= startIndex) {

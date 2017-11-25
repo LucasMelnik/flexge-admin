@@ -29,7 +29,11 @@ class UnitItemListContainer extends Component {
         unit={this.props.unit}
         items={toJS(UnitItemListService.items)}
         submitting={UnitItemListService.submit.fetching}
-        fetching={UnitItemListService.fetch.fetching || UnitItemListService.reorderSubmitting}
+        fetching={
+          UnitItemListService.fetch.fetching ||
+          UnitItemListService.reorderSubmitting ||
+          UnitItemListService.submit.fetching
+        }
         onDelete={UnitItemListService.handleUnlinkItem}
         onOrderOrGroupChange={UnitItemListService.handleOrderOrGroupChange}
         onAutoReorder={UnitItemListService.handleAutoReorder}
