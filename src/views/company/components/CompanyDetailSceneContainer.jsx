@@ -14,24 +14,25 @@ class CompanyDetailSceneContainer extends Component {
   };
 
   baseUrl = '';
+  companyDetailService = new CompanyDetailService();
 
   componentWillMount() {
     if (this.props.params.distributorId) {
-      CompanyDetailService.handleLoadDistributor(this.props.params.distributorId);
+      this.companyDetailService.handleLoadDistributor(this.props.params.distributorId);
       this.baseUrl += `/distributors/${this.props.params.distributorId}`;
     }
-    CompanyDetailService.handleLoad(this.props.params.companyId);
+    this.companyDetailService.handleLoad(this.props.params.companyId);
     this.baseUrl += `/companies/${this.props.params.companyId}`;
   }
 
   render() {
     return (
       <CompanyDetailScene
-        company={CompanyDetailService.company}
-        distributor={CompanyDetailService.distributor}
+        company={this.companyDetailService.company}
+        distributor={this.companyDetailService.distributor}
         fetching={
-          CompanyDetailService.fetchDistributor.fetching ||
-          CompanyDetailService.fetch.fetching
+          this.companyDetailService.fetchDistributor.fetching ||
+          this.companyDetailService.fetch.fetching
         }
         baseUrl={this.baseUrl}
       />

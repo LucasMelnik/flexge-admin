@@ -16,18 +16,19 @@ class StudentFormSceneContainer extends Component {
     }).isRequired,
   };
 
+  studentDetailService = new StudentDetailService();
   componentWillMount() {
     if (this.props.params.distributorId) {
-      StudentDetailService.handleLoadDistributor(this.props.params.distributorId);
+      this.studentDetailService.handleLoadDistributor(this.props.params.distributorId);
     }
     if (this.props.params.companyId) {
-      StudentDetailService.handleLoadCompany(this.props.params.companyId);
+      this.studentDetailService.handleLoadCompany(this.props.params.companyId);
     }
     if (this.props.params.schoolId) {
-      StudentDetailService.handleLoadSchool(this.props.params.schoolId);
+      this.studentDetailService.handleLoadSchool(this.props.params.schoolId);
     }
     if (this.props.params.schoolId && this.props.params.classId) {
-      StudentDetailService.handleLoadClass(this.props.params.schoolId, this.props.params.classId);
+      this.studentDetailService.handleLoadClass(this.props.params.schoolId, this.props.params.classId);
     }
   }
 
@@ -35,15 +36,15 @@ class StudentFormSceneContainer extends Component {
     return (
       <StudentFormScene
         studentId={this.props.params.studentId}
-        company={StudentDetailService.company}
-        distributor={StudentDetailService.distributor}
-        school={StudentDetailService.school}
-        class={StudentDetailService.class}
+        company={this.studentDetailService.company}
+        distributor={this.studentDetailService.distributor}
+        school={this.studentDetailService.school}
+        class={this.studentDetailService.class}
         fetching={
-          StudentDetailService.fetchDistributor.fetching ||
-          StudentDetailService.fetchCompany.fetching ||
-          StudentDetailService.fetchSchool.fetching ||
-          StudentDetailService.fetchClass.fetching
+          this.studentDetailService.fetchDistributor.fetching ||
+          this.studentDetailService.fetchCompany.fetching ||
+          this.studentDetailService.fetchSchool.fetching ||
+          this.studentDetailService.fetchClass.fetching
         }
       />
     );

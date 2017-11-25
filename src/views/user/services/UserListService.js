@@ -1,4 +1,5 @@
 import { action, extendObservable } from 'mobx';
+import capitalize from 'lodash/capitalize';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -26,7 +27,10 @@ class UserListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.users = this.fetch.data;
+        this.users = this.fetch.data.map(user => ({
+          ...user,
+          role: capitalize(user.role.replace('_', ' ')),
+        }));
       } else {
         this.users = [];
       }

@@ -15,13 +15,13 @@ class SchoolFormService {
     });
     this.form.validations = {
       name: [isRequired],
-      // company: localStorage.role === 'COMPANY_MANAGER' ? [] : [isRequired],
+      company: [isRequired],
     };
   }
 
-  init = action((schoolId) => {
+  init = action((schoolId, companyId) => {
     this.schoolId = schoolId;
-    // this.companyId = companyId;
+    this.companyId = companyId;
     this.handleLoad();
   });
 
@@ -40,7 +40,7 @@ class SchoolFormService {
         }
       });
     } else {
-      this.form.setInitialValues({});
+      this.form.setInitialValues({ company: this.companyId });
     }
   });
 

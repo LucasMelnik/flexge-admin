@@ -1,6 +1,7 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class RegionListService {
   fetch = new FetchService();
@@ -50,8 +51,13 @@ class RegionListService {
           url: `/regions/${region.id}`,
           method: 'delete',
         }).then(() => {
-          window.showSuccess(`Region "${region.name}" deleted successfully.`);
-          this.load();
+          if (this.fetch.data) {
+            NotificationService.addNotification(`Region "${region.name}" deleted successfully.`, 'success');
+            this.load();
+          }
+          if (this.fetch.error) {
+            NotificationService.addNotification(this.fetch.error, 'error');
+          }
         });
       });
   });

@@ -73,8 +73,13 @@ class UnitListService {
           url: `/modules/${unit.module}/units/${unit.id}`,
           method: 'delete',
         }).then(() => {
-          NotificationService.addNotification('Unit deleted.', 'success');
-          this.load();
+          if (this.fetch.data) {
+            NotificationService.addNotification('Unit deleted.', 'success');
+            this.load();
+          }
+          if (this.fetch.error) {
+            NotificationService.addNotification(this.fetch.error, 'error');
+          }
         });
       });
   });

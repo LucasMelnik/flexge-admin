@@ -13,7 +13,9 @@ const MenuItem = props => (
     >
       <Link to={props.link}>
         <span>
-          <span><Icon name={props.icon} /></span>
+          {props.icon && (
+            <span><Icon name={props.icon} /></span>
+          )}
           {props.title}
         </span>
       </Link>
@@ -22,10 +24,15 @@ const MenuItem = props => (
 );
 
 MenuItem.propTypes = {
-  allowedFor: PropTypes.arrayOf(PropTypes.string).isRequired,
+  allowedFor: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.string,
   link: PropTypes.string.isRequired,
+};
+
+MenuItem.defaultProps = {
+  allowedFor: null,
+  icon: null,
 };
 
 export default MenuItem;

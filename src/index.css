@@ -31,3 +31,7 @@ html, body, #root {
 .ant-tabs-bar {
     margin-bottom: 0;
 }
+
+.ant-alert-with-description .ant-alert-description {
+    white-space: pre-wrap;
+}
