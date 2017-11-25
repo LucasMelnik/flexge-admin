@@ -36,7 +36,7 @@ const SchoolEvaluationForm = props => (
       </Column>
       <Column size={2}>
         <DateInput
-          disabled={props.submitting}
+          disabled={props.submitting || !props.allowSelectStart}
           label="Start"
           value={get(props.values, 'start', undefined) ? props.values.start.toDate() : undefined}
           onChange={value => props.onChange('start', value)}
@@ -78,7 +78,8 @@ SchoolEvaluationForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
-  selectedYear: PropTypes.number.isRequired
+  selectedYear: PropTypes.number.isRequired,
+  allowSelectStart: PropTypes.bool.isRequired,
 };
 
 SchoolEvaluationForm.defaultProps = {

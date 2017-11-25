@@ -1,9 +1,10 @@
-import { extendObservable, action } from 'mobx';
+import { extendObservable, action, observe } from 'mobx';
+import moment from 'moment';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
-import { isRequired } from '../../../core/validations';
 import SchoolEvaluationListService from './SchoolEvaluationListService';
+import { isRequired } from '../../../core/validations';
 
 export default class SchoolEvaluationFormService {
   fetch = new FetchService();
@@ -21,27 +22,31 @@ export default class SchoolEvaluationFormService {
       end: [isRequired],
       school: [isRequired],
     };
+
+    observe(SchoolEvaluationListService, 'evaluationsByYear', () => {
+      const yearEvaluationsCount = SchoolEvaluationListService.evaluationsByYear.length;
+      if (yearEvaluationsCount) {
+        const lastEvaluation = SchoolEvaluationListService.evaluationsByYear[yearEvaluationsCount - 1];
+        this.form.setInitialValues({
+          school: SchoolEvaluationListService.schoolId,
+          start: moment(lastEvaluation.end).days(moment(lastEvaluation.end).days() + 1),
+        });
+      } else {
+        this.form.setInitialValues({ school: SchoolEvaluationListService.schoolId });
+      }
+    });
   }
 
-  init = action((schoolId, evaluationId) => {
+  init = action((schoolId) => {
     this.schoolId = schoolId;
-    this.evaluationId = evaluationId;
-    this.handleLoad(evaluationId);
-  });
-
-  handleLoad = action((evaluationId) => {
     this.form.reset();
-    if (evaluationId) {
-      this.fetch.fetch({
-        url: `/schools/${this.schoolId}/evaluations`,
-      }).then(() => {
-        if (this.fetch.data) {
-          const data = {
-            ...this.fetch.data,
-            company: this.fetch.data.company.id,
-          };
-          this.form.setInitialValues(data);
-        }
+
+    const yearEvaluationsCount = SchoolEvaluationListService.evaluationsByYear.length;
+    if (yearEvaluationsCount) {
+      const lastEvaluation = SchoolEvaluationListService.evaluationsByYear[yearEvaluationsCount - 1];
+      this.form.setInitialValues({
+        school: this.schoolId,
+        start: moment(lastEvaluation.end).days(moment(lastEvaluation.end).days() + 1),
       });
     } else {
       this.form.setInitialValues({ school: this.schoolId });
@@ -64,8 +69,11 @@ export default class SchoolEvaluationFormService {
       },
     }).then(() => {
       if (this.submit.data) {
-        this.form.setInitialValues({ school: this.schoolId });
         this.form.reset();
+        this.form.setInitialValues({
+          school: this.schoolId,
+          start: moment(this.submit.data.end).days(moment(this.submit.data.end).days() + 1),
+        });
         SchoolEvaluationListService.load();
         NotificationService.addNotification(`Evaluation Period ${evaluationId ? 'updated' : 'created'} successfully.`, 'success');
       }

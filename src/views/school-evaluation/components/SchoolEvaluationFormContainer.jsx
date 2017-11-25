@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
+import SchoolEvaluationListService from '../services/SchoolEvaluationListService';
 import SchoolEvaluationFormService from '../services/SchoolEvaluationFormService';
 import SchoolEvaluationForm from './SchoolEvaluationForm';
 
@@ -26,6 +27,7 @@ class SchoolEvaluationFormContainer extends Component {
         submitting={this.schoolEvaluationFormService.submit.fetching}
         isDirty={this.schoolEvaluationFormService.form.isDirty}
         selectedYear={this.props.selectedYear}
+        allowSelectStart={!SchoolEvaluationListService.evaluationsByYear.length}
       />
     );
   }
