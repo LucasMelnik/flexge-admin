@@ -36,6 +36,12 @@ export default class SchoolGradeConfigFormService {
         const data = {
           ...this.fetch.data,
           company: this.fetch.data.company.id,
+          ...!this.fetch.data.percentHoursRelevanceInGrade && {
+            percentHoursRelevanceInGrade: 60,
+          },
+          ...!this.fetch.data.percentStudyQualityRelevanceInGrade && {
+            percentStudyQualityRelevanceInGrade: 40,
+          },
         };
         this.form.setInitialValues(data);
       }
