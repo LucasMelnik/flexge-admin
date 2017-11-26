@@ -78,6 +78,9 @@ const MainScene = props => (
             {
               group: 'Users',
             },
+            {
+              group: 'School Management',
+            },
           ]}
           items={[
             {
@@ -124,6 +127,18 @@ const MainScene = props => (
               link: '/students',
               allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
               group: 'Users',
+            },
+            {
+              label: 'Grade Configuration',
+              link: `/schools/${localStorage.id}/grade-config`,
+              allowedFor: ['SCHOOL_MANAGER'],
+              group: 'School Management',
+            },
+            {
+              label: 'Evaluation Periods',
+              link: `/schools/${localStorage.id}/evaluation-periods`,
+              allowedFor: ['SCHOOL_MANAGER'],
+              group: 'School Management',
             },
           ]}
         />
