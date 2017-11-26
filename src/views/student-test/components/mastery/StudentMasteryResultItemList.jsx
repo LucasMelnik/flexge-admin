@@ -14,10 +14,10 @@ const StudentMasteryResultItemList = props => (
         render: cell => (
           <StatusItem
             color={{
-              CORRECT: '#009687',
-              WRONG: '#FF5233',
-            }[cell.toUpperCase()]}
-            text={cell}
+              TRUE: '#009687',
+              FALSE: '#FF5233',
+            }[cell.toString().toUpperCase()]}
+            text={cell ? 'CORRECT' : 'WRONG'}
           />
         ),
       },

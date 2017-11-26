@@ -39,7 +39,7 @@ const StudentPlacementList = props => (
       },
     ]}
     rows={props.placements}
-    expandableComponent={(row) => (
+    expandableComponent={row => (
       <StudentPlacementItemList
         studentId={row.student}
         placementTestId={row.id}

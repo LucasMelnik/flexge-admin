@@ -9,22 +9,22 @@ const StudentMasteryResultList = props => (
       {
         label: 'Score',
         path: 'score',
-        width: '80',
+        width: '80px',
       },
       {
         label: 'Score to Pass',
         path: 'scoreToPass',
-        width: '80',
+        width: '80px',
       },
       {
         label: 'Started At',
         path: 'startedAt',
-        render: (cell) => cell ? moment(cell).format('DD/MM/YYYY hh:mm:ss') : 'N/A',
+        render: cell => cell ? moment(cell).format('DD/MM/YYYY hh:mm:ss') : 'N/A',
       },
       {
         label: 'Completed  At',
         path: 'completedAt',
-        render: (cell) => cell ? moment(cell).format('DD/MM/YYYY hh:mm:ss') : 'N/A',
+        render: cell => cell ? moment(cell).format('DD/MM/YYYY hh:mm:ss') : 'N/A',
       },
     ]}
     rows={props.executions}
