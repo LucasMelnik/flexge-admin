@@ -72,6 +72,8 @@ import CompanyUserFormScene from './views/user/components/CompanyUserFormScene';
 import DistributorUserListSceneContainer from './views/user/components/DistributorUserListSceneContainer';
 import DistributorUserFormScene from './views/user/components/DistributorUserFormScene';
 import StudentListScene from './views/student/components/StudentListScene';
+import SchoolGradeConfigFormScene from './views/school-grade-config/components/SchoolGradeConfigFormScene';
+import SchoolEvaluationSceneContainer from './views/school-evaluation/components/SchoolEvaluationSceneContainer';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -117,6 +119,8 @@ const Routes = () => (
       <Route path="schools" component={SchoolListScene} />
       <Route path="schools/new" component={SchoolFormSceneContainer} />
       <Route path="schools/:schoolId" component={SchoolFormSceneContainer} />
+      <Route path="schools/:schoolId/grade-configuration" component={SchoolGradeConfigFormScene} />
+      <Route path="schools/:schoolId/evaluation-periods" component={SchoolEvaluationSceneContainer} />
       <Route path="schools/:schoolId/details" component={SchoolDetailSceneContainer} />
       <Route path="schools/:schoolId/classes/new" component={SchoolClassFormSceneContainer} />
       <Route path="schools/:schoolId/classes/:classId" component={SchoolClassFormSceneContainer} />
