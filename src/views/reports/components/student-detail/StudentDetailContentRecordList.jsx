@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { formatTimeFromSeconds } from '../../../../core/util';
 import Table from '../../../../core/form/Table';
 
 const StudentDetailContentRecordList = props => (
@@ -16,9 +17,8 @@ const StudentDetailContentRecordList = props => (
       {
         label: 'Time',
         render: (value, row) => {
-          if (row.startedAt && row.completedAt) {
-            const duration = moment.duration(moment(row.completedAt).diff(moment(row.startedAt)));
-            return duration.format('mm:ss');
+          if (row.studiedTime) {
+            return formatTimeFromSeconds(row.studiedTime);
           }
         },
       },
