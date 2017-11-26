@@ -30,10 +30,12 @@ const MasteryTestListItems = props => (
       {
         label: 'Text',
         path: 'item.text',
+        width: '30%',
       },
       {
         label: 'Translate',
         path: 'item.translation',
+        width: '30%',
       },
       {
         label: 'Type',
