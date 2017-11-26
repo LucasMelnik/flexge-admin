@@ -28,6 +28,7 @@ class StudentListService {
     this.email = '';
     this.schoolId = schoolId;
     this.classId = classId;
+    this.students = [];
     this.load();
   });
 

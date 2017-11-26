@@ -15,6 +15,8 @@ class CompanyListService {
   }
 
   init = action((distributorId) => {
+    this.companies = [];
+    this.filter = '';
     this.distributorId = distributorId;
     this.load();
   });

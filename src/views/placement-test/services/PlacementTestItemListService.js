@@ -16,6 +16,7 @@ class PlacementTestItemListService {
   }
 
   init = action((placementTestId) => {
+    this.items = [];
     this.placementTestId = placementTestId;
     this.load();
   });

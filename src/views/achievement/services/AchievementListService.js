@@ -14,6 +14,8 @@ class AchievementListService {
   }
 
   init = action(() => {
+    this.achievements = [];
+    this.filter = '';
     this.load();
   });
 

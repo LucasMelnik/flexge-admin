@@ -16,7 +16,7 @@ class ModuleListService {
   }
 
   init = action(() => {
-    this.page = 1;
+    this.modules = [];
     this.load();
   });
 

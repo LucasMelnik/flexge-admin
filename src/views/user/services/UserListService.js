@@ -15,6 +15,7 @@ class UserListService {
   }
 
   init = action((baseQuery) => {
+    this.users = [];
     this.baseQuery = baseQuery;
     this.load();
   });

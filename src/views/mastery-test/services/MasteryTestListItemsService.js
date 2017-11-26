@@ -15,6 +15,7 @@ class MasteryTestListItemsService {
 
   init = action((masteryTestId) => {
     this.masteryTestId = masteryTestId;
+    this.items = [];
     this.handleLoad();
   });
 

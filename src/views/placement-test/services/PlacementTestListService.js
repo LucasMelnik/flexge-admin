@@ -17,6 +17,7 @@ class PlacementTestListService {
   }
 
   init = action(() => {
+    this.placementTests = [];
     this.filter = '';
     this.load();
   });

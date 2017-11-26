@@ -16,6 +16,7 @@ class SchoolRecordListService {
   }
 
   init = action(() => {
+    this.units = [];
     this.load();
   });
 

@@ -15,6 +15,8 @@ class SchoolClassListService {
   }
 
   init = action((schoolId) => {
+    this.classes = [];
+    this.filter = '';
     this.schoolId = schoolId;
     this.filter = '';
     if (!schoolId) {

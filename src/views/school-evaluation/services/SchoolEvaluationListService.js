@@ -20,6 +20,9 @@ class SchoolEvaluationListService {
   }
 
   init = action((schoolId) => {
+    this.evaluations = [];
+    this.years = [];
+    this.evaluationsByYear = [];
     this.schoolId = schoolId;
     this.load();
   });

@@ -20,6 +20,7 @@ class UnitListService {
   }
 
   init = action((moduleId) => {
+    this.units = [];
     this.moduleId = moduleId;
     this.filter = '';
     this.load();

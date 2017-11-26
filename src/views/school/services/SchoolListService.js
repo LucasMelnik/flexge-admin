@@ -15,6 +15,7 @@ class SchoolListService {
   }
 
   init = action((companyId) => {
+    this.schools = [];
     this.filter = '';
     this.companyId = companyId;
     this.load();

@@ -14,6 +14,8 @@ class ItemTypeListService {
   }
 
   init = action(() => {
+    this.items = [];
+    this.filter = '';
     this.load();
   });
 
