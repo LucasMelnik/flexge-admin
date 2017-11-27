@@ -1,7 +1,7 @@
 import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
-class DistributorFormService {
+export default class DistributorFormService {
   fetch = new FetchService();
 
   constructor() {
@@ -19,7 +19,3 @@ class DistributorFormService {
   });
 
 }
-
-const distributorFormService = new DistributorFormService();
-
-export default distributorFormService;

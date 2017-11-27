@@ -5,7 +5,7 @@ import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
-class MasteryTestFormService {
+export default class MasteryTestFormService {
   submit = new FetchService();
   form = new FormService();
 
@@ -68,7 +68,3 @@ class MasteryTestFormService {
     });
   });
 }
-
-const masteryTestFormService = new MasteryTestFormService();
-
-export default masteryTestFormService;

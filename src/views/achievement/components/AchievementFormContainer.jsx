@@ -14,20 +14,21 @@ class AchievementFormContainer extends Component {
     achievementId: null,
   };
 
+  achievementFormService = new AchievementFormService();
   componentWillMount() {
-    AchievementFormService.handleLoad(this.props.achievementId);
+    this.achievementFormService.handleLoad(this.props.achievementId);
   }
 
   render() {
     return (
       <AchievementForm
-        onSubmit={AchievementFormService.handleSubmit}
-        onChange={AchievementFormService.form.setValue}
-        onReset={AchievementFormService.form.reset}
-        values={AchievementFormService.form.getValues()}
-        errors={AchievementFormService.form.errors}
-        submitting={AchievementFormService.fetch.fetching}
-        isDirty={AchievementFormService.form.isDirty}
+        onSubmit={this.achievementFormService.handleSubmit}
+        onChange={this.achievementFormService.form.setValue}
+        onReset={this.achievementFormService.form.reset}
+        values={this.achievementFormService.form.getValues()}
+        errors={this.achievementFormService.form.errors}
+        submitting={this.achievementFormService.fetch.fetching}
+        isDirty={this.achievementFormService.form.isDirty}
       />
     );
   }

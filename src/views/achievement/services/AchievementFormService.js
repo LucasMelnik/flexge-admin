@@ -5,7 +5,7 @@ import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
-class AchievementFormService {
+export default class AchievementFormService {
   fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
@@ -73,7 +73,3 @@ class AchievementFormService {
     });
   })
 }
-
-const achievementFormService = new AchievementFormService();
-
-export default achievementFormService;

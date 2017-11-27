@@ -10,16 +10,17 @@ class SchoolClassFileImportContainer extends Component {
     schoolId: PropTypes.string.isRequired,
   };
 
+  schoolClassFileImportService = new SchoolClassFileImportService();
   componentWillMount() {
-    SchoolClassFileImportService.init(this.props.schoolId);
+    this.schoolClassFileImportService.init(this.props.schoolId);
   }
 
   render() {
     return (
       <SchoolClassFileImport
         label="Import XLSX file"
-        onChange={SchoolClassFileImportService.handleUpload}
-        disabled={SchoolClassFileImportService.submit.fetching}
+        onChange={this.schoolClassFileImportService.handleUpload}
+        disabled={this.schoolClassFileImportService.submit.fetching}
       />
     );
   }

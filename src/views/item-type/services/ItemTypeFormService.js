@@ -4,7 +4,7 @@ import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
-class ItemTypeFormService {
+export default class ItemTypeFormService {
   fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
@@ -66,7 +66,3 @@ class ItemTypeFormService {
     });
   });
 }
-
-const itemTypeFormService = new ItemTypeFormService();
-
-export default itemTypeFormService;

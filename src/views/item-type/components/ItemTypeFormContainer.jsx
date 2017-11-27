@@ -14,21 +14,22 @@ class ItemTypeFormContainer extends Component {
     itemTypeId: null,
   };
 
+  itemTypeFormService = new ItemTypeFormService();
   componentWillMount() {
-    ItemTypeFormService.handleLoad(this.props.itemTypeId);
+    this.itemTypeFormService.handleLoad(this.props.itemTypeId);
   }
 
   render() {
     return (
       <ItemTypeForm
-        onSubmit={ItemTypeFormService.handleSubmit}
-        onChange={ItemTypeFormService.form.setValue}
-        onReset={ItemTypeFormService.form.reset}
-        values={ItemTypeFormService.form.getValues()}
-        errors={ItemTypeFormService.form.errors}
-        submitting={ItemTypeFormService.fetch.fetching}
-        error={ItemTypeFormService.submit.error}
-        isDirty={ItemTypeFormService.form.isDirty}
+        onSubmit={this.itemTypeFormService.handleSubmit}
+        onChange={this.itemTypeFormService.form.setValue}
+        onReset={this.itemTypeFormService.form.reset}
+        values={this.itemTypeFormService.form.getValues()}
+        errors={this.itemTypeFormService.form.errors}
+        submitting={this.itemTypeFormService.submit.fetching}
+        error={this.itemTypeFormService.submit.error}
+        isDirty={this.itemTypeFormService.form.isDirty}
       />
     );
   }

@@ -4,7 +4,7 @@ import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired, isCNPJ } from '../../../core/validations';
 
-class CompanyFormService {
+export default class CompanyFormService {
   fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
@@ -86,7 +86,3 @@ class CompanyFormService {
     });
   });
 }
-
-const companyFormService = new CompanyFormService();
-
-export default companyFormService;

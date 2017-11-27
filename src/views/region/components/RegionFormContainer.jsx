@@ -14,20 +14,21 @@ class RegionFormContainer extends Component {
     regionId: null,
   };
 
+  regionFormService = new RegionFormService();
   componentWillMount() {
-    RegionFormService.handleLoad(this.props.regionId);
+    this.regionFormService.handleLoad(this.props.regionId);
   }
 
   render() {
     return (
       <RegionForm
-        onSubmit={RegionFormService.handleSubmit}
-        onChange={RegionFormService.form.setValue}
-        onReset={RegionFormService.form.reset}
-        values={RegionFormService.form.getValues()}
-        errors={RegionFormService.form.errors}
-        submitting={RegionFormService.fetch.fetching}
-        isDirty={RegionFormService.form.isDirty}
+        onSubmit={this.regionFormService.handleSubmit}
+        onChange={this.regionFormService.form.setValue}
+        onReset={this.regionFormService.form.reset}
+        values={this.regionFormService.form.getValues()}
+        errors={this.regionFormService.form.errors}
+        submitting={this.regionFormService.submit.fetching}
+        isDirty={this.regionFormService.form.isDirty}
       />
     );
   }

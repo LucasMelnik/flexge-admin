@@ -17,14 +17,14 @@ const ModuleListScene = () => (
     />
     <Card
       title="Modules"
-      actions={
+      actions={localStorage.role === 'CONTENT_ADMIN' && (
         <Button
           type="primary"
           icon="plus"
           onClick={() => browserHistory.push('/modules/new')}
           label="New module"
         />
-      }
+      )}
     >
       <ModuleListFilterContainer />
       <ModuleListContainer />

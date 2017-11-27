@@ -14,20 +14,21 @@ class PlacementTestLevelFormContainer extends Component {
     placementTestLevelId: null,
   };
 
+  placementTestLevelFormService = new PlacementTestLevelFormService();
   componentWillMount() {
-    PlacementTestLevelFormService.handleLoad(this.props.placementTestLevelId);
+    this.placementTestLevelFormService.handleLoad(this.props.placementTestLevelId);
   }
 
   render() {
     return (
       <PlacementTestLevelForm
-        onSubmit={PlacementTestLevelFormService.handleSubmit}
-        onChange={PlacementTestLevelFormService.form.setValue}
-        onReset={PlacementTestLevelFormService.form.reset}
-        values={PlacementTestLevelFormService.form.getValues()}
-        errors={PlacementTestLevelFormService.form.errors}
-        submitting={PlacementTestLevelFormService.fetch.fetching}
-        isDirty={PlacementTestLevelFormService.form.isDirty}
+        onSubmit={this.placementTestLevelFormService.handleSubmit}
+        onChange={this.placementTestLevelFormService.form.setValue}
+        onReset={this.placementTestLevelFormService.form.reset}
+        values={this.placementTestLevelFormService.form.getValues()}
+        errors={this.placementTestLevelFormService.form.errors}
+        submitting={this.placementTestLevelFormService.submit.fetching}
+        isDirty={this.placementTestLevelFormService.form.isDirty}
       />
     );
   }

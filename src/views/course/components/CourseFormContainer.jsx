@@ -14,20 +14,21 @@ class CourseFormContainer extends Component {
     courseId: null,
   };
 
+  courseFormService = new CourseFormService();
   componentWillMount() {
-    CourseFormService.handleLoad(this.props.courseId);
+    this.courseFormService.handleLoad(this.props.courseId);
   }
 
   render() {
     return (
       <CourseForm
-        onSubmit={CourseFormService.handleSubmit}
-        onChange={CourseFormService.form.setValue}
-        onReset={CourseFormService.form.reset}
-        values={CourseFormService.form.getValues()}
-        errors={CourseFormService.form.errors}
-        submitting={CourseFormService.fetch.fetching}
-        isDirty={CourseFormService.form.isDirty}
+        onSubmit={this.courseFormService.handleSubmit}
+        onChange={this.courseFormService.form.setValue}
+        onReset={this.courseFormService.form.reset}
+        values={this.courseFormService.form.getValues()}
+        errors={this.courseFormService.form.errors}
+        submitting={this.courseFormService.fetch.fetching}
+        isDirty={this.courseFormService.form.isDirty}
       />
     );
   }

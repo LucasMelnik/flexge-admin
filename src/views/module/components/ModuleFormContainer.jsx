@@ -14,20 +14,21 @@ class ModuleFormContainer extends Component {
     moduleId: null,
   };
 
+  moduleFormService = new ModuleFormService();
   componentWillMount() {
-    ModuleFormService.handleLoad(this.props.moduleId);
+    this.moduleFormService.handleLoad(this.props.moduleId);
   }
 
   render() {
     return (
       <ModuleForm
-        onSubmit={ModuleFormService.handleSubmit}
-        onChange={ModuleFormService.form.setValue}
-        onReset={ModuleFormService.form.reset}
-        values={ModuleFormService.form.getValues()}
-        errors={ModuleFormService.form.errors}
-        submitting={ModuleFormService.fetch.fetching}
-        isDirty={ModuleFormService.form.isDirty}
+        onSubmit={this.moduleFormService.handleSubmit}
+        onChange={this.moduleFormService.form.setValue}
+        onReset={this.moduleFormService.form.reset}
+        values={this.moduleFormService.form.getValues()}
+        errors={this.moduleFormService.form.errors}
+        submitting={this.moduleFormService.submit.fetching}
+        isDirty={this.moduleFormService.form.isDirty}
       />
     );
   }

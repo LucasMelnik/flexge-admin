@@ -17,21 +17,22 @@ class SchoolClassDetailSceneContainer extends Component {
 
   baseUrl = '';
 
+  schoolClassDetailService = new SchoolClassDetailService();
   componentWillMount() {
     if (this.props.params.distributorId) {
-      SchoolClassDetailService.handleLoadDistributor(this.props.params.distributorId);
+      this.schoolClassDetailService.handleLoadDistributor(this.props.params.distributorId);
       this.baseUrl += `/distributors/${this.props.params.distributorId}`;
     }
     if (this.props.params.companyId) {
-      SchoolClassDetailService.handleLoadCompany(this.props.params.companyId);
+      this.schoolClassDetailService.handleLoadCompany(this.props.params.companyId);
       this.baseUrl += `/companies/${this.props.params.companyId}`;
     }
     if (this.props.params.schoolId) {
-      SchoolClassDetailService.handleLoadSchool(this.props.params.schoolId);
+      this.schoolClassDetailService.handleLoadSchool(this.props.params.schoolId);
       this.baseUrl += `/schools/${this.props.params.schoolId}`;
     }
 
-    SchoolClassDetailService.handleLoadClass(this.props.params.schoolId, this.props.params.classId);
+    this.schoolClassDetailService.handleLoadClass(this.props.params.schoolId, this.props.params.classId);
     this.baseUrl += `/classes/${this.props.params.classId}`;
   }
 
@@ -39,15 +40,15 @@ class SchoolClassDetailSceneContainer extends Component {
     return (
       <SchoolClassDetailScene
         baseUrl={this.baseUrl}
-        school={SchoolClassDetailService.school}
-        company={SchoolClassDetailService.company}
-        distributor={SchoolClassDetailService.distributor}
-        class={SchoolClassDetailService.class}
+        school={this.schoolClassDetailService.school}
+        company={this.schoolClassDetailService.company}
+        distributor={this.schoolClassDetailService.distributor}
+        class={this.schoolClassDetailService.class}
         fetching={
-          SchoolClassDetailService.fetchDistributor.fetching ||
-          SchoolClassDetailService.fetchCompany.fetching ||
-          SchoolClassDetailService.fetchSchool.fetching ||
-          SchoolClassDetailService.fetchClass.fetching
+          this.schoolClassDetailService.fetchDistributor.fetching ||
+          this.schoolClassDetailService.fetchCompany.fetching ||
+          this.schoolClassDetailService.fetchSchool.fetching ||
+          this.schoolClassDetailService.fetchClass.fetching
         }
       />
     );

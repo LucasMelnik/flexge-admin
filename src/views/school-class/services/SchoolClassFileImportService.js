@@ -2,7 +2,7 @@ import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import NotificationService from '../../../core/services/NotificationService';
 
-class SchoolClassFileImportService {
+export default class SchoolClassFileImportService {
   submit = new FetchService();
 
   constructor() {
@@ -39,7 +39,3 @@ class SchoolClassFileImportService {
     });
   });
 }
-
-const schoolClassFileImportService = new SchoolClassFileImportService();
-
-export default schoolClassFileImportService;

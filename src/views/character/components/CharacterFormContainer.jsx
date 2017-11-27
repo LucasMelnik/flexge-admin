@@ -14,20 +14,21 @@ class CharacterFormContainer extends Component {
     characterId: null,
   };
 
+  characterFormService = new CharacterFormService();
   componentWillMount() {
-    CharacterFormService.handleLoad(this.props.characterId);
+    this.characterFormService.handleLoad(this.props.characterId);
   }
 
   render() {
     return (
       <CharacterForm
-        onSubmit={CharacterFormService.handleSubmit}
-        onChange={CharacterFormService.form.setValue}
-        onReset={CharacterFormService.form.reset}
-        values={CharacterFormService.form.getValues()}
-        errors={CharacterFormService.form.errors}
-        submitting={CharacterFormService.fetch.fetching}
-        isDirty={CharacterFormService.form.isDirty}
+        onSubmit={this.characterFormService.handleSubmit}
+        onChange={this.characterFormService.form.setValue}
+        onReset={this.characterFormService.form.reset}
+        values={this.characterFormService.form.getValues()}
+        errors={this.characterFormService.form.errors}
+        submitting={this.characterFormService.fetch.fetching}
+        isDirty={this.characterFormService.form.isDirty}
       />
     );
   }

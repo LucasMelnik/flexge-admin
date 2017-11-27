@@ -18,21 +18,22 @@ class CompanyFormContainer extends Component {
     currentDistributor: null,
   };
 
+  companyFormService = new CompanyFormService();
   componentWillMount() {
-    CompanyFormService.handleLoad(this.props.companyId, this.props.currentDistributor);
+    this.companyFormService.handleLoad(this.props.companyId, this.props.currentDistributor);
   }
 
   render() {
     return (
       <CompanyForm
-        onSubmit={CompanyFormService.handleSubmit}
-        onChange={CompanyFormService.form.setValue}
-        onReset={CompanyFormService.form.reset}
-        values={CompanyFormService.form.getValues()}
-        errors={CompanyFormService.form.errors}
-        submitting={CompanyFormService.fetch.fetching}
-        error={CompanyFormService.submit.error}
-        isDirty={CompanyFormService.form.isDirty}
+        onSubmit={this.companyFormService.handleSubmit}
+        onChange={this.companyFormService.form.setValue}
+        onReset={this.companyFormService.form.reset}
+        values={this.companyFormService.form.getValues()}
+        errors={this.companyFormService.form.errors}
+        submitting={this.companyFormService.fetch.fetching}
+        error={this.companyFormService.submit.error}
+        isDirty={this.companyFormService.form.isDirty}
         states={toJS(StateService.states)}
         disableDistributor={!!this.props.currentDistributor}
       />
