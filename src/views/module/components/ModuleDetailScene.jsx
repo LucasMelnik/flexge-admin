@@ -56,14 +56,14 @@ const ModuleDetailScene = props => (
     <Card
       title="Units"
       loading={props.fetching}
-      actions={
+      actions={localStorage.role === 'CONTENT_ADMIN' && (
         <Button
           type="primary"
           icon="plus"
           onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
           label="New Unit"
         />
-      }
+      )}
     >
       <UnitListFilterContainer />
       {props.module.id && (
