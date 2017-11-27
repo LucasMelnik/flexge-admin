@@ -21,8 +21,9 @@ class UnitFormContainer extends Component {
     reviewId: null,
   };
 
+  unitFormService = new UnitFormService();
   componentDidMount() {
-    UnitFormService.handleLoad(this.props.unitId, this.props.moduleId);
+    this.unitFormService.handleLoad(this.props.unitId, this.props.moduleId);
   }
 
   render() {
@@ -30,9 +31,9 @@ class UnitFormContainer extends Component {
       <UnitForm
         onSubmit={() => {
           if (this.props.reviewId) {
-            UnitFormService.handleSubmit();
+            this.unitFormService.handleSubmit();
           } else {
-            UnitFormService.handleSubmit((unit) => {
+            this.unitFormService.handleSubmit((unit) => {
               if (this.props.unitId) {
                 browserHistory.push(`/modules/${unit.module.id}/details`);
               } else {
@@ -45,12 +46,12 @@ class UnitFormContainer extends Component {
             });
           }
         }}
-        onChange={UnitFormService.form.setValue}
-        onReset={UnitFormService.form.reset}
-        values={UnitFormService.form.getValues()}
-        errors={UnitFormService.form.errors}
-        submitting={UnitFormService.fetch.fetching}
-        isDirty={UnitFormService.form.isDirty}
+        onChange={this.unitFormService.form.setValue}
+        onReset={this.unitFormService.form.reset}
+        values={this.unitFormService.form.getValues()}
+        errors={this.unitFormService.form.errors}
+        submitting={this.unitFormService.submit.fetching}
+        isDirty={this.unitFormService.form.isDirty}
         disabled={this.props.disabled}
       />
     );

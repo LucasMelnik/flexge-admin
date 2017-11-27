@@ -11,20 +11,21 @@ class MoveUnitFormContainer extends Component {
     moduleId: PropTypes.string.isRequired,
   };
 
+  moveUnitFormService = new MoveUnitFormService();
   componentDidMount() {
-    MoveUnitFormService.handleLoad(this.props.unitId, this.props.moduleId);
+    this.moveUnitFormService.handleLoad(this.props.unitId, this.props.moduleId);
   }
 
   render() {
     return (
       <MoveUnitForm
-        onSubmit={MoveUnitFormService.handleSubmit}
-        onChange={MoveUnitFormService.form.setValue}
-        onReset={MoveUnitFormService.form.reset}
-        values={MoveUnitFormService.form.getValues()}
-        errors={MoveUnitFormService.form.errors}
-        submitting={MoveUnitFormService.fetch.fetching}
-        isDirty={MoveUnitFormService.form.isDirty}
+        onSubmit={this.moveUnitFormService.handleSubmit}
+        onChange={this.moveUnitFormService.form.setValue}
+        onReset={this.moveUnitFormService.form.reset}
+        values={this.moveUnitFormService.form.getValues()}
+        errors={this.moveUnitFormService.form.errors}
+        submitting={this.moveUnitFormService.submit.fetching}
+        isDirty={this.moveUnitFormService.form.isDirty}
       />
     );
   }

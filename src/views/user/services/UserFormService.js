@@ -5,7 +5,7 @@ import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired, isValidEmail } from '../../../core/validations';
 
-class UserFormService {
+export default class UserFormService {
   fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
@@ -114,7 +114,3 @@ class UserFormService {
     });
   });
 }
-
-const userFormService = new UserFormService();
-
-export default userFormService;

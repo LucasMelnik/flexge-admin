@@ -15,20 +15,21 @@ class SchoolClassFormContainer extends Component {
     classId: null,
   };
 
+  schoolClassFormService = new SchoolClassFormService();
   componentWillMount() {
-    SchoolClassFormService.init(this.props.schoolId, this.props.classId);
+    this.schoolClassFormService.init(this.props.schoolId, this.props.classId);
   }
 
   render() {
     return (
       <SchoolClassForm
-        onSubmit={SchoolClassFormService.handleSubmit}
-        onChange={SchoolClassFormService.form.setValue}
-        onReset={SchoolClassFormService.form.reset}
-        values={SchoolClassFormService.form.getValues()}
-        errors={SchoolClassFormService.form.errors}
-        submitting={SchoolClassFormService.submit.fetching}
-        isDirty={SchoolClassFormService.form.isDirty}
+        onSubmit={this.schoolClassFormService.handleSubmit}
+        onChange={this.schoolClassFormService.form.setValue}
+        onReset={this.schoolClassFormService.form.reset}
+        values={this.schoolClassFormService.form.getValues()}
+        errors={this.schoolClassFormService.form.errors}
+        submitting={this.schoolClassFormService.submit.fetching}
+        isDirty={this.schoolClassFormService.form.isDirty}
       />
     );
   }

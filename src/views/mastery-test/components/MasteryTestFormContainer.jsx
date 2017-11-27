@@ -16,8 +16,9 @@ class MasteryTestFormContainer extends Component {
     masteryTestId: null,
   };
 
+  masteryTestFormService = new MasteryTestFormService();
   componentWillMount() {
-    MasteryTestFormService.handleLoad(this.props.moduleId, this.props.masteryTestId);
+    this.masteryTestFormService.handleLoad(this.props.moduleId, this.props.masteryTestId);
   }
 
   sumDeadlineTime = () => {
@@ -37,13 +38,13 @@ class MasteryTestFormContainer extends Component {
     return (
       <MasteryTestForm
         deadlineTime={this.sumDeadlineTime()}
-        onSubmit={MasteryTestFormService.handleSubmit}
-        onChange={MasteryTestFormService.form.setValue}
-        onReset={MasteryTestFormService.form.reset}
-        values={MasteryTestFormService.form.getValues()}
-        errors={MasteryTestFormService.form.errors}
-        submitting={MasteryTestFormService.submit.fetching}
-        isDirty={MasteryTestFormService.form.isDirty}
+        onSubmit={this.masteryTestFormService.handleSubmit}
+        onChange={this.masteryTestFormService.form.setValue}
+        onReset={this.masteryTestFormService.form.reset}
+        values={this.masteryTestFormService.form.getValues()}
+        errors={this.masteryTestFormService.form.errors}
+        submitting={this.masteryTestFormService.submit.fetching}
+        isDirty={this.masteryTestFormService.form.isDirty}
       />
     );
   }

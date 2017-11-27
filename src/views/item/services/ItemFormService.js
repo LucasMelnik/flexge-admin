@@ -10,7 +10,7 @@ import {
   isValidTime,
 } from '../../../core/validations';
 
-class ItemFormService {
+export default class ItemFormService {
   fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
@@ -328,5 +328,3 @@ class ItemFormService {
     });
   });
 }
-
-export default ItemFormService;
