@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import Average from './Average';
-import ScoreToPassAmountsListService from '../services/ScoreToPassAmountsListService';
+import ScoreToPassAmountsListService from '../../services/admin/ScoreToPassAmountsListService';
 
 const ScoreToPassAverageContainer = () => (
   <Average

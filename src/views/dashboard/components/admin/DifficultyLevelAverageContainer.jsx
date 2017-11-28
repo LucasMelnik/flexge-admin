@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import Average from './Average';
-import DifficultyLevelAmountsListService from '../services/DifficultyLevelAmountsListService';
+import DifficultyLevelAmountsListService from '../../services/admin/DifficultyLevelAmountsListService';
 
 const DifficultyLevelAverageContainer = () => (
   <Average

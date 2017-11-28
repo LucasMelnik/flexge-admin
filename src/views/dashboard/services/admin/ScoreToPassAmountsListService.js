@@ -1,6 +1,6 @@
 import { action, extendObservable, toJS } from 'mobx';
 import range from 'lodash/range';
-import FetchService from '../../../core/services/FetchService';
+import FetchService from '../../../../core/services/FetchService';
 
 class ScoreToPassAmountsListService {
   fetch = new FetchService();

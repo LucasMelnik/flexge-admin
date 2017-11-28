@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import FetchSelect from '../../../core/form/FetchSelect';
+import FetchSelect from '../../../../core/form/FetchSelect';
 
 const DashboardFilter = props => (
   <FetchSelect

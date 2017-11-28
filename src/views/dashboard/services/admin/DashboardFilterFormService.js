@@ -1,5 +1,5 @@
 import { action, extendObservable } from 'mobx';
-import FormService from '../../../core/services/FormService';
+import FormService from '../../../../core/services/FormService';
 import DifficultyLevelAmountsListService from './DifficultyLevelAmountsListService';
 import TimeAmountsListService from './TimeAmountsListService';
 import ScoreToPassAmountsListService from './ScoreToPassAmountsListService';
