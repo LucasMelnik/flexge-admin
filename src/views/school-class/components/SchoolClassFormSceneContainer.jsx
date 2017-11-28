@@ -5,7 +5,6 @@ import SchoolClassFormScene from './SchoolClassFormScene';
 import SchoolClassDetailService from '../services/SchoolClassDetailService';
 
 class SchoolClassFormSceneContainer extends Component {
-
   static propTypes = {
     params: PropTypes.shape({
       schoolId: PropTypes.string,
@@ -15,17 +14,19 @@ class SchoolClassFormSceneContainer extends Component {
     }).isRequired,
   };
 
+  schoolClassDetailService = new SchoolClassDetailService();
+
   componentWillMount() {
     if (this.props.params.distributorId) {
-      SchoolClassDetailService.handleLoadDistributor(this.props.params.distributorId);
+      this.schoolClassDetailService.handleLoadDistributor(this.props.params.distributorId);
     }
 
     if (this.props.params.companyId) {
-      SchoolClassDetailService.handleLoadCompany(this.props.params.companyId);
+      this.schoolClassDetailService.handleLoadCompany(this.props.params.companyId);
     }
 
     if (this.props.params.schoolId) {
-      SchoolClassDetailService.handleLoadSchool(this.props.params.schoolId);
+      this.schoolClassDetailService.handleLoadSchool(this.props.params.schoolId);
     }
   }
 
@@ -33,13 +34,13 @@ class SchoolClassFormSceneContainer extends Component {
     return (
       <SchoolClassFormScene
         classId={this.props.params.classId}
-        company={SchoolClassDetailService.company}
-        distributor={SchoolClassDetailService.distributor}
-        school={SchoolClassDetailService.school}
+        company={this.schoolClassDetailService.company}
+        distributor={this.schoolClassDetailService.distributor}
+        school={this.schoolClassDetailService.school}
         fetching={
-          SchoolClassDetailService.fetchDistributor.fetching ||
-          SchoolClassDetailService.fetchCompany.fetching ||
-          SchoolClassDetailService.fetchSchool.fetching
+          this.schoolClassDetailService.fetchDistributor.fetching ||
+          this.schoolClassDetailService.fetchCompany.fetching ||
+          this.schoolClassDetailService.fetchSchool.fetching
         }
       />
     );

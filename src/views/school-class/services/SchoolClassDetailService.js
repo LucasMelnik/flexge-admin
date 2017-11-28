@@ -47,6 +47,4 @@ export default class SchoolClassDetailService {
       this.class = this.fetchClass.data;
     });
   });
-
 }
-
