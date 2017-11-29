@@ -229,6 +229,30 @@ const MainScene = props => (
             },
           ]}
         />
+        <SubMenu
+          title="Basic Register"
+          icon="folder"
+          allowedFor={['TEACHER']}
+          groups={[]}
+        />
+        <SubMenu
+          title="Academic"
+          icon="book"
+          allowedFor={['TEACHER']}
+          groups={[]}
+        />
+        <SubMenu
+          title="Certifications"
+          icon="trophy"
+          allowedFor={['TEACHER']}
+          groups={[]}
+        />
+        <SubMenu
+          title="Records"
+          icon="folder-open"
+          allowedFor={['TEACHER']}
+          groups={[]}
+        />
       </Menu>
       <div
         style={{
