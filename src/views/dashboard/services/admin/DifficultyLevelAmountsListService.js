@@ -1,5 +1,5 @@
 import { action, extendObservable, toJS } from 'mobx';
-import FetchService from '../../../core/services/FetchService';
+import FetchService from '../../../../core/services/FetchService';
 
 class DifficultyLevelAmountsListService {
   fetch = new FetchService();

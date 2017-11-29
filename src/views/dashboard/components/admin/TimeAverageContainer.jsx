@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import Average from './Average';
-import TimeAmountsListService from '../services/TimeAmountsListService';
+import TimeAmountsListService from '../../services/admin/TimeAmountsListService';
 
 const TimeAverageContainer = () => (
   <Average

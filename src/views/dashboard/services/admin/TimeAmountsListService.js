@@ -1,7 +1,7 @@
 import { action, extendObservable, toJS } from 'mobx';
 import moment from 'moment';
 import 'moment-duration-format';
-import FetchService from '../../../core/services/FetchService';
+import FetchService from '../../../../core/services/FetchService';
 
 class TimeAmountsListService {
   fetch = new FetchService();

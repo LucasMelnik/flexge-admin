@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import DifficultyLevelAmountsList from './DifficultyLevelAmountsList';
-import DifficultyLevelAmountsListService from '../services/DifficultyLevelAmountsListService';
+import DifficultyLevelAmountsListService from '../../services/admin/DifficultyLevelAmountsListService';
 
 class DifficultyLevelAmountsListContainer extends Component {
 

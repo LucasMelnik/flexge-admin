@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import DashboardFilter from './DashboardFilter';
-import DashboardFilterFormService from '../services/DashboardFilterFormService';
+import DashboardFilterFormService from '../../services/admin/DashboardFilterFormService';
 
 const DashboardFilterContainer = () => (
   <DashboardFilter

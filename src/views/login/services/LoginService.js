@@ -42,6 +42,7 @@ class LoginService {
         localStorage.setItem('role', decodedToken.role);
         localStorage.setItem('company', decodedToken.company);
         localStorage.setItem('distributor', decodedToken.distributor);
+        localStorage.setItem('school', decodedToken.school);
         browserHistory.push('/');
         NotificationService.addNotification('Welcome again!', 'info');
       }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from '../../../core/form/Table';
+import Table from '../../../../core/form/Table';
 
 const UnitTypeAmountsList = props => (
   <Table

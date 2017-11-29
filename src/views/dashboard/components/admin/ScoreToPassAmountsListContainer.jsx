@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import ScoreToPassAmountsList from './ScoreToPassAmountsList';
-import ScoreToPassAmountsListService from '../services/ScoreToPassAmountsListService';
+import ScoreToPassAmountsListService from '../../services/admin/ScoreToPassAmountsListService';
 
 class ScoreToPassAmountsListContainer extends Component {
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Async from '../../../core/layout/Async';
+import Async from '../../../../core/layout/Async';
 
 
 const TimeAmounts = props => (

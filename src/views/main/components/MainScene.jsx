@@ -70,7 +70,7 @@ const MainScene = props => (
         <SubMenu
           title="Basic Register"
           icon="folder"
-          allowedFor={['ADMIN']}
+          allowedFor={['ADMIN', 'SCHOOL_MANAGER']}
           groups={[
             {
               group: 'Organizations',
@@ -130,13 +130,13 @@ const MainScene = props => (
             },
             {
               label: 'Grade Configuration',
-              link: `/schools/${localStorage.id}/grade-config`,
+              link: `/schools/${localStorage.school}/grade-configuration`,
               allowedFor: ['SCHOOL_MANAGER'],
               group: 'School Management',
             },
             {
               label: 'Evaluation Periods',
-              link: `/schools/${localStorage.id}/evaluation-periods`,
+              link: `/schools/${localStorage.school}/evaluation-periods`,
               allowedFor: ['SCHOOL_MANAGER'],
               group: 'School Management',
             },

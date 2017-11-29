@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import TimeAmountsList from './TimeAmounts';
-import TimeAmountsListService from '../services/TimeAmountsListService';
+import TimeAmountsListService from '../../services/admin/TimeAmountsListService';
 
 class TimeAmountsContainer extends Component {
 
