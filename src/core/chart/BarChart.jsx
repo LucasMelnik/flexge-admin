@@ -18,6 +18,7 @@ const BarChart = props => (
       legend: {
         display: false,
       },
+      ...props.options,
     }}
   />
 );
@@ -25,6 +26,11 @@ const BarChart = props => (
 BarChart.propTypes = {
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  options: PropTypes.shape({}),
+};
+
+BarChart.defaultProps = {
+  options: {},
 };
 
 export default BarChart;

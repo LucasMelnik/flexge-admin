@@ -1,12 +1,12 @@
 import React from 'react';
 import Card from '../../../../core/layout/Card';
-import BarChart from '../../../../core/chart/BarChart';
+import DoughnutChart from '../../../../core/chart/DoughnutChart';
 
 const StudentStudiedDatesChart = () => (
   <Card
     title="Study Quality da suas turmas"
   >
-    <BarChart
+    <DoughnutChart
       labels={[
         'Não estudou nas últimas 4 semanas',
         'Estudou nas últimas 4 semanas',

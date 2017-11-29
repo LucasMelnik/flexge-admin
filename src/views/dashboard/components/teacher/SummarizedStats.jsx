@@ -31,7 +31,7 @@ const SummarizedStats = () => (
       legend="School average 55%"
     />
     <CircularProgress
-      title="Total de alunos que estudaram nos últimos 7 dias"
+      title="Alunos que estudaram nos últimos 7 dias"
       value={63}
       max={100}
       valueRender={value => `${value}%`}
