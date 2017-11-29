@@ -11,7 +11,6 @@ const StudentAverageStudiedTimeChart = () => (
       dataFormat={[
         {
           label: 'Horas de estudo',
-          color: `#${(0x1000000 + ((Math.random()) * 0xffffff)).toString(16).substr(1,6)}`,
           valueRender: item => item,
         },
       ]}

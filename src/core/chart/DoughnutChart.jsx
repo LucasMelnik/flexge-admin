@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Doughnut } from 'react-chartjs-2';
+import colors from './colors';
 
 const DoughnutChart = props => (
   <Doughnut
@@ -8,7 +9,7 @@ const DoughnutChart = props => (
       labels: props.labels,
       datasets: [{
         fill: true,
-        backgroundColor: props.data.map(() => `#${(0x1000000 + ((Math.random()) * 0xffffff)).toString(16).substr(1,6)}`),
+        backgroundColor: colors,
         data: props.data,
       }],
     }}

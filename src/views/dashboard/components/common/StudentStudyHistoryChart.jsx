@@ -53,16 +53,15 @@ const StudentStudyHistoryChart = () => (
         { total: 10, study: 5 },
         { total: 15, study: 7 },
         { total: 15, study: 3 },
+        { total: 15, study: 3 },
       ]}
       dataFormat={[
         {
           label: 'Alunos estudando',
-          color: `#${(0x1000000 + ((Math.random()) * 0xffffff)).toString(16).substr(1,6)}`,
           valueRender: item => item.study,
         },
         {
           label: 'Total de alunos',
-          color: `#${(0x1000000 + ((Math.random()) * 0xffffff)).toString(16).substr(1,6)}`,
           valueRender: item => item.total,
         },
       ]}

@@ -1,6 +1,8 @@
 import React from 'react';
 import AdminDashboard from './admin/AdminDashboard';
 import TeacherDashboard from './teacher/TeacherDashboard';
+import SchoolManagerDashboard from './school-manager/SchoolManagerDashboard';
+import CompanyManagerDashboard from './company-manager/CompanyManagerDashboard';
 
 const DashboardScene = () => (
   <div>
@@ -9,6 +11,12 @@ const DashboardScene = () => (
     )}
     {(localStorage.role === 'TEACHER') && (
       <TeacherDashboard />
+    )}
+    {(localStorage.role === 'SCHOOL_MANAGER') && (
+      <SchoolManagerDashboard />
+    )}
+    {(localStorage.role === 'COMPANY_MANAGER') && (
+      <CompanyManagerDashboard />
     )}
   </div>
 );

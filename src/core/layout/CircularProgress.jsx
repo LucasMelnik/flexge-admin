@@ -33,7 +33,7 @@ const CircularProgress = props => (
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      width: 250,
+      width: 210,
     }}
   >
     <p

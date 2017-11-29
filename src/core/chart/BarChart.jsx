@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Bar } from 'react-chartjs-2';
+import colors from './colors';
 
 const BarChart = props => (
   <Bar
@@ -8,7 +9,7 @@ const BarChart = props => (
       labels: props.labels,
       datasets: [{
         fill: true,
-        backgroundColor: props.data.map(() => `#${(0x1000000 + ((Math.random()) * 0xffffff)).toString(16).substr(1,6)}`),
+        backgroundColor: colors,
         data: props.data,
       }],
     }}
@@ -17,6 +18,7 @@ const BarChart = props => (
       legend: {
         display: false,
       },
+      ...props.options,
     }}
   />
 );
@@ -24,6 +26,11 @@ const BarChart = props => (
 BarChart.propTypes = {
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  options: PropTypes.shape({}),
+};
+
+BarChart.defaultProps = {
+  options: {},
 };
 
 export default BarChart;
