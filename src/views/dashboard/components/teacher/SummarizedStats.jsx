@@ -1,7 +1,7 @@
 import React from 'react';
 import CircularProgress from '../../../../core/layout/CircularProgress';
 
-const Metrics = () => (
+const SummarizedStats = () => (
   <div
     style={{
       display: 'flex',
@@ -54,4 +54,4 @@ const Metrics = () => (
   </div>
 );
 
-export default Metrics;
+export default SummarizedStats;
