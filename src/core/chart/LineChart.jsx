@@ -29,11 +29,6 @@ const LineChart = props => (
     }}
     options={{
       responsive: true,
-      scales: {
-        yAxes: [{
-          stacked: true,
-        }],
-      },
     }}
   />
 );
