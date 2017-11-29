@@ -4,17 +4,17 @@ import DoughnutChart from '../../../../core/chart/DoughnutChart';
 
 const StudentStudiedDatesChart = () => (
   <Card
-    title="Study Quality da suas turmas"
+    title="Alunos estudando por semana"
   >
     <DoughnutChart
       labels={[
-        'Não estudou nas últimas 4 semanas',
-        'Estudou nas últimas 4 semanas',
-        'Estudou nas últimas 3 semanas',
-        'estudou nas últimas 2 semanas',
-        'estudou na última semana',
+        '% sem estudo nas últimas 4 semanas',
+        '% que estudaram nas últimas 4 semanas',
+        '% que estudaram nas últimas 3 semanas',
+        '% que estudaram nas últimas 2 semanas',
+        '% que estudaram na última semana',
       ]}
-      data={[5, 50, 57, 70, 80]}
+      data={[5, 10, 25, 30, 30]}
     />
   </Card>
 );
