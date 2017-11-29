@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
+import colors from './colors';
 
 const LineChart = props => (
   <Line
     height={100}
     data={{
       labels: props.labels,
-      datasets: props.dataFormat.map(format => ({
+      datasets: props.dataFormat.map((format, index) => ({
         label: format.label,
         lineTension: 0.2,
-        backgroundColor: format.color,
-        borderColor: format.color,
+        backgroundColor: colors[index],
+        borderColor: colors[index],
         pointHoverRadius: 5,
         pointBorderColor: '#fff',
         pointBorderWidth: 2,
