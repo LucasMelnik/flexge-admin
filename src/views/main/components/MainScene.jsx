@@ -248,9 +248,9 @@ const MainScene = props => (
           groups={[]}
         />
         <SubMenu
-          title="Records"
+          title="Reports"
           icon="folder-open"
-          allowedFor={['TEACHER']}
+          allowedFor={['TEACHER', 'COMPANY_MANAGER']}
           groups={[]}
         />
       </Menu>
