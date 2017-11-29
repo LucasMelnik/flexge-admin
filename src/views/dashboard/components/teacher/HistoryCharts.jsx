@@ -5,7 +5,7 @@ import StudentAverageStudiedTimeChart from '../common/StudentAverageStudiedTimeC
 
 const HistoryCharts = () => (
   <div>
-    <h1>Seu Historico</h1>
+    <h1>Seu Histórico</h1>
     <StudentStudyHistoryChart />
     <Separator />
     <StudentAverageStudiedTimeChart />
