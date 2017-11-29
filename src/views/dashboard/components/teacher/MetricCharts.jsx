@@ -1,9 +1,9 @@
 import React from 'react';
 import Separator from '../../../../core/layout/Separator';
-import SchoolClassStudyQualityChart from './SchoolClassStudyQualityChart';
-import StudentStudyQualityChart from './StudentStudyQualityChart';
-import StudentStudiedTimeChart from './StudentStudiedTimeChart';
-import StudentStudiedDatesChart from './StudentStudiedDatesChart';
+import SchoolClassStudyQualityChart from '../common/SchoolClassStudyQualityChart';
+import StudentStudyQualityChart from '../common/StudentStudyQualityChart';
+import StudentStudiedTimeChart from '../common/StudentStudiedTimeChart';
+import StudentStudiedDatesChart from '../common/StudentStudiedDatesChart';
 
 const MetricCharts = () => (
   <div>
