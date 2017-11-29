@@ -94,7 +94,7 @@ const MetricCharts = () => (
               fontSize: 48,
             }}
           >
-            4 anos e 2 meses
+            4a e 2m
           </div>
         </Alert>
       </div>
@@ -116,7 +116,7 @@ const MetricCharts = () => (
               fontSize: 48,
             }}
           >
-            3 lugar
+            3º lugar
           </div>
         </Alert>
       </div>
@@ -182,7 +182,7 @@ const MetricCharts = () => (
           width: '49%',
         }}
       >
-        <StudentStudiedTimeChart />
+        <StudentStudiedTimeChart showDetails={false} />
       </div>
       <div
         style={{

@@ -11,7 +11,7 @@ const SummarizedStats = () => (
     }}
   >
     <CircularProgress
-      title="Study Quality da suas turmas"
+      title="Study Quality da sua empresa"
       value={13.4}
       max={15}
     />

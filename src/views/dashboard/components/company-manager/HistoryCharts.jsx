@@ -6,7 +6,7 @@ import WeeklyStudyQualityChart from '../common/WeeklyStudyQualityChart';
 
 const HistoryCharts = () => (
   <div>
-    <h1>Seu Historico</h1>
+    <h1>Seu Histórico</h1>
     <StudentStudyHistoryChart />
     <Separator />
     <StudentAverageStudiedTimeChart />
