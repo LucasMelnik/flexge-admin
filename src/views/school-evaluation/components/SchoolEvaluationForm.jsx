@@ -39,7 +39,10 @@ const SchoolEvaluationForm = props => (
           disabled={props.submitting || !props.allowSelectStart}
           label="Start"
           value={get(props.values, 'start', undefined) ? props.values.start.toDate() : undefined}
-          onChange={value => props.onChange('start', value)}
+          onChange={(value) => {
+            props.onChange('start', value);
+            props.onChange('start', value.days(7));
+          }}
           errorText={get(props.errors, 'start', '')}
           disabledDate={date => date && (date.day() !== 1 || date.year() !== props.selectedYear)}
         />
