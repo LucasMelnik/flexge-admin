@@ -22,7 +22,10 @@ class SchoolGradeConfigFormContainer extends Component {
         onReset={this.schoolGradeConfigFormService.form.reset}
         values={this.schoolGradeConfigFormService.form.getValues()}
         errors={this.schoolGradeConfigFormService.form.errors}
-        submitting={this.schoolGradeConfigFormService.submit.fetching}
+        submitting={
+          this.schoolGradeConfigFormService.submit.fetching ||
+          this.schoolGradeConfigFormService.fetch.fetching
+        }
         isDirty={this.schoolGradeConfigFormService.form.isDirty}
       />
     );

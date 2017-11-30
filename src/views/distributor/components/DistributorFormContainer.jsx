@@ -14,21 +14,22 @@ class DistributorFormContainer extends Component {
     distributorId: null,
   };
 
+  distributorFormService = new DistributorFormService();
   componentWillMount() {
-    DistributorFormService.handleLoad(this.props.distributorId);
+    this.distributorFormService.handleLoad(this.props.distributorId);
   }
 
   render() {
     return (
       <DistributorForm
-        onSubmit={DistributorFormService.handleSubmit}
-        onChange={DistributorFormService.form.setValue}
-        onReset={DistributorFormService.form.reset}
-        values={DistributorFormService.form.getValues()}
-        errors={DistributorFormService.form.errors}
-        submitting={DistributorFormService.fetch.fetching}
-        error={DistributorFormService.fetch.error}
-        isDirty={DistributorFormService.form.isDirty}
+        onSubmit={this.distributorFormService.handleSubmit}
+        onChange={this.distributorFormService.form.setValue}
+        onReset={this.distributorFormService.form.reset}
+        values={this.distributorFormService.form.getValues()}
+        errors={this.distributorFormService.form.errors}
+        submitting={this.distributorFormService.submit.fetching}
+        error={this.distributorFormService.submit.error}
+        isDirty={this.distributorFormService.form.isDirty}
       />
     )
   }

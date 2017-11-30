@@ -13,6 +13,8 @@ class StudentMasteryListService {
   }
 
   init = action((studentId) => {
+    this.masteries = [];
+    this.executions = [];
     this.studentId = studentId;
     this.loadMasteries();
   });

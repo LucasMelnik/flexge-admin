@@ -18,20 +18,21 @@ class SchoolFormContainer extends Component {
     currentCompany: null,
   };
 
+  schoolFormService = new SchoolFormService();
   componentWillMount() {
-    SchoolFormService.init(this.props.schoolId, this.props.currentCompany);
+    this.schoolFormService.init(this.props.schoolId, this.props.currentCompany);
   }
 
   render() {
     return (
       <SchoolForm
-        onSubmit={SchoolFormService.handleSubmit}
-        onChange={SchoolFormService.form.setValue}
-        onReset={SchoolFormService.form.reset}
-        values={SchoolFormService.form.getValues()}
-        errors={SchoolFormService.form.errors}
-        submitting={SchoolFormService.submit.fetching}
-        isDirty={SchoolFormService.form.isDirty}
+        onSubmit={this.schoolFormService.handleSubmit}
+        onChange={this.schoolFormService.form.setValue}
+        onReset={this.schoolFormService.form.reset}
+        values={this.schoolFormService.form.getValues()}
+        errors={this.schoolFormService.form.errors}
+        submitting={this.schoolFormService.submit.fetching}
+        isDirty={this.schoolFormService.form.isDirty}
         states={toJS(StateService.states)}
         disableCompany={!!this.props.currentCompany}
       />

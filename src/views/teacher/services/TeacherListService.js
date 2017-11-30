@@ -15,6 +15,7 @@ class TeacherListService {
   }
 
   init = action(() => {
+    this.teachers = [];
     this.filter = '';
     this.load();
   });

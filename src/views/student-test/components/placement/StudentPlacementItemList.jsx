@@ -9,19 +9,20 @@ const StudentPlacementItemList = props => (
     columns={[
       {
         label: 'Item Location',
+        path: 'level',
         render: (cell, row) => `Level: ${row.level} Order: ${row.order}`,
       },
       {
         label: 'Status',
         path: 'correct',
-        width: '100',
+        width: '100px',
         render: cell => (
           <StatusItem
             color={{
-              CORRECT: '#009687',
-              WRONG: '#FF5233',
-            }[cell.toUpperCase()]}
-            text={cell}
+              TRUE: '#009687',
+              FALSE: '#FF5233',
+            }[cell.toString().toUpperCase()]}
+            text={cell ? 'CORRECT' : 'WRONG'}
           />
         ),
       },

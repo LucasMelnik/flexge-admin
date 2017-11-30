@@ -68,6 +68,7 @@ const UnitItemList = props => (
       {
         label: 'Text',
         path: 'item.text',
+        width: '20%',
         render: (cell, row) => (
           <div>{row.item.text ? row.item.text : row.item.title}</div>
         ),
@@ -75,6 +76,7 @@ const UnitItemList = props => (
       {
         label: 'Translation',
         path: 'item.translation',
+        width: '20%',
       },
       {
         label: 'Grammar',

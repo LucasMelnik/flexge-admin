@@ -5,7 +5,7 @@ import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
-class MoveUnitFormService {
+export default class MoveUnitFormService {
   fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
@@ -62,7 +62,3 @@ class MoveUnitFormService {
     });
   })
 }
-
-const moveUnitFormService = new MoveUnitFormService();
-
-export default moveUnitFormService;

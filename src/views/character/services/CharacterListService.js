@@ -14,6 +14,7 @@ class CharacterListService {
   }
 
   init = action(() => {
+    this.characters = [];
     this.load();
   });
 

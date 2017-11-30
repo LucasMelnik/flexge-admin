@@ -14,6 +14,8 @@ class CourseListService {
   }
 
   init = action(() => {
+    this.courses = [];
+    this.filter = '';
     this.load();
   });
 

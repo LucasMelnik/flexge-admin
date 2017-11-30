@@ -16,6 +16,9 @@ class StudentRecordListService {
   }
 
   init = action((schoolId, classId) => {
+    this.students = [];
+    this.totalValues = [];
+    this.averageData = {};
     this.schoolId = schoolId;
     this.classId = classId;
     this.load();

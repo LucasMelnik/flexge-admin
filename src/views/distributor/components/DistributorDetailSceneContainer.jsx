@@ -12,15 +12,16 @@ class DistributorFormContainer extends Component {
     }).isRequired,
   };
 
+  distributorDetailService = new DistributorDetailService();
   componentWillMount() {
-    DistributorDetailService.handleLoad(this.props.params.distributorId);
+    this.distributorDetailService.handleLoad(this.props.params.distributorId);
   }
 
   render() {
     return (
       <DistributorDetailScene
-        distributor={DistributorDetailService.distributor}
-        fetching={DistributorDetailService.fetch.fetching}
+        distributor={this.distributorDetailService.distributor}
+        fetching={this.distributorDetailService.fetch.fetching}
       />
     );
   }

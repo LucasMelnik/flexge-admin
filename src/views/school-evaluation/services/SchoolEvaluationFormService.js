@@ -27,9 +27,12 @@ export default class SchoolEvaluationFormService {
       const yearEvaluationsCount = SchoolEvaluationListService.evaluationsByYear.length;
       if (yearEvaluationsCount) {
         const lastEvaluation = SchoolEvaluationListService.evaluationsByYear[yearEvaluationsCount - 1];
+        const nextStart = moment(lastEvaluation.end).days(moment(lastEvaluation.end).days() + 1);
         this.form.setInitialValues({
           school: SchoolEvaluationListService.schoolId,
-          start: moment(lastEvaluation.end).days(moment(lastEvaluation.end).days() + 1),
+          start: nextStart,
+          end: nextStart.clone().days(7),
+          bonusWeeks: null,
         });
       } else {
         this.form.setInitialValues({ school: SchoolEvaluationListService.schoolId });
@@ -44,9 +47,12 @@ export default class SchoolEvaluationFormService {
     const yearEvaluationsCount = SchoolEvaluationListService.evaluationsByYear.length;
     if (yearEvaluationsCount) {
       const lastEvaluation = SchoolEvaluationListService.evaluationsByYear[yearEvaluationsCount - 1];
+      const nextStart = moment(lastEvaluation.end).days(moment(lastEvaluation.end).days() + 1);
       this.form.setInitialValues({
         school: this.schoolId,
-        start: moment(lastEvaluation.end).days(moment(lastEvaluation.end).days() + 1),
+        start: nextStart,
+        end: nextStart.clone().days(7),
+        bonusWeeks: null,
       });
     } else {
       this.form.setInitialValues({ school: this.schoolId });

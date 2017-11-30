@@ -18,6 +18,7 @@ class AllUnitItemListService {
   }
 
   init = action((moduleId, unitId) => {
+    this.items = [];
     this.moduleId = moduleId;
     this.unitId = unitId;
     this.load();

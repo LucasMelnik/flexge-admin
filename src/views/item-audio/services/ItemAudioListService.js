@@ -20,6 +20,12 @@ class ItemAudioListService {
   }
 
   init = action(() => {
+    this.items = [];
+    this.pagination = {
+      current: 1,
+      total: 0,
+      pageSize: 15,
+    };
     this.load();
   });
 

@@ -13,6 +13,7 @@ class ManagerListService {
   }
 
   init = action((url) => {
+    this.managers = [];
     this.url = url;
   });
 

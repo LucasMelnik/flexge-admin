@@ -14,6 +14,7 @@ class RegionListService {
   }
 
   init = action(() => {
+    this.regions = [];
     this.load();
   });
 

@@ -12,29 +12,32 @@ const sort = (a, b, path) => {
 };
 
 const Table = props => (
-  <AntTable
-    pagination={props.pagination || false}
-    rowKey="id"
-    bordered
-    indentSize={10}
-    locale={{
-      filterConfirm: 'Ok',
-      filterReset: 'Reset',
-      emptyText: 'No Data',
-    }}
-    dataSource={props.rows}
-    columns={props.columns.map(column => ({
-      title: column.label,
-      width: column.width,
-      dataIndex: column.path,
-      render: column.render,
-      sorter: column.sort ? (a, b) => sort(a, b, column.path) : null,
-      onCellClick: props.selectable && column.path !== 'action' ? row => props.onSelect(row) : null,
-    }))}
-    onChange={props.onChange}
-    loading={props.fetching}
-    expandedRowRender={props.expandableComponent}
-  />
+  <div>
+    <AntTable
+      pagination={props.pagination || false}
+      rowKey="id"
+      bordered
+      indentSize={10}
+      locale={{
+        filterConfirm: 'Ok',
+        filterReset: 'Reset',
+        emptyText: 'No Data',
+      }}
+      dataSource={props.rows}
+      columns={props.columns.map(column => ({
+        title: column.label,
+        width: column.width,
+        dataIndex: column.path,
+        render: column.render,
+        sorter: column.sort ? (a, b) => sort(a, b, column.path) : null,
+        onCellClick: props.selectable && column.path !== 'action' ? row => props.onSelect(row) : null,
+      }))}
+      onChange={props.onChange}
+      loading={props.fetching}
+      expandedRowRender={props.expandableComponent}
+    />
+    <small>{props.rows.length} registers found.</small>
+  </div>
 );
 
 Table.propTypes = {

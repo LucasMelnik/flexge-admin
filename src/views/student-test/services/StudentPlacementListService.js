@@ -15,6 +15,7 @@ class StudentPlacementListService {
   }
 
   init = action((studentId) => {
+    this.placements = [];
     this.studentId = studentId;
     this.loadPlacements();
   });

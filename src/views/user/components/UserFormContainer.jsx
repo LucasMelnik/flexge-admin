@@ -19,21 +19,22 @@ class UserFormContainer extends Component {
     distributorId: undefined,
   };
 
+  userFormService = new UserFormService();
   componentWillMount() {
-    UserFormService.handleLoad(this.props.userId, this.props.companyId, this.props.distributorId);
+    this.userFormService.handleLoad(this.props.userId, this.props.companyId, this.props.distributorId);
   }
 
   render() {
     return (
       <UserForm
         type={this.props.type}
-        onSubmit={UserFormService.handleSubmit}
-        onChange={UserFormService.form.setValue}
-        onReset={UserFormService.form.reset}
-        values={UserFormService.form.getValues()}
-        errors={UserFormService.form.errors}
-        submitting={UserFormService.fetch.fetching}
-        isDirty={UserFormService.form.isDirty}
+        onSubmit={this.userFormService.handleSubmit}
+        onChange={this.userFormService.form.setValue}
+        onReset={this.userFormService.form.reset}
+        values={this.userFormService.form.getValues()}
+        errors={this.userFormService.form.errors}
+        submitting={this.userFormService.submit.fetching}
+        isDirty={this.userFormService.form.isDirty}
       />
     );
   }

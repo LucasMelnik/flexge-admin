@@ -14,6 +14,8 @@ class DistributorListService {
   }
 
   init = action(() => {
+    this.distributors = [];
+    this.filter = '';
     this.load();
   });
 

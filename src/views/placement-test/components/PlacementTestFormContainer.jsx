@@ -14,20 +14,21 @@ class PlacementTestFormSceneContainer extends Component {
     placementTestId: null,
   };
 
+  placementTestFormService = new PlacementTestFormService();
   componentWillMount() {
-    PlacementTestFormService.handleLoad(this.props.placementTestId);
+    this.placementTestFormService.handleLoad(this.props.placementTestId);
   }
 
   render() {
     return (
       <PlacementTestForm
-        onSubmit={PlacementTestFormService.handleSubmit}
-        onChange={PlacementTestFormService.form.setValue}
-        onReset={PlacementTestFormService.form.reset}
-        values={PlacementTestFormService.form.getValues()}
-        errors={PlacementTestFormService.form.errors}
-        submitting={PlacementTestFormService.fetch.fetching}
-        isDirty={PlacementTestFormService.form.isDirty}
+        onSubmit={this.placementTestFormService.handleSubmit}
+        onChange={this.placementTestFormService.form.setValue}
+        onReset={this.placementTestFormService.form.reset}
+        values={this.placementTestFormService.form.getValues()}
+        errors={this.placementTestFormService.form.errors}
+        submitting={this.placementTestFormService.submit.fetching}
+        isDirty={this.placementTestFormService.form.isDirty}
       />
     );
   }

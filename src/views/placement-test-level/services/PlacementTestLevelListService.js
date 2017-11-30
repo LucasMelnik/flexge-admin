@@ -15,6 +15,7 @@ class PlacementTestLevelListService {
   }
 
   init = action(() => {
+    this.levels = [];
     this.load();
   });
 

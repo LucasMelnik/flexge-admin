@@ -14,6 +14,7 @@ class UnitItemErrorRecordListService {
   }
 
   init = action(() => {
+    this.items = [];
     this.load();
   });
 

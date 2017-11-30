@@ -15,6 +15,7 @@ class MasteryTestListService {
   }
 
   handleLoad = action((moduleId) => {
+    this.masteryTests = [];
     this.fetch.fetch({
       url: `/modules/${moduleId}/mastery-tests`,
     }).then(() => {

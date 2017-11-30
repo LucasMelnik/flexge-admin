@@ -14,6 +14,8 @@ class StudentRecordDetailService {
   }
 
   init = action((studentId) => {
+    this.contents = [];
+    this.contentsDetail = [];
     this.studentId = studentId;
     this.loadByDates();
     this.loadByContent();

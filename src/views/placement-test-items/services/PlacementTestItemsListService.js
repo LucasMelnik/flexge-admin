@@ -13,6 +13,7 @@ class PlacementTestItemsListService {
   }
 
   init = action(() => {
+    this.items = [];
     this.load();
   });
 

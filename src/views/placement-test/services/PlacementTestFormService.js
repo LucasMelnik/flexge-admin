@@ -5,7 +5,7 @@ import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
-class PlacementTestFormService {
+export default class PlacementTestFormService {
   fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
@@ -71,7 +71,3 @@ class PlacementTestFormService {
     });
   })
 }
-
-const placementTestFormService = new PlacementTestFormService();
-
-export default placementTestFormService;

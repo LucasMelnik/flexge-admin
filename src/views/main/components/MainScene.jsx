@@ -70,13 +70,16 @@ const MainScene = props => (
         <SubMenu
           title="Basic Register"
           icon="folder"
-          allowedFor={['ADMIN']}
+          allowedFor={['ADMIN', 'SCHOOL_MANAGER']}
           groups={[
             {
               group: 'Organizations',
             },
             {
               group: 'Users',
+            },
+            {
+              group: 'School Management',
             },
           ]}
           items={[
@@ -124,6 +127,18 @@ const MainScene = props => (
               link: '/students',
               allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
               group: 'Users',
+            },
+            {
+              label: 'Grade Configuration',
+              link: `/schools/${localStorage.school}/grade-configuration`,
+              allowedFor: ['SCHOOL_MANAGER'],
+              group: 'School Management',
+            },
+            {
+              label: 'Evaluation Periods',
+              link: `/schools/${localStorage.school}/evaluation-periods`,
+              allowedFor: ['SCHOOL_MANAGER'],
+              group: 'School Management',
             },
           ]}
         />
@@ -213,6 +228,30 @@ const MainScene = props => (
               link: '/grades',
             },
           ]}
+        />
+        <SubMenu
+          title="Basic Register"
+          icon="folder"
+          allowedFor={['TEACHER']}
+          groups={[]}
+        />
+        <SubMenu
+          title="Academic"
+          icon="book"
+          allowedFor={['TEACHER']}
+          groups={[]}
+        />
+        <SubMenu
+          title="Certifications"
+          icon="trophy"
+          allowedFor={['TEACHER']}
+          groups={[]}
+        />
+        <SubMenu
+          title="Reports"
+          icon="folder-open"
+          allowedFor={['TEACHER', 'COMPANY_MANAGER']}
+          groups={[]}
         />
       </Menu>
       <div

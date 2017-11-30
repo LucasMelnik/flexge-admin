@@ -5,7 +5,7 @@ import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
-class DistributorFormService {
+export default class DistributorFormService {
   fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
@@ -62,7 +62,3 @@ class DistributorFormService {
     });
   })
 }
-
-const distributorFormService = new DistributorFormService();
-
-export default distributorFormService;
