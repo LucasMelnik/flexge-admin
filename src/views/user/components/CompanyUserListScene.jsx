@@ -38,7 +38,7 @@ const CompanyUserListScene = props => (
             baseUrl={`/companies/${company.id}/users`}
             baseQuery={{
               company: company.id,
-              role: { $in: ['COMPANY_MANAGER', 'TEACHER'] },
+              role: { $in: ['COMPANY_MANAGER', 'TEACHER', 'SCHOOL_MANAGER'] },
             }}
           />
         </Card>
