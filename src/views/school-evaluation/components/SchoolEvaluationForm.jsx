@@ -29,7 +29,7 @@ const SchoolEvaluationForm = props => (
           disabled={props.submitting}
           type="number"
           label="Bonus Weeks"
-          value={get(props.values, 'bonusWeeks', '')}
+          value={get(props.values, 'bonusWeeks', null)}
           onChange={value => props.onChange('bonusWeeks', value)}
           errorText={get(props.errors, 'bonusWeeks', null)}
         />
@@ -41,7 +41,7 @@ const SchoolEvaluationForm = props => (
           value={get(props.values, 'start', undefined) ? props.values.start.toDate() : undefined}
           onChange={(value) => {
             props.onChange('start', value);
-            props.onChange('start', value.days(7));
+            props.onChange('end', value.clone().days(7));
           }}
           errorText={get(props.errors, 'start', '')}
           disabledDate={date => date && (date.day() !== 1 || date.year() !== props.selectedYear)}
