@@ -70,7 +70,7 @@ const ModuleForm = props => (
       </Column>
       <Column size={3}>
         <Select
-          options={['A', 'B', 'C'].map(value => ({
+          options={['A', 'B', 'C', 'D'].map(value => ({
             value,
             label: value,
           }))}

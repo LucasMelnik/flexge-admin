@@ -35,7 +35,7 @@ export default class ImagePreview extends Component {
           actions={[
             <Button
               key="closeButton"
-              icon="fa-times"
+              icon="close-circle"
               label="Close"
               onClick={this.toggleModal}
             />,

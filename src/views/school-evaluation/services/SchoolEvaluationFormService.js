@@ -32,11 +32,12 @@ export default class SchoolEvaluationFormService {
           school: SchoolEvaluationListService.schoolId,
           start: nextStart,
           end: nextStart.clone().days(7),
-          bonusWeeks: null,
+          bonusWeeks: lastEvaluation.bonusWeeks,
         });
       } else {
-        this.form.setInitialValues({ school: SchoolEvaluationListService.schoolId });
+        this.form.setInitialValues({ school: SchoolEvaluationListService.schoolId, bonusWeeks: 0 });
       }
+      this.form.reset();
     });
   }
 
@@ -52,7 +53,7 @@ export default class SchoolEvaluationFormService {
         school: this.schoolId,
         start: nextStart,
         end: nextStart.clone().days(7),
-        bonusWeeks: null,
+        bonusWeeks: lastEvaluation.bonusWeeks,
       });
     } else {
       this.form.setInitialValues({ school: this.schoolId });
@@ -61,6 +62,7 @@ export default class SchoolEvaluationFormService {
 
   handleSubmit = action(() => {
     this.form.submitted = true;
+    console.log(this.form.getValues())
     if (this.form.errors) {
       NotificationService.addNotification('Fill the required fields', 'error');
       return;
@@ -75,11 +77,6 @@ export default class SchoolEvaluationFormService {
       },
     }).then(() => {
       if (this.submit.data) {
-        this.form.reset();
-        this.form.setInitialValues({
-          school: this.schoolId,
-          start: moment(this.submit.data.end).days(moment(this.submit.data.end).days() + 1),
-        });
         SchoolEvaluationListService.load();
         NotificationService.addNotification(`Evaluation Period ${evaluationId ? 'updated' : 'created'} successfully.`, 'success');
       }

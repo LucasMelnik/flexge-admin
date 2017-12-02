@@ -5,6 +5,8 @@ import Button from '../../../../../core/form/Button';
 import UnitItemListContainer from './UnitItemListContainer';
 import Card from '../../../../../core/layout/Card';
 import Breadcrumb from '../../../../../core/layout/Breadcrumb';
+import Separator from '../../../../../core/layout/Separator';
+import UnitItemCharacterFormContainer from './UnitItemCharacterFormContainer';
 
 const UnitItemListScene = props => (
   <div>
@@ -56,6 +58,12 @@ const UnitItemListScene = props => (
         />
       ) : (<div />)}
     </Card>
+    <Separator />
+    {localStorage.role === 'ADMIN' && (
+      <Card title="Set items Character">
+        <UnitItemCharacterFormContainer />
+      </Card>
+    )}
   </div>
 );
 
