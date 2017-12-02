@@ -14,7 +14,7 @@ const CharacterForm = props => (
     }}
   >
     <Row>
-      <Column lgSize={3}>
+      <Column size={3}>
         <TextInput
           disabled={props.submitting}
           label="Name"

@@ -46,16 +46,12 @@ export default class MoveUnitFormService {
         browserHistory.push(`/modules/${this.submit.data.module.id}/details`);
         NotificationService.addNotification(
           'Unit successfully moved.',
-          null,
-          null,
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
           'Error to move unit.',
-          null,
-          null,
           'error',
         );
       }
