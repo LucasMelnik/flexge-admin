@@ -199,7 +199,7 @@ const MainScene = props => (
             },
             {
               label: 'Audio',
-              link: '/audio',
+              link: '/item-audios',
               group: 'Admin',
               icon: 'sound',
               allowedFor: ['AUDIO_CONTENT', 'ADMIN'],
