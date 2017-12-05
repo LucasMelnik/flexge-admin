@@ -111,7 +111,10 @@ const UserForm = props => (
           />
         </Column>
       )}
-      {(props.type === 'COMPANY' && get(props.values, 'role', '') === 'SCHOOL_MANAGER') && (
+      {(
+        props.type === 'COMPANY' &&
+        (get(props.values, 'role', '') === 'SCHOOL_MANAGER' || get(props.values, 'role', '') === 'TEACHER')
+      ) && (
         <Column size={4}>
           <FetchSelect
             url={`schools?query[company]=${get(props.values, 'company', '')}`}

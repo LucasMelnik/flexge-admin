@@ -36,6 +36,9 @@ export default class UserFormService {
             ...distributorId && {
               distributor: distributorId,
             },
+            ...this.fetch.data.school && {
+              school: this.fetch.data.school.id,
+            },
           };
           this.form.setInitialValues(data);
         }
@@ -57,8 +60,8 @@ export default class UserFormService {
     this.form.validations = {
       ...this.form.validations,
       distributor: this.form.getValue('role') === 'DISTRIBUTOR_MANAGER' ? [isRequired] : [],
-      company: this.form.getValue('role') === 'COMPANY_MANAGER' || this.form.getValue('role') === 'TEACHER' ? [isRequired] : [],
-      school: this.form.getValue('role') === 'SCHOOL_MANAGER' ? [isRequired] : [],
+      company: this.form.getValue('role') === 'COMPANY_MANAGER' ? [isRequired] : [],
+      school: (this.form.getValue('role') === 'SCHOOL_MANAGER' || this.form.getValue('role') === 'TEACHER') ? [isRequired] : [],
     };
     this.form.submitted = true;
     if (this.form.errors) {
