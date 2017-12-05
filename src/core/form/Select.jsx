@@ -7,6 +7,9 @@ const Select = props => (
     label={props.label}
     help={props.errorText}
     validateStatus={props.errorText && 'error'}
+    style={{
+      minWidth: 200,
+    }}
   >
     <AntSelect
       allowClear
@@ -15,7 +18,7 @@ const Select = props => (
       }}
       placeholder={props.placeholder}
       disabled={props.disabled}
-      value={props.value}
+      value={props.value || undefined}
       onChange={value => props.onChange && props.onChange(value)}
     >
       {props.options.map(option => (
