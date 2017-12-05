@@ -18,31 +18,7 @@ const MetricCharts = () => (
       <div
         style={{
           display: 'inline-block',
-          width: '49%',
-        }}
-      >
-        <SchoolClassStudyQualityChart />
-      </div>
-      <div
-        style={{
-          display: 'inline-block',
-          width: '49%',
-        }}
-      >
-        <StudentStudyQualityChart />
-      </div>
-    </div>
-    <Separator />
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
-      <div
-        style={{
-          display: 'inline-block',
-          width: '49%',
+          width: '33%',
         }}
       >
         <StudentStudiedTimeChart />
@@ -50,7 +26,17 @@ const MetricCharts = () => (
       <div
         style={{
           display: 'inline-block',
-          width: '49%',
+          width: '33%',
+        }}
+      >
+        <SchoolClassStudyQualityChart />
+        <Separator size="xs" />
+        <StudentStudyQualityChart />
+      </div>
+      <div
+        style={{
+          display: 'inline-block',
+          width: '33%',
         }}
       >
         <StudentStudiedDatesChart />

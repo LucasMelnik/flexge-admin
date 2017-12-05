@@ -4,17 +4,19 @@ import Card from '../../../../core/layout/Card';
 import Table from '../../../../core/form/Table';
 import DoughnutChart from '../../../../core/chart/DoughnutChart';
 import Separator from '../../../../core/layout/Separator';
+import { DARK_GREEN, GREEN, ORANGE, RED } from '../../../../core/chart/colors';
 
 const StudentStudiedTimeChart = props => (
   <Card
-    title="Tempo de estudo de seus alunos"
+    title="Tempo de estudo de seus alunos no Últimos 7 dias"
   >
     <DoughnutChart
       labels={['Não estudou', 'até 1h de estudo', 'até 2h de estudo', 'mais de 2h']}
       data={[10, 20, 50, 20]}
+      colors={[RED, ORANGE, GREEN, DARK_GREEN]}
     />
     {props.showDetails && (
-      <Separator />
+      <Separator size="md" />
     )}
     {props.showDetails && (
       <Table

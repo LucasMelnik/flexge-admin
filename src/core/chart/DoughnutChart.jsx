@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Doughnut } from 'react-chartjs-2';
-import colors from './colors';
 
 const DoughnutChart = props => (
   <Doughnut
@@ -9,7 +8,7 @@ const DoughnutChart = props => (
       labels: props.labels,
       datasets: [{
         fill: true,
-        backgroundColor: colors,
+        backgroundColor: props.colors,
         data: props.data,
       }],
     }}
@@ -26,6 +25,7 @@ const DoughnutChart = props => (
 DoughnutChart.propTypes = {
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default DoughnutChart;
