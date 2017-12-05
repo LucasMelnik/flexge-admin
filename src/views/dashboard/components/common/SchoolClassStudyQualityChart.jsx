@@ -13,8 +13,11 @@ const SchoolClassStudyQualityChart = () => (
       colors={[RED, ORANGE, GREEN, GREEN]}
       options={{
         scales: {
+          xAxes: [ { gridLines: { display: false } } ],
           yAxes: [{
-            display: true,
+            gridLines: {
+              // display: false,
+            },
             ticks: {
               min: -5,
               max: 15,
