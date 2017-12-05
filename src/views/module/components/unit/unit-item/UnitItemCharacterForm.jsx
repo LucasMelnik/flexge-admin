@@ -5,6 +5,7 @@ import Row from '../../../../../core/layout/Row';
 import Column from '../../../../../core/layout/Column';
 import FormButtons from '../../../../../core/form/FormButtons';
 import FetchSelect from '../../../../../core/form/FetchSelect';
+import Switch from '../../../../../core/form/Switch';
 
 const UnitItemCharacterForm = props => (
   <form
@@ -14,20 +15,32 @@ const UnitItemCharacterForm = props => (
     }}
   >
     <Row>
-      <Column size={2}>
-        <FetchSelect
-          url="characters"
+      <Column size={1}>
+        <Switch
+          label="Random Characters ?"
+          titleOff="False"
+          titleOn="True"
+          onChange={value => props.onChange('randomCharacters', value)}
+          value={get(props.values, 'randomCharacters', false)}
           disabled={props.submitting}
-          label="Character"
-          value={get(props.values, 'character', '')}
-          onChange={character => props.onChange('character', character)}
-          errorText={get(props.errors, 'character', '')}
-          resultTransformer={{
-            text: 'name',
-            value: 'id',
-          }}
         />
       </Column>
+      {!get(props.values, 'randomCharacters', false) && (
+        <Column size={2}>
+          <FetchSelect
+            url="characters"
+            disabled={props.submitting}
+            label="Character"
+            value={get(props.values, 'character', '')}
+            onChange={character => props.onChange('character', character)}
+            errorText={get(props.errors, 'character', '')}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </Column>
+      )}
     </Row>
     <FormButtons
       confirmLabel="Set Character"

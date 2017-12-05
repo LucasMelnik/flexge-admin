@@ -1,4 +1,5 @@
-import { extendObservable, action } from 'mobx';
+import { extendObservable, action, toJS } from 'mobx';
+import sample from 'lodash/sample';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -6,6 +7,7 @@ import { isRequired } from '../../../core/validations';
 import UnitItemListService from './UnitItemListService';
 
 export default class UnitItemCharacterFormService {
+  fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
 
@@ -13,11 +15,24 @@ export default class UnitItemCharacterFormService {
     extendObservable(this, {
     });
     this.form.validations = {
-      character: [isRequired],
+      character: [],
     };
   }
 
+  init = action(() => {
+    this.fetch.fetch({
+      url: '/characters',
+    }).then(() => {
+      if (this.fetch.data) {
+        this.characters = this.fetch.data;
+      } else {
+        this.characters = [];
+      }
+    });
+  });
+
   handleSubmit = action(() => {
+    this.form.validations.character = !this.form.getValue('randomCharacters') ? [isRequired] : [];
     this.form.submitted = true;
     if (this.form.errors) {
       NotificationService.addNotification(
@@ -26,6 +41,14 @@ export default class UnitItemCharacterFormService {
       );
       return;
     }
+    if (!this.form.getValue('randomCharacters') && !this.form.getValue('character')) {
+      NotificationService.addNotification(
+        'Select the Character',
+        'error',
+      );
+      return;
+    }
+
     const promises = [];
     UnitItemListService.items
       .filter(unitItem => ![
@@ -46,7 +69,7 @@ export default class UnitItemCharacterFormService {
               ...unitItem.item.grammar && {
                 grammar: unitItem.item.grammar.id,
               },
-              character: this.form.getValue('character'),
+              character: this.form.getValue('randomCharacters') ? sample(toJS(this.characters)).id : this.form.getValue('character'),
             },
           },
         }));
