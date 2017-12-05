@@ -1,6 +1,6 @@
 import React from 'react';
 import Separator from '../../../../core/layout/Separator';
-import SummarizedStats from './SummarizedStats';
+import PerformanceGoals from '../common/PerformanceGoals';
 import HistoryCharts from './HistoryCharts';
 import MetricCharts from './MetricCharts';
 
@@ -9,7 +9,7 @@ const TeacherDashboard = () => (
     <Separator />
     <h1>Welcome back Stacey Rodrigues.</h1>
     <Separator />
-    <SummarizedStats />
+    <PerformanceGoals />
     <Separator />
     <MetricCharts />
     <Separator />
