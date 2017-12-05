@@ -1,6 +1,6 @@
 import React from 'react';
 import Separator from '../../../../core/layout/Separator';
-import SummarizedStats from './SummarizedStats';
+import PerformanceGoals from '../common/PerformanceGoals';
 import HistoryCharts from './HistoryCharts';
 import MetricCharts from './MetricCharts';
 
@@ -9,7 +9,7 @@ const CompanyManagerDashboard = () => (
     <Separator />
     <h1>Welcome back Filipe Colpo.</h1>
     <Separator />
-    <SummarizedStats />
+    <PerformanceGoals />
     <Separator />
     <MetricCharts />
     <Separator />
