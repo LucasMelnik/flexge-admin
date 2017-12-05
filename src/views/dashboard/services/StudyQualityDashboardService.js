@@ -1,7 +1,7 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
-class PerformanceGoalService {
+class StudyQualityDashboardService {
   fetch = new FetchService();
 
   constructor() {
@@ -11,7 +11,7 @@ class PerformanceGoalService {
     });
   }
 
-  loadStudyQualityAverage = action(() => {
+  loadStudyQualityScores = action(() => {
     this.loadingStudyQualityScores = true;
     this.fetch.fetch({
       url: '/reports/study-quality-average',
@@ -24,6 +24,6 @@ class PerformanceGoalService {
   });
 }
 
-const performanceGoalService = new PerformanceGoalService();
+const studyQualityDashboardService = new StudyQualityDashboardService();
 
-export default performanceGoalService;
+export default studyQualityDashboardService;

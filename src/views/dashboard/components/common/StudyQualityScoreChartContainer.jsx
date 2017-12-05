@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import PerformanceGoalService from '../../services/PerformanceGoalService';
+import StudyQualityDashboardService from '../../services/StudyQualityDashboardService';
 import StudyQualityScoreChart from './StudyQualityScoreChart';
 
 class StudyQualityScoreChartContainer extends Component {
@@ -13,18 +13,18 @@ class StudyQualityScoreChartContainer extends Component {
   };
 
   getData = () => {
-    if (PerformanceGoalService.loadingStudyQualityScores) {
+    if (StudyQualityDashboardService.loadingStudyQualityScores) {
       return [];
     }
 
     if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
-      const school = PerformanceGoalService.schoolStudyQualityScores[0];
+      const school = StudyQualityDashboardService.schoolStudyQualityScores[0];
       return school.classes.map(schoolClass => ({
         label: schoolClass.className,
         value: schoolClass.classAverageScore,
       }));
     }
-    const schools = PerformanceGoalService.schoolStudyQualityScores;
+    const schools = StudyQualityDashboardService.schoolStudyQualityScores;
     return schools.map(school => ({
       label: school.name,
       value: school.schoolAverageScore,
@@ -36,7 +36,7 @@ class StudyQualityScoreChartContainer extends Component {
       <StudyQualityScoreChart
         title={this.getTitle()}
         data={this.getData()}
-        loading={PerformanceGoalService.loadingStudyQualityScores}
+        loading={StudyQualityDashboardService.loadingStudyQualityScores}
       />
     );
   }

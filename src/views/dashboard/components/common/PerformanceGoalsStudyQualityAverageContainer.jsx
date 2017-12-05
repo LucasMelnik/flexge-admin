@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import PerformanceGoalService from '../../services/PerformanceGoalService';
+import StudyQualityDashboardService from '../../services/StudyQualityDashboardService';
 import CircularProgress from '../../../../core/layout/CircularProgress';
 import Async from '../../../../core/layout/Async';
 
 class PerformanceGoalsStudyQualityAverageContainer extends Component {
 
   componentWillMount() {
-    PerformanceGoalService.loadStudyQualityAverage();
+    StudyQualityDashboardService.loadStudyQualityScores();
   }
 
   getValue = () => {
-    if (PerformanceGoalService.loadingStudyQualityScores) {
+    if (StudyQualityDashboardService.loadingStudyQualityScores) {
       return 0;
     }
 
     if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
-      const school = PerformanceGoalService.schoolStudyQualityScores[0];
+      const school = StudyQualityDashboardService.schoolStudyQualityScores[0];
       return school.classes.reduce((acc, schoolClass) => acc + schoolClass.classAverageScore, 0) / school.classes.length;
     }
-    const schools = PerformanceGoalService.schoolStudyQualityScores;
+    const schools = StudyQualityDashboardService.schoolStudyQualityScores;
     return schools.reduce((acc, schoolScore) => acc + schoolScore.schoolAverageScore, 0) / schools.length;
   };
 
-  getSchoolAverage = () => !PerformanceGoalService.loadingStudyQualityScores &&
-    PerformanceGoalService.schoolStudyQualityScores[0].schoolAverageScore;
+  getSchoolAverage = () => !StudyQualityDashboardService.loadingStudyQualityScores &&
+    StudyQualityDashboardService.schoolStudyQualityScores[0].schoolAverageScore;
 
   render() {
     return (
-      <Async fetching={PerformanceGoalService.loadingStudyQualityScores}>
+      <Async fetching={StudyQualityDashboardService.loadingStudyQualityScores}>
         <CircularProgress
           title="Study Quality"
           tooltip="Your classes average"
