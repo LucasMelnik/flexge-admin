@@ -18,7 +18,7 @@ const ItemAudioListFilter = props => (
     >
       Filter by Character
       <FetchSelect
-        url="/characters"
+        url="characters"
         disabled={props.fetching}
         value={get(props.values, 'character')}
         onChange={(value) => {

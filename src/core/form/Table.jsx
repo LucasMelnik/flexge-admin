@@ -14,7 +14,10 @@ const sort = (a, b, path) => {
 const Table = props => (
   <div>
     <AntTable
-      pagination={props.pagination || false}
+      pagination={(props.pagination && {
+        showTotal: total => `Total ${total} items`,
+        ...props.pagination,
+      }) || false}
       rowKey="id"
       bordered
       indentSize={10}
@@ -36,7 +39,9 @@ const Table = props => (
       loading={props.fetching}
       expandedRowRender={props.expandableComponent}
     />
-    <small>{props.rows.length} registers found.</small>
+    {!props.pagination && (
+      <small>{props.rows.length} registers found.</small>
+    )}
   </div>
 );
 
