@@ -1,9 +1,10 @@
 import React from 'react';
 import CircularProgress from '../../../../core/layout/CircularProgress';
+import Card from '../../../../core/layout/Card';
+import PerformanceGoalsStudyQualityAverageContainer from './PerformanceGoalsStudyQualityAverageContainer';
 
 const PerformanceGoals = () => (
-  <div>
-    <h1>Performance Goals</h1>
+  <Card title="Performance Goals">
     <div
       style={{
         display: 'flex',
@@ -12,16 +13,7 @@ const PerformanceGoals = () => (
         flexWrap: 'wrap',
       }}
     >
-      <CircularProgress
-        title="Study Quality"
-        tooltip="Your classes average"
-        value={20}
-        max={20}
-        valueRender={value => value - 5}
-        successCondition={value => value > 10}
-        badCondition={value => value < 5}
-        legend={localStorage.role === 'TEACHER' && 'School average 12.7'}
-      />
+      <PerformanceGoalsStudyQualityAverageContainer />
       <CircularProgress
         title="Study Quality > 5"
         tooltip="Students with Study Quality higher than 5"
@@ -73,7 +65,7 @@ const PerformanceGoals = () => (
         legend={localStorage.role === 'TEACHER' && 'School average 01:13'}
       />
     </div>
-  </div>
+  </Card>
 );
 
 export default PerformanceGoals;

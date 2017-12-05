@@ -25,7 +25,7 @@ const BarChart = props => (
 
 BarChart.propTypes = {
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
-  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  data: PropTypes.arrayOf(PropTypes.number).isRequired,
   colors: PropTypes.arrayOf(PropTypes.string).isRequired,
   options: PropTypes.shape({}),
 };
