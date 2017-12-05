@@ -8,6 +8,7 @@ const Card = props => (
     loading={props.loading}
     title={props.title}
     extra={props.actions}
+    bodyStyle={props.style}
   >
     {props.children}
   </AntCard>
@@ -17,6 +18,7 @@ Card.propTypes = {
   title: PropTypes.string,
   loading: PropTypes.bool,
   actions: PropTypes.node,
+  style: PropTypes.shape({}),
   children: PropTypes.node.isRequired,
 };
 
@@ -24,6 +26,7 @@ Card.defaultProps = {
   title: null,
   actions: null,
   loading: false,
+  style: {},
 };
 
 export default Card;

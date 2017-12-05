@@ -4,10 +4,10 @@ import SchoolClassStudyQualityChart from '../common/SchoolClassStudyQualityChart
 import StudentStudyQualityChart from '../common/StudentStudyQualityChart';
 import StudentStudiedTimeChart from '../common/StudentStudiedTimeChart';
 import StudentStudiedDatesChart from '../common/StudentStudiedDatesChart';
-import Alert from '../../../../core/layout/Alert';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import SchoolEnglishLevelChart from '../common/SchoolEnglishLevelChart';
 import SchoolClassProgressChart from '../common/SchoolClassProgressChart';
+import MetricStatusCard from '../common/MetricStatusCard';
 
 const MetricCharts = () => (
   <div>
@@ -21,19 +21,18 @@ const MetricCharts = () => (
     >
       <div
         style={{
-          width: '31%',
+          width: '33%',
           textAlign: 'center',
         }}
       >
-        <Alert
-          title="Nível de Inglês do Colégio"
-          showIcon={false}
-        >
+        <MetricStatusCard status="bad">
+          <p>Nível de Inglês do Colégio</p>
+          <Separator size="xs" />
           <div
             style={{
               display: 'inline-block',
-              marginTop: 25,
               fontSize: 48,
+              lineHeight: '48px',
             }}
           >
             <div
@@ -52,51 +51,49 @@ const MetricCharts = () => (
               A1
             </div>
           </div>
-        </Alert>
+        </MetricStatusCard>
       </div>
       <div
         style={{
-          width: '31%',
+          width: '33%',
           textAlign: 'center',
         }}
       >
-        <Alert
-          title="Progresso médio por semestre"
-          showIcon={false}
-          type="success"
-        >
+        <MetricStatusCard status="normal">
+          <p>Progresso médio por semestre</p>
+          <Separator size="xs" />
           <div
             style={{
               display: 'inline-block',
-              marginTop: 25,
               fontSize: 48,
+              lineHeight: '48px',
             }}
           >
             0,91
           </div>
-        </Alert>
+        </MetricStatusCard>
       </div>
       <div
         style={{
-          width: '31%',
+          width: '33%',
           textAlign: 'center',
         }}
       >
-        <Alert
-          title="Projeção para B2"
-          showIcon={false}
-          type="success"
+        <MetricStatusCard
+          status="good"
         >
+          <p>Projeção para B2</p>
+          <Separator size="xs" />
           <div
             style={{
               display: 'inline-block',
-              marginTop: 25,
               fontSize: 48,
+              lineHeight: '48px',
             }}
           >
             4a e 2m
           </div>
-        </Alert>
+        </MetricStatusCard>
       </div>
     </div>
     <Separator />
@@ -109,7 +106,7 @@ const MetricCharts = () => (
       <div
         style={{
           display: 'inline-block',
-          width: '49%',
+          width: '33%',
         }}
       >
         <SchoolEnglishLevelChart />
@@ -117,35 +114,19 @@ const MetricCharts = () => (
       <div
         style={{
           display: 'inline-block',
-          width: '49%',
+          width: '33%',
         }}
       >
         <SchoolClassProgressChart />
       </div>
-    </div>
-    <Separator />
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
       <div
         style={{
           display: 'inline-block',
-          width: '49%',
+          width: '33%',
         }}
       >
         <SchoolClassStudyQualityChart />
       </div>
-      <div
-        style={{
-          display: 'inline-block',
-          width: '49%',
-        }}
-      >
-        <StudentStudyQualityChart />
-      </div>
     </div>
     <Separator />
     <div
@@ -157,7 +138,15 @@ const MetricCharts = () => (
       <div
         style={{
           display: 'inline-block',
-          width: '49%',
+          width: '33%',
+        }}
+      >
+        <StudentStudyQualityChart />
+      </div>
+      <div
+        style={{
+          display: 'inline-block',
+          width: '33%',
         }}
       >
         <StudentStudiedTimeChart showDetails={false} />
@@ -165,10 +154,10 @@ const MetricCharts = () => (
       <div
         style={{
           display: 'inline-block',
-          width: '49%',
+          width: '33%',
         }}
       >
-        <StudentStudiedDatesChart />
+        <StudentStudiedDatesChart showDetails={false} />
       </div>
     </div>
   </div>
