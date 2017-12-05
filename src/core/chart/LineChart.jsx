@@ -17,18 +17,24 @@ const LineChart = props => (
       labels: props.labels,
       datasets: props.dataFormat.map((format, index) => ({
         label: format.label,
-        lineTension: 0.2,
-        backgroundColor: hexToRgb(colors[index], '0.5'),
+        backgroundColor: hexToRgb(colors[index], '0.3'),
         borderColor: colors[index],
-        pointHoverRadius: 8,
-        pointBorderColor: '#fff',
-        pointBorderWidth: 2,
-        pointRadius: 6,
+        pointHoverRadius: 0,
+        pointBorderWidth: 0,
+        pointRadius: 0,
         data: props.data.map(item => format.valueRender(item)),
       })),
     }}
     options={{
       responsive: true,
+      hover: {
+        mode: 'nearest',
+        intersect: true,
+      },
+      tooltips: {
+        mode: 'index',
+        intersect: false,
+      },
       legend: {
         onClick: () => true,
       },
