@@ -6,6 +6,8 @@ import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
 import FetchSelect from '../../../core/form/FetchSelect';
+import Select from '../../../core/form/Select';
+import DateInput from '../../../core/form/DateInput';
 
 const StudentForm = props => (
   <form
@@ -15,7 +17,7 @@ const StudentForm = props => (
     }}
   >
     <Row>
-      <Column size={3}>
+      <Column size={4}>
         <TextInput
           disabled={props.submitting}
           label="Student Name"
@@ -24,7 +26,7 @@ const StudentForm = props => (
           errorText={get(props.errors, 'name', null)}
         />
       </Column>
-      <Column size={3}>
+      <Column size={4}>
         <TextInput
           disabled={props.submitting}
           label="Email"
@@ -33,7 +35,7 @@ const StudentForm = props => (
           errorText={get(props.errors, 'email', null)}
         />
       </Column>
-      <Column size={3}>
+      <Column size={4}>
         <TextInput
           type="password"
           disabled={props.submitting}
@@ -43,7 +45,31 @@ const StudentForm = props => (
           errorText={get(props.errors, 'password', null)}
         />
       </Column>
-      <Column size={3}>
+    </Row>
+    <Row>
+      <Column size={4}>
+        <Select
+          label="Gender"
+          disabled={props.submitting}
+          value={get(props.values, 'gender', '')}
+          onChange={value => props.onChange('gender', value)}
+          errorText={get(props.errors, 'gender', null)}
+          options={[{label: 'Male', value: 'M'}, {label: 'Female', value: 'F'}].map(gender => ({
+            label: gender.label,
+            value: gender.value,
+          }))}
+        />
+      </Column>
+      <Column size={4}>
+        <DateInput
+          disabled={props.submitting}
+          label="Birth Date"
+          value={get(props.values, 'birthDate', null)}
+          onChange={value => props.onChange('birthDate', value)}
+          errorText={get(props.errors, 'birthDate', '')}
+        />
+      </Column>
+      <Column size={4}>
         <FetchSelect
           url="courses"
           fullWidth
@@ -56,6 +82,48 @@ const StudentForm = props => (
             text: 'name',
             value: 'id',
           }}
+        />
+      </Column>
+    </Row>
+    <Row>
+      <Column size={3}>
+        <TextInput
+          type="fatherName"
+          disabled={props.submitting}
+          label="Father Name"
+          value={get(props.values, 'fatherName', '')}
+          onChange={value => props.onChange('fatherName', value)}
+          errorText={get(props.errors, 'fatherName', null)}
+        />
+      </Column>
+      <Column size={3}>
+        <TextInput
+          type="fatherEmail"
+          disabled={props.submitting}
+          label="Father Email"
+          value={get(props.values, 'fatherEmail', '')}
+          onChange={value => props.onChange('fatherEmail', value)}
+          errorText={get(props.errors, 'fatherEmail', null)}
+        />
+      </Column>
+      <Column size={3}>
+        <TextInput
+          type="motherName"
+          disabled={props.submitting}
+          label="Mother Name"
+          value={get(props.values, 'motherName', '')}
+          onChange={value => props.onChange('motherName', value)}
+          errorText={get(props.errors, 'motherName', null)}
+        />
+      </Column>
+      <Column size={3}>
+        <TextInput
+          type="motherEmail"
+          disabled={props.submitting}
+          label="Mother Email"
+          value={get(props.values, 'motherEmail', '')}
+          onChange={value => props.onChange('motherEmail', value)}
+          errorText={get(props.errors, 'motherEmail', null)}
         />
       </Column>
     </Row>
