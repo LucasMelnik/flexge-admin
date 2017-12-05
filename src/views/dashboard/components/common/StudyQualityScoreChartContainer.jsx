@@ -19,12 +19,18 @@ class StudyQualityScoreChartContainer extends Component {
 
     if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
       const school = StudyQualityDashboardService.schoolStudyQualityScores[0];
+      if (!school) {
+        return [];
+      }
       return school.classes.map(schoolClass => ({
         label: schoolClass.className,
         value: schoolClass.classAverageScore,
       }));
     }
     const schools = StudyQualityDashboardService.schoolStudyQualityScores;
+    if (!schools.length) {
+      return [];
+    }
     return schools.map(school => ({
       label: school.name,
       value: school.schoolAverageScore,
