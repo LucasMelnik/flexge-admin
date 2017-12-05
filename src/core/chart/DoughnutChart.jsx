@@ -17,6 +17,7 @@ const DoughnutChart = props => (
       responsive: true,
       legend: {
         position: 'right',
+        onClick: () => true,
       },
     }}
   />

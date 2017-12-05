@@ -17,6 +17,7 @@ const BarChart = props => (
       responsive: true,
       legend: {
         display: false,
+        onClick: () => true,
       },
       ...props.options,
     }}

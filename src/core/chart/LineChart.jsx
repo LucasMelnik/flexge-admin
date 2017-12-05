@@ -29,6 +29,9 @@ const LineChart = props => (
     }}
     options={{
       responsive: true,
+      legend: {
+        onClick: () => true,
+      },
     }}
   />
 );
