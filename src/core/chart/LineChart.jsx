@@ -12,7 +12,7 @@ const hexToRgb = (hex, opacity) => {
 
 const LineChart = props => (
   <Line
-    height={100}
+    // height={100}
     data={{
       labels: props.labels,
       datasets: props.dataFormat.map((format, index) => ({
@@ -27,6 +27,29 @@ const LineChart = props => (
     }}
     options={{
       responsive: true,
+      showLine: false,
+      scales: {
+        xAxes: [{
+         ticks: {
+           autoSkip: false
+         },
+         scaleLabel: {
+           display: props.xAxesLabelString && true,
+           labelString: props.xAxesLabelString,
+         }
+       }],
+       yAxes: [{
+        ticks: {
+          autoSkip: false,
+          // callback: (value, index, values) => {
+          //   return ['PRE A1', 'A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C2'].find((item, itemIndex) => itemIndex === index);;
+          // },
+        },
+        scaleLabel: {
+          display: props.yAxesLabelString && true,
+          labelString: props.yAxesLabelString
+        }}]
+      },
       hover: {
         mode: 'nearest',
         intersect: true,
