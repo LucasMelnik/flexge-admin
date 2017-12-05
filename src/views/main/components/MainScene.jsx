@@ -145,7 +145,7 @@ const MainScene = props => (
         <SubMenu
           title="Content"
           icon="book"
-          allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}
+          allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT']}
           groups={[
             {
               group: 'Content',
@@ -155,7 +155,7 @@ const MainScene = props => (
             },
             {
               group: 'Admin',
-              allowedFor: ['ADMIN'],
+              allowedFor: ['ADMIN', 'AUDIO_CONTENT'],
             },
           ]}
           items={[
