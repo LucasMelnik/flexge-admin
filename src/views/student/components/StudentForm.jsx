@@ -47,7 +47,7 @@ const StudentForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column size={4}>
+      <Column size={3}>
         <Select
           label="Gender"
           disabled={props.submitting}
@@ -60,7 +60,7 @@ const StudentForm = props => (
           }))}
         />
       </Column>
-      <Column size={4}>
+      <Column size={3}>
         <DateInput
           disabled={props.submitting}
           label="Birth Date"
@@ -69,7 +69,7 @@ const StudentForm = props => (
           errorText={get(props.errors, 'birthDate', '')}
         />
       </Column>
-      <Column size={4}>
+      <Column size={3}>
         <FetchSelect
           url="courses"
           fullWidth
@@ -84,6 +84,26 @@ const StudentForm = props => (
           }}
         />
       </Column>
+      <Column size={3}>
+        {props.values.id && (
+          <FetchSelect
+            url={`/schools/${props.values.schoolClass.school.id}/classes`}
+            fullWidth
+            disabled={props.submitting}
+            label="School Class"
+            value={get(props.values, 'schoolClass.id', '')}
+            onChange={(schoolClassId) => {
+              props.onChange('schoolClass.id', schoolClassId);
+            }}
+            description={get(props.errors, 'schoolClass', null)}
+            fieldValidation={get(props.errors, 'schoolClass', null) && 'error'}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        )}
+      </Column>
     </Row>
     <Row>
       <Column size={3}>
@@ -91,6 +111,7 @@ const StudentForm = props => (
           type="fatherName"
           disabled={props.submitting}
           label="Father Name"
+          type="text"
           value={get(props.values, 'fatherName', '')}
           onChange={value => props.onChange('fatherName', value)}
           errorText={get(props.errors, 'fatherName', null)}
@@ -101,6 +122,7 @@ const StudentForm = props => (
           type="fatherEmail"
           disabled={props.submitting}
           label="Father Email"
+          type="text"
           value={get(props.values, 'fatherEmail', '')}
           onChange={value => props.onChange('fatherEmail', value)}
           errorText={get(props.errors, 'fatherEmail', null)}
@@ -111,6 +133,7 @@ const StudentForm = props => (
           type="motherName"
           disabled={props.submitting}
           label="Mother Name"
+          type="text"
           value={get(props.values, 'motherName', '')}
           onChange={value => props.onChange('motherName', value)}
           errorText={get(props.errors, 'motherName', null)}
@@ -121,6 +144,7 @@ const StudentForm = props => (
           type="motherEmail"
           disabled={props.submitting}
           label="Mother Email"
+          type="text"
           value={get(props.values, 'motherEmail', '')}
           onChange={value => props.onChange('motherEmail', value)}
           errorText={get(props.errors, 'motherEmail', null)}
