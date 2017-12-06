@@ -18,7 +18,7 @@ class PerformanceGoalsStudyQualityHigherThanFiveContainer extends Component {
       if (StudyQualityDashboardService.schoolStudyQualityGroups[key]) {
         return acc + StudyQualityDashboardService.schoolStudyQualityGroups[key].reduce((schoolAcc, school) => {
           if (school.classes) {
-            return acc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
+            return schoolAcc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
           }
           return schoolAcc;
         }, 0);
@@ -30,7 +30,7 @@ class PerformanceGoalsStudyQualityHigherThanFiveContainer extends Component {
       if (StudyQualityDashboardService.schoolStudyQualityGroups[key]) {
         return acc + StudyQualityDashboardService.schoolStudyQualityGroups[key].reduce((schoolAcc, school) => {
           if (school.classes) {
-            return acc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
+            return schoolAcc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
           }
           return schoolAcc;
         }, 0);
