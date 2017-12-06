@@ -100,7 +100,7 @@ const AnswersInput = props => (
             {
               label: 'Correct',
               path: 'correct',
-              width: '100px',
+              width: '105px',
               render: (cell) => cell ? 'Yes' : 'No',
             },
             {
@@ -135,7 +135,7 @@ const AnswersInput = props => (
             {
               label: 'Actions',
               path: 'action',
-              width: '85px',
+              width: '105px',
               render: (cell, row) => {
                 if (!props.disabled) {
                   return (

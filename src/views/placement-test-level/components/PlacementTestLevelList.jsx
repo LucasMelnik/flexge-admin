@@ -13,6 +13,7 @@ const PlacementTestLevelList = props => (
         path: 'level',
         width: '120px',
         sort: true,
+        defaultSortOrder: 'ascend',
       },
       {
         label: 'Course',

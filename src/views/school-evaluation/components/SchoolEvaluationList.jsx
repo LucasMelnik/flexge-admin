@@ -29,7 +29,7 @@ const SchoolEvaluationList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: '85px',
+        width: '105px',
         render: (cell, row, index) => index === (props.evaluations.length - 1) && (
           <Button
             icon="delete"

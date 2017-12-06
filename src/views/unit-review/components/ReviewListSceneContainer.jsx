@@ -12,8 +12,8 @@ class ReviewListSceneContainer extends Component {
   finalReviewService = new FinalReviewService();
 
   componentDidMount() {
-    ReviewListService.handleMyUnits();
-    ReviewListService.handleAllUnits();
+    // ReviewListService.handleMyUnits();
+    // ReviewListService.handleAllUnits();
   }
 
   render() {

@@ -13,6 +13,7 @@ const StudentRecordList = props => (
           label: 'Name',
           path: 'name',
           sort: true,
+          defaultSortOrder: 'ascend',
         },
         {
           label: 'Reached Level (PT)',

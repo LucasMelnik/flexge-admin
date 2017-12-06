@@ -15,7 +15,7 @@ const StudentPlacementItemList = props => (
       {
         label: 'Status',
         path: 'correct',
-        width: '100px',
+        width: '105px',
         render: cell => (
           <StatusItem
             color={{

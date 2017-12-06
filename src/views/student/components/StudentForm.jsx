@@ -8,6 +8,7 @@ import FormButtons from '../../../core/form/FormButtons';
 import FetchSelect from '../../../core/form/FetchSelect';
 import Select from '../../../core/form/Select';
 import DateInput from '../../../core/form/DateInput';
+import Switch from '../../../core/form/Switch';
 
 const StudentForm = props => (
   <form
@@ -151,6 +152,16 @@ const StudentForm = props => (
         />
       </Column>
     </Row>
+    {!props.values.id && (
+      <Switch
+        label="Welcome Email"
+        titleOff="Don't send"
+        titleOn="Send"
+        onChange={value => props.onChange('sendWelcomeEmail', value)}
+        value={get(props.values, 'sendWelcomeEmail', false)}
+        disabled={props.submitting}
+      />
+    )}
     <FormButtons
       confirmLabel={props.values.id ? 'Update Student' : 'Create Student'}
       isDisabled={props.submitting || !props.isDirty()}

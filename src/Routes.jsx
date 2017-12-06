@@ -146,7 +146,7 @@ const Routes = () => (
       <Route path="placement-test/:placementTestId" component={PlacementTestFormScene} />
       <Route path="reviews" component={ReviewListSceneContainer} />
       <Route path="modules/:moduleId/units/:unitId/reviews/:reviewId" component={ReviewFormSceneContainer} />
-      <Route path="practice-tests" component={PracticeTestFormScene} />
+      <Route path="practice-test" component={PracticeTestFormScene} />
       <Route path="admin-users" component={AdminUserListScene} />
       <Route path="admin-users/new" component={AdminUserFormScene} />
       <Route path="admin-users/:userId" component={AdminUserFormScene} />

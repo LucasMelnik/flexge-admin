@@ -9,30 +9,37 @@ const PlacementTestItemsList = props => (
       {
         label: 'Level',
         path: 'placementTestLevel.level',
-        width: '100px',
+        width: '105px',
+        sort: true,
+        defaultSortOrder: 'ascend',
       },
       {
         label: 'Order',
         path: 'order',
-        width: '100px',
+        width: '105px',
+        sort: true,
       },
       {
         label: 'Item',
         path: 'item.text',
+        sort: true,
       },
       {
         label: 'Total',
         path: 'answerCount',
-        width: '100px',
+        width: '105px',
+        sort: true,
       },
       {
         label: 'Error %',
         path: 'errorPercentage',
-        width: '100px',
+        width: '105px',
+        sort: true,
       },
       {
         label: 'Most wrong used answer',
         path: 'mostCommonWrongAnswer',
+        sort: true,
       },
     ]}
     rows={props.items}

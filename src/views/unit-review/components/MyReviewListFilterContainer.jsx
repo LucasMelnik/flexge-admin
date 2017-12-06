@@ -9,6 +9,7 @@ const MyReviewListFilterContainer = () => (
     onChange={ReviewListService.formMyReviews.setValue}
     onSearch={ReviewListService.handleMyUnits}
     fetching={ReviewListService.fetch.fetching}
+    errors={ReviewListService.formMyReviews.errors}
   />
 );
 

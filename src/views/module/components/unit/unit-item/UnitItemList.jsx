@@ -15,6 +15,8 @@ const UnitItemList = props => (
         label: 'Order',
         path: 'order',
         width: '75px',
+        sort: true,
+        defaultSortOrder: 'ascend',
         render: (cell, row) => {
           if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
             return (
