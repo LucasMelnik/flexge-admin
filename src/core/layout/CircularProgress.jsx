@@ -50,7 +50,7 @@ export default class CircularProgress extends Component {
   render() {
     return (
       <Async fetching={this.props.fetching}>
-        {this.props.value ? (
+        {this.props.value !== null ? (
           <div>
             <p
               style={{

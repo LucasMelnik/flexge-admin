@@ -8,6 +8,8 @@ class StudyQualityDashboardService {
     extendObservable(this, {
       loadingStudyQualityScores: true,
       schoolStudyQualityScores: [],
+      loadingStudyQualityGroups: true,
+      schoolStudyQualityGroups: {},
     });
   }
 
@@ -20,6 +22,18 @@ class StudyQualityDashboardService {
         this.schoolStudyQualityScores = this.fetch.data;
       }
       this.loadingStudyQualityScores = false;
+    });
+  });
+
+  loadStudyQualityGroups = action(() => {
+    this.loadingStudyQualityGroups = true;
+    this.fetch.fetch({
+      url: '/reports/study-quality-groups',
+    }).then(() => {
+      if (this.fetch.data) {
+        this.schoolStudyQualityGroups = this.fetch.data;
+      }
+      this.loadingStudyQualityGroups = false;
     });
   });
 }

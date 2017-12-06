@@ -2,6 +2,7 @@ import React from 'react';
 import CircularProgress from '../../../../core/layout/CircularProgress';
 import Card from '../../../../core/layout/Card';
 import PerformanceGoalsStudyQualityAverageContainer from './PerformanceGoalsStudyQualityAverageContainer';
+import PerformanceGoalsStudyQualityHigherThanFiveContainer from './PerformanceGoalsStudyQualityHigherThanFiveContainer';
 
 const PerformanceGoals = () => (
   <Card title="Performance Goals">
@@ -14,16 +15,7 @@ const PerformanceGoals = () => (
       }}
     >
       <PerformanceGoalsStudyQualityAverageContainer />
-      <CircularProgress
-        title="Study Quality > 5"
-        tooltip="Students with Study Quality higher than 5"
-        value={50}
-        max={100}
-        successCondition={value => value > 50}
-        badCondition={value => value <= 35}
-        valueRender={value => `${value}%`}
-        legend={localStorage.role === 'TEACHER' && 'School average 32%'}
-      />
+      <PerformanceGoalsStudyQualityHigherThanFiveContainer />
       <CircularProgress
         title="Active Students"
         tooltip="Students which studied at least once on last 30 days"
