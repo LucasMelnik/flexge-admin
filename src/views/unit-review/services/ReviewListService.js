@@ -12,9 +12,41 @@ class ReviewListService {
       myUnitsAndReviews: [],
       allUnitsAndReviews: [],
     });
+    this.formMyReviews.validations = {
+      course: [
+        (course, values) => {
+          console.log('values', values)
+          const isEmpty = !Object.keys(values).length ||
+            Object.keys(values).reduce((acc, key) => {
+              if (!acc) return acc;
+              return !values[key];
+            }, true);
+          if (isEmpty) return 'Inform at least one field';
+          return null;
+        },
+      ],
+    };
+    this.formAllReviews.validations = {
+      course: [
+        (course, values) => {
+          console.log('values', values)
+          const isEmpty = !Object.keys(values).length ||
+            Object.keys(values).reduce((acc, key) => {
+              if (!acc) return acc;
+              return !values[key];
+            }, true);
+          if (isEmpty) return 'Inform at least one field';
+          return null;
+        },
+      ],
+    };
   }
 
   handleMyUnits = action(() => {
+    this.formMyReviews.setSubmitted();
+    if (this.formMyReviews.errors) {
+      return;
+    }
     this.fetch.fetch({
       url: '/reviews',
       query: {
@@ -45,6 +77,10 @@ class ReviewListService {
   });
 
   handleAllUnits = action(() => {
+    this.formAllReviews.setSubmitted();
+    if (this.formAllReviews.errors) {
+      return;
+    }
     this.fetch.fetch({
       url: '/reviews',
       query: {

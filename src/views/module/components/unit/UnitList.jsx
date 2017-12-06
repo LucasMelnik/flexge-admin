@@ -109,7 +109,7 @@ const UnitList = props => (
       {
         label: 'Items count',
         path: 'itemsCount',
-        width: '95px',
+        width: '105px',
       },
       {
         label: 'Unit time',
@@ -120,7 +120,7 @@ const UnitList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: props.allowReorder ? '180px' : '85px',
+        width: props.allowReorder ? '180px' : '105px',
         render: (cell, row, index) => (
           <div>
             {(row.createdBy === localStorage.id || localStorage.role === 'ADMIN') && (

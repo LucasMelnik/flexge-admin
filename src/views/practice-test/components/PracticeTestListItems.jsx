@@ -43,7 +43,7 @@ const PracticeTestListItems = props => (
       {
         label: 'Time',
         path: 'item.time',
-        width: '100px',
+        width: '105px',
         render: (cell, row) => formatTimeFromSeconds(row.item.time),
       },
       {

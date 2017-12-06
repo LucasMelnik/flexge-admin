@@ -33,11 +33,14 @@ const Table = props => (
         dataIndex: column.path,
         render: column.render,
         sorter: column.sort ? (a, b) => sort(a, b, column.path) : null,
+        defaultSortOrder: column.defaultSortOrder,
         onCellClick: props.selectable && column.path !== 'action' ? row => props.onSelect(row) : null,
       }))}
       onChange={props.onChange}
       loading={props.fetching}
       expandedRowRender={props.expandableComponent}
+      filteredValue={props.filteredValue}
+      sortOrder={props.sortOrder}
     />
     {!props.pagination && (
       <small>{props.rows.length} registers found.</small>
@@ -58,6 +61,8 @@ Table.propTypes = {
   fetching: PropTypes.bool,
   selectable: PropTypes.bool,
   expandableComponent: PropTypes.func,
+  filteredValue: PropTypes.string,
+  sortOrder: PropTypes.string,
 };
 
 Table.defaultProps = {
@@ -67,6 +72,8 @@ Table.defaultProps = {
   pagination: null,
   selectable: false,
   expandableComponent: null,
+  filteredValue: null,
+  sortOrder: null,
 };
 
 export default Table;

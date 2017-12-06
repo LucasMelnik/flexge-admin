@@ -31,12 +31,12 @@ const MasteryTestList = props => (
       {
         label: 'Items Count',
         path: 'itemsCount',
-        width: '100px',
+        width: '105px',
       },
       {
         label: 'Actions',
         path: 'action',
-        width: '85px',
+        width: '105px',
         render: (cell, row) => {
           return (
             <div>

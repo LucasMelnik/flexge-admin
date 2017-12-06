@@ -20,7 +20,7 @@ const CharacterList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: '85px',
+        width: '105px',
         render: (cell, row) => {
           return (
             <div>

@@ -9,12 +9,12 @@ const PlacementTestItemsList = props => (
       {
         label: 'Level',
         path: 'placementTestLevel.level',
-        width: '100px',
+        width: '105px',
       },
       {
         label: 'Order',
         path: 'order',
-        width: '100px',
+        width: '105px',
       },
       {
         label: 'Item',
@@ -23,12 +23,12 @@ const PlacementTestItemsList = props => (
       {
         label: 'Total',
         path: 'answerCount',
-        width: '100px',
+        width: '105px',
       },
       {
         label: 'Error %',
         path: 'errorPercentage',
-        width: '100px',
+        width: '105px',
       },
       {
         label: 'Most wrong used answer',

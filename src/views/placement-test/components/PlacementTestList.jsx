@@ -45,23 +45,23 @@ const PlacementTestList = props => (
         {
           label: 'Items Count',
           path: 'items.length',
-          width: '100px',
+          width: '105px',
         },
         {
           label: 'Items to Show',
           path: 'itemsToShow',
-          width: '100px',
+          width: '105px',
           render: cell => cell || 0,
         },
         {
           label: 'Extra Items',
-          width: '100px',
+          width: '105px',
           render: (cell, row) => (row.items.length - row.itemsToShow) || 0,
         },
         {
           label: 'Actions',
           path: 'action',
-          width: '85px',
+          width: '105px',
           render: (cell, row) => {
             return (
               <div>

@@ -13,6 +13,7 @@ const SchoolList = props => (
         path: 'company.name',
         sort: true,
         width: 250,
+        defaultSortOrder: 'ascend',
       },
       {
         label: 'School',
@@ -22,7 +23,7 @@ const SchoolList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: '85px',
+        width: '105px',
         render: (cell, row) => (
           <div>
             <Button

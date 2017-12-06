@@ -63,7 +63,7 @@ const AchievementIconForm = props => (
         {
           label: 'Icon',
           path: 'icon',
-          width: '100px',
+          width: '105px',
           render: cell => (
             <img
               src={`${process.env.REACT_APP_API_URL}/files/${cell}`}
@@ -77,7 +77,7 @@ const AchievementIconForm = props => (
         {
           label: 'Actions',
           path: 'action',
-          width: '85px',
+          width: '105px',
           render: (cell, row) => {
             return (
               <div>

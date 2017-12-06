@@ -35,13 +35,13 @@ const MyReviewList = props => (
         {
           label: 'Unit Type',
           path: 'unit.type.name',
-          width: '100px',
+          width: '105px',
           sort: true,
         },
         {
           label: 'Unit creator',
           path: 'unit.createdBy.name',
-          width: '100px',
+          width: '105px',
         },
         {
           label: 'Status Content',
