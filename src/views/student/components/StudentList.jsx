@@ -43,7 +43,7 @@ const StudentList = props => (
       ...props.editable && [{
         label: 'Actions',
         patch: 'action',
-        width: '85px',
+        width: '115px',
         render: (cell, row) => (
           <div>
             <Button
@@ -54,6 +54,11 @@ const StudentList = props => (
             <Button
               icon="edit"
               onClick={() => browserHistory.push(`${props.baseUrl}/students/${row.id}`)}
+            />
+            {' '}
+            <Button
+              icon="mail"
+              onClick={() => alert('Email sent!')}
             />
           </div>
         ),
