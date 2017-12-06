@@ -74,6 +74,8 @@ import DistributorUserFormScene from './views/user/components/DistributorUserFor
 import StudentListScene from './views/student/components/StudentListScene';
 import SchoolGradeConfigFormScene from './views/school-grade-config/components/SchoolGradeConfigFormScene';
 import SchoolEvaluationSceneContainer from './views/school-evaluation/components/SchoolEvaluationSceneContainer';
+import CertificationTestListScene from './views/certification-test/components/CertificationTestListScene';
+import CertificationTestFormScene from './views/certification-test/components/CertificationTestFormScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -184,6 +186,9 @@ const Routes = () => (
       <Route path="achievements" component={AchievementListScene} />
       <Route path="achievements/new" component={AchievementFormScene} />
       <Route path="achievements/:achievementId" component={AchievementFormScene} />
+      <Route path="certification-test" component={CertificationTestListScene} />
+      <Route path="certification-test/new" component={CertificationTestFormScene} />
+      <Route path="certification-test/:certificationTestId" component={CertificationTestFormScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
