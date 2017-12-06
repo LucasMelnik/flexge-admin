@@ -9,13 +9,49 @@ const CertificationTestList = props => (
     fetching={props.fetching}
     columns={[
       {
-        label: 'Name',
-        path: 'name',
+        label: 'Student',
+        path: 'student.name',
         sort: true,
       },
       {
-        label: 'Description',
-        path: 'description',
+        label: 'Schedule At',
+        path: 'scheduledAt',
+      },
+      {
+        label: 'Schedule For',
+        path: 'scheduledFor',
+      },
+      {
+        label: 'Enabled At',
+        path: 'enabledAt',
+      },
+      {
+        label: 'Started At',
+        path: 'startedAt',
+      },
+      {
+        label: 'Completed At',
+        path: 'completedAt',
+      },
+      {
+        label: 'Reviewed At',
+        path: 'reviewedAt',
+      },
+      {
+        label: 'Approved At',
+        path: 'approvedAt',
+      },
+      {
+        label: 'Failed At',
+        path: 'failedAt',
+      },
+      {
+        label: 'Document',
+        path: 'document',
+      },
+      {
+        label: 'Comments',
+        path: 'comments',
       },
       {
         label: 'Actions',
