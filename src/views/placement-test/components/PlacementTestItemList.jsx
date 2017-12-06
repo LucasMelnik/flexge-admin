@@ -14,6 +14,8 @@ const PlacementTestItemList = props => (
       {
         label: 'Text',
         path: 'item.text',
+        sort: true,
+        defaultSortOrder: 'ascend',
       },
       {
         label: 'Type',
@@ -23,13 +25,13 @@ const PlacementTestItemList = props => (
       {
         label: 'Time',
         path: 'item.time',
-        width: '100px',
+        width: '105px',
         render: (cell, row) => formatTimeFromSeconds(row.item.time),
       },
       {
         label: 'Status',
         path: 'reviews',
-        width: '100px',
+        width: '105px',
         render: (cell, row) => {
           return row.grammarPlacementTestLevel.reviews.find(review => review.forItem === row.item.id) && row.grammarPlacementTestLevel.reviews.find(review => review.forItem === row.item.id).status
         },

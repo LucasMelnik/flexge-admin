@@ -15,6 +15,8 @@ const PracticeTestListItems = props => (
         label: 'Order',
         path: 'order',
         width: '75px',
+        sort: true,
+        defaultSortOrder: 'ascend',
         render: (cell, row) => (
           <Select
             label="Order"
@@ -43,7 +45,7 @@ const PracticeTestListItems = props => (
       {
         label: 'Time',
         path: 'item.time',
-        width: '100px',
+        width: '105px',
         render: (cell, row) => formatTimeFromSeconds(row.item.time),
       },
       {

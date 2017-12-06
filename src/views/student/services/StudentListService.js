@@ -3,7 +3,6 @@ import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 import NotificationService from '../../../core/services/NotificationService';
-import { isRequired } from '../../../core/validations';
 
 class StudentListService {
   fetch = new FetchService();
@@ -19,7 +18,17 @@ class StudentListService {
       filteredStudents: null,
     });
     this.form.validations = {
-      school: [isRequired],
+      course: [
+        (course, values) => {
+          const isEmpty = !Object.keys(values).length ||
+            Object.keys(values).reduce((acc, key) => {
+              if (!acc) return acc;
+              return !values[key];
+            }, true);
+          if (isEmpty) return 'Inform at least one field';
+          return null;
+        },
+      ],
     };
   }
 
@@ -29,7 +38,9 @@ class StudentListService {
     this.schoolId = schoolId;
     this.classId = classId;
     this.students = [];
-    this.load();
+    if (classId) {
+      this.load();
+    }
   });
 
   load = action(() => {

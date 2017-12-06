@@ -22,6 +22,7 @@ const ItemAudioList = props => (
         path: 'character.name',
         sort: true,
         width: '150px',
+        defaultSortOrder: 'ascend',
       },
       {
         label: 'Audio',

@@ -13,6 +13,7 @@ const ModuleList = props => (
         path: 'course.name',
         width: '6%',
         sort: true,
+        defaultSortOrder: 'ascend',
       },
       {
         label: 'Group',
@@ -54,7 +55,7 @@ const ModuleList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: '85px',
+        width: '105px',
         render: (cell, row) => {
           return (
             <div>

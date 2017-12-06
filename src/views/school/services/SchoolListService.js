@@ -22,21 +22,33 @@ class SchoolListService {
   });
 
   load = action(() => {
-    this.fetch.fetch({
-      url: '/schools',
+    const query = {
       query: {
-        query: {
-          ...this.companyId && {
-            company: this.companyId,
-          },
-          ...this.filter && {
-            name: {
-              $regex: this.filter,
-              $options: 'i',
+        ...this.companyId && {
+          company: this.companyId,
+        },
+        ...this.filter && {
+          $or: [
+            {
+              name: {
+                $regex: this.filter,
+                $options: 'i',
+              },
             },
-          },
+            {
+              'company.name': {
+                $regex: this.filter,
+                $options: 'i',
+              },
+            },
+          ],
         },
       },
+    };
+    console.log('query', query)
+    this.fetch.fetch({
+      url: '/schools',
+      query,
     }).then(() => {
       if (this.fetch.data) {
         this.schools = this.fetch.data;

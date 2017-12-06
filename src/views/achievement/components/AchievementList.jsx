@@ -11,6 +11,7 @@ const AchievementList = props => (
       {
         label: 'Description',
         path: 'description',
+        defaultSortOrder: 'ascend',
       },
       {
         label: 'Level',
@@ -41,7 +42,7 @@ const AchievementList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: '85px',
+        width: '105px',
         render: (cell, row) => {
           return (
             <div>
@@ -70,7 +71,7 @@ const AchievementList = props => (
           {
             label: 'Icon',
             path: 'icon',
-            width: '100px',
+            width: '105px',
             render: cell => (
               <img
                 src={`${process.env.REACT_APP_API_URL}/files/${cell}`}

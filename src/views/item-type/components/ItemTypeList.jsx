@@ -12,6 +12,7 @@ const ItemTypeList = props => (
         label: 'Name',
         path: 'name',
         sort: true,
+        defaultSortOrder: 'ascend',
       },
       {
         label: 'Placement',
@@ -47,7 +48,7 @@ const ItemTypeList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: '85px',
+        width: '105px',
         render: (cell, row) => {
           return (
             <div>

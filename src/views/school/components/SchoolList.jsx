@@ -9,34 +9,34 @@ const SchoolList = props => (
     fetching={props.fetching}
     columns={[
       {
-        label: 'Name',
-        path: 'name',
-        sort: true,
-      },
-      {
         label: 'Company',
         path: 'company.name',
+        sort: true,
+        width: 250,
+        defaultSortOrder: 'ascend',
+      },
+      {
+        label: 'School',
+        path: 'name',
         sort: true,
       },
       {
         label: 'Actions',
         path: 'action',
-        width: '85px',
-        render: (cell, row) => {
-          return (
-            <div>
-              <Button
-                icon="delete"
-                onClick={() => props.onDelete(row)}
-              />
-              {' '}
-              <Button
-                icon="edit"
-                onClick={() => browserHistory.push(`${props.baseUrl}/schools/${row.id}`)}
-              />
-            </div>
-          );
-        },
+        width: '105px',
+        render: (cell, row) => (
+          <div>
+            <Button
+              icon="delete"
+              onClick={() => props.onDelete(row)}
+            />
+            {' '}
+            <Button
+              icon="edit"
+              onClick={() => browserHistory.push(`${props.baseUrl}/schools/${row.id}`)}
+            />
+          </div>
+        ),
       },
     ]}
     rows={props.schools}

@@ -52,6 +52,12 @@ class ItemAudioListService {
     }).then(() => {
       if (this.fetch.data) {
         this.pagination.total = this.fetch.data.total;
+        if (this.form.getValue('character')) {
+          const char = `Total Words: ${this.fetch.data.wordCount.toString()} / Total Phrases: ${this.fetch.data.phraseCount.toString()} / `;
+          this.pagination.showTotal = total => `${char} Total ${total} registers`;
+        } else {
+          this.pagination.showTotal = total => `Total ${total} registers`;
+        }
         this.items = this.fetch.data.docs;
       } else {
         this.items = [];

@@ -8,13 +8,14 @@ const SchoolRecordList = props => (
     fetching={props.fetching}
     columns={[
       {
-        label: 'Name',
-        path: 'name',
-        sort: true,
-      },
-      {
         label: 'Company',
         path: 'company.name',
+        sort: true,
+        defaultSortOrder: 'ascend',
+      },
+      {
+        label: 'School',
+        path: 'name',
         sort: true,
       },
       {

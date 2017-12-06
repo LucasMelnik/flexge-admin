@@ -9,6 +9,7 @@ const ToReviewListFilterContainer = () => (
     onChange={ReviewListService.formAllReviews.setValue}
     onSearch={ReviewListService.handleAllUnits}
     fetching={ReviewListService.fetch.fetching}
+    errors={ReviewListService.formAllReviews.errors}
   />
 );
 

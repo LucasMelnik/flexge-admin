@@ -71,7 +71,7 @@ const AudioMessageForm = props => (
         {
           label: 'Audio',
           path: 'path',
-          width: '100px',
+          width: '105px',
           render: (cell) => {
             if (cell && cell.length) {
               return (
@@ -84,7 +84,7 @@ const AudioMessageForm = props => (
         {
           label: 'Actions',
           path: 'action',
-          width: '85px',
+          width: '105px',
           render: (cell, row) => {
             return (
               <div>

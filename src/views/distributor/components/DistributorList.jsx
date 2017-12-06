@@ -12,11 +12,12 @@ const DistributorList = props => (
         label: 'Name',
         path: 'name',
         sort: true,
+        defaultSortOrder: 'ascend',
       },
       {
         label: 'Actions',
         path: 'action',
-        width: '85px',
+        width: '105px',
         render: (cell, row) => (
           <div>
             <Button
