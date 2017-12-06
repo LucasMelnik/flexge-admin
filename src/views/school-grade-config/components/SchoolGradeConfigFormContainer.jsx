@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import SchoolGradeConfigForm from './SchooGradeConfigForm';
+import SchoolGradeConfigForm from './SchoolGradeConfigForm';
 import SchoolGradeConfigFormService from '../services/SchoolGradeConfigFormService';
 
 class SchoolGradeConfigFormContainer extends Component {
