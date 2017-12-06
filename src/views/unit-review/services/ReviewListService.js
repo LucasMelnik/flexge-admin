@@ -15,7 +15,6 @@ class ReviewListService {
     this.formMyReviews.validations = {
       course: [
         (course, values) => {
-          console.log('values', values)
           const isEmpty = !Object.keys(values).length ||
             Object.keys(values).reduce((acc, key) => {
               if (!acc) return acc;
@@ -29,7 +28,6 @@ class ReviewListService {
     this.formAllReviews.validations = {
       course: [
         (course, values) => {
-          console.log('values', values)
           const isEmpty = !Object.keys(values).length ||
             Object.keys(values).reduce((acc, key) => {
               if (!acc) return acc;
