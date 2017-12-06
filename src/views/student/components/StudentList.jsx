@@ -41,29 +41,46 @@ const StudentList = props => (
           },
         },
       ],
-      ...props.editable && [{
+      {
         label: 'Actions',
         patch: 'action',
         width: '115px',
         render: (cell, row) => (
           <div>
-            <Button
-              icon="delete"
-              onClick={() => props.onDelete(row)}
-            />
-            {' '}
-            <Button
-              icon="edit"
-              onClick={() => browserHistory.push(`${props.baseUrl}/students/${row.id}`)}
-            />
-            {' '}
-            <Button
-              icon="mail"
-              onClick={() => alert('Email sent!')}
-            />
+            {props.editable && (
+              <span>
+                <Button
+                  icon="delete"
+                  onClick={() => props.onDelete(row)}
+                />
+                {' '}
+                <Button
+                  icon="edit"
+                  onClick={() => browserHistory.push(`${props.baseUrl}/students/${row.id}`)}
+                />
+                {' '}
+                <Button
+                  icon="mail"
+                  onClick={() => alert('Email sent!')}
+                />
+              </span>
+            )}
+            {!props.hasSchoolClass && (
+              <span>
+                <Button
+                  icon="folder-open"
+                  onClick={() => browserHistory.push(`/records/schools/${row.schoolClass.school.id}/classes/${row.schoolClass.id}/students/${row.id}/detail`)}
+                />
+                {' '}
+                <Button
+                  icon="form"
+                  onClick={() => browserHistory.push(`/schools/${row.schoolClass.school.id}/classes/${row.schoolClass.id}/students/${row.id}`)}
+                />
+              </span>
+            )}
           </div>
         ),
-      }],
+      },
     ]}
     rows={props.students}
     selectable={!!props.onSelect}
@@ -81,6 +98,7 @@ StudentList.propTypes = {
   editable: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
   onSelect: PropTypes.func,
+  hasSchoolClass: PropTypes.bool.isRequired,
 };
 
 StudentList.defaultProps = {
