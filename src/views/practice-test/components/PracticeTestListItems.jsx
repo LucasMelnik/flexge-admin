@@ -15,6 +15,8 @@ const PracticeTestListItems = props => (
         label: 'Order',
         path: 'order',
         width: '75px',
+        sort: true,
+        defaultSortOrder: 'ascend',
         render: (cell, row) => (
           <Select
             label="Order"

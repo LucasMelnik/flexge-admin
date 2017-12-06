@@ -15,6 +15,7 @@ const UnitImagesRecordList = props => (
           label: 'Course',
           path: 'course.name',
           sort: true,
+          defaultSortOrder: 'ascend',
           render: (cell, row) => {
             if (row.course) {
               return row.course.name;

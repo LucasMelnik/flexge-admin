@@ -12,6 +12,7 @@ const DistributorList = props => (
         label: 'Name',
         path: 'name',
         sort: true,
+        defaultSortOrder: 'ascend',
       },
       {
         label: 'Actions',

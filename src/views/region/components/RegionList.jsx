@@ -12,6 +12,7 @@ const RegionList = props => (
         label: 'Name',
         path: 'name',
         sort: true,
+        defaultSortOrder: 'ascend',
       },
       {
         label: 'Country',

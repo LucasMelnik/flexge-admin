@@ -11,6 +11,7 @@ const AchievementList = props => (
       {
         label: 'Description',
         path: 'description',
+        defaultSortOrder: 'ascend',
       },
       {
         label: 'Level',

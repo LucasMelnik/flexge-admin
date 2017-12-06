@@ -12,6 +12,7 @@ const UserList = props => (
         label: 'Name',
         path: 'name',
         sort: true,
+        defaultSortOrder: 'ascend',
       },
       {
         label: 'Email',
