@@ -4,7 +4,6 @@ import { Card as AntCard } from 'antd';
 
 const Card = props => (
   <AntCard
-    noHovering
     loading={props.loading}
     title={props.title}
     extra={props.actions}

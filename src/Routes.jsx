@@ -59,9 +59,9 @@ import AchievementFormScene from './views/achievement/components/AchievementForm
 import EmailsScene from './views/emails/components/EmailsScene';
 
 import FilterRecordScene from './views/reports/components/FilterRecordScene';
-import SchoolClassRecordScene from './views/reports/components/school-class/SchoolClassRecordScene';
-import StudentRecordScene from './views/reports/components/student/StudentRecordScene';
-import StudentDetailRecordScene from './views/reports/components/student-detail/StudentDetailRecordScene';
+import SchoolClassRecordSceneContainer from './views/reports/components/school-class/SchoolClassRecordSceneContainer';
+import StudentRecordSceneContainer from './views/reports/components/student/StudentRecordSceneContainer';
+import StudentDetailRecordSceneContainer from './views/reports/components/student-detail/StudentDetailRecordSceneContainer';
 import UnitImageRecordScene from './views/reports/components/unit-image/UnitImageRecordScene';
 import UnitItemErrorRecordScene from './views/reports/components/unit-error/UnitItemErrorRecordScene';
 import ItemAudioListScene from './views/item-audio/components/ItemAudioListScene';
@@ -177,10 +177,10 @@ const Routes = () => (
       <Route path="student-tests" component={StudentTestListScene} />
       <Route path="student-tests/:studentId" component={StudentTestDetailsScene} />
       <Route path="records/filters" component={FilterRecordScene} />
-      <Route path="records/schools/:schoolId/classes" component={SchoolClassRecordScene} />
-      <Route path="records/schools/:schoolId/classes/:classId/students" component={StudentRecordScene} />
-      <Route path="records/schools/:schoolId/classes/:classId/students/:studentId/detail" component={StudentDetailRecordScene} />
-      <Route path="records/students/:studentId/detail" component={StudentDetailRecordScene} />
+      <Route path="records/schools/:schoolId/classes" component={SchoolClassRecordSceneContainer} />
+      <Route path="records/schools/:schoolId/classes/:classId/students" component={StudentRecordSceneContainer} />
+      <Route path="records/schools/:schoolId/classes/:classId/students/:studentId/detail" component={StudentDetailRecordSceneContainer} />
+      <Route path="records/students/:studentId/detail" component={StudentDetailRecordSceneContainer} />
       <Route path="records/unit-images" component={UnitImageRecordScene} />
       <Route path="records/unit-errors" component={UnitItemErrorRecordScene} />
       <Route path="item-audios" component={ItemAudioListScene} />

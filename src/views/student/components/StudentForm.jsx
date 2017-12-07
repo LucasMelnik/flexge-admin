@@ -109,7 +109,6 @@ const StudentForm = props => (
     <Row>
       <Column size={3}>
         <TextInput
-          type="fatherName"
           disabled={props.submitting}
           label="Father Name"
           type="text"
@@ -120,7 +119,6 @@ const StudentForm = props => (
       </Column>
       <Column size={3}>
         <TextInput
-          type="fatherEmail"
           disabled={props.submitting}
           label="Father Email"
           type="text"
@@ -131,7 +129,6 @@ const StudentForm = props => (
       </Column>
       <Column size={3}>
         <TextInput
-          type="motherName"
           disabled={props.submitting}
           label="Mother Name"
           type="text"
@@ -142,7 +139,6 @@ const StudentForm = props => (
       </Column>
       <Column size={3}>
         <TextInput
-          type="motherEmail"
           disabled={props.submitting}
           label="Mother Email"
           type="text"
