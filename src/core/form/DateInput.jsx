@@ -27,7 +27,7 @@ DateInput.propTypes = {
   format: PropTypes.string,
   errorText: PropTypes.string,
   label: PropTypes.string.isRequired,
-  value: PropTypes.instanceOf(Date),
+  value: PropTypes.objectOf(Date),
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,

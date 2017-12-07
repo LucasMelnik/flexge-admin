@@ -13,6 +13,8 @@ class CertificationTestListContainer extends Component {
     return (
       <CertificationTestList
         certificationTests={toJS(CertificationTestListService.certificationTests)}
+        onChange={CertificationTestListService.form.setValue}
+        values={CertificationTestListService.form.getValues()}
         fetching={CertificationTestListService.fetch.fetching}
         onDelete={CertificationTestListService.handleRemove}
       />
