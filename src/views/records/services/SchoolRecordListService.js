@@ -17,7 +17,7 @@ class SchoolRecordListService {
 
   load = action(() => {
     this.fetch.fetch({
-      url: '/reports/schools',
+      url: '/records/schools',
     }).then(() => {
       if (this.fetch.data) {
         this.schools = this.fetch.data;

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import round from 'lodash/round';
 import Table from '../../../../core/form/Table';
 
 const SchoolRecordList = props => (
@@ -23,7 +24,9 @@ const SchoolRecordList = props => (
         path: 'schoolclasses',
       },
       {
-        label: 'Media Study Quality',
+        label: 'Study Quality Average',
+        path: 'averageStudyQuality',
+        render: value => round(value),
       },
       {
         label: 'Last any student access',
