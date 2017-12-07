@@ -56,6 +56,7 @@ import CharacterListScene from './views/character/components/CharacterListScene'
 import CharacterFormScene from './views/character/components/CharacterFormScene';
 import AchievementListScene from './views/achievement/components/AchievementListScene';
 import AchievementFormScene from './views/achievement/components/AchievementFormScene';
+import EmailsScene from './views/emails/components/EmailsScene';
 
 import FilterRecordScene from './views/reports/components/FilterRecordScene';
 import SchoolClassRecordScene from './views/reports/components/school-class/SchoolClassRecordScene';
@@ -189,6 +190,7 @@ const Routes = () => (
       <Route path="certification-test" component={CertificationTestListScene} />
       <Route path="certification-test/new" component={CertificationTestFormScene} />
       <Route path="certification-test/:certificationTestId" component={CertificationTestFormScene} />
+      <Route path="school-configuration/emails" component={EmailsScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

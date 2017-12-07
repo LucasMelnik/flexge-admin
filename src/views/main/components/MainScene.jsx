@@ -244,7 +244,7 @@ const MainScene = props => (
           items={[
             {
               label: 'Emails',
-              link: `/schools/${localStorage.school}/emails`,
+              link: '/school-configuration/emails',
               icon: 'mail',
             },
             {
