@@ -5,6 +5,7 @@ import AudioPreview from '../../../core/layout/AudioPreview';
 import StatusItem from '../../../core/layout/StatusItem';
 import Button from '../../../core/form/Button';
 import UploadButton from '../../../core/form/UploadButton';
+import { Link } from 'react-router';
 
 const ItemAudioList = props => (
   <Table
@@ -90,6 +91,30 @@ const ItemAudioList = props => (
                     onClick={() => props.onChangeStatus('NOT_APPROVED', record)}
                     icon="dislike-o"
                   />
+                )}
+                {(record.unitItem && record.unitItem.order && record.unitItem.unit) && (
+                  <Link
+                    target="_blank"
+                    to={`modules/${record.unitItem.unit.module}/units/${record.unitItem.unit.id}/items`}
+                  >
+                    Unit - Order: {record.unitItem.order} Group: {record.unitItem.group}
+                  </Link>
+                )}
+                {(record.masteryItem && record.masteryItem.order && record.masteryItem.masteryTest) && (
+                  <Link
+                    target="_blank"
+                    to={`modules/${record.masteryItem.masteryTest.module}/mastery-tests/${record.masteryItem.masteryTest.id}`}
+                  >
+                    MT - Item Order: {record.masteryItem.order}
+                  </Link>
+                )}
+                {(record.grammarItem && record.grammarItem.id) && (
+                  <Link
+                    target="_blank"
+                    to={`placement-test/${record.grammarItem.id}`}
+                  >
+                    Placement Test
+                  </Link>
                 )}
               </div>
             )}
