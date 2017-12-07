@@ -171,7 +171,7 @@ const MainScene = props => (
             },
             {
               label: 'Approved Images Records',
-              link: '/records/unit-images',
+              link: '/reports/unit-images',
               group: 'Reports',
               icon: 'picture',
               allowedFor: ['ADMIN'],
@@ -185,7 +185,7 @@ const MainScene = props => (
             },
             {
               label: 'Unit Items Errors',
-              link: '/records/unit-errors',
+              link: '/reports/unit-errors',
               group: 'Reports',
               icon: 'exclamation-circle-o',
               allowedFor: ['ADMIN'],

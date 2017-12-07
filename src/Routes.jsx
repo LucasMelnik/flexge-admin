@@ -58,10 +58,10 @@ import AchievementListScene from './views/achievement/components/AchievementList
 import AchievementFormScene from './views/achievement/components/AchievementFormScene';
 import EmailsScene from './views/emails/components/EmailsScene';
 
-import FilterRecordScene from './views/reports/components/FilterRecordScene';
-import SchoolClassRecordSceneContainer from './views/reports/components/school-class/SchoolClassRecordSceneContainer';
-import StudentRecordSceneContainer from './views/reports/components/student/StudentRecordSceneContainer';
-import StudentDetailRecordSceneContainer from './views/reports/components/student-detail/StudentDetailRecordSceneContainer';
+import FilterRecordScene from './views/records/components/FilterRecordScene';
+import SchoolClassRecordSceneContainer from './views/records/components/school-class/SchoolClassRecordSceneContainer';
+import StudentRecordSceneContainer from './views/records/components/student/StudentRecordSceneContainer';
+import StudentDetailRecordSceneContainer from './views/records/components/student-detail/StudentDetailRecordSceneContainer';
 import UnitImageRecordScene from './views/reports/components/unit-image/UnitImageRecordScene';
 import UnitItemErrorRecordScene from './views/reports/components/unit-error/UnitItemErrorRecordScene';
 import ItemAudioListScene from './views/item-audio/components/ItemAudioListScene';
@@ -181,8 +181,8 @@ const Routes = () => (
       <Route path="records/schools/:schoolId/classes/:classId/students" component={StudentRecordSceneContainer} />
       <Route path="records/schools/:schoolId/classes/:classId/students/:studentId/detail" component={StudentDetailRecordSceneContainer} />
       <Route path="records/students/:studentId/detail" component={StudentDetailRecordSceneContainer} />
-      <Route path="records/unit-images" component={UnitImageRecordScene} />
-      <Route path="records/unit-errors" component={UnitItemErrorRecordScene} />
+      <Route path="reports/unit-images" component={UnitImageRecordScene} />
+      <Route path="reports/unit-errors" component={UnitItemErrorRecordScene} />
       <Route path="item-audios" component={ItemAudioListScene} />
       <Route path="achievements" component={AchievementListScene} />
       <Route path="achievements/new" component={AchievementFormScene} />
