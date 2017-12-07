@@ -63,7 +63,7 @@ export default class CircularProgress extends Component {
                 <TooltipIcon text={this.props.tooltip} />
               )}
             </p>
-            <Separator size="sm" />
+            <Separator size="xs" />
             <Progress
               type="circle"
               percent={this.getPercentage(this.props.value, this.props.max)}

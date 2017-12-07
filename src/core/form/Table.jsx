@@ -19,7 +19,7 @@ const Table = props => (
         ...props.pagination,
       }) || false}
       rowKey="id"
-      bordered
+      bordered={props.bordered}
       indentSize={10}
       locale={{
         filterConfirm: 'Ok',
@@ -63,6 +63,7 @@ Table.propTypes = {
   expandableComponent: PropTypes.func,
   filteredValue: PropTypes.string,
   sortOrder: PropTypes.string,
+  bordered: PropTypes.bool,
 };
 
 Table.defaultProps = {
@@ -74,6 +75,7 @@ Table.defaultProps = {
   expandableComponent: null,
   filteredValue: null,
   sortOrder: null,
+  bordered: true,
 };
 
 export default Table;
