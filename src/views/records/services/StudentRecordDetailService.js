@@ -23,7 +23,7 @@ class StudentRecordDetailService {
 
   loadByContent = action(() => {
     this.fetch.fetch({
-      url: `/reports/students/${this.studentId}/content-details`,
+      url: `/records/students/${this.studentId}/content-details`,
     }).then(() => {
       if (this.fetch.data) {
         this.contentsDetail = this.fetch.data;
@@ -35,7 +35,7 @@ class StudentRecordDetailService {
 
   loadByDates = action(() => {
     this.fetch.fetch({
-      url: `/reports/students/${this.studentId}/date-details`,
+      url: `/records/students/${this.studentId}/date-details`,
     }).then(() => {
       if (this.fetch.data) {
         this.contents = this.fetch.data;

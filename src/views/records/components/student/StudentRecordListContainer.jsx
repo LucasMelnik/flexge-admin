@@ -25,7 +25,6 @@ class StudentRecordListContainer extends Component {
     return (
       <StudentRecordList
         students={toJS(StudentRecordListService.students)}
-        totalValues={toJS(StudentRecordListService.totalValues)}
         fetching={StudentRecordListService.fetch.fetching}
         onSelect={this.handleSelect}
       />
