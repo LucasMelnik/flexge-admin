@@ -5,7 +5,7 @@ import PerformanceGoalsStudyQualityAverageContainer from './PerformanceGoalsStud
 import PerformanceGoalsStudyQualityHigherThanFiveContainer from './PerformanceGoalsStudyQualityHigherThanFiveContainer';
 
 const PerformanceGoals = () => (
-  <Card title="Performance Goals">
+  <Card title="Your goal is to keep all values green!">
     <div
       style={{
         display: 'flex',

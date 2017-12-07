@@ -11,16 +11,15 @@ const HistoryCharts = () => (
         display: 'flex',
       }}
     >
-      <h1
+      <h2
         style={{
           marginRight: 10,
         }}
       >
         History By Year
-      </h1>
+      </h2>
       <HistoryListFilterContainer />
     </div>
-    <Separator />
     <StudentStudyHistoryChart />
     <Separator />
     <StudentAverageStudiedTimeChart />
