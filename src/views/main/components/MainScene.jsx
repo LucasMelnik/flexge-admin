@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import Menu from '../../../core/layout/Menu';
+import MenuItem from '../../../core/layout/MenuItem';
 import SubMenu from '../../../core/layout/SubMenu';
 import ConfirmDialogContainer from './ConfirmDialogContainer';
 import Button from '../../../core/form/Button';
@@ -10,6 +11,11 @@ const MainScene = props => (
   <Layout>
     <Layout.Header>
       <Menu>
+        <MenuItem
+          title="Dashboard"
+          icon="dashboard"
+          link="/"
+        />
         <SubMenu
           title="Admin"
           icon="user"
