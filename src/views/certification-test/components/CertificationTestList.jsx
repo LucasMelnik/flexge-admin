@@ -97,8 +97,17 @@ class CertificationTestList extends Component {
           isOpen={this.state.visible}
           onCancel={this.handleCancel}
           actions={[
-            <Button label="Cancel" key="back" onClick={this.handleCancel} />,
-            <Button label="Confirm" key="submit" type="primary" onClick={this.handleOk}/>
+            <Button
+              label="Cancel"
+              key="back"
+              onClick={this.handleCancel}
+            />,
+            <Button
+              label="Confirm"
+              key="submit"
+              type="primary"
+              onClick={this.handleOk}
+            />,
           ]}
         >
           <DateInput
@@ -109,7 +118,7 @@ class CertificationTestList extends Component {
           />
         </Dialog>
       </div>
-    )
+    );
   }
 }
 
@@ -119,7 +128,14 @@ CertificationTestList.propTypes = {
     name: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  values: PropTypes.object,
+  errors: PropTypes.object,
+  onChange: PropTypes.func.isRequired,
+};
+
+CertificationTestList.defaultProps = {
+  values: {},
+  errors: {},
 };
 
 export default CertificationTestList;
