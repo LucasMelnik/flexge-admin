@@ -6,7 +6,7 @@ import { DARK_RED, DARK_GREEN, GREEN, ORANGE, RED } from '../../../../core/chart
 import Separator from '../../../../core/layout/Separator';
 import Table from '../../../../core/form/Table';
 
-const StudentStudiedDatesChart = props => (
+const ActiveStudentsByWeekChart = props => (
   <Card
     title="Students Studying By Week"
   >
@@ -49,12 +49,12 @@ const StudentStudiedDatesChart = props => (
   </Card>
 );
 
-StudentStudiedDatesChart.propTypes = {
+ActiveStudentsByWeekChart.propTypes = {
   showDetails: PropTypes.bool,
 };
 
-StudentStudiedDatesChart.defaultProps = {
+ActiveStudentsByWeekChart.defaultProps = {
   showDetails: true,
 };
 
-export default StudentStudiedDatesChart;
+export default ActiveStudentsByWeekChart;
