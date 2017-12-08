@@ -13,11 +13,15 @@ const StudentDetailContentRecordList = props => (
     columns={[
       {
         label: 'Name',
-        path: 'name',
-        sort: true,
-        render: (value, row) => ({
-          children: row.docType === 'MODULE' || row.docType === 'UNIT' ? row.name : row.docType === 'MASTERY' ? `Mastery Test for ${row.modulePercentageToActive}%` : moment(row.startedAt).format('DD/MM/YYYY HH:mm'),
-        }),
+        path: 'id',
+        render: (value, row) => {
+          if (row.docType === 'MODULE' || row.docType === 'UNIT') {
+            return row.name;
+          } else if (row.docType === 'MASTERY') {
+            return `Mastery Test for ${row.modulePercentageToActive}%`;
+          }
+          return moment(row.startedAt).format('DD/MM/YYYY HH:mm');
+        },
       },
       {
         label: 'Studied Time',
@@ -139,8 +143,8 @@ const StudentDetailContentRecordList = props => (
 
 StudentDetailContentRecordList.propTypes = {
   contents: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    name: PropTypes.string,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
 };

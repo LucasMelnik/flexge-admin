@@ -32,7 +32,7 @@ class StudentRecordDetailService {
       );
       return round(scores.reduce((acc, score) => acc + score, 0) / scores.length);
     }
-  }
+  };
 
   loadByContent = action(() => {
     this.fetch.fetch({
@@ -49,7 +49,7 @@ class StudentRecordDetailService {
               listeningPoints: unit.type.abilities.find(ability => ability === 'LISTENING') ? (unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints) : 0,
               speakingPoints: unit.type.abilities.find(ability => ability === 'SPEAKING') ? (unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints) : 0,
               readingPoints: unit.type.abilities.find(ability => ability === 'READING') ? (unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints) : 0,
-              children: unit.children.map(result => ({
+              children: !unit.children[0].id ? null : unit.children.map(result => ({
                 ...result,
                 averageSpeechRecognitionScore: this.generateAverageSpeecRecognitionScore(result) || '',
               })),
