@@ -16,11 +16,12 @@ const StudentDetailContentRecordList = props => (
         path: 'name',
         sort: true,
         render: (value, row) => ({
-          children: row.name ? row.name : moment(row.startedAt).format('DD/MM/YYYY HH:mm'),
+          children: row.docType === 'MODULE' || row.docType === 'UNIT' ? row.name : row.docType === 'MASTERY' ? `Mastery Test for ${row.modulePercentageToActive}%` : moment(row.startedAt).format('DD/MM/YYYY HH:mm'),
         }),
       },
       {
         label: 'Studied Time',
+        path: 'studiedTime',
         render: (value, row) => ({
           children: moment.duration(row.studiedTime, 'seconds').format('hh:mm:ss', { trim: false }),
         }),
@@ -29,7 +30,7 @@ const StudentDetailContentRecordList = props => (
         label: 'Score',
         path: 'score',
         render: (value, row) => ({
-          children: row.type === 'MODULE' ? (
+          children: row.docType === 'MODULE' ? (
             <div
               style={{
                 display: 'flex',
@@ -72,7 +73,7 @@ const StudentDetailContentRecordList = props => (
               <div>Score to pass: {row.scoreToPass}</div>
             ) : (
               <Alert
-                title={row.points ? `${value}: Good Score` : `${value}: Weak score`}
+                title={row.points ? `Your score ${value} - Approved` : `Your score ${value} - Failed`}
                 type={row.points ? 'success' : 'error'}
               />
             )
@@ -123,6 +124,7 @@ const StudentDetailContentRecordList = props => (
       },
       {
         label: 'Average SR',
+        path: 'averageSpeechRecognitionScore',
         render: (value, row) => ({
           children: value,
           props: {

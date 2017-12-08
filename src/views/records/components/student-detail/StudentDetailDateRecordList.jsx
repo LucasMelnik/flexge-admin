@@ -6,6 +6,7 @@ import Table from '../../../../core/form/Table';
 
 const StudentDetailDateRecordList = props => (
   <Table
+    showTableCount={false}
     fetching={props.fetching}
     columns={[
       {
@@ -64,17 +65,7 @@ const StudentDetailDateRecordList = props => (
       },
       {
         label: 'Average SR Score',
-        path: 'averageSR',
-        render: (value, row) => {
-          if (row.items) {
-            const scores = row.items.reduce((acc, item) => [
-              ...acc,
-              ...item.attempts.map(attempt => !Number.isNaN(parseInt(attempt.answer, 10)) ? parseInt(attempt.answer, 10) : 0)],
-            []);
-            return round(scores.reduce((acc, score) => acc + score, 0) / scores.length);
-          }
-          return '';
-        },
+        path: 'averageSpeechRecognitionScore',
       },
 
     ]}
