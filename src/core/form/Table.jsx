@@ -42,7 +42,7 @@ const Table = props => (
       filteredValue={props.filteredValue}
       sortOrder={props.sortOrder}
     />
-    {!props.pagination && (
+    {(!props.pagination && props.showTableCount) && (
       <small>{props.rows.length} registers found.</small>
     )}
   </div>
@@ -64,6 +64,7 @@ Table.propTypes = {
   filteredValue: PropTypes.string,
   sortOrder: PropTypes.string,
   bordered: PropTypes.bool,
+  showTableCount: PropTypes.bool,
 };
 
 Table.defaultProps = {
@@ -76,6 +77,7 @@ Table.defaultProps = {
   filteredValue: null,
   sortOrder: null,
   bordered: true,
+  showTableCount: true,
 };
 
 export default Table;
