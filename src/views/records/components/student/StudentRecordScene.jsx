@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Card from '../../../../core/layout/Card';
 import Breadcrumb from '../../../../core/layout/Breadcrumb';
 import StudentRecordListContainer from './StudentRecordListContainer';
+import Separator from '../../../../core/layout/Separator';
+import GrammarNeedsListContainer from '../common/GrammarNeedsListContainer';
 
 const StudentRecordScene = props => (
   <div>
@@ -22,6 +24,16 @@ const StudentRecordScene = props => (
         },
       ]}
     />
+    <Card
+      title="Students Grammar Needs"
+      fetching={props.fetching}
+    >
+      <GrammarNeedsListContainer
+        schoolId={props.schoolId}
+        classId={props.classId}
+      />
+    </Card>
+    <Separator />
     <Card
       title="Students Records"
       fetching={props.fetching}
