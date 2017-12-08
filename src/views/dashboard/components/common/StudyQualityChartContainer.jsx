@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import StudyQualityDashboardService from '../../services/StudyQualityDashboardService';
-import StudyQualityScoreChart from './StudyQualityScoreChart';
+import AverageStudyQualityService from '../../services/AverageStudyQualityService';
+import StudyQualityChart from './StudyQualityChart';
 
-class StudyQualityScoreChartContainer extends Component {
-
+class StudyQualityChartContainer extends Component {
   getTitle = () => {
     if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
       return 'Study Quality by Classes';
@@ -13,12 +12,11 @@ class StudyQualityScoreChartContainer extends Component {
   };
 
   getData = () => {
-    if (StudyQualityDashboardService.loadingStudyQualityScores) {
+    if (AverageStudyQualityService.fetch.fetching) {
       return [];
     }
-
     if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
-      const school = StudyQualityDashboardService.schoolStudyQualityScores[0];
+      const school = AverageStudyQualityService.studyQualityAverages[0];
       if (!school) {
         return [];
       }
@@ -27,7 +25,7 @@ class StudyQualityScoreChartContainer extends Component {
         value: schoolClass.classAverageScore,
       }));
     }
-    const schools = StudyQualityDashboardService.schoolStudyQualityScores;
+    const schools = AverageStudyQualityService.studyQualityAverages;
     if (!schools.length) {
       return [];
     }
@@ -39,14 +37,13 @@ class StudyQualityScoreChartContainer extends Component {
 
   render() {
     return (
-      <StudyQualityScoreChart
+      <StudyQualityChart
         title={this.getTitle()}
         data={this.getData()}
-        loading={StudyQualityDashboardService.loadingStudyQualityScores}
+        loading={AverageStudyQualityService.fetch.fetching}
       />
     );
   }
 }
 
-export default observer(StudyQualityScoreChartContainer);
-
+export default observer(StudyQualityChartContainer);

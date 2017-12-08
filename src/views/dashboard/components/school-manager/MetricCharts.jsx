@@ -1,6 +1,6 @@
 import React from 'react';
 import Separator from '../../../../core/layout/Separator';
-import StudyQualityScoreChartContainer from '../common/StudyQualityScoreChartContainer';
+import StudyQualityChartContainer from '../common/StudyQualityChartContainer';
 import StudyQualityGroupChartContainer from '../common/StudyQualityGroupChartContainer';
 import StudentStudiedTimeChart from '../common/StudentStudiedTimeChart';
 import ActiveStudentsByWeekChartContainer from '../common/ActiveStudentsByWeekChartContainer';
@@ -125,7 +125,7 @@ const MetricCharts = () => (
           width: '33%',
         }}
       >
-        <StudyQualityScoreChartContainer />
+        <StudyQualityChartContainer />
       </div>
     </div>
     <Separator />

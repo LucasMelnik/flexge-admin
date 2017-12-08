@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import StudyQualityGroupChart from './StudyQualityGroupChart';
-import StudyQualityDashboardService from '../../services/StudyQualityDashboardService';
+import StudyQualityGroupService from '../../services/StudyQualityGroupService';
 
 class StudyQualityGroupChartContainer extends Component {
 
   getData = () => {
-    if (StudyQualityDashboardService.loadingStudyQualityGroups) {
+    if (StudyQualityGroupService.fetch.fetching) {
       return [];
     }
 
-    return Object.keys(StudyQualityDashboardService.schoolStudyQualityGroups).map((key) => {
-      if (StudyQualityDashboardService.schoolStudyQualityGroups[key]) {
-        return StudyQualityDashboardService.schoolStudyQualityGroups[key].reduce((schoolAcc, school) => {
+    return Object.keys(StudyQualityGroupService.studyQualityGroups).map((key) => {
+      if (StudyQualityGroupService.studyQualityGroups[key]) {
+        return StudyQualityGroupService.studyQualityGroups[key].reduce((schoolAcc, school) => {
           if (school.classes) {
             return schoolAcc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
           }
@@ -27,11 +27,10 @@ class StudyQualityGroupChartContainer extends Component {
     return (
       <StudyQualityGroupChart
         data={this.getData()}
-        loading={StudyQualityDashboardService.loadingStudyQualityGroups}
+        loading={StudyQualityGroupService.fetch.fetching}
       />
     );
   }
 }
 
 export default observer(StudyQualityGroupChartContainer);
-

@@ -1,6 +1,6 @@
 import React from 'react';
 import Separator from '../../../../core/layout/Separator';
-import StudyQualityScoreChartContainer from '../common/StudyQualityScoreChartContainer';
+import StudyQualityChartContainer from '../common/StudyQualityChartContainer';
 import StudyQualityGroupChartContainer from '../common/StudyQualityGroupChartContainer';
 import StudentStudiedTimeChart from '../common/StudentStudiedTimeChart';
 import ActiveStudentsByWeekChartContainer from '../common/ActiveStudentsByWeekChartContainer';
@@ -19,7 +19,7 @@ const MetricCharts = () => (
       <StudentStudiedTimeChart />
     </div>
     <div style={{ flex: '1 1 300px', maxWidth: 500, minWidth: 300, paddingRight: 20, paddingTop: 20 }}>
-      <StudyQualityScoreChartContainer />
+      <StudyQualityChartContainer />
       <Separator size="xs" />
       <StudyQualityGroupChartContainer />
     </div>

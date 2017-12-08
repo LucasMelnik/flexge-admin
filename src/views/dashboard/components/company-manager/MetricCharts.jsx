@@ -7,7 +7,7 @@ import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import SchoolEnglishLevelChart from '../common/SchoolEnglishLevelChart';
 import SchoolProgressChart from '../common/SchoolProgressChart';
 import MetricStatusCard from '../common/MetricStatusCard';
-import StudyQualityScoreChartContainer from '../common/StudyQualityScoreChartContainer';
+import StudyQualityChartContainer from '../common/StudyQualityChartContainer';
 
 const MetricCharts = () => (
   <div>
@@ -125,7 +125,7 @@ const MetricCharts = () => (
           width: '33%',
         }}
       >
-        <StudyQualityScoreChartContainer />
+        <StudyQualityChartContainer />
       </div>
     </div>
     <Separator />
