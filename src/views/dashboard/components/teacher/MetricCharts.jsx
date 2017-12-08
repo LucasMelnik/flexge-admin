@@ -3,7 +3,7 @@ import Separator from '../../../../core/layout/Separator';
 import StudyQualityScoreChartContainer from '../common/StudyQualityScoreChartContainer';
 import StudyQualityGroupChartContainer from '../common/StudyQualityGroupChartContainer';
 import StudentStudiedTimeChart from '../common/StudentStudiedTimeChart';
-import ActiveStudentsByWeekChart from '../common/ActiveStudentsByWeekChart';
+import ActiveStudentsByWeekChartContainer from '../common/ActiveStudentsByWeekChartContainer';
 
 const MetricCharts = () => (
   <div
@@ -24,7 +24,7 @@ const MetricCharts = () => (
       <StudyQualityGroupChartContainer />
     </div>
     <div style={{ flex: '1 1 300px', maxWidth: 500, minWidth: 300, paddingRight: 20, paddingTop: 20 }}>
-      <ActiveStudentsByWeekChart />
+      <ActiveStudentsByWeekChartContainer />
     </div>
   </div>
 );
