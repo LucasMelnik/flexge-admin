@@ -31,7 +31,7 @@ const StudentDetailRecordScene = props => (
     <Tabs
       tabs={[
         {
-          title: 'Progresso por Conteudo',
+          title: 'Content Progress',
           content:
             (
               <Card>
@@ -40,7 +40,7 @@ const StudentDetailRecordScene = props => (
             ),
         },
         {
-          title: 'Progresso por Data',
+          title: 'Daily Progress',
           content:
             (
               <Card>
