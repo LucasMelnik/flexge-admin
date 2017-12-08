@@ -5,7 +5,7 @@ import SchoolManagerDashboard from './school-manager/SchoolManagerDashboard';
 import CompanyManagerDashboard from './company-manager/CompanyManagerDashboard';
 
 const DashboardScene = () => (
-  <div>
+  <div style={{ padding: 20, paddingTop: 0 }}>
     {(localStorage.role === 'ADMIN' || localStorage.role === 'CONTENT_ADMIN') && (
       <AdminDashboard />
     )}

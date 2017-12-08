@@ -6,20 +6,21 @@ import { DARK_RED, DARK_GREEN, GREEN, ORANGE, RED } from '../../../../core/chart
 import Separator from '../../../../core/layout/Separator';
 import Table from '../../../../core/form/Table';
 
-const StudentStudiedDatesChart = props => (
+const ActiveStudentsByWeekChart = props => (
   <Card
-    title="Students Studying By Week"
+    title="Active Students By Period"
+    loading={props.loading}
   >
     <DoughnutChart
       labels={[
-        '% sem estudo nas últimas 4 semanas',
-        '% que estudaram nas últimas 4 semanas',
-        '% que estudaram nas últimas 3 semanas',
-        '% que estudaram nas últimas 2 semanas',
-        '% que estudaram na última semana',
+        '% studied last 7 days',
+        '% studied last 14 days',
+        '% studied last 21 days',
+        '% studied last 30 days',
+        '% didn\'t study',
       ]}
-      data={[5, 10, 25, 30, 30]}
-      colors={[DARK_RED, RED, ORANGE, GREEN, DARK_GREEN]}
+      data={props.data}
+      colors={[DARK_GREEN, GREEN, ORANGE, RED, DARK_RED]}
     />
     {props.showDetails && (
       <Separator size="md" />
@@ -49,12 +50,14 @@ const StudentStudiedDatesChart = props => (
   </Card>
 );
 
-StudentStudiedDatesChart.propTypes = {
+ActiveStudentsByWeekChart.propTypes = {
+  loading: PropTypes.bool.isRequired,
   showDetails: PropTypes.bool,
+  data: PropTypes.array.isRequired,
 };
 
-StudentStudiedDatesChart.defaultProps = {
+ActiveStudentsByWeekChart.defaultProps = {
   showDetails: true,
 };
 
-export default StudentStudiedDatesChart;
+export default ActiveStudentsByWeekChart;

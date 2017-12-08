@@ -2,12 +2,12 @@ import React from 'react';
 import Separator from '../../../../core/layout/Separator';
 import StudyQualityGroupChartContainer from '../common/StudyQualityGroupChartContainer';
 import StudentStudiedTimeChart from '../common/StudentStudiedTimeChart';
-import StudentStudiedDatesChart from '../common/StudentStudiedDatesChart';
+import ActiveStudentsByWeekChartContainer from '../common/ActiveStudentsByWeekChartContainer';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import SchoolEnglishLevelChart from '../common/SchoolEnglishLevelChart';
 import SchoolProgressChart from '../common/SchoolProgressChart';
 import MetricStatusCard from '../common/MetricStatusCard';
-import StudyQualityScoreChartContainer from '../common/StudyQualityScoreChartContainer';
+import StudyQualityChartContainer from '../common/StudyQualityChartContainer';
 
 const MetricCharts = () => (
   <div>
@@ -125,7 +125,7 @@ const MetricCharts = () => (
           width: '33%',
         }}
       >
-        <StudyQualityScoreChartContainer />
+        <StudyQualityChartContainer />
       </div>
     </div>
     <Separator />
@@ -157,7 +157,7 @@ const MetricCharts = () => (
           width: '33%',
         }}
       >
-        <StudentStudiedDatesChart showDetails={false} />
+        <ActiveStudentsByWeekChartContainer showDetails={false} />
       </div>
     </div>
   </div>
