@@ -4,35 +4,53 @@ import ActiveStudentsByWeekService from '../../services/ActiveStudentsByWeekServ
 import CircularProgress from '../../../../core/layout/CircularProgress';
 
 class PerformanceGoalsActiveStudentsContainer extends Component {
-
   componentWillMount() {
     ActiveStudentsByWeekService.load();
   }
 
+  getTotalSchoolActiveStudents = (classes) => {
+    const periods = [7, 14, 21, 30];
+    return classes.reduce((acc, schoolClass) => (
+      acc + periods.reduce((classAcc, period) => classAcc + schoolClass[`studyOnLast${period}Days`] || 0, 0)
+    ), 0);
+  }
+
+  getTotalStudents = classes => (
+    classes.reduce((acc, schoolClass) => acc + schoolClass.totalStudents, 0)
+  )
+
   getValue = () => {
-    // if (ActiveStudentsByWeekService.loadingStudyQualityScores) {
-    //   return 0;
-    // }
-    // if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
-    //   const school = ActiveStudentsByWeekService.schoolStudyQualityScores[0];
-    //   if (!school) {
-    //     return null;
-    //   }
-    //   return (
-    //     school.classes.reduce((acc, schoolClass) => acc + schoolClass.classAverageScore, 0) /
-    //     school.classes.length
-    //   ) + 5;
-    // }
-    // const schools = ActiveStudentsByWeekService.schoolStudyQualityScores;
-    // if (!schools.length) {
-    //   return null;
-    // }
-    // return (schools.reduce((acc, schoolScore) => acc + schoolScore.schoolAverageScore, 0) / schools.length) + 5;
+    if (ActiveStudentsByWeekService.fetch.feching) {
+      return 0;
+    }
+    if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
+      const school = ActiveStudentsByWeekService.activeStudentsByWeek[0];
+      if (!school) {
+        return null;
+      }
+      const activeStudents = this.getTotalSchoolActiveStudents(school.classes);
+      const totalStudents = this.getTotalStudents(school.classes);
+      return activeStudents / totalStudents * 100;
+    }
+    const schools = ActiveStudentsByWeekService.activeStudentsByWeek;
+    if (!schools.length) {
+      return null;
+    }
+    const allSchoolsActiveStudents = schools.reduce((acc, school) => (
+      acc + this.getTotalSchoolActiveStudents(school.classes)
+    ), 0);
+    const allSchoolsStudents = schools.reduce((acc, school) => acc + school.totalStudents, 0);
+    return allSchoolsActiveStudents / allSchoolsStudents;
   };
 
-  // getSchoolAverage = () => !ActiveStudentsByWeekService.loadingStudyQualityScores &&
-  //   ActiveStudentsByWeekService.schoolStudyQualityScores[0] &&
-  //   ActiveStudentsByWeekService.schoolStudyQualityScores[0].schoolAverageScore;
+  getSchoolAverage = () => {
+    if (ActiveStudentsByWeekService.fetch.fetching) return null;
+    const studyingStudents =
+      ActiveStudentsByWeekService.activeStudentsByWeek[0].totalStudents -
+      ActiveStudentsByWeekService.activeStudentsByWeek[0].noStudy;
+    return studyingStudents / ActiveStudentsByWeekService.activeStudentsByWeek[0].totalStudents * 100;
+  }
+
 
   render() {
     return (
@@ -41,28 +59,15 @@ class PerformanceGoalsActiveStudentsContainer extends Component {
         tooltip="Students which studied at least once on last 30 days"
         fetching={ActiveStudentsByWeekService.fetch.fetching}
         noDataText="No Active Students Found"
-        value={74}
+        value={this.getValue()}
         max={100}
         successCondition={value => value > 85}
         badCondition={value => value <= 65}
         valueRender={value => `${value}%`}
-        legend={localStorage.role === 'TEACHER' && 'School average 55%'}
+        legend={`School Average ${this.getSchoolAverage()}%`}
       />
     );
   }
 }
-
-{/* <CircularProgress
-  fetching={ActiveStudentsByWeekService.loadingStudyQualityScores}
-  noDataText="No Active Students Found"
-  title="Study Quality"
-  tooltip="Your classes average"
-  value={this.getValue()}
-  max={20}
-  valueRender={value => value - 5}
-  successCondition={value => value > 10}
-  badCondition={value => value < 5}
-  legend={localStorage.role === 'TEACHER' && `School average ${this.getSchoolAverage()}`}
-/> */}
 
 export default observer(PerformanceGoalsActiveStudentsContainer);
