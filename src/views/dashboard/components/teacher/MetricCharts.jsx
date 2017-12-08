@@ -15,15 +15,15 @@ const MetricCharts = () => (
       marginRight: -20,
     }}
   >
-    <div style={{ flex: '1 1 300px', maxWidth: 500, minWidth: 300, paddingRight: 20, paddingTop: 20, }}>
+    <div style={{ flex: '1 1 300px', maxWidth: 500, minWidth: 300, paddingRight: 20, paddingTop: 20 }}>
       <StudentStudiedTimeChart />
     </div>
-    <div style={{ flex: '1 1 300px', maxWidth: 500, minWidth: 300, paddingRight: 20, paddingTop: 20, }}>
+    <div style={{ flex: '1 1 300px', maxWidth: 500, minWidth: 300, paddingRight: 20, paddingTop: 20 }}>
       <StudyQualityScoreChartContainer />
       <Separator size="xs" />
       <StudyQualityGroupChartContainer />
     </div>
-    <div style={{ flex: '1 1 300px', maxWidth: 500, minWidth: 300, paddingRight: 20, paddingTop: 20, }}>
+    <div style={{ flex: '1 1 300px', maxWidth: 500, minWidth: 300, paddingRight: 20, paddingTop: 20 }}>
       <ActiveStudentsByWeekChart />
     </div>
   </div>
