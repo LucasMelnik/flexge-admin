@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
-import Row from '../../../core/layout/Row';
-import Column from '../../../core/layout/Column';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
 import Dialog from '../../../core/layout/Dialog';

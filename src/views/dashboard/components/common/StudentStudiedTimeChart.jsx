@@ -8,7 +8,7 @@ import { DARK_GREEN, GREEN, ORANGE, RED } from '../../../../core/chart/colors';
 
 const StudentStudiedTimeChart = props => (
   <Card
-    title="Tempo de estudo de seus alunos no Últimos 7 dias"
+    title="Studied time last 7 days"
   >
     <DoughnutChart
       labels={['Não estudou', 'até 1h de estudo', 'até 2h de estudo', 'mais de 2h']}
@@ -20,6 +20,7 @@ const StudentStudiedTimeChart = props => (
     )}
     {props.showDetails && (
       <Table
+        bordered={false}
         columns={[
           {
             label: 'Student',

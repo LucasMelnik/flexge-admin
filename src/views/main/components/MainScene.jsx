@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import Menu from '../../../core/layout/Menu';
+import MenuItem from '../../../core/layout/MenuItem';
 import SubMenu from '../../../core/layout/SubMenu';
 import ConfirmDialogContainer from './ConfirmDialogContainer';
 import Button from '../../../core/form/Button';
@@ -10,6 +11,11 @@ const MainScene = props => (
   <Layout>
     <Layout.Header>
       <Menu>
+        <MenuItem
+          title="Dashboard"
+          icon="dashboard"
+          link="/"
+        />
         <SubMenu
           title="Admin"
           icon="user"
@@ -165,7 +171,7 @@ const MainScene = props => (
             },
             {
               label: 'Approved Images Records',
-              link: '/records/unit-images',
+              link: '/reports/unit-images',
               group: 'Reports',
               icon: 'picture',
               allowedFor: ['ADMIN'],
@@ -179,7 +185,7 @@ const MainScene = props => (
             },
             {
               label: 'Unit Items Errors',
-              link: '/records/unit-errors',
+              link: '/reports/unit-errors',
               group: 'Reports',
               icon: 'exclamation-circle-o',
               allowedFor: ['ADMIN'],
@@ -244,7 +250,7 @@ const MainScene = props => (
           items={[
             {
               label: 'Emails',
-              link: `/schools/${localStorage.school}/emails`,
+              link: '/school-configuration/emails',
               icon: 'mail',
             },
             {

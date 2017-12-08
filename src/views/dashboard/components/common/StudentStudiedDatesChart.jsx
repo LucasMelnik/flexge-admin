@@ -8,7 +8,7 @@ import Table from '../../../../core/form/Table';
 
 const StudentStudiedDatesChart = props => (
   <Card
-    title="Alunos estudando por semana"
+    title="Students Studying By Week"
   >
     <DoughnutChart
       labels={[
@@ -26,6 +26,7 @@ const StudentStudiedDatesChart = props => (
     )}
     {props.showDetails && (
       <Table
+        bordered={false}
         columns={[
           {
             label: 'Student',

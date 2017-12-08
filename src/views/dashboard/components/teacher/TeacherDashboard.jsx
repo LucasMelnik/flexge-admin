@@ -6,14 +6,17 @@ import MetricCharts from './MetricCharts';
 
 const TeacherDashboard = () => (
   <div>
-    <Separator />
-    <h1>Welcome back Stacey Rodrigues.</h1>
-    <Separator />
+    <Separator size="xs" />
+    <h2>Performance Goals</h2>
+    <Separator size="xs" />
     <PerformanceGoals />
     <Separator />
+    <h2>Your Metrics</h2>
+    <Separator size="xs" />
     <MetricCharts />
-    <Separator />
+    <Separator size="xs" />
     <HistoryCharts />
+    <Separator size="xs" />
   </div>
 );
 

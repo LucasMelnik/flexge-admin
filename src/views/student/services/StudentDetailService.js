@@ -6,6 +6,7 @@ export default class StudentDetailService {
   fetchDistributor = new FetchService();
   fetchCompany = new FetchService();
   fetchClass = new FetchService();
+  fetchStudent = new FetchService();
 
   constructor() {
     extendObservable(this, {
@@ -13,6 +14,7 @@ export default class StudentDetailService {
       company: {},
       distributor: {},
       class: {},
+      student: {},
     });
   }
 
@@ -48,4 +50,11 @@ export default class StudentDetailService {
     });
   });
 
+  handleLoadStudent = action((studentId) => {
+    this.fetchStudent.fetch({
+      url: `/students/${studentId}`,
+    }).then(() => {
+      this.student = this.fetchStudent.data;
+    });
+  });
 }

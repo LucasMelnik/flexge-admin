@@ -7,8 +7,6 @@ import StudentStudiedDatesChart from '../common/StudentStudiedDatesChart';
 
 const MetricCharts = () => (
   <div>
-    <h1>Estas são suas metricas.</h1>
-    <Separator />
     <div
       style={{
         display: 'flex',

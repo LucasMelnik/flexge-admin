@@ -51,12 +51,11 @@ export default class CircularProgress extends Component {
     return (
       <Async fetching={this.props.fetching}>
         {this.props.value !== null ? (
-          <div>
+          <div style={{ textAlign: 'center' }}>
             <p
               style={{
                 color: '#424242',
                 fontSize: 14,
-                textAlign: 'center',
               }}
             >
               {this.props.title}
@@ -64,7 +63,7 @@ export default class CircularProgress extends Component {
                 <TooltipIcon text={this.props.tooltip} />
               )}
             </p>
-            <Separator size="sm" />
+            <Separator size="xs" />
             <Progress
               type="circle"
               percent={this.getPercentage(this.props.value, this.props.max)}
@@ -100,7 +99,7 @@ export default class CircularProgress extends Component {
               <Separator size="xs" />
             )}
             {this.props.legend && (
-              <span>{this.props.legend}</span>
+              <small>{this.props.legend}</small>
             )}
           </div>
         ) : (
