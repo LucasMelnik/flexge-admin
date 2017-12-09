@@ -22,47 +22,45 @@ const PerformanceGoalWrapper = props => (
 );
 
 const PerformanceGoals = () => (
-  <Card title="Your goal is to keep all values green!">
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        marginTop: -15,
-        marginRight: -15,
-      }}
-    >
-      <PerformanceGoalWrapper>
-        <StudyQualityAverageContainer />
-      </PerformanceGoalWrapper>
-      <PerformanceGoalWrapper>
-        <StudyQualityHigherThanFiveContainer />
-      </PerformanceGoalWrapper>
-      <PerformanceGoalWrapper>
-        <ActiveStudentsContainer />
-      </PerformanceGoalWrapper>
-      <PerformanceGoalWrapper>
-        <ActiveStudentsLastSevenDaysContainer />
-      </PerformanceGoalWrapper>
-      <PerformanceGoalWrapper>
-        <StudyTimeHigherThanTwoContainer />
-      </PerformanceGoalWrapper>
-      <PerformanceGoalWrapper>
-        {/* // TODO  fix to use values from school config */}
-        <CircularProgress
-          title="Average time last week"
-          tooltip="From Monday to Sunday of last week"
-          value={60}
-          max={100}
-          successCondition={value => value > 50}
-          badCondition={value => value <= 1}
-          valueRender={() => '01:53'}
-          legend={localStorage.role === 'TEACHER' && 'School average 01:13'}
-        />
-      </PerformanceGoalWrapper>
-    </div>
-  </Card>
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      marginTop: -15,
+      marginRight: -15,
+    }}
+  >
+    <PerformanceGoalWrapper>
+      <StudyQualityAverageContainer />
+    </PerformanceGoalWrapper>
+    <PerformanceGoalWrapper>
+      <StudyQualityHigherThanFiveContainer />
+    </PerformanceGoalWrapper>
+    <PerformanceGoalWrapper>
+      <ActiveStudentsContainer />
+    </PerformanceGoalWrapper>
+    <PerformanceGoalWrapper>
+      <ActiveStudentsLastSevenDaysContainer />
+    </PerformanceGoalWrapper>
+    <PerformanceGoalWrapper>
+      <StudyTimeHigherThanTwoContainer />
+    </PerformanceGoalWrapper>
+    <PerformanceGoalWrapper>
+      {/* // TODO  fix to use values from school config */}
+      <CircularProgress
+        title="Average time last week"
+        tooltip="From Monday to Sunday of last week"
+        value={60}
+        max={100}
+        successCondition={value => value > 50}
+        badCondition={value => value <= 1}
+        valueRender={() => '01:53'}
+        legend={localStorage.role === 'TEACHER' && 'School average 01:13'}
+      />
+    </PerformanceGoalWrapper>
+  </div>
 );
 
 export default PerformanceGoals;
