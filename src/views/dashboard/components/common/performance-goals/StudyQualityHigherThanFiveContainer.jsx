@@ -10,7 +10,6 @@ class StudyQualityHigherThanFiveContainer extends Component {
   }
 
   render() {
-    console.log('StudyQualityGroupService.higherThanFive', StudyQualityGroupService.higherThanFive)
     return (
       <CircularProgress
         fetching={StudyQualityGroupService.fetch.fetching}
