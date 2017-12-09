@@ -3,7 +3,7 @@ import Separator from '../../../../core/layout/Separator';
 import WeeklyStudyingStudentsChartContainer from '../common/history/WeeklyStudyingStudentsChartContainer';
 import WeeklyStudyTimeChartContainer from '../common/history/WeeklyStudyTimeChartContainer';
 import HistoryListFilterContainer from '../common/history/HistoryListFilterContainer';
-import WeeklyStudyQualityChart from '../common/history/WeeklyStudyQualityChart';
+import WeeklyStudyQualityChartContainer from '../common/history/WeeklyStudyQualityChartContainer';
 
 const HistoryCharts = () => (
   <div>
@@ -25,7 +25,7 @@ const HistoryCharts = () => (
     <Separator />
     <WeeklyStudyTimeChartContainer />
     <Separator />
-    <WeeklyStudyQualityChart />
+    <WeeklyStudyQualityChartContainer />
   </div>
 );
 

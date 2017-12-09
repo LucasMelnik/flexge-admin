@@ -12,7 +12,7 @@ const hexToRgb = (hex, opacity) => {
 
 const LineChart = props => (
   <Line
-    // height={100}
+    height={props.height}
     data={{
       labels: props.labels,
       datasets: props.dataFormat.map((format, index) => ({
@@ -28,16 +28,20 @@ const LineChart = props => (
     }}
     options={{
       responsive: true,
+      maintainAspectRatio: false,
       showLine: false,
       scales: {
         xAxes: [{
          ticks: {
-           autoSkip: false
+           autoSkip: false,
+         },
+         gridLines: {
+           display: false,
          },
          scaleLabel: {
            display: props.xAxesLabelString && true,
            labelString: props.xAxesLabelString,
-         }
+         },
        }],
        yAxes: props.yAxes || [{
         ticks: {
@@ -76,11 +80,17 @@ LineChart.propTypes = {
   })).isRequired,
   yAxes: PropTypes.array,
   tooltipsCallbacks: PropTypes.object,
+  yAxesLabelString: PropTypes.string,
+  xAxesLabelString: PropTypes.string,
+  height: PropTypes.number,
 };
 
 LineChart.defaultProps = {
   yAxes: null,
   tooltipsCallbacks: null,
+  yAxesLabelString: null,
+  xAxesLabelString: null,
+  height: 150,
 };
 
 export default LineChart;

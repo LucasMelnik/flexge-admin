@@ -14,6 +14,7 @@ const WeeklyStudyTimeChart = props => (
     loading={props.loading}
   >
     <LineChart
+      height={350}
       labels={range(0, 52).map(week => getLabel(week))}
       data={range(1, 53).map(week => props.data.find(item => item.week === week) || {})}
       dataFormat={[
