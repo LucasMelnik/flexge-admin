@@ -1,11 +1,12 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
-import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 import NotificationService from '../../../core/services/NotificationService';
+import { isRequired } from '../../../core/validations';
 
 class CertificationTestListService {
   fetch = new FetchService();
+  submit = new FetchService();
   form = new FormService();
 
   constructor() {
@@ -13,6 +14,10 @@ class CertificationTestListService {
       certificationTests: [],
       filter: '',
     });
+    this.form.validations = {
+      scheduleForDate: [isRequired],
+      scheduleForTime: [isRequired],
+    };
   }
 
   init = action(() => {
@@ -46,24 +51,31 @@ class CertificationTestListService {
     this.load();
   });
 
-  handleRemove = action((certificationTest) => {
-    ConfirmationDialogService.show(
-      'Delete Certification Test',
-      `You are about to delete the Certification Test "${certificationTest.name}", Do you want to continue ?`,
-      () => {
-        this.fetch.fetch({
-          url: `/certification-test/${certificationTest.id}`,
-          method: 'delete',
-        }).then(() => {
-          if (this.fetch.data) {
-            NotificationService.addNotification(`Certification Test "${certificationTest.name}" deleted successfully.`, 'success');
-            this.load();
-          }
-          if (this.fetch.error) {
-            NotificationService.addNotification(this.fetch.error, 'error');
-          }
-        });
-      });
+  handleSubmitSchedule = action((certificationTest, callbackAfterSubmit) => {
+    this.form.submitted = true;
+    if (this.form.errors) {
+      NotificationService.addNotification('Fill the required fields', 'error');
+      return;
+    }
+
+    this.submit.fetch({
+      method: 'put',
+      url: `/certification-test/${certificationTest.id}`,
+      body: {
+        ...certificationTest,
+        scheduledFor: this.form.getValue('scheduleForDate').hours(this.form.getValue('scheduleForTime').hour()).minutes(this.form.getValue('scheduleForTime').minutes()),
+        student: certificationTest.student.id,
+      },
+    }).then(() => {
+      if (this.submit.data) {
+        this.load();
+        callbackAfterSubmit();
+        NotificationService.addNotification(`Certification test schedule ${this.submit.data.id ? 'updated' : 'created'} successfully.`, 'success');
+      }
+      if (this.submit.error) {
+        NotificationService.addNotification(`Error ${certificationTest.id ? 'updating' : 'creating'} certificationTest.`, 'error');
+      }
+    });
   });
 }
 

@@ -11,12 +11,12 @@ const CertificationTestFormScene = props => (
     <Breadcrumb
       crumbs={[
         {
-          text: `${props.params.certificationTestId ? 'Edit Certification Test' : 'Create Certification Test'}`,
+          text: 'Enable Certification Test',
         },
       ]}
     />
     <Card
-      title={props.params.certificationTestId ? 'Edit Certification Test' : 'Create Certification Test'}
+      title="Enable Certification Test"
       actions={
         (
           <Button

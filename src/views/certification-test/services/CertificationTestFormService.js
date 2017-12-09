@@ -1,4 +1,5 @@
 import { extendObservable, action } from 'mobx';
+import moment from 'moment';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -12,10 +13,10 @@ export default class CourseFormService {
   constructor() {
     extendObservable(this, {
       certificationTestId: null,
+      currentStudentName: '',
     });
     this.form.validations = {
-      name: [isRequired],
-      description: [isRequired],
+      document: [isRequired],
     };
   }
 
@@ -26,6 +27,7 @@ export default class CourseFormService {
         url: `/certification-test/${certificationTestId}`,
       }).then(() => {
         if (this.fetch.data) {
+          this.currentStudentName = this.fetch.data.student.name;
           this.form.setInitialValues(this.fetch.data);
         }
       });
@@ -41,21 +43,32 @@ export default class CourseFormService {
       NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
+    if (this.form.getValue('student.name') !== this.currentStudentName) {
+      this.submit.fetch({
+        method: 'put',
+        url: `/students/${this.form.getValue('student.id')}`,
+        body: {
+          ...this.form.getValue('student'),
+          name: this.form.getValue('student.name'),
+        },
+      });
+    }
+
     const certificationTestId = this.form.getValue('id');
     this.submit.fetch({
-      method: certificationTestId ? 'put' : 'post',
-      url: certificationTestId ? `/certification-test/${certificationTestId}` : '/certification-test',
+      method: 'put',
+      url: `/certification-test/${certificationTestId}`,
       body: {
         ...this.form.getValues(),
+        student: this.form.getValue('student').id,
+        enabledAt: moment(),
       },
     }).then(() => {
       if (this.submit.data) {
         const certificationTest = this.submit.data;
         this.certificationTestId = certificationTest.id;
-        this.form.reset();
-        this.form.setInitialValues(certificationTest);
 
-        NotificationService.addNotification(`Course ${certificationTestId ? 'updated' : 'created'} successfully.`, 'success');
+        NotificationService.addNotification(`Certification ${certificationTestId ? 'enabled' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
         NotificationService.addNotification(`Error ${certificationTestId ? 'updating' : 'creating'} certificationTest.`, 'error');
