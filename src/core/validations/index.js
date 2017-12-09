@@ -1,6 +1,6 @@
 import isEmail from 'validator/lib/isEmail';
 
-export const isRequired = value => (value === null || value === undefined) && 'Required';
+export const isRequired = value => (value === null || value === undefined || !value) && 'Required';
 
 export const minLength = minLengthInformed => valueue => valueue && valueue.length < minLengthInformed && `Min. length: ${minLengthInformed}`;
 

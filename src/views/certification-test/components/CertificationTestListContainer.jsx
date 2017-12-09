@@ -5,6 +5,7 @@ import CertificationTestList from './CertificationTestList';
 import CertificationTestListService from '../services/CertificationTestListService';
 
 class CertificationTestListContainer extends Component {
+
   componentDidMount() {
     CertificationTestListService.init();
   }
@@ -15,8 +16,9 @@ class CertificationTestListContainer extends Component {
         certificationTests={toJS(CertificationTestListService.certificationTests)}
         onChange={CertificationTestListService.form.setValue}
         values={CertificationTestListService.form.getValues()}
+        errors={CertificationTestListService.form.errors}
         fetching={CertificationTestListService.fetch.fetching}
-        onDelete={CertificationTestListService.handleRemove}
+        onSubmitSchedule={CertificationTestListService.handleSubmitSchedule}
       />
     );
   }

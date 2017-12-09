@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import get from 'lodash/get';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
 import Dialog from '../../../core/layout/Dialog';
 import DateInput from '../../../core/form/DateInput';
+import AntTimeInput from '../../../core/form/AntTimeInput';
 
 class CertificationTestList extends Component {
   state = {
     visible: false,
+    certificationTest: '',
   }
 
   handleCancel = () => {
@@ -18,7 +21,7 @@ class CertificationTestList extends Component {
 
   render() {
     return (
-      <div>
+      <form>
         <Table
           fetching={this.props.fetching}
           columns={[
@@ -30,10 +33,24 @@ class CertificationTestList extends Component {
             {
               label: 'Schedule At',
               path: 'scheduledAt',
+              render: (cell, row) => {
+                return (
+                  <div>
+                    {moment(row.scheduledAt).format('DD/MM/YYYY HH:mm')}
+                  </div>
+                );
+              },
             },
             {
               label: 'Schedule For',
               path: 'scheduledFor',
+              render: (cell, row) => {
+                return (
+                  <div>
+                    {moment(row.scheduledFor).format('DD/MM/YYYY HH:mm')}
+                  </div>
+                );
+              },
             },
             {
               label: 'Enabled At',
@@ -76,7 +93,11 @@ class CertificationTestList extends Component {
                   <div>
                     <Button
                       icon="calendar"
-                      onClick={() => this.setState({ visible: true })}
+                      onClick={() =>{
+                       this.setState({ visible: true, certificationTest: row });
+                       this.props.onChange('scheduleForDate', moment(row.scheduledFor));
+                       this.props.onChange('scheduleForTime', moment(row.scheduledFor));
+                      }}
                     />
                     {' '}
                     <Button
@@ -91,22 +112,39 @@ class CertificationTestList extends Component {
           rows={this.props.certificationTests}
         />
         <Dialog
-          title="Form Certification Test"
+          title="Schedule For Certification Test"
           isOpen={this.state.visible}
           onCancel={this.handleCancel}
           actions={[
-            <Button label="Cancel" key="back" onClick={this.handleCancel} />,
-            <Button label="Confirm" key="submit" type="primary" onClick={this.handleOk}/>
+            <Button label="Cancel" key="back" type="danger" onClick={this.handleCancel} />,
+            <Button label="Confirm" key="submit" type="default" onClick={() => this.props.onSubmitSchedule(this.state.certificationTest, this.handleCancel)} />
           ]}
         >
-          <DateInput
-            label="Schedule For"
-            value={get(this.props.values, 'scheduleFor', null)}
-            onChange={value => this.props.onChange('scheduleFor', value)}
-            errorText={get(this.props.errors, 'scheduleFor', '')}
-          />
+          <div
+            style={{
+              display: 'flex'
+            }}
+          >
+            <DateInput
+              label="Date"
+              showTime
+              value={this.props.values.scheduleForDate}
+              onChange={value => this.props.onChange('scheduleForDate', value)}
+              errorText={get(this.props.errors, 'scheduleForDate', null)}
+            />
+            <div
+              style={{
+                marginLeft: 10,
+              }}
+            />
+            <AntTimeInput label="Hour"
+              value={get(this.props.values, 'scheduleForTime', null)}
+              onChange={value => this.props.onChange('scheduleForTime', value)}
+              errorText={get(this.props.errors, 'scheduleForTime', null)}
+            />
+          </div>
         </Dialog>
-      </div>
+      </form>
     )
   }
 }
@@ -117,7 +155,7 @@ CertificationTestList.propTypes = {
     name: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onSubmitSchedule: PropTypes.func.isRequired,
 };
 
 export default CertificationTestList;
