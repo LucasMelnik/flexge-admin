@@ -21,6 +21,7 @@ const ModuleForm = props => (
     <Row>
       <Column size={6}>
         <TextInput
+          required
           disabled={props.submitting}
           label="Module Name"
           value={get(props.values, 'name', '')}
@@ -42,6 +43,7 @@ const ModuleForm = props => (
     <Row>
       <Column size={3}>
         <FetchSelect
+          required
           url="courses"
           disabled={props.submitting}
           label="Course"
@@ -56,6 +58,7 @@ const ModuleForm = props => (
       </Column>
       <Column size={3}>
         <FetchSelect
+          required
           url="academic-plans"
           disabled={props.submitting}
           label="Academic Plan"
@@ -70,6 +73,7 @@ const ModuleForm = props => (
       </Column>
       <Column size={3}>
         <Select
+          required
           options={['A', 'B', 'C', 'D'].map(value => ({
             value,
             label: value,
@@ -83,6 +87,7 @@ const ModuleForm = props => (
       </Column>
       <Column size={3}>
         <Select
+          required
           options={range(1, 21).map(value => ({
             value,
             label: value.toString(),

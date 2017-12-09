@@ -18,6 +18,7 @@ const SchoolClassForm = props => (
     <Row>
       <Column size={4}>
         <TextInput
+          required
           disabled={props.submitting}
           label="Class Name"
           value={get(props.values, 'name', '')}

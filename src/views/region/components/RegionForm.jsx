@@ -17,6 +17,7 @@ const RegionForm = props => (
     <Row>
       <Column size={6}>
         <TextInput
+          required
           disabled={props.submitting}
           label="Name"
           value={get(props.values, 'name', '')}
@@ -26,6 +27,7 @@ const RegionForm = props => (
       </Column>
       <Column size={6}>
         <FetchSelect
+          required
           url="countries"
           disabled={props.submitting}
           label="Country"

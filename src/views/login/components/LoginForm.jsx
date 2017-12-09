@@ -12,6 +12,7 @@ const LoginForm = props => (
     }}
   >
     <TextInput
+      required
       label="Email"
       placeholder="Email"
       disabled={props.submitting}
@@ -20,6 +21,7 @@ const LoginForm = props => (
       errorText={get(props.errors, 'email', '')}
     />
     <TextInput
+      required
       type="password"
       label="Password"
       placeholder="Password"

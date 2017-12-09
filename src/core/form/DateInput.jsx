@@ -5,6 +5,8 @@ import { DatePicker, Form } from 'antd';
 
 const DateInput = props =>  (
   <Form.Item
+    colon={false}
+    required={props.required}
     label={props.label}
     help={props.errorText}
     validateStatus={props.errorText && 'error'}
@@ -35,6 +37,7 @@ DateInput.propTypes = {
   value: PropTypes.objectOf(Date),
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
+  required: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   disabledDate: PropTypes.func,
 };
@@ -46,6 +49,7 @@ DateInput.defaultProps = {
   value: null,
   placeholder: null,
   disabled: false,
+  required: false,
   disabledDate: null,
 };
 
