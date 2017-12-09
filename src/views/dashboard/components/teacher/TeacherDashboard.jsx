@@ -17,7 +17,7 @@ const TeacherDashboard = () => (
     <h2>Your Metrics</h2>
     <Separator size="xs" />
     <MetricCharts />
-    <Separator size="xs" />
+    <Separator size="sm" />
     <HistoryCharts />
     <Separator size="xs" />
   </div>
