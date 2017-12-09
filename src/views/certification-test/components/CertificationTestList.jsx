@@ -22,7 +22,7 @@ class CertificationTestList extends Component {
 
   render() {
     return (
-      <form>
+      <div>
         <Table
           fetching={this.props.fetching}
           columns={[
@@ -134,17 +134,16 @@ class CertificationTestList extends Component {
           onCancel={this.handleCancel}
           actions={[
             <Button label="Cancel" key="back" type="danger" onClick={this.handleCancel} />,
-            <Button label="Confirm" key="submit" type="default" onClick={() => this.props.onSubmitSchedule(this.state.certificationTest, this.handleCancel)} />
+            <Button label="Confirm" key="submit" type="default" onClick={() => this.props.onSubmitSchedule(this.state.certificationTest, this.handleCancel)} />,
           ]}
         >
           <div
             style={{
-              display: 'flex'
+              display: 'flex',
             }}
           >
             <DateInput
               label="Date"
-              showTime
               value={this.props.values.scheduleForDate}
               onChange={value => this.props.onChange('scheduleForDate', value)}
               errorText={get(this.props.errors, 'scheduleForDate', null)}
@@ -154,15 +153,16 @@ class CertificationTestList extends Component {
                 marginLeft: 10,
               }}
             />
-            <AntTimeInput label="Hour"
+            <AntTimeInput
+              label="Hour"
               value={get(this.props.values, 'scheduleForTime', null)}
               onChange={value => this.props.onChange('scheduleForTime', value)}
               errorText={get(this.props.errors, 'scheduleForTime', null)}
             />
           </div>
         </Dialog>
-      </form>
-    )
+      </div>
+    );
   }
 }
 
@@ -172,7 +172,15 @@ CertificationTestList.propTypes = {
     name: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
+  values: PropTypes.object,
+  errors: PropTypes.object,
+  onChange: PropTypes.func.isRequired,
   onSubmitSchedule: PropTypes.func.isRequired,
+};
+
+CertificationTestList.defaultProps = {
+  values: {},
+  errors: {},
 };
 
 export default CertificationTestList;
