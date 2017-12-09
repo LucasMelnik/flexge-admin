@@ -55,7 +55,9 @@ const LineChart = props => (
       tooltips: {
         mode: 'index',
         intersect: false,
-        callbacks: props.tooltipsCallbacks,
+        ...props.tooltipsCallbacks && {
+          callbacks: props.tooltipsCallbacks,
+        },
       },
       legend: {
         onClick: () => true,

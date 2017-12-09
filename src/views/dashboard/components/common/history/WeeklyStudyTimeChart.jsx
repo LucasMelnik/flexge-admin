@@ -6,13 +6,7 @@ import moment from 'moment';
 import 'moment-duration-format';
 import Card from '../../../../../core/layout/Card';
 import LineChart from '../../../../../core/chart/LineChart';
-
-const getLabel = (week) => {
-  const startYear = moment().startOf('year').add(week, 'weeks');
-  const startDate = startYear.startOf('week').format('MM/DD/YY');
-  const endDate = startYear.endOf('week').format('MM/DD/YY');
-  return `${startDate} - ${endDate}`;
-};
+import { getLabel } from './utils';
 
 const WeeklyStudyTimeChart = props => (
   <Card

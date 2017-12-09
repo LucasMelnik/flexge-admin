@@ -1,6 +1,6 @@
 import React from 'react';
 import Separator from '../../../../core/layout/Separator';
-import StudyingStudentsByWeekChart from '../common/history/StudyingStudentsByWeekChart';
+import WeeklyStudyingStudentsChartContainer from '../common/history/WeeklyStudyingStudentsChartContainer';
 import WeeklyStudyTimeChartContainer from '../common/history/WeeklyStudyTimeChartContainer';
 import WeeklyStudyQualityChart from '../common/history/WeeklyStudyQualityChart';
 import HistoryListFilterContainer from '../common/history/HistoryListFilterContainer';
@@ -21,7 +21,7 @@ const HistoryCharts = () => (
       </h1>
       <HistoryListFilterContainer />
     </div>
-    <StudyingStudentsByWeekChart />
+    <WeeklyStudyingStudentsChartContainer />
     <Separator />
     <WeeklyStudyTimeChartContainer />
     <Separator />
