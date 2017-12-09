@@ -1,11 +1,10 @@
 import React from 'react';
-import CircularProgress from '../../../../../core/layout/CircularProgress';
-import Card from '../../../../../core/layout/Card';
 import StudyQualityAverageContainer from './StudyQualityAverageContainer';
 import StudyQualityHigherThanFiveContainer from './StudyQualityHigherThanFiveContainer';
 import ActiveStudentsContainer from './ActiveStudentsContainer';
 import StudyTimeHigherThanTwoContainer from './StudyTimeHigherThanTwoContainer';
 import ActiveStudentsLastSevenDaysContainer from './ActiveStudentsLastSevenDaysContainer';
+import LastWeekAverageStudiedTimeContainer from './LastWeekAverageStudiedTimeContainer';
 
 const PerformanceGoalWrapper = props => (
   <div
@@ -48,17 +47,7 @@ const PerformanceGoals = () => (
       <StudyTimeHigherThanTwoContainer />
     </PerformanceGoalWrapper>
     <PerformanceGoalWrapper>
-      {/* // TODO  fix to use values from school config */}
-      <CircularProgress
-        title="Average time last week"
-        tooltip="From Monday to Sunday of last week"
-        value={60}
-        max={100}
-        successCondition={value => value > 50}
-        badCondition={value => value <= 1}
-        valueRender={() => '01:53'}
-        legend={localStorage.role === 'TEACHER' && 'School average 01:13'}
-      />
+      <LastWeekAverageStudiedTimeContainer />
     </PerformanceGoalWrapper>
   </div>
 );

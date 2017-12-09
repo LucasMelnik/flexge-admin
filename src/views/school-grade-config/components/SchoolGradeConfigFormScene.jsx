@@ -4,29 +4,19 @@ import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import SchoolGradeConfigFormContainer from './SchoolGradeConfigFormContainer';
 
-const SchoolGradeConfigFormScene = props => (
+const SchoolGradeConfigFormScene = () => (
   <div>
     <Breadcrumb
       crumbs={[
         {
-          text: `${props.params.schoolId ? 'Update School Grade Configuration' : 'Create School Grade Configuration'}`,
+          text: 'Grade Configuration',
         },
       ]}
     />
-    <Card
-      title={props.params.schoolId ? 'Update School Grade Configuration' : 'Create School Grade Configuration'}
-    >
-      <SchoolGradeConfigFormContainer
-        schoolId={props.params.schoolId}
-      />
+    <Card title="Grade Configuration">
+      <SchoolGradeConfigFormContainer />
     </Card>
   </div>
 );
-
-SchoolGradeConfigFormScene.propTypes = {
-  params: PropTypes.shape({
-    schoolId: PropTypes.string,
-  }).isRequired,
-};
 
 export default SchoolGradeConfigFormScene;

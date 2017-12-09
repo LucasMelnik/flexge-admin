@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import SchoolGradeConfigForm from './SchoolGradeConfigForm';
 import SchoolGradeConfigFormService from '../services/SchoolGradeConfigFormService';
 
 class SchoolGradeConfigFormContainer extends Component {
-  static propTypes = {
-    schoolId: PropTypes.string.isRequired,
-  };
 
   schoolGradeConfigFormService = new SchoolGradeConfigFormService();
   componentWillMount() {
-    this.schoolGradeConfigFormService.init(this.props.schoolId);
+    const school = JSON.parse(localStorage.getItem('school'));
+    this.schoolGradeConfigFormService.init(school ? school._id : null);
   }
 
   render() {

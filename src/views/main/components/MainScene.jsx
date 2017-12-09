@@ -255,12 +255,12 @@ const MainScene = props => (
             },
             {
               label: 'Evaluation Periods',
-              link: `/schools/${localStorage.school}/evaluation-periods`,
+              link: '/school-configuration/evaluation-periods',
               icon: 'calendar',
             },
             {
               label: 'Grades',
-              link: `/schools/${localStorage.school}/grade-configuration`,
+              link: '/school-configuration/grades',
               icon: 'table',
             },
           ]}

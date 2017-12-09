@@ -40,9 +40,13 @@ class LoginService {
         const decodedToken = jwtDecode(this.fetch.data.accessToken);
         localStorage.setItem('id', decodedToken.sub);
         localStorage.setItem('role', decodedToken.role);
-        localStorage.setItem('company', decodedToken.company);
+        localStorage.setItem('company', JSON.stringify(decodedToken.company));
         localStorage.setItem('distributor', decodedToken.distributor);
-        localStorage.setItem('school', decodedToken.school);
+        if (decodedToken.school) {
+          localStorage.setItem('school', JSON.stringify(decodedToken.school));
+        } else {
+          localStorage.removeItem('school');
+        }
         browserHistory.push('/');
         NotificationService.addNotification('Welcome again!', 'info');
       }

@@ -122,8 +122,6 @@ const Routes = () => (
       <Route path="schools" component={SchoolListScene} />
       <Route path="schools/new" component={SchoolFormSceneContainer} />
       <Route path="schools/:schoolId" component={SchoolFormSceneContainer} />
-      <Route path="schools/:schoolId/grade-configuration" component={SchoolGradeConfigFormScene} />
-      <Route path="schools/:schoolId/evaluation-periods" component={SchoolEvaluationSceneContainer} />
       <Route path="schools/:schoolId/details" component={SchoolDetailSceneContainer} />
       <Route path="schools/:schoolId/classes/new" component={SchoolClassFormSceneContainer} />
       <Route path="schools/:schoolId/classes/:classId" component={SchoolClassFormSceneContainer} />
@@ -191,6 +189,8 @@ const Routes = () => (
       <Route path="certification-test/new" component={CertificationTestFormScene} />
       <Route path="certification-test/:certificationTestId" component={CertificationTestFormScene} />
       <Route path="school-configuration/emails" component={EmailsScene} />
+      <Route path="school-configuration/grades" component={SchoolGradeConfigFormScene} />
+      <Route path="school-configuration/evaluation-periods" component={SchoolEvaluationSceneContainer} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

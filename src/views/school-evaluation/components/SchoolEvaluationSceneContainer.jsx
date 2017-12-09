@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import SchoolEvaluationListService from '../services/SchoolEvaluationListService';
 import SchoolEvaluationScene from './SchoolEvaluationScene';
 
 class SchoolEvaluationSceneContainer extends Component {
-  static propTypes = {
-    params: PropTypes.shape({
-      schoolId: PropTypes.string.isRequired,
-    }).isRequired,
-  };
 
   componentWillMount() {
-    SchoolEvaluationListService.init(this.props.params.schoolId);
+    const school = JSON.parse(localStorage.getItem('school'));
+    SchoolEvaluationListService.init(school ? school._id : null);
   }
 
   render() {
+    const school = JSON.parse(localStorage.getItem('school'));
     return (
       <SchoolEvaluationScene
-        schoolId={this.props.params.schoolId}
+        schoolId={school ? school._id : null}
         fetching={SchoolEvaluationListService.fetch.fetching}
         selectedYear={SchoolEvaluationListService.selectedYear}
       />
