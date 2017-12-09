@@ -17,7 +17,7 @@ class WeekStatsByPeriodService {
       query: {
         from,
         to,
-      }
+      },
     }).then(() => {
       if (this.fetch.data) {
         this.weekStatsByPeriod = this.fetch.data;
@@ -26,4 +26,6 @@ class WeekStatsByPeriodService {
   });
 }
 
-export default WeekStatsByPeriodService;
+const weekStatsByPeriodService = new WeekStatsByPeriodService();
+
+export default weekStatsByPeriodService;
