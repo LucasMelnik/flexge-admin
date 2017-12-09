@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from '../../../../core/layout/Card';
-import BarChart from '../../../../core/chart/BarChart';
+import Card from '../../../../../core/layout/Card';
+import BarChart from '../../../../../core/chart/BarChart';
 
 const SchoolClassProgressChart = () => (
   <Card

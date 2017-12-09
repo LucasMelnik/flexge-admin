@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import StudyQualityGroupService from '../../services/StudyQualityGroupService';
-import CircularProgress from '../../../../core/layout/CircularProgress';
+import StudyQualityGroupService from '../../../services/StudyQualityGroupService';
+import CircularProgress from '../../../../../core/layout/CircularProgress';
 
-class PerformanceGoalsStudyQualityHigherThanFiveContainer extends Component {
+class StudyQualityHigherThanFiveContainer extends Component {
 
   componentWillMount() {
     StudyQualityGroupService.loadStudyQualityGroups();
@@ -28,4 +28,4 @@ class PerformanceGoalsStudyQualityHigherThanFiveContainer extends Component {
   }
 }
 
-export default observer(PerformanceGoalsStudyQualityHigherThanFiveContainer);
+export default observer(StudyQualityHigherThanFiveContainer);

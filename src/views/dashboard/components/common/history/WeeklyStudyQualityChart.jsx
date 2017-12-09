@@ -1,7 +1,7 @@
 import React from 'react';
 import range from 'lodash/range';
-import Card from '../../../../core/layout/Card';
-import LineChart from '../../../../core/chart/LineChart';
+import Card from '../../../../../core/layout/Card';
+import LineChart from '../../../../../core/chart/LineChart';
 
 const WeeklyStudyQualityChart = () => (
   <Card title="Média de Study Quality por Semana">

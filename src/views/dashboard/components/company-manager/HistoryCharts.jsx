@@ -1,9 +1,9 @@
 import React from 'react';
-import StudentStudyHistoryChart from '../common/StudentStudyHistoryChart';
 import Separator from '../../../../core/layout/Separator';
-import WeeklyStudyTimeChartContainer from '../common/WeeklyStudyTimeChartContainer';
-import WeeklyStudyQualityChart from '../common/WeeklyStudyQualityChart';
-import HistoryListFilterContainer from '../common/HistoryListFilterContainer';
+import StudyingStudentsByWeekChart from '../common/history/StudyingStudentsByWeekChart';
+import WeeklyStudyTimeChartContainer from '../common/history/WeeklyStudyTimeChartContainer';
+import WeeklyStudyQualityChart from '../common/history/WeeklyStudyQualityChart';
+import HistoryListFilterContainer from '../common/history/HistoryListFilterContainer';
 
 const HistoryCharts = () => (
   <div>
@@ -21,7 +21,7 @@ const HistoryCharts = () => (
       </h1>
       <HistoryListFilterContainer />
     </div>
-    <StudentStudyHistoryChart />
+    <StudyingStudentsByWeekChart />
     <Separator />
     <WeeklyStudyTimeChartContainer />
     <Separator />

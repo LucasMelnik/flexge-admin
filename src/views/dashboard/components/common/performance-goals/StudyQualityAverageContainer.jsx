@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import AverageStudyQualityService from '../../services/AverageStudyQualityService';
-import CircularProgress from '../../../../core/layout/CircularProgress';
+import AverageStudyQualityService from '../../../services/AverageStudyQualityService';
+import CircularProgress from '../../../../../core/layout/CircularProgress';
 
 class PerformanceGoalsStudyQualityAverageContainer extends Component {
   componentWillMount() {

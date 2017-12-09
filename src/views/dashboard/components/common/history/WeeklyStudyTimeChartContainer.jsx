@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import moment from 'moment';
 import WeeklyStudyTimeChart from './WeeklyStudyTimeChart';
-import WeekStatsByPeriodService from '../../services/WeekStatsByPeriodService';
+import WeekStatsByPeriodService from '../../../services/WeekStatsByPeriodService';
 
 class WeeklyStudyTimeChartContainer extends Component {
 

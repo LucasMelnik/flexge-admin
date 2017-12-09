@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from '../../../../core/layout/Card';
-import LineChart from '../../../../core/chart/LineChart';
+import Card from '../../../../../core/layout/Card';
+import LineChart from '../../../../../core/chart/LineChart';
 
 const SchoolEnglishLevelChart = () => (
   <Card

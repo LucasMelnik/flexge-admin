@@ -1,7 +1,7 @@
 import React from 'react';
-import Card from '../../../../core/layout/Card';
-import BarChart from '../../../../core/chart/BarChart';
-import { ORANGE, RED, GREEN } from '../../../../core/chart/colors';
+import Card from '../../../../../core/layout/Card';
+import BarChart from '../../../../../core/chart/BarChart';
+import { ORANGE, RED, GREEN } from '../../../../../core/chart/colors';
 
 const SchoolStudyQualityChart = () => (
   <Card

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../../../core/layout/Card';
-import Table from '../../../../core/form/Table';
-import DoughnutChart from '../../../../core/chart/DoughnutChart';
-import Separator from '../../../../core/layout/Separator';
-import { DARK_GREEN, GREEN, ORANGE, RED } from '../../../../core/chart/colors';
+import Card from '../../../../../core/layout/Card';
+import Table from '../../../../../core/form/Table';
+import DoughnutChart from '../../../../../core/chart/DoughnutChart';
+import Separator from '../../../../../core/layout/Separator';
+import { DARK_GREEN, GREEN, ORANGE, RED } from '../../../../../core/chart/colors';
 
 const StudentStudiedTimeChart = props => (
   <Card

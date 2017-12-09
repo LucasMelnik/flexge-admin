@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import ActiveStudentsByWeekService from '../../services/ActiveStudentsByWeekService';
-import CircularProgress from '../../../../core/layout/CircularProgress';
+import ActiveStudentsByWeekService from '../../../services/ActiveStudentsByWeekService';
+import CircularProgress from '../../../../../core/layout/CircularProgress';
 
-class PerformanceGoalsActiveStudentsLastSevenDaysContainer extends Component {
+class ActiveStudentsLastSevenDaysContainer extends Component {
 
   render() {
     return (
@@ -23,4 +23,4 @@ class PerformanceGoalsActiveStudentsLastSevenDaysContainer extends Component {
   }
 }
 
-export default observer(PerformanceGoalsActiveStudentsLastSevenDaysContainer);
+export default observer(ActiveStudentsLastSevenDaysContainer);

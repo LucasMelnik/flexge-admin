@@ -1,11 +1,11 @@
 import React from 'react';
-import CircularProgress from '../../../../core/layout/CircularProgress';
-import Card from '../../../../core/layout/Card';
-import PerformanceGoalsStudyQualityAverageContainer from './PerformanceGoalsStudyQualityAverageContainer';
-import PerformanceGoalsStudyQualityHigherThanFiveContainer from './PerformanceGoalsStudyQualityHigherThanFiveContainer';
-import PerformanceGoalsActiveStudentsContainer from './PerformanceGoalsActiveStudentsContainer';
-import PerformanceGoalsStudyTimeHigherThanTwoContainer from './PerformanceGoalsStudyTimeHigherThanTwoContainer';
-import PerformanceGoalsActiveStudentsLastSevenDaysContainer from './PerformanceGoalsActiveStudentsLastSevenDaysContainer';
+import CircularProgress from '../../../../../core/layout/CircularProgress';
+import Card from '../../../../../core/layout/Card';
+import StudyQualityAverageContainer from './StudyQualityAverageContainer';
+import StudyQualityHigherThanFiveContainer from './StudyQualityHigherThanFiveContainer';
+import ActiveStudentsContainer from './ActiveStudentsContainer';
+import StudyTimeHigherThanTwoContainer from './StudyTimeHigherThanTwoContainer';
+import ActiveStudentsLastSevenDaysContainer from './ActiveStudentsLastSevenDaysContainer';
 
 const PerformanceGoalWrapper = props => (
   <div
@@ -34,19 +34,19 @@ const PerformanceGoals = () => (
       }}
     >
       <PerformanceGoalWrapper>
-        <PerformanceGoalsStudyQualityAverageContainer />
+        <StudyQualityAverageContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
-        <PerformanceGoalsStudyQualityHigherThanFiveContainer />
+        <StudyQualityHigherThanFiveContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
-        <PerformanceGoalsActiveStudentsContainer />
+        <ActiveStudentsContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
-        <PerformanceGoalsActiveStudentsLastSevenDaysContainer />
+        <ActiveStudentsLastSevenDaysContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
-        <PerformanceGoalsStudyTimeHigherThanTwoContainer />
+        <StudyTimeHigherThanTwoContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
         {/* // TODO  fix to use values from school config */}

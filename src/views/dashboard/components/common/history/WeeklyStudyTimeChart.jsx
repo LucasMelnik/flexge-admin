@@ -4,8 +4,8 @@ import range from 'lodash/range';
 import findIndex from 'lodash/findIndex';
 import moment from 'moment';
 import 'moment-duration-format';
-import Card from '../../../../core/layout/Card';
-import LineChart from '../../../../core/chart/LineChart';
+import Card from '../../../../../core/layout/Card';
+import LineChart from '../../../../../core/chart/LineChart';
 
 const getLabel = (week) => {
   const startYear = moment().startOf('year').add(week, 'weeks');

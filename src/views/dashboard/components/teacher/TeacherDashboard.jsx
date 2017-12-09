@@ -1,6 +1,6 @@
 import React from 'react';
 import Separator from '../../../../core/layout/Separator';
-import PerformanceGoals from '../common/PerformanceGoals';
+import PerformanceGoals from '../common/performance-goals/PerformanceGoals';
 import HistoryCharts from './HistoryCharts';
 import MetricCharts from './MetricCharts';
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import ActiveStudentsByWeekService from '../../services/ActiveStudentsByWeekService';
+import ActiveStudentsByWeekService from '../../../services/ActiveStudentsByWeekService';
 import ActiveStudentsByWeekChart from './ActiveStudentsByWeekChart';
 
 class ActiveStudentsByWeekChartContainer extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import StudyQualityGroupChart from './StudyQualityGroupChart';
-import StudyQualityGroupService from '../../services/StudyQualityGroupService';
+import StudyQualityGroupService from '../../../services/StudyQualityGroupService';
 
 class StudyQualityGroupChartContainer extends Component {
 
