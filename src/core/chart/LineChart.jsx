@@ -23,6 +23,7 @@ const LineChart = props => (
         pointBorderWidth: 0,
         pointRadius: 0,
         data: props.data.map(item => format.valueRender(item)),
+        yAxisID: format.yAxisID,
       })),
     }}
     options={{
@@ -38,17 +39,14 @@ const LineChart = props => (
            labelString: props.xAxesLabelString,
          }
        }],
-       yAxes: [{
+       yAxes: props.yAxes || [{
         ticks: {
           autoSkip: false,
-          // callback: (value, index, values) => {
-          //   return ['PRE A1', 'A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C2'].find((item, itemIndex) => itemIndex === index);;
-          // },
         },
         scaleLabel: {
           display: props.yAxesLabelString && true,
           labelString: props.yAxesLabelString
-        }}]
+        }}],
       },
       hover: {
         mode: 'nearest',
@@ -57,6 +55,7 @@ const LineChart = props => (
       tooltips: {
         mode: 'index',
         intersect: false,
+        callbacks: props.tooltipsCallbacks,
       },
       legend: {
         onClick: () => true,
@@ -73,6 +72,13 @@ LineChart.propTypes = {
     label: PropTypes.string,
     valueRender: PropTypes.func,
   })).isRequired,
+  yAxes: PropTypes.array,
+  tooltipsCallbacks: PropTypes.object,
+};
+
+LineChart.defaultProps = {
+  yAxes: null,
+  tooltipsCallbacks: null,
 };
 
 export default LineChart;
