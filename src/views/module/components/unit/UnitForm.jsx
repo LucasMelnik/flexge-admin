@@ -19,6 +19,7 @@ const UnitForm = props => (
     <Row>
       <Column size={4}>
         <TextInput
+          required
           disabled={props.submitting || props.disabled}
           label="Unit Name"
           value={get(props.values, 'name', '')}
@@ -28,6 +29,7 @@ const UnitForm = props => (
       </Column>
       <Column size={4}>
         <FetchSelect
+          required
           url="modules"
           disabled
           label="Module"
@@ -42,6 +44,7 @@ const UnitForm = props => (
       </Column>
       <Column size={4}>
         <FetchSelect
+          required
           url="unit-types"
           disabled={props.submitting || props.disabled}
           label="Unit Type"
@@ -58,6 +61,7 @@ const UnitForm = props => (
     <Row>
       <Column size={3}>
         <Select
+          required
           options={['A', 'B', 'C', 'D'].map(value => ({
             value,
             label: value
@@ -71,6 +75,7 @@ const UnitForm = props => (
       </Column>
       <Column size={3}>
         <Select
+          required
           options={range(1, 41).map(value => ({
             value,
             label: value.toString(),
@@ -84,6 +89,7 @@ const UnitForm = props => (
       </Column>
       <Column size={3}>
         <Select
+          required
           options={range(70, 105, 5).map(value => ({
             value,
             label: value.toString(),
@@ -97,6 +103,7 @@ const UnitForm = props => (
       </Column>
       <Column size={3}>
         <Select
+          required
           options={[
             { label: 'EASY', value: 'EASY' },
             { label: 'MODERATE', value: 'MODERATE' },

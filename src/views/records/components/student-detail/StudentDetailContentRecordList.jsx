@@ -13,14 +13,19 @@ const StudentDetailContentRecordList = props => (
     columns={[
       {
         label: 'Name',
-        path: 'name',
-        sort: true,
-        render: (value, row) => ({
-          children: row.name ? row.name : moment(row.startedAt).format('DD/MM/YYYY HH:mm'),
-        }),
+        path: 'id',
+        render: (value, row) => {
+          if (row.docType === 'MODULE' || row.docType === 'UNIT') {
+            return row.name;
+          } else if (row.docType === 'MASTERY') {
+            return `Mastery Test for ${row.modulePercentageToActive}%`;
+          }
+          return moment(row.startedAt).format('DD/MM/YYYY HH:mm');
+        },
       },
       {
         label: 'Studied Time',
+        path: 'studiedTime',
         render: (value, row) => ({
           children: moment.duration(row.studiedTime, 'seconds').format('hh:mm:ss', { trim: false }),
         }),
@@ -29,7 +34,7 @@ const StudentDetailContentRecordList = props => (
         label: 'Score',
         path: 'score',
         render: (value, row) => ({
-          children: row.type === 'MODULE' ? (
+          children: row.docType === 'MODULE' ? (
             <div
               style={{
                 display: 'flex',
@@ -72,7 +77,7 @@ const StudentDetailContentRecordList = props => (
               <div>Score to pass: {row.scoreToPass}</div>
             ) : (
               <Alert
-                title={row.points ? `${value}: Good Score` : `${value}: Weak score`}
+                title={row.points ? `Your score ${value} - Approved` : `Your score ${value} - Failed`}
                 type={row.points ? 'success' : 'error'}
               />
             )
@@ -123,6 +128,7 @@ const StudentDetailContentRecordList = props => (
       },
       {
         label: 'Average SR',
+        path: 'averageSpeechRecognitionScore',
         render: (value, row) => ({
           children: value,
           props: {
@@ -137,8 +143,8 @@ const StudentDetailContentRecordList = props => (
 
 StudentDetailContentRecordList.propTypes = {
   contents: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    name: PropTypes.string,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
 };

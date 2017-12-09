@@ -22,28 +22,58 @@ class StudentRecordDetailService {
     this.loadByContent();
   });
 
+  generateAverageSpeecRecognitionScore = (result) => {
+    if (result.items) {
+      const scores = result.items.reduce(
+        (acc, item) => [
+          ...acc,
+          ...item.attempts.map(attempt => (!Number.isNaN(parseInt(attempt.answer, 10)) ? parseInt(attempt.answer, 10) : 0))],
+        [],
+      );
+      return round(scores.reduce((acc, score) => acc + score, 0) / scores.length);
+    }
+  };
+
   loadByContent = action(() => {
     this.fetch.fetch({
-      url: `/records/students/${this.studentId}/content-details`,
+      url: `/records/students/${this.studentId}/courses/594759ae59f1db0d1b019b2c/content-details`,
     }).then(() => {
       if (this.fetch.data) {
         this.contentsDetail = this.fetch.data.map(module => ({
           ...module,
           children: module.children.map(unit => ({
             ...unit,
-            conqueredPoints: unit.children.reduce((acc, result) => acc + result.points, 0),
-            writingPoints: unit.type.abilities.find(ability => ability === 'WRITING') ? (unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints) : 0,
-            listeningPoints: unit.type.abilities.find(ability => ability === 'LISTENING') ? (unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints) : 0,
-            speakingPoints: unit.type.abilities.find(ability => ability === 'SPEAKING') ? (unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints) : 0,
-            readingPoints: unit.type.abilities.find(ability => ability === 'READING') ? (unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints) : 0,
+            ...unit.docType === 'UNIT' && {
+              conqueredPoints: unit.children.reduce((acc, result) => acc + result.points, 0),
+              writingPoints: unit.type.abilities.find(ability => ability === 'WRITING') ? (unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints) : 0,
+              listeningPoints: unit.type.abilities.find(ability => ability === 'LISTENING') ? (unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints) : 0,
+              speakingPoints: unit.type.abilities.find(ability => ability === 'SPEAKING') ? (unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints) : 0,
+              readingPoints: unit.type.abilities.find(ability => ability === 'READING') ? (unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints) : 0,
+              children: !unit.children[0].id ? null : unit.children.map(result => ({
+                ...result,
+                averageSpeechRecognitionScore: this.generateAverageSpeecRecognitionScore(result) || '',
+              })),
+            },
+            ...unit.docType === 'MASTERY' && {
+              conqueredPoints: 0,
+              writingPoints: 0,
+              listeningPoints: 0,
+              speakingPoints: 0,
+              readingPoints: 0,
+            },
           })),
         }));
 
         this.contentsDetail = this.contentsDetail.map((module) => {
-          const totalConquered = module.children.reduce((acc, unit) => acc + unit.conqueredPoints, 0);
+          const totalConquered = module.children.reduce((acc, unit) => acc + (unit.conqueredPoints || 0), 0);
           return {
             ...module,
-            moduleProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints, 0)),
+            moduleProgress: round(totalConquered / module.children.reduce((acc, unit) => {
+              if (unit.docType === 'UNIT') {
+                return acc + unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints;
+              }
+              return acc;
+            }, 0)),
             readingProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.readingPoints, 0)),
             listeningProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.listeningPoints, 0)),
             speakingProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.speakingPoints, 0)),
@@ -61,7 +91,13 @@ class StudentRecordDetailService {
       url: `/records/students/${this.studentId}/date-details`,
     }).then(() => {
       if (this.fetch.data) {
-        this.contents = this.fetch.data;
+        this.contents = this.fetch.data.map(date => ({
+          ...date,
+          children: date.children.map(result => ({
+            ...result,
+            averageSpeechRecognitionScore: this.generateAverageSpeecRecognitionScore(result) || '',
+          })),
+        }));
       } else {
         this.contents = [];
       }

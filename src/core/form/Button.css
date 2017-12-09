@@ -1,0 +1,4 @@
+.ant-btn-danger:focus, .ant-btn-danger:hover {
+    color: #fff !important;
+    border-color: #fff !important;
+}

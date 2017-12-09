@@ -42,6 +42,7 @@ const ItemForm = props => (
       <Row>
         <Column size={4}>
           <FetchSelect
+            required
             url={props.itemsTypeUrl}
             disabled={props.submitting || props.disabled}
             label="Item Type"
@@ -62,6 +63,7 @@ const ItemForm = props => (
         </Column>
         <Column size={2}>
           <TimeInput
+            required
             disabled={props.submitting || props.disabled || props.isTestItem}
             label="Time (minutes)"
             value={get(props.values, 'item.time', '')}

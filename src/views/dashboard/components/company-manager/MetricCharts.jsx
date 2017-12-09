@@ -1,13 +1,13 @@
 import React from 'react';
 import Separator from '../../../../core/layout/Separator';
-import StudyQualityGroupChartContainer from '../common/StudyQualityGroupChartContainer';
-import StudentStudiedTimeChart from '../common/StudentStudiedTimeChart';
-import StudentStudiedDatesChart from '../common/StudentStudiedDatesChart';
+import StudyQualityGroupChartContainer from '../common/metrics/StudyQualityGroupChartContainer';
+import StudentStudiedTimeChartContainer from '../common/metrics/StudentStudiedTimeChartContainer';
+import ActiveStudentsByWeekChartContainer from '../common/metrics/ActiveStudentsByWeekChartContainer';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
-import SchoolEnglishLevelChart from '../common/SchoolEnglishLevelChart';
-import SchoolProgressChart from '../common/SchoolProgressChart';
-import MetricStatusCard from '../common/MetricStatusCard';
-import StudyQualityScoreChartContainer from '../common/StudyQualityScoreChartContainer';
+import SchoolEnglishLevelChart from '../common/metrics/SchoolEnglishLevelChart';
+import SchoolProgressChart from '../common/metrics/SchoolProgressChart';
+import MetricStatusCard from '../common/metrics/MetricStatusCard';
+import StudyQualityChartContainer from '../common/metrics/StudyQualityChartContainer';
 
 const MetricCharts = () => (
   <div>
@@ -125,7 +125,7 @@ const MetricCharts = () => (
           width: '33%',
         }}
       >
-        <StudyQualityScoreChartContainer />
+        <StudyQualityChartContainer />
       </div>
     </div>
     <Separator />
@@ -149,7 +149,7 @@ const MetricCharts = () => (
           width: '33%',
         }}
       >
-        <StudentStudiedTimeChart showDetails={false} />
+        <StudentStudiedTimeChartContainer showDetails={false} />
       </div>
       <div
         style={{
@@ -157,7 +157,7 @@ const MetricCharts = () => (
           width: '33%',
         }}
       >
-        <StudentStudiedDatesChart showDetails={false} />
+        <ActiveStudentsByWeekChartContainer showDetails={false} />
       </div>
     </div>
   </div>

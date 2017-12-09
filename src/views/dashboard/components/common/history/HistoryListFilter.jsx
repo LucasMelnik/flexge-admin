@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Select from '../../../../core/form/Select';
+import Select from '../../../../../core/form/Select';
 
 const HistoryListFilter = props => (
   <Select

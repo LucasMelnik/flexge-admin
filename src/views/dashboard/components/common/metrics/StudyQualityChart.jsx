@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../../../core/layout/Card';
-import BarChart from '../../../../core/chart/BarChart';
-import { GREEN, ORANGE, RED, DARK_GREEN } from '../../../../core/chart/colors';
+import Card from '../../../../../core/layout/Card';
+import BarChart from '../../../../../core/chart/BarChart';
+import { GREEN, ORANGE, RED, DARK_GREEN } from '../../../../../core/chart/colors';
 
-const StudyQualityScoreChart = props => (
+const StudyQualityChart = props => (
   <Card
     title={props.title}
     loading={props.loading}
@@ -41,7 +41,7 @@ const StudyQualityScoreChart = props => (
   </Card>
 );
 
-StudyQualityScoreChart.propTypes = {
+StudyQualityChart.propTypes = {
   loading: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({
@@ -50,4 +50,4 @@ StudyQualityScoreChart.propTypes = {
   })).isRequired,
 };
 
-export default StudyQualityScoreChart;
+export default StudyQualityChart;

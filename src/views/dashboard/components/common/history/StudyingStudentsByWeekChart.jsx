@@ -1,9 +1,9 @@
 import React from 'react';
 import range from 'lodash/range';
-import Card from '../../../../core/layout/Card';
-import LineChart from '../../../../core/chart/LineChart';
+import Card from '../../../../../core/layout/Card';
+import LineChart from '../../../../../core/chart/LineChart';
 
-const StudentStudyHistoryChart = () => (
+const StudyingStudentsByWeekChart = () => (
   <Card title="Alunos da Instituição">
     <LineChart
       labels={range(1, 46).map(value => `W${value}`)}
@@ -69,4 +69,4 @@ const StudentStudyHistoryChart = () => (
   </Card>
 );
 
-export default StudentStudyHistoryChart;
+export default StudyingStudentsByWeekChart;

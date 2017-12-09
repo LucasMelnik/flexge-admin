@@ -70,6 +70,7 @@ export default class FileInput extends Component {
     const hasValue = (this.props.value && !this.state.uploading);
     return (
       <Form.Item
+        colon={false}
         label={this.props.label}
         help={this.props.errorText}
         validateStatus={this.props.errorText && 'error'}

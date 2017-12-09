@@ -28,6 +28,7 @@ const ConfigurationForm = props => (
       <Column size={4}>
         <TextInput
           type="number"
+          required
           disabled={props.submitting}
           label="SR Score to Pass"
           value={get(props.values, 'scoreToPassOfSpeechRecognition', '')}
@@ -37,6 +38,7 @@ const ConfigurationForm = props => (
       </Column>
       <Column size={4}>
         <TextInput
+          required
           label="Placement Introduction video"
           disabled={props.submitting}
           value={get(props.values, 'videoUrl', '')}
@@ -51,6 +53,7 @@ const ConfigurationForm = props => (
           type="number"
           disabled={props.submitting}
           label="Days to 1 Review"
+          required
           value={get(props.values, 'numberOfDayBeforeFirstReview', '')}
           onChange={value => props.onChange('numberOfDayBeforeFirstReview', value)}
           errorText={get(props.errors, 'numberOfDayBeforeFirstReview', null)}
@@ -61,6 +64,7 @@ const ConfigurationForm = props => (
           type="number"
           disabled={props.submitting}
           label="Days to 2 Review"
+          required
           value={get(props.values, 'numberOfDayBeforeSecondReview', '')}
           onChange={value => props.onChange('numberOfDayBeforeSecondReview', value)}
           errorText={get(props.errors, 'numberOfDayBeforeSecondReview', null)}
@@ -69,6 +73,7 @@ const ConfigurationForm = props => (
       <Column size={4}>
         <TextInput
           type="number"
+          required
           disabled={props.submitting}
           label="Percentage to enable next group of Modules"
           value={get(props.values, 'percentageToEnableNextModuleGroup', '')}
@@ -79,6 +84,7 @@ const ConfigurationForm = props => (
       <Column size={4}>
         <TextInput
           type="number"
+          required
           disabled={props.submitting}
           label="Percentage to enable next group of Units"
           value={get(props.values, 'percentageToEnableNextUnitGroup', '')}

@@ -18,8 +18,8 @@ const PlacementTestForm = props => (
     <Row>
       <Column size={2}>
         <FetchSelect
+          required
           url="placement-test-levels?query[level][$ne]=5.5"
-          fullWidth
           disabled={props.submitting}
           label="Level"
           value={get(props.values, 'placementTestLevel', '')}
@@ -34,7 +34,7 @@ const PlacementTestForm = props => (
       <Column size={2}>
         <Select
           floatingLabel
-          fullWidth
+          required
           disabled={props.submitting}
           label="Order"
           value={get(props.values, 'order', '')}
@@ -49,7 +49,7 @@ const PlacementTestForm = props => (
       <Column size={6}>
         <FetchSelect
           url="grammars"
-          fullWidth
+          required
           disabled={props.submitting}
           label="Grammar"
           maxHeight={350}

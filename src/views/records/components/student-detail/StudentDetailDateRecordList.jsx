@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import round from 'lodash/round';
 import Table from '../../../../core/form/Table';
 
 const StudentDetailDateRecordList = props => (
   <Table
+    showTableCount={false}
     fetching={props.fetching}
     columns={[
       {
@@ -15,15 +15,36 @@ const StudentDetailDateRecordList = props => (
       },
       {
         label: 'Course',
-        path: 'unit.module.course.name',
+        render: (cell, row) => {
+          if (row.unit) {
+            return row.unit.module.course.name;
+          } else if (row.masteryTest) {
+            return row.masteryTest.module.course.name;
+          }
+          return '';
+        },
       },
       {
         label: 'Module',
-        path: 'unit.module.name',
+        render: (cell, row) => {
+          if (row.unit) {
+            return row.unit.module.name;
+          } else if (row.masteryTest) {
+            return row.masteryTest.module.name;
+          }
+          return '';
+        },
       },
       {
         label: 'Unit',
-        path: 'unit.name',
+        render: (cell, row) => {
+          if (row.unit) {
+            return row.unit.name;
+          } else if (row.masteryTest) {
+            return row.masteryTest.modulePercentageToActive;
+          }
+          return '';
+        },
       },
       {
         label: 'Type',
@@ -64,19 +85,8 @@ const StudentDetailDateRecordList = props => (
       },
       {
         label: 'Average SR Score',
-        path: 'averageSR',
-        render: (value, row) => {
-          if (row.items) {
-            const scores = row.items.reduce((acc, item) => [
-              ...acc,
-              ...item.attempts.map(attempt => !Number.isNaN(parseInt(attempt.answer, 10)) ? parseInt(attempt.answer, 10) : 0)],
-            []);
-            return round(scores.reduce((acc, score) => acc + score, 0) / scores.length);
-          }
-          return '';
-        },
+        path: 'averageSpeechRecognitionScore',
       },
-
     ]}
     rows={props.contents}
   />
@@ -85,7 +95,6 @@ const StudentDetailDateRecordList = props => (
 StudentDetailDateRecordList.propTypes = {
   contents: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
     unit: PropTypes.shape({
       name: PropTypes.string,
       module: PropTypes.shape({

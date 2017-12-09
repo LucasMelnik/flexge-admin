@@ -16,6 +16,7 @@ const CourseForm = props => (
     <Row>
       <Column size={3}>
         <TextInput
+          required
           disabled={props.submitting}
           label="Name"
           value={get(props.values, 'name', '')}
@@ -27,6 +28,7 @@ const CourseForm = props => (
     <Row>
       <Column size={12}>
         <TextInput
+          required
           disabled={props.submitting}
           label="Description"
           value={get(props.values, 'description', '')}

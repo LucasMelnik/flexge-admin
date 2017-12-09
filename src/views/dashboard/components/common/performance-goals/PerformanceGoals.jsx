@@ -1,9 +1,11 @@
 import React from 'react';
-import CircularProgress from '../../../../core/layout/CircularProgress';
-import Card from '../../../../core/layout/Card';
-import PerformanceGoalsStudyQualityAverageContainer from './PerformanceGoalsStudyQualityAverageContainer';
-import PerformanceGoalsStudyQualityHigherThanFiveContainer from './PerformanceGoalsStudyQualityHigherThanFiveContainer';
-import PerformanceGoalsActiveStudentsContainer from './PerformanceGoalsActiveStudentsContainer';
+import CircularProgress from '../../../../../core/layout/CircularProgress';
+import Card from '../../../../../core/layout/Card';
+import StudyQualityAverageContainer from './StudyQualityAverageContainer';
+import StudyQualityHigherThanFiveContainer from './StudyQualityHigherThanFiveContainer';
+import ActiveStudentsContainer from './ActiveStudentsContainer';
+import StudyTimeHigherThanTwoContainer from './StudyTimeHigherThanTwoContainer';
+import ActiveStudentsLastSevenDaysContainer from './ActiveStudentsLastSevenDaysContainer';
 
 const PerformanceGoalWrapper = props => (
   <div
@@ -17,7 +19,7 @@ const PerformanceGoalWrapper = props => (
   >
     {props.children}
   </div>
-)
+);
 
 const PerformanceGoals = () => (
   <Card title="Your goal is to keep all values green!">
@@ -32,36 +34,19 @@ const PerformanceGoals = () => (
       }}
     >
       <PerformanceGoalWrapper>
-        <PerformanceGoalsStudyQualityAverageContainer />
+        <StudyQualityAverageContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
-        <PerformanceGoalsStudyQualityHigherThanFiveContainer />
+        <StudyQualityHigherThanFiveContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
-        <PerformanceGoalsActiveStudentsContainer />
+        <ActiveStudentsContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
-        <CircularProgress
-          title="Active Students last 7 days"
-          value={63}
-          max={100}
-          successCondition={value => value > 85}
-          badCondition={value => value <= 65}
-          valueRender={value => `${value}%`}
-          legend={localStorage.role === 'TEACHER' && 'School average 60%'}
-        />
+        <ActiveStudentsLastSevenDaysContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
-        {/* // TODO  fix to use values from school config */}
-        <CircularProgress
-          title={`Minimum ${2}hours last 7 days`}
-          value={91}
-          max={100}
-          successCondition={value => value > 50}
-          badCondition={value => value <= 35}
-          valueRender={value => `${value}%`}
-          legend={localStorage.role === 'TEACHER' && 'School average 80%'}
-        />
+        <StudyTimeHigherThanTwoContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
         {/* // TODO  fix to use values from school config */}
