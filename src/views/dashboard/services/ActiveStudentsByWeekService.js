@@ -32,6 +32,13 @@ class ActiveStudentsByWeekService {
           this.activeStudentsByWeek[0].noStudy;
         return studyingStudents / this.activeStudentsByWeek[0].totalStudents * 100;
       }),
+      studiedLast7Days: computed(() => {
+        if (!this.validateResponse()) return null;
+        const activeStudentsLast7Days = this.activeStudentsByWeek.reduce((acc, school) => (
+          acc + this.getActiveStudentsByPeriod(school.classes, 'studyOnLast7Days')
+        ), 0);
+        return activeStudentsLast7Days / this.totalStudents * 100;
+      }),
       averageByPeriod: computed(() => {
         if (!this.validateResponse()) return null;
         const periods = [7, 14, 21, 30];

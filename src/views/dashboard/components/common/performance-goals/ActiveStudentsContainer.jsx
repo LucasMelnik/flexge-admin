@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import ActiveStudentsByWeekService from '../../services/ActiveStudentsByWeekService';
-import CircularProgress from '../../../../core/layout/CircularProgress';
+import ActiveStudentsByWeekService from '../../../services/ActiveStudentsByWeekService';
+import CircularProgress from '../../../../../core/layout/CircularProgress';
 
-class PerformanceGoalsActiveStudentsContainer extends Component {
+class ActiveStudentsContainer extends Component {
   componentWillMount() {
     ActiveStudentsByWeekService.load();
   }
@@ -26,4 +26,4 @@ class PerformanceGoalsActiveStudentsContainer extends Component {
   }
 }
 
-export default observer(PerformanceGoalsActiveStudentsContainer);
+export default observer(ActiveStudentsContainer);

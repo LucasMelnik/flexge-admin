@@ -1,13 +1,13 @@
 import React from 'react';
 import Separator from '../../../../core/layout/Separator';
-import StudyQualityChartContainer from '../common/StudyQualityChartContainer';
-import StudyQualityGroupChartContainer from '../common/StudyQualityGroupChartContainer';
-import StudentStudiedTimeChart from '../common/StudentStudiedTimeChart';
-import ActiveStudentsByWeekChartContainer from '../common/ActiveStudentsByWeekChartContainer';
+import StudyQualityChartContainer from '../common/metrics/StudyQualityChartContainer';
+import StudyQualityGroupChartContainer from '../common/metrics/StudyQualityGroupChartContainer';
+import StudentStudiedTimeChartContainer from '../common/metrics/StudentStudiedTimeChartContainer';
+import ActiveStudentsByWeekChartContainer from '../common/metrics/ActiveStudentsByWeekChartContainer';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
-import SchoolEnglishLevelChart from '../common/SchoolEnglishLevelChart';
-import SchoolClassProgressChart from '../common/SchoolClassProgressChart';
-import MetricStatusCard from '../common/MetricStatusCard';
+import SchoolEnglishLevelChart from '../common/metrics/SchoolEnglishLevelChart';
+import SchoolClassProgressChart from '../common/metrics/SchoolClassProgressChart';
+import MetricStatusCard from '../common/metrics/MetricStatusCard';
 
 const MetricCharts = () => (
   <div>
@@ -149,7 +149,7 @@ const MetricCharts = () => (
           width: '33%',
         }}
       >
-        <StudentStudiedTimeChart showDetails={false} />
+        <StudentStudiedTimeChartContainer showDetails={false} />
       </div>
       <div
         style={{

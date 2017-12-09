@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../../../core/layout/Card';
-import BarChart from '../../../../core/chart/BarChart';
-import { GREEN, ORANGE, RED, DARK_GREEN } from '../../../../core/chart/colors';
+import Card from '../../../../../core/layout/Card';
+import BarChart from '../../../../../core/chart/BarChart';
+import { GREEN, ORANGE, RED, DARK_GREEN } from '../../../../../core/chart/colors';
 
 const StudyQualityChart = props => (
   <Card

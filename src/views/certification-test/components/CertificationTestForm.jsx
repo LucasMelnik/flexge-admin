@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import moment from 'moment';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
+import FileInput from '../../../core/form/FileInput';
 
 const CertificationTestForm = props => (
   <form
@@ -14,29 +16,44 @@ const CertificationTestForm = props => (
     }}
   >
     <Row>
-      <Column size={3}>
+      <Column size={2}>
         <TextInput
           disabled={props.submitting}
-          label="Name"
-          value={get(props.values, 'name', '')}
-          onChange={value => props.onChange('name', value)}
-          errorText={get(props.errors, 'name', null)}
+          label="Student name"
+          value={get(props.values, 'student.name', '')}
+          onChange={value => props.onChange('student.name', value)}
+          errorText={get(props.errors, 'student.name', null)}
+        />
+      </Column>
+      <Column size={2}>
+        <TextInput
+          disabled
+          label="Schedule At"
+          value={moment(props.values.scheduledAt).format('DD/MM/YYYY HH:mm')}
+        />
+      </Column>
+      <Column size={2}>
+        <TextInput
+          disabled
+          label="Schedule For"
+          value={moment(props.values.scheduledFor).format('DD/MM/YYYY HH:mm')}
         />
       </Column>
     </Row>
     <Row>
-      <Column size={12}>
-        <TextInput
+      <Column size={4}>
+        <FileInput
+          label="Upload a student document"
+          accept="image"
           disabled={props.submitting}
-          label="Description"
-          value={get(props.values, 'description', '')}
-          onChange={value => props.onChange('description', value)}
-          errorText={get(props.errors, 'description', null)}
+          value={get(props.values, 'document', '')}
+          onChange={key => props.onChange('document', key)}
+          errorText={get(props.errors, 'document', '')}
         />
       </Column>
     </Row>
     <FormButtons
-      confirmLabel={props.values.id ? 'Update Certification Test' : 'Create Certification Test'}
+      confirmLabel="Update Certification Test"
       isDisabled={props.submitting || !props.isDirty()}
       isSubmitting={props.submitting}
       onReset={props.onReset}

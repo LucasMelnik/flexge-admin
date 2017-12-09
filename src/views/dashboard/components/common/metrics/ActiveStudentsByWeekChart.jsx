@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../../../core/layout/Card';
-import DoughnutChart from '../../../../core/chart/DoughnutChart';
-import { DARK_RED, DARK_GREEN, GREEN, ORANGE, RED } from '../../../../core/chart/colors';
-import Separator from '../../../../core/layout/Separator';
-import Table from '../../../../core/form/Table';
+import Card from '../../../../../core/layout/Card';
+import DoughnutChart from '../../../../../core/chart/DoughnutChart';
+import { DARK_RED, DARK_GREEN, GREEN, ORANGE, RED } from '../../../../../core/chart/colors';
+import Separator from '../../../../../core/layout/Separator';
+import Table from '../../../../../core/form/Table';
 
 const ActiveStudentsByWeekChart = props => (
   <Card
