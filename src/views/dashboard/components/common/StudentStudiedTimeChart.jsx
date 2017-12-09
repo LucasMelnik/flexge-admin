@@ -9,11 +9,12 @@ import { DARK_GREEN, GREEN, ORANGE, RED } from '../../../../core/chart/colors';
 const StudentStudiedTimeChart = props => (
   <Card
     title="Studied time last 7 days"
+    loading={props.loading}
   >
     <DoughnutChart
-      labels={['Não estudou', 'até 1h de estudo', 'até 2h de estudo', 'mais de 2h']}
-      data={[10, 20, 50, 20]}
-      colors={[RED, ORANGE, GREEN, DARK_GREEN]}
+      labels={['More than 2h', 'Until 2h', 'Until 1h', 'Didn\'t study']}
+      data={props.data}
+      colors={[DARK_GREEN, GREEN, ORANGE, RED]}
     />
     {props.showDetails && (
       <Separator size="md" />
@@ -49,6 +50,8 @@ const StudentStudiedTimeChart = props => (
 
 StudentStudiedTimeChart.propTypes = {
   showDetails: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 StudentStudiedTimeChart.defaultProps = {

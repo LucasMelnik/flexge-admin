@@ -2,7 +2,7 @@ import React from 'react';
 import Separator from '../../../../core/layout/Separator';
 import StudyQualityChartContainer from '../common/StudyQualityChartContainer';
 import StudyQualityGroupChartContainer from '../common/StudyQualityGroupChartContainer';
-import StudentStudiedTimeChart from '../common/StudentStudiedTimeChart';
+import StudentStudiedTimeChartContainer from '../common/StudentStudiedTimeChartContainer';
 import ActiveStudentsByWeekChartContainer from '../common/ActiveStudentsByWeekChartContainer';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import SchoolEnglishLevelChart from '../common/SchoolEnglishLevelChart';
@@ -149,7 +149,7 @@ const MetricCharts = () => (
           width: '33%',
         }}
       >
-        <StudentStudiedTimeChart showDetails={false} />
+        <StudentStudiedTimeChartContainer showDetails={false} />
       </div>
       <div
         style={{

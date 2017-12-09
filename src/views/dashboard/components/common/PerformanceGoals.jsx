@@ -5,6 +5,7 @@ import PerformanceGoalsStudyQualityAverageContainer from './PerformanceGoalsStud
 import PerformanceGoalsStudyQualityHigherThanFiveContainer from './PerformanceGoalsStudyQualityHigherThanFiveContainer';
 import PerformanceGoalsActiveStudentsContainer from './PerformanceGoalsActiveStudentsContainer';
 import PerformanceGoalsStudyTimeHigherThanTwoContainer from './PerformanceGoalsStudyTimeHigherThanTwoContainer';
+import PerformanceGoalsActiveStudentsLastSevenDaysContainer from './PerformanceGoalsActiveStudentsLastSevenDaysContainer';
 
 const PerformanceGoalWrapper = props => (
   <div
@@ -42,19 +43,10 @@ const PerformanceGoals = () => (
         <PerformanceGoalsActiveStudentsContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
-        <PerformanceGoalsStudyTimeHigherThanTwoContainer />
+        <PerformanceGoalsActiveStudentsLastSevenDaysContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
-        {/* // TODO  fix to use values from school config */}
-        <CircularProgress
-          title={`Minimum ${2}hours last 7 days`}
-          value={91}
-          max={100}
-          successCondition={value => value > 50}
-          badCondition={value => value <= 35}
-          valueRender={value => `${value}%`}
-          legend={localStorage.role === 'TEACHER' && 'School average 80%'}
-        />
+        <PerformanceGoalsStudyTimeHigherThanTwoContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
         {/* // TODO  fix to use values from school config */}

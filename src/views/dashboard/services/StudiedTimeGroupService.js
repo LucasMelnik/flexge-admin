@@ -18,6 +18,20 @@ class StudiedTimeGroupService {
           }, 0);
         }, 0);
       }),
+      totalByGroup: computed(() => {
+        if (!this.validateResponse()) return null;
+        return Object.keys(this.studiedTimeGroups).map((key) => {
+          if (this.studiedTimeGroups[key]) {
+            return this.studiedTimeGroups[key].reduce((schoolAcc, school) => {
+              if (school.classes) {
+                return schoolAcc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
+              }
+              return schoolAcc;
+            }, 0);
+          }
+          return [];
+        });
+      }),
       higherThanTwo: computed(() => {
         if (!this.validateResponse()) return null;
         const totalHigherThanTwo = this.studiedTimeGroups.excellent.reduce((acc, school) => {
