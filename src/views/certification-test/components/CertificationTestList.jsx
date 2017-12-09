@@ -22,7 +22,7 @@ class CertificationTestList extends Component {
 
   render() {
     return (
-      <form>
+      <div>
         <Table
           fetching={this.props.fetching}
           columns={[
@@ -133,22 +133,8 @@ class CertificationTestList extends Component {
           isOpen={this.state.visible}
           onCancel={this.handleCancel}
           actions={[
-<<<<<<< HEAD
-            <Button
-              label="Cancel"
-              key="back"
-              onClick={this.handleCancel}
-            />,
-            <Button
-              label="Confirm"
-              key="submit"
-              type="primary"
-              onClick={this.handleOk}
-            />,
-=======
             <Button label="Cancel" key="back" type="danger" onClick={this.handleCancel} />,
             <Button label="Confirm" key="submit" type="default" onClick={() => this.props.onSubmitSchedule(this.state.certificationTest, this.handleCancel)} />
->>>>>>> d895306a3a13ed28826ecc28bc7a92c538249592
           ]}
         >
           <div
@@ -175,13 +161,8 @@ class CertificationTestList extends Component {
             />
           </div>
         </Dialog>
-<<<<<<< HEAD
       </div>
     );
-=======
-      </form>
-    )
->>>>>>> d895306a3a13ed28826ecc28bc7a92c538249592
   }
 }
 
@@ -191,18 +172,15 @@ CertificationTestList.propTypes = {
     name: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
-<<<<<<< HEAD
   values: PropTypes.object,
   errors: PropTypes.object,
   onChange: PropTypes.func.isRequired,
+  onSubmitSchedule: PropTypes.func.isRequired,
 };
 
 CertificationTestList.defaultProps = {
   values: {},
   errors: {},
-=======
-  onSubmitSchedule: PropTypes.func.isRequired,
->>>>>>> d895306a3a13ed28826ecc28bc7a92c538249592
 };
 
 export default CertificationTestList;
