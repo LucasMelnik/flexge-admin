@@ -17,6 +17,7 @@ const SchoolGradeConfigForm = props => (
     <Row>
       <Column size={2}>
         <Select
+          required
           disabled={props.submitting}
           label="Required hours in week"
           value={get(props.values, 'weeklyHoursRequired', '')}
@@ -40,6 +41,7 @@ const SchoolGradeConfigForm = props => (
       </Column>
       <Column size={2}>
         <TextInput
+          required
           disabled={props.submitting}
           type="number"
           label="Maximum Grade"
@@ -50,6 +52,7 @@ const SchoolGradeConfigForm = props => (
       </Column>
       <Column size={2}>
         <Select
+          required
           disabled={props.submitting}
           label="Grade Format"
           value={get(props.values, 'gradeFormat', '')}
@@ -69,6 +72,7 @@ const SchoolGradeConfigForm = props => (
       </Column>
       <Column size={2}>
         <TextInput
+          required
           disabled={props.submitting}
           type="number"
           label="Hours percentage"
@@ -79,6 +83,7 @@ const SchoolGradeConfigForm = props => (
       </Column>
       <Column size={2}>
         <TextInput
+          required
           disabled={props.submitting}
           type="number"
           label="Study Quality percentage"

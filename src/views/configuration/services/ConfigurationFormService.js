@@ -17,6 +17,8 @@ class ConfigurationFormService {
       percentageToEnableNextModuleGroup: [isRequired],
       percentageToEnableNextUnitGroup: [isRequired],
       levelPercentageToFinishPlacementTest: [isRequired],
+      videoUrl: [isRequired],
+      scoreToPassOfSpeechRecognition: [isRequired],
     };
   }
 

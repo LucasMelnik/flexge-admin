@@ -17,6 +17,7 @@ const SchoolEvaluationForm = props => (
     <Row>
       <Column size={3}>
         <TextInput
+          required
           disabled={props.submitting}
           label="Period Name"
           value={get(props.values, 'name', '')}
@@ -26,6 +27,7 @@ const SchoolEvaluationForm = props => (
       </Column>
       <Column size={2}>
         <TextInput
+          required
           disabled={props.submitting}
           type="number"
           label="Bonus Weeks"
@@ -36,6 +38,7 @@ const SchoolEvaluationForm = props => (
       </Column>
       <Column size={2}>
         <DateInput
+          required
           disabled={props.submitting || !props.allowSelectStart}
           label="Start"
           value={get(props.values, 'start', undefined) ? props.values.start.toDate() : undefined}
@@ -49,6 +52,7 @@ const SchoolEvaluationForm = props => (
       </Column>
       <Column size={2}>
         <DateInput
+          required
           disabled={props.submitting || !get(props.values, 'start', undefined)}
           label="End"
           value={get(props.values, 'end', undefined) ? props.values.end.toDate() : undefined}

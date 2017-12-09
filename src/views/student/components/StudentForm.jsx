@@ -20,6 +20,7 @@ const StudentForm = props => (
     <Row>
       <Column size={4}>
         <TextInput
+          required
           disabled={props.submitting}
           label="Student Name"
           value={get(props.values, 'name', '')}
@@ -29,6 +30,7 @@ const StudentForm = props => (
       </Column>
       <Column size={4}>
         <TextInput
+          required
           disabled={props.submitting}
           label="Email"
           value={get(props.values, 'email', '')}

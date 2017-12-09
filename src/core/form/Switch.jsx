@@ -4,6 +4,8 @@ import { Switch as AntSwitch, Form } from 'antd';
 
 const Switch = props => (
   <Form.Item
+    colon={false}
+    required={props.required}
     label={props.label}
     help={props.errorText}
     validateStatus={props.errorText && 'error'}
@@ -23,6 +25,7 @@ Switch.propTypes = {
   errorText: PropTypes.string,
   value: PropTypes.bool,
   disabled: PropTypes.bool,
+  required: PropTypes.bool,
   titleOn: PropTypes.string,
   titleOff: PropTypes.string,
   onChange: PropTypes.func,
@@ -34,6 +37,7 @@ Switch.defaultProps = {
   titleOff: '',
   errorText: null,
   disabled: false,
+  required: false,
   onChange: () => null,
 };
 
