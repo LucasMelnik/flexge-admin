@@ -4,6 +4,7 @@ import Card from '../../../../core/layout/Card';
 import PerformanceGoalsStudyQualityAverageContainer from './PerformanceGoalsStudyQualityAverageContainer';
 import PerformanceGoalsStudyQualityHigherThanFiveContainer from './PerformanceGoalsStudyQualityHigherThanFiveContainer';
 import PerformanceGoalsActiveStudentsContainer from './PerformanceGoalsActiveStudentsContainer';
+import PerformanceGoalsStudyTimeHigherThanTwoContainer from './PerformanceGoalsStudyTimeHigherThanTwoContainer';
 
 const PerformanceGoalWrapper = props => (
   <div
@@ -17,7 +18,7 @@ const PerformanceGoalWrapper = props => (
   >
     {props.children}
   </div>
-)
+);
 
 const PerformanceGoals = () => (
   <Card title="Your goal is to keep all values green!">
@@ -41,15 +42,7 @@ const PerformanceGoals = () => (
         <PerformanceGoalsActiveStudentsContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
-        <CircularProgress
-          title="Active Students last 7 days"
-          value={63}
-          max={100}
-          successCondition={value => value > 85}
-          badCondition={value => value <= 65}
-          valueRender={value => `${value}%`}
-          legend={localStorage.role === 'TEACHER' && 'School average 60%'}
-        />
+        <PerformanceGoalsStudyTimeHigherThanTwoContainer />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
         {/* // TODO  fix to use values from school config */}
