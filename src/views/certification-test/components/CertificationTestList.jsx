@@ -8,6 +8,7 @@ import Button from '../../../core/form/Button';
 import Dialog from '../../../core/layout/Dialog';
 import DateInput from '../../../core/form/DateInput';
 import AntTimeInput from '../../../core/form/AntTimeInput';
+import ImagePreview from '../../../core/layout/ImagePreview';
 
 class CertificationTestList extends Component {
   state = {
@@ -55,6 +56,13 @@ class CertificationTestList extends Component {
             {
               label: 'Enabled At',
               path: 'enabledAt',
+              render: (cell, row) => {
+                return (
+                  <div>
+                    {moment(row.scheduledAt).format('DD/MM/YYYY HH:mm')}
+                  </div>
+                );
+              },
             },
             {
               label: 'Started At',
@@ -79,6 +87,13 @@ class CertificationTestList extends Component {
             {
               label: 'Document',
               path: 'document',
+              render: (cell, row) => {
+                if (row.document) {
+                  return (
+                    <ImagePreview src={row.document} />
+                  );
+                }
+              },
             },
             {
               label: 'Comments',
@@ -91,17 +106,19 @@ class CertificationTestList extends Component {
               render: (cell, row) => {
                 return (
                   <div>
-                    <Button
-                      icon="calendar"
-                      onClick={() =>{
-                       this.setState({ visible: true, certificationTest: row });
-                       this.props.onChange('scheduleForDate', moment(row.scheduledFor));
-                       this.props.onChange('scheduleForTime', moment(row.scheduledFor));
-                      }}
-                    />
+                    {!row.enabledAt && (
+                      <Button
+                        icon="calendar"
+                        onClick={() =>{
+                         this.setState({ visible: true, certificationTest: row });
+                         this.props.onChange('scheduleForDate', moment(row.scheduledFor));
+                         this.props.onChange('scheduleForTime', moment(row.scheduledFor));
+                        }}
+                      />
+                    )}
                     {' '}
                     <Button
-                      icon="edit"
+                      icon="play-circle"
                       onClick={() => browserHistory.push(`/certification-test/${row.id}`)}
                     />
                   </div>
