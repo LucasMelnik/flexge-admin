@@ -6,7 +6,13 @@ class EnglishLevelService {
 
   constructor() {
     extendObservable(this, {
-      englishLevelProgress: [{}],
+      englishLevelProgress: [],
+      average: computed(() => (
+        this.englishLevelProgress.length ? (
+          this.englishLevelProgress.reduce((acc, level) => acc + level.averageEnglishLevel, 0)
+            / this.englishLevelProgress.length
+        ) : 0
+      )),
     });
   }
 

@@ -4,10 +4,10 @@ import StudyQualityChartContainer from '../common/metrics/StudyQualityChartConta
 import StudyQualityGroupChartContainer from '../common/metrics/StudyQualityGroupChartContainer';
 import StudiedTimeChartContainer from '../common/metrics/StudiedTimeChartContainer';
 import ActiveStudentsByWeekChartContainer from '../common/metrics/ActiveStudentsByWeekChartContainer';
-import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import EnglishLevelByPeriodChartContainer from '../common/metrics/EnglishLevelByPeriodChartContainer';
 import SchoolClassProgressChart from '../common/metrics/SchoolClassProgressChart';
 import MetricStatusCard from '../common/metrics/MetricStatusCard';
+import AverageEnglishLevelContainer from '../common/metrics/AverageEnglishLevelContainer';
 
 const MetricCharts = () => (
   <div>
@@ -25,33 +25,7 @@ const MetricCharts = () => (
           textAlign: 'center',
         }}
       >
-        <MetricStatusCard status="bad">
-          <p>Nível de Inglês do Colégio</p>
-          <Separator size="xs" />
-          <div
-            style={{
-              display: 'inline-block',
-              fontSize: 48,
-              lineHeight: '48px',
-            }}
-          >
-            <div
-              style={{
-                display: 'inline-block',
-              }}
-            >
-              1.29
-            </div>
-            <ColumnSeparator size="lg" />
-            <div
-              style={{
-                display: 'inline-block',
-              }}
-            >
-              A1
-            </div>
-          </div>
-        </MetricStatusCard>
+        <AverageEnglishLevelContainer />
       </div>
       <div
         style={{
