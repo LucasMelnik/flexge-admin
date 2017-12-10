@@ -11,7 +11,7 @@ import AverageEnglishLevelContainer from '../common/metrics/AverageEnglishLevelC
 
 const MetricCharts = () => (
   <div>
-    <h1>Estas são suas metricas.</h1>
+    <h2>Metrics</h2>
     <Separator />
     <div
       style={{
@@ -34,7 +34,7 @@ const MetricCharts = () => (
         }}
       >
         <MetricStatusCard status="normal">
-          <p>Progresso médio por semestre</p>
+          <p>Semiannual Average Progress</p>
           <Separator size="xs" />
           <div
             style={{
@@ -56,7 +56,7 @@ const MetricCharts = () => (
         <MetricStatusCard
           status="good"
         >
-          <p>Projeção para B2</p>
+          <p>B2 Projection</p>
           <Separator size="xs" />
           <div
             style={{

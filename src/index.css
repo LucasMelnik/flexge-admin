@@ -15,8 +15,6 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #fafafa;
-  background-color: rgba(0, 150, 136, 0.05);
 }
 
 html, body, #root {
@@ -46,6 +44,10 @@ html, body, #root {
 
 h1, h2, h3, h4, h5 {
   color: rgb(103, 106, 108) !important;
+}
+
+.ant-layout {
+  background-color: #f3f3f4 !important;
 }
 
 .ant-layout-header {
