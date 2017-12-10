@@ -11,10 +11,9 @@ class SchoolEvaluationSceneContainer extends Component {
   }
 
   render() {
-    const school = JSON.parse(localStorage.getItem('school'));
     return (
       <SchoolEvaluationScene
-        schoolId={school ? school._id : null}
+        schoolId={SchoolEvaluationListService.schoolId}
         fetching={SchoolEvaluationListService.fetch.fetching}
         selectedYear={SchoolEvaluationListService.selectedYear}
       />
