@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { browserHistory } from 'react-router';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
@@ -25,9 +26,19 @@ const SchoolClassList = props => (
         path: 'studentCount',
       },
       {
+        label: 'Start',
+        path: 'start',
+        render: value => value && moment(value).format('DD/MM/YYYY'),
+      },
+      {
+        label: 'End',
+        path: 'end',
+        render: value => value && moment(value).format('DD/MM/YYYY'),
+      },
+      {
         label: 'Actions',
         path: 'action',
-        width: '85px',
+        width: '105px',
         render: (cell, row) => {
           return (
             <div>

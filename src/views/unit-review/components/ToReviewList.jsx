@@ -18,6 +18,7 @@ const ToReviewList = props => (
           label: 'Name',
           path: 'unit.name',
           sort: true,
+          defaultSortOrder: 'ascend',
         },
         {
           label: 'Course',
@@ -33,18 +34,18 @@ const ToReviewList = props => (
         {
           label: 'Unit Type',
           path: 'unit.type.name',
-          width: '100px',
+          width: '105px',
           sort: true,
         },
         {
           label: 'Unit creator',
           path: 'unit.createdBy.name',
-          width: '100px',
+          width: '105px',
         },
         {
           label: 'Created By',
           path: 'review.createdBy.name',
-          width: '100px',
+          width: '105px',
         },
         {
           label: 'Status content',

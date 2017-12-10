@@ -1,4 +1,5 @@
 import { extendObservable, action } from 'mobx';
+import moment from 'moment';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -16,6 +17,8 @@ export default class SchoolClassFormService {
     });
     this.form.validations = {
       name: [isRequired],
+      start: [isRequired],
+      end: [isRequired],
     };
   }
 
@@ -43,6 +46,8 @@ export default class SchoolClassFormService {
           teacher: this.fetch.data.teacher && this.fetch.data.teacher.id,
           isPlacementTestClass: this.fetch.data.isPlacementTestClass,
           school: this.fetch.data.school.id,
+          start: this.fetch.data.start && moment(this.fetch.data.start),
+          end: this.fetch.data.start && moment(this.fetch.data.end),
         });
       }
     });

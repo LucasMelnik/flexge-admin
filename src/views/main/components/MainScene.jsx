@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import Menu from '../../../core/layout/Menu';
+import MenuItem from '../../../core/layout/MenuItem';
 import SubMenu from '../../../core/layout/SubMenu';
 import ConfirmDialogContainer from './ConfirmDialogContainer';
 import Button from '../../../core/form/Button';
@@ -10,30 +11,53 @@ const MainScene = props => (
   <Layout>
     <Layout.Header>
       <Menu>
+        <MenuItem
+          title="Dashboard"
+          icon="dashboard"
+          link="/"
+        />
         <SubMenu
           title="Admin"
           icon="user"
           allowedFor={['ADMIN']}
           groups={[
             {
-              group: 'System Configuration',
+              group: 'Admin Register',
             },
             {
-              group: 'Admin Register',
+              group: 'System Configuration',
             },
           ]}
           items={[
             {
-              label: 'General Configuration',
-              link: '/configuration',
-              group: 'System Configuration',
-              icon: 'tool',
+              label: 'Characters',
+              link: '/characters',
+              group: 'Admin Register',
+              icon: 'user',
+            },
+            {
+              label: 'Courses',
+              link: '/courses',
+              group: 'Admin Register',
+              icon: 'book',
+            },
+            {
+              label: 'Regions',
+              link: '/regions',
+              group: 'Admin Register',
+              icon: 'compass',
             },
             {
               label: 'Achievements',
               link: '/achievements',
               group: 'System Configuration',
               icon: 'trophy',
+            },
+            {
+              label: 'General Configuration',
+              link: '/configuration',
+              group: 'System Configuration',
+              icon: 'tool',
             },
             {
               label: 'Item types',
@@ -47,39 +71,18 @@ const MainScene = props => (
               group: 'System Configuration',
               icon: 'arrow-up',
             },
-            {
-              label: 'Courses',
-              link: '/courses',
-              group: 'Admin Register',
-              icon: 'book',
-            },
-            {
-              label: 'Characters',
-              link: '/characters',
-              group: 'Admin Register',
-              icon: 'user',
-            },
-            {
-              label: 'Regions',
-              link: '/regions',
-              group: 'Admin Register',
-              icon: 'compass',
-            },
           ]}
         />
         <SubMenu
           title="Basic Register"
           icon="folder"
-          allowedFor={['ADMIN', 'SCHOOL_MANAGER']}
           groups={[
             {
               group: 'Organizations',
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
             },
             {
               group: 'Users',
-            },
-            {
-              group: 'School Management',
             },
           ]}
           items={[
@@ -93,14 +96,14 @@ const MainScene = props => (
             {
               label: 'Companies',
               link: '/companies',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
               group: 'Organizations',
               icon: 'bank',
             },
             {
               label: 'Schools',
               link: '/schools',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'SCHOOL_MANAGER'],
               group: 'Organizations',
               icon: 'contacts',
             },
@@ -125,40 +128,35 @@ const MainScene = props => (
             {
               label: 'Students',
               link: '/students',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
               group: 'Users',
-            },
-            {
-              label: 'Grade Configuration',
-              link: `/schools/${localStorage.school}/grade-configuration`,
-              allowedFor: ['SCHOOL_MANAGER'],
-              group: 'School Management',
-            },
-            {
-              label: 'Evaluation Periods',
-              link: `/schools/${localStorage.school}/evaluation-periods`,
-              allowedFor: ['SCHOOL_MANAGER'],
-              group: 'School Management',
             },
           ]}
         />
         <SubMenu
           title="Content"
           icon="book"
-          allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN']}
+          allowedFor={['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT']}
           groups={[
             {
               group: 'Content',
             },
             {
-              group: 'Tests',
+              group: 'Reports',
+              allowedFor: ['ADMIN', 'AUDIO_CONTENT'],
             },
             {
-              group: 'Admin',
-              allowedFor: ['ADMIN'],
+              group: 'Tests',
             },
           ]}
           items={[
+            {
+              label: 'Audio',
+              link: '/item-audios',
+              group: 'Content',
+              icon: 'sound',
+              allowedFor: ['AUDIO_CONTENT', 'ADMIN'],
+            },
             {
               label: 'Modules',
               link: '/modules',
@@ -172,6 +170,27 @@ const MainScene = props => (
               icon: 'eye-o',
             },
             {
+              label: 'Approved Images Records',
+              link: '/reports/unit-images',
+              group: 'Reports',
+              icon: 'picture',
+              allowedFor: ['ADMIN'],
+            },
+            {
+              label: 'Placement Item History',
+              link: '/placement-test-items-history',
+              group: 'Reports',
+              icon: 'info-circle-o',
+              allowedFor: ['CONTENT_ADMIN', 'ADMIN'],
+            },
+            {
+              label: 'Unit Items Errors',
+              link: '/reports/unit-errors',
+              group: 'Reports',
+              icon: 'exclamation-circle-o',
+              allowedFor: ['ADMIN'],
+            },
+            {
               label: 'Placement Test',
               link: '/placement-test',
               group: 'Tests',
@@ -183,45 +202,30 @@ const MainScene = props => (
               group: 'Tests',
               icon: 'database',
             },
-            {
-              label: 'Approved Images Records',
-              link: '/records/unit-images',
-              group: 'Admin',
-              icon: 'picture',
-              allowedFor: ['ADMIN'],
-            },
-            {
-              label: 'Unit Items Errors',
-              link: '/records/unit-errors',
-              group: 'Admin',
-              icon: 'exclamation-circle',
-              allowedFor: ['ADMIN'],
-            },
-            {
-              label: 'Audio',
-              link: '/audio',
-              group: 'Admin',
-              icon: 'sound',
-              allowedFor: ['AUDIO_CONTENT', 'ADMIN'],
-            },
           ]}
         />
         <SubMenu
-          title="Records"
+          title="Academic"
           icon="folder-open"
-          allowedFor={['ADMIN']}
           items={[
             {
-              label: 'Placement Item History',
-              link: '/placement-test-items-history',
+              label: 'Achievements',
+              link: '/achievements',
+              icon: 'trophy',
             },
             {
-              label: 'Student Placement/Mastery Tests',
-              link: '/student-tests',
+              label: 'Certification Test',
+              link: '/certification-test',
+              icon: 'contacts',
             },
             {
               label: 'Records',
               link: '/records/filters',
+              icon: 'database',
+            },
+            {
+              label: 'Student Placement/Mastery Tests',
+              link: '/student-tests',
             },
             {
               label: 'Grades',
@@ -230,28 +234,37 @@ const MainScene = props => (
           ]}
         />
         <SubMenu
-          title="Basic Register"
-          icon="folder"
-          allowedFor={['TEACHER']}
-          groups={[]}
-        />
-        <SubMenu
-          title="Academic"
-          icon="book"
-          allowedFor={['TEACHER']}
-          groups={[]}
-        />
-        <SubMenu
-          title="Certifications"
+          title="Ranking"
           icon="trophy"
-          allowedFor={['TEACHER']}
-          groups={[]}
+          items={[
+            {
+              label: 'Students',
+              icon: 'user',
+              link: '/rankings',
+            },
+          ]}
         />
         <SubMenu
-          title="Reports"
-          icon="folder-open"
-          allowedFor={['TEACHER', 'COMPANY_MANAGER']}
-          groups={[]}
+          title="Config"
+          icon="setting"
+          allowedFor={['SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER']}
+          items={[
+            {
+              label: 'Emails',
+              link: '/school-configuration/emails',
+              icon: 'mail',
+            },
+            {
+              label: 'Evaluation Periods',
+              link: '/school-configuration/evaluation-periods',
+              icon: 'calendar',
+            },
+            {
+              label: 'Grades',
+              link: '/school-configuration/grades',
+              icon: 'table',
+            },
+          ]}
         />
       </Menu>
       <div

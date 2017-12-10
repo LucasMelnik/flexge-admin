@@ -7,6 +7,7 @@ import TextInput from '../../../core/form/TextInput';
 import FetchSelect from '../../../core/form/FetchSelect';
 import FormButtons from '../../../core/form/FormButtons';
 import Switch from '../../../core/form/Switch';
+import DateInput from '../../../core/form/DateInput';
 
 const SchoolClassForm = props => (
   <form
@@ -16,8 +17,9 @@ const SchoolClassForm = props => (
     }}
   >
     <Row>
-      <Column size={4}>
+      <Column size={3}>
         <TextInput
+          required
           disabled={props.submitting}
           label="Class Name"
           value={get(props.values, 'name', '')}
@@ -25,7 +27,7 @@ const SchoolClassForm = props => (
           errorText={get(props.errors, 'name', null)}
         />
       </Column>
-      <Column size={4}>
+      <Column size={3}>
         <FetchSelect
           url="/teachers"
           disabled={props.submitting}
@@ -37,6 +39,31 @@ const SchoolClassForm = props => (
             text: 'name',
             value: 'id',
           }}
+        />
+      </Column>
+      <Column size={3}>
+        <DateInput
+          required
+          disabled={props.submitting}
+          label="Start"
+          value={get(props.values, 'start', undefined)}
+          onChange={value => props.onChange('start', value)}
+          errorText={get(props.errors, 'start', null)}
+        />
+      </Column>
+      <Column size={3}>
+        <DateInput
+          required
+          disabled={props.submitting}
+          label="End"
+          value={get(props.values, 'end', undefined)}
+          onChange={value => props.onChange('end', value)}
+          errorText={get(props.errors, 'end', null)}
+          disabledDate={date => date && props.values.start &&
+            (
+              date.valueOf() < props.values.start.valueOf()
+            )
+          }
         />
       </Column>
     </Row>

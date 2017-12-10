@@ -50,7 +50,7 @@ const SubMenu = props => (
 );
 
 SubMenu.propTypes = {
-  allowedFor: PropTypes.arrayOf(PropTypes.string).isRequired,
+  allowedFor: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   groups: PropTypes.arrayOf(PropTypes.shape({
@@ -64,6 +64,7 @@ SubMenu.propTypes = {
 };
 
 SubMenu.defaultProps = {
+  allowedFor: null,
   groups: null,
 };
 

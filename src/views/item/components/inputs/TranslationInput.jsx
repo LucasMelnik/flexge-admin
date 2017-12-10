@@ -9,6 +9,7 @@ const TranslationInput = props => (
   <Row>
     <Column size={props.isTestItem ? 12 : 6}>
       <TextInput
+        required
         label="Text"
         fieldType="textarea"
         disabled={props.submitting || props.disabled}

@@ -1,6 +1,7 @@
 import React from 'react';
 import Separator from '../../../../core/layout/Separator';
-import SummarizedStats from './SummarizedStats';
+import Card from '../../../../core/layout/Card';
+import PerformanceGoals from '../common/performance-goals/PerformanceGoals';
 import HistoryCharts from './HistoryCharts';
 import MetricCharts from './MetricCharts';
 
@@ -9,7 +10,9 @@ const CompanyManagerDashboard = () => (
     <Separator />
     <h1>Welcome back Filipe Colpo.</h1>
     <Separator />
-    <SummarizedStats />
+    <Card title="Your goal is to keep all values green!">
+      <PerformanceGoals />
+    </Card>
     <Separator />
     <MetricCharts />
     <Separator />

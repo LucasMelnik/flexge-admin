@@ -18,6 +18,7 @@ const MasteryTestForm = props => (
     <Row>
       <Column size={4}>
         <TextInput
+          required
           step={1}
           type="number"
           max={100}

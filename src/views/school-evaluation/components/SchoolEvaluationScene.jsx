@@ -19,12 +19,11 @@ const SchoolEvaluationScene = props => (
     />
     <Card
       title="Evaluation Period Year"
-      loading={props.fetching}
     >
       <SchoolEvaluationFilterContainer />
     </Card>
     <Separator />
-    {props.selectedYear && (
+    {(props.selectedYear && props.schoolId) && (
       <Card title="Add an Evaluation period">
         <SchoolEvaluationFormContainer
           schoolId={props.schoolId}
@@ -33,7 +32,7 @@ const SchoolEvaluationScene = props => (
       </Card>
     )}
     <Separator />
-    {props.selectedYear && (
+    {(props.selectedYear && props.schoolId) && (
       <Card title="Evaluations Periods">
         <SchoolEvaluationListContainer />
       </Card>
@@ -43,12 +42,13 @@ const SchoolEvaluationScene = props => (
 
 SchoolEvaluationScene.propTypes = {
   fetching: PropTypes.bool.isRequired,
-  schoolId: PropTypes.string.isRequired,
+  schoolId: PropTypes.string,
   selectedYear: PropTypes.number,
 };
 
 SchoolEvaluationScene.defaultProps = {
   selectedYear: null,
+  schoolId: null,
 };
 
 export default SchoolEvaluationScene;

@@ -21,6 +21,7 @@ const SchoolForm = props => (
     <Row>
       <Column size={6}>
         <TextInput
+          required
           disabled={props.submitting}
           label="School Name"
           value={get(props.values, 'name', '')}
@@ -37,7 +38,7 @@ const SchoolForm = props => (
         <Column size={4}>
           <FetchSelect
             url="/companies"
-            fullWidth
+            required
             disabled={props.submitting || props.disableCompany}
             label="Company"
             value={get(props.values, 'company', '')}

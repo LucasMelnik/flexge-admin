@@ -12,23 +12,61 @@ const hexToRgb = (hex, opacity) => {
 
 const LineChart = props => (
   <Line
-    height={100}
+    height={props.height}
     data={{
       labels: props.labels,
       datasets: props.dataFormat.map((format, index) => ({
         label: format.label,
-        lineTension: 0.2,
-        backgroundColor: hexToRgb(colors[index], '0.5'),
+        backgroundColor: hexToRgb(colors[index], '0.3'),
         borderColor: colors[index],
-        pointHoverRadius: 8,
-        pointBorderColor: '#fff',
-        pointBorderWidth: 2,
-        pointRadius: 6,
+        pointHoverRadius: 0,
+        pointBorderWidth: 0,
+        pointRadius: 0,
+        borderWidth: 1,
         data: props.data.map(item => format.valueRender(item)),
+        yAxisID: format.yAxisID,
       })),
     }}
     options={{
       responsive: true,
+      maintainAspectRatio: false,
+      showLine: false,
+      scales: {
+        xAxes: [{
+         ticks: {
+           autoSkip: false,
+         },
+         gridLines: {
+           display: false,
+         },
+         scaleLabel: {
+           display: props.xAxesLabelString && true,
+           labelString: props.xAxesLabelString,
+         },
+       }],
+       yAxes: props.yAxes || [{
+        ticks: {
+          autoSkip: false,
+        },
+        scaleLabel: {
+          display: props.yAxesLabelString && true,
+          labelString: props.yAxesLabelString
+        }}],
+      },
+      hover: {
+        mode: 'nearest',
+        intersect: true,
+      },
+      tooltips: {
+        mode: 'index',
+        intersect: false,
+        ...props.tooltipsCallbacks && {
+          callbacks: props.tooltipsCallbacks,
+        },
+      },
+      legend: {
+        onClick: () => true,
+      },
     }}
   />
 );
@@ -41,6 +79,19 @@ LineChart.propTypes = {
     label: PropTypes.string,
     valueRender: PropTypes.func,
   })).isRequired,
+  yAxes: PropTypes.array,
+  tooltipsCallbacks: PropTypes.object,
+  yAxesLabelString: PropTypes.string,
+  xAxesLabelString: PropTypes.string,
+  height: PropTypes.number,
+};
+
+LineChart.defaultProps = {
+  yAxes: null,
+  tooltipsCallbacks: null,
+  yAxesLabelString: null,
+  xAxesLabelString: null,
+  height: 200,
 };
 
 export default LineChart;

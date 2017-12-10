@@ -15,7 +15,7 @@ const ReviewUnitItemImageList = props => (
       {
         label: 'Group',
         path: 'group',
-        width: '100px',
+        width: '105px',
       },
       {
         label: 'Text',

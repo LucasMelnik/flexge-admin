@@ -1,104 +1,116 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Progress } from 'antd';
 import Separator from './Separator';
+import TooltipIcon from './TooltipIcon';
+import Async from './Async';
 
-const getPercentage = (value, max) => (value / max) * 100;
+export default class CircularProgress extends Component {
 
-const getStatus = (value) => {
-  if (value >= 70) {
-    return 'success';
-  } else if (value < 70 && value >= 35) {
+  state = { value: 0 }
+
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    noDataText: PropTypes.string.isRequired,
+    fetching: PropTypes.bool.isRequired,
+    value: PropTypes.number,
+    max: PropTypes.number.isRequired,
+    legend: PropTypes.string,
+    tooltip: PropTypes.string,
+    valueRender: PropTypes.func,
+    successCondition: PropTypes.func.isRequired,
+    badCondition: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    legend: null,
+    tooltip: null,
+    value: null,
+    valueRender: null,
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.value && nextProps.value) {
+      setTimeout(() => {
+        this.setState({ value: nextProps.value });
+      }, 300);
+    }
+  }
+
+  getPercentage = (value, max) => (value / max) * 100;
+
+  getStatus = (value) => {
+    if (this.props.successCondition(value)) {
+      return 'success';
+    } else if (this.props.badCondition(value)) {
+      return 'exception';
+    }
     return 'active';
-  } else if (value < 35) {
-    return 'exception';
-  }
-  return null;
-};
+  };
 
-const getValueLegend = (value) => {
-  if (value >= 70) {
-    return 'Excellent';
-  } else if (value < 70 && value >= 35) {
+  getValueLegend = (value) => {
+    if (this.props.successCondition(value)) {
+      return 'Excellent';
+    } else if (this.props.badCondition(value)) {
+      return 'Weak';
+    }
     return 'Moderate';
-  } else if (value < 35) {
-    return 'Weak';
-  }
-  return null;
-};
+  };
 
-const CircularProgress = props => (
-  <div
-    style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      width: 210,
-    }}
-  >
-    <p
-      style={{
-        color: '#424242',
-        fontSize: 14,
-        textAlign: 'center',
-        height: 40,
-      }}
-    >
-      {props.title}
-    </p>
-    <Separator size="sm" />
-    <Progress
-      type="circle"
-      percent={getPercentage(props.value, props.max)}
-      status={getStatus(getPercentage(props.value, props.max))}
-      format={() => (
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
-          <p
+  render() {
+    return (
+      <Async fetching={this.props.fetching}>
+        <div style={{ textAlign: 'center' }}>
+          <div
             style={{
               color: '#424242',
-              fontSize: 32,
+              fontSize: 14,
             }}
           >
-            {props.valueRender ? props.valueRender(props.value) : props.value}
-          </p>
+            {this.props.title}
+            {this.props.tooltip && (
+              <TooltipIcon text={this.props.tooltip} />
+            )}
+          </div>
           <Separator size="xs" />
-          <small
-            style={{
-              fontSize: 12,
-              color: '#424242',
-            }}
-          >
-            {getValueLegend(getPercentage(props.value, props.max))}
-          </small>
+          <Progress
+            type="circle"
+            percent={this.getPercentage(this.state.value, this.props.max)}
+            status={this.getStatus(this.state.value)}
+            strokeWidth={10}
+            format={() => this.props.value !== null ? (
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <div
+                  style={{
+                    color: '#424242',
+                    fontSize: 32,
+                  }}
+                >
+                  {this.props.valueRender ? this.props.valueRender(this.props.value) : this.props.value}
+                </div>
+                <small
+                  style={{
+                    fontSize: 12,
+                    color: '#424242',
+                  }}
+                >
+                  {this.getValueLegend(this.props.value)}
+                </small>
+              </div>
+            ) : this.props.noDataText}
+          />
+          <div style={{ height: 12 }}>
+            {this.props.legend && (
+              <small>{this.props.legend}</small>
+            )}
+          </div>
         </div>
-      )}
-    />
-    {props.legend && (
-      <Separator size="xs" />
-    )}
-    {props.legend && (
-      <small>{props.legend}</small>
-    )}
-  </div>
-);
-
-CircularProgress.propTypes = {
-  title: PropTypes.string.isRequired,
-  valueLabel: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  legend: PropTypes.string,
-  valueRender: PropTypes.func,
-};
-
-CircularProgress.defaultProps = {
-  legend: null,
-  valueRender: null,
-};
-
-export default CircularProgress;
+      </Async>
+    );
+  }
+}

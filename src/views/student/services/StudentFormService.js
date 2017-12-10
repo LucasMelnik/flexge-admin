@@ -62,9 +62,6 @@ export default class StudentFormService {
         const student = this.submit.data;
         this.studentId = student.id;
         this.form.reset();
-        this.form.setInitialValues({
-          ...student,
-        });
         browserHistory.goBack();
         NotificationService.addNotification(
           `Student ${studentId ? 'updated' : 'created'} successfully.`,

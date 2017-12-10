@@ -13,6 +13,7 @@ class StudentListContainer extends Component {
     editable: PropTypes.bool,
     onSelect: PropTypes.func,
     baseUrl: PropTypes.string,
+    hasSchoolClass: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -21,6 +22,7 @@ class StudentListContainer extends Component {
     classId: null,
     editable: false,
     onSelect: null,
+    hasSchoolClass: true,
   };
 
   componentDidMount() {
@@ -36,6 +38,7 @@ class StudentListContainer extends Component {
         editable={this.props.editable}
         onSelect={this.props.onSelect}
         baseUrl={this.props.baseUrl}
+        hasSchoolClass={this.props.hasSchoolClass}
       />
     );
   }

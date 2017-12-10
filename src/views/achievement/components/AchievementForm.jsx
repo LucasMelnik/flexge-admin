@@ -30,6 +30,7 @@ const AchievementForm = props => (
       </Column>
       <Column size={3}>
         <Select
+          required
           label="Achievement Type"
           disabled={props.submitting}
           value={get(props.values, 'type', '')}
@@ -43,6 +44,7 @@ const AchievementForm = props => (
       </Column>
       <Column size={3}>
         <Select
+          required
           label="Achievement Level"
           disabled={props.submitting}
           value={get(props.values, 'level', '')}
