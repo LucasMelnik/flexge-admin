@@ -2,7 +2,7 @@ import React from 'react';
 import Separator from '../../../../core/layout/Separator';
 import StudyQualityChartContainer from '../common/metrics/StudyQualityChartContainer';
 import StudyQualityGroupChartContainer from '../common/metrics/StudyQualityGroupChartContainer';
-import StudentStudiedTimeChartContainer from '../common/metrics/StudentStudiedTimeChartContainer';
+import StudiedTimeChartContainer from '../common/metrics/StudiedTimeChartContainer';
 import ActiveStudentsByWeekChartContainer from '../common/metrics/ActiveStudentsByWeekChartContainer';
 
 const MetricCharts = () => (
@@ -16,7 +16,7 @@ const MetricCharts = () => (
     }}
   >
     <div style={{ flex: '1 1 300px', maxWidth: 500, minWidth: 300, paddingRight: 20, paddingTop: 20 }}>
-      <StudentStudiedTimeChartContainer />
+      <StudiedTimeChartContainer />
     </div>
     <div style={{ flex: '1 1 300px', maxWidth: 500, minWidth: 300, paddingRight: 20, paddingTop: 20 }}>
       <StudyQualityChartContainer />

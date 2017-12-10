@@ -6,7 +6,7 @@ import DoughnutChart from '../../../../../core/chart/DoughnutChart';
 import Separator from '../../../../../core/layout/Separator';
 import { DARK_GREEN, GREEN, ORANGE, RED } from '../../../../../core/chart/colors';
 
-const StudentStudiedTimeChart = props => (
+const StudiedTimeChart = props => (
   <Card
     title="Studied time last 7 days"
     loading={props.loading}
@@ -48,14 +48,14 @@ const StudentStudiedTimeChart = props => (
   </Card>
 );
 
-StudentStudiedTimeChart.propTypes = {
+StudiedTimeChart.propTypes = {
   showDetails: PropTypes.bool,
   loading: PropTypes.bool.isRequired,
   data: PropTypes.array.isRequired,
 };
 
-StudentStudiedTimeChart.defaultProps = {
+StudiedTimeChart.defaultProps = {
   showDetails: true,
 };
 
-export default StudentStudiedTimeChart;
+export default StudiedTimeChart;

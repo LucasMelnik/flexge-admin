@@ -18,6 +18,14 @@ const DoughnutChart = props => (
         position: 'right',
         onClick: () => true,
       },
+      tooltips: {
+        callbacks: props.tooltipsCallbacks || {
+          label: (tooltipItem, data) => {
+            const rate = data.datasets[0].data[tooltipItem.index] || 0;
+            return `${data.labels[tooltipItem.index]}: ${rate}%`;
+          },
+        },
+      },
     }}
   />
 );
@@ -26,6 +34,11 @@ DoughnutChart.propTypes = {
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  tooltipsCallbacks: PropTypes.object,
+};
+
+DoughnutChart.defaultProps = {
+  tooltipsCallbacks: null,
 };
 
 export default DoughnutChart;
