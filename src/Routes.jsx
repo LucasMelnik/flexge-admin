@@ -77,6 +77,7 @@ import SchoolGradeConfigFormScene from './views/school-grade-config/components/S
 import SchoolEvaluationSceneContainer from './views/school-evaluation/components/SchoolEvaluationSceneContainer';
 import CertificationTestListScene from './views/certification-test/components/CertificationTestListScene';
 import CertificationTestFormScene from './views/certification-test/components/CertificationTestFormScene';
+import RankingListScene from './views/ranking/components/RankingListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -191,6 +192,7 @@ const Routes = () => (
       <Route path="school-configuration/emails" component={EmailsScene} />
       <Route path="school-configuration/grades" component={SchoolGradeConfigFormScene} />
       <Route path="school-configuration/evaluation-periods" component={SchoolEvaluationSceneContainer} />
+      <Route path="rankings" component={RankingListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

@@ -105,3 +105,7 @@ h1, h2, h3, h4, h5 {
 .ant-table-tbody>tr.ant-table-row-hover>td, .ant-table-tbody>tr:hover>td, .ant-table-thead>tr.ant-table-row-hover>td, .ant-table-thead>tr:hover>td {
   background: rgba(38, 195, 164, 0.1);
 }
+
+.ant-table-tbody>tr>td.no-padding-column {
+  padding: 0 !important;
+}

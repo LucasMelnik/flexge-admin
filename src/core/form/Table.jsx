@@ -34,6 +34,7 @@ const Table = props => (
         render: column.render,
         sorter: column.sort ? (a, b) => sort(a, b, column.path) : null,
         defaultSortOrder: column.defaultSortOrder,
+        className: column.className,
         onCellClick: props.selectable && column.path !== 'action' ? row => props.onSelect(row) : null,
       }))}
       onChange={props.onChange}
