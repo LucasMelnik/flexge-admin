@@ -9,13 +9,13 @@ const StudyQualityChart = props => (
     title={props.title}
     loading={props.loading}
   >
-    {!props.data.length ? (
+    {!props.values || !props.values.length ? (
       <p>No School Class found.</p>
     ) : (
       <BarChart
-        labels={props.data.map(item => item.label)}
-        data={props.data.map(item => item.value)}
-        colors={props.data.map((item) => {
+        labels={props.labels}
+        data={props.values}
+        colors={props.values.map((item) => {
           if (item.value > 10) {
             return DARK_GREEN;
           } else if (item.value <= 10 && item.value > 5) {
@@ -44,10 +44,8 @@ const StudyQualityChart = props => (
 StudyQualityChart.propTypes = {
   loading: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
-  data: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-    value: PropTypes.number,
-  })).isRequired,
+  labels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  values: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default StudyQualityChart;
