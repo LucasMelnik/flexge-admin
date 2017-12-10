@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import range from 'lodash/range';
 import findIndex from 'lodash/findIndex';
-import moment from 'moment';
 import Card from '../../../../../core/layout/Card';
 import LineChart from '../../../../../core/chart/LineChart';
 import { getLabel } from './utils';

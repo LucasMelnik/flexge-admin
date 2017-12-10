@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { toJS } from 'mobx';
 import AverageStudyQualityService from '../../../services/AverageStudyQualityService';
 import StudyQualityChart from './StudyQualityChart';
 
