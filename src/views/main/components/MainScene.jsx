@@ -240,6 +240,7 @@ const MainScene = props => (
             {
               label: 'Students',
               icon: 'user',
+              link: '/rankings',
             },
           ]}
         />

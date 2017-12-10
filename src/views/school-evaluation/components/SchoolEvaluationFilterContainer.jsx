@@ -6,9 +6,11 @@ import SchoolEvaluationListService from '../services/SchoolEvaluationListService
 
 const SchoolEvaluationFilterContainer = () => (
   <SchoolEvaluationFilter
-    value={SchoolEvaluationListService.selectedYear}
+    values={SchoolEvaluationListService.filterForm.getValues()}
+    errors={SchoolEvaluationListService.filterForm.errors}
+    onChange={SchoolEvaluationListService.filterForm.setValue}
+    onFilter={SchoolEvaluationListService.onSearch}
     years={toJS(SchoolEvaluationListService.years)}
-    onFilter={SchoolEvaluationListService.handleSelectYear}
   />
 );
 

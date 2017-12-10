@@ -4,11 +4,14 @@ import range from 'lodash/range';
 import orderBy from 'lodash/orderBy';
 import sortBy from 'lodash/sortBy';
 import FetchService from '../../../core/services/FetchService';
+import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 import NotificationService from '../../../core/services/NotificationService';
+import { isRequired } from '../../../core/validations';
 
 class SchoolEvaluationListService {
   fetch = new FetchService();
+  filterForm = new FormService();
 
   constructor() {
     extendObservable(this, {
@@ -16,7 +19,12 @@ class SchoolEvaluationListService {
       evaluationsByYear: [],
       years: [],
       selectedYear: null,
+      schoolId: null,
     });
+    this.filterForm.validations = {
+      year: [isRequired],
+      schoolId: (localStorage.role === 'ADMIN' || localStorage.role === 'COMPANY_MANAGER') ? [isRequired] : [],
+    };
   }
 
   init = action((schoolId) => {
@@ -24,7 +32,10 @@ class SchoolEvaluationListService {
     this.years = [];
     this.evaluationsByYear = [];
     this.schoolId = schoolId;
-    this.load();
+    this.filterForm.setInitialValues({ schoolId });
+    if (this.schoolId) {
+      this.load();
+    }
   });
 
   load = action(() => {
@@ -50,10 +61,16 @@ class SchoolEvaluationListService {
     });
   });
 
-  handleSelectYear = action((year) => {
-    this.evaluationsByYear = this.evaluations.filter(evaluation => evaluation.year === year);
-    this.evaluationsByYear = sortBy(this.evaluationsByYear, 'start', 'asc');
-    this.selectedYear = year;
+  onSearch = action(() => {
+    if (this.filterForm.getValue('year')) {
+      this.evaluationsByYear = this.evaluations.filter(evaluation => evaluation.year === this.filterForm.getValue('year'));
+      this.evaluationsByYear = sortBy(this.evaluationsByYear, 'start', 'asc');
+      this.selectedYear = this.filterForm.getValue('year');
+    }
+    if (this.filterForm.getValue('schoolId')) {
+      this.schoolId = this.filterForm.getValue('schoolId');
+      this.load();
+    }
   });
 
   handleRemove = action((evaluation) => {

@@ -73,10 +73,11 @@ import CompanyUserFormScene from './views/user/components/CompanyUserFormScene';
 import DistributorUserListSceneContainer from './views/user/components/DistributorUserListSceneContainer';
 import DistributorUserFormScene from './views/user/components/DistributorUserFormScene';
 import StudentListScene from './views/student/components/StudentListScene';
-import SchoolGradeConfigFormScene from './views/school-grade-config/components/SchoolGradeConfigFormScene';
 import SchoolEvaluationSceneContainer from './views/school-evaluation/components/SchoolEvaluationSceneContainer';
 import CertificationTestListScene from './views/certification-test/components/CertificationTestListScene';
 import CertificationTestFormScene from './views/certification-test/components/CertificationTestFormScene';
+import RankingListScene from './views/ranking/components/RankingListScene';
+import SchoolGradeConfigFormSceneContainer from './views/school-grade-config/components/SchoolGradeConfigFormSceneContainer';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -189,8 +190,9 @@ const Routes = () => (
       <Route path="certification-test/new" component={CertificationTestFormScene} />
       <Route path="certification-test/:certificationTestId" component={CertificationTestFormScene} />
       <Route path="school-configuration/emails" component={EmailsScene} />
-      <Route path="school-configuration/grades" component={SchoolGradeConfigFormScene} />
+      <Route path="school-configuration/grades" component={SchoolGradeConfigFormSceneContainer} />
       <Route path="school-configuration/evaluation-periods" component={SchoolEvaluationSceneContainer} />
+      <Route path="rankings" component={RankingListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
