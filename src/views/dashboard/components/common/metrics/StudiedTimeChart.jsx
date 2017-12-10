@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import Card from '../../../../../core/layout/Card';
-import Table from '../../../../../core/form/Table';
 import DoughnutChart from '../../../../../core/chart/DoughnutChart';
 import Separator from '../../../../../core/layout/Separator';
 import { DARK_GREEN, GREEN, ORANGE, RED } from '../../../../../core/chart/colors';
+import TopStudentsTableContainer from './TopStudentsTableContainer';
 
 const StudiedTimeChart = props => (
   <Card
@@ -20,29 +21,9 @@ const StudiedTimeChart = props => (
       <Separator size="md" />
     )}
     {props.showDetails && (
-      <Table
-        bordered={false}
-        columns={[
-          {
-            label: 'Student',
-            path: 'name',
-          },
-          {
-            label: 'Class',
-            path: 'schoolClass',
-          },
-          {
-            label: 'Studied Time',
-            path: 'studiedTime',
-          },
-        ]}
-        rows={[
-          { name: 'Juciel de Freitas', schoolClass: '3 A', studiedTime: '05:43' },
-          { name: 'Vivian Daniela', schoolClass: '3 A', studiedTime: '05:12' },
-          { name: 'Filipe Colpo', schoolClass: '3 A', studiedTime: '04:57' },
-          { name: 'Rafael Arenas', schoolClass: '3 A', studiedTime: '04:24' },
-          { name: 'Débora Vargas', schoolClass: '3 A', studiedTime: '04:13' },
-        ]}
+      <TopStudentsTableContainer
+        from={moment().subtract(7, 'days').startOf('day').toDate()}
+        to={moment().endOf('day').toDate()}
       />
     )}
   </Card>

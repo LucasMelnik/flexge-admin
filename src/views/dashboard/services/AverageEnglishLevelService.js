@@ -1,7 +1,7 @@
 import { action, extendObservable, computed } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
-class EnglishLevelService {
+class AverageEnglishLevelService {
   fetch = new FetchService();
 
   constructor() {
@@ -21,7 +21,7 @@ class EnglishLevelService {
   load = action(() => {
     this.englishLevelProgress = [];
     this.fetch.fetch({
-      url: '/reports/english-level-progress',
+      url: '/reports/semiannual-average-english-level',
     }).then(() => {
       if (this.fetch.data) {
         this.englishLevelProgress = this.fetch.data;
@@ -30,6 +30,6 @@ class EnglishLevelService {
   });
 }
 
-const englishLevelService = new EnglishLevelService();
+const averageEnglishLevelService = new AverageEnglishLevelService();
 
-export default englishLevelService;
+export default averageEnglishLevelService;

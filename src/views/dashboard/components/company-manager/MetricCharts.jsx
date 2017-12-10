@@ -2,7 +2,7 @@ import React from 'react';
 import Separator from '../../../../core/layout/Separator';
 import StudyQualityGroupChartContainer from '../common/metrics/StudyQualityGroupChartContainer';
 import StudiedTimeChartContainer from '../common/metrics/StudiedTimeChartContainer';
-import ActiveStudentsByWeekChartContainer from '../common/metrics/ActiveStudentsByWeekChartContainer';
+import ActiveStudentsByPeriodChartContainer from '../common/metrics/ActiveStudentsByPeriodChartContainer';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import EnglishLevelByPeriodChartContainer from '../common/metrics/EnglishLevelByPeriodChartContainer';
 import SchoolProgressChart from '../common/metrics/SchoolProgressChart';
@@ -157,7 +157,7 @@ const MetricCharts = () => (
           width: '33%',
         }}
       >
-        <ActiveStudentsByWeekChartContainer showDetails={false} />
+        <ActiveStudentsByPeriodChartContainer showDetails={false} />
       </div>
     </div>
   </div>

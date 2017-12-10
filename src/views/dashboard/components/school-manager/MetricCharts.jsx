@@ -3,7 +3,7 @@ import Separator from '../../../../core/layout/Separator';
 import StudyQualityChartContainer from '../common/metrics/StudyQualityChartContainer';
 import StudyQualityGroupChartContainer from '../common/metrics/StudyQualityGroupChartContainer';
 import StudiedTimeChartContainer from '../common/metrics/StudiedTimeChartContainer';
-import ActiveStudentsByWeekChartContainer from '../common/metrics/ActiveStudentsByWeekChartContainer';
+import ActiveStudentsByPeriodChartContainer from '../common/metrics/ActiveStudentsByPeriodChartContainer';
 import EnglishLevelByPeriodChartContainer from '../common/metrics/EnglishLevelByPeriodChartContainer';
 import SchoolClassProgressChart from '../common/metrics/SchoolClassProgressChart';
 import MetricStatusCard from '../common/metrics/MetricStatusCard';
@@ -131,7 +131,7 @@ const MetricCharts = () => (
           width: '33%',
         }}
       >
-        <ActiveStudentsByWeekChartContainer showDetails={false} />
+        <ActiveStudentsByPeriodChartContainer showDetails={false} />
       </div>
     </div>
   </div>

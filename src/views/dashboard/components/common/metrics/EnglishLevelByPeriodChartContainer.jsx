@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import EnglishLevelService from '../../../services/EnglishLevelService';
+import AverageEnglishLevelService from '../../../services/AverageEnglishLevelService';
 import EnglishLevelByPeriodChart from './EnglishLevelByPeriodChart';
 
 class EnglishLevelByPeriodChartContainer extends Component {
   componentWillMount() {
-    EnglishLevelService.load();
+    AverageEnglishLevelService.load();
   }
 
   render() {
     return (
       <EnglishLevelByPeriodChart
-        data={EnglishLevelService.englishLevelProgress}
-        loading={EnglishLevelService.fetch.fetching}
+        data={AverageEnglishLevelService.englishLevelProgress}
+        loading={AverageEnglishLevelService.fetch.fetching}
       />
     );
   }
