@@ -95,12 +95,12 @@ export default class CircularProgress extends Component {
                 </div>
               )}
             />
-            {this.props.legend && (
-              <Separator size="xs" />
-            )}
-            {this.props.legend && (
-              <small>{this.props.legend}</small>
-            )}
+            <Separator size="xs" />
+            <div style={{ height: 12 }}>
+              {this.props.legend && (
+                <small>{this.props.legend}</small>
+              )}
+            </div>
           </div>
         ) : (
           <p>{this.props.noDataText}</p>

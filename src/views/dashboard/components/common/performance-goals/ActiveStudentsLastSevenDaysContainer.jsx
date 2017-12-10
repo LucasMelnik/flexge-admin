@@ -10,8 +10,8 @@ class ActiveStudentsLastSevenDaysContainer extends Component {
       <CircularProgress
         fetching={ActiveStudentsByWeekService.fetch.fetching}
         noDataText="No students found"
-        title="Active Students Last 7 days"
-        tooltip="Students which studied in the last 7 days"
+        title="Active Students 7 days"
+        tooltip="Students which studied at least once in the last 7 days"
         value={ActiveStudentsByWeekService.studiedLast7Days}
         max={100}
         successCondition={value => value > 50}
