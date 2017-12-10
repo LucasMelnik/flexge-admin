@@ -4,7 +4,7 @@ import StudyQualityGroupChartContainer from '../common/metrics/StudyQualityGroup
 import StudiedTimeChartContainer from '../common/metrics/StudiedTimeChartContainer';
 import ActiveStudentsByWeekChartContainer from '../common/metrics/ActiveStudentsByWeekChartContainer';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
-import SchoolEnglishLevelChart from '../common/metrics/SchoolEnglishLevelChart';
+import EnglishLevelByPeriodChartContainer from '../common/metrics/EnglishLevelByPeriodChartContainer';
 import SchoolProgressChart from '../common/metrics/SchoolProgressChart';
 import MetricStatusCard from '../common/metrics/MetricStatusCard';
 import StudyQualityChartContainer from '../common/metrics/StudyQualityChartContainer';
@@ -109,7 +109,7 @@ const MetricCharts = () => (
           width: '33%',
         }}
       >
-        <SchoolEnglishLevelChart />
+        <EnglishLevelByPeriodChartContainer />
       </div>
       <div
         style={{
