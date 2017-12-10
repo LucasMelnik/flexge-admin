@@ -19,7 +19,9 @@ const MetricStatusCard = props => (
     <Separator size="xs" />
     <p>{props.title}</p>
     <Separator size="xs" />
-    {props.children}
+    <div style={{ fontSize: 40 }}>
+      {props.children}
+    </div>
   </Card>
 );
 

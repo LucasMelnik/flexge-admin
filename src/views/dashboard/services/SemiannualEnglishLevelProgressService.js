@@ -1,7 +1,7 @@
 import { action, extendObservable, computed } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
-class EnglishLevelService {
+class SemiannualEnglishLevelProgressService {
   fetch = new FetchService();
 
   constructor() {
@@ -9,9 +9,12 @@ class EnglishLevelService {
       englishLevelProgress: [],
       average: computed(() => (
         this.englishLevelProgress.length ? (
-          this.englishLevelProgress.reduce((acc, level) => acc + level.averageEnglishLevel, 0)
+          this.englishLevelProgress.reduce((acc, level) => acc + level.schoolAverageProgress, 0)
             / this.englishLevelProgress.length
         ) : 0
+      )),
+      projection: computed(() => (
+        4 / (this.average / 6)
       )),
     });
   }
@@ -30,6 +33,6 @@ class EnglishLevelService {
   });
 }
 
-const englishLevelService = new EnglishLevelService();
+const semiannualEnglishLevelProgressService = new SemiannualEnglishLevelProgressService();
 
-export default englishLevelService;
+export default semiannualEnglishLevelProgressService;

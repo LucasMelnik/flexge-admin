@@ -3,11 +3,12 @@ import Separator from '../../../../core/layout/Separator';
 import StudyQualityGroupChartContainer from '../common/metrics/StudyQualityGroupChartContainer';
 import StudiedTimeChartContainer from '../common/metrics/StudiedTimeChartContainer';
 import ActiveStudentsByPeriodChartContainer from '../common/metrics/ActiveStudentsByPeriodChartContainer';
-import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import EnglishLevelByPeriodChartContainer from '../common/metrics/EnglishLevelByPeriodChartContainer';
 import SchoolProgressChart from '../common/metrics/SchoolProgressChart';
-import MetricStatusCard from '../common/metrics/MetricStatusCard';
 import StudyQualityChartContainer from '../common/metrics/StudyQualityChartContainer';
+import AverageEnglishLevelContainer from '../common/metrics/AverageEnglishLevelContainer';
+import SemiannualAverageProgressContainer from '../common/metrics/SemiannualAverageProgressContainer';
+import B2ProjectionContainer from '../common/metrics/B2ProjectionContainer';
 
 const MetricCharts = () => (
   <div>
@@ -25,33 +26,7 @@ const MetricCharts = () => (
           textAlign: 'center',
         }}
       >
-        <MetricStatusCard status="bad">
-          <p>Nível de Inglês do Colégio</p>
-          <Separator size="xs" />
-          <div
-            style={{
-              display: 'inline-block',
-              fontSize: 48,
-              lineHeight: '48px',
-            }}
-          >
-            <div
-              style={{
-                display: 'inline-block',
-              }}
-            >
-              1.29
-            </div>
-            <ColumnSeparator size="lg" />
-            <div
-              style={{
-                display: 'inline-block',
-              }}
-            >
-              A1
-            </div>
-          </div>
-        </MetricStatusCard>
+        <AverageEnglishLevelContainer />
       </div>
       <div
         style={{
@@ -59,19 +34,7 @@ const MetricCharts = () => (
           textAlign: 'center',
         }}
       >
-        <MetricStatusCard status="normal">
-          <p>Progresso médio por semestre</p>
-          <Separator size="xs" />
-          <div
-            style={{
-              display: 'inline-block',
-              fontSize: 48,
-              lineHeight: '48px',
-            }}
-          >
-            0,91
-          </div>
-        </MetricStatusCard>
+        <SemiannualAverageProgressContainer />
       </div>
       <div
         style={{
@@ -79,21 +42,7 @@ const MetricCharts = () => (
           textAlign: 'center',
         }}
       >
-        <MetricStatusCard
-          status="good"
-        >
-          <p>Projeção para B2</p>
-          <Separator size="xs" />
-          <div
-            style={{
-              display: 'inline-block',
-              fontSize: 48,
-              lineHeight: '48px',
-            }}
-          >
-            4a e 2m
-          </div>
-        </MetricStatusCard>
+        <B2ProjectionContainer />
       </div>
     </div>
     <Separator />

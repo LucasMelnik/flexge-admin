@@ -10,7 +10,6 @@ const AverageEnglishLevel = props => (
     <div
       style={{
         display: 'flex',
-        fontSize: 48,
         alignItems: 'center',
         justifyContent: 'space-around',
       }}
