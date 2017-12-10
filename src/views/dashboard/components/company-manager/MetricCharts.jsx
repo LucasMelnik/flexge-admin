@@ -1,13 +1,14 @@
 import React from 'react';
 import Separator from '../../../../core/layout/Separator';
-import StudentStudyQualityChart from '../common/StudentStudyQualityChart';
-import StudentStudiedTimeChart from '../common/StudentStudiedTimeChart';
-import StudentStudiedDatesChart from '../common/StudentStudiedDatesChart';
-import Alert from '../../../../core/layout/Alert';
-import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
-import SchoolEnglishLevelChart from '../common/SchoolEnglishLevelChart';
-import SchoolProgressChart from '../common/SchoolProgressChart';
-import SchoolStudyQualityChart from '../common/SchoolStudyQualityChart';
+import StudyQualityGroupChartContainer from '../common/metrics/StudyQualityGroupChartContainer';
+import StudiedTimeChartContainer from '../common/metrics/StudiedTimeChartContainer';
+import ActiveStudentsByPeriodChartContainer from '../common/metrics/ActiveStudentsByPeriodChartContainer';
+import EnglishLevelByPeriodChartContainer from '../common/metrics/EnglishLevelByPeriodChartContainer';
+import SemiannualEnglishLevelProgressChartContainer from '../common/metrics/SemiannualEnglishLevelProgressChartContainer';
+import StudyQualityChartContainer from '../common/metrics/StudyQualityChartContainer';
+import AverageEnglishLevelContainer from '../common/metrics/AverageEnglishLevelContainer';
+import SemiannualAverageProgressContainer from '../common/metrics/SemiannualAverageProgressContainer';
+import B2ProjectionContainer from '../common/metrics/B2ProjectionContainer';
 
 const MetricCharts = () => (
   <div>
@@ -21,104 +22,27 @@ const MetricCharts = () => (
     >
       <div
         style={{
-          width: '24%',
+          width: '33%',
           textAlign: 'center',
         }}
       >
-        <Alert
-          title="Nível de Inglês do Colégio"
-          showIcon={false}
-        >
-          <div
-            style={{
-              display: 'inline-block',
-              marginTop: 25,
-              fontSize: 48,
-            }}
-          >
-            <div
-              style={{
-                display: 'inline-block',
-              }}
-            >
-              1.29
-            </div>
-            <ColumnSeparator size="lg" />
-            <div
-              style={{
-                display: 'inline-block',
-              }}
-            >
-              A1
-            </div>
-          </div>
-        </Alert>
+        <AverageEnglishLevelContainer />
       </div>
       <div
         style={{
-          width: '24%',
+          width: '33%',
           textAlign: 'center',
         }}
       >
-        <Alert
-          title="Progresso médio por semestre"
-          showIcon={false}
-          type="success"
-        >
-          <div
-            style={{
-              display: 'inline-block',
-              marginTop: 25,
-              fontSize: 48,
-            }}
-          >
-            0,91
-          </div>
-        </Alert>
+        <SemiannualAverageProgressContainer />
       </div>
       <div
         style={{
-          width: '24%',
+          width: '33%',
           textAlign: 'center',
         }}
       >
-        <Alert
-          title="Projeção para B2"
-          showIcon={false}
-          type="success"
-        >
-          <div
-            style={{
-              display: 'inline-block',
-              marginTop: 25,
-              fontSize: 48,
-            }}
-          >
-            4a e 2m
-          </div>
-        </Alert>
-      </div>
-      <div
-        style={{
-          width: '24%',
-          textAlign: 'center',
-        }}
-      >
-        <Alert
-          title="Ranking por Instituição"
-          showIcon={false}
-          type="success"
-        >
-          <div
-            style={{
-              display: 'inline-block',
-              marginTop: 25,
-              fontSize: 48,
-            }}
-          >
-            3º lugar
-          </div>
-        </Alert>
+        <B2ProjectionContainer />
       </div>
     </div>
     <Separator />
@@ -131,42 +55,26 @@ const MetricCharts = () => (
       <div
         style={{
           display: 'inline-block',
-          width: '49%',
+          width: '33%',
         }}
       >
-        <SchoolEnglishLevelChart />
+        <EnglishLevelByPeriodChartContainer />
       </div>
       <div
         style={{
           display: 'inline-block',
-          width: '49%',
+          width: '33%',
         }}
       >
-        <SchoolProgressChart />
-      </div>
-    </div>
-    <Separator />
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
-      <div
-        style={{
-          display: 'inline-block',
-          width: '49%',
-        }}
-      >
-        <SchoolStudyQualityChart />
+        <SemiannualEnglishLevelProgressChartContainer />
       </div>
       <div
         style={{
           display: 'inline-block',
-          width: '49%',
+          width: '33%',
         }}
       >
-        <StudentStudyQualityChart />
+        <StudyQualityChartContainer />
       </div>
     </div>
     <Separator />
@@ -179,18 +87,26 @@ const MetricCharts = () => (
       <div
         style={{
           display: 'inline-block',
-          width: '49%',
+          width: '33%',
         }}
       >
-        <StudentStudiedTimeChart showDetails={false} />
+        <StudyQualityGroupChartContainer />
       </div>
       <div
         style={{
           display: 'inline-block',
-          width: '49%',
+          width: '33%',
         }}
       >
-        <StudentStudiedDatesChart />
+        <StudiedTimeChartContainer showDetails={false} />
+      </div>
+      <div
+        style={{
+          display: 'inline-block',
+          width: '33%',
+        }}
+      >
+        <ActiveStudentsByPeriodChartContainer showDetails={false} />
       </div>
     </div>
   </div>

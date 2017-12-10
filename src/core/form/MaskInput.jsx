@@ -24,6 +24,7 @@ export default class MaskInput extends Component {
     blocks: PropTypes.arrayOf(PropTypes.number),
     numericOnly: PropTypes.bool,
     numeralPositiveOnly: PropTypes.bool,
+    required: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -34,6 +35,7 @@ export default class MaskInput extends Component {
     delimiters: [],
     numericOnly: false,
     numeralPositiveOnly: false,
+    required: false,
     maskType: 'custom',
     blocks: [],
   };
@@ -75,6 +77,7 @@ export default class MaskInput extends Component {
   render() {
     return (
       <TextInput
+        required={this.props.required}
         label={this.props.label}
         value={this.state.maskedValue}
         onChange={this.handleChange}

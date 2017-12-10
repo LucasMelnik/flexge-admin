@@ -56,11 +56,12 @@ import CharacterListScene from './views/character/components/CharacterListScene'
 import CharacterFormScene from './views/character/components/CharacterFormScene';
 import AchievementListScene from './views/achievement/components/AchievementListScene';
 import AchievementFormScene from './views/achievement/components/AchievementFormScene';
+import EmailsScene from './views/emails/components/EmailsScene';
 
-import FilterRecordScene from './views/reports/components/FilterRecordScene';
-import SchoolClassRecordScene from './views/reports/components/school-class/SchoolClassRecordScene';
-import StudentRecordScene from './views/reports/components/student/StudentRecordScene';
-import StudentDetailRecordScene from './views/reports/components/student-detail/StudentDetailRecordScene';
+import FilterRecordScene from './views/records/components/FilterRecordScene';
+import SchoolClassRecordSceneContainer from './views/records/components/school-class/SchoolClassRecordSceneContainer';
+import StudentRecordSceneContainer from './views/records/components/student/StudentRecordSceneContainer';
+import StudentDetailRecordSceneContainer from './views/records/components/student-detail/StudentDetailRecordSceneContainer';
 import UnitImageRecordScene from './views/reports/components/unit-image/UnitImageRecordScene';
 import UnitItemErrorRecordScene from './views/reports/components/unit-error/UnitItemErrorRecordScene';
 import ItemAudioListScene from './views/item-audio/components/ItemAudioListScene';
@@ -72,8 +73,11 @@ import CompanyUserFormScene from './views/user/components/CompanyUserFormScene';
 import DistributorUserListSceneContainer from './views/user/components/DistributorUserListSceneContainer';
 import DistributorUserFormScene from './views/user/components/DistributorUserFormScene';
 import StudentListScene from './views/student/components/StudentListScene';
-import SchoolGradeConfigFormScene from './views/school-grade-config/components/SchoolGradeConfigFormScene';
 import SchoolEvaluationSceneContainer from './views/school-evaluation/components/SchoolEvaluationSceneContainer';
+import CertificationTestListScene from './views/certification-test/components/CertificationTestListScene';
+import CertificationTestFormScene from './views/certification-test/components/CertificationTestFormScene';
+import RankingListScene from './views/ranking/components/RankingListScene';
+import SchoolGradeConfigFormSceneContainer from './views/school-grade-config/components/SchoolGradeConfigFormSceneContainer';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -119,8 +123,6 @@ const Routes = () => (
       <Route path="schools" component={SchoolListScene} />
       <Route path="schools/new" component={SchoolFormSceneContainer} />
       <Route path="schools/:schoolId" component={SchoolFormSceneContainer} />
-      <Route path="schools/:schoolId/grade-configuration" component={SchoolGradeConfigFormScene} />
-      <Route path="schools/:schoolId/evaluation-periods" component={SchoolEvaluationSceneContainer} />
       <Route path="schools/:schoolId/details" component={SchoolDetailSceneContainer} />
       <Route path="schools/:schoolId/classes/new" component={SchoolClassFormSceneContainer} />
       <Route path="schools/:schoolId/classes/:classId" component={SchoolClassFormSceneContainer} />
@@ -174,16 +176,23 @@ const Routes = () => (
       <Route path="student-tests" component={StudentTestListScene} />
       <Route path="student-tests/:studentId" component={StudentTestDetailsScene} />
       <Route path="records/filters" component={FilterRecordScene} />
-      <Route path="records/schools/:schoolId/classes" component={SchoolClassRecordScene} />
-      <Route path="records/schools/:schoolId/classes/:classId/students" component={StudentRecordScene} />
-      <Route path="records/schools/:schoolId/classes/:classId/students/:studentId/detail" component={StudentDetailRecordScene} />
-      <Route path="records/students/:studentId/detail" component={StudentDetailRecordScene} />
-      <Route path="records/unit-images" component={UnitImageRecordScene} />
-      <Route path="records/unit-errors" component={UnitItemErrorRecordScene} />
+      <Route path="records/schools/:schoolId/classes" component={SchoolClassRecordSceneContainer} />
+      <Route path="records/schools/:schoolId/classes/:classId/students" component={StudentRecordSceneContainer} />
+      <Route path="records/schools/:schoolId/classes/:classId/students/:studentId/detail" component={StudentDetailRecordSceneContainer} />
+      <Route path="records/students/:studentId/detail" component={StudentDetailRecordSceneContainer} />
+      <Route path="reports/unit-images" component={UnitImageRecordScene} />
+      <Route path="reports/unit-errors" component={UnitItemErrorRecordScene} />
       <Route path="item-audios" component={ItemAudioListScene} />
       <Route path="achievements" component={AchievementListScene} />
       <Route path="achievements/new" component={AchievementFormScene} />
       <Route path="achievements/:achievementId" component={AchievementFormScene} />
+      <Route path="certification-test" component={CertificationTestListScene} />
+      <Route path="certification-test/new" component={CertificationTestFormScene} />
+      <Route path="certification-test/:certificationTestId" component={CertificationTestFormScene} />
+      <Route path="school-configuration/emails" component={EmailsScene} />
+      <Route path="school-configuration/grades" component={SchoolGradeConfigFormSceneContainer} />
+      <Route path="school-configuration/evaluation-periods" component={SchoolEvaluationSceneContainer} />
+      <Route path="rankings" component={RankingListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

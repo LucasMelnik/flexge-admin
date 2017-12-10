@@ -5,6 +5,7 @@ import SchoolGradeConfigForm from './SchoolGradeConfigForm';
 import SchoolGradeConfigFormService from '../services/SchoolGradeConfigFormService';
 
 class SchoolGradeConfigFormContainer extends Component {
+
   static propTypes = {
     schoolId: PropTypes.string.isRequired,
   };

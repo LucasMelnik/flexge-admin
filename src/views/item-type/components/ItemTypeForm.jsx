@@ -17,6 +17,7 @@ const ItemTypeForm = props => (
     <Row>
       <Column size={3}>
         <TextInput
+          required
           disabled={props.submitting}
           label="Name"
           value={get(props.values, 'name', '')}
@@ -26,6 +27,7 @@ const ItemTypeForm = props => (
       </Column>
       <Column size={3}>
         <TextInput
+          required
           disabled={!!get(props.values, 'id', null) || props.submitting}
           label="Key"
           value={get(props.values, 'key', '')}
@@ -72,6 +74,7 @@ const ItemTypeForm = props => (
     <Row>
       <Column size={4}>
         <TextInput
+          required
           type="number"
           label="Unit Time"
           disabled={props.submitting}
@@ -82,6 +85,7 @@ const ItemTypeForm = props => (
       </Column>
       <Column size={4}>
         <TextInput
+          required
           type="number"
           label="Placement Time"
           disabled={props.submitting}
@@ -92,6 +96,7 @@ const ItemTypeForm = props => (
       </Column>
       <Column size={4}>
         <TextInput
+          required
           type="number"
           label="Mastery Time"
           disabled={props.submitting}

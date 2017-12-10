@@ -26,13 +26,14 @@ const CompanyForm = props => (
           value={get(props.values, 'name', '')}
           onChange={value => props.onChange('name', value)}
           errorText={get(props.errors, 'name', null)}
+          required
         />
       </Column>
       <PermissionValidator allowedFor={['ADMIN']}>
         <Column size={4}>
           <FetchSelect
             url="/distributors"
-            fullWidth
+            required
             disabled={props.submitting || props.disableDistributor}
             label="Distributor"
             value={get(props.values, 'distributor', '')}
@@ -59,6 +60,7 @@ const CompanyForm = props => (
           delimiters={['.', '.', '/', '-']}
           blocks={[2, 3, 3, 4, 2]}
           numericOnly
+          required
         />
       </Column>
       <Column size={6}>
@@ -105,6 +107,7 @@ const CompanyForm = props => (
           onChange={value => props.onChange('state', value)}
           errorText={get(props.errors, 'state', '')}
           options={props.states}
+          required
         />
       </Column>
       <Column size={6}>

@@ -4,9 +4,14 @@ import { Select as AntSelect, Form } from 'antd';
 
 const Select = props => (
   <Form.Item
+    colon={false}
+    required={props.required}
     label={props.label}
     help={props.errorText}
     validateStatus={props.errorText && 'error'}
+    style={{
+      minWidth: 200,
+    }}
   >
     <AntSelect
       allowClear
@@ -15,7 +20,7 @@ const Select = props => (
       }}
       placeholder={props.placeholder}
       disabled={props.disabled}
-      value={props.value}
+      value={props.value || undefined}
       onChange={value => props.onChange && props.onChange(value)}
     >
       {props.options.map(option => (
@@ -39,12 +44,14 @@ Select.propTypes = {
   })).isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]),
   disabled: PropTypes.bool,
+  required: PropTypes.bool,
   placeholder: PropTypes.string,
   errorText: PropTypes.string,
 };
 
 Select.defaultProps = {
   disabled: false,
+  required: false,
   value: null,
   errorText: null,
   placeholder: '',

@@ -21,6 +21,7 @@ export default class FetchSelect extends Component {
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
     defaultSelect: PropTypes.bool,
+    required: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -29,6 +30,7 @@ export default class FetchSelect extends Component {
     errorText: null,
     disabled: false,
     defaultSelect: false,
+    required: false,
   };
 
   state = { data: [] };
@@ -67,6 +69,7 @@ export default class FetchSelect extends Component {
   render() {
     return (
       <Select
+        required={this.props.required}
         value={this.props.value}
         label={this.props.label}
         disabled={this.props.disabled}

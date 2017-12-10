@@ -12,6 +12,7 @@ class TextInput extends Component {
     type: PropTypes.oneOf(['text', 'password', 'number']),
     placeholder: PropTypes.string,
     disabled: PropTypes.bool,
+    required: PropTypes.bool,
     fieldType: PropTypes.oneOf(['textarea', 'input']),
     errorText: PropTypes.string,
     textAreaRows: PropTypes.string,
@@ -23,6 +24,7 @@ class TextInput extends Component {
     placeholder: null,
     type: 'text',
     disabled: false,
+    required: false,
     fieldType: 'input',
     errorText: null,
     textAreaRows: '2',
@@ -32,6 +34,8 @@ class TextInput extends Component {
   render() {
     return (
       <Form.Item
+        required={this.props.required}
+        colon={false}
         label={this.props.label}
         help={this.props.errorText}
         validateStatus={this.props.errorText && 'error'}

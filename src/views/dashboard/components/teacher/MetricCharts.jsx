@@ -1,60 +1,30 @@
 import React from 'react';
 import Separator from '../../../../core/layout/Separator';
-import SchoolClassStudyQualityChart from '../common/SchoolClassStudyQualityChart';
-import StudentStudyQualityChart from '../common/StudentStudyQualityChart';
-import StudentStudiedTimeChart from '../common/StudentStudiedTimeChart';
-import StudentStudiedDatesChart from '../common/StudentStudiedDatesChart';
+import StudyQualityChartContainer from '../common/metrics/StudyQualityChartContainer';
+import StudyQualityGroupChartContainer from '../common/metrics/StudyQualityGroupChartContainer';
+import StudiedTimeChartContainer from '../common/metrics/StudiedTimeChartContainer';
+import ActiveStudentsByPeriodChartContainer from '../common/metrics/ActiveStudentsByPeriodChartContainer';
 
 const MetricCharts = () => (
-  <div>
-    <h1>Estas são suas metricas.</h1>
-    <Separator />
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
-      <div
-        style={{
-          display: 'inline-block',
-          width: '49%',
-        }}
-      >
-        <SchoolClassStudyQualityChart />
-      </div>
-      <div
-        style={{
-          display: 'inline-block',
-          width: '49%',
-        }}
-      >
-        <StudentStudyQualityChart />
-      </div>
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      flexWrap: 'wrap',
+      marginTop: -20,
+      marginRight: -20,
+    }}
+  >
+    <div style={{ flex: '1 1 300px', maxWidth: 500, minWidth: 300, paddingRight: 20, paddingTop: 20 }}>
+      <StudiedTimeChartContainer />
     </div>
-    <Separator />
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
-      <div
-        style={{
-          display: 'inline-block',
-          width: '49%',
-        }}
-      >
-        <StudentStudiedTimeChart />
-      </div>
-      <div
-        style={{
-          display: 'inline-block',
-          width: '49%',
-        }}
-      >
-        <StudentStudiedDatesChart />
-      </div>
+    <div style={{ flex: '1 1 300px', maxWidth: 500, minWidth: 300, paddingRight: 20, paddingTop: 20 }}>
+      <StudyQualityChartContainer />
+      <Separator size="xs" />
+      <StudyQualityGroupChartContainer />
+    </div>
+    <div style={{ flex: '1 1 300px', maxWidth: 500, minWidth: 300, paddingRight: 20, paddingTop: 20 }}>
+      <ActiveStudentsByPeriodChartContainer />
     </div>
   </div>
 );

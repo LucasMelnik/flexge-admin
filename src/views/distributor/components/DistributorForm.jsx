@@ -12,6 +12,7 @@ const DistributorForm = props => (
     }}
   >
     <TextInput
+      required
       disabled={props.submitting}
       label="Distributor Name"
       value={get(props.values, 'name', '')}

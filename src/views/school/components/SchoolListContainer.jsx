@@ -25,7 +25,7 @@ class SchoolListContainer extends Component {
     return (
       <SchoolList
         baseUrl={this.props.baseUrl}
-        schools={toJS(SchoolListService.schools)}
+        schools={toJS(SchoolListService.visibleSchools)}
         fetching={SchoolListService.fetch.fetching}
         onDelete={SchoolListService.handleRemove}
       />

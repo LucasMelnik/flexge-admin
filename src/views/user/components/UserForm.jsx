@@ -40,6 +40,7 @@ const UserForm = props => (
     <Row>
       <Column size={4}>
         <TextInput
+          required
           disabled={props.submitting}
           label="User Name"
           value={get(props.values, 'name', '')}
@@ -49,6 +50,7 @@ const UserForm = props => (
       </Column>
       <Column size={4}>
         <TextInput
+          required
           disabled={props.submitting}
           label="Email"
           value={get(props.values, 'email', '')}
@@ -58,6 +60,7 @@ const UserForm = props => (
       </Column>
       <Column size={4}>
         <TextInput
+          required
           type="password"
           disabled={props.submitting}
           label="Password"
@@ -70,6 +73,7 @@ const UserForm = props => (
     <Row>
       <Column size={4}>
         <Select
+          required
           disabled={props.submitting}
           label="Role"
           value={get(props.values, 'role', '')}
@@ -111,9 +115,13 @@ const UserForm = props => (
           />
         </Column>
       )}
-      {(props.type === 'COMPANY' && get(props.values, 'role', '') === 'SCHOOL_MANAGER') && (
+      {(
+        props.type === 'COMPANY' &&
+        (get(props.values, 'role', '') === 'SCHOOL_MANAGER' || get(props.values, 'role', '') === 'TEACHER')
+      ) && (
         <Column size={4}>
           <FetchSelect
+            required
             url={`schools?query[company]=${get(props.values, 'company', '')}`}
             disabled={props.submitting}
             label="School"

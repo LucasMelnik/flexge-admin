@@ -15,8 +15,6 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #fafafa;
-  background-color: rgba(0, 150, 136, 0.05);
 }
 
 html, body, #root {
@@ -24,18 +22,90 @@ html, body, #root {
 }
 
 .ant-tag {
-    height: 28px;
-    line-height: 26px;
+  height: 28px;
+  line-height: 26px;
 }
 
 .ant-tabs-bar {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .ant-alert-with-description .ant-alert-description {
-    white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 
 .ant-progress-circle-path {
-    stroke: #ff972b;
+  stroke: #ff972b;
+}
+
+.ant-card-head-title {
+  color: rgb(103, 106, 108) !important;
+}
+
+h1, h2, h3, h4, h5 {
+  color: rgb(103, 106, 108) !important;
+}
+
+.ant-layout {
+  background-color: #f3f3f4 !important;
+}
+
+.ant-layout-header {
+  background-color: #2f4050;
+}
+
+.ant-menu-dark.ant-menu-horizontal {
+  border-bottom: #2f4050;
+}
+
+.ant-menu-dark {
+  background-color: #2f4050;
+}
+
+.ant-menu-dark, .ant-menu-dark .ant-menu-sub {
+  background: #2f4050;
+}
+
+.ant-menu-item-active, .ant-menu-item:hover, .ant-menu-submenu-active, .ant-menu-submenu-title:hover, .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open {
+  color: #fff;
+}
+
+.ant-menu-item-active, .ant-menu-item, .ant-menu-submenu-active, .ant-menu-submenu-title:hover, .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open {
+  color: #fff;
+}
+
+.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected, .ant-menu.ant-menu-dark .ant-menu-item-selected {
+  background-color: #19aa8d;
+}
+
+.ant-btn-primary {
+  background-color: #19aa8d;
+  border-color: #19aa8d;
+}
+
+.ant-btn-primary:hover {
+  background-color: #26c3a4;
+  border-color: #26c3a4;
+}
+
+.ant-btn:focus, .ant-btn:hover {
+  color: #26c3a4;
+  border-color: #26c3a4;
+}
+.ant-switch-checked {
+  background: #19aa8d !important;
+}
+.ant-input:focus, .ant-input:hover {
+  border-color: #26c3a4;
+}
+.ant-breadcrumb a:hover {
+  color: #26c3a4;
+}
+
+.ant-table-tbody>tr.ant-table-row-hover>td, .ant-table-tbody>tr:hover>td, .ant-table-thead>tr.ant-table-row-hover>td, .ant-table-thead>tr:hover>td {
+  background: rgba(38, 195, 164, 0.1);
+}
+
+.ant-table-tbody>tr>td.no-padding-column {
+  padding: 0 !important;
 }
