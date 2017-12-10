@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Separator from '../../../../../core/layout/Separator';
-import ColumnSeparator from '../../../../../core/layout/ColumnSeparator';
 import MetricStatusCard from './MetricStatusCard';
 
 const AverageEnglishLevel = props => (
@@ -9,27 +7,18 @@ const AverageEnglishLevel = props => (
     loading={props.loading}
     title="Average English Level"
   >
-    
     <div
       style={{
-        display: 'inline-block',
+        display: 'flex',
         fontSize: 48,
-        lineHeight: '48px',
+        alignItems: 'center',
+        justifyContent: 'space-around',
       }}
     >
-      <div
-        style={{
-          display: 'inline-block',
-        }}
-      >
+      <div>
         {props.level}
       </div>
-      <ColumnSeparator size="lg" />
-      <div
-        style={{
-          display: 'inline-block',
-        }}
-      >
+      <div>
         {props.course}
       </div>
     </div>
