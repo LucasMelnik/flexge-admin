@@ -19,10 +19,10 @@ const RankingListScene = () => (
       ]}
     />
     {(localStorage.role === 'ADMIN' || localStorage.role === 'COMPANY_MANAGER') && ([
-      <Card>
+      <Card key="card">
         <RankingListFilterContainer />
       </Card>,
-      <Separator />
+      <Separator key="separator" />,
     ])}
     <Row>
       <Column size={6}>

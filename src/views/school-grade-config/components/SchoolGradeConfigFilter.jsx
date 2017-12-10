@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FetchSelect from '../../../core/form/FetchSelect';
 
-const RankingListFilter = props => (
+const SchoolGradeConfigFilter = props => (
   <FetchSelect
     label="Select the school"
     placeholder="Select the school to check the ranking"
     value={props.value}
     onChange={props.onChange}
-    disabled={props.disabled}
     url={`schools${localStorage.role === 'COMPANY_MANAGER' ? `?company=${JSON.parse(localStorage.getItem('company')).id}` : ''}`}
     resultTransformer={{
       text: 'name',
@@ -17,10 +16,9 @@ const RankingListFilter = props => (
   />
 );
 
-RankingListFilter.propTypes = {
+SchoolGradeConfigFilter.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
 };
 
-export default RankingListFilter;
+export default SchoolGradeConfigFilter;
