@@ -13,7 +13,7 @@ const GrammarNeedsList = props => (
         sort: true,
         render: (value, row) => {
           if (row.children) {
-            return `${value} - ${row.children.length} student${row.children.length > 1 ? 's' : ''} needing help`;
+            return (<span>{value} <b>{row.children.length} student{row.children.length > 1 ? 's' : ''} needing help.</b></span>);
           }
           return value;
         },
