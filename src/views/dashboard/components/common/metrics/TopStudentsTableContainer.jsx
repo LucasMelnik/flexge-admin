@@ -10,17 +10,17 @@ class TopStudentsTableContainer extends Component {
     to: PropTypes.instanceOf(Date).isRequired,
   }
 
-  topStudentsByPeriodService = new TopStudentsByPeriodService();
+  dataService = new TopStudentsByPeriodService();
 
   componentWillMount() {
-    this.topStudentsByPeriodService.load(this.props.from, this.props.to);
+    this.dataService.load(this.props.from, this.props.to);
   }
 
   render() {
     return (
       <TopStudentsTable
-        data={this.topStudentsByPeriodService.topStudentsByPeriod}
-        loading={this.topStudentsByPeriodService.fetch.fetching}
+        data={this.dataService.data}
+        loading={this.dataService.fetch.fetching}
       />
     );
   }

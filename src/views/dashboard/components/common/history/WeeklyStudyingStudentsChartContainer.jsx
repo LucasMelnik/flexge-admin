@@ -15,7 +15,7 @@ class WeeklyStudyingStudentsChartContainer extends Component {
   render() {
     return (
       <WeeklyStudyingStudentsChart
-        data={WeekStatsByPeriodService.weekStatsByPeriod}
+        data={WeekStatsByPeriodService.data}
         loading={WeekStatsByPeriodService.fetch.fetching}
       />
     );

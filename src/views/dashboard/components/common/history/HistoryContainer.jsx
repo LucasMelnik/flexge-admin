@@ -6,10 +6,10 @@ import WeekStatsByPeriodService from '../../../services/WeekStatsByPeriodService
 
 class WeeklyStudyTimeChartContainer extends Component {
 
-  weekStatsByPeriodService = new WeekStatsByPeriodService();
+  dataService = new WeekStatsByPeriodService();
 
   componentWillMount() {
-    this.weekStatsByPeriodService.load(
+    this.dataService.load(
       moment().startOf('year').toDate(),
       moment().endOf('year').toDate(),
     );
@@ -18,8 +18,8 @@ class WeeklyStudyTimeChartContainer extends Component {
   render() {
     return (
       <WeeklyStudyTimeChart
-        data={this.weekStatsByPeriodService.weekStatsByPeriod}
-        loading={this.weekStatsByPeriodService.fetch.fetching}
+        data={this.dataService.data}
+        loading={this.dataService.fetch.fetching}
       />
     );
   }

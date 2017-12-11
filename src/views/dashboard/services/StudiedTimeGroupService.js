@@ -6,11 +6,11 @@ class StudiedTimeGroupService {
 
   constructor() {
     extendObservable(this, {
-      studiedTimeGroups: {},
+      data: {},
       total: computed(() => {
         if (!this.validateResponse()) return null;
-        return Object.keys(this.studiedTimeGroups).reduce((acc, key) => {
-          return acc + this.studiedTimeGroups[key].reduce((schoolAcc, school) => {
+        return Object.keys(this.data).reduce((acc, key) => {
+          return acc + this.data[key].reduce((schoolAcc, school) => {
             if (school.classes) {
               return schoolAcc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
             }
@@ -20,9 +20,9 @@ class StudiedTimeGroupService {
       }),
       totalByGroup: computed(() => {
         if (!this.validateResponse()) return null;
-        const studentsCount = Object.keys(this.studiedTimeGroups).map((key) => {
-          if (this.studiedTimeGroups[key]) {
-            return this.studiedTimeGroups[key].reduce((schoolAcc, school) => {
+        const studentsCount = Object.keys(this.data).map((key) => {
+          if (this.data[key]) {
+            return this.data[key].reduce((schoolAcc, school) => {
               if (school.classes) {
                 return schoolAcc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
               }
@@ -31,11 +31,11 @@ class StudiedTimeGroupService {
           }
           return [];
         });
-        return studentsCount.map(count => count / this.total * 100); 
+        return studentsCount.map(count => count / this.total * 100);
       }),
       higherThanTwo: computed(() => {
         if (!this.validateResponse()) return null;
-        const totalHigherThanTwo = this.studiedTimeGroups.excellent.reduce((acc, school) => {
+        const totalHigherThanTwo = this.data.excellent.reduce((acc, school) => {
           if (school.classes) {
             return acc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
           }
@@ -45,20 +45,20 @@ class StudiedTimeGroupService {
       }),
       higherThanTwoSchoolAverage: computed(() => {
         if (!this.validateResponse()) return null;
-        const totalHigherThanTwo = this.studiedTimeGroups.excellent.reduce((schoolAcc, school) => schoolAcc + school.schoolCount, 0)
+        const totalHigherThanTwo = this.data.excellent.reduce((schoolAcc, school) => schoolAcc + school.schoolCount, 0)
         return totalHigherThanTwo / this.total;
       }),
     });
   }
 
-  validateResponse = () => Object.keys(this.studiedTimeGroups).length > 0;
+  validateResponse = () => Object.keys(this.data).length > 0;
 
-  loadStudyQualityGroups = action(() => {
+  load = action(() => {
     this.fetch.fetch({
       url: '/reports/studied-time-groups',
     }).then(() => {
       if (this.fetch.data) {
-        this.studiedTimeGroups = this.fetch.data;
+        this.data = this.fetch.data;
       }
     });
   });

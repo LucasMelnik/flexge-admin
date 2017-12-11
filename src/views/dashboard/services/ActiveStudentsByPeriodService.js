@@ -1,16 +1,16 @@
 import { action, extendObservable, computed } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
-class ActiveStudentsByPeriodService {
+class dataService {
   fetch = new FetchService();
 
   constructor() {
     extendObservable(this, {
-      ActiveStudentsByPeriod: [],
+      data: [],
       totalActiveStudents: computed(() => {
         if (!this.validateResponse()) return null;
         const periods = [7, 14, 21, 30];
-        const activeStudents = this.ActiveStudentsByPeriod.reduce((schoolAcc, school) => (
+        const activeStudents = this.data.reduce((schoolAcc, school) => (
           schoolAcc + school.classes.reduce((acc, schoolClass) => (
             acc + periods.reduce((classAcc, period) => classAcc + schoolClass[`studyOnLast${period}Days`] || 0, 0)
           ), 0)
@@ -19,7 +19,7 @@ class ActiveStudentsByPeriodService {
       }),
       totalStudents: computed(() => {
         if (!this.validateResponse()) return null;
-        return this.ActiveStudentsByPeriod.reduce((schoolAcc, school) => (
+        return this.data.reduce((schoolAcc, school) => (
           schoolAcc + school.classes.reduce((acc, schoolClass) => (
             acc + schoolClass.totalStudents
           ), 0)
@@ -28,26 +28,26 @@ class ActiveStudentsByPeriodService {
       schoolAverage: computed(() => {
         if (!this.validateResponse()) return null;
         const studyingStudents =
-          this.ActiveStudentsByPeriod[0].totalStudents -
-          this.ActiveStudentsByPeriod[0].noStudy;
-        return studyingStudents / this.ActiveStudentsByPeriod[0].totalStudents * 100;
+          this.data[0].totalStudents -
+          this.data[0].noStudy;
+        return studyingStudents / this.data[0].totalStudents * 100;
       }),
       studiedLast7Days: computed(() => {
         if (!this.validateResponse()) return null;
-        const activeStudentsLast7Days = this.ActiveStudentsByPeriod.reduce((acc, school) => (
-          acc + this.getActiveStudentsByPeriod(school.classes, 'studyOnLast7Days')
+        const activeStudentsLast7Days = this.data.reduce((acc, school) => (
+          acc + this.getdata(school.classes, 'studyOnLast7Days')
         ), 0);
         return activeStudentsLast7Days / this.totalStudents * 100;
       }),
       averageByPeriod: computed(() => {
         if (!this.validateResponse()) return null;
         const periods = [7, 14, 21, 30];
-        const activeStudentsByPeriod = this.ActiveStudentsByPeriod.reduce((acc, school) => {
+        const activeStudentsByPeriod = this.data.reduce((acc, school) => {
           periods.forEach((period) => {
             const periodKey = `studyOnLast${period}Days`;
             acc[periodKey] = acc[periodKey] ?
-              acc[periodKey] + this.getActiveStudentsByPeriod(school.classes, periodKey) :
-              this.getActiveStudentsByPeriod(school.classes, periodKey);
+              acc[periodKey] + this.getdata(school.classes, periodKey) :
+              this.getdata(school.classes, periodKey);
           });
           return acc;
         }, {});
@@ -60,7 +60,7 @@ class ActiveStudentsByPeriodService {
     });
   }
 
-  getActiveStudentsByPeriod = (classes, key) => (
+  getdata = (classes, key) => (
     classes.reduce((acc, schoolClass) => (
       acc + schoolClass[key]
     ), 0)
@@ -68,10 +68,10 @@ class ActiveStudentsByPeriodService {
 
   validateResponse = () => {
     if (
-      !this.ActiveStudentsByPeriod ||
-      !this.ActiveStudentsByPeriod.length ||
-      !this.ActiveStudentsByPeriod[0].classes ||
-      !this.ActiveStudentsByPeriod[0].classes.length
+      !this.data ||
+      !this.data.length ||
+      !this.data[0].classes ||
+      !this.data[0].classes.length
     ) {
       return false;
     }
@@ -79,17 +79,17 @@ class ActiveStudentsByPeriodService {
   }
 
   load = action(() => {
-    this.ActiveStudentsByPeriod = [];
+    this.data = [];
     this.fetch.fetch({
       url: '/reports/active-students-by-week',
     }).then(() => {
       if (this.fetch.data) {
-        this.ActiveStudentsByPeriod = this.fetch.data;
+        this.data = this.fetch.data;
       }
     });
   });
 }
 
-const activeStudentsByPeriodService = new ActiveStudentsByPeriodService();
+const activeStudentsByPeriodService = new dataService();
 
 export default activeStudentsByPeriodService;

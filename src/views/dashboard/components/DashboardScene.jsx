@@ -1,8 +1,8 @@
 import React from 'react';
 import AdminDashboard from './admin/AdminDashboard';
-import TeacherDashboard from './teacher/TeacherDashboard';
-import SchoolManagerDashboard from './school-manager/SchoolManagerDashboard';
-import CompanyManagerDashboard from './company-manager/CompanyManagerDashboard';
+import TeacherDashboardContainer from './teacher/TeacherDashboardContainer';
+import SchoolManagerDashboardContainer from './school-manager/SchoolManagerDashboardContainer';
+import CompanyManagerDashboardContainer from './company-manager/CompanyManagerDashboardContainer';
 
 const DashboardScene = () => (
   <div style={{ padding: 20, paddingTop: 0 }}>
@@ -10,13 +10,13 @@ const DashboardScene = () => (
       <AdminDashboard />
     )}
     {(localStorage.role === 'TEACHER') && (
-      <TeacherDashboard />
+      <TeacherDashboardContainer />
     )}
     {(localStorage.role === 'SCHOOL_MANAGER') && (
-      <SchoolManagerDashboard />
+      <SchoolManagerDashboardContainer />
     )}
     {(localStorage.role === 'COMPANY_MANAGER') && (
-      <CompanyManagerDashboard />
+      <CompanyManagerDashboardContainer />
     )}
   </div>
 );

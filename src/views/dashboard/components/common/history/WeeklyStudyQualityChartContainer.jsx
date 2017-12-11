@@ -15,7 +15,7 @@ class WeeklyStudyQualityChartContainer extends Component {
   render() {
     return (
       <WeeklyStudyQualityChart
-        data={AverageStudyQualityByPeriodService.weekStatsByPeriod}
+        data={AverageStudyQualityByPeriodService.data}
         loading={AverageStudyQualityByPeriodService.fetch.fetching}
       />
     );
