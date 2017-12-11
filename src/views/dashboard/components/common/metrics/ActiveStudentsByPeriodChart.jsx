@@ -9,7 +9,7 @@ import TopStudentsTableContainer from './TopStudentsTableContainer';
 
 const ActiveStudentsByPeriodChart = props => (
   <Card
-    title="Active Students By Period"
+    title="Active Students Last 30 Days"
     loading={props.loading}
   >
     <DoughnutChart
