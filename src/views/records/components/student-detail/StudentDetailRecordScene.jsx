@@ -5,6 +5,8 @@ import Card from '../../../../core/layout/Card';
 import Breadcrumb from '../../../../core/layout/Breadcrumb';
 import StudentDetailContentRecordListContainer from './StudentDetailContentRecordListContainer';
 import StudentDetailDateRecordListContainer from './StudentDetailDateRecordListContainer';
+import Separator from '../../../../core/layout/Separator';
+import StudentDetailHeaderContainer from './StudentDetailHeaderContainer';
 
 const StudentDetailRecordScene = props => (
   <div>
@@ -28,8 +30,21 @@ const StudentDetailRecordScene = props => (
         },
       ]}
     />
+    <Card>
+      <StudentDetailHeaderContainer studentId={props.studentId} />
+    </Card>
+    <Separator />
     <Tabs
       tabs={[
+        {
+          title: 'Analytics',
+          content:
+            (
+              <Card>
+                Analytics
+              </Card>
+            ),
+        },
         {
           title: 'Content Progress',
           content:
