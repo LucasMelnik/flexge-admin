@@ -16,12 +16,13 @@ const Avatar = props => (
 );
 
 Avatar.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
 };
 
 Avatar.defaultProps = {
   size: 'md',
+  src: null,
 };
 
 export default Avatar;
