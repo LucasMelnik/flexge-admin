@@ -1,8 +1,6 @@
 import { action, extendObservable } from 'mobx';
 import moment from 'moment';
-import round from 'lodash/round';
 import FetchService from '../../../core/services/FetchService';
-import HistoryListFilterService from '../../dashboard/services/HistoryListFilterService';
 
 export default class StudentStudyQualityHistoryService {
   fetch = new FetchService();
@@ -22,7 +20,7 @@ export default class StudentStudyQualityHistoryService {
       if (this.fetch.data) {
         this.studyQualities = this.fetch.data;
       } else {
-        this.student = {};
+        this.studyQualities = [];
       }
     });
   });
