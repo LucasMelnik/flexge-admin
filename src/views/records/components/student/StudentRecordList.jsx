@@ -24,6 +24,10 @@ const StudentRecordList = props => (
           path: 'currentEnglishLevel',
         },
         {
+          label: 'Study Quality',
+          path: 'studyQualityScore',
+        },
+        {
           label: 'Current Course',
           path: 'course',
           render: (cell, row) => (

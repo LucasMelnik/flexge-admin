@@ -19,7 +19,6 @@ const MyReviewList = props => (
           label: 'Name',
           path: 'unit.name',
           sort: true,
-          defaultSortOrder: 'ascend',
         },
         {
           label: 'Course',

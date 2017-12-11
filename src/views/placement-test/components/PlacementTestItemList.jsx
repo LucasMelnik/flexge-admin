@@ -15,7 +15,6 @@ const PlacementTestItemList = props => (
         label: 'Text',
         path: 'item.text',
         sort: true,
-        defaultSortOrder: 'ascend',
       },
       {
         label: 'Type',

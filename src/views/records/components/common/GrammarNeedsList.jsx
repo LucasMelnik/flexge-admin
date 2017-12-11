@@ -11,24 +11,23 @@ const GrammarNeedsList = props => (
         path: 'name',
         defaultSortOrder: 'ascend',
         sort: true,
+        render: (value, row) => {
+          if (row.children) {
+            return (<span>{value} <b>{row.children.length} student{row.children.length > 1 ? 's' : ''} needing help.</b></span>);
+          }
+          return value;
+        },
       },
       {
-        label: 'Total',
+        label: 'Attempts',
         path: 'total',
+        width: 200,
         sort: true,
-      },
-      {
-        label: 'Correct',
-        path: 'correctCount',
-      },
-      {
-        label: '% Correct',
-        path: 'correctPercentage',
-        render: value => value && `${value}%`,
       },
       {
         label: '% Error',
         path: 'errorPercentage',
+        width: 100,
         render: value => value && `${value}%`,
       },
     ]}
@@ -40,7 +39,6 @@ GrammarNeedsList.propTypes = {
   grammars: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    correctCount: PropTypes.number.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
 };
