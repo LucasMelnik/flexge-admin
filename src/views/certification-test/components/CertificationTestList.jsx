@@ -59,7 +59,7 @@ class CertificationTestList extends Component {
               render: (cell, row) => {
                 return (
                   <div>
-                    {moment(row.scheduledAt).format('DD/MM/YYYY HH:mm')}
+                    {moment(row.enabledAt).format('DD/MM/YYYY HH:mm')}
                   </div>
                 );
               },
