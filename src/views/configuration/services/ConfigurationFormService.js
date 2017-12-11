@@ -16,7 +16,7 @@ class ConfigurationFormService {
       numberOfDayBeforeSecondReview: [isRequired],
       percentageToEnableNextModuleGroup: [isRequired],
       percentageToEnableNextUnitGroup: [isRequired],
-      levelPercentageToFinishPlacementTest: [isRequired],
+      pointsToIncreaseAfterTestFailure: [isRequired],
       videoUrl: [isRequired],
       scoreToPassOfSpeechRecognition: [isRequired],
     };
@@ -38,7 +38,7 @@ class ConfigurationFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      NotificationService.addNotification( 'Fill the required fields', 'error');
+      NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
     const configurationId = this.form.getValue('id');
@@ -59,7 +59,7 @@ class ConfigurationFormService {
       }
       if (this.submit.error) {
         NotificationService.addNotification(
-          `Error ${configurationId ? 'updating' : 'creating'} module.`,
+          `Error ${configurationId ? 'updating' : 'creating'} the configurations.`,
           'error',
         );
       }
