@@ -4,8 +4,8 @@ import round from 'lodash/round';
 import FetchService from '../../../core/services/FetchService';
 import HistoryListFilterService from '../../dashboard/services/HistoryListFilterService';
 
-export default class StudentHistoryRecordDetailService {
-  fetchStudiedTime = new FetchService();
+export default class StudentStudiedTimeHistoryService {
+  fetch = new FetchService();
 
   constructor() {
     extendObservable(this, {
@@ -16,11 +16,11 @@ export default class StudentHistoryRecordDetailService {
   handleLoad = action((idStudent) => {
     const from = moment().startOf('year').toDate();
     const to = moment().endOf('year').toDate();
-    this.fetchStudiedTime.fetch({
+    this.fetch.fetch({
       url: `/reports/students/${idStudent}/week-stats-by-period?from=${from}&to=${to}`,
     }).then(() => {
-      if (this.fetchStudiedTime.data) {
-        this.studiedTime = this.fetchStudiedTime.data;
+      if (this.fetch.data) {
+        this.studiedTime = this.fetch.data;
       } else {
         this.student = {};
       }

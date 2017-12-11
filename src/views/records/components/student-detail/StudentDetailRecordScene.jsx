@@ -9,6 +9,7 @@ import Separator from '../../../../core/layout/Separator';
 import StudentDetailHeaderContainer from './StudentDetailHeaderContainer';
 import StudentDetailAnalyticsOverviewRecordContainer from './StudentDetailAnalyticsOverviewRecordContainer';
 import StudentDetailAnalyticsStudiedTimeChartContainer from './StudentDetailAnalyticsStudiedTimeChartContainer';
+import StudentDetailAnalyticsStudyQualityChartContainer from './StudentDetailAnalyticsStudyQualityChartContainer';
 
 const StudentDetailRecordScene = props => (
   <div>
@@ -49,6 +50,8 @@ const StudentDetailRecordScene = props => (
                 <Separator />
                 <Card title="History">
                   <StudentDetailAnalyticsStudiedTimeChartContainer studentId={props.studentId} />
+                  <Separator />
+                  <StudentDetailAnalyticsStudyQualityChartContainer studentId={props.studentId} />
                 </Card>
               </div>
             ),
