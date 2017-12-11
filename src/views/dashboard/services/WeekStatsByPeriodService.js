@@ -26,6 +26,6 @@ class WeekStatsByPeriodService {
   });
 }
 
-const dataService = new WeekStatsByPeriodService();
+const weekStatsByPeriodService = new WeekStatsByPeriodService();
 
-export default dataService;
+export default weekStatsByPeriodService;
