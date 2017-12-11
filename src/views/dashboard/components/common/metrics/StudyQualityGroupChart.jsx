@@ -13,8 +13,8 @@ const StudyQualityGroupChart = props => (
     <DoughnutChart
       labels={[
         '% higher than 10',
-        '% between 10 and 5',
-        '% between 5 and 0',
+        '% between 5 and 10',
+        '% between 0 and 5',
         '% between 0 and -5',
       ]}
       data={reverse(props.data)}

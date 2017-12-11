@@ -9,7 +9,7 @@ import TopStudentsTableContainer from './TopStudentsTableContainer';
 
 const ActiveStudentsByPeriodChart = props => (
   <Card
-    title="Active Students By Period"
+    title="Active Students Last 30 Days"
     loading={props.loading}
   >
     <DoughnutChart
@@ -28,6 +28,7 @@ const ActiveStudentsByPeriodChart = props => (
     )}
     {props.showDetails && (
       <TopStudentsTableContainer
+        days={30}
         from={moment().subtract(30, 'days').startOf('day').toDate()}
         to={moment().endOf('day').toDate()}
       />

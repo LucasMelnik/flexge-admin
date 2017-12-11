@@ -14,8 +14,7 @@ class GrammarNeedsListContainer extends Component {
 
   grammarNeedsRecordListService = new GrammarNeedsRecordListService();
   componentDidMount() {
-    this.grammarNeedsRecordListService.init(this.props.schoolId, this.props.classId);
-    this.grammarNeedsRecordListService.loadSchoolClassGrammarNeeds();
+    this.grammarNeedsRecordListService.loadSchoolClassGrammarNeeds(this.props.schoolId, this.props.classId);
   }
 
   render() {

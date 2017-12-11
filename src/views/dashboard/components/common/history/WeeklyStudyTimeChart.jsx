@@ -47,9 +47,9 @@ const WeeklyStudyTimeChart = props => (
           position: 'right',
           id: 'total-hours',
           ticks: {
-            callback: (label) => {
-              return moment.duration(label, 'hours').format('hh:mm', { trim: false });
-            },
+            callback: label => (
+              moment.duration(label, 'hours').format('hh:mm', { trim: false })
+            ),
           },
           gridLines: {
             drawOnChartArea: false,
@@ -59,7 +59,7 @@ const WeeklyStudyTimeChart = props => (
       tooltipsCallbacks={{
         beforeBody: (data) => {
           const item = props.data.find(entry => entry.week === data[0].index + 1);
-          return `Total students: ${item ? item.totalStudents : 0}`;
+          return `Total students: ${item ? item.totalStudyingStudents : 0}`;
         },
         label: (tooltipItem, data) => {
           const index = findIndex(data.labels, label => label === tooltipItem.xLabel);

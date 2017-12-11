@@ -1,25 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
 import Select from '../../../../../core/form/Select';
 
 const HistoryListFilter = props => (
   <Select
     placeholder="Select the year"
-    value={get(props.values, 'year', '')}
-    onChange={value => props.onChange('year', value)}
-    errorText={get(props.errors, 'year', '')}
+    value={props.year}
+    onChange={value => props.onChange(value)}
     options={[
-      { value: 2017, label: '2017' },
-      { value: 2018, label: '2018' },
-      { value: 2019, label: '2019' },
-      { value: 2020, label: '2020' },
+      { value: '2017', label: '2017' },
+      { value: '2018', label: '2018' },
+      { value: '2019', label: '2019' },
+      { value: '2020', label: '2020' },
+      { value: '2021', label: '2021' },
+      { value: '2022', label: '2022' },
     ]}
   />
 );
 
 HistoryListFilter.propTypes = {
-  value: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

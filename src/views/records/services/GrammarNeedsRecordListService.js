@@ -8,23 +8,15 @@ export default class GrammarNeedsRecordListService {
 
   constructor() {
     extendObservable(this, {
-      schoolId: null,
-      schoolClassId: null,
-      studentId: null,
       grammars: [],
     });
   }
 
-  init = action((schoolId, schoolClassId) => {
-    this.schoolId = schoolId;
-    this.schoolClassId = schoolClassId;
-  });
-
-  loadSchoolClassGrammarNeeds = action(() => {
-    const from = moment().days(moment().days() - 30).startOf('day').format('YYYY-MM-DD HH:mm:ss');
+  loadSchoolClassGrammarNeeds = action((schoolId, schoolClassId) => {
+    const from = moment().days(moment().days() - 60).startOf('day').format('YYYY-MM-DD HH:mm:ss');
     const to = moment().endOf('day').format('YYYY-MM-DD HH:mm:ss');
     this.fetch.fetch({
-      url: `/records/schools/${this.schoolId}/school-classes/${this.schoolClassId}/grammar-needs?from=${from}&to=${to}`,
+      url: `/records/schools/${schoolId}/school-classes/${schoolClassId}/grammar-needs?from=${from}&to=${to}`,
     }).then(() => {
       if (this.fetch.data) {
         this.grammars = this.fetch.data.map(grammar => ({
@@ -34,6 +26,23 @@ export default class GrammarNeedsRecordListService {
             id: `${student.id}-${grammar.id}`,
             errorPercentage: round(student.errorPercentage, 2),
           })),
+        }));
+      } else {
+        this.grammars = [];
+      }
+    });
+  });
+
+  loadStudentGrammarNeeds = action((idStudent) => {
+    const from = moment().days(moment().days() - 60).startOf('day').format('YYYY-MM-DD HH:mm:ss');
+    const to = moment().endOf('day').format('YYYY-MM-DD HH:mm:ss');
+    this.fetch.fetch({
+      url: `/records/students/${idStudent}/grammar-needs?from=${from}&to=${to}`,
+    }).then(() => {
+      if (this.fetch.data) {
+        this.grammars = this.fetch.data.map(grammar => ({
+          ...grammar.students[0],
+          ...grammar,
         }));
       } else {
         this.grammars = [];

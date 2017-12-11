@@ -6,40 +6,40 @@ class AverageStudyQualityService {
 
   constructor() {
     extendObservable(this, {
-      studyQualityAverages: [],
+      data: [],
       allSchoolsAverage: computed(() => {
         if (!this.validateResponse()) return null;
-        const total = this.studyQualityAverages.reduce((acc, school) => (
+        const total = this.data.reduce((acc, school) => (
           acc + school.schoolAverageScore
         ), 0);
-        return total / this.studyQualityAverages.length;
+        return total / this.data.length;
       }),
       averageByClass: computed(() => {
         if (!this.validateResponse()) return null;
-        const total = this.studyQualityAverages[0].classes.reduce((acc, schoolClass) => (
+        const total = this.data[0].classes.reduce((acc, schoolClass) => (
           acc + schoolClass.classAverageScore
         ), 0);
-        return total / this.studyQualityAverages[0].classes.length;
+        return total / this.data[0].classes.length;
       }),
     });
   }
 
   validateResponse = () => {
     if (
-      !this.studyQualityAverages ||
-      !this.studyQualityAverages.length
+      !this.data ||
+      !this.data.length
     ) {
       return false;
     }
     return true;
   }
 
-  loadStudyQualityScores = action(() => {
+  load = action(() => {
     this.fetch.fetch({
       url: '/reports/study-quality-average',
     }).then(() => {
       if (this.fetch.data) {
-        this.studyQualityAverages = this.fetch.data;
+        this.data = this.fetch.data;
       }
     });
   });

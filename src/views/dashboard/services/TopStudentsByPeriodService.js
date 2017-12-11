@@ -6,12 +6,12 @@ class TopStudentsByPeriodService {
 
   constructor() {
     extendObservable(this, {
-      topStudentsByPeriod: [],
+      data: [],
     });
   }
 
   load = action((from, to) => {
-    this.topStudentsByPeriod = [];
+    this.data = [];
     this.fetch.fetch({
       url: '/reports/top-students-by-period',
       query: {
@@ -20,7 +20,7 @@ class TopStudentsByPeriodService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.topStudentsByPeriod = this.fetch.data;
+        this.data = this.fetch.data;
       }
     });
   });

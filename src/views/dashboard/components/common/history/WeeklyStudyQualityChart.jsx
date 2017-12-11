@@ -26,7 +26,7 @@ const WeeklyStudyQualityChart = props => (
         ticks: {
           min: -5,
           max: 15,
-          stepSize: 3,
+          stepSize: 5,
         },
       }]}
       tooltipsCallbacks={{

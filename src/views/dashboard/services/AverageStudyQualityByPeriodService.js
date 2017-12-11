@@ -6,12 +6,12 @@ class AverageStudyQualityByPeriodService {
 
   constructor() {
     extendObservable(this, {
-      weekStatsByPeriod: [],
+      data: [],
     });
   }
 
   load = action((from, to) => {
-    this.weekStatsByPeriod = [];
+    this.data = [];
     this.fetch.fetch({
       url: '/reports/average-study-quality-by-period',
       query: {
@@ -21,7 +21,7 @@ class AverageStudyQualityByPeriodService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.weekStatsByPeriod = this.fetch.data;
+        this.data = this.fetch.data;
       }
     });
   });

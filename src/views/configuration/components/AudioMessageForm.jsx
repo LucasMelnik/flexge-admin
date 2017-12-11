@@ -7,6 +7,7 @@ import TextInput from '../../../core/form/TextInput';
 import Button from '../../../core/form/Button';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
+import FileInput from '../../../core/form/FileInput';
 
 const AudioMessageForm = props => (
   <div
@@ -34,13 +35,21 @@ const AudioMessageForm = props => (
     </div>
     {props.showForm && (
       <Row>
-        <Column size={9}>
+        <Column size={6}>
           <TextInput
             label="Text"
             value={get(props.values, 'text', '')}
             onChange={value => props.onChange('text', value)}
             description={get(props.errors, 'text', null)}
             fieldValidation={get(props.errors, 'text', null) && 'error'}
+          />
+        </Column>
+        <Column size={3}>
+          <FileInput
+            value={get(props.values, 'path', '')}
+            onChange={value => props.onChange('path', value)}
+            label="Add audio"
+            accept="audio"
           />
         </Column>
         <Column size={3}>
@@ -71,6 +80,19 @@ const AudioMessageForm = props => (
         {
           label: 'Audio',
           path: 'path',
+          width: '105px',
+          render: (cell) => {
+            if (cell && cell.length) {
+              return (
+                <AudioPreview src={cell} />
+              );
+            }
+            return 'No audio';
+          },
+        },
+        {
+          label: 'Generated Audio',
+          path: 'generatedAudio',
           width: '105px',
           render: (cell) => {
             if (cell && cell.length) {

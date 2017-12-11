@@ -6,12 +6,12 @@ class WeekStatsByPeriodService {
 
   constructor() {
     extendObservable(this, {
-      weekStatsByPeriod: [],
+      data: [],
     });
   }
 
   load = action((from, to) => {
-    this.weekStatsByPeriod = [];
+    this.data = [];
     this.fetch.fetch({
       url: '/reports/week-stats-by-period',
       query: {
@@ -20,7 +20,7 @@ class WeekStatsByPeriodService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.weekStatsByPeriod = this.fetch.data;
+        this.data = this.fetch.data;
       }
     });
   });
