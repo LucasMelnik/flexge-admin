@@ -13,6 +13,7 @@ import StudentDetailAnalyticsStudyQualityChartContainer from './StudentDetailAna
 import StudentDetailAnalyticsAcademicPerformanceHistoryContainer from './StudentDetailAnalyticsAcademicPerformanceHistoryContainer';
 import StudentGrammarNeedsListContainer from '../common/StudentGrammarNeedsListContainer';
 import StudentDetailAnalyticsAcademicPerformanceContainer from './StudentDetailAnalyticsAcademicPerformanceContainer';
+import StudentDetailAchievements from './StudentDetailAchievements';
 
 const StudentDetailRecordScene = props => (
   <div>
@@ -85,6 +86,16 @@ const StudentDetailRecordScene = props => (
               </Card>
             ),
         },
+        {
+          title: 'Achievements',
+          content:
+           (
+             <Card>
+               <StudentDetailAchievements />
+             </Card>
+           ),
+        },
+
       ]}
     />
   </div>
