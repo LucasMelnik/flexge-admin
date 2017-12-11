@@ -29,11 +29,11 @@ export default class GrammarNeedsRecordListService {
       if (this.fetch.data) {
         this.grammars = this.fetch.data.map(grammar => ({
           ...grammar,
-          correctPercentage: round((grammar.correctCount / grammar.total) * 100, 2),
-          errorPercentage: round((grammar.errorCount / grammar.total) * 100, 2),
-          children: grammar.studentsWithError && grammar.studentsWithError
-            .filter(student => !!student)
-            .map(student => ({ name: student, id: `${student}-${grammar.id}` })),
+          children: grammar.students.map(student => ({
+            ...student,
+            id: `${student.id}-${grammar.id}`,
+            errorPercentage: round(student.errorPercentage, 2),
+          })),
         }));
       } else {
         this.grammars = [];
