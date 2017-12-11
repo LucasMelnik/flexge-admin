@@ -21,7 +21,7 @@ export default class GrammarNeedsRecordListService {
   });
 
   loadSchoolClassGrammarNeeds = action(() => {
-    const from = moment().days(moment().days() - 30).startOf('day').format('YYYY-MM-DD HH:mm:ss');
+    const from = moment().days(moment().days() - 60).startOf('day').format('YYYY-MM-DD HH:mm:ss');
     const to = moment().endOf('day').format('YYYY-MM-DD HH:mm:ss');
     this.fetch.fetch({
       url: `/records/schools/${this.schoolId}/school-classes/${this.schoolClassId}/grammar-needs?from=${from}&to=${to}`,
