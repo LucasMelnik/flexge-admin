@@ -21,7 +21,7 @@ const StudentDetailHeader = props => (
       </Column>
       <Column size={1}>
         Study Quality
-        <h2>{props.student.studyQuality.score}</h2>
+        <h2>{props.student.studyQuality ? props.student.studyQuality.score : 'Study Quality not available yet'}</h2>
       </Column>
       <Column size={1}>
         Course

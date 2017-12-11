@@ -33,7 +33,7 @@ const StudentDetailAnalyticsOverviewRecord = props => (
       <Column size={1}>
         <b>Study Quality</b>
         <br />
-        {props.student.studyQuality.score}
+        {props.student.studyQuality ? props.student.studyQuality.score : 'Study Quality not available yet'}
       </Column>
       <Column size={1}>
         <b>Last Studied</b>
