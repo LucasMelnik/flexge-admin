@@ -32,6 +32,7 @@ const StudyQualityChart = props => (
               ticks: {
                 min: -5,
                 max: 15,
+                stepSize: 5,
               },
             }],
           },
