@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { observe } from 'mobx';
 import moment from 'moment';
 import AverageEnglishLevelService from '../../services/AverageEnglishLevelService';
 import SemiannualEnglishLevelProgressService from '../../services/SemiannualEnglishLevelProgressService';
