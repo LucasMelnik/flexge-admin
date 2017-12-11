@@ -5,36 +5,38 @@ import 'moment-duration-format';
 import Table from '../../../../../core/form/Table';
 
 const TopStudentsTable = props => (
-  <Table
-    fetching={props.loading}
-    bordered={false}
-    columns={[
-      {
-        label: 'Avatar',
-        path: 'profilePicture',
-        render: value => <img src={`${process.env.REACT_APP_API_URL}/files/${value}`} alt="avatar" />,
-      },
-      {
-        label: 'Student',
-        path: 'name',
-      },
-      {
-        label: 'Class',
-        path: 'schoolclass.name',
-      },
-      {
-        label: 'Studied Time',
-        path: 'studiedTime',
-        render: value => moment.duration(value, 'seconds').format('hh:mm', { trim: false }),
-      },
-    ]}
-    rows={props.data}
-  />
+  <div>
+    <h4>
+      Top Students Last {props.days} days
+    </h4>
+    <Table
+      fetching={props.loading}
+      bordered={false}
+      columns={[
+        {
+          label: 'Student',
+          path: 'name',
+          width: '50%',
+        },
+        {
+          label: 'Class',
+          path: 'schoolclass.name',
+        },
+        {
+          label: 'Time',
+          path: 'studiedTime',
+          render: value => moment.duration(value, 'seconds').format('hh:mm', { trim: false }),
+        },
+      ]}
+      rows={props.data}
+    />
+  </div>
 );
 
 TopStudentsTable.propTypes = {
   data: PropTypes.array,
   loading: PropTypes.bool,
+  days: PropTypes.number.isRequired,
 };
 
 TopStudentsTable.defaultProps = {

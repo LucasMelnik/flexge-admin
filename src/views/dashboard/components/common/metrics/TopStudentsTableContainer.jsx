@@ -8,6 +8,7 @@ class TopStudentsTableContainer extends Component {
   static propTypes = {
     from: PropTypes.instanceOf(Date).isRequired,
     to: PropTypes.instanceOf(Date).isRequired,
+    days: PropTypes.number.isRequired,
   }
 
   dataService = new TopStudentsByPeriodService();
@@ -19,6 +20,7 @@ class TopStudentsTableContainer extends Component {
   render() {
     return (
       <TopStudentsTable
+        days={this.props.days}
         data={this.dataService.data}
         loading={this.dataService.fetch.fetching}
       />

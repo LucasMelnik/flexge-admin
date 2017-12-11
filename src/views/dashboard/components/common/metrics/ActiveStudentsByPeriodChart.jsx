@@ -28,6 +28,7 @@ const ActiveStudentsByPeriodChart = props => (
     )}
     {props.showDetails && (
       <TopStudentsTableContainer
+        days={30}
         from={moment().subtract(30, 'days').startOf('day').toDate()}
         to={moment().endOf('day').toDate()}
       />
