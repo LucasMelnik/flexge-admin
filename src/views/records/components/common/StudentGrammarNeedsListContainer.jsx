@@ -5,16 +5,15 @@ import { observer } from 'mobx-react';
 import GrammarNeedsList from './GrammarNeedsList';
 import GrammarNeedsRecordListService from '../../services/GrammarNeedsRecordListService';
 
-class GrammarNeedsListContainer extends Component {
+class StudentGrammarNeedsListContainer extends Component {
 
   static propTypes = {
-    schoolId: PropTypes.string.isRequired,
-    classId: PropTypes.string.isRequired,
+    studentId: PropTypes.string.isRequired,
   };
 
   grammarNeedsRecordListService = new GrammarNeedsRecordListService();
   componentDidMount() {
-    this.grammarNeedsRecordListService.loadSchoolClassGrammarNeeds(this.props.schoolId, this.props.classId);
+    this.grammarNeedsRecordListService.loadStudentGrammarNeeds(this.props.studentId);
   }
 
   render() {
@@ -27,4 +26,4 @@ class GrammarNeedsListContainer extends Component {
   }
 }
 
-export default observer(GrammarNeedsListContainer);
+export default observer(StudentGrammarNeedsListContainer);

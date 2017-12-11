@@ -1,4 +1,5 @@
 import { action, extendObservable } from 'mobx';
+import orderBy from 'lodash/orderBy';
 import FetchService from '../../../core/services/FetchService';
 
 class StudentAcademicPerformanceHistoryService {
@@ -7,6 +8,7 @@ class StudentAcademicPerformanceHistoryService {
   constructor() {
     extendObservable(this, {
       history: [],
+      currentPerformance: {},
     });
   }
 
@@ -15,9 +17,11 @@ class StudentAcademicPerformanceHistoryService {
       url: `/records/students/${idStudent}/courses-overview`,
     }).then(() => {
       if (this.fetch.data) {
-        this.history = this.fetch.data;
+        this.history = orderBy(this.fetch.data, 'completedAt', 'desc');
+        this.currentPerformance = this.fetch.data.find(course => !course.completedAt)
       } else {
         this.history = [];
+        this.currentPerformance = {};
       }
     });
   });

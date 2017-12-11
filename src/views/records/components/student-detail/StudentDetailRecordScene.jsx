@@ -11,6 +11,8 @@ import StudentDetailAnalyticsOverviewRecordContainer from './StudentDetailAnalyt
 import StudentDetailAnalyticsStudiedTimeChartContainer from './StudentDetailAnalyticsStudiedTimeChartContainer';
 import StudentDetailAnalyticsStudyQualityChartContainer from './StudentDetailAnalyticsStudyQualityChartContainer';
 import StudentDetailAnalyticsAcademicPerformanceHistoryContainer from './StudentDetailAnalyticsAcademicPerformanceHistoryContainer';
+import StudentGrammarNeedsListContainer from '../common/StudentGrammarNeedsListContainer';
+import StudentDetailAnalyticsAcademicPerformanceContainer from './StudentDetailAnalyticsAcademicPerformanceContainer';
 
 const StudentDetailRecordScene = props => (
   <div>
@@ -49,12 +51,18 @@ const StudentDetailRecordScene = props => (
                   <StudentDetailAnalyticsOverviewRecordContainer studentId={props.studentId} />
                 </Card>
                 <Separator />
+                <Card title="Academic Performance">
+                  <StudentDetailAnalyticsAcademicPerformanceContainer />
+                  <Separator />
+                  <StudentGrammarNeedsListContainer studentId={props.studentId} />
+                </Card>
+                <Separator />
                 <Card title="History">
+                  <StudentDetailAnalyticsAcademicPerformanceHistoryContainer studentId={props.studentId} />
+                  <Separator />
                   <StudentDetailAnalyticsStudiedTimeChartContainer studentId={props.studentId} />
                   <Separator />
                   <StudentDetailAnalyticsStudyQualityChartContainer studentId={props.studentId} />
-                  <Separator />
-                  <StudentDetailAnalyticsAcademicPerformanceHistoryContainer studentId={props.studentId} />
                 </Card>
               </div>
             ),

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import round from 'lodash/round';
 import Table from '../../../../core/form/Table';
 
 const GrammarNeedsList = props => (
@@ -28,7 +29,7 @@ const GrammarNeedsList = props => (
         label: '% Error',
         path: 'errorPercentage',
         width: 100,
-        render: value => value && `${value}%`,
+        render: value => value && `${round(value, 2)}%`,
       },
     ]}
     rows={props.grammars}
