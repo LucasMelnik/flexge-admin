@@ -15,8 +15,6 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #fafafa;
-  background-color: rgba(0, 150, 136, 0.05);
 }
 
 html, body, #root {
@@ -46,6 +44,10 @@ html, body, #root {
 
 h1, h2, h3, h4, h5 {
   color: rgb(103, 106, 108) !important;
+}
+
+.ant-layout {
+  background-color: #f3f3f4 !important;
 }
 
 .ant-layout-header {
@@ -102,4 +104,8 @@ h1, h2, h3, h4, h5 {
 
 .ant-table-tbody>tr.ant-table-row-hover>td, .ant-table-tbody>tr:hover>td, .ant-table-thead>tr.ant-table-row-hover>td, .ant-table-thead>tr:hover>td {
   background: rgba(38, 195, 164, 0.1);
+}
+
+.ant-table-tbody>tr>td.no-padding-column {
+  padding: 0 !important;
 }

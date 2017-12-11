@@ -10,12 +10,13 @@ class StudyTimeHigherThanTwoContainer extends Component {
   }
 
   render() {
+    const school = JSON.parse(localStorage.getItem('school'));
     return (
       <CircularProgress
         fetching={StudiedTimeGroupService.fetch.fetching}
         noDataText="No students found"
-        title="Minimum 2 hours last 7 days"
-        tooltip="Students which studied more than 2 hours last 7 days"
+        title={`${school.weeklyHoursRequired} hours last 7 days`}
+        tooltip={`Students which studied at least ${school.weeklyHoursRequired} hours last 7 days`}
         value={StudiedTimeGroupService.higherThanTwo}
         max={100}
         successCondition={value => value > 50}

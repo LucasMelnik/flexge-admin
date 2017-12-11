@@ -62,7 +62,6 @@ export default class SchoolEvaluationFormService {
 
   handleSubmit = action(() => {
     this.form.submitted = true;
-    console.log(this.form.getValues())
     if (this.form.errors) {
       NotificationService.addNotification('Fill the required fields', 'error');
       return;

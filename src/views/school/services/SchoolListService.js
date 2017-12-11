@@ -1,4 +1,4 @@
-import { action, extendObservable } from 'mobx';
+import { action, extendObservable, computed } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -11,6 +11,12 @@ class SchoolListService {
       schools: [],
       filter: '',
       companyId: null,
+      visibleSchools: computed(() => (
+        this.schools.filter(school => (
+          school.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1 ||
+          school.company.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1
+        ))
+      )),
     });
   }
 
@@ -27,25 +33,8 @@ class SchoolListService {
         ...this.companyId && {
           company: this.companyId,
         },
-        ...this.filter && {
-          $or: [
-            {
-              name: {
-                $regex: this.filter,
-                $options: 'i',
-              },
-            },
-            {
-              'company.name': {
-                $regex: this.filter,
-                $options: 'i',
-              },
-            },
-          ],
-        },
       },
     };
-    console.log('query', query)
     this.fetch.fetch({
       url: '/schools',
       query,
@@ -61,7 +50,6 @@ class SchoolListService {
 
   handleFilterChange = action((value) => {
     this.filter = value;
-    this.load();
   });
 
   handleRemove = action((school) => {

@@ -1,4 +1,4 @@
-import { action, extendObservable } from 'mobx';
+import { action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
 class LastWeekAverageStudiedTimeService {

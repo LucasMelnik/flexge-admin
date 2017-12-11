@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import StudentStudiedTimeChart from './StudentStudiedTimeChart';
+import StudiedTimeChart from './StudiedTimeChart';
 import StudiedTimeGroupService from '../../../services/StudiedTimeGroupService';
 
-class StudentStudiedTimeChartContainer extends Component {
+class StudiedTimeChartContainer extends Component {
   render() {
     return (
-      <StudentStudiedTimeChart
+      <StudiedTimeChart
         data={StudiedTimeGroupService.totalByGroup}
         loading={StudiedTimeGroupService.fetch.fetching}
       />
@@ -14,4 +14,4 @@ class StudentStudiedTimeChartContainer extends Component {
   }
 }
 
-export default observer(StudentStudiedTimeChartContainer);
+export default observer(StudiedTimeChartContainer);

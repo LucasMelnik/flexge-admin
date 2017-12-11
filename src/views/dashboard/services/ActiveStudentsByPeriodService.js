@@ -1,16 +1,16 @@
 import { action, extendObservable, computed } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
-class ActiveStudentsByWeekService {
+class ActiveStudentsByPeriodService {
   fetch = new FetchService();
 
   constructor() {
     extendObservable(this, {
-      activeStudentsByWeek: [],
+      ActiveStudentsByPeriod: [],
       totalActiveStudents: computed(() => {
         if (!this.validateResponse()) return null;
         const periods = [7, 14, 21, 30];
-        const activeStudents = this.activeStudentsByWeek.reduce((schoolAcc, school) => (
+        const activeStudents = this.ActiveStudentsByPeriod.reduce((schoolAcc, school) => (
           schoolAcc + school.classes.reduce((acc, schoolClass) => (
             acc + periods.reduce((classAcc, period) => classAcc + schoolClass[`studyOnLast${period}Days`] || 0, 0)
           ), 0)
@@ -19,7 +19,7 @@ class ActiveStudentsByWeekService {
       }),
       totalStudents: computed(() => {
         if (!this.validateResponse()) return null;
-        return this.activeStudentsByWeek.reduce((schoolAcc, school) => (
+        return this.ActiveStudentsByPeriod.reduce((schoolAcc, school) => (
           schoolAcc + school.classes.reduce((acc, schoolClass) => (
             acc + schoolClass.totalStudents
           ), 0)
@@ -28,13 +28,13 @@ class ActiveStudentsByWeekService {
       schoolAverage: computed(() => {
         if (!this.validateResponse()) return null;
         const studyingStudents =
-          this.activeStudentsByWeek[0].totalStudents -
-          this.activeStudentsByWeek[0].noStudy;
-        return studyingStudents / this.activeStudentsByWeek[0].totalStudents * 100;
+          this.ActiveStudentsByPeriod[0].totalStudents -
+          this.ActiveStudentsByPeriod[0].noStudy;
+        return studyingStudents / this.ActiveStudentsByPeriod[0].totalStudents * 100;
       }),
       studiedLast7Days: computed(() => {
         if (!this.validateResponse()) return null;
-        const activeStudentsLast7Days = this.activeStudentsByWeek.reduce((acc, school) => (
+        const activeStudentsLast7Days = this.ActiveStudentsByPeriod.reduce((acc, school) => (
           acc + this.getActiveStudentsByPeriod(school.classes, 'studyOnLast7Days')
         ), 0);
         return activeStudentsLast7Days / this.totalStudents * 100;
@@ -42,7 +42,7 @@ class ActiveStudentsByWeekService {
       averageByPeriod: computed(() => {
         if (!this.validateResponse()) return null;
         const periods = [7, 14, 21, 30];
-        const activeStudentsByPeriod = this.activeStudentsByWeek.reduce((acc, school) => {
+        const activeStudentsByPeriod = this.ActiveStudentsByPeriod.reduce((acc, school) => {
           periods.forEach((period) => {
             const periodKey = `studyOnLast${period}Days`;
             acc[periodKey] = acc[periodKey] ?
@@ -68,10 +68,10 @@ class ActiveStudentsByWeekService {
 
   validateResponse = () => {
     if (
-      !this.activeStudentsByWeek ||
-      !this.activeStudentsByWeek.length ||
-      !this.activeStudentsByWeek[0].classes ||
-      !this.activeStudentsByWeek[0].classes.length
+      !this.ActiveStudentsByPeriod ||
+      !this.ActiveStudentsByPeriod.length ||
+      !this.ActiveStudentsByPeriod[0].classes ||
+      !this.ActiveStudentsByPeriod[0].classes.length
     ) {
       return false;
     }
@@ -79,17 +79,17 @@ class ActiveStudentsByWeekService {
   }
 
   load = action(() => {
-    this.activeStudentsByWeek = [];
+    this.ActiveStudentsByPeriod = [];
     this.fetch.fetch({
       url: '/reports/active-students-by-week',
     }).then(() => {
       if (this.fetch.data) {
-        this.activeStudentsByWeek = this.fetch.data;
+        this.ActiveStudentsByPeriod = this.fetch.data;
       }
     });
   });
 }
 
-const activeStudentsByWeekService = new ActiveStudentsByWeekService();
+const activeStudentsByPeriodService = new ActiveStudentsByPeriodService();
 
-export default activeStudentsByWeekService;
+export default activeStudentsByPeriodService;

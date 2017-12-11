@@ -40,6 +40,20 @@ class StudyQualityGroupService {
         ), 0);
         return totalHigherThanFive / this.total;
       }),
+      rates: computed(() => {
+        const totals = Object.keys(this.studyQualityGroups).map((key) => {
+          if (this.studyQualityGroups[key]) {
+            return this.studyQualityGroups[key].reduce((schoolAcc, school) => {
+              if (school.classes) {
+                return schoolAcc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
+              }
+              return schoolAcc;
+            }, 0);
+          }
+          return [];
+        });
+        return totals.map(total => total / this.total * 100);
+      }),
     });
   }
 

@@ -7,11 +7,16 @@ import { ORANGE, RED, GREEN, DARK_GREEN } from '../../../../../core/chart/colors
 
 const StudyQualityGroupChart = props => (
   <Card
-    title="Percentual de Study Quality dos Alunos"
+    title="Students Study Quality Rates"
     loading={props.loading}
   >
     <DoughnutChart
-      labels={['% de SQ entre -5 e 0', '% de SQ entre 0 a 5', '% de SQ entre 5 a 10', '% de SQ acima de 10']}
+      labels={[
+        '% higher than 10',
+        '% between 10 and 5',
+        '% between 5 and 0',
+        '% between 0 and -5',
+      ]}
       data={reverse(props.data)}
       colors={[DARK_GREEN, GREEN, ORANGE, RED]}
     />

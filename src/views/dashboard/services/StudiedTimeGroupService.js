@@ -20,7 +20,7 @@ class StudiedTimeGroupService {
       }),
       totalByGroup: computed(() => {
         if (!this.validateResponse()) return null;
-        return Object.keys(this.studiedTimeGroups).map((key) => {
+        const studentsCount = Object.keys(this.studiedTimeGroups).map((key) => {
           if (this.studiedTimeGroups[key]) {
             return this.studiedTimeGroups[key].reduce((schoolAcc, school) => {
               if (school.classes) {
@@ -31,6 +31,7 @@ class StudiedTimeGroupService {
           }
           return [];
         });
+        return studentsCount.map(count => count / this.total * 100); 
       }),
       higherThanTwo: computed(() => {
         if (!this.validateResponse()) return null;

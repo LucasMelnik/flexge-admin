@@ -7,6 +7,8 @@ import Async from './Async';
 
 export default class CircularProgress extends Component {
 
+  state = { value: 0 }
+
   static propTypes = {
     title: PropTypes.string.isRequired,
     noDataText: PropTypes.string.isRequired,
@@ -26,6 +28,14 @@ export default class CircularProgress extends Component {
     value: null,
     valueRender: null,
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.value && nextProps.value) {
+      setTimeout(() => {
+        this.setState({ value: nextProps.value });
+      }, 300);
+    }
+  }
 
   getPercentage = (value, max) => (value / max) * 100;
 
@@ -50,61 +60,56 @@ export default class CircularProgress extends Component {
   render() {
     return (
       <Async fetching={this.props.fetching}>
-        {this.props.value !== null ? (
-          <div style={{ textAlign: 'center' }}>
-            <p
-              style={{
-                color: '#424242',
-                fontSize: 14,
-              }}
-            >
-              {this.props.title}
-              {this.props.tooltip && (
-                <TooltipIcon text={this.props.tooltip} />
-              )}
-            </p>
-            <Separator size="xs" />
-            <Progress
-              type="circle"
-              percent={this.getPercentage(this.props.value, this.props.max)}
-              status={this.getStatus(this.props.value)}
-              format={() => (
+        <div style={{ textAlign: 'center' }}>
+          <div
+            style={{
+              color: '#424242',
+              fontSize: 14,
+            }}
+          >
+            {this.props.title}
+            {this.props.tooltip && (
+              <TooltipIcon text={this.props.tooltip} />
+            )}
+          </div>
+          <Separator size="xs" />
+          <Progress
+            type="circle"
+            percent={this.getPercentage(this.state.value, this.props.max)}
+            status={this.getStatus(this.state.value)}
+            strokeWidth={10}
+            format={() => this.props.value !== null ? (
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
                 <div
                   style={{
-                    display: 'flex',
-                    flexDirection: 'column',
+                    color: '#424242',
+                    fontSize: 32,
                   }}
                 >
-                  <p
-                    style={{
-                      color: '#424242',
-                      fontSize: 32,
-                    }}
-                  >
-                    {this.props.valueRender ? this.props.valueRender(this.props.value) : this.props.value}
-                  </p>
-                  <Separator size="xs" />
-                  <small
-                    style={{
-                      fontSize: 12,
-                      color: '#424242',
-                    }}
-                  >
-                    {this.getValueLegend(this.props.value)}
-                  </small>
+                  {this.props.valueRender ? this.props.valueRender(this.props.value) : this.props.value}
                 </div>
-              )}
-            />
-            {this.props.legend && (
-              <Separator size="xs" />
-            )}
+                <small
+                  style={{
+                    fontSize: 12,
+                    color: '#424242',
+                  }}
+                >
+                  {this.getValueLegend(this.props.value)}
+                </small>
+              </div>
+            ) : this.props.noDataText}
+          />
+          <div style={{ height: 12 }}>
             {this.props.legend && (
               <small>{this.props.legend}</small>
             )}
           </div>
-        ) : (
-          <p>{this.props.noDataText}</p>
-        )}
+        </div>
       </Async>
     );
   }
