@@ -8,6 +8,7 @@ import StudentDetailDateRecordListContainer from './StudentDetailDateRecordListC
 import Separator from '../../../../core/layout/Separator';
 import StudentDetailHeaderContainer from './StudentDetailHeaderContainer';
 import StudentDetailAnalyticsOverviewRecordContainer from './StudentDetailAnalyticsOverviewRecordContainer';
+import StudentDetailAnalyticsStudiedTimeChartContainer from './StudentDetailAnalyticsStudiedTimeChartContainer';
 
 const StudentDetailRecordScene = props => (
   <div>
@@ -41,9 +42,15 @@ const StudentDetailRecordScene = props => (
           title: 'Analytics',
           content:
             (
-              <Card title="Overview">
-                <StudentDetailAnalyticsOverviewRecordContainer studentId={props.studentId} />
-              </Card>
+              <div>
+                <Card title="Overview">
+                  <StudentDetailAnalyticsOverviewRecordContainer studentId={props.studentId} />
+                </Card>
+                <Separator />
+                <Card title="History">
+                  <StudentDetailAnalyticsStudiedTimeChartContainer studentId={props.studentId} />
+                </Card>
+              </div>
             ),
         },
         {
