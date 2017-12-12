@@ -3,10 +3,11 @@ import { observer } from 'mobx-react';
 import AverageStudyQualityService from '../../../services/AverageStudyQualityService';
 import CircularProgress from '../../../../../core/layout/CircularProgress';
 
-const PerformanceGoalsStudyQualityAverageContainer = () => {
-  const average = localStorage.getItem('COMPANY_MANAGER') ?
+const StudyQualityAverageContainer = () => {
+  let average = localStorage.getItem('COMPANY_MANAGER') ?
     AverageStudyQualityService.allSchoolsAverage :
     AverageStudyQualityService.averageByClass;
+  average = average || 0;
   return (
     <CircularProgress
       fetching={AverageStudyQualityService.fetch.fetching}
@@ -18,9 +19,12 @@ const PerformanceGoalsStudyQualityAverageContainer = () => {
       valueRender={value => Number(value.toFixed(1)) - 5}
       successCondition={value => value > 10}
       badCondition={value => value < 5}
-      legend={localStorage.role === 'TEACHER' && `School average ${AverageStudyQualityService.allSchoolsAverage.toFixed(1)}`}
+      legend={localStorage.role === 'TEACHER' &&
+        `School average ${AverageStudyQualityService.allSchoolsAverage ?
+          AverageStudyQualityService.allSchoolsAverage.toFixed(1) : 0
+        }`}
     />
   );
 };
 
-export default observer(PerformanceGoalsStudyQualityAverageContainer);
+export default observer(StudyQualityAverageContainer);

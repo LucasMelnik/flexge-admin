@@ -11,10 +11,10 @@ const StudyQualityGroupChart = props => (
   >
     <DoughnutChart
       labels={[
-        '% higher than 10',
-        '% between 5 and 10',
-        '% between 0 and 5',
-        '% between 0 and -5',
+        'Higher than 10',
+        'Between 5 and 10',
+        'Between 0 and 5',
+        'Between 0 and -5',
       ]}
       data={props.data}
       colors={[DARK_GREEN, GREEN, ORANGE, RED]}
@@ -24,7 +24,10 @@ const StudyQualityGroupChart = props => (
 
 StudyQualityGroupChart.propTypes = {
   loading: PropTypes.bool.isRequired,
-  data: PropTypes.arrayOf(PropTypes.number).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.number.isRequired,
+    rate: PropTypes.number.isRequired,
+  })).isRequired,
 };
 
 export default StudyQualityGroupChart;

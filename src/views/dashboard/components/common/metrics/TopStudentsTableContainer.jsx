@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
+import { toJS } from 'mobx';
 import TopStudentsByPeriodService from '../../../services/TopStudentsByPeriodService';
 import TopStudentsTable from './TopStudentsTable';
 
@@ -11,18 +12,18 @@ class TopStudentsTableContainer extends Component {
     days: PropTypes.number.isRequired,
   }
 
-  dataService = new TopStudentsByPeriodService();
+  topStudentsByPeriodService = new TopStudentsByPeriodService();
 
   componentWillMount() {
-    this.dataService.load(this.props.from, this.props.to);
+    this.topStudentsByPeriodService.load(this.props.from, this.props.to);
   }
 
   render() {
     return (
       <TopStudentsTable
         days={this.props.days}
-        data={this.dataService.data}
-        loading={this.dataService.fetch.fetching}
+        data={toJS(this.topStudentsByPeriodService.data)}
+        loading={this.topStudentsByPeriodService.fetch.fetching}
       />
     );
   }

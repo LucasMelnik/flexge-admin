@@ -11,7 +11,9 @@ const StudyTimeHigherThanTwoContainer = () => {
       noDataText="No students found"
       title={`${school ? school.weeklyHoursRequired : 2} hours last 7 days`}
       tooltip={`Students which studied at least ${school ? school.weeklyHoursRequired : 2} hours last 7 days`}
-      value={Number(StudiedTimeGroupService.higherThanTwo.toFixed(0))}
+      value={StudiedTimeGroupService.higherThanTwo ?
+        Number(StudiedTimeGroupService.higherThanTwo.toFixed(0)) : 0
+      }
       max={100}
       successCondition={value => value > 50}
       badCondition={value => value <= 35}

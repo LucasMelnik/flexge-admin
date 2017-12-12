@@ -8,14 +8,14 @@ class AverageStudyQualityService {
     extendObservable(this, {
       data: [],
       allSchoolsAverage: computed(() => {
-        if (!this.validateResponse()) return 0;
+        if (!this.validateResponse()) return null;
         const total = this.data.reduce((acc, school) => (
           acc + school.schoolAverageScore
         ), 0);
         return total / this.data.length;
       }),
       averageByClass: computed(() => {
-        if (!this.validateResponse()) return 0;
+        if (!this.validateResponse()) return null;
         const total = this.data[0].classes.reduce((acc, schoolClass) => (
           acc + schoolClass.classAverageScore
         ), 0);
