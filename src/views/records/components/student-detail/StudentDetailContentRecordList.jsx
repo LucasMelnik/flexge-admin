@@ -7,6 +7,28 @@ import LinearProgress from '../../../../core/layout/LinearProgress';
 import Tag from '../../../../core/layout/Tag';
 import Icon from '../../../../core/layout/Icon';
 
+const AbilityProgressColumn = (value, label) => value !== undefined && (
+  <div
+    style={{
+      width: 300,
+    }}
+  >
+    <span>{value}% </span>
+    <div
+      style={{
+        display: 'inline-block',
+        width: '70%',
+      }}
+    >
+      <LinearProgress
+        value={value}
+        showInfo={false}
+      />
+    </div>
+    <span> {label}</span>
+  </div>
+);
+
 const StudentDetailContentRecordList = props => (
   <Table
     bordered={false}
@@ -33,82 +55,10 @@ const StudentDetailContentRecordList = props => (
         render: (value, row) => ({
           children: row.docType === 'MODULE' ? (
             <div>
-              <div
-                style={{
-                  width: 300,
-                }}
-              >
-                <span>{row.readingProgress}% </span>
-                <div
-                  style={{
-                    display: 'inline-block',
-                    width: '70%',
-                  }}
-                >
-                  <LinearProgress
-                    value={row.readingProgress}
-                    showInfo={false}
-                  />
-                </div>
-                <span> Reading</span>
-              </div>
-              <div
-                style={{
-                  width: 300,
-                }}
-              >
-                <span>{row.speakingProgress}% </span>
-                <div
-                  style={{
-                    display: 'inline-block',
-                    width: '70%',
-                  }}
-                >
-                  <LinearProgress
-                    value={row.speakingProgress}
-                    showInfo={false}
-                  />
-                </div>
-                <span> Speaking</span>
-              </div>
-              <div
-                style={{
-                  width: 300,
-                }}
-              >
-                <span>{row.listeningProgress}% </span>
-                <div
-                  style={{
-                    display: 'inline-block',
-                    width: '70%',
-                  }}
-                >
-                  <LinearProgress
-                    value={row.listeningProgress}
-                    showInfo={false}
-                  />
-                </div>
-                <span> Listening</span>
-              </div>
-              <div
-                style={{
-                  width: 300,
-                }}
-              >
-                <span>{row.writingProgress}% </span>
-                <div
-                  style={{
-                    display: 'inline-block',
-                    width: '70%',
-                  }}
-                >
-                  <LinearProgress
-                    value={row.writingProgress}
-                    showInfo={false}
-                  />
-                </div>
-                <span> Writing</span>
-              </div>
+              {AbilityProgressColumn(row.readingProgress, 'Reading')}
+              {AbilityProgressColumn(row.speakingProgress, 'Speaking')}
+              {AbilityProgressColumn(row.listeningProgress, 'Listening')}
+              {AbilityProgressColumn(row.writingProgress, 'Writing')}
             </div>
           ) : (
             <b>{moment.duration(row.studiedTime, 'seconds').format('hh:mm', { trim: false })}</b>
@@ -129,9 +79,10 @@ const StudentDetailContentRecordList = props => (
         label: 'Score',
         path: 'score',
         render: (value, row) => ({
-          children: row.docType !== 'MODULE' ? (
+          children: (row.docType === 'UNIT' || row.docType === 'MASTERY') ? (
             <div>To pass: {row.scoreToPass}</div>
           ) : (
+            value &&
             <Tag
               color={row.points ? 'green' : 'red'}
             >
@@ -139,7 +90,7 @@ const StudentDetailContentRecordList = props => (
             </Tag>
           ),
           props: {
-            colSpan: row.docType === 'MODULE' ? 0 : row.docType !== 'MODULE' ? 4 : 1,
+            colSpan: row.docType === 'MODULE' ? 0 : row.docType ? 4 : 1,
           },
         }),
       },
