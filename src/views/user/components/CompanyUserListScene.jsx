@@ -38,7 +38,7 @@ const CompanyUserListScene = props => (
             baseUrl={`/companies/${company.id}/users`}
             baseQuery={{
               company: company.id,
-              role: { $in: ['COMPANY_MANAGER', 'TEACHER', 'SCHOOL_MANAGER'] },
+              role: { $in: props.roles },
             }}
           />
         </Card>
@@ -53,6 +53,7 @@ CompanyUserListScene.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
   })).isRequired,
+  roles: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default CompanyUserListScene;

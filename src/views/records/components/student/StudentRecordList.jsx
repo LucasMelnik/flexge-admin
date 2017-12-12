@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import round from 'lodash/round';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
 import LinearProgress from '../../../../core/layout/LinearProgress';
@@ -13,36 +14,52 @@ const StudentRecordList = props => (
           label: 'Name',
           path: 'name',
           sort: true,
+          width: '40%',
           defaultSortOrder: 'ascend',
         },
         {
           label: 'Initial Level (PT)',
           path: 'initialEnglishLevel',
+          width: '150px',
+          render: value => value && round(value, 1).toFixed(1),
         },
         {
           label: 'Current Level',
           path: 'currentEnglishLevel',
+          width: '150px',
+          render: value => value && round(value, 1).toFixed(1),
         },
         {
           label: 'Study Quality',
           path: 'studyQualityScore',
+          width: '150px',
+          render: value => value && round(value, 1).toFixed(1),
         },
         {
           label: 'Current Course',
           path: 'course',
           render: (cell, row) => (
-            <div>
-              <p>{cell}</p>
-              <LinearProgress
-                color={row.coursePercentage > 80 ? 'green' : 'blue'}
-                value={row.coursePercentage}
-              />
+            <div style={{ display: 'flex' }}>
+              {cell}
+              <div
+                style={{
+                  display: 'flex',
+                  flex: 1,
+                  marginLeft: 5,
+                }}
+              >
+                <LinearProgress
+                  color={row.coursePercentage > 80 ? 'green' : 'blue'}
+                  value={row.coursePercentage}
+                />
+              </div>
             </div>
           ),
         },
         {
           label: 'Time Studied',
           path: 'totalStudiedTime',
+          width: '150px',
           render: value => moment.duration(value, 'seconds').format('hh:mm:ss', { trim: false }),
         },
         {

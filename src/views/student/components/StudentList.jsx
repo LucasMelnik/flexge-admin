@@ -29,6 +29,15 @@ const StudentList = props => (
           path: 'schoolClass.name',
         },
         {
+          label: 'Initial Level',
+          path: 'initialEnglishLevel',
+          render: (value, row) => value && (
+            <span>
+              {value}<span style={{ color: 'red' }}>{row.lastPlacementResult === -2 ? '*' : ''}</span>
+            </span>
+          ),
+        },
+        {
           label: 'Last PT',
           path: 'lastPlacementResult',
           render: (cell) => {

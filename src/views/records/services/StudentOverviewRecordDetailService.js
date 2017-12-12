@@ -10,6 +10,8 @@ export default class StudentOverviewRecordDetailService {
     extendObservable(this, {
       student: {
         studyQuality: {},
+        initialCourse: {},
+        currentCourse: {},
         evaluation: {
           previewGrade: {},
         },
@@ -31,6 +33,7 @@ export default class StudentOverviewRecordDetailService {
           semiannualProgress,
           projection: 4 / (semiannualProgress / 6),
         };
+        console.log(this.student)
       } else {
         this.student = {};
       }
