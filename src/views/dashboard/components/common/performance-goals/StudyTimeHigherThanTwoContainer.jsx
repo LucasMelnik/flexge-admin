@@ -21,10 +21,6 @@ class StudyTimeHigherThanTwoContainer extends Component {
     StudiedTimeGroupService.init(this.props.schoolId, this.props.classId);
   }
 
-  average = localStorage.getItem('COMPANY_MANAGER') ?
-    StudiedTimeGroupService.higherThanTwo :
-    StudiedTimeGroupService.higherThanTwoByClass;
-
   render() {
     return (
       <CircularProgress
@@ -32,7 +28,9 @@ class StudyTimeHigherThanTwoContainer extends Component {
         noDataText="No students found"
         title={`${this.school ? this.school.weeklyHoursRequired : 2} hours last 7 days`}
         tooltip={`Students which studied at least ${this.school ? this.school.weeklyHoursRequired : 2} hours last 7 days`}
-        value={Number(StudiedTimeGroupService.higherThanTwo.toFixed(0))}
+        value={StudiedTimeGroupService.higherThanTwo ?
+          Number(StudiedTimeGroupService.higherThanTwo.toFixed(0)) : 0
+        }
         max={100}
         successCondition={value => value > 50}
         badCondition={value => value <= 35}

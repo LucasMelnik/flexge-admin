@@ -10,7 +10,7 @@ class StudyQualityGroupService {
       schoolId: null,
       classId: null,
       total: computed(() => {
-        if (!this.validateResponse()) return 0;
+        if (!this.validateResponse()) return null;
         return Object.keys(this.data).reduce((acc, key) => {
           return acc + this.data[key].reduce((schoolAcc, school) => {
             if (school.classes) {
@@ -21,7 +21,7 @@ class StudyQualityGroupService {
         }, 0);
       }),
       higherThanFive: computed(() => {
-        if (!this.validateResponse()) return 0;
+        if (!this.validateResponse()) return null;
         const totalHigherThanFive = ['good', 'excellent'].reduce((acc, key) => {
           if (this.data[key]) {
             return acc + this.data[key].reduce((schoolAcc, school) => {
@@ -69,13 +69,13 @@ class StudyQualityGroupService {
         return totalHigherThanFive / total;
       }),
       higherThanFiveSchoolAverage: computed(() => {
-        if (!this.validateResponse()) return 0;
+        if (!this.validateResponse()) return null;
         const totalHigherThanFive = ['good', 'excellent'].reduce((acc, key) => (
           acc + this.data[key].reduce((schoolAcc, school) => schoolAcc + school.schoolCount, 0)
         ), 0);
         return totalHigherThanFive / this.total;
       }),
-      rates: computed(() => {
+      totalByGroup: computed(() => {
         const totals = Object.keys(this.data).map((key) => {
           if (this.data[key]) {
             return this.data[key].reduce((schoolAcc, school) => {
@@ -87,7 +87,10 @@ class StudyQualityGroupService {
           }
           return [];
         });
-        return totals.map(total => total / this.total * 100);
+        return totals.map(total => ({
+          value: total,
+          rate: (total / this.total) * 100,
+        }));
       }),
     });
   }

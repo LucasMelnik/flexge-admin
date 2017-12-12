@@ -19,10 +19,6 @@ class ActiveStudentsContainer extends Component {
     ActiveStudentsByPeriodService.init(this.props.schoolId, this.props.classId);
   }
 
-  average = localStorage.getItem('COMPANY_MANAGER') ?
-    ActiveStudentsByPeriodService.totalActiveStudents :
-    ActiveStudentsByPeriodService.totalActiveStudentsByClass;
-
   render() {
     return (
       <CircularProgress
@@ -30,7 +26,9 @@ class ActiveStudentsContainer extends Component {
         tooltip="Students which studied at least once on last 30 days"
         fetching={ActiveStudentsByPeriodService.fetch.fetching}
         noDataText="No Active Students Found"
-        value={Number(this.average.toFixed(0))}
+        value={ActiveStudentsByPeriodService.totalActiveStudents ?
+          Number(ActiveStudentsByPeriodService.totalActiveStudents.toFixed(0)) : 0
+        }
         max={100}
         successCondition={value => value > 85}
         badCondition={value => value <= 65}

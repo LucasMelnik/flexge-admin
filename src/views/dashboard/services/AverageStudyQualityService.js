@@ -10,7 +10,7 @@ class AverageStudyQualityService {
       schoolId: null,
       classId: null,
       allSchoolsAverage: computed(() => {
-        if (!this.validateResponse()) return 0;
+        if (!this.validateResponse()) return null;
         const total = this.data.reduce((acc, school) => (
           acc + school.schoolAverageScore
         ), 0);
@@ -24,9 +24,8 @@ class AverageStudyQualityService {
           .reduce((acc, schoolClass) => (
             acc + schoolClass.classAverageScore
           ), 0);
-        return total / this.data
-          .filter(school => !this.schoolId || school.id === this.schoolId)[0].classes
-          .filter(schoolClass => !this.classId || schoolClass.id === this.classId).length;
+        return this.classId ? total :
+          total / this.data.reduce((acc, school) => acc + school.classes.length, 0);
       }),
     });
   }

@@ -7,12 +7,11 @@ import MetricCharts from './MetricCharts';
 
 const CompanyManagerDashboard = () => (
   <div>
-    <Separator />
-    <h1>Welcome back Filipe Colpo.</h1>
-    <Separator />
-    <Card title="Your goal is to keep all values green!">
-      <PerformanceGoals />
-    </Card>
+    <div id="performance-goals-card" style={{ marginLeft: -30, marginRight: -30, marginTop: -10 }}>
+      <Card title="Performance Goals">
+        <PerformanceGoals />
+      </Card>
+    </div>
     <Separator />
     <MetricCharts />
     <Separator />

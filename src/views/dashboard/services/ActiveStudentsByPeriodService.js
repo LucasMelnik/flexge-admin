@@ -10,7 +10,7 @@ class dataService {
       schoolId: null,
       classId: null,
       totalActiveStudents: computed(() => {
-        if (!this.validateResponse()) return 0;
+        if (!this.validateResponse()) return null;
         const periods = [7, 14, 21, 30];
         const activeStudents = this.data.reduce((schoolAcc, school) => (
           schoolAcc + school.classes.reduce((acc, schoolClass) => (
@@ -45,7 +45,7 @@ class dataService {
         return (activeStudents / totalStudents) * 100;
       }),
       totalStudents: computed(() => {
-        if (!this.validateResponse()) return 0;
+        if (!this.validateResponse()) return null;
         return this.data.reduce((schoolAcc, school) => (
           schoolAcc + school.classes.reduce((acc, schoolClass) => (
             acc + schoolClass.totalStudents
@@ -53,18 +53,18 @@ class dataService {
         ), 0);
       }),
       schoolAverage: computed(() => {
-        if (!this.validateResponse()) return 0;
+        if (!this.validateResponse()) return null;
         const studyingStudents =
           this.data[0].totalStudents -
           this.data[0].noStudy;
-        return studyingStudents / this.data[0].totalStudents * 100;
+        return (studyingStudents / this.data[0].totalStudents) * 100;
       }),
       studiedLast7Days: computed(() => {
-        if (!this.validateResponse()) return 0;
+        if (!this.validateResponse()) return null;
         const activeStudentsLast7Days = this.data.reduce((acc, school) => (
           acc + this.getdata(school.classes, 'studyOnLast7Days')
         ), 0);
-        return activeStudentsLast7Days / this.totalStudents * 100;
+        return (activeStudentsLast7Days / this.totalStudents) * 100;
       }),
       studiedLast7DaysByClass: computed(() => {
         if (!this.validateResponse()) return 0;
@@ -87,7 +87,7 @@ class dataService {
         return activeStudentsLast7Days / totalStudents * 100;
       }),
       averageByPeriod: computed(() => {
-        if (!this.validateResponse()) return 0;
+        if (!this.validateResponse()) return null;
         const periods = [7, 14, 21, 30];
         const activeStudentsByPeriod = this.data.reduce((acc, school) => {
           periods.forEach((period) => {
@@ -98,10 +98,17 @@ class dataService {
           });
           return acc;
         }, {});
-        //Return total by period and total that didn't study
+        // Return total by period and total that didn't study
+        const totalDidntStudy = this.totalStudents - Object.keys(activeStudentsByPeriod).reduce((acc, period) => acc + activeStudentsByPeriod[period], 0);
         return [
-          ...Object.keys(activeStudentsByPeriod).map(period => activeStudentsByPeriod[period] / this.totalStudents * 100),
-          this.totalStudents - Object.keys(activeStudentsByPeriod).reduce((acc, period) => acc + activeStudentsByPeriod[period], 0),
+          ...Object.keys(activeStudentsByPeriod).map(period => ({
+            value: activeStudentsByPeriod[period],
+            rate: (activeStudentsByPeriod[period] / this.totalStudents) * 100,
+          })),
+          {
+            value: totalDidntStudy,
+            rate: (totalDidntStudy / this.totalStudents) * 100,
+          },
         ];
       }),
     });
