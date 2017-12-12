@@ -4,7 +4,9 @@ import Card from '../../../../core/layout/Card';
 import Breadcrumb from '../../../../core/layout/Breadcrumb';
 import StudentRecordListContainer from './StudentRecordListContainer';
 import Separator from '../../../../core/layout/Separator';
+import Tabs from '../../../../core/layout/Tabs';
 import GrammarNeedsListContainer from '../common/GrammarNeedsListContainer';
+import PerformanceGoals from '../../../dashboard/components/common/performance-goals/PerformanceGoals';
 
 const StudentRecordScene = props => (
   <div>
@@ -16,33 +18,55 @@ const StudentRecordScene = props => (
           link: '/records/filters',
         },
         {
-          text: `School - ${props.school.name}`,
+          text: props.school.name,
           link: `/records/schools/${props.school.id}/classes`,
         },
         {
-          text: `Class - ${props.class.name}`,
+          text: props.class.name,
         },
       ]}
     />
-    <Card
-      title="Students Grammar Needs"
-      fetching={props.fetching}
-    >
-      <GrammarNeedsListContainer
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
-    </Card>
-    <Separator />
-    <Card
-      title="Students Records"
-      fetching={props.fetching}
-    >
-      <StudentRecordListContainer
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
-    </Card>
+    <Tabs
+      tabs={[
+        {
+          title: 'Analytics',
+          content: (
+            <div>
+              <Card title="Performance Goals">
+                <PerformanceGoals
+                  schoolId={props.schoolId}
+                  classId={props.classId}
+                />
+              </Card>
+              <Separator />
+              <Card
+                title="Grammar Needs"
+                fetching={props.fetching}
+              >
+                <GrammarNeedsListContainer
+                  schoolId={props.schoolId}
+                  classId={props.classId}
+                />
+              </Card>
+            </div>
+          ),
+        },
+        {
+          title: 'Students Records',
+          content: (
+            <Card
+              title="Records"
+              fetching={props.fetching}
+            >
+              <StudentRecordListContainer
+                schoolId={props.schoolId}
+                classId={props.classId}
+              />
+            </Card>
+          ),
+        },
+      ]}
+    />
   </div>
 );
 
