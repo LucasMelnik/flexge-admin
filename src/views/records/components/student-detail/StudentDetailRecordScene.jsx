@@ -25,15 +25,15 @@ const StudentDetailRecordScene = props => (
           link: '/records/filters',
         },
         {
-          text: `School - ${props.school.name}`,
+          text: props.school.name,
           link: `/records/schools/${props.school.id}/classes`,
         },
         {
-          text: `Class - ${props.class.name}`,
+          text: props.class.name,
           link: `/records/schools/${props.school.id}/classes/${props.class.id}/students`,
         },
         {
-          text: `Student - ${props.student.name}`,
+          text: props.student.name,
         },
       ]}
     />
