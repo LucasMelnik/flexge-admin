@@ -8,7 +8,7 @@ class StudyQualityGroupService {
     extendObservable(this, {
       data: {},
       total: computed(() => {
-        if (!this.validateResponse()) return null;
+        if (!this.validateResponse()) return 0;
         return Object.keys(this.data).reduce((acc, key) => {
           return acc + this.data[key].reduce((schoolAcc, school) => {
             if (school.classes) {
@@ -19,7 +19,7 @@ class StudyQualityGroupService {
         }, 0);
       }),
       higherThanFive: computed(() => {
-        if (!this.validateResponse()) return null;
+        if (!this.validateResponse()) return 0;
         const totalHigherThanFive = ['good', 'excellent'].reduce((acc, key) => {
           if (this.data[key]) {
             return acc + this.data[key].reduce((schoolAcc, school) => {
@@ -34,7 +34,7 @@ class StudyQualityGroupService {
         return totalHigherThanFive / this.total;
       }),
       higherThanFiveSchoolAverage: computed(() => {
-        if (!this.validateResponse()) return null;
+        if (!this.validateResponse()) return 0;
         const totalHigherThanFive = ['good', 'excellent'].reduce((acc, key) => (
           acc + this.data[key].reduce((schoolAcc, school) => schoolAcc + school.schoolCount, 0)
         ), 0);

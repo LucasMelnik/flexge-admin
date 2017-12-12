@@ -9,7 +9,7 @@ const StudyQualityHigherThanFiveContainer = () => (
     noDataText="No Study Quality found"
     title="Study Quality > 5"
     tooltip="Students with Study Quality higher than 5"
-    value={StudyQualityGroupService.higherThanFive}
+    value={Number(StudyQualityGroupService.higherThanFive.toFixed(0))}
     max={100}
     successCondition={value => value > 50}
     badCondition={value => value <= 35}

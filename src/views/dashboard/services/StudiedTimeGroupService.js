@@ -8,7 +8,7 @@ class StudiedTimeGroupService {
     extendObservable(this, {
       data: {},
       total: computed(() => {
-        if (!this.validateResponse()) return null;
+        if (!this.validateResponse()) return 0;
         return Object.keys(this.data).reduce((acc, key) => {
           return acc + this.data[key].reduce((schoolAcc, school) => {
             if (school.classes) {
@@ -19,7 +19,7 @@ class StudiedTimeGroupService {
         }, 0);
       }),
       totalByGroup: computed(() => {
-        if (!this.validateResponse()) return null;
+        if (!this.validateResponse()) return 0;
         const studentsCount = Object.keys(this.data).map((key) => {
           if (this.data[key]) {
             return this.data[key].reduce((schoolAcc, school) => {
@@ -34,7 +34,7 @@ class StudiedTimeGroupService {
         return studentsCount.map(count => count / this.total * 100);
       }),
       higherThanTwo: computed(() => {
-        if (!this.validateResponse()) return null;
+        if (!this.validateResponse()) return 0;
         const totalHigherThanTwo = this.data.excellent.reduce((acc, school) => {
           if (school.classes) {
             return acc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
@@ -44,7 +44,7 @@ class StudiedTimeGroupService {
         return totalHigherThanTwo / this.total;
       }),
       higherThanTwoSchoolAverage: computed(() => {
-        if (!this.validateResponse()) return null;
+        if (!this.validateResponse()) return 0;
         const totalHigherThanTwo = this.data.excellent.reduce((schoolAcc, school) => schoolAcc + school.schoolCount, 0)
         return totalHigherThanTwo / this.total;
       }),

@@ -9,7 +9,7 @@ const ActiveStudentsContainer = () => (
     tooltip="Students which studied at least once on last 30 days"
     fetching={ActiveStudentsByPeriodService.fetch.fetching}
     noDataText="No Active Students Found"
-    value={ActiveStudentsByPeriodService.totalActiveStudents}
+    value={Number(ActiveStudentsByPeriodService.totalActiveStudents.toFixed(0))}
     max={100}
     successCondition={value => value > 85}
     badCondition={value => value <= 65}

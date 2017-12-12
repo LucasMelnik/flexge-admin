@@ -8,7 +8,7 @@ class dataService {
     extendObservable(this, {
       data: [],
       totalActiveStudents: computed(() => {
-        if (!this.validateResponse()) return null;
+        if (!this.validateResponse()) return 0;
         const periods = [7, 14, 21, 30];
         const activeStudents = this.data.reduce((schoolAcc, school) => (
           schoolAcc + school.classes.reduce((acc, schoolClass) => (
@@ -18,7 +18,7 @@ class dataService {
         return activeStudents / this.totalStudents * 100;
       }),
       totalStudents: computed(() => {
-        if (!this.validateResponse()) return null;
+        if (!this.validateResponse()) return 0;
         return this.data.reduce((schoolAcc, school) => (
           schoolAcc + school.classes.reduce((acc, schoolClass) => (
             acc + schoolClass.totalStudents
@@ -26,21 +26,21 @@ class dataService {
         ), 0);
       }),
       schoolAverage: computed(() => {
-        if (!this.validateResponse()) return null;
+        if (!this.validateResponse()) return 0;
         const studyingStudents =
           this.data[0].totalStudents -
           this.data[0].noStudy;
         return studyingStudents / this.data[0].totalStudents * 100;
       }),
       studiedLast7Days: computed(() => {
-        if (!this.validateResponse()) return null;
+        if (!this.validateResponse()) return 0;
         const activeStudentsLast7Days = this.data.reduce((acc, school) => (
           acc + this.getdata(school.classes, 'studyOnLast7Days')
         ), 0);
         return activeStudentsLast7Days / this.totalStudents * 100;
       }),
       averageByPeriod: computed(() => {
-        if (!this.validateResponse()) return null;
+        if (!this.validateResponse()) return 0;
         const periods = [7, 14, 21, 30];
         const activeStudentsByPeriod = this.data.reduce((acc, school) => {
           periods.forEach((period) => {
