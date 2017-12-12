@@ -21,12 +21,12 @@ const SchoolRecordList = props => (
       },
       {
         label: 'Number School Classes',
-        path: 'schoolclasses',
+        path: 'schoolClassCount',
       },
       {
         label: 'Study Quality Average',
         path: 'averageStudyQuality',
-        render: value => value && round(value),
+        render: value => value && round(value, 1).toFixed(1),
       },
       {
         label: 'Last any student access',

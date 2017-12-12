@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import round from 'lodash/round';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
 import LinearProgress from '../../../../core/layout/LinearProgress';
@@ -26,6 +27,7 @@ const StudentRecordList = props => (
         {
           label: 'Study Quality',
           path: 'studyQualityScore',
+          render: value => value && round(value, 1).toFixed(1),
         },
         {
           label: 'Current Course',
