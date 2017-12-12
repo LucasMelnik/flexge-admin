@@ -33,6 +33,9 @@ export default class StudentFormService {
         if (this.fetch.data) {
           const data = {
             ...this.fetch.data,
+            ...this.fetch.data.currentCourse && {
+              currentCourse: this.fetch.data.currentCourse.id,
+            },
           };
           this.form.setInitialValues(data);
         }
