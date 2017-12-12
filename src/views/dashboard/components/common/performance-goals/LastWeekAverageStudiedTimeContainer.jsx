@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import moment from 'moment';
 import 'moment-duration-format';
 import LastWeekAverageStudiedTimeService from '../../../services/LastWeekAverageStudiedTimeService';
-import CircularProgress from '../../../../../core/layout/CircularProgress';
+import LastWeekAverageStudiedTimeGauge from '../../../../../core/chart/LastWeekAverageStudiedTimeGauge';
 
-class ActiveStudentsLastSevenDaysContainer extends Component {
+class LastWeekAverageStudiedTimeContainer extends Component {
   school = JSON.parse(localStorage.getItem('school'));
 
   static propTypes = {
@@ -25,23 +24,14 @@ class ActiveStudentsLastSevenDaysContainer extends Component {
 
   render() {
     return (
-      <CircularProgress
+      <LastWeekAverageStudiedTimeGauge
         fetching={LastWeekAverageStudiedTimeService.fetch.fetching}
-        noDataText="No data found"
-        title="Average time last week"
-        tooltip="Average studied time from Monday to Sunday last week"
         value={LastWeekAverageStudiedTimeService.average}
-        max={this.school ? this.school.weeklyHoursRequired : 2}
-        successCondition={value => this.school ? (value > this.school.weeklyHoursRequired) : (value > 2)}
-        badCondition={value => value < 1}
-        valueRender={value => moment.duration(value, 'hours').format('hh:mm', { trim: false })}
-        legend={localStorage.role === 'TEACHER' &&
-          `School average ${
-            moment.duration(LastWeekAverageStudiedTimeService.schoolAverage, 'hours').format('hh:mm', { trim: false })}`
-        }
+        schoolAverage={LastWeekAverageStudiedTimeService.schoolAverage}
+        weeklyHoursRequired={this.school ? this.school.weeklyHoursRequired : 2}
       />
     );
   }
 }
 
-export default observer(ActiveStudentsLastSevenDaysContainer);
+export default observer(LastWeekAverageStudiedTimeContainer);
