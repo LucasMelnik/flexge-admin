@@ -68,12 +68,12 @@ class StudentRecordDetailService {
           const totalConquered = module.children.reduce((acc, unit) => acc + (unit.conqueredPoints || 0), 0);
           return {
             ...module,
-            moduleProgress: round(totalConquered / module.children.reduce((acc, unit) => {
-              if (unit.docType === 'UNIT') {
-                return acc + unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints;
-              }
-              return acc;
-            }, 0)),
+            // moduleProgress: round(totalConquered / module.children.reduce((acc, unit) => {
+            //   if (unit.docType === 'UNIT') {
+            //     return acc + unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints;
+            //   }
+            //   return acc;
+            // }, 0)),
             readingProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.readingPoints, 0)),
             listeningProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.listeningPoints, 0)),
             speakingProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.speakingPoints, 0)),
