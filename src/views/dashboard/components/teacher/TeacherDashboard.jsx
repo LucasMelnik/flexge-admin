@@ -7,11 +7,8 @@ import MetricCharts from './MetricCharts';
 
 const TeacherDashboard = () => (
   <div>
-    <div style={{ marginLeft: -30, marginRight: -30 }}>
-      <Separator size="xs" />
-      <h2 style={{ marginLeft: 30 }}>Performance Goals</h2>
-      <Separator size="xs" />
-      <Card title="Your goal is to keep all values green!">
+    <div id="performance-goals-card" style={{ marginLeft: -30, marginRight: -30, marginTop: -20 }}>
+      <Card title="Performance Goals">
         <PerformanceGoals />
       </Card>
     </div>

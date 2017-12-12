@@ -113,3 +113,7 @@ h1, h2, h3, h4, h5 {
 .ant-table-thead > tr > th {
   color: rgb(103, 106, 108) !important;
 }
+
+#performance-goals-card > .ant-card > div > .ant-card-head > .ant-card-head-wrapper > .ant-card-head-title {
+  font-size: 26px !important;
+}
