@@ -40,7 +40,7 @@ class StudyQualityGroupService {
         ), 0);
         return totalHigherThanFive / this.total;
       }),
-      rates: computed(() => {
+      totalByGroup: computed(() => {
         const totals = Object.keys(this.data).map((key) => {
           if (this.data[key]) {
             return this.data[key].reduce((schoolAcc, school) => {
@@ -52,7 +52,10 @@ class StudyQualityGroupService {
           }
           return [];
         });
-        return totals.map(total => total / this.total * 100);
+        return totals.map(total => ({
+          value: total,
+          rate: (total / this.total) * 100,
+        }));
       }),
     });
   }

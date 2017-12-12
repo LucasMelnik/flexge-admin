@@ -14,11 +14,11 @@ const ActiveStudentsByPeriodChart = props => (
   >
     <DoughnutChart
       labels={[
-        '% studied last 7 days',
-        '% studied last 14 days',
-        '% studied last 21 days',
-        '% studied last 30 days',
-        '% didn\'t study',
+        'Active last 7 days',
+        'Active last 14 days',
+        'Active last 21 days',
+        'Active last 30 days',
+        'Didn\'t study',
       ]}
       data={props.data}
       colors={[DARK_GREEN, GREEN, ORANGE, RED, DARK_RED]}

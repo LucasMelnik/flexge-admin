@@ -31,7 +31,10 @@ class StudiedTimeGroupService {
           }
           return [];
         });
-        return studentsCount.map(count => count / this.total * 100);
+        return studentsCount.map(studentCount => ({
+          value: studentCount,
+          rate: (studentCount / this.total) * 100,
+        }));
       }),
       higherThanTwo: computed(() => {
         if (!this.validateResponse()) return 0;

@@ -42,7 +42,10 @@ const StudiedTimeChart = (props) => {
 StudiedTimeChart.propTypes = {
   showDetails: PropTypes.bool,
   loading: PropTypes.bool.isRequired,
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.number.isRequired,
+    rate: PropTypes.number.isRequired,
+  })).isRequired,
 };
 
 StudiedTimeChart.defaultProps = {

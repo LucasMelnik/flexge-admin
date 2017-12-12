@@ -30,14 +30,14 @@ class dataService {
         const studyingStudents =
           this.data[0].totalStudents -
           this.data[0].noStudy;
-        return studyingStudents / this.data[0].totalStudents * 100;
+        return (studyingStudents / this.data[0].totalStudents) * 100;
       }),
       studiedLast7Days: computed(() => {
         if (!this.validateResponse()) return 0;
         const activeStudentsLast7Days = this.data.reduce((acc, school) => (
           acc + this.getdata(school.classes, 'studyOnLast7Days')
         ), 0);
-        return activeStudentsLast7Days / this.totalStudents * 100;
+        return (activeStudentsLast7Days / this.totalStudents) * 100;
       }),
       averageByPeriod: computed(() => {
         if (!this.validateResponse()) return 0;
@@ -51,10 +51,17 @@ class dataService {
           });
           return acc;
         }, {});
-        //Return total by period and total that didn't study
+        // Return total by period and total that didn't study
+        const totalDidntStudy = this.totalStudents - Object.keys(activeStudentsByPeriod).reduce((acc, period) => acc + activeStudentsByPeriod[period], 0);
         return [
-          ...Object.keys(activeStudentsByPeriod).map(period => activeStudentsByPeriod[period] / this.totalStudents * 100),
-          this.totalStudents - Object.keys(activeStudentsByPeriod).reduce((acc, period) => acc + activeStudentsByPeriod[period], 0),
+          ...Object.keys(activeStudentsByPeriod).map(period => ({
+            value: activeStudentsByPeriod[period],
+            rate: (activeStudentsByPeriod[period] / this.totalStudents) * 100,
+          })),
+          {
+            value: totalDidntStudy,
+            rate: (totalDidntStudy / this.totalStudents) * 100,
+          },
         ];
       }),
     });
