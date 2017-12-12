@@ -19,10 +19,10 @@ class StudyQualityChartContainer extends Component {
         ...school.classes.map(schoolClass => schoolClass.className),
       ]), 0);
     const values = localStorage.role === 'COMPANY_MANAGER' ?
-      AverageStudyQualityService.data.map(school => school.schoolAverageScore) :
+      AverageStudyQualityService.data.map(school => school.schoolAverageScore.toFixed(1)) :
       AverageStudyQualityService.data.reduce((acc, school) => ([
         ...acc,
-        ...school.classes.map(schoolClass => schoolClass.classAverageScore),
+        ...school.classes.map(schoolClass => schoolClass.classAverageScore.toFixed(1)),
       ]), 0);
     return (
       <StudyQualityChart
