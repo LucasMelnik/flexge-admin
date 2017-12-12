@@ -30,7 +30,7 @@ const CompanyUserFormScene = props => (
       }
     >
       <UserFormContainer
-        type="COMPANY"
+        type={localStorage.role}
         companyId={props.params.companyId}
         userId={props.params.userId}
       />

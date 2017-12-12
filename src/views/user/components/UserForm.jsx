@@ -16,14 +16,19 @@ const getRolesByType = (type) => {
       { value: 'IMAGE_ADMIN', label: 'Image Admin' },
       { value: 'AUDIO_CONTENT', label: 'Content Audio' },
     ];
-  } else if (type === 'DISTRIBUTOR') {
+  } else if (type === 'DISTRIBUTOR_MANAGER') {
     return [
       { value: 'DISTRIBUTOR_MANAGER', label: 'Distributor Manager' },
     ];
-  } else if (type === 'COMPANY') {
+  } else if (type === 'COMPANY_MANAGER') {
     return [
       { value: 'SCHOOL_MANAGER', label: 'School Manager' },
       { value: 'COMPANY_MANAGER', label: 'Company Manager' },
+      { value: 'TEACHER', label: 'Teacher' },
+    ];
+  } else if (type === 'SCHOOL_MANAGER') {
+    return [
+      { value: 'SCHOOL_MANAGER', label: 'School Manager' },
       { value: 'TEACHER', label: 'Teacher' },
     ];
   }
@@ -99,11 +104,11 @@ const UserForm = props => (
           />
         </Column>
       )}
-      {(props.type === 'COMPANY') && (
+      {(props.type === 'COMPANY_MANAGER' || props.type === 'SCHOOL_MANAGER') && (
         <Column size={4}>
           <FetchSelect
             url="companies"
-            disabled={localStorage.role === 'COMPANY_MANAGER' || props.submitting}
+            disabled={(localStorage.role === 'COMPANY_MANAGER' || localStorage.role === 'SCHOOL_MANAGER') || props.submitting}
             label="Company"
             value={get(props.values, 'company', '')}
             onChange={school => props.onChange('company', school)}
@@ -116,7 +121,7 @@ const UserForm = props => (
         </Column>
       )}
       {(
-        props.type === 'COMPANY' &&
+        (props.type === 'COMPANY_MANAGER' || props.type === 'SCHOOL_MANAGER') &&
         (get(props.values, 'role', '') === 'SCHOOL_MANAGER' || get(props.values, 'role', '') === 'TEACHER')
       ) && (
         <Column size={4}>
@@ -146,7 +151,7 @@ const UserForm = props => (
 );
 
 UserForm.propTypes = {
-  type: PropTypes.oneOf(['ADMIN','DISTRIBUTOR', 'COMPANY']).isRequired,
+  type: PropTypes.oneOf(['ADMIN','DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER']).isRequired,
   onSubmit: PropTypes.func,
   onReset: PropTypes.func,
   values: PropTypes.object,

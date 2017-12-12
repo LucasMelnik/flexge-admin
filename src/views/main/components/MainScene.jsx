@@ -79,7 +79,7 @@ const MainScene = props => (
           groups={[
             {
               group: 'Organizations',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
             },
             {
               group: 'Users',
@@ -103,9 +103,16 @@ const MainScene = props => (
             {
               label: 'Schools',
               link: '/schools',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'SCHOOL_MANAGER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
               group: 'Organizations',
               icon: 'contacts',
+            },
+            {
+              label: 'Classes',
+              link: '/classes',
+              allowedFor: ['SCHOOL_MANAGER', 'TEACHER'],
+              group: 'Organizations',
+              icon: 'profile',
             },
             {
               label: 'Admin Users',

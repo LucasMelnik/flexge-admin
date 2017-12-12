@@ -29,7 +29,7 @@ const SchoolClassForm = props => (
       </Column>
       <Column size={3}>
         <FetchSelect
-          url="/teachers"
+          url={`/teachers?school=${props.schoolId}`}
           disabled={props.submitting}
           label="Teacher"
           value={get(props.values, 'teacher', '')}
@@ -67,18 +67,20 @@ const SchoolClassForm = props => (
         />
       </Column>
     </Row>
-    <Row>
-      <Column size={4}>
-        <Switch
-          label="Is Placement Test Class?"
-          titleOff="False"
-          titleOn="True"
-          onChange={value => props.onChange('isPlacementTestClass', value)}
-          value={get(props.values, 'isPlacementTestClass', false)}
-          disabled={props.submitting}
-        />
-      </Column>
-    </Row>
+    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+      <Row>
+        <Column size={4}>
+          <Switch
+            label="Is Placement Test Class?"
+            titleOff="False"
+            titleOn="True"
+            onChange={value => props.onChange('isPlacementTestClass', value)}
+            value={get(props.values, 'isPlacementTestClass', false)}
+            disabled={props.submitting}
+          />
+        </Column>
+      </Row>
+    )}
     <FormButtons
       confirmLabel={props.values.id ? 'Update School Class' : 'Create School Class'}
       isDisabled={props.submitting || !props.isDirty()}
@@ -96,6 +98,7 @@ SchoolClassForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
+  schoolId: PropTypes.string.isRequired,
 };
 
 SchoolClassForm.defaultProps = {
