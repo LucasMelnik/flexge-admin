@@ -9,15 +9,22 @@ const Tag = props => (
       orange: ORANGE,
       green: GREEN,
       red: RED,
+      none: null,
     }[props.color]}
+    style={props.style}
   >
     {props.children}
   </AntTag>
 );
 
 Tag.propTypes = {
-  color: PropTypes.oneOf(['orange', 'red', 'green']).isRequired,
+  color: PropTypes.oneOf(['orange', 'red', 'green', 'none']).isRequired,
   children: PropTypes.node.isRequired,
+  style: PropTypes.object,
+};
+
+Tag.defaultProps = {
+  style: {},
 };
 
 export default Tag;
