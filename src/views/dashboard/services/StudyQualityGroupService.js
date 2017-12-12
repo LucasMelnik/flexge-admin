@@ -7,6 +7,8 @@ class StudyQualityGroupService {
   constructor() {
     extendObservable(this, {
       data: {},
+      schoolId: null,
+      classId: null,
       total: computed(() => {
         if (!this.validateResponse()) return 0;
         return Object.keys(this.data).reduce((acc, key) => {
@@ -33,6 +35,39 @@ class StudyQualityGroupService {
         }, 0);
         return totalHigherThanFive / this.total;
       }),
+      higherThanFiveByClass: computed(() => {
+        if (!this.validateResponse()) return 0;
+        const totalHigherThanFive = ['good', 'excellent'].reduce((acc, key) => {
+          if (this.data[key]) {
+            return acc + this.data[key]
+              .filter(school => !this.scholId || school.id === this.schoolId)
+              .reduce((schoolAcc, school) => {
+                if (school.classes) {
+                  return schoolAcc + school.classes
+                    .filter(schoolClass => !this.classId || schoolClass.id === this.classId)
+                    .reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
+                }
+                return schoolAcc;
+              }, 0);
+          }
+          return acc;
+        }, 0);
+
+        const total = Object.keys(this.data).reduce((acc, key) => {
+          return acc + this.data[key]
+            .filter(school => !this.scholId || school.id === this.schoolId)
+            .reduce((schoolAcc, school) => {
+              if (school.classes) {
+                return schoolAcc + school.classes
+                  .filter(schoolClass => !this.classId || schoolClass.id === this.classId)
+                  .reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
+              }
+              return schoolAcc;
+            }, 0);
+        }, 0);
+
+        return totalHigherThanFive / total;
+      }),
       higherThanFiveSchoolAverage: computed(() => {
         if (!this.validateResponse()) return 0;
         const totalHigherThanFive = ['good', 'excellent'].reduce((acc, key) => (
@@ -58,6 +93,12 @@ class StudyQualityGroupService {
   }
 
   validateResponse = () => Object.keys(this.data).length > 0;
+
+  init= action((schoolId, classId) => {
+    this.schoolId = schoolId;
+    this.classId = classId;
+    this.load();
+  });
 
   load = action(() => {
     this.fetch.fetch({

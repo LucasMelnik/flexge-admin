@@ -7,6 +7,8 @@ class AverageStudyQualityService {
   constructor() {
     extendObservable(this, {
       data: [],
+      schoolId: null,
+      classId: null,
       allSchoolsAverage: computed(() => {
         if (!this.validateResponse()) return 0;
         const total = this.data.reduce((acc, school) => (
@@ -16,10 +18,15 @@ class AverageStudyQualityService {
       }),
       averageByClass: computed(() => {
         if (!this.validateResponse()) return 0;
-        const total = this.data[0].classes.reduce((acc, schoolClass) => (
-          acc + schoolClass.classAverageScore
-        ), 0);
-        return total / this.data[0].classes.length;
+        const total = this.data
+          .filter(school => !this.schoolId || school.id === this.schoolId)[0].classes
+          .filter(schoolClass => !this.classId || schoolClass.id === this.classId)
+          .reduce((acc, schoolClass) => (
+            acc + schoolClass.classAverageScore
+          ), 0);
+        return total / this.data
+          .filter(school => !this.schoolId || school.id === this.schoolId)[0].classes
+          .filter(schoolClass => !this.classId || schoolClass.id === this.classId).length;
       }),
     });
   }
@@ -33,6 +40,12 @@ class AverageStudyQualityService {
     }
     return true;
   }
+
+  init = action((schoolId, classId) => {
+    this.schoolId = schoolId;
+    this.classId = classId;
+    this.load();
+  });
 
   load = action(() => {
     this.fetch.fetch({

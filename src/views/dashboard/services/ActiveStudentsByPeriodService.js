@@ -7,6 +7,8 @@ class dataService {
   constructor() {
     extendObservable(this, {
       data: [],
+      schoolId: null,
+      classId: null,
       totalActiveStudents: computed(() => {
         if (!this.validateResponse()) return 0;
         const periods = [7, 14, 21, 30];
@@ -15,7 +17,32 @@ class dataService {
             acc + periods.reduce((classAcc, period) => classAcc + schoolClass[`studyOnLast${period}Days`] || 0, 0)
           ), 0)
         ), 0);
-        return activeStudents / this.totalStudents * 100;
+        return (activeStudents / this.totalStudents) * 100;
+      }),
+      totalActiveStudentsByClass: computed(() => {
+        if (!this.validateResponse()) return 0;
+        const periods = [7, 14, 21, 30];
+        const activeStudents = this.data
+          .filter(school => !this.schoolId || school.id === this.schoolId)
+          .reduce((schoolAcc, school) => (
+            schoolAcc + school.classes
+              .filter(schoolClass => !this.classId || schoolClass.id === this.classId)
+              .reduce((acc, schoolClass) => (
+                acc + periods.reduce((classAcc, period) => classAcc + schoolClass[`studyOnLast${period}Days`] || 0, 0)
+              ), 0)
+          ), 0);
+
+
+        const totalStudents = this.data
+          .filter(school => !this.schoolId || school.id === this.schoolId)
+          .reduce((schoolAcc, school) => (
+            schoolAcc + school.classes
+              .filter(schoolClass => !this.classId || schoolClass.id === this.classId)
+              .reduce((acc, schoolClass) => (
+                acc + schoolClass.totalStudents
+              ), 0)
+          ), 0);
+        return (activeStudents / totalStudents) * 100;
       }),
       totalStudents: computed(() => {
         if (!this.validateResponse()) return 0;
@@ -38,6 +65,26 @@ class dataService {
           acc + this.getdata(school.classes, 'studyOnLast7Days')
         ), 0);
         return activeStudentsLast7Days / this.totalStudents * 100;
+      }),
+      studiedLast7DaysByClass: computed(() => {
+        if (!this.validateResponse()) return 0;
+        const activeStudentsLast7Days = this.data
+          .filter(school => !this.schoolId || school.id === this.schoolId)
+          .reduce((acc, school) => (
+          acc + this.getdata(school.classes.filter(schoolClass => !this.classId || schoolClass.id === this.classId), 'studyOnLast7Days')
+        ), 0);
+
+        const totalStudents = this.data
+          .filter(school => !this.schoolId || school.id === this.schoolId)
+          .reduce((schoolAcc, school) => (
+            schoolAcc + school.classes
+              .filter(schoolClass => !this.classId || schoolClass.id === this.classId)
+              .reduce((acc, schoolClass) => (
+                acc + schoolClass.totalStudents
+              ), 0)
+          ), 0);
+
+        return activeStudentsLast7Days / totalStudents * 100;
       }),
       averageByPeriod: computed(() => {
         if (!this.validateResponse()) return 0;
@@ -77,6 +124,12 @@ class dataService {
     }
     return true;
   }
+
+  init= action((schoolId, classId) => {
+    this.schoolId = schoolId;
+    this.classId = classId;
+    this.load();
+  });
 
   load = action(() => {
     this.data = [];

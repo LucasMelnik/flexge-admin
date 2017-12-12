@@ -5,6 +5,7 @@ import Breadcrumb from '../../../../core/layout/Breadcrumb';
 import StudentRecordListContainer from './StudentRecordListContainer';
 import Separator from '../../../../core/layout/Separator';
 import GrammarNeedsListContainer from '../common/GrammarNeedsListContainer';
+import PerformanceGoals from '../../../dashboard/components/common/performance-goals/PerformanceGoals';
 
 const StudentRecordScene = props => (
   <div>
@@ -24,20 +25,24 @@ const StudentRecordScene = props => (
         },
       ]}
     />
-    <Card
-      title="Students Grammar Needs"
-      fetching={props.fetching}
-    >
-      <GrammarNeedsListContainer
+    <Card title="Your goal is to keep all values green!">
+      <PerformanceGoals
         schoolId={props.schoolId}
         classId={props.classId}
       />
     </Card>
     <Separator />
     <Card
-      title="Students Records"
+      title="Analytics"
       fetching={props.fetching}
     >
+      <h2>Students Grammar Needs</h2>
+      <GrammarNeedsListContainer
+        schoolId={props.schoolId}
+        classId={props.classId}
+      />
+      <Separator />
+      <h2>Students Records</h2>
       <StudentRecordListContainer
         schoolId={props.schoolId}
         classId={props.classId}

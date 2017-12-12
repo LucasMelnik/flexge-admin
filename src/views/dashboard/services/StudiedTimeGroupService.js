@@ -43,6 +43,34 @@ class StudiedTimeGroupService {
         }, 0);
         return totalHigherThanTwo / this.total;
       }),
+      higherThanTwoByClass: computed(() => {
+        if (!this.validateResponse()) return 0;
+        const totalHigherThanTwo = this.data.excellent
+          .filter(school => !this.schoolId || school.id === this.schoolId)
+          .reduce((acc, school) => {
+            if (school.classes) {
+              return acc + school.classes
+                .filter(schoolClass => !this.classId || schoolClass.id === this.classId)
+                .reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
+            }
+            return acc;
+          }, 0);
+
+        const total = Object.keys(this.data).reduce((acc, key) => {
+          return acc + this.data[key]
+            .filter(school => !this.schoolId || school.id === this.schoolId)
+            .reduce((schoolAcc, school) => {
+              if (school.classes) {
+                return schoolAcc + school.classes
+                  .filter(schoolClass => !this.classId || schoolClass.id === this.classId)
+                  .reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
+              }
+              return schoolAcc;
+            }, 0);
+        }, 0);
+
+        return totalHigherThanTwo / total;
+      }),
       higherThanTwoSchoolAverage: computed(() => {
         if (!this.validateResponse()) return 0;
         const totalHigherThanTwo = this.data.excellent.reduce((schoolAcc, school) => schoolAcc + school.schoolCount, 0)
@@ -52,6 +80,12 @@ class StudiedTimeGroupService {
   }
 
   validateResponse = () => Object.keys(this.data).length > 0;
+
+  init= action((schoolId, classId) => {
+    this.schoolId = schoolId;
+    this.classId = classId;
+    this.load();
+  });
 
   load = action(() => {
     this.fetch.fetch({
