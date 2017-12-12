@@ -6,11 +6,11 @@ class StudyQualityGroupService {
 
   constructor() {
     extendObservable(this, {
-      studyQualityGroups: {},
+      data: {},
       total: computed(() => {
         if (!this.validateResponse()) return null;
-        return Object.keys(this.studyQualityGroups).reduce((acc, key) => {
-          return acc + this.studyQualityGroups[key].reduce((schoolAcc, school) => {
+        return Object.keys(this.data).reduce((acc, key) => {
+          return acc + this.data[key].reduce((schoolAcc, school) => {
             if (school.classes) {
               return schoolAcc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
             }
@@ -21,8 +21,8 @@ class StudyQualityGroupService {
       higherThanFive: computed(() => {
         if (!this.validateResponse()) return null;
         const totalHigherThanFive = ['good', 'excellent'].reduce((acc, key) => {
-          if (this.studyQualityGroups[key]) {
-            return acc + this.studyQualityGroups[key].reduce((schoolAcc, school) => {
+          if (this.data[key]) {
+            return acc + this.data[key].reduce((schoolAcc, school) => {
               if (school.classes) {
                 return schoolAcc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
               }
@@ -36,14 +36,14 @@ class StudyQualityGroupService {
       higherThanFiveSchoolAverage: computed(() => {
         if (!this.validateResponse()) return null;
         const totalHigherThanFive = ['good', 'excellent'].reduce((acc, key) => (
-          acc + this.studyQualityGroups[key].reduce((schoolAcc, school) => schoolAcc + school.schoolCount, 0)
+          acc + this.data[key].reduce((schoolAcc, school) => schoolAcc + school.schoolCount, 0)
         ), 0);
         return totalHigherThanFive / this.total;
       }),
       rates: computed(() => {
-        const totals = Object.keys(this.studyQualityGroups).map((key) => {
-          if (this.studyQualityGroups[key]) {
-            return this.studyQualityGroups[key].reduce((schoolAcc, school) => {
+        const totals = Object.keys(this.data).map((key) => {
+          if (this.data[key]) {
+            return this.data[key].reduce((schoolAcc, school) => {
               if (school.classes) {
                 return schoolAcc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
               }
@@ -57,14 +57,14 @@ class StudyQualityGroupService {
     });
   }
 
-  validateResponse = () => Object.keys(this.studyQualityGroups).length > 0;
+  validateResponse = () => Object.keys(this.data).length > 0;
 
-  loadStudyQualityGroups = action(() => {
+  load = action(() => {
     this.fetch.fetch({
       url: '/reports/study-quality-groups',
     }).then(() => {
       if (this.fetch.data) {
-        this.studyQualityGroups = this.fetch.data;
+        this.data = this.fetch.data;
       }
     });
   });

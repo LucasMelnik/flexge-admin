@@ -13,14 +13,14 @@ class StudyQualityChartContainer extends Component {
 
   render() {
     const labels = localStorage.role === 'COMPANY_MANAGER' ?
-      AverageStudyQualityService.studyQualityAverages.map(school => school.name) :
-      AverageStudyQualityService.studyQualityAverages.reduce((acc, school) => ([
+      AverageStudyQualityService.data.map(school => school.name) :
+      AverageStudyQualityService.data.reduce((acc, school) => ([
         ...acc,
         ...school.classes.map(schoolClass => schoolClass.className),
       ]), 0);
     const values = localStorage.role === 'COMPANY_MANAGER' ?
-      AverageStudyQualityService.studyQualityAverages.map(school => school.schoolAverageScore) :
-      AverageStudyQualityService.studyQualityAverages.reduce((acc, school) => ([
+      AverageStudyQualityService.data.map(school => school.schoolAverageScore) :
+      AverageStudyQualityService.data.reduce((acc, school) => ([
         ...acc,
         ...school.classes.map(schoolClass => schoolClass.classAverageScore),
       ]), 0);

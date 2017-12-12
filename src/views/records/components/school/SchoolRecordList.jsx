@@ -26,7 +26,7 @@ const SchoolRecordList = props => (
       {
         label: 'Study Quality Average',
         path: 'averageStudyQuality',
-        render: value => round(value),
+        render: value => value && round(value),
       },
       {
         label: 'Last any student access',

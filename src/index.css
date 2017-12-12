@@ -109,3 +109,7 @@ h1, h2, h3, h4, h5 {
 .ant-table-tbody>tr>td.no-padding-column {
   padding: 0 !important;
 }
+
+.ant-table-thead > tr > th {
+  color: rgb(103, 106, 108) !important;
+}

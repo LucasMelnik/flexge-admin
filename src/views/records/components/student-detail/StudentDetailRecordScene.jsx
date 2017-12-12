@@ -5,6 +5,15 @@ import Card from '../../../../core/layout/Card';
 import Breadcrumb from '../../../../core/layout/Breadcrumb';
 import StudentDetailContentRecordListContainer from './StudentDetailContentRecordListContainer';
 import StudentDetailDateRecordListContainer from './StudentDetailDateRecordListContainer';
+import Separator from '../../../../core/layout/Separator';
+import StudentDetailHeaderContainer from './StudentDetailHeaderContainer';
+import StudentDetailAnalyticsOverviewRecordContainer from './StudentDetailAnalyticsOverviewRecordContainer';
+import StudentDetailAnalyticsStudiedTimeChartContainer from './StudentDetailAnalyticsStudiedTimeChartContainer';
+import StudentDetailAnalyticsStudyQualityChartContainer from './StudentDetailAnalyticsStudyQualityChartContainer';
+import StudentDetailAnalyticsAcademicPerformanceHistoryContainer from './StudentDetailAnalyticsAcademicPerformanceHistoryContainer';
+import StudentGrammarNeedsListContainer from '../common/StudentGrammarNeedsListContainer';
+import StudentDetailAnalyticsAcademicPerformanceContainer from './StudentDetailAnalyticsAcademicPerformanceContainer';
+import StudentDetailAchievements from './StudentDetailAchievements';
 
 const StudentDetailRecordScene = props => (
   <div>
@@ -28,8 +37,37 @@ const StudentDetailRecordScene = props => (
         },
       ]}
     />
+    <Card>
+      <StudentDetailHeaderContainer studentId={props.studentId} />
+    </Card>
+    <Separator />
     <Tabs
       tabs={[
+        {
+          title: 'Analytics',
+          content:
+            (
+              <div>
+                <Card title="Overview">
+                  <StudentDetailAnalyticsOverviewRecordContainer studentId={props.studentId} />
+                </Card>
+                <Separator />
+                <Card title="Academic Performance">
+                  <StudentDetailAnalyticsAcademicPerformanceContainer />
+                  <Separator />
+                  <StudentGrammarNeedsListContainer studentId={props.studentId} />
+                </Card>
+                <Separator />
+                <Card title="History">
+                  <StudentDetailAnalyticsAcademicPerformanceHistoryContainer studentId={props.studentId} />
+                  <Separator />
+                  <StudentDetailAnalyticsStudiedTimeChartContainer studentId={props.studentId} />
+                  <Separator />
+                  <StudentDetailAnalyticsStudyQualityChartContainer studentId={props.studentId} />
+                </Card>
+              </div>
+            ),
+        },
         {
           title: 'Content Progress',
           content:
@@ -48,6 +86,16 @@ const StudentDetailRecordScene = props => (
               </Card>
             ),
         },
+        {
+          title: 'Achievements',
+          content:
+           (
+             <Card>
+               <StudentDetailAchievements />
+             </Card>
+           ),
+        },
+
       ]}
     />
   </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import round from 'lodash/round';
 import Table from '../../../../core/form/Table';
 
 const GrammarNeedsList = props => (
@@ -11,25 +12,24 @@ const GrammarNeedsList = props => (
         path: 'name',
         defaultSortOrder: 'ascend',
         sort: true,
+        render: (value, row) => {
+          if (row.children) {
+            return (<span>{value} <b>{row.children.length} student{row.children.length > 1 ? 's' : ''} needing help.</b></span>);
+          }
+          return value;
+        },
       },
       {
-        label: 'Total',
+        label: 'Attempts',
         path: 'total',
+        width: 200,
         sort: true,
-      },
-      {
-        label: 'Correct',
-        path: 'correctCount',
-      },
-      {
-        label: '% Correct',
-        path: 'correctPercentage',
-        render: value => value && `${value}%`,
       },
       {
         label: '% Error',
         path: 'errorPercentage',
-        render: value => value && `${value}%`,
+        width: 100,
+        render: value => value && `${round(value, 2)}%`,
       },
     ]}
     rows={props.grammars}
@@ -40,7 +40,6 @@ GrammarNeedsList.propTypes = {
   grammars: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    correctCount: PropTypes.number.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
 };

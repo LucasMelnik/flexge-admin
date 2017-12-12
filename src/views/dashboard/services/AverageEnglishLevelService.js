@@ -6,25 +6,25 @@ class AverageEnglishLevelService {
 
   constructor() {
     extendObservable(this, {
-      englishLevelProgress: [],
+      data: [],
       average: computed(() => (
-        this.englishLevelProgress.length ? (
-          this.englishLevelProgress.reduce((acc, level) => acc + level.averageEnglishLevel, 0)
-            / this.englishLevelProgress.length
+        this.data.length ? (
+          this.data.reduce((acc, level) => acc + level.averageEnglishLevel, 0)
+            / this.data.length
         ) : 0
       )),
     });
   }
 
-  validateResponse = () => this.englishLevelProgress.length > 0;
+  validateResponse = () => this.data.length > 0;
 
   load = action(() => {
-    this.englishLevelProgress = [];
+    this.data = [];
     this.fetch.fetch({
       url: '/reports/semiannual-average-english-level',
     }).then(() => {
       if (this.fetch.data) {
-        this.englishLevelProgress = this.fetch.data;
+        this.data = this.fetch.data;
       }
     });
   });

@@ -16,7 +16,6 @@ const UnitList = props => (
         path: 'group',
         width: '75px',
         sort: true,
-        defaultSortOrder: 'ascend',
       },
       {
         label: 'Order',

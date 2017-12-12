@@ -102,7 +102,16 @@ export default class CircularProgress extends Component {
                   {this.getValueLegend(this.props.value)}
                 </small>
               </div>
-            ) : this.props.noDataText}
+            ) : (
+              <small
+                style={{
+                  fontSize: 14,
+                  color: '#424242',
+                }}
+              >
+                {this.props.noDataText}
+              </small>
+            )}
           />
           <div style={{ height: 12 }}>
             {this.props.legend && (

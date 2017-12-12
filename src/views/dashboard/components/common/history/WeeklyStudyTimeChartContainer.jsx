@@ -5,7 +5,7 @@ import WeekStatsByPeriodService from '../../../services/WeekStatsByPeriodService
 
 const WeeklyStudyTimeChartContainer = () => (
   <WeeklyStudyTimeChart
-    data={WeekStatsByPeriodService.weekStatsByPeriod}
+    data={WeekStatsByPeriodService.data}
     loading={WeekStatsByPeriodService.fetch.fetching}
   />
 );

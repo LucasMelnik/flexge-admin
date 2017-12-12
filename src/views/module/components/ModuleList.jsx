@@ -13,7 +13,6 @@ const ModuleList = props => (
         path: 'course.name',
         width: '6%',
         sort: true,
-        defaultSortOrder: 'ascend',
       },
       {
         label: 'Group',
