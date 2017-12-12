@@ -111,7 +111,7 @@ const StudentDetailContentRecordList = props => (
               </div>
             </div>
           ) : (
-            <b>{moment.duration(row.studiedTime, 'seconds').format('hh:mm:ss', { trim: false })}</b>
+            <b>{moment.duration(row.studiedTime, 'seconds').format('hh:mm', { trim: false })}</b>
           ),
           props: {
             colSpan: row.docType === 'MODULE' ? 5 : 1,
