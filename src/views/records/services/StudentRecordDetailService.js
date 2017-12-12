@@ -3,7 +3,8 @@ import round from 'lodash/round';
 import FetchService from '../../../core/services/FetchService';
 
 class StudentRecordDetailService {
-  fetch = new FetchService();
+  fetchContent = new FetchService();
+  fetchDates = new FetchService();
 
   constructor() {
     extendObservable(this, {
@@ -13,14 +14,6 @@ class StudentRecordDetailService {
       contentsDetail: [],
     });
   }
-
-  init = action((studentId) => {
-    this.contents = [];
-    this.contentsDetail = [];
-    this.studentId = studentId;
-    this.loadByDates();
-    this.loadByContent();
-  });
 
   generateAverageSpeecRecognitionScore = (result) => {
     if (result.items) {
@@ -34,12 +27,12 @@ class StudentRecordDetailService {
     }
   };
 
-  loadByContent = action(() => {
-    this.fetch.fetch({
-      url: `/records/students/${this.studentId}/courses/594759ae59f1db0d1b019b2c/content-details`,
+  loadByContent = action((studentId) => {
+    this.fetchContent.fetch({
+      url: `/records/students/${studentId}/courses/594759ae59f1db0d1b019b2c/content-details`,
     }).then(() => {
-      if (this.fetch.data) {
-        this.contentsDetail = this.fetch.data.map(module => ({
+      if (this.fetchContent.data) {
+        this.contentsDetail = this.fetchContent.data.map(module => ({
           ...module,
           children: module.children.map(unit => ({
             ...unit,
@@ -68,12 +61,12 @@ class StudentRecordDetailService {
           const totalConquered = module.children.reduce((acc, unit) => acc + (unit.conqueredPoints || 0), 0);
           return {
             ...module,
-            moduleProgress: round(totalConquered / module.children.reduce((acc, unit) => {
-              if (unit.docType === 'UNIT') {
-                return acc + unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints;
-              }
-              return acc;
-            }, 0)),
+            // moduleProgress: round(totalConquered / module.children.reduce((acc, unit) => {
+            //   if (unit.docType === 'UNIT') {
+            //     return acc + unit.defaultPoints + unit.firstReviewPoints + unit.secondReviewPoints;
+            //   }
+            //   return acc;
+            // }, 0)),
             readingProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.readingPoints, 0)),
             listeningProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.listeningPoints, 0)),
             speakingProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.speakingPoints, 0)),
@@ -86,12 +79,12 @@ class StudentRecordDetailService {
     });
   });
 
-  loadByDates = action(() => {
-    this.fetch.fetch({
-      url: `/records/students/${this.studentId}/date-details`,
+  loadByDates = action((studentId) => {
+    this.fetchDates.fetch({
+      url: `/records/students/${studentId}/date-details`,
     }).then(() => {
-      if (this.fetch.data) {
-        this.contents = this.fetch.data.map(date => ({
+      if (this.fetchDates.data) {
+        this.contents = this.fetchDates.data.map(date => ({
           ...date,
           children: date.children.map(result => ({
             ...result,

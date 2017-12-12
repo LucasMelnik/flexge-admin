@@ -6,7 +6,7 @@ import StudentRecordListContainer from './StudentRecordListContainer';
 import Separator from '../../../../core/layout/Separator';
 import Tabs from '../../../../core/layout/Tabs';
 import GrammarNeedsListContainer from '../common/GrammarNeedsListContainer';
-import PerformanceGoals from '../../../dashboard/components/common/performance-goals/PerformanceGoals';
+import StudentRecordPerformance from './StudentRecordPerformance';
 
 const StudentRecordScene = props => (
   <div>
@@ -33,7 +33,7 @@ const StudentRecordScene = props => (
           content: (
             <div>
               <Card title="Performance Goals">
-                <PerformanceGoals
+                <StudentRecordPerformance
                   schoolId={props.schoolId}
                   classId={props.classId}
                 />
@@ -75,12 +75,12 @@ StudentRecordScene.propTypes = {
   classId: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   school: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    name: PropTypes.string,
   }),
   class: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    name: PropTypes.string,
   }),
 };
 

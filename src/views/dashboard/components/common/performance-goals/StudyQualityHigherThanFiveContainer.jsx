@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import StudyQualityGroupService from '../../../services/StudyQualityGroupService';
-import CircularProgress from '../../../../../core/layout/CircularProgress';
+import StudyQualityHigherThanFiveGauge from '../../../../../core/chart/StudyQualityHigherThanFiveGauge';
 
 class StudyQualityHigherThanFiveContainer extends Component {
   static propTypes = {
@@ -21,21 +21,15 @@ class StudyQualityHigherThanFiveContainer extends Component {
 
   render() {
     return (
-      <CircularProgress
+      <StudyQualityHigherThanFiveGauge
         fetching={StudyQualityGroupService.fetch.fetching}
-        noDataText="No Study Quality found"
-        title="Study Quality > 5"
-        tooltip="Students with Study Quality higher than 5"
-        value={StudyQualityGroupService.higherThanFive ?
+        value={
+          StudyQualityGroupService.higherThanFive ?
           Number(StudyQualityGroupService.higherThanFive.toFixed(0)) : 0
         }
-        max={100}
-        successCondition={value => value > 50}
-        badCondition={value => value <= 35}
-        valueRender={value => `${value}%`}
-        legend={localStorage.role === 'TEACHER' && `School average ${
+        schoolAverage={
           StudyQualityGroupService.higherThanFiveSchoolAverage ?
-            StudyQualityGroupService.higherThanFiveSchoolAverage : 0}%`
+          StudyQualityGroupService.higherThanFiveSchoolAverage : 0
         }
       />
     );

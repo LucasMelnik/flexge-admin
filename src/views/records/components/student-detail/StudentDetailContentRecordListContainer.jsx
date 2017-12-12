@@ -12,14 +12,14 @@ class StudentDetailContentRecordListContainer extends Component {
   };
 
   componentDidMount() {
-    StudentRecordDetailService.init(this.props.studentId);
+    StudentRecordDetailService.loadByContent(this.props.studentId);
   }
 
   render() {
     return (
       <StudentDetailContentRecordList
         contents={toJS(StudentRecordDetailService.contentsDetail)}
-        fetching={StudentRecordDetailService.fetch.fetching}
+        fetching={StudentRecordDetailService.fetchContent.fetching}
       />
     );
   }

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import 'moment-duration-format';
-import LastWeekAverageStudiedTimeService from '../../../services/LastWeekAverageStudiedTimeService';
+import LastWeekAverageStudiedTimeByClassService from '../../../services/LastWeekAverageStudiedTimeByClassService';
 import LastWeekAverageStudiedTimeGauge from '../../../../../core/chart/LastWeekAverageStudiedTimeGauge';
 
-class LastWeekAverageStudiedTimeContainer extends Component {
+class LastWeekAverageStudiedTimeByClassContainer extends Component {
   school = JSON.parse(localStorage.getItem('school'));
 
   static propTypes = {
@@ -19,19 +19,19 @@ class LastWeekAverageStudiedTimeContainer extends Component {
   };
 
   componentWillMount() {
-    LastWeekAverageStudiedTimeService.init(this.props.schoolId, this.props.classId);
+    LastWeekAverageStudiedTimeByClassService.init(this.props.schoolId, this.props.classId);
   }
 
   render() {
     return (
       <LastWeekAverageStudiedTimeGauge
-        fetching={LastWeekAverageStudiedTimeService.fetch.fetching}
-        value={LastWeekAverageStudiedTimeService.average}
-        schoolAverage={LastWeekAverageStudiedTimeService.schoolAverage}
+        fetching={LastWeekAverageStudiedTimeByClassService.fetch.fetching}
+        value={LastWeekAverageStudiedTimeByClassService.average}
+        schoolAverage={LastWeekAverageStudiedTimeByClassService.schoolAverage}
         weeklyHoursRequired={this.school ? this.school.weeklyHoursRequired : 2}
       />
     );
   }
 }
 
-export default observer(LastWeekAverageStudiedTimeContainer);
+export default observer(LastWeekAverageStudiedTimeByClassContainer);

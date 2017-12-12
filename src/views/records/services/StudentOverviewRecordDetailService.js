@@ -33,7 +33,6 @@ export default class StudentOverviewRecordDetailService {
           semiannualProgress,
           projection: 4 / (semiannualProgress / 6),
         };
-        console.log(this.student)
       } else {
         this.student = {};
       }

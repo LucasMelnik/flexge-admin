@@ -67,7 +67,7 @@ const StudentDetailDateRecordList = props => (
       {
         label: 'Studied Time',
         path: 'studiedTime',
-        render: value => moment.duration(value, 'seconds').format('mm:ss', { trim: false }),
+        render: value => moment.duration(value, 'seconds').format('hh:mm', { trim: false }),
       },
       {
         label: 'Correct Count',

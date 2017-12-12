@@ -15,7 +15,7 @@ export default class CircularProgress extends Component {
     fetching: PropTypes.bool.isRequired,
     value: PropTypes.number,
     max: PropTypes.number.isRequired,
-    legend: PropTypes.string,
+    legend: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     tooltip: PropTypes.string,
     valueRender: PropTypes.func,
     successCondition: PropTypes.func.isRequired,
@@ -23,7 +23,7 @@ export default class CircularProgress extends Component {
   };
 
   static defaultProps = {
-    legend: null,
+    legend: false,
     tooltip: null,
     value: null,
     valueRender: null,

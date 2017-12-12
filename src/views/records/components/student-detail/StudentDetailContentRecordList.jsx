@@ -4,10 +4,34 @@ import moment from 'moment';
 import 'moment-duration-format';
 import Table from '../../../../core/form/Table';
 import LinearProgress from '../../../../core/layout/LinearProgress';
-import Alert from '../../../../core/layout/Alert';
+import Tag from '../../../../core/layout/Tag';
+import Icon from '../../../../core/layout/Icon';
+
+const AbilityProgressColumn = (value, label) => value !== undefined && (
+  <div
+    style={{
+      width: 300,
+    }}
+  >
+    <span>{value}% </span>
+    <div
+      style={{
+        display: 'inline-block',
+        width: '70%',
+      }}
+    >
+      <LinearProgress
+        value={value}
+        showInfo={false}
+      />
+    </div>
+    <span> {label}</span>
+  </div>
+);
 
 const StudentDetailContentRecordList = props => (
   <Table
+    bordered={false}
     showTableCount={false}
     fetching={props.fetching}
     columns={[
@@ -15,10 +39,12 @@ const StudentDetailContentRecordList = props => (
         label: 'Name',
         path: 'id',
         render: (value, row) => {
-          if (row.docType === 'MODULE' || row.docType === 'UNIT') {
-            return row.name;
+          if (row.docType === 'MODULE') {
+            return <b style={{ fontSize: 22 }}>{row.name}</b>;
+          } else if (row.docType === 'UNIT') {
+            return <b>{row.name}</b>;
           } else if (row.docType === 'MASTERY') {
-            return `Mastery Test for ${row.modulePercentageToActive}%`;
+            return <span><Icon name="file-text" />{' '}<b>Mastery Test for {row.modulePercentageToActive}%</b></span>;
           }
           return moment(row.startedAt).format('DD/MM/YYYY HH:mm');
         },
@@ -27,63 +53,44 @@ const StudentDetailContentRecordList = props => (
         label: 'Studied Time',
         path: 'studiedTime',
         render: (value, row) => ({
-          children: moment.duration(row.studiedTime, 'seconds').format('hh:mm:ss', { trim: false }),
+          children: row.docType === 'MODULE' ? (
+            <div>
+              {AbilityProgressColumn(row.readingProgress, 'Reading')}
+              {AbilityProgressColumn(row.speakingProgress, 'Speaking')}
+              {AbilityProgressColumn(row.listeningProgress, 'Listening')}
+              {AbilityProgressColumn(row.writingProgress, 'Writing')}
+            </div>
+          ) : (
+            <b>{moment.duration(row.studiedTime, 'seconds').format('hh:mm', { trim: false })}</b>
+          ),
+          props: {
+            colSpan: row.docType === 'MODULE' ? 5 : 1,
+          },
+        }),
+      },
+      {
+        label: 'Points',
+        path: 'points',
+        render: value => ({
+          children: value,
         }),
       },
       {
         label: 'Score',
         path: 'score',
         render: (value, row) => ({
-          children: row.docType === 'MODULE' ? (
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-              }}
-            >
-              <div style={{ width: 200 }}>
-                <p>Module</p>
-                <LinearProgress
-                  value={row.moduleProgress}
-                />
-              </div>
-              <div style={{ width: 200 }}>
-                <p>Reading</p>
-                <LinearProgress
-                  value={row.readingProgress}
-                />
-              </div>
-              <div style={{ width: 200 }}>
-                <p>Speaking</p>
-                <LinearProgress
-                  value={row.speakingProgress}
-                />
-              </div>
-              <div style={{ width: 200 }}>
-                <p>Listening</p>
-                <LinearProgress
-                  value={row.listeningProgress}
-                />
-              </div>
-              <div style={{ width: 200 }}>
-                <p>Writing</p>
-                <LinearProgress
-                  value={row.writingProgress}
-                />
-              </div>
-            </div>
+          children: (row.docType === 'UNIT' || row.docType === 'MASTERY') ? (
+            <div>To pass: {row.scoreToPass}</div>
           ) : (
-            row.scoreToPass ? (
-              <div>Score to pass: {row.scoreToPass}</div>
-            ) : (
-              <Alert
-                title={row.points ? `Your score ${value} - Approved` : `Your score ${value} - Failed`}
-                type={row.points ? 'success' : 'error'}
-              />
-            )
+            value &&
+            <Tag
+              color={row.points ? 'green' : 'red'}
+            >
+              {value}
+            </Tag>
           ),
           props: {
-            colSpan: row.children && 4,
+            colSpan: row.docType === 'MODULE' ? 0 : row.docType ? 4 : 1,
           },
         }),
       },
@@ -111,28 +118,28 @@ const StudentDetailContentRecordList = props => (
           return {
             children: translatedValue,
             props: {
-              colSpan: row.children && 0,
+              colSpan: row.docType && 0,
             },
           };
         },
       },
       {
-        label: 'Points',
-        path: 'points',
+        label: 'Correct',
+        path: 'items',
         render: (value, row) => ({
-          children: value,
+          children: value && `${value.filter(item => item.correct).length}/${value.length}`,
           props: {
-            colSpan: row.children && 0,
+            colSpan: row.docType && 0,
           },
         }),
       },
       {
-        label: 'Average SR',
+        label: 'SR',
         path: 'averageSpeechRecognitionScore',
         render: (value, row) => ({
           children: value,
           props: {
-            colSpan: row.children && 0,
+            colSpan: row.docType && 0,
           },
         }),
       },

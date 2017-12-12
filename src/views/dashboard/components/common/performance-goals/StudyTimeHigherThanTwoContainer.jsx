@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import StudiedTimeGroupService from '../../../services/StudiedTimeGroupService';
-import CircularProgress from '../../../../../core/layout/CircularProgress';
+import StudyTimeHigherThanTwoGauge from '../../../../../core/chart/StudyTimeHigherThanTwoGauge';
 
 class StudyTimeHigherThanTwoContainer extends Component {
   school = JSON.parse(localStorage.getItem('school'));
@@ -23,19 +23,13 @@ class StudyTimeHigherThanTwoContainer extends Component {
 
   render() {
     return (
-      <CircularProgress
+      <StudyTimeHigherThanTwoGauge
         fetching={StudiedTimeGroupService.fetch.fetching}
-        noDataText="No students found"
-        title={`${this.school ? this.school.weeklyHoursRequired : 2} hours last 7 days`}
-        tooltip={`Students which studied at least ${this.school ? this.school.weeklyHoursRequired : 2} hours last 7 days`}
         value={StudiedTimeGroupService.higherThanTwo ?
           Number(StudiedTimeGroupService.higherThanTwo.toFixed(0)) : 0
         }
-        max={100}
-        successCondition={value => value > 50}
-        badCondition={value => value <= 35}
-        valueRender={value => `${value}%`}
-        legend={localStorage.role === 'TEACHER' && `School average ${StudiedTimeGroupService.higherThanTwoSchoolAverage}%`}
+        schoolAverage={StudiedTimeGroupService.higherThanTwoSchoolAverage}
+        weeklyHoursRequired={this.school ? this.school.weeklyHoursRequired : 2}
       />
     );
   }
