@@ -13,18 +13,21 @@ const StudiedTimeChart = (props) => {
   return (
     <Card
       title="Studied time last 7 days"
-      loading={props.loading}
     >
-      <DoughnutChart
-        labels={[
-          `More than ${weeklyHoursRequired}h`,
-          `Until ${weeklyHoursRequired}h`,
-          'Until 1h',
-          'Didn\'t study',
-        ]}
-        data={props.data}
-        colors={[DARK_GREEN, GREEN, ORANGE, RED]}
-      />
+      {!props.loading && (
+        <div>
+          <DoughnutChart
+            labels={[
+              `More than ${weeklyHoursRequired}h`,
+              `Until ${weeklyHoursRequired}h`,
+              'Until 1h',
+              'Didn\'t study',
+            ]}
+            data={props.data}
+            colors={[DARK_GREEN, GREEN, ORANGE, RED]}
+          />
+        </div>
+      )}
       {props.showDetails && (
         <Separator size="md" />
       )}
@@ -37,16 +40,20 @@ const StudiedTimeChart = (props) => {
       )}
     </Card>
   );
-}
+};
 
 StudiedTimeChart.propTypes = {
   showDetails: PropTypes.bool,
   loading: PropTypes.bool.isRequired,
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.number.isRequired,
+    rate: PropTypes.number.isRequired,
+  })),
 };
 
 StudiedTimeChart.defaultProps = {
   showDetails: true,
+  data: [],
 };
 
 export default StudiedTimeChart;

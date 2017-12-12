@@ -49,7 +49,7 @@ Breadcrumb.propTypes = {
   crumbs: PropTypes.arrayOf(PropTypes.shape({
     link: PropTypes.string,
     icon: PropTypes.string,
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
   })),
   fetching: PropTypes.bool,
 };

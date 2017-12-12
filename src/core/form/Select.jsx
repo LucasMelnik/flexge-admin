@@ -36,7 +36,7 @@ const Select = props => (
 );
 
 Select.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]).isRequired,
@@ -50,6 +50,7 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
+  label: null,
   disabled: false,
   required: false,
   value: null,

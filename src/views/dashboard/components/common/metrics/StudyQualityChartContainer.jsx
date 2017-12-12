@@ -17,13 +17,13 @@ class StudyQualityChartContainer extends Component {
       AverageStudyQualityService.data.reduce((acc, school) => ([
         ...acc,
         ...school.classes.map(schoolClass => schoolClass.className),
-      ]), 0);
+      ]), []);
     const values = localStorage.role === 'COMPANY_MANAGER' ?
-      AverageStudyQualityService.data.map(school => school.schoolAverageScore) :
+      AverageStudyQualityService.data.map(school => Number(school.schoolAverageScore.toFixed(1))) :
       AverageStudyQualityService.data.reduce((acc, school) => ([
         ...acc,
-        ...school.classes.map(schoolClass => schoolClass.classAverageScore),
-      ]), 0);
+        ...school.classes.map(schoolClass => Number(schoolClass.classAverageScore.toFixed(1))),
+      ]), []);
     return (
       <StudyQualityChart
         title={this.getTitle()}
