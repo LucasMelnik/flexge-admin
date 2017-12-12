@@ -6,24 +6,46 @@ class LastWeekAverageStudiedTimeService {
 
   constructor() {
     extendObservable(this, {
-      data: {},
+      data: [],
       averageStudiedTimeByClass: computed(() => {
-        const averageStudiedTime = this.data
-          .filter(school => !this.schoolId || school.id === this.schoolId)[0]
+      if (!this.validateResponse()) return 0;
+      return this.data
+          .filter(school => !this.schoolId || school.id === this.schoolId)[0].classes
           .filter(schoolClass => !this.classId || schoolClass.id === this.classId)[0].averageStudiedTime
-        return averageStudiedTime;
       }),
     })
   }
 
+  init = action((schoolId, classId) => {
+    this.schoolId = schoolId;
+    this.classId = classId;
+    this.load();
+  });
+
+  validateResponse = () => {
+    if (
+      !this.data ||
+      !this.data.length ||
+      !this.data[0].classes ||
+      !this.data[0].classes.length
+    ) {
+      return false;
+    }
+    return true;
+  }
+
   load = action((from, to) => {
-    this.data = {};
+    this.data = [];
     this.fetch.fetch({
       url: '/reports/last-week-average-studied-time',
       query: {
         from,
         to,
       },
+    }).then(() => {
+      if (this.fetch.data) {
+        this.data = this.fetch.data;
+      }
     });
   });
 }

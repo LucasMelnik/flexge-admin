@@ -125,7 +125,7 @@ class dataService {
     return true;
   }
 
-  init= action((schoolId, classId) => {
+  init = action((schoolId, classId) => {
     this.schoolId = schoolId;
     this.classId = classId;
     this.load();

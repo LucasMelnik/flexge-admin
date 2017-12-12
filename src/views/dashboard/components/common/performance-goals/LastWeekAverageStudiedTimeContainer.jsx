@@ -25,7 +25,7 @@ class ActiveStudentsLastSevenDaysContainer extends Component {
   }
 
   average = localStorage.getItem('COMPANY_MANAGER') ?
-    get(LastWeekAverageStudiedTimeService.fetch, 'data.schoolAverageStudiedTime') :
+    LastWeekAverageStudiedTimeService.data.schoolAverageStudiedTime :
     LastWeekAverageStudiedTimeService.averageStudiedTimeByClass;
 
   render() {
