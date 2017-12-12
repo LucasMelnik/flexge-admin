@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import round from 'lodash/round';
-import Row from '../../../../core/layout/Row';
-import Column from '../../../../core/layout/Column';
 import Async from '../../../../core/layout/Async';
 import Separator from '../../../../core/layout/Separator';
 import Table from '../../../../core/form/Table';
