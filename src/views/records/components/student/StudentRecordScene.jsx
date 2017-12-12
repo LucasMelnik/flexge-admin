@@ -4,6 +4,7 @@ import Card from '../../../../core/layout/Card';
 import Breadcrumb from '../../../../core/layout/Breadcrumb';
 import StudentRecordListContainer from './StudentRecordListContainer';
 import Separator from '../../../../core/layout/Separator';
+import Tabs from '../../../../core/layout/Tabs';
 import GrammarNeedsListContainer from '../common/GrammarNeedsListContainer';
 import PerformanceGoals from '../../../dashboard/components/common/performance-goals/PerformanceGoals';
 
@@ -25,29 +26,47 @@ const StudentRecordScene = props => (
         },
       ]}
     />
-    <Card title="Your goal is to keep all values green!">
-      <PerformanceGoals
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
-    </Card>
-    <Separator />
-    <Card
-      title="Analytics"
-      fetching={props.fetching}
-    >
-      <h2>Students Grammar Needs</h2>
-      <GrammarNeedsListContainer
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
-      <Separator />
-      <h2>Students Records</h2>
-      <StudentRecordListContainer
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
-    </Card>
+    <Tabs
+      tabs={[
+        {
+          title: 'Analytics',
+          content: (
+            <div>
+              <Card title="Performance Goals">
+                <PerformanceGoals
+                  schoolId={props.schoolId}
+                  classId={props.classId}
+                />
+              </Card>
+              <Separator />
+              <Card
+                title="Grammar Needs"
+                fetching={props.fetching}
+              >
+                <GrammarNeedsListContainer
+                  schoolId={props.schoolId}
+                  classId={props.classId}
+                />
+              </Card>
+            </div>
+          ),
+        },
+        {
+          title: 'Students Records',
+          content: (
+            <Card
+              title="Records"
+              fetching={props.fetching}
+            >
+              <StudentRecordListContainer
+                schoolId={props.schoolId}
+                classId={props.classId}
+              />
+            </Card>
+          ),
+        },
+      ]}
+    />
   </div>
 );
 

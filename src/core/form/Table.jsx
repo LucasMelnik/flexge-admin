@@ -35,7 +35,7 @@ const Table = props => (
         sorter: column.sort ? (a, b) => sort(a, b, column.path) : null,
         defaultSortOrder: column.defaultSortOrder,
         className: column.className,
-        onCell: props.selectable && column.path !== 'action' ? row => props.onSelect(row) : null,
+        onCellClick: props.selectable && column.path !== 'action' ? row => props.onSelect(row) : null,
       }))}
       onChange={props.onChange}
       loading={props.fetching}
