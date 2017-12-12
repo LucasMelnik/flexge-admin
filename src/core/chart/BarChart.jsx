@@ -34,7 +34,7 @@ const BarChart = props => (
       responsive: true,
       maintainAspectRatio: false,
       legend: {
-        display: true,
+        display: false,
         onClick: () => true,
       },
       ...props.options,

@@ -99,6 +99,10 @@ const WeeklyStudyTimeChart = props => (
             },
           },
         },
+        legend: {
+          display: true,
+          onClick: () => true,
+        },
       }}
     />
   </Card>
