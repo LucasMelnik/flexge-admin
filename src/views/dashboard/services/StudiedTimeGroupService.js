@@ -1,5 +1,6 @@
 import { action, extendObservable, computed } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import filterList from './filterList';
 
 class StudiedTimeGroupService {
   fetch = new FetchService();
@@ -7,24 +8,28 @@ class StudiedTimeGroupService {
   constructor() {
     extendObservable(this, {
       data: {},
+      schoolId: null,
+      classId: null,
       total: computed(() => {
         if (!this.validateResponse()) return null;
-        return Object.keys(this.data).reduce((acc, key) => {
-          return acc + this.data[key].reduce((schoolAcc, school) => {
+        return Object.keys(this.data).reduce((acc, key) => (
+          acc + filterList(this.data[key], this.schoolId).reduce((schoolAcc, school) => {
             if (school.classes) {
-              return schoolAcc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
+              return schoolAcc + filterList(school.classes, this.classId)
+                .reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
             }
             return schoolAcc;
-          }, 0);
-        }, 0);
+          }, 0)
+        ), 0);
       }),
       totalByGroup: computed(() => {
         if (!this.validateResponse()) return null;
         const studentsCount = Object.keys(this.data).map((key) => {
           if (this.data[key]) {
-            return this.data[key].reduce((schoolAcc, school) => {
+            return filterList(this.data[key], this.schoolId).reduce((schoolAcc, school) => {
               if (school.classes) {
-                return schoolAcc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
+                return schoolAcc + filterList(school.classes, this.classId)
+                  .reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
               }
               return schoolAcc;
             }, 0);
@@ -38,41 +43,15 @@ class StudiedTimeGroupService {
       }),
       higherThanTwo: computed(() => {
         if (!this.validateResponse()) return null;
-        const totalHigherThanTwo = this.data.excellent.reduce((acc, school) => {
-          if (school.classes) {
-            return acc + school.classes.reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
-          }
-          return acc;
-        }, 0);
-        return totalHigherThanTwo / this.total;
-      }),
-      higherThanTwoByClass: computed(() => {
-        if (!this.validateResponse()) return 0;
-        const totalHigherThanTwo = this.data.excellent
-          .filter(school => !this.schoolId || school.id === this.schoolId)
+        const totalHigherThanTwo = filterList(this.data.excellent, this.schoolId)
           .reduce((acc, school) => {
             if (school.classes) {
-              return acc + school.classes
-                .filter(schoolClass => !this.classId || schoolClass.id === this.classId)
+              return acc + filterList(school.classes, this.classId)
                 .reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
             }
             return acc;
           }, 0);
-
-        const total = Object.keys(this.data).reduce((acc, key) => {
-          return acc + this.data[key]
-            .filter(school => !this.schoolId || school.id === this.schoolId)
-            .reduce((schoolAcc, school) => {
-              if (school.classes) {
-                return schoolAcc + school.classes
-                  .filter(schoolClass => !this.classId || schoolClass.id === this.classId)
-                  .reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
-              }
-              return schoolAcc;
-            }, 0);
-        }, 0);
-
-        return totalHigherThanTwo / total;
+        return totalHigherThanTwo / this.total;
       }),
       higherThanTwoSchoolAverage: computed(() => {
         if (!this.validateResponse()) return null;
