@@ -9,12 +9,17 @@ const StudyQualityHigherThanFiveContainer = () => (
     noDataText="No Study Quality found"
     title="Study Quality > 5"
     tooltip="Students with Study Quality higher than 5"
-    value={Number(StudyQualityGroupService.higherThanFive.toFixed(0))}
+    value={StudyQualityGroupService.higherThanFive ?
+      Number(StudyQualityGroupService.higherThanFive.toFixed(0)) : 0
+    }
     max={100}
     successCondition={value => value > 50}
     badCondition={value => value <= 35}
     valueRender={value => `${value}%`}
-    legend={localStorage.role === 'TEACHER' && `School average ${StudyQualityGroupService.higherThanFiveSchoolAverage}%`}
+    legend={localStorage.role === 'TEACHER' && `School average ${
+      StudyQualityGroupService.higherThanFiveSchoolAverage ?
+        StudyQualityGroupService.higherThanFiveSchoolAverage : 0}%`
+    }
   />
 );
 

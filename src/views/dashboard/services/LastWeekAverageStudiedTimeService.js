@@ -8,17 +8,16 @@ class LastWeekAverageStudiedTimeService {
     extendObservable(this, {
       data: [],
       average: computed(() => {
-        if (!this.data.length) return 0;
+        if (!this.data.length) return null;
         const total = this.data.reduce((acc, school) => (
           acc + school.classes.reduce((classAcc, schoolClass) => (
             acc + schoolClass.averageStudiedTime
           ), 0)
         ), 0);
-        console.log('total', total);
         return total / this.data.reduce((acc, school) => acc + school.classes.length, 0);
       }),
       schoolAverage: computed(() => {
-        if (!this.data.length) return 0;
+        if (!this.data.length) return null;
         return this.data.reduce((acc, school) => (
           acc + school.schoolAverageStudiedTime
         ), 0) / this.data.length;

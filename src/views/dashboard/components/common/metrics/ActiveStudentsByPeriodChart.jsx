@@ -10,19 +10,20 @@ import TopStudentsTableContainer from './TopStudentsTableContainer';
 const ActiveStudentsByPeriodChart = props => (
   <Card
     title="Active Students Last 30 Days"
-    loading={props.loading}
   >
-    <DoughnutChart
-      labels={[
-        'Active last 7 days',
-        'Active last 14 days',
-        'Active last 21 days',
-        'Active last 30 days',
-        'Didn\'t study',
-      ]}
-      data={props.data}
-      colors={[DARK_GREEN, GREEN, ORANGE, RED, DARK_RED]}
-    />
+    {!props.loading && (
+      <DoughnutChart
+        labels={[
+          'Active last 7 days',
+          'Active last 14 days',
+          'Active last 21 days',
+          'Active last 30 days',
+          'Didn\'t study',
+        ]}
+        data={props.data}
+        colors={[DARK_GREEN, GREEN, ORANGE, RED, DARK_RED]}
+      />
+    )}
     {props.showDetails && (
       <Separator size="md" />
     )}
@@ -39,11 +40,12 @@ const ActiveStudentsByPeriodChart = props => (
 ActiveStudentsByPeriodChart.propTypes = {
   loading: PropTypes.bool.isRequired,
   showDetails: PropTypes.bool,
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
 };
 
 ActiveStudentsByPeriodChart.defaultProps = {
   showDetails: true,
+  data: [],
 };
 
 export default ActiveStudentsByPeriodChart;

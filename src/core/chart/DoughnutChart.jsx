@@ -39,13 +39,14 @@ const DoughnutChart = props => (
 
 DoughnutChart.propTypes = {
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
-  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({})),
   colors: PropTypes.arrayOf(PropTypes.string).isRequired,
   tooltipsCallbacks: PropTypes.object,
 };
 
 DoughnutChart.defaultProps = {
   tooltipsCallbacks: null,
+  data: [],
 };
 
 export default DoughnutChart;

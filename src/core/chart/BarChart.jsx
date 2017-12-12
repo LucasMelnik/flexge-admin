@@ -43,16 +43,19 @@ const BarChart = props => (
 );
 
 BarChart.propTypes = {
+  height: PropTypes.number,
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
-  data: PropTypes.arrayOf(PropTypes.number).isRequired,
-  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  data: PropTypes.array.isRequired,
+  colors: PropTypes.arrayOf(PropTypes.string),
   options: PropTypes.object,
   dataFormat: PropTypes.array,
 };
 
 BarChart.defaultProps = {
+  height: 200,
   options: {},
   dataFormat: null,
+  colors: [],
 };
 
 export default BarChart;

@@ -19,7 +19,7 @@ const HistoryListFilter = props => (
 );
 
 HistoryListFilter.propTypes = {
-  year: PropTypes.number.isRequired,
+  year: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

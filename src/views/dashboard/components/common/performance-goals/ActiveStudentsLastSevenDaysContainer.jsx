@@ -9,7 +9,9 @@ const ActiveStudentsLastSevenDaysContainer = () => (
     noDataText="No students found"
     title="Active Students 7 days"
     tooltip="Students which studied at least once in the last 7 days"
-    value={Number(ActiveStudentsByPeriodService.studiedLast7Days.toFixed(0))}
+    value={ActiveStudentsByPeriodService.studiedLast7Days ?
+      Number(ActiveStudentsByPeriodService.studiedLast7Days.toFixed(0)) : 0
+    }
     max={100}
     successCondition={value => value > 50}
     badCondition={value => value <= 35}
