@@ -96,7 +96,7 @@ const MainScene = props => (
             {
               label: 'Companies',
               link: '/companies',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
               group: 'Organizations',
               icon: 'bank',
             },
