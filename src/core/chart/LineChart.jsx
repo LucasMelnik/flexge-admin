@@ -22,9 +22,10 @@ const LineChart = props => (
         pointHoverRadius: 0,
         pointBorderWidth: 0,
         pointRadius: 0,
-        borderWidth: 1,
+        borderWidth: 2,
         data: props.data.map(item => format.valueRender(item)),
         yAxisID: format.yAxisID,
+        type: format.type,
       })),
     }}
     options={{
