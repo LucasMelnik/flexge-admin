@@ -42,6 +42,7 @@ const Table = props => (
       expandedRowRender={props.expandableComponent}
       filteredValue={props.filteredValue}
       sortOrder={props.sortOrder}
+      size="small"
     />
     {(!props.pagination && props.showTableCount) && (
       <small>{props.rows.length} registers found.</small>
