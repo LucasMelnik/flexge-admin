@@ -60,7 +60,7 @@ const StudentRecordList = props => (
           label: 'Time Studied',
           path: 'totalStudiedTime',
           width: '150px',
-          render: value => moment.duration(value, 'seconds').format('hh:mm:ss', { trim: false }),
+          render: value => moment.duration(value, 'seconds').format('hh:mm', { trim: false }),
         },
         {
           label: 'Last Studied',
