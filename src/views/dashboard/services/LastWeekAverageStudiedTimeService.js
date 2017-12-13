@@ -10,7 +10,7 @@ class LastWeekAverageStudiedTimeService {
       schoolId: null,
       classId: null,
       average: computed(() => {
-        if (!this.data.length) return null;
+        if (!this.data || !this.data.length) return null;
         const total = this.data
           .filter(school => !this.schoolId || school.id === this.schoolId)
           .reduce((acc, school) => (

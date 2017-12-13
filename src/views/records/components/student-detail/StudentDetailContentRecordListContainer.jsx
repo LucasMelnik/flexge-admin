@@ -12,7 +12,7 @@ class StudentDetailContentRecordListContainer extends Component {
   };
 
   componentDidMount() {
-    StudentRecordDetailService.loadByContent(this.props.studentId);
+    StudentRecordDetailService.init(this.props.studentId);
   }
 
   render() {

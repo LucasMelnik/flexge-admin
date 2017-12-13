@@ -17,14 +17,14 @@ const SchoolListScene = () => (
     />
     <Card
       title="Schools"
-      actions={
+      actions={(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
         <Button
           type="primary"
           label="New school"
           icon="plus"
           onClick={() => browserHistory.push('/schools/new')}
         />
-      }
+      )}
     >
       <SchoolListFilterContainer />
       <SchoolListContainer />

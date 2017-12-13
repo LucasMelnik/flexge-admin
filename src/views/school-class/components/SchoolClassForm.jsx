@@ -29,7 +29,7 @@ const SchoolClassForm = props => (
       </Column>
       <Column size={3}>
         <FetchSelect
-          url={`/teachers?school=${props.schoolId}`}
+          url={`/teachers?query[school]=${props.schoolId}`}
           disabled={props.submitting}
           label="Teacher"
           value={get(props.values, 'teacher', '')}
@@ -43,7 +43,6 @@ const SchoolClassForm = props => (
       </Column>
       <Column size={3}>
         <DateInput
-          required
           disabled={props.submitting}
           label="Start"
           value={get(props.values, 'start', undefined)}
@@ -53,7 +52,6 @@ const SchoolClassForm = props => (
       </Column>
       <Column size={3}>
         <DateInput
-          required
           disabled={props.submitting}
           label="End"
           value={get(props.values, 'end', undefined)}

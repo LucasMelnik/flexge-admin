@@ -29,7 +29,7 @@ class StudyQualityAverageContainer extends Component {
         fetching={AverageStudyQualityService.fetch.fetching}
         value={average}
         schoolAverage={AverageStudyQualityService.allSchoolsAverage ?
-          AverageStudyQualityService.allSchoolsAverage.toFixed(1) : null}
+          AverageStudyQualityService.allSchoolsAverage.toFixed(1) : 0}
       />
     );
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import sortBy from 'lodash/sortBy';
 import toLower from 'lodash/toLower';
+import get from 'lodash/get';
 import { toJS } from 'mobx';
 import Select from './Select';
 import FetchService from '../services/FetchService';
@@ -47,7 +48,8 @@ export default class FetchSelect extends Component {
             data: sortBy(data, item => toLower(item[this.props.resultTransformer.text])),
           }, () => {
             if (this.props.defaultSelect) {
-              this.props.onChange(this.state.data[0].id || null);
+              const firstData = this.state.data[0];
+              this.props.onChange(get(firstData, this.props.resultTransformer.value) || null);
             }
           });
         }
@@ -77,8 +79,8 @@ export default class FetchSelect extends Component {
         placeholder={this.props.placeholder}
         onChange={value => this.props.onChange(value, this.state.data.find(item => item[this.props.resultTransformer.value] === value))}
         options={this.state.data.map(option => ({
-          label: option[this.props.resultTransformer.text],
-          value: option[this.props.resultTransformer.value],
+          label: get(option, this.props.resultTransformer.text),
+          value: get(option, this.props.resultTransformer.value),
         }))}
       />
     );
