@@ -10,14 +10,14 @@ import Icon from '../../../../core/layout/Icon';
 const AbilityProgressColumn = (value, label) => value !== undefined && (
   <div
     style={{
-      width: 300,
+      width: 250,
     }}
   >
     <span>{value}% </span>
     <div
       style={{
         display: 'inline-block',
-        width: '70%',
+        width: '50%',
       }}
     >
       <LinearProgress
@@ -31,6 +31,7 @@ const AbilityProgressColumn = (value, label) => value !== undefined && (
 
 const StudentDetailContentRecordList = props => (
   <Table
+    indentSize={25}
     bordered={false}
     showTableCount={false}
     fetching={props.fetching}
@@ -40,7 +41,7 @@ const StudentDetailContentRecordList = props => (
         path: 'id',
         render: (value, row) => {
           if (row.docType === 'MODULE') {
-            return <b style={{ fontSize: 22 }}>{row.name}</b>;
+            return <b style={{ fontSize: 16 }}>{row.name}</b>;
           } else if (row.docType === 'UNIT') {
             return <b>{row.name}</b>;
           } else if (row.docType === 'MASTERY') {
@@ -55,10 +56,14 @@ const StudentDetailContentRecordList = props => (
         render: (value, row) => ({
           children: row.docType === 'MODULE' ? (
             <div>
-              {AbilityProgressColumn(row.readingProgress, 'Reading')}
-              {AbilityProgressColumn(row.speakingProgress, 'Speaking')}
-              {AbilityProgressColumn(row.listeningProgress, 'Listening')}
-              {AbilityProgressColumn(row.writingProgress, 'Writing')}
+              <div style={{ display: 'inline-block' }}>
+                {AbilityProgressColumn(row.readingProgress, 'Reading')}
+                {AbilityProgressColumn(row.speakingProgress, 'Speaking')}
+              </div>
+              <div style={{ display: 'inline-block' }}>
+                {AbilityProgressColumn(row.listeningProgress, 'Listening')}
+                {AbilityProgressColumn(row.writingProgress, 'Writing')}
+              </div>
             </div>
           ) : (
             <b>{moment.duration(row.studiedTime, 'seconds').format('hh:mm', { trim: false })}</b>
@@ -71,9 +76,16 @@ const StudentDetailContentRecordList = props => (
       {
         label: 'Points',
         path: 'points',
-        render: value => ({
-          children: value,
-        }),
+        render: (value, row) => {
+          if (row.docType === 'UNIT') {
+            return {
+              children: row.children && row.children.reduce((acc, result) => acc + (result.points || 0), 0),
+            };
+          }
+          return {
+            children: value || 0,
+          };
+        },
       },
       {
         label: 'Score',
@@ -82,11 +94,10 @@ const StudentDetailContentRecordList = props => (
           children: (row.docType === 'UNIT' || row.docType === 'MASTERY') ? (
             <div>To pass: {row.scoreToPass}</div>
           ) : (
-            value &&
             <Tag
               color={row.points ? 'green' : 'red'}
             >
-              {value}
+              {value || 0}
             </Tag>
           ),
           props: {
