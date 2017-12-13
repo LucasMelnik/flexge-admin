@@ -6,10 +6,10 @@ import FetchSelect from '../../../../core/form/FetchSelect';
 
 const StudentDetailContentRecordListFilter = props => (
   <Row>
-    <Column size={12}>
+    <Column size={6}>
       <FetchSelect
         defaultSelect
-        label="Courses"
+        label="Select the Course"
         value={props.course}
         url={`students/${props.studentId}/courses`}
         onChange={value => props.onFilter(value)}
