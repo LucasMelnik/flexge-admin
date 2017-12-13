@@ -217,7 +217,7 @@ const MainScene = props => (
           items={[
             {
               label: 'Achievements',
-              link: '/achievements',
+              link: '/student-achievements',
               icon: 'trophy',
             },
             {
