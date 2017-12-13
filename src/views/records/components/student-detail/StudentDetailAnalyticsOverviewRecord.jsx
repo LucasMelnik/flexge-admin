@@ -8,6 +8,7 @@ import Table from '../../../../core/form/Table';
 import Tag from '../../../../core/layout/Tag';
 import Icon from '../../../../core/layout/Icon';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
+import TooltipIcon from '../../../../core/layout/TooltipIcon';
 
 const StudentDetailAnalyticsOverviewRecord = props => (
   <Async fetching={props.fetching}>
@@ -92,11 +93,11 @@ const StudentDetailAnalyticsOverviewRecord = props => (
             ),
           },
           {
-            label: 'Hours',
+            label: 'Hours Grade',
             path: 'previewGrade.hoursGrade',
           },
           {
-            label: 'Study Quality',
+            label: (<span>Study Quality Grade <TooltipIcon text="Study Quality Average generated every Sunday at midnight" /></span>),
             path: 'previewGrade.studyQualityGrade',
           },
           {
