@@ -53,6 +53,7 @@ const StudentDetailContentRecordList = props => (
       {
         label: 'Studied Time',
         path: 'studiedTime',
+        align: 'center',
         render: (value, row) => ({
           children: row.docType === 'MODULE' ? (
             <div>
@@ -76,6 +77,7 @@ const StudentDetailContentRecordList = props => (
       {
         label: 'Points',
         path: 'points',
+        align: 'center',
         render: (value, row) => {
           if (row.docType === 'UNIT') {
             return {
@@ -90,9 +92,10 @@ const StudentDetailContentRecordList = props => (
       {
         label: 'Score',
         path: 'score',
+        align: 'center',
         render: (value, row) => ({
           children: (row.docType === 'UNIT' || row.docType === 'MASTERY') ? (
-            <div>To pass: {row.scoreToPass}</div>
+            <div style={{ textAlign: 'left' }}>To pass: {row.scoreToPass}</div>
           ) : (
             <Tag
               color={row.points ? 'green' : 'red'}
@@ -108,20 +111,21 @@ const StudentDetailContentRecordList = props => (
       {
         label: 'Type',
         path: 'type',
+        align: 'center',
         render: (value, row) => {
           let translatedValue = '';
           switch (value) {
             case 'DEFAULT':
-              translatedValue = 'Your Challenge';
+              translatedValue = 'YC';
               break;
             case 'FIRST_REVIEW':
-              translatedValue = 'First Review';
+              translatedValue = 'FR';
               break;
             case 'SECOND_REVIEW':
-              translatedValue = 'Second Review';
+              translatedValue = 'SR';
               break;
             case 'SIMPLE_REVIEW':
-              translatedValue = 'Simple Review';
+              translatedValue = 'SI';
               break;
             default:
               break;
@@ -146,6 +150,7 @@ const StudentDetailContentRecordList = props => (
       // },
       {
         label: 'SR',
+        align: 'center',
         path: 'averageSpeechRecognitionScore',
         render: (value, row) => ({
           children: value,
