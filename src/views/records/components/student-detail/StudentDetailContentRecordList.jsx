@@ -69,7 +69,7 @@ const StudentDetailContentRecordList = props => (
             <b>{moment.duration(row.studiedTime, 'seconds').format('hh:mm', { trim: false })}</b>
           ),
           props: {
-            colSpan: row.docType === 'MODULE' ? 5 : 1,
+            colSpan: row.docType === 'MODULE' ? 4 : 1,
           },
         }),
       },
@@ -101,7 +101,7 @@ const StudentDetailContentRecordList = props => (
             </Tag>
           ),
           props: {
-            colSpan: row.docType === 'MODULE' ? 0 : row.docType ? 4 : 1,
+            colSpan: row.docType === 'MODULE' ? 0 : row.docType ? 3 : 1,
           },
         }),
       },
@@ -134,16 +134,16 @@ const StudentDetailContentRecordList = props => (
           };
         },
       },
-      {
-        label: 'Correct',
-        path: 'items',
-        render: (value, row) => ({
-          children: value && `${value.filter(item => item.correct).length}/${value.length}`,
-          props: {
-            colSpan: row.docType && 0,
-          },
-        }),
-      },
+      // {
+      //   label: 'Correct',
+      //   path: 'items',
+      //   render: (value, row) => ({
+      //     children: value && `${value.filter(item => item.correct).length}/${value.length}`,
+      //     props: {
+      //       colSpan: row.docType && 0,
+      //     },
+      //   }),
+      // },
       {
         label: 'SR',
         path: 'averageSpeechRecognitionScore',
