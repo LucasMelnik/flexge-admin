@@ -234,10 +234,6 @@ const MainScene = props => (
               label: 'Student Placement/Mastery Tests',
               link: '/student-tests',
             },
-            {
-              label: 'Grades',
-              link: '/grades',
-            },
           ]}
         />
         <SubMenu
