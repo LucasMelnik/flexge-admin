@@ -15,40 +15,21 @@ const StudentDetailAnalyticsStudiedTimeChart = props => (
       data={range(1, 53).map(week => props.data.find(item => item.week === week) || {})}
       dataFormat={[
         {
-          label: 'Average Hours',
-          valueRender: item => item.averageStudiedTime || 0,
-          yAxisID: 'average-hours',
-        },
-        {
           label: 'Total Hours',
           valueRender: item => item.totalStudiedTime || 0,
-          yAxisID: 'total-hours',
         },
       ]}
       yAxes={[
         {
           type: 'linear',
           display: 'true',
-          position: 'left',
-          id: 'average-hours',
-          ticks: {
-            callback: (label) => (
-              moment.duration(label, 'hours').format('hh:mm', { trim: false })
-            ),
-          },
-        },
-        {
-          type: 'linear',
-          display: 'true',
-          position: 'right',
-          id: 'total-hours',
           ticks: {
             callback: label => (
               moment.duration(label, 'hours').format('hh:mm', { trim: false })
             ),
           },
           gridLines: {
-            drawOnChartArea: false,
+            drawOnChartArea: true,
           },
         },
       ]}
