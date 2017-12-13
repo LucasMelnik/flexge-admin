@@ -35,6 +35,7 @@ class UserFormContainer extends Component {
         errors={this.userFormService.form.errors}
         submitting={this.userFormService.submit.fetching}
         isDirty={this.userFormService.form.isDirty}
+        companyId={this.props.companyId}
       />
     );
   }

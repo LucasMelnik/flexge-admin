@@ -8,25 +8,27 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
 
-const getRolesByType = (type) => {
-  if (type === 'ADMIN') {
+const getRolesByType = (props) => {
+  if (props.type === 'ADMIN') {
     return [
-      { value: 'ADMIN', label: 'Admin' },
+      ...!props.companyId && [
+        { value: 'ADMIN', label: 'Admin' },
+      ],
       { value: 'CONTENT_ADMIN', label: 'Content Admin' },
       { value: 'IMAGE_ADMIN', label: 'Image Admin' },
       { value: 'AUDIO_CONTENT', label: 'Content Audio' },
     ];
-  } else if (type === 'DISTRIBUTOR_MANAGER') {
+  } else if (props.type === 'DISTRIBUTOR_MANAGER') {
     return [
       { value: 'DISTRIBUTOR_MANAGER', label: 'Distributor Manager' },
     ];
-  } else if (type === 'COMPANY_MANAGER') {
+  } else if (props.type === 'COMPANY_MANAGER') {
     return [
       { value: 'SCHOOL_MANAGER', label: 'School Manager' },
       { value: 'COMPANY_MANAGER', label: 'Company Manager' },
       { value: 'TEACHER', label: 'Teacher' },
     ];
-  } else if (type === 'SCHOOL_MANAGER') {
+  } else if (props.type === 'SCHOOL_MANAGER') {
     return [
       { value: 'SCHOOL_MANAGER', label: 'School Manager' },
       { value: 'TEACHER', label: 'Teacher' },
@@ -85,7 +87,7 @@ const UserForm = props => (
           onChange={value => props.onChange('role', value)}
           errorText={get(props.errors, 'role', '')}
           fieldValidation={get(props.errors, 'role', null) && 'error'}
-          options={getRolesByType(props.type)}
+          options={getRolesByType(props)}
         />
       </Column>
       {props.type === 'DISTRIBUTOR' && (

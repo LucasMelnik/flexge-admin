@@ -65,7 +65,8 @@ const StudentDetailAnalyticsOverviewRecord = (props) => {
         >
           <span>Semiannual Progress</span>
           <br />
-          <h1>{props.student.semiannualProgress}</h1>
+          {/* <h1>{props.student.semiannualProgress}</h1> */}
+          <h1>-</h1>
         </Tag>
         <ColumnSeparator size="lg" />
         <Tag
@@ -78,7 +79,8 @@ const StudentDetailAnalyticsOverviewRecord = (props) => {
         >
           <span>B2 Projection</span>
           <br />
-          <h1>{moment.duration(props.student.projection, 'months').format()}</h1>
+          {/* <h1>{moment.duration(props.student.projection, 'months').format()}</h1> */}
+          <h1>-</h1>
         </Tag>
       </div>
       <Separator size="md" />
