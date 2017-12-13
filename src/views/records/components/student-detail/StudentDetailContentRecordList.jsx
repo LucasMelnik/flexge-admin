@@ -41,7 +41,7 @@ const StudentDetailContentRecordList = props => (
         path: 'id',
         render: (value, row) => {
           if (row.docType === 'MODULE') {
-            return <b style={{ fontSize: 16 }}>{row.name}</b>;
+            return <b style={{ fontSize: 14 }}>{row.name}</b>;
           } else if (row.docType === 'UNIT') {
             return <b>{row.name}</b>;
           } else if (row.docType === 'MASTERY') {

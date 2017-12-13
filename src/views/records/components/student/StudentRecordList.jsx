@@ -20,26 +20,26 @@ const StudentRecordList = props => (
         {
           label: 'Initial Level (PT)',
           path: 'initialEnglishLevel',
-          width: '150px',
+          width: '130px',
           render: value => value && round(value, 1).toFixed(1),
         },
         {
           label: 'Current Level',
           path: 'currentEnglishLevel',
-          width: '150px',
+          width: '110px',
           render: value => value && round(value, 1).toFixed(1),
         },
         {
           label: 'Study Quality',
           path: 'studyQualityScore',
-          width: '150px',
+          width: '110px',
           render: value => value && round(value, 1).toFixed(1),
         },
         {
           label: 'Current Course',
           path: 'course',
           render: (cell, row) => (
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', width: 150 }}>
               {cell}
               <div
                 style={{
@@ -59,7 +59,7 @@ const StudentRecordList = props => (
         {
           label: 'Time Studied',
           path: 'totalStudiedTime',
-          width: '150px',
+          width: '110px',
           render: value => moment.duration(value, 'seconds').format('hh:mm', { trim: false }),
         },
         {
@@ -71,7 +71,7 @@ const StudentRecordList = props => (
               const lastStudy = moment(row.lastStudy);
               const diff = moment.duration(lastStudy.diff(now));
               return (
-                <div>{diff.humanize(true)}</div>
+                <div style={{ width: 100 }}>{diff.humanize(true)}</div>
               );
             }
             return (
@@ -81,6 +81,7 @@ const StudentRecordList = props => (
         },
         {
           label: 'CT Status',
+          width: '80px',
         },
       ]}
       rows={props.students}
