@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
+import Tag from '../../../../core/layout/Tag';
 
 const StudentDetailDateRecordList = props => (
   <Table
@@ -77,7 +78,11 @@ const StudentDetailDateRecordList = props => (
       {
         label: 'Score',
         path: 'score',
-        render: (value, row) => value && `${value}/${row.unit.scoreToPass}`,
+        render: (value, row) => row.unit && (
+          <Tag color={(value || 0) > row.unit.scoreToPass ? 'green' : 'red'}>
+            {value || 0} / {row.unit.scoreToPass}
+          </Tag>
+        ),
       },
       {
         label: 'Points',
