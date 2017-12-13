@@ -30,11 +30,9 @@ export default class CircularProgress extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (!this.props.value && nextProps.value) {
-      setTimeout(() => {
-        this.setState({ value: nextProps.value });
-      }, 300);
-    }
+    setTimeout(() => {
+      this.setState({ value: nextProps.value });
+    }, 300);
   }
 
   getPercentage = (value, max) => (value / max) * 100;
@@ -58,6 +56,7 @@ export default class CircularProgress extends Component {
   };
 
   render() {
+    const percent = this.getPercentage(this.state.value, this.props.max);
     return (
       <Async fetching={this.props.fetching}>
         <div style={{ textAlign: 'center' }}>
@@ -75,8 +74,8 @@ export default class CircularProgress extends Component {
           <Separator size="xs" />
           <Progress
             type="circle"
-            percent={this.getPercentage(this.state.value, this.props.max)}
-            status={this.getStatus(this.state.value)}
+            percent={percent < 1 ? 100 : percent}
+            status={percent < 1 ? 'exception' : this.getStatus(this.state.value)}
             strokeWidth={10}
             format={() => this.props.value !== null ? (
               <div

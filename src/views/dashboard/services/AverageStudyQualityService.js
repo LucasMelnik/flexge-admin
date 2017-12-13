@@ -15,7 +15,7 @@ class AverageStudyQualityService {
         const total = this.data.reduce((acc, school) => (
           acc + school.schoolAverageScore
         ), 0);
-        return total / this.data.length;
+        return total === 0 ? total : total / this.data.length;
       }),
       averageByClass: computed(() => {
         if (!this.validateResponse()) return 0;
