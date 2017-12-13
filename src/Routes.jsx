@@ -88,7 +88,7 @@ function authRequired(nextState, replace) {
 }
 
 const Routes = () => (
-  <Router history={browserHistory}>
+  <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
     <Route path="/login" component={LoginScene} />
     <Route path="/" component={MainScene} onEnter={authRequired}>
       <IndexRoute component={DashboardScene} />
