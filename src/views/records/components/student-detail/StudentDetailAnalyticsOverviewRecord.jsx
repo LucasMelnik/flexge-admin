@@ -97,7 +97,7 @@ const StudentDetailAnalyticsOverviewRecord = props => (
             path: 'previewGrade.hoursGrade',
           },
           {
-            label: (<span>Study Quality Grade <TooltipIcon text="Study Quality Average generated every Sunday at midnight" /></span>),
+            label: (<span>Study Quality Grade <TooltipIcon text="Average Study Quality generated every Sunday at midnight" /></span>),
             path: 'previewGrade.studyQualityGrade',
           },
           {
