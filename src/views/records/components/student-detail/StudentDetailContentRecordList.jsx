@@ -159,6 +159,60 @@ const StudentDetailContentRecordList = props => (
           },
         }),
       },
+      {
+        label: 'Record Count',
+        path: 'recordCount',
+        align: 'center',
+        render: (value, row) => row.docType === 'MODULE' ? (
+          <b style={{ fontSize: 14 }}>
+            {row.children && row.children.reduce((moduleAcc, mod) => (
+              moduleAcc + (mod.children ? mod.children.reduce((unitAcc, unit) => (
+                unitAcc + unit.recordCount
+              ), 0) : 0)
+            ), 0)}
+          </b>
+        ) : row.docType === 'UNIT' ? (
+          <b>
+            {row.children ? row.children.reduce((acc, unit) => acc + unit.recordCount, 0) : 0}
+          </b>
+        ) : row.items && row.items.reduce((acc, item) => acc + item.recordCount, 0),
+      },
+      {
+        label: 'Repeat Count',
+        path: 'repeat',
+        align: 'center',
+        render: (value, row) => row.docType === 'MODULE' ? (
+          <b style={{ fontSize: 14 }}>
+            {row.children && row.children.reduce((moduleAcc, mod) => (
+              moduleAcc + (mod.children ? mod.children.reduce((unitAcc, unit) => (
+                unitAcc + unit.repeatCount
+              ), 0) : 0)
+            ), 0)}
+          </b>
+        ) : row.docType === 'UNIT' ? (
+          <b>
+            {row.children ? row.children.reduce((acc, unit) => acc + unit.repeatCount, 0) : 0}
+          </b>
+        ) : row.items && row.items.reduce((acc, item) => acc + item.repeatCount, 0),
+      },
+      {
+        label: 'Listen Count',
+        path: 'listen',
+        align: 'center',
+        render: (value, row) => row.docType === 'MODULE' ? (
+          <b style={{ fontSize: 14 }}>
+            {row.children && row.children.reduce((moduleAcc, mod) => (
+              moduleAcc + (mod.children ? mod.children.reduce((unitAcc, unit) => (
+                unitAcc + unit.listenCount
+              ), 0) : 0)
+            ), 0)}
+          </b>
+        ) : row.docType === 'UNIT' ? (
+          <b>
+            {row.children ? row.children.reduce((acc, unit) => acc + unit.listenCount, 0) : 0}
+          </b>
+        ) : row.items && row.items.reduce((acc, item) => acc + item.listenCount, 0),
+      },
     ]}
     rows={props.contents}
   />
