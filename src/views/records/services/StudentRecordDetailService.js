@@ -10,6 +10,7 @@ class StudentRecordDetailService {
     extendObservable(this, {
       studentId: null,
       classId: null,
+      courseId: null,
       contents: [],
       contentsDetail: [],
     });
@@ -27,9 +28,18 @@ class StudentRecordDetailService {
     }
   };
 
-  loadByContent = action((studentId) => {
+  init = action((studentId) => {
+    this.studentId = studentId;
+  });
+
+  handleContentFilterChange = action((courseId) => {
+    this.courseId = courseId;
+    this.loadByContent();
+  });
+
+  loadByContent = action(() => {
     this.fetchContent.fetch({
-      url: `/records/students/${studentId}/courses/594759ae59f1db0d1b019b2c/content-details`,
+      url: `/records/students/${this.studentId}/courses/${this.courseId}/content-details`,
     }).then(() => {
       if (this.fetchContent.data) {
         this.contentsDetail = this.fetchContent.data.map(module => ({

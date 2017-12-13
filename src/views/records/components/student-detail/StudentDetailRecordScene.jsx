@@ -14,6 +14,7 @@ import StudentDetailAnalyticsAcademicPerformanceHistoryContainer from './Student
 import StudentGrammarNeedsListContainer from '../common/StudentGrammarNeedsListContainer';
 import StudentDetailAnalyticsAcademicPerformanceContainer from './StudentDetailAnalyticsAcademicPerformanceContainer';
 import StudentDetailAchievements from './StudentDetailAchievements';
+import StudentDetailContentRecordListFilterContainer from './StudentDetailContentRecordListFilterContainer';
 
 const StudentDetailRecordScene = props => (
   <div>
@@ -73,6 +74,8 @@ const StudentDetailRecordScene = props => (
           content:
             (
               <Card>
+                <StudentDetailContentRecordListFilterContainer studentId={props.studentId} />
+                <Separator size="xs" />
                 <StudentDetailContentRecordListContainer studentId={props.studentId} />
               </Card>
             ),
