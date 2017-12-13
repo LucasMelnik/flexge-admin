@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import round from 'lodash/round';
+import findLast from 'lodash/findLast';
 import Async from '../../../../core/layout/Async';
 import Separator from '../../../../core/layout/Separator';
 import Table from '../../../../core/form/Table';
@@ -9,106 +10,112 @@ import Tag from '../../../../core/layout/Tag';
 import Icon from '../../../../core/layout/Icon';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import TooltipIcon from '../../../../core/layout/TooltipIcon';
+import { englishLevelCourses } from '../../../../core/consts'
 
-const StudentDetailAnalyticsOverviewRecord = props => (
-  <Async fetching={props.fetching}>
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-      }}
-    >
-      <Tag
-        color="none"
+const StudentDetailAnalyticsOverviewRecord = (props) => {
+  console.log('props.student', props.student.currentEnglishLevel)
+  const currentCourse = findLast(englishLevelCourses, course => course.value <= props.student.currentEnglishLevel);
+  console.log('currentCourse', currentCourse)
+  return (
+    <Async fetching={props.fetching}>
+      <div
         style={{
-          height: 'auto',
-          padding: 10,
+          display: 'flex',
+          justifyContent: 'center',
         }}
       >
-        <div
+        <Tag
+          color="none"
           style={{
-            display: 'flex',
-            alignItems: 'center',
+            height: 'auto',
+            padding: 10,
           }}
         >
-          <div style={{ textAlign: 'center' }}>
-            <span>Initial Level</span>
-            <h1>{round(props.student.initialEnglishLevel, 1).toFixed(1)} / {props.student.initialCourse.name}</h1>
-          </div>
-          <Icon
-            name="arrow-right"
+          <div
             style={{
-              fontSize: 42,
-              margin: '0 15px',
+              display: 'flex',
+              alignItems: 'center',
             }}
-          />
-          <div style={{ textAlign: 'center' }}>
-            <span>Current Level</span>
-            <h1>{round(props.student.currentEnglishLevel, 1).toFixed(1)} / {props.student.currentCourse.name}</h1>
+          >
+            <div style={{ textAlign: 'center' }}>
+              <span>Initial Level</span>
+              <h1>{round(props.student.initialEnglishLevel, 1).toFixed(1)} / {props.student.initialCourse.name}</h1>
+            </div>
+            <Icon
+              name="arrow-right"
+              style={{
+                fontSize: 30,
+                margin: '0 15px',
+              }}
+            />
+            <div style={{ textAlign: 'center' }}>
+              <span>Current Level</span>
+              <h1>{round(props.student.currentEnglishLevel, 1).toFixed(1)} / {currentCourse ? currentCourse.label : '-'}</h1>
+            </div>
           </div>
-        </div>
-      </Tag>
-      <ColumnSeparator size="lg" />
-      <Tag
-        color="none"
-        style={{
-          height: 'auto',
-          padding: 10,
-          textAlign: 'center',
-        }}
-      >
-        <span>Semiannual Progress</span>
-        <br />
-        <h1>{props.student.semiannualProgress}</h1>
-      </Tag>
-      <ColumnSeparator size="lg" />
-      <Tag
-        color="none"
-        style={{
-          height: 'auto',
-          padding: 10,
-          textAlign: 'center',
-        }}
-      >
-        <span>B2 Projection</span>
-        <br />
-        <h1>{moment.duration(props.student.projection, 'months').format()}</h1>
-      </Tag>
-    </div>
-    <Separator size="md" />
-    {(props.student.evaluation && props.student.evaluation.id) && (
-      <Table
-        bordered={false}
-        rows={[props.student.evaluation]}
-        columns={[
-          {
-            label: 'Preview Grade',
-            path: 'name',
-            render: (value, row) => (
-              <div>
-                <b>{value}</b>
-                <br />
-                <span>{moment(row.start).format('YYYY, MMM DD')} - {moment(row.end).format('YYYY, MMM DD')}</span>
-              </div>
-            ),
-          },
-          {
-            label: 'Hours Grade',
-            path: 'previewGrade.hoursGrade',
-          },
-          {
-            label: (<span>Study Quality Grade <TooltipIcon text="Average Study Quality generated every Sunday at midnight" /></span>),
-            path: 'previewGrade.studyQualityGrade',
-          },
-          {
-            label: 'Preview Final Grade',
-            path: 'previewGrade.finalGrade',
-          },
-        ]}
-      />
-    )}
-  </Async>
-);
+        </Tag>
+        <ColumnSeparator size="lg" />
+        <Tag
+          color="none"
+          style={{
+            height: 'auto',
+            padding: 10,
+            textAlign: 'center',
+          }}
+        >
+          <span>Semiannual Progress</span>
+          <br />
+          <h1>{props.student.semiannualProgress}</h1>
+        </Tag>
+        <ColumnSeparator size="lg" />
+        <Tag
+          color="none"
+          style={{
+            height: 'auto',
+            padding: 10,
+            textAlign: 'center',
+          }}
+        >
+          <span>B2 Projection</span>
+          <br />
+          <h1>{moment.duration(props.student.projection, 'months').format()}</h1>
+        </Tag>
+      </div>
+      <Separator size="md" />
+      {(props.student.evaluation && props.student.evaluation.id) && (
+        <Table
+          bordered={false}
+          rows={[props.student.evaluation]}
+          columns={[
+            {
+              label: 'Preview Grade',
+              path: 'name',
+              render: (value, row) => (
+                <div>
+                  <b>{value}</b>
+                  <br />
+                  <span>{moment(row.start).format('YYYY, MMM DD')} - {moment(row.end).format('YYYY, MMM DD')}</span>
+                </div>
+              ),
+            },
+            {
+              label: 'Hours Grade',
+              path: 'previewGrade.hoursGrade',
+            },
+            {
+              label: (<span>Study Quality Grade <TooltipIcon text="Average Study Quality generated every Sunday at midnight" /></span>),
+              path: 'previewGrade.studyQualityGrade',
+            },
+            {
+              label: 'Preview Final Grade',
+              path: 'previewGrade.finalGrade',
+            },
+          ]}
+        />
+      )}
+    </Async>
+  );
+}
 
 StudentDetailAnalyticsOverviewRecord.propTypes = {
   student: PropTypes.shape({

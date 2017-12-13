@@ -5,7 +5,7 @@ import Async from '../../../../core/layout/Async';
 import CircularProgress from '../../../../core/layout/CircularProgress';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 
-const StudentDetailAnalyticsAcademicPerformance = props => (
+const StudentDetailAnalyticsAcademicPerformance = props => props.currentPerformance ? (
   <Async fetching={props.loading}>
     <div
       style={{
@@ -52,7 +52,7 @@ const StudentDetailAnalyticsAcademicPerformance = props => (
       />
     </div>
   </Async>
-);
+) : null;
 
 StudentDetailAnalyticsAcademicPerformance.propTypes = {
   loading: PropTypes.bool.isRequired,

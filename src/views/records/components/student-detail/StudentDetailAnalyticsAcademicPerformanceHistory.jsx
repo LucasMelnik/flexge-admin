@@ -24,17 +24,21 @@ const StudentDetailAnalyticsAcademicPerformanceHistory = props => (
       {
         label: 'Average Unit Score',
         path: 'averageUnitScore',
+        align: 'center',
         render: value => value && (
-          <Tag
-            color={value >= 85 ? 'green' : (value < 85 && value >= 70) ? 'orange' : 'red'}
-          >
-            {round(value, 2)}
-          </Tag>
+          <div style={{ textAlign: 'center' }}>
+            <Tag
+              color={value >= 85 ? 'green' : (value < 85 && value >= 70) ? 'orange' : 'red'}
+            >
+              {round(value, 2)}
+            </Tag>
+          </div>
         ),
       },
       {
         label: 'Average SR Score',
         path: 'averageSpeechRecognitionScore',
+        align: 'center',
         render: value => value && (
           <Tag
             color={value >= 90 ? 'green' : (value < 90 && value >= 80) ? 'orange' : 'red'}

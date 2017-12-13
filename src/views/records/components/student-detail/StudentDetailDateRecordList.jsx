@@ -16,6 +16,7 @@ const StudentDetailDateRecordList = props => (
       },
       {
         label: 'Course',
+        align: 'center',
         render: (cell, row) => {
           if (row.unit) {
             return row.unit.module.course.name;
@@ -50,16 +51,17 @@ const StudentDetailDateRecordList = props => (
       {
         label: 'Type',
         path: 'type',
+        align: 'center',
         render: (value) => {
           switch (value) {
             case 'DEFAULT':
-              return 'Your Challenge';
+              return 'YC';
             case 'FIRST_REVIEW':
-              return 'First Review';
+              return 'FR';
             case 'SECOND_REVIEW':
-              return 'Second Review';
+              return 'SR';
             case 'SIMPLE_REVIEW':
-              return 'Simple Review';
+              return 'SI';
             default:
               return '';
           }
@@ -68,6 +70,7 @@ const StudentDetailDateRecordList = props => (
       {
         label: 'Studied Time',
         path: 'studiedTime',
+        align: 'center',
         render: value => moment.duration(value, 'seconds').format('hh:mm', { trim: false }),
       },
       // {
@@ -78,6 +81,7 @@ const StudentDetailDateRecordList = props => (
       {
         label: 'Score',
         path: 'score',
+        align: 'center',
         render: (value, row) => row.unit && (
           <Tag color={(value || 0) > row.unit.scoreToPass ? 'green' : 'red'}>
             {value || 0} / {row.unit.scoreToPass}
@@ -87,10 +91,12 @@ const StudentDetailDateRecordList = props => (
       {
         label: 'Points',
         path: 'points',
+        align: 'center',
       },
       {
         label: 'Average SR Score',
         path: 'averageSpeechRecognitionScore',
+        align: 'center',
       },
     ]}
     rows={props.contents}
