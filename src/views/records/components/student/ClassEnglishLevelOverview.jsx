@@ -12,8 +12,8 @@ const ClassEnglishLevelOverview = (props) => {
     acc + student.initialEnglishLevel), 0) / props.students.length;
   const averageCurrentEnglishLevel = props.students.reduce((acc, student) => (
     acc + student.currentEnglishLevel), 0) / props.students.length;
-  const initialCourse = findLast(englishLevelCourses, course => course.value < averageInitialEnglishLevel);
-  const currentCourse = findLast(englishLevelCourses, course => course.value < averageCurrentEnglishLevel);
+  const initialCourse = findLast(englishLevelCourses, course => course.value <= averageInitialEnglishLevel);
+  const currentCourse = findLast(englishLevelCourses, course => course.value <= averageCurrentEnglishLevel);
   return (
     <div
       style={{
