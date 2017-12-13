@@ -57,6 +57,7 @@ import CharacterFormScene from './views/character/components/CharacterFormScene'
 import AchievementListScene from './views/achievement/components/AchievementListScene';
 import AchievementFormScene from './views/achievement/components/AchievementFormScene';
 import EmailsScene from './views/emails/components/EmailsScene';
+import StudentAchievementsScene from './views/student-achievements/components/StudentAchievementsScene';
 
 import FilterRecordScene from './views/records/components/FilterRecordScene';
 import SchoolClassRecordSceneContainer from './views/records/components/school-class/SchoolClassRecordSceneContainer';
@@ -200,6 +201,7 @@ const Routes = () => (
       <Route path="school-configuration/grades" component={SchoolGradeConfigFormSceneContainer} />
       <Route path="school-configuration/evaluation-periods" component={SchoolEvaluationSceneContainer} />
       <Route path="rankings" component={RankingListScene} />
+      <Route path="student-achievements" component={StudentAchievementsScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

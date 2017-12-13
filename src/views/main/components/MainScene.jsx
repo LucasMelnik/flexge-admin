@@ -217,7 +217,7 @@ const MainScene = props => (
           items={[
             {
               label: 'Achievements',
-              link: '/achievements',
+              link: '/student-achievements',
               icon: 'trophy',
             },
             {
@@ -233,10 +233,6 @@ const MainScene = props => (
             {
               label: 'Student Placement/Mastery Tests',
               link: '/student-tests',
-            },
-            {
-              label: 'Grades',
-              link: '/grades',
             },
           ]}
         />
