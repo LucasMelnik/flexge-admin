@@ -2,24 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
-import { browserHistory } from 'react-router';
-import StudentRecordList from './StudentRecordList';
+import ClassEnglishLevelOverview from './ClassEnglishLevelOverview';
 import StudentRecordListService from '../../services/StudentRecordListService';
 
-class StudentRecordListContainer extends Component {
-
+class ClassEnglishLevelOverviewContainer extends Component {
   static propTypes = {
     schoolId: PropTypes.string.isRequired,
     classId: PropTypes.string.isRequired,
   };
 
-  handleSelect = (student) => {
-    browserHistory.push(`/records/schools/${this.props.schoolId}/classes/${this.props.classId}/students/${student.id}/detail`);
-  };
+  componentDidMount() {
+    StudentRecordListService.init(this.props.schoolId, this.props.classId);
+  }
 
   render() {
     return (
-      <StudentRecordList
+      <ClassEnglishLevelOverview
         students={toJS(StudentRecordListService.students)}
         fetching={StudentRecordListService.fetch.fetching}
         onSelect={this.handleSelect}
@@ -28,4 +26,4 @@ class StudentRecordListContainer extends Component {
   }
 }
 
-export default observer(StudentRecordListContainer);
+export default observer(ClassEnglishLevelOverviewContainer);

@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Separator from '../../../../core/layout/Separator';
 import AverageStudyQualityByClassContainer from './performance/AverageStudyQualityByClassContainer';
 import StudyQualityHigherThanFiveByClassContainer from './performance/StudyQualityHigherThanFiveByClassContainer';
 import ActiveStudentsByClassContainer from './performance/ActiveStudentsByClassContainer';
 import ActiveStudentsLastSevenDaysByClassContainer from './performance/ActiveStudentsLastSevenDaysByClassContainer';
 import StudyTimeHigherThanTwoByClassContainer from './performance/StudyTimeHigherThanTwoByClassContainer';
 import LastWeekAverageStudiedTimeByClassContainer from './performance/LastWeekAverageStudiedTimeByClassContainer';
+import ClassEnglishLevelOverviewContainer from './ClassEnglishLevelOverviewContainer';
 
 const PerformanceGoalWrapper = props => (
   <div
@@ -22,52 +24,59 @@ const PerformanceGoalWrapper = props => (
 );
 
 const StudentRecordPerformance = props => (
-  <div
-    style={{
-      display: 'flex',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      marginTop: -15,
-      marginRight: -15,
-    }}
-  >
-    <PerformanceGoalWrapper>
-      <AverageStudyQualityByClassContainer
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
-    </PerformanceGoalWrapper>
-    <PerformanceGoalWrapper>
-      <StudyQualityHigherThanFiveByClassContainer
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
-    </PerformanceGoalWrapper>
-    <PerformanceGoalWrapper>
-      <ActiveStudentsByClassContainer
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
-    </PerformanceGoalWrapper>
-    <PerformanceGoalWrapper>
-      <ActiveStudentsLastSevenDaysByClassContainer
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
-    </PerformanceGoalWrapper>
-    <PerformanceGoalWrapper>
-      <StudyTimeHigherThanTwoByClassContainer
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
-    </PerformanceGoalWrapper>
-    <PerformanceGoalWrapper>
-      <LastWeekAverageStudiedTimeByClassContainer
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
-    </PerformanceGoalWrapper>
+  <div>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        marginTop: -15,
+        marginRight: -15,
+      }}
+    >
+      <PerformanceGoalWrapper>
+        <AverageStudyQualityByClassContainer
+          schoolId={props.schoolId}
+          classId={props.classId}
+        />
+      </PerformanceGoalWrapper>
+      <PerformanceGoalWrapper>
+        <StudyQualityHigherThanFiveByClassContainer
+          schoolId={props.schoolId}
+          classId={props.classId}
+        />
+      </PerformanceGoalWrapper>
+      <PerformanceGoalWrapper>
+        <ActiveStudentsByClassContainer
+          schoolId={props.schoolId}
+          classId={props.classId}
+        />
+      </PerformanceGoalWrapper>
+      <PerformanceGoalWrapper>
+        <ActiveStudentsLastSevenDaysByClassContainer
+          schoolId={props.schoolId}
+          classId={props.classId}
+        />
+      </PerformanceGoalWrapper>
+      <PerformanceGoalWrapper>
+        <StudyTimeHigherThanTwoByClassContainer
+          schoolId={props.schoolId}
+          classId={props.classId}
+        />
+      </PerformanceGoalWrapper>
+      <PerformanceGoalWrapper>
+        <LastWeekAverageStudiedTimeByClassContainer
+          schoolId={props.schoolId}
+          classId={props.classId}
+        />
+      </PerformanceGoalWrapper>
+    </div>
+    <Separator size="md" />
+    <ClassEnglishLevelOverviewContainer
+      schoolId={props.schoolId}
+      classId={props.classId}
+    />
   </div>
 );
 

@@ -38,7 +38,7 @@ const StudentDetailAnalyticsOverviewRecord = props => (
           <Icon
             name="arrow-right"
             style={{
-              fontSize: 42,
+              fontSize: 30,
               margin: '0 15px',
             }}
           />
