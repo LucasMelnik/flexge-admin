@@ -165,26 +165,7 @@ const StudentDetailContentRecordList = props => (
         }),
       },
       {
-        label: 'Record Count',
-        path: 'recordCount',
-        align: 'center',
-        width: '110px',
-        render: (value, row) => row.docType === 'MODULE' ? (
-          <b style={{ fontSize: 14 }}>
-            {row.children && row.children.reduce((moduleAcc, mod) => (
-              moduleAcc + (mod.children ? mod.children.reduce((unitAcc, unit) => (
-                unitAcc + unit.recordCount
-              ), 0) : 0)
-            ), 0)}
-          </b>
-        ) : row.docType === 'UNIT' ? (
-          <b>
-            {row.children ? row.children.reduce((acc, unit) => acc + unit.recordCount, 0) : 0}
-          </b>
-        ) : row.items && row.items.reduce((acc, item) => acc + item.recordCount, 0),
-      },
-      {
-        label: 'Repeat Count',
+        label: 'Repeat',
         path: 'repeat',
         align: 'center',
         width: '110px',
@@ -203,7 +184,26 @@ const StudentDetailContentRecordList = props => (
         ) : row.items && row.items.reduce((acc, item) => acc + item.repeatCount, 0),
       },
       {
-        label: 'Listen Count',
+        label: 'Record',
+        path: 'recordCount',
+        align: 'center',
+        width: '110px',
+        render: (value, row) => row.docType === 'MODULE' ? (
+          <b style={{ fontSize: 14 }}>
+            {row.children && row.children.reduce((moduleAcc, mod) => (
+              moduleAcc + (mod.children ? mod.children.reduce((unitAcc, unit) => (
+                unitAcc + unit.recordCount
+              ), 0) : 0)
+            ), 0)}
+          </b>
+        ) : row.docType === 'UNIT' ? (
+          <b>
+            {row.children ? row.children.reduce((acc, unit) => acc + unit.recordCount, 0) : 0}
+          </b>
+        ) : row.items && row.items.reduce((acc, item) => acc + item.recordCount, 0),
+      },
+      {
+        label: 'Listen',
         path: 'listen',
         align: 'center',
         width: '100px',
