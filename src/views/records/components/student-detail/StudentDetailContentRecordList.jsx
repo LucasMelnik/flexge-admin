@@ -13,7 +13,7 @@ const AbilityProgressColumn = (value, label) => value !== undefined && (
       width: 250,
     }}
   >
-    <span>{value}% </span>
+    <small>{value}% </small>
     <div
       style={{
         display: 'inline-block',
@@ -25,7 +25,7 @@ const AbilityProgressColumn = (value, label) => value !== undefined && (
         showInfo={false}
       />
     </div>
-    <span> {label}</span>
+    <small> {label}</small>
   </div>
 );
 
@@ -81,7 +81,7 @@ const StudentDetailContentRecordList = props => (
         render: (value, row) => {
           if (row.docType === 'UNIT') {
             return {
-              children: row.children && row.children.reduce((acc, result) => acc + (result.points || 0), 0),
+              children: row.children && (<b>{row.children.reduce((acc, result) => acc + (result.points || 0), 0)}</b>),
             };
           }
           return {
@@ -95,7 +95,7 @@ const StudentDetailContentRecordList = props => (
         align: 'center',
         render: (value, row) => ({
           children: (row.docType === 'UNIT' || row.docType === 'MASTERY') ? (
-            <div style={{ textAlign: 'left' }}>To pass: {row.scoreToPass}</div>
+            <div style={{ textAlign: 'left', fontWeight: 'bold' }}>To pass: {row.scoreToPass}</div>
           ) : (
             <Tag
               color={row.points ? 'green' : 'red'}
