@@ -77,10 +77,10 @@ class StudentRecordDetailService {
             //   }
             //   return acc;
             // }, 0)),
-            readingProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.readingPoints, 0)),
-            listeningProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.listeningPoints, 0)),
-            speakingProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.speakingPoints, 0)),
-            writingProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + unit.writingPoints, 0)),
+            readingProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + (unit.readingPoints || 0), 0)),
+            listeningProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + (unit.listeningPoints || 0), 0)),
+            speakingProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + (unit.speakingPoints || 0), 0)),
+            writingProgress: round(totalConquered / module.children.reduce((acc, unit) => acc + (unit.writingPoints || 0), 0)),
           };
         });
       } else {

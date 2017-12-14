@@ -20,6 +20,9 @@ class ActiveStudentsByPeriodService {
         ), 0);
         return (activeStudents / this.totalStudents) * 100;
       }),
+      totalSchoolStudents: computed(() => (
+        this.data.reduce((acc, school) => acc + school.totalStudents, 0)
+      )),
       totalStudents: computed(() => {
         if (!this.validateResponse()) return null;
         return filterList(this.data, this.schoolId).reduce((schoolAcc, school) => (
@@ -30,10 +33,14 @@ class ActiveStudentsByPeriodService {
       }),
       schoolAverage: computed(() => {
         if (!this.validateResponse()) return null;
-        const studyingStudents =
-          this.data[0].totalStudents -
-          this.data[0].noStudy;
-        return (studyingStudents / this.data[0].totalStudents) * 100;
+        const periods = [7, 14, 21, 30];
+        const activeStudents = filterList(this.data, this.schoolId)
+          .reduce((acc, school) => (
+            acc + periods.reduce((periodAcc, period) => (
+              periodAcc + school[`studyOnLast${period}Days`]
+            ), 0)
+          ), 0);
+        return activeStudents / this.totalSchoolStudents * 100;
       }),
       studiedLast7Days: computed(() => {
         if (!this.validateResponse()) return null;
@@ -42,6 +49,12 @@ class ActiveStudentsByPeriodService {
             acc + this.getdata(school.classes, 'studyOnLast7Days')
           ), 0);
         return (activeStudentsLast7Days / this.totalStudents) * 100;
+      }),
+      schoolAverageLast7Days: computed(() => {
+        if (!this.validateResponse()) return null;
+        const studyingLast7days = filterList(this.data, this.schoolId)
+          .reduce((acc, school) => acc + school.studyOnLast7Days, 0);
+        return (studyingLast7days / this.totalSchoolStudents) * 100;
       }),
       averageByPeriod: computed(() => {
         if (!this.validateResponse()) return null;

@@ -21,24 +21,24 @@ const StudentRecordList = props => (
           label: 'Initial Level (PT)',
           path: 'initialEnglishLevel',
           width: '130px',
-          render: value => value && round(value, 1).toFixed(1),
+          render: value => value ? round(value, 1).toFixed(1) : 'N/A',
         },
         {
           label: 'Current Level',
           path: 'currentEnglishLevel',
           width: '110px',
-          render: value => value && round(value, 1).toFixed(1),
+          render: value => value ? round(value, 1).toFixed(1) : 'N/A',
         },
         {
           label: 'Study Quality',
           path: 'studyQualityScore',
           width: '110px',
-          render: value => value && round(value, 1).toFixed(1),
+          render: value => value ? round(value, 1).toFixed(1) : 'N/A',
         },
         {
           label: 'Current Course',
           path: 'course',
-          render: (cell, row) => (
+          render: (cell, row) => row.initialEnglishLevel ? (
             <div style={{ display: 'flex', width: 150 }}>
               {cell}
               <div
@@ -54,13 +54,13 @@ const StudentRecordList = props => (
                 />
               </div>
             </div>
-          ),
+          ) : 'N/A',
         },
         {
           label: 'Time Studied',
           path: 'totalStudiedTime',
           width: '110px',
-          render: value => moment.duration(value, 'seconds').format('hh:mm', { trim: false }),
+          render: value => value ? moment.duration(value, 'seconds').format('hh:mm', { trim: false }) : 'N/A',
         },
         {
           label: 'Last Studied',
@@ -86,7 +86,7 @@ const StudentRecordList = props => (
       ]}
       rows={props.students}
       selectable
-      onSelect={props.onSelect}
+      onSelect={row => row.initialEnglishLevel >= 0 && props.onSelect(row)}
     />
   </div>
 );
