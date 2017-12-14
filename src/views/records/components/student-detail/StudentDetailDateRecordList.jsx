@@ -103,19 +103,7 @@ const StudentDetailDateRecordList = props => (
         render: (value, row) => row.children ? <b>{value}</b> : value,
       },
       {
-        label: 'Record Count',
-        path: 'recordCount',
-        align: 'center',
-        render: (value, row) => row.children ? (
-          <b>
-            {row.children.reduce((dateAcc, unit) => (
-              dateAcc + unit.items.reduce((unitAcc, item) => unitAcc + item.recordCount, 0)
-            ), 0)}
-          </b>
-        ) : row.items.reduce((acc, item) => acc + item.recordCount, 0),
-      },
-      {
-        label: 'Repeat Count',
+        label: 'Repeat',
         path: 'repeatCount',
         align: 'center',
         render: (value, row) => row.children ? (
@@ -127,7 +115,19 @@ const StudentDetailDateRecordList = props => (
         ) : row.items.reduce((acc, item) => acc + item.repeatCount, 0),
       },
       {
-        label: 'Listen Count',
+        label: 'Record',
+        path: 'recordCount',
+        align: 'center',
+        render: (value, row) => row.children ? (
+          <b>
+            {row.children.reduce((dateAcc, unit) => (
+              dateAcc + unit.items.reduce((unitAcc, item) => unitAcc + item.recordCount, 0)
+            ), 0)}
+          </b>
+        ) : row.items.reduce((acc, item) => acc + item.recordCount, 0),
+      },
+      {
+        label: 'Listen',
         path: 'listenCount',
         align: 'center',
         render: (value, row) => row.children ? (
