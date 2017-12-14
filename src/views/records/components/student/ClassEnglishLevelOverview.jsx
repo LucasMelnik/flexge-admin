@@ -4,13 +4,13 @@ import round from 'lodash/round';
 import findLast from 'lodash/findLast';
 import Tag from '../../../../core/layout/Tag';
 import Icon from '../../../../core/layout/Icon';
-import { englishLevelCourses } from '../../../../core/consts'
+import { englishLevelCourses } from '../../../../core/consts';
 
 const ClassEnglishLevelOverview = (props) => {
   if (!props.students || !props.students.length) return null;
-  const averageInitialEnglishLevel = props.students.reduce((acc, student) => (
+  const averageInitialEnglishLevel = props.students.filter(student => student.initialEnglishLevel).reduce((acc, student) => (
     acc + student.initialEnglishLevel), 0) / props.students.length;
-  const averageCurrentEnglishLevel = props.students.reduce((acc, student) => (
+  const averageCurrentEnglishLevel = props.students.filter(student => student.currentEnglishLevel).reduce((acc, student) => (
     acc + student.currentEnglishLevel), 0) / props.students.length;
   const initialCourse = findLast(englishLevelCourses, course => course.value <= averageInitialEnglishLevel);
   const currentCourse = findLast(englishLevelCourses, course => course.value <= averageCurrentEnglishLevel);
