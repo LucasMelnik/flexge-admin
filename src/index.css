@@ -88,8 +88,12 @@ h1, h2, h3, h4, h5 {
   border-color: #26c3a4;
 }
 
-.ant-btn:focus, .ant-btn:hover {
+.ant-btn.ant-btn-default:hover {
   color: #26c3a4;
+  border-color: #26c3a4;
+}
+.ant-btn:focus, .ant-btn:hover {
+  color: #fff;
   border-color: #26c3a4;
 }
 .ant-switch-checked {
