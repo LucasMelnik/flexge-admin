@@ -54,6 +54,7 @@ const StudentDetailContentRecordList = props => (
         label: 'Studied Time',
         path: 'studiedTime',
         align: 'center',
+        width: '160px',
         render: (value, row) => ({
           children: row.docType === 'MODULE' ? (
             <div>
@@ -78,6 +79,7 @@ const StudentDetailContentRecordList = props => (
         label: 'Points',
         path: 'points',
         align: 'center',
+        width: '160px',
         render: (value, row) => {
           if (row.docType === 'UNIT') {
             return {
@@ -93,6 +95,7 @@ const StudentDetailContentRecordList = props => (
         label: 'Score',
         path: 'score',
         align: 'center',
+        width: '160px',
         render: (value, row) => ({
           children: (row.docType === 'UNIT' || row.docType === 'MASTERY') ? (
             <div style={{ textAlign: 'left', fontWeight: 'bold' }}>To pass: {row.scoreToPass}</div>
@@ -112,6 +115,7 @@ const StudentDetailContentRecordList = props => (
         label: 'Type',
         path: 'type',
         align: 'center',
+        width: '50px',
         render: (value, row) => {
           let translatedValue = '';
           switch (value) {
@@ -152,6 +156,7 @@ const StudentDetailContentRecordList = props => (
         label: 'SR',
         align: 'center',
         path: 'averageSpeechRecognitionScore',
+        width: '50px',
         render: (value, row) => ({
           children: value,
           props: {
@@ -163,6 +168,7 @@ const StudentDetailContentRecordList = props => (
         label: 'Record Count',
         path: 'recordCount',
         align: 'center',
+        width: '110px',
         render: (value, row) => row.docType === 'MODULE' ? (
           <b style={{ fontSize: 14 }}>
             {row.children && row.children.reduce((moduleAcc, mod) => (
@@ -181,6 +187,7 @@ const StudentDetailContentRecordList = props => (
         label: 'Repeat Count',
         path: 'repeat',
         align: 'center',
+        width: '110px',
         render: (value, row) => row.docType === 'MODULE' ? (
           <b style={{ fontSize: 14 }}>
             {row.children && row.children.reduce((moduleAcc, mod) => (
@@ -199,6 +206,7 @@ const StudentDetailContentRecordList = props => (
         label: 'Listen Count',
         path: 'listen',
         align: 'center',
+        width: '100px',
         render: (value, row) => row.docType === 'MODULE' ? (
           <b style={{ fontSize: 14 }}>
             {row.children && row.children.reduce((moduleAcc, mod) => (
