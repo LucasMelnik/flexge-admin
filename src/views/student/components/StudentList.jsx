@@ -31,6 +31,7 @@ const StudentList = props => (
         {
           label: 'Initial Level',
           path: 'initialEnglishLevel',
+          align: 'center',
           render: (value, row) => value && (
             <span>
               {value}<span style={{ color: 'red' }}>{row.lastPlacementResult === -2 ? '*' : ''}</span>
@@ -38,8 +39,9 @@ const StudentList = props => (
           ),
         },
         {
-          label: 'Last PT',
-          path: 'lastPlacementResult',
+          label: 'Current Level',
+          path: 'currentEnglishLevel',
+          align: 'center',
           render: (cell) => {
             if (cell === -2) {
               return 'N/A';
@@ -53,7 +55,7 @@ const StudentList = props => (
       {
         label: 'Actions',
         patch: 'action',
-        width: '115px',
+        width: '125px',
         render: (cell, row) => (
           <div>
             {props.editable && (
