@@ -103,14 +103,17 @@ const StudentDetailAnalyticsOverviewRecord = (props) => {
             {
               label: 'Hours Grade',
               path: 'previewGrade.hoursGrade',
+              align: 'center',
             },
             {
               label: (<span>Study Quality Grade <TooltipIcon text="Average Study Quality generated every Sunday at midnight" /></span>),
               path: 'previewGrade.studyQualityGrade',
+              align: 'center',
             },
             {
               label: 'Preview Final Grade',
               path: 'previewGrade.finalGrade',
+              align: 'center',
             },
           ]}
         />

@@ -24,6 +24,10 @@ class StudyQualityChartContainer extends Component {
         ...acc,
         ...school.classes.map(schoolClass => Number(schoolClass.classAverageScore.toFixed(1))),
       ]), []);
+      console.log({
+        labels,
+        values,
+      })
     return (
       <StudyQualityChart
         title={this.getTitle()}
