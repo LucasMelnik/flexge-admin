@@ -13,7 +13,7 @@ const ActiveStudentsGauge = props => (
     successCondition={value => value > 85}
     badCondition={value => value <= 65}
     valueRender={value => `${value}%`}
-    legend={`School Average ${props.schoolAverage}%`}
+    legend={localStorage.role === 'TEACHER' && `School Average ${props.schoolAverage}%`}
   />
 );
 
