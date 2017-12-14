@@ -26,7 +26,8 @@ class ActiveStudentsContainer extends Component {
         value={ActiveStudentsByPeriodService.totalActiveStudents ?
           Number(ActiveStudentsByPeriodService.totalActiveStudents.toFixed(0)) : 0
         }
-        schoolAverage={ActiveStudentsByPeriodService.schoolAverage}
+        schoolAverage={ActiveStudentsByPeriodService.schoolAverage ?
+          ActiveStudentsByPeriodService.schoolAverage.toFixed(0) : 0}
       />
     );
   }

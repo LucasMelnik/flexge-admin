@@ -26,7 +26,8 @@ class ActiveStudentsLastSevenDaysContainer extends Component {
         value={ActiveStudentsByPeriodService.studiedLast7Days ?
           Number(ActiveStudentsByPeriodService.studiedLast7Days.toFixed(0)) : 0
         }
-        schoolAverage={ActiveStudentsByPeriodService.schoolAverage}
+        schoolAverage={ActiveStudentsByPeriodService.schoolAverageLast7Days ? 
+          ActiveStudentsByPeriodService.schoolAverageLast7Days.toFixed(0) : 0}
       />
     );
   }
