@@ -13,6 +13,7 @@ class CertificationTestListService {
     extendObservable(this, {
       certificationTests: [],
       filter: '',
+      status: null,
     });
     this.form.validations = {
       scheduleForDate: [isRequired],
@@ -20,9 +21,10 @@ class CertificationTestListService {
     };
   }
 
-  init = action(() => {
+  init = action((status) => {
     this.certificationTests = [];
     this.filter = '';
+    this.status = status;
     this.load();
   });
 
@@ -39,7 +41,17 @@ class CertificationTestListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.certificationTests = this.fetch.data;
+        if (this.status === 'PENDING') {
+          this.certificationTests = this.fetch.data
+            .filter(certificationTest => !certificationTest.scheduledFor);
+        } else if (this.status === 'SCHEDULED') {
+          this.certificationTests = this.fetch.data
+            .filter(certificationTest => certificationTest.scheduledFor
+              && !certificationTest.completedAt);
+        } else {
+          this.certificationTests = this.fetch.data
+            .filter(certificationTest => certificationTest.completedAt);
+        }
       } else {
         this.certificationTests = [];
       }
@@ -70,7 +82,7 @@ class CertificationTestListService {
       if (this.submit.data) {
         this.load();
         callbackAfterSubmit();
-        NotificationService.addNotification(`Certification test schedule ${this.submit.data.id ? 'updated' : 'created'} successfully.`, 'success');
+        NotificationService.addNotification(`Certification test schedule ${this.submit.data.certificationTest.id ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
         NotificationService.addNotification(`Error ${certificationTest.id ? 'updating' : 'creating'} certificationTest.`, 'error');
@@ -79,6 +91,5 @@ class CertificationTestListService {
   });
 }
 
-const certificationTestListService = new CertificationTestListService();
 
-export default certificationTestListService;
+export default CertificationTestListService;
