@@ -8,12 +8,12 @@ const StudyQualityAverageGauge = props => (
     noDataText="No Study Quality found"
     title="Study Quality"
     tooltip="Your classes Study Quality average"
-    value={Number(props.value.toFixed(1)) + 5}
+    value={props.value && Number(props.value.toFixed(1)) + 5}
     max={20}
-    valueRender={value => Number(value.toFixed(1)) - 5}
+    valueRender={value => value && Number(value.toFixed(1)) - 5}
     successCondition={value => value > 10}
     badCondition={value => value < 5}
-    legend={localStorage.role === 'TEACHER' && `School average ${props.schoolAverage}`}
+    legend={localStorage.role === 'TEACHER' && `School average ${props.schoolAverage || '-'}`}
   />
 );
 

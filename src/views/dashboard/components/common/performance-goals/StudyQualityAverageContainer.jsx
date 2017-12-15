@@ -20,16 +20,15 @@ class StudyQualityAverageContainer extends Component {
   }
 
   render() {
-    let average = localStorage.getItem('COMPANY_MANAGER') ?
+    const average = localStorage.getItem('COMPANY_MANAGER') ?
       AverageStudyQualityService.allSchoolsAverage :
       AverageStudyQualityService.averageByClass;
-    average = average || 0;
     return (
       <StudyQualityAverageGauge
         fetching={AverageStudyQualityService.fetch.fetching}
         value={average}
         schoolAverage={AverageStudyQualityService.allSchoolsAverage ?
-          AverageStudyQualityService.allSchoolsAverage.toFixed(1) : 0}
+          AverageStudyQualityService.allSchoolsAverage.toFixed(1) : null}
       />
     );
   }
