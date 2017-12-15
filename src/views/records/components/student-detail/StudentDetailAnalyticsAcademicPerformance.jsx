@@ -31,7 +31,7 @@ const StudentDetailAnalyticsAcademicPerformance = props => props.currentPerforma
         tooltip="Average score of Speech Recognition"
         fetching={props.loading}
         noDataText="No data"
-        value={props.currentPerformance.averageMasteryTestScore && round(props.currentPerformance.averageMasteryTestScore)}
+        value={props.currentPerformance.averageSpeechRecognitionScore && round(props.currentPerformance.averageSpeechRecognitionScore)}
         max={100}
         successCondition={value => value >= 85}
         badCondition={value => value < 75}
