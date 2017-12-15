@@ -23,6 +23,7 @@ class StudyQualityGroupService {
         ), 0);
       }),
       higherThanFive: computed(() => {
+        console.log('this.data', this.data);
         if (!this.validateResponse()) return null;
         const totalHigherThanFive = ['good', 'excellent'].reduce((acc, key) => {
           if (this.data[key]) {

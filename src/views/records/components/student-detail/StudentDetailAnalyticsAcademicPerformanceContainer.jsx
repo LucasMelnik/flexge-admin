@@ -5,7 +5,7 @@ import StudentDetailAnalyticsAcademicPerformance from './StudentDetailAnalyticsA
 
 const StudentDetailAnalyticsAcademicPerformanceContainer = () => (
   <StudentDetailAnalyticsAcademicPerformance
-    currentPerformance={StudentAcademicPerformanceHistoryService.currentPerformance}
+    currentPerformance={StudentAcademicPerformanceHistoryService.currentPerformance || {}}
     loading={StudentAcademicPerformanceHistoryService.fetch.fetching}
   />
 );

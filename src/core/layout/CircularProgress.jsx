@@ -74,10 +74,10 @@ export default class CircularProgress extends Component {
           <Separator size="xs" />
           <Progress
             type="circle"
-            percent={percent < 1 ? 100 : percent}
+            percent={(percent < 1 && this.props.value !== null && this.props.value !== undefined) ? 100 : percent}
             status={percent < 1 ? 'exception' : this.getStatus(this.state.value)}
             strokeWidth={10}
-            format={() => this.props.value !== null ? (
+            format={() => (this.props.value !== null && this.props.value !== undefined) ? (
               <div
                 style={{
                   display: 'flex',
