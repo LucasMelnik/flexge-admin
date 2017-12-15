@@ -21,15 +21,7 @@ const CertificationTestListScene = () => (
       tabs={[
         {
           content: (
-            <Card
-              actions={
-                <Button
-                  label="New certification test"
-                  icon="plus"
-                  onClick={() => browserHistory.push('/certification-test/new')}
-                />
-              }
-            >
+            <Card>
               <CertificationTestListPendingContainer />
             </Card>
           ),
@@ -37,15 +29,7 @@ const CertificationTestListScene = () => (
         },
         {
           content: (
-            <Card
-              actions={
-                <Button
-                  label="New certification test"
-                  icon="plus"
-                  onClick={() => browserHistory.push('/certification-test/new')}
-                />
-              }
-            >
+            <Card>
               <CertificationTestListScheduledContainer />
             </Card>
           ),
@@ -53,15 +37,7 @@ const CertificationTestListScene = () => (
         },
         {
           content: (
-            <Card
-              actions={
-                <Button
-                  label="New certification test"
-                  icon="plus"
-                  onClick={() => browserHistory.push('/certification-test/new')}
-                />
-              }
-            >
+            <Card>
               <CertificationTestListCompletedContainer />
             </Card>
           ),
