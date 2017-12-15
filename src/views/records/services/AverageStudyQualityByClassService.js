@@ -18,11 +18,16 @@ class AverageStudyQualityByClassService {
         return total / this.data.length;
       }),
       averageByClass: computed(() => {
-        if (!this.validateResponse()) return 0;
-        const total = filterList(filterList(this.data, this.schoolId), this.classId)
-          .reduce((acc, schoolClass) => (
-            acc + schoolClass.classAverageScore
-          ), 0);
+        if (!this.validateResponse()) return null;
+        const total = filterList(this.data, this.schoolId).reduce((schoolAcc, school) => {
+          if (school.classes) {
+            const classCount = filterList(school.classes, this.classId).reduce((classAcc, schoolClass) => (
+              classAcc + schoolClass.classAverageScore
+            ), 0);
+            return schoolAcc + classCount;
+          }
+          return schoolAcc;
+        }, 0);
         return this.classId ? total :
           total / this.data.reduce((acc, school) => acc + school.classes.length, 0);
       }),
