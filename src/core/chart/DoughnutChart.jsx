@@ -29,7 +29,7 @@ const DoughnutChart = props => (
         callbacks: props.tooltipsCallbacks || {
           label: (tooltipItem, data) => {
             const rate = data.datasets[0].data[tooltipItem.index] || 0;
-            return `${data.labels[tooltipItem.index]}: ${rate}% (${props.data[tooltipItem.index].value} students)`;
+            return `${data.labels[tooltipItem.index]}: ${rate.toFixed(1)}% (${props.data[tooltipItem.index].value} students)`;
           },
         },
       },

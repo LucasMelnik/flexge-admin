@@ -10,54 +10,42 @@ import SchoolClassFileImportContainer from './SchoolClassFileImportContainer';
 
 const SchoolClassListScene = props => (
   <div>
-    {(!props.distributorId && !props.companyId && !props.schoolId) && (
-      <Breadcrumb
-        crumbs={[
-          {
-            text: 'Classes',
-          },
-        ]}
-      />
-    )}
+    <Breadcrumb
+      crumbs={[
+        {
+          text: 'Classes',
+        },
+      ]}
+    />
     <Card
+      loading={!props.school._id}
       title="Classes"
-      actions={
-       <div>
-         <Button
-           label="New class"
-           icon="fa-plus"
-           onClick={() => browserHistory.push(
-             props.distributorId ?
-               `/distributors/${props.distributorId}/companies/${props.companyId}/schools/${props.schoolId}/classes/new` :
-               props.companyId ? `/companies/${props.companyId}/schools/${props.schoolId}/classes/new` :
-                 props.schoolId ? `/schools/${props.schoolId}/classes/new` : '/classes/new'
-           )}
-         />
-         {' '}
-         {props.schoolId && (<SchoolClassFileImportContainer schoolId={props.schoolId} />)}
-       </div>
+      actions={localStorage.role !== 'TEACHER' &&
+        <div>
+          <Button
+            type="primary"
+            label="New class"
+            icon="plus"
+            onClick={() => browserHistory.push('classes/new')}
+          />
+          {' '}
+          {props.school._id && (<SchoolClassFileImportContainer schoolId={props.school._id} />)}
+        </div>
       }
     >
       <SchoolClassListFilterContainer />
       <SchoolClassListContainer
-        distributorId={props.distributorId}
-        companyId={props.companyId}
-        schoolId={props.schoolId}
+        baseUrl=""
+        schoolId={props.school._id}
       />
     </Card>
   </div>
 );
 
-SchoolClassListScene.propsTypes = {
-  distributorId: PropTypes.string,
-  companyId: PropTypes.string,
-  schoolId: PropTypes.string,
-};
-
-SchoolClassListScene.defaultProps = {
-  distributorId: null,
-  companyId: null,
-  schoolId: null,
+SchoolClassListScene.propTypes = {
+  school: PropTypes.shape({
+    _id: PropTypes.string,
+  }).isRequired,
 };
 
 export default SchoolClassListScene;

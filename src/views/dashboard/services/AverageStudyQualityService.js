@@ -1,5 +1,6 @@
 import { action, extendObservable, computed } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import filterList from './filterList';
 
 class AverageStudyQualityService {
   fetch = new FetchService();
@@ -7,6 +8,8 @@ class AverageStudyQualityService {
   constructor() {
     extendObservable(this, {
       data: [],
+      schoolId: null,
+      classId: null,
       allSchoolsAverage: computed(() => {
         if (!this.validateResponse()) return null;
         const total = this.data.reduce((acc, school) => (
@@ -16,13 +19,21 @@ class AverageStudyQualityService {
       }),
       averageByClass: computed(() => {
         if (!this.validateResponse()) return null;
-        const total = this.data[0].classes.reduce((acc, schoolClass) => (
-          acc + schoolClass.classAverageScore
-        ), 0);
-        return total / this.data[0].classes.length;
+        const total = filterList(filterList(this.data, this.schoolId), this.classId)
+          .reduce((acc, schoolClass) => (
+            acc + schoolClass.classAverageScore
+          ), 0);
+        return this.classId ? total :
+          total / this.data.reduce((acc, school) => acc + school.classes.length, 0);
       }),
     });
   }
+
+  init = action((schoolId, classId) => {
+    this.schoolId = schoolId;
+    this.classId = classId;
+    this.load();
+  });
 
   validateResponse = () => {
     if (

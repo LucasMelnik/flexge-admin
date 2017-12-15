@@ -57,6 +57,7 @@ import CharacterFormScene from './views/character/components/CharacterFormScene'
 import AchievementListScene from './views/achievement/components/AchievementListScene';
 import AchievementFormScene from './views/achievement/components/AchievementFormScene';
 import EmailsScene from './views/emails/components/EmailsScene';
+import StudentAchievementsScene from './views/student-achievements/components/StudentAchievementsScene';
 
 import FilterRecordScene from './views/records/components/FilterRecordScene';
 import SchoolClassRecordSceneContainer from './views/records/components/school-class/SchoolClassRecordSceneContainer';
@@ -78,6 +79,7 @@ import CertificationTestListScene from './views/certification-test/components/Ce
 import CertificationTestFormScene from './views/certification-test/components/CertificationTestFormScene';
 import RankingListScene from './views/ranking/components/RankingListScene';
 import SchoolGradeConfigFormSceneContainer from './views/school-grade-config/components/SchoolGradeConfigFormSceneContainer';
+import SchoolClassListSceneContainer from './views/school-class/components/SchoolClassListSceneContainer';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -86,7 +88,7 @@ function authRequired(nextState, replace) {
 }
 
 const Routes = () => (
-  <Router history={browserHistory}>
+  <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
     <Route path="/login" component={LoginScene} />
     <Route path="/" component={MainScene} onEnter={authRequired}>
       <IndexRoute component={DashboardScene} />
@@ -129,6 +131,12 @@ const Routes = () => (
       <Route path="schools/:schoolId/classes/:classId/details" component={SchoolClassDetailSceneContainer} />
       <Route path="schools/:schoolId/classes/:classId/students/new" component={StudentFormSceneContainer} />
       <Route path="schools/:schoolId/classes/:classId/students/:studentId" component={StudentFormSceneContainer} />
+      <Route path="classes" component={SchoolClassListSceneContainer} />
+      <Route path="classes/new" component={SchoolClassFormSceneContainer} />
+      <Route path="classes/:classId" component={SchoolClassFormSceneContainer} />
+      <Route path="classes/:classId/details" component={SchoolClassDetailSceneContainer} />
+      <Route path="classes/:classId/students/new" component={StudentFormSceneContainer} />
+      <Route path="classes/:classId/students/:studentId" component={StudentFormSceneContainer} />
       <Route path="modules" component={ModuleListScene} />
       <Route path="modules/new" component={ModuleFormScene} />
       <Route path="modules/:moduleId" component={ModuleFormScene} />
@@ -193,6 +201,7 @@ const Routes = () => (
       <Route path="school-configuration/grades" component={SchoolGradeConfigFormSceneContainer} />
       <Route path="school-configuration/evaluation-periods" component={SchoolEvaluationSceneContainer} />
       <Route path="rankings" component={RankingListScene} />
+      <Route path="student-achievements" component={StudentAchievementsScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

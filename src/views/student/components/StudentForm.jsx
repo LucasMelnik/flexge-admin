@@ -87,8 +87,8 @@ const StudentForm = props => (
           }}
         />
       </Column>
-      <Column size={3}>
-        {props.values.id && (
+      {props.values.id && (
+        <Column size={3}>
           <FetchSelect
             url={`/schools/${props.values.schoolClass.school.id}/classes`}
             fullWidth
@@ -105,8 +105,8 @@ const StudentForm = props => (
               value: 'id',
             }}
           />
-        )}
-      </Column>
+        </Column>
+      )}
     </Row>
     <Row>
       <Column size={3}>

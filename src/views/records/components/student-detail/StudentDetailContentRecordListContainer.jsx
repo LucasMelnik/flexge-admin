@@ -19,7 +19,7 @@ class StudentDetailContentRecordListContainer extends Component {
     return (
       <StudentDetailContentRecordList
         contents={toJS(StudentRecordDetailService.contentsDetail)}
-        fetching={StudentRecordDetailService.fetch.fetching}
+        fetching={StudentRecordDetailService.fetchContent.fetching}
       />
     );
   }

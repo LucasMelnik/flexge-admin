@@ -7,13 +7,19 @@ class LastWeekAverageStudiedTimeService {
   constructor() {
     extendObservable(this, {
       data: [],
+      schoolId: null,
+      classId: null,
       average: computed(() => {
-        if (!this.data.length) return null;
-        const total = this.data.reduce((acc, school) => (
-          acc + school.classes.reduce((classAcc, schoolClass) => (
-            acc + schoolClass.averageStudiedTime
-          ), 0)
-        ), 0);
+        if (!this.data || !this.data.length) return null;
+        const total = this.data
+          .filter(school => !this.schoolId || school.id === this.schoolId)
+          .reduce((acc, school) => (
+            acc + school.classes
+              .filter(schoolClass => !this.classId || schoolClass.id === this.classId)
+              .reduce((classAcc, schoolClass) => (
+                acc + schoolClass.averageStudiedTime
+              ), 0)
+          ), 0);
         return total / this.data.reduce((acc, school) => acc + school.classes.length, 0);
       }),
       schoolAverage: computed(() => {
@@ -23,6 +29,24 @@ class LastWeekAverageStudiedTimeService {
         ), 0) / this.data.length;
       }),
     });
+  }
+
+  init = action((schoolId, classId) => {
+    this.schoolId = schoolId;
+    this.classId = classId;
+    this.load();
+  });
+
+  validateResponse = () => {
+    if (
+      !this.data ||
+      !this.data.length ||
+      !this.data[0].classes ||
+      !this.data[0].classes.length
+    ) {
+      return false;
+    }
+    return true;
   }
 
   load = action((from, to) => {

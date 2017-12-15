@@ -11,9 +11,9 @@ import StudentDetailAnalyticsOverviewRecordContainer from './StudentDetailAnalyt
 import StudentDetailAnalyticsStudiedTimeChartContainer from './StudentDetailAnalyticsStudiedTimeChartContainer';
 import StudentDetailAnalyticsStudyQualityChartContainer from './StudentDetailAnalyticsStudyQualityChartContainer';
 import StudentDetailAnalyticsAcademicPerformanceHistoryContainer from './StudentDetailAnalyticsAcademicPerformanceHistoryContainer';
-import StudentGrammarNeedsListContainer from '../common/StudentGrammarNeedsListContainer';
-import StudentDetailAnalyticsAcademicPerformanceContainer from './StudentDetailAnalyticsAcademicPerformanceContainer';
 import StudentDetailAchievements from './StudentDetailAchievements';
+import StudentDetailContentRecordListFilterContainer from './StudentDetailContentRecordListFilterContainer';
+import StudentDetailCurrentPerformancePanelContainer from './StudentDetailCurrentPerformancePanelContainer';
 
 const StudentDetailRecordScene = props => (
   <div>
@@ -25,15 +25,15 @@ const StudentDetailRecordScene = props => (
           link: '/records/filters',
         },
         {
-          text: `School - ${props.school.name}`,
+          text: props.school.name,
           link: `/records/schools/${props.school.id}/classes`,
         },
         {
-          text: `Class - ${props.class.name}`,
+          text: props.class.name,
           link: `/records/schools/${props.school.id}/classes/${props.class.id}/students`,
         },
         {
-          text: `Student - ${props.student.name}`,
+          text: props.student.name,
         },
       ]}
     />
@@ -52,11 +52,7 @@ const StudentDetailRecordScene = props => (
                   <StudentDetailAnalyticsOverviewRecordContainer studentId={props.studentId} />
                 </Card>
                 <Separator />
-                <Card title="Academic Performance">
-                  <StudentDetailAnalyticsAcademicPerformanceContainer />
-                  <Separator />
-                  <StudentGrammarNeedsListContainer studentId={props.studentId} />
-                </Card>
+                <StudentDetailCurrentPerformancePanelContainer studentId={props.studentId} />
                 <Separator />
                 <Card title="History">
                   <StudentDetailAnalyticsAcademicPerformanceHistoryContainer studentId={props.studentId} />
@@ -73,6 +69,8 @@ const StudentDetailRecordScene = props => (
           content:
             (
               <Card>
+                <StudentDetailContentRecordListFilterContainer studentId={props.studentId} />
+                <Separator size="xs" />
                 <StudentDetailContentRecordListContainer studentId={props.studentId} />
               </Card>
             ),

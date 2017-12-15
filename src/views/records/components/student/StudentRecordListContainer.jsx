@@ -13,10 +13,6 @@ class StudentRecordListContainer extends Component {
     classId: PropTypes.string.isRequired,
   };
 
-  componentDidMount() {
-    StudentRecordListService.init(this.props.schoolId, this.props.classId);
-  }
-
   handleSelect = (student) => {
     browserHistory.push(`/records/schools/${this.props.schoolId}/classes/${this.props.classId}/students/${student.id}/detail`);
   };
@@ -25,7 +21,7 @@ class StudentRecordListContainer extends Component {
     return (
       <StudentRecordList
         students={toJS(StudentRecordListService.students)}
-        fetching={StudentRecordListService.fetch.fetching}
+        fetching={StudentRecordListService.fetch.fetching || StudentRecordListService.fetchStudents.fetching}
         onSelect={this.handleSelect}
       />
     );

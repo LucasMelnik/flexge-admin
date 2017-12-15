@@ -1,56 +1,74 @@
 import { action, extendObservable, computed } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import filterList from './filterList';
 
-class dataService {
+class ActiveStudentsByPeriodService {
   fetch = new FetchService();
 
   constructor() {
     extendObservable(this, {
       data: [],
+      schoolId: null,
+      classId: null,
       totalActiveStudents: computed(() => {
         if (!this.validateResponse()) return null;
         const periods = [7, 14, 21, 30];
-        const activeStudents = this.data.reduce((schoolAcc, school) => (
-          schoolAcc + school.classes.reduce((acc, schoolClass) => (
+        const activeStudents = filterList(this.data, this.schoolId).reduce((schoolAcc, school) => (
+          schoolAcc + filterList(school.classes, this.classId).reduce((acc, schoolClass) => (
             acc + periods.reduce((classAcc, period) => classAcc + schoolClass[`studyOnLast${period}Days`] || 0, 0)
           ), 0)
         ), 0);
-        return activeStudents / this.totalStudents * 100;
+        return (activeStudents / this.totalStudents) * 100;
       }),
+      totalSchoolStudents: computed(() => (
+        this.data.reduce((acc, school) => acc + school.totalStudents, 0)
+      )),
       totalStudents: computed(() => {
         if (!this.validateResponse()) return null;
-        return this.data.reduce((schoolAcc, school) => (
-          schoolAcc + school.classes.reduce((acc, schoolClass) => (
+        return filterList(this.data, this.schoolId).reduce((schoolAcc, school) => (
+          schoolAcc + filterList(school.classes, this.classId).reduce((acc, schoolClass) => (
             acc + schoolClass.totalStudents
           ), 0)
         ), 0);
       }),
       schoolAverage: computed(() => {
         if (!this.validateResponse()) return null;
-        const studyingStudents =
-          this.data[0].totalStudents -
-          this.data[0].noStudy;
-        return (studyingStudents / this.data[0].totalStudents) * 100;
+        const periods = [7, 14, 21, 30];
+        const activeStudents = filterList(this.data, this.schoolId)
+          .reduce((acc, school) => (
+            acc + periods.reduce((periodAcc, period) => (
+              periodAcc + school[`studyOnLast${period}Days`]
+            ), 0)
+          ), 0);
+        return activeStudents / this.totalSchoolStudents * 100;
       }),
       studiedLast7Days: computed(() => {
         if (!this.validateResponse()) return null;
-        const activeStudentsLast7Days = this.data.reduce((acc, school) => (
-          acc + this.getdata(school.classes, 'studyOnLast7Days')
-        ), 0);
+        const activeStudentsLast7Days = filterList(this.data, this.schoolId)
+          .reduce((acc, school) => (
+            acc + this.getdata(school.classes, 'studyOnLast7Days')
+          ), 0);
         return (activeStudentsLast7Days / this.totalStudents) * 100;
+      }),
+      schoolAverageLast7Days: computed(() => {
+        if (!this.validateResponse()) return null;
+        const studyingLast7days = filterList(this.data, this.schoolId)
+          .reduce((acc, school) => acc + school.studyOnLast7Days, 0);
+        return (studyingLast7days / this.totalSchoolStudents) * 100;
       }),
       averageByPeriod: computed(() => {
         if (!this.validateResponse()) return null;
         const periods = [7, 14, 21, 30];
-        const activeStudentsByPeriod = this.data.reduce((acc, school) => {
-          periods.forEach((period) => {
-            const periodKey = `studyOnLast${period}Days`;
-            acc[periodKey] = acc[periodKey] ?
-              acc[periodKey] + this.getdata(school.classes, periodKey) :
-              this.getdata(school.classes, periodKey);
-          });
-          return acc;
-        }, {});
+        const activeStudentsByPeriod = filterList(this.data, this.schoolId)
+          .reduce((acc, school) => {
+            periods.forEach((period) => {
+              const periodKey = `studyOnLast${period}Days`;
+              acc[periodKey] = acc[periodKey] ?
+                acc[periodKey] + this.getdata(school.classes, periodKey) :
+                this.getdata(school.classes, periodKey);
+            });
+            return acc;
+          }, {});
         // Return total by period and total that didn't study
         const totalDidntStudy = this.totalStudents - Object.keys(activeStudentsByPeriod).reduce((acc, period) => acc + activeStudentsByPeriod[period], 0);
         return [
@@ -68,7 +86,7 @@ class dataService {
   }
 
   getdata = (classes, key) => (
-    classes.reduce((acc, schoolClass) => (
+    filterList(classes, this.classId).reduce((acc, schoolClass) => (
       acc + schoolClass[key]
     ), 0)
   )
@@ -85,6 +103,12 @@ class dataService {
     return true;
   }
 
+  init = action((schoolId, classId) => {
+    this.schoolId = schoolId;
+    this.classId = classId;
+    this.load();
+  });
+
   load = action(() => {
     this.data = [];
     this.fetch.fetch({
@@ -97,6 +121,6 @@ class dataService {
   });
 }
 
-const activeStudentsByPeriodService = new dataService();
+const activeStudentsByPeriodService = new ActiveStudentsByPeriodService();
 
 export default activeStudentsByPeriodService;

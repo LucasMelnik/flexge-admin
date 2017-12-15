@@ -5,7 +5,7 @@ import Async from '../../../../core/layout/Async';
 import CircularProgress from '../../../../core/layout/CircularProgress';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 
-const StudentDetailAnalyticsAcademicPerformance = props => (
+const StudentDetailAnalyticsAcademicPerformance = props => props.currentPerformance ? (
   <Async fetching={props.loading}>
     <div
       style={{
@@ -31,7 +31,7 @@ const StudentDetailAnalyticsAcademicPerformance = props => (
         tooltip="Average score of Speech Recognition"
         fetching={props.loading}
         noDataText="No data"
-        value={props.currentPerformance.averageMasteryTestScore && round(props.currentPerformance.averageMasteryTestScore)}
+        value={props.currentPerformance.averageSpeechRecognitionScore && round(props.currentPerformance.averageSpeechRecognitionScore)}
         max={100}
         successCondition={value => value >= 85}
         badCondition={value => value < 75}
@@ -52,7 +52,7 @@ const StudentDetailAnalyticsAcademicPerformance = props => (
       />
     </div>
   </Async>
-);
+) : null;
 
 StudentDetailAnalyticsAcademicPerformance.propTypes = {
   loading: PropTypes.bool.isRequired,

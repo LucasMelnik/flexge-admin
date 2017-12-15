@@ -15,7 +15,7 @@ export default class CircularProgress extends Component {
     fetching: PropTypes.bool.isRequired,
     value: PropTypes.number,
     max: PropTypes.number.isRequired,
-    legend: PropTypes.string,
+    legend: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     tooltip: PropTypes.string,
     valueRender: PropTypes.func,
     successCondition: PropTypes.func.isRequired,
@@ -23,18 +23,16 @@ export default class CircularProgress extends Component {
   };
 
   static defaultProps = {
-    legend: null,
+    legend: false,
     tooltip: null,
     value: null,
     valueRender: null,
   };
 
   componentWillReceiveProps(nextProps) {
-    if (!this.props.value && nextProps.value) {
-      setTimeout(() => {
-        this.setState({ value: nextProps.value });
-      }, 300);
-    }
+    setTimeout(() => {
+      this.setState({ value: nextProps.value });
+    }, 300);
   }
 
   getPercentage = (value, max) => (value / max) * 100;
@@ -58,6 +56,7 @@ export default class CircularProgress extends Component {
   };
 
   render() {
+    const percent = this.getPercentage(this.state.value, this.props.max);
     return (
       <Async fetching={this.props.fetching}>
         <div style={{ textAlign: 'center' }}>
@@ -75,10 +74,10 @@ export default class CircularProgress extends Component {
           <Separator size="xs" />
           <Progress
             type="circle"
-            percent={this.getPercentage(this.state.value, this.props.max)}
-            status={this.getStatus(this.state.value)}
+            percent={(percent < 1 && this.props.value !== null && this.props.value !== undefined) ? 100 : percent}
+            status={percent < 1 ? 'exception' : this.getStatus(this.state.value)}
             strokeWidth={10}
-            format={() => this.props.value !== null ? (
+            format={() => (this.props.value !== null && this.props.value !== undefined) ? (
               <div
                 style={{
                   display: 'flex',

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
+import Tag from '../../../../core/layout/Tag';
 
 const StudentDetailDateRecordList = props => (
   <Table
@@ -11,10 +12,11 @@ const StudentDetailDateRecordList = props => (
       {
         label: 'Date',
         path: 'startedAt',
-        render: (value, row) => (row.children && row.children.length && moment(value).format('DD/MM/YYYY')) || moment(value).format('DD/MM/YYYY HH:mm'),
+        render: (value, row) => (row.children && row.children.length && <b>{moment(value).format('DD/MM/YYYY')}</b>) || moment(value).format('DD/MM/YYYY HH:mm'),
       },
       {
         label: 'Course',
+        align: 'center',
         render: (cell, row) => {
           if (row.unit) {
             return row.unit.module.course.name;
@@ -49,16 +51,17 @@ const StudentDetailDateRecordList = props => (
       {
         label: 'Type',
         path: 'type',
+        align: 'center',
         render: (value) => {
           switch (value) {
             case 'DEFAULT':
-              return 'Your Challenge';
+              return 'YC';
             case 'FIRST_REVIEW':
-              return 'First Review';
+              return 'FR';
             case 'SECOND_REVIEW':
-              return 'Second Review';
+              return 'SR';
             case 'SIMPLE_REVIEW':
-              return 'Simple Review';
+              return 'SI';
             default:
               return '';
           }
@@ -67,25 +70,73 @@ const StudentDetailDateRecordList = props => (
       {
         label: 'Studied Time',
         path: 'studiedTime',
-        render: value => moment.duration(value, 'seconds').format('mm:ss', { trim: false }),
+        align: 'center',
+        render: (value, row) => row.children ? (
+          <b>{moment.duration(value, 'seconds').format('hh:mm', { trim: false })}</b>
+        ) : moment.duration(value, 'seconds').format('hh:mm', { trim: false }),
       },
-      {
-        label: 'Correct Count',
-        path: 'items',
-        render: value => value && `${value.filter(item => item.correct).length}/${value.length}`,
-      },
+      // {
+      //   label: 'Correct Count',
+      //   path: 'items',
+      //   render: value => value && `${value.filter(item => item.correct).length} / ${value.length}`,
+      // },
       {
         label: 'Score',
         path: 'score',
-        render: (value, row) => value && `${value}/${row.unit.scoreToPass}`,
+        align: 'center',
+        render: (value, row) => row.unit && (
+          <Tag color={(value || 0) > row.unit.scoreToPass ? 'green' : 'red'}>
+            {value || 0} / {row.unit.scoreToPass}
+          </Tag>
+        ),
       },
       {
         label: 'Points',
         path: 'points',
+        align: 'center',
+        render: (value, row) => row.children ? <b>{value}</b> : value,
       },
       {
         label: 'Average SR Score',
         path: 'averageSpeechRecognitionScore',
+        align: 'center',
+        render: (value, row) => row.children ? <b>{value}</b> : value,
+      },
+      {
+        label: 'Repeat',
+        path: 'repeatCount',
+        align: 'center',
+        render: (value, row) => row.children ? (
+          <b>
+            {row.children.reduce((dateAcc, unit) => (
+              dateAcc + unit.items.reduce((unitAcc, item) => unitAcc + item.repeatCount, 0)
+            ), 0)}
+          </b>
+        ) : row.items.reduce((acc, item) => acc + item.repeatCount, 0),
+      },
+      {
+        label: 'Record',
+        path: 'recordCount',
+        align: 'center',
+        render: (value, row) => row.children ? (
+          <b>
+            {row.children.reduce((dateAcc, unit) => (
+              dateAcc + unit.items.reduce((unitAcc, item) => unitAcc + item.recordCount, 0)
+            ), 0)}
+          </b>
+        ) : row.items.reduce((acc, item) => acc + item.recordCount, 0),
+      },
+      {
+        label: 'Listen',
+        path: 'listenCount',
+        align: 'center',
+        render: (value, row) => row.children ? (
+          <b>
+            {row.children.reduce((dateAcc, unit) => (
+              dateAcc + unit.items.reduce((unitAcc, item) => unitAcc + item.listenCount, 0)
+            ), 0)}
+          </b>
+        ) : row.items.reduce((acc, item) => acc + item.listenCount, 0),
       },
     ]}
     rows={props.contents}

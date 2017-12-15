@@ -10,7 +10,7 @@ class UserFormContainer extends Component {
     userId: PropTypes.string,
     companyId: PropTypes.string,
     distributorId: PropTypes.string,
-    type: PropTypes.oneOf(['ADMIN','DISTRIBUTOR', 'COMPANY']).isRequired,
+    type: PropTypes.oneOf(['ADMIN','DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER']).isRequired,
   };
 
   static defaultProps = {
@@ -35,6 +35,7 @@ class UserFormContainer extends Component {
         errors={this.userFormService.form.errors}
         submitting={this.userFormService.submit.fetching}
         isDirty={this.userFormService.form.isDirty}
+        companyId={this.props.companyId}
       />
     );
   }

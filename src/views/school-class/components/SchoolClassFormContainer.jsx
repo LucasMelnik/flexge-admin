@@ -30,6 +30,7 @@ class SchoolClassFormContainer extends Component {
         errors={this.schoolClassFormService.form.errors}
         submitting={this.schoolClassFormService.submit.fetching}
         isDirty={this.schoolClassFormService.form.isDirty}
+        schoolId={this.props.schoolId}
       />
     );
   }

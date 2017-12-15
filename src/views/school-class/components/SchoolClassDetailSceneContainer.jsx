@@ -32,15 +32,25 @@ class SchoolClassDetailSceneContainer extends Component {
       this.baseUrl += `/schools/${this.props.params.schoolId}`;
     }
 
-    this.schoolClassDetailService.handleLoadClass(this.props.params.schoolId, this.props.params.classId);
+    if (localStorage.role === 'SCHOOL_MANAGER' || localStorage.role === 'TEACHER') {
+      this.schoolClassDetailService.handleLoadClass(this.getSchoolFromLocalStorage().id, this.props.params.classId);
+    } else {
+      this.schoolClassDetailService.handleLoadClass(this.props.params.schoolId, this.props.params.classId);
+    }
     this.baseUrl += `/classes/${this.props.params.classId}`;
   }
+
+  getSchoolFromLocalStorage = () => {
+    const school = JSON.parse(localStorage.getItem('school'));
+    school.id = school._id;
+    return school;
+  };
 
   render() {
     return (
       <SchoolClassDetailScene
         baseUrl={this.baseUrl}
-        school={this.schoolClassDetailService.school}
+        school={(localStorage.role === 'SCHOOL_MANAGER' || localStorage.role === 'TEACHER') ? this.getSchoolFromLocalStorage() : this.schoolClassDetailService.school}
         company={this.schoolClassDetailService.company}
         distributor={this.schoolClassDetailService.distributor}
         class={this.schoolClassDetailService.class}

@@ -30,7 +30,7 @@ const StudentDetailAnalyticsStudyQualityChart = props => (
         label: (tooltipItem, data) => {
           const index = findIndex(data.labels, label => label === tooltipItem.xLabel);
           const studyQuality = data.datasets[tooltipItem.datasetIndex].data[index] || 0;
-          return `${data.datasets[tooltipItem.datasetIndex].label}: ${Number(studyQuality).toFixed(2)}`;
+          return `${data.datasets[tooltipItem.datasetIndex].label}: ${Number(studyQuality).toFixed(1)}`;
         },
       }}
     />

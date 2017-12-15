@@ -79,7 +79,7 @@ const MainScene = props => (
           groups={[
             {
               group: 'Organizations',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
             },
             {
               group: 'Users',
@@ -96,16 +96,23 @@ const MainScene = props => (
             {
               label: 'Companies',
               link: '/companies',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
               group: 'Organizations',
               icon: 'bank',
             },
             {
               label: 'Schools',
               link: '/schools',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'SCHOOL_MANAGER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
               group: 'Organizations',
               icon: 'contacts',
+            },
+            {
+              label: 'Classes',
+              link: '/classes',
+              allowedFor: ['SCHOOL_MANAGER', 'TEACHER'],
+              group: 'Organizations',
+              icon: 'profile',
             },
             {
               label: 'Admin Users',
@@ -210,7 +217,7 @@ const MainScene = props => (
           items={[
             {
               label: 'Achievements',
-              link: '/achievements',
+              link: '/student-achievements',
               icon: 'trophy',
             },
             {
@@ -226,10 +233,6 @@ const MainScene = props => (
             {
               label: 'Student Placement/Mastery Tests',
               link: '/student-tests',
-            },
-            {
-              label: 'Grades',
-              link: '/grades',
             },
           ]}
         />

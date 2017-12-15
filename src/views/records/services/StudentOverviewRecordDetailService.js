@@ -10,6 +10,8 @@ export default class StudentOverviewRecordDetailService {
     extendObservable(this, {
       student: {
         studyQuality: {},
+        initialCourse: {},
+        currentCourse: {},
         evaluation: {
           previewGrade: {},
         },
