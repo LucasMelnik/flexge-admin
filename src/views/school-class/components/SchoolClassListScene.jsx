@@ -6,7 +6,6 @@ import Button from '../../../core/form/Button';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import SchoolClassListFilterContainer from './SchoolClassListFilterContainer';
 import SchoolClassListContainer from './SchoolClassListContainer';
-import SchoolClassFileImportContainer from './SchoolClassFileImportContainer';
 
 const SchoolClassListScene = props => (
   <div>
@@ -28,8 +27,6 @@ const SchoolClassListScene = props => (
             icon="plus"
             onClick={() => browserHistory.push('classes/new')}
           />
-          {' '}
-          {props.school._id && (<SchoolClassFileImportContainer schoolId={props.school._id} />)}
         </div>
       }
     >
