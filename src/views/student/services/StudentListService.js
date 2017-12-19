@@ -60,6 +60,7 @@ class StudentListService {
       url: '/students',
       query: {
         query: {
+          removedAt: null,
           ...this.form.getValue('name') && {
             name: {
               $regex: this.form.getValue('name'),
