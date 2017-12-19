@@ -16,12 +16,12 @@ const WeeklyStudyingStudentsChart = props => (
       data={range(1, 53).map(week => props.data.find(item => item.week === week) || {})}
       dataFormat={[
         {
-          label: 'Active Students',
-          valueRender: item => item.totalStudyingStudents || 0,
-        },
-        {
           label: 'Total Students',
           valueRender: item => item.totalStudents || 0,
+        },
+        {
+          label: 'Active Students',
+          valueRender: item => item.totalStudyingStudents || 0,
         },
       ]}
     />
