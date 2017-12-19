@@ -101,6 +101,18 @@ const StudentList = props => (
                   icon="form"
                   onClick={() => browserHistory.push(`/schools/${row.schoolClass.school.id}/classes/${row.schoolClass.id}/students/${row.id}`)}
                 />
+                {' '}
+                {row.deleted ? (
+                  <Button
+                    icon="close"
+                    onClick={() => props.onRemove(row)}
+                  />
+                ) : (
+                  <Button
+                    icon="delete"
+                    onClick={() => props.onDisable(row)}
+                  />
+                )}
               </span>
             )}
           </div>
