@@ -120,16 +120,31 @@ class StudentListService {
       student.name.toLowerCase().search(value.toLowerCase()) !== -1);
   });
 
-  handleRemove = action((student) => {
+  handleDisable = action((student) => {
     ConfirmationDialogService.show(
       'Delete Student',
-      `You are about to delete the student "${student.name}", Do you want to continue ?`,
+      `You are about to disable the student "${student.name}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({
           url: this.schoolId && this.classId ? `/schools/${this.schoolId}/classes/${this.classId}/students/${student.id}` : `/students/${student.id}`,
           method: 'delete',
         }).then(() => {
-          NotificationService.addNotification('Student deleted', 'success');
+          NotificationService.addNotification('Student disabled', 'success');
+          this.load();
+        });
+      });
+  });
+
+  handleRemove = action((student) => {
+    ConfirmationDialogService.show(
+      'Delete Student',
+      `You are about to remove the student "${student.name}", Do you want to continue ?`,
+      () => {
+        this.fetch.fetch({
+          url: this.schoolId && this.classId ? `/schools/${this.schoolId}/classes/${this.classId}/students/${student.id}/remove` : `/students/${student.id}/remove`,
+          method: 'post',
+        }).then(() => {
+          NotificationService.addNotification('Student removed', 'success');
           this.load();
         });
       });
