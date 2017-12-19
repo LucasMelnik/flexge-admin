@@ -126,7 +126,7 @@ class StudentListService {
       `You are about to delete the student "${student.name}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({
-          url: `/students/${student.id}`,
+          url: this.schoolId && this.classId ? `/schools/${this.schoolId}/classes/${this.classId}/students/${student.id}` : `/students/${student.id}`,
           method: 'delete',
         }).then(() => {
           NotificationService.addNotification('Student deleted', 'success');
