@@ -23,7 +23,7 @@ class StudyTimeHigherThanTwoContainer extends Component {
 
   getValue = (value) => {
     if (value !== null && value !== undefined) {
-      return Number(value.toFixed(0));
+      return Number((value * 100).toFixed(0));
     }
     return null;
   }
@@ -32,8 +32,8 @@ class StudyTimeHigherThanTwoContainer extends Component {
     return (
       <StudyTimeHigherThanTwoGauge
         fetching={StudiedTimeGroupService.fetch.fetching}
-        value={this.getValue(StudiedTimeGroupService.higherThanTwo) * 100}
-        schoolAverage={this.getValue(StudiedTimeGroupService.higherThanTwoSchoolAverage) * 100}
+        value={this.getValue(StudiedTimeGroupService.higherThanTwo)}
+        schoolAverage={this.getValue(StudiedTimeGroupService.higherThanTwoSchoolAverage)}
         weeklyHoursRequired={this.school ? this.school.weeklyHoursRequired : 2}
       />
     );
