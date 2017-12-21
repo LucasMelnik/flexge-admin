@@ -19,14 +19,19 @@ class ActiveStudentsLastSevenDaysByClassContainer extends Component {
     ActiveStudentsByPeriodAndClassService.init(this.props.schoolId, this.props.classId);
   }
 
+  getValue = (value) => {
+    if (value !== null && value !== undefined) {
+      return Number(value.toFixed(0));
+    }
+    return null;
+  }
+
   render() {
     return (
       <ActiveStudentsLastSevenDaysGauge
         fetching={ActiveStudentsByPeriodAndClassService.fetch.fetching}
-        value={ActiveStudentsByPeriodAndClassService.studiedLast7Days ?
-          Number(ActiveStudentsByPeriodAndClassService.studiedLast7Days.toFixed(0)) : 0
-        }
-        schoolAverage={ActiveStudentsByPeriodAndClassService.schoolAverage}
+        value={this.getValue(ActiveStudentsByPeriodAndClassService.studiedLast7Days)}
+        schoolAverage={this.getValue(ActiveStudentsByPeriodAndClassService.schoolAverage)}
       />
     );
   }

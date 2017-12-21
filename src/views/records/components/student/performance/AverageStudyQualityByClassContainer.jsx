@@ -14,6 +14,13 @@ class AverageStudyQualityByClassContainer extends Component {
     AverageStudyQualityByClassService.init(this.props.schoolId, this.props.classId);
   }
 
+  getValue = (value) => {
+    if (value !== null && value !== undefined) {
+      return Number(value.toFixed(0));
+    }
+    return null;
+  }
+
   render() {
     const average = localStorage.getItem('COMPANY_MANAGER') ?
       AverageStudyQualityByClassService.allSchoolsAverage :
@@ -21,9 +28,8 @@ class AverageStudyQualityByClassContainer extends Component {
     return (
       <StudyQualityAverageGauge
         fetching={AverageStudyQualityByClassService.fetch.fetching}
-        value={average}
-        schoolAverage={AverageStudyQualityByClassService.allSchoolsAverage ?
-          AverageStudyQualityByClassService.allSchoolsAverage.toFixed(1) : null}
+        value={this.getValue(average)}
+        schoolAverage={this.getValue(AverageStudyQualityByClassService.allSchoolsAverage)}
       />
     );
   }

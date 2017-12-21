@@ -22,12 +22,19 @@ class LastWeekAverageStudiedTimeContainer extends Component {
     LastWeekAverageStudiedTimeService.init(this.props.schoolId, this.props.classId);
   }
 
+  getValue = (value) => {
+    if (value !== null && value !== undefined) {
+      return Number(value.toFixed(0));
+    }
+    return null;
+  }
+
   render() {
     return (
       <LastWeekAverageStudiedTimeGauge
         fetching={LastWeekAverageStudiedTimeService.fetch.fetching}
-        value={LastWeekAverageStudiedTimeService.average}
-        schoolAverage={LastWeekAverageStudiedTimeService.schoolAverage}
+        value={this.getValue(LastWeekAverageStudiedTimeService.average)}
+        schoolAverage={this.getValue(LastWeekAverageStudiedTimeService.schoolAverage)}
         weeklyHoursRequired={this.school ? this.school.weeklyHoursRequired : 2}
       />
     );

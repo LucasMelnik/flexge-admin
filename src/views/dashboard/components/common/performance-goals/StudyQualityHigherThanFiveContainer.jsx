@@ -19,22 +19,19 @@ class StudyQualityHigherThanFiveContainer extends Component {
     StudyQualityGroupService.init(this.props.schoolId, this.props.classId);
   }
 
-  getValue = () => {
-    if (StudyQualityGroupService.higherThanFive !== null && StudyQualityGroupService.higherThanFive !== undefined) {
-      return Number(StudyQualityGroupService.higherThanFive.toFixed(0));
+  getValue = (value) => {
+    if (value !== null && value !== undefined) {
+      return Number(value.toFixed(0));
     }
     return null;
-  };
+  }
 
   render() {
     return (
       <StudyQualityHigherThanFiveGauge
         fetching={StudyQualityGroupService.fetch.fetching}
-        value={this.getValue()}
-        schoolAverage={
-          StudyQualityGroupService.higherThanFiveSchoolAverage ?
-          Number(StudyQualityGroupService.higherThanFiveSchoolAverage.toFixed(0)) : 0
-        }
+        value={this.getValue(StudyQualityGroupService.higherThanFive)}
+        schoolAverage={this.getValue(StudyQualityGroupService.higherThanFiveSchoolAverage)}
       />
     );
   }
