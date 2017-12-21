@@ -25,11 +25,11 @@ class StudyQualityHigherThanFiveContainer extends Component {
         fetching={StudyQualityGroupService.fetch.fetching}
         value={
           StudyQualityGroupService.higherThanFive ?
-          Number(StudyQualityGroupService.higherThanFive.toFixed(0)) : 0
+          Number(StudyQualityGroupService.higherThanFive.toFixed(0)) : null
         }
         schoolAverage={
           StudyQualityGroupService.higherThanFiveSchoolAverage ?
-          StudyQualityGroupService.higherThanFiveSchoolAverage : 0
+          Number(StudyQualityGroupService.higherThanFiveSchoolAverage.toFixed(0)) : 0
         }
       />
     );

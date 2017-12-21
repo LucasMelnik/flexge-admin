@@ -15,7 +15,6 @@ class AverageStudyQualityByClassContainer extends Component {
   }
 
   render() {
-    console.log('this.props.classId', this.props.classId);
     const average = localStorage.getItem('COMPANY_MANAGER') ?
       AverageStudyQualityByClassService.allSchoolsAverage :
       AverageStudyQualityByClassService.averageByClass;

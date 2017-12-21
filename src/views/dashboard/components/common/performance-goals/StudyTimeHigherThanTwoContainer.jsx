@@ -26,9 +26,12 @@ class StudyTimeHigherThanTwoContainer extends Component {
       <StudyTimeHigherThanTwoGauge
         fetching={StudiedTimeGroupService.fetch.fetching}
         value={StudiedTimeGroupService.higherThanTwo ?
-          Number(StudiedTimeGroupService.higherThanTwo.toFixed(0)) : 0
+          Number((StudiedTimeGroupService.higherThanTwo * 100).toFixed(0)) : null
         }
-        schoolAverage={StudiedTimeGroupService.higherThanTwoSchoolAverage}
+        schoolAverage={
+          StudiedTimeGroupService.higherThanTwoSchoolAverage ?
+          Number((StudiedTimeGroupService.higherThanTwo * 100).toFixed(0)) : 0
+        }
         weeklyHoursRequired={this.school ? this.school.weeklyHoursRequired : 2}
       />
     );

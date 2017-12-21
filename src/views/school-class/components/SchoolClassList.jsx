@@ -10,12 +10,12 @@ const SchoolClassList = props => (
     fetching={props.fetching}
     columns={[
       {
-        label: 'Name',
-        path: 'name',
-      },
-      {
         label: 'School',
         path: 'school.name',
+      },
+      {
+        label: 'Class',
+        path: 'name',
       },
       {
         label: 'Teacher',

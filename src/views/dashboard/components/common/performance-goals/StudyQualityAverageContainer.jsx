@@ -26,9 +26,9 @@ class StudyQualityAverageContainer extends Component {
     return (
       <StudyQualityAverageGauge
         fetching={AverageStudyQualityService.fetch.fetching}
-        value={average}
+        value={average ? Number(average.toFixed(0)) : null}
         schoolAverage={AverageStudyQualityService.allSchoolsAverage ?
-          AverageStudyQualityService.allSchoolsAverage.toFixed(1) : null}
+          AverageStudyQualityService.allSchoolsAverage.toFixed(0) : null}
       />
     );
   }
