@@ -37,7 +37,7 @@ const StudentRecordList = props => (
         },
         {
           label: 'Current Course',
-          path: 'course',
+          path: 'course.name',
           render: (cell, row) => row.initialEnglishLevel ? (
             <div style={{ display: 'flex', width: 150 }}>
               {cell}
