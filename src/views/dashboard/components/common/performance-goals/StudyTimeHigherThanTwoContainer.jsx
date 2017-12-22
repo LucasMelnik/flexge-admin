@@ -21,14 +21,19 @@ class StudyTimeHigherThanTwoContainer extends Component {
     StudiedTimeGroupService.init(this.props.schoolId, this.props.classId);
   }
 
+  getValue = (value) => {
+    if (value !== null && value !== undefined) {
+      return Number((value * 100).toFixed(0));
+    }
+    return null;
+  }
+
   render() {
     return (
       <StudyTimeHigherThanTwoGauge
         fetching={StudiedTimeGroupService.fetch.fetching}
-        value={StudiedTimeGroupService.higherThanTwo ?
-          Number(StudiedTimeGroupService.higherThanTwo.toFixed(0)) : 0
-        }
-        schoolAverage={StudiedTimeGroupService.higherThanTwoSchoolAverage}
+        value={this.getValue(StudiedTimeGroupService.higherThanTwo)}
+        schoolAverage={this.getValue(StudiedTimeGroupService.higherThanTwoSchoolAverage)}
         weeklyHoursRequired={this.school ? this.school.weeklyHoursRequired : 2}
       />
     );

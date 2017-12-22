@@ -3,48 +3,40 @@ import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
-import { isRequired } from '../../../core/validations';
+import { isRequired, isValidEmail } from '../../../core/validations';
 
-export default class ModuleFormService {
+export default class ReactivateStudentForm {
   fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
 
   constructor() {
     extendObservable(this, {
-      moduleId: null,
+      studentId: null,
     });
     this.form.validations = {
       name: [isRequired],
-      course: [isRequired],
-      academicPlan: [isRequired],
-      group: [isRequired],
-      order: [isRequired],
-      readingPoints: [isRequired],
-      listeningPoints: [isRequired],
-      speakingPoints: [isRequired],
-      writingPoints: [isRequired],
+      email: [isRequired, isValidEmail],
     };
   }
 
-  handleLoad = action((moduleId) => {
+  handleLoad = action((studentId) => {
     this.form.reset();
-    if (moduleId) {
+    if (studentId) {
       this.fetch.fetch({
-        url: `/modules/${moduleId}`,
+        url: `/students/${studentId}/deleted`,
       }).then(() => {
         if (this.fetch.data) {
-          this.form.setInitialValues({
+          const data = {
             ...this.fetch.data,
-            course: this.fetch.data.course.id,
-            academicPlan: this.fetch.data.academicPlan.id,
-          });
+          };
+          this.form.setInitialValues(data);
         }
       });
     } else {
       this.form.setInitialValues({});
     }
-    this.moduleId = moduleId;
+    this.studentId = studentId;
   });
 
   handleSubmit = action(() => {
@@ -53,27 +45,28 @@ export default class ModuleFormService {
       NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
-    const moduleId = this.form.getValue('id');
+    const studentId = this.form.getValue('id');
     this.submit.fetch({
-      method: moduleId ? 'put' : 'post',
-      url: moduleId ? `/modules/${moduleId}` : '/modules',
+      method: 'post',
+      url: `/students/${studentId}/restore`,
       body: {
         ...this.form.getValues(),
-        ...this.form.getValue('createdBy') && {
-          createdBy: this.form.getValue('createdBy.id'),
-        },
+        schoolClass: this.form.getValue('schoolClass.id'),
       },
     }).then(() => {
       if (this.submit.data) {
-        browserHistory.push('/modules');
+        const student = this.submit.data;
+        this.studentId = student.id;
+        this.form.reset();
+        browserHistory.goBack();
         NotificationService.addNotification(
-          `Module ${moduleId ? 'updated' : 'created'} successfully.`,
+          'Student successfully restored.',
           'success',
         );
       }
       if (this.submit.error) {
         NotificationService.addNotification(
-          `Error ${moduleId ? 'updating' : 'creating'} module.`,
+          'Error to restore the student.',
           'error',
         );
       }

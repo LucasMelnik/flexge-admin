@@ -16,14 +16,19 @@ class StudyTimeHigherThanTwoByClassContainer extends Component {
     StudiedTimeGroupByClassService.init(this.props.schoolId, this.props.classId);
   }
 
+  getValue = (value) => {
+    if (value !== null && value !== undefined) {
+      return Number((value * 100).toFixed(0));
+    }
+    return null;
+  }
+
   render() {
     return (
       <StudyTimeHigherThanTwoGauge
         fetching={StudiedTimeGroupByClassService.fetch.fetching}
-        value={StudiedTimeGroupByClassService.higherThanTwo ?
-          Number(StudiedTimeGroupByClassService.higherThanTwo.toFixed(0)) : 0
-        }
-        schoolAverage={StudiedTimeGroupByClassService.higherThanTwoSchoolAverage}
+        value={this.getValue(StudiedTimeGroupByClassService.higherThanTwo)}
+        schoolAverage={this.getValue(StudiedTimeGroupByClassService.higherThanTwoSchoolAverage)}
         weeklyHoursRequired={this.school ? this.school.weeklyHoursRequired : 2}
       />
     );

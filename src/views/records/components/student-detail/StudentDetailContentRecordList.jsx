@@ -59,12 +59,12 @@ const StudentDetailContentRecordList = props => (
           children: row.docType === 'MODULE' ? (
             <div>
               <div style={{ display: 'inline-block' }}>
-                {AbilityProgressColumn(row.readingProgress, 'Reading')}
-                {AbilityProgressColumn(row.speakingProgress, 'Speaking')}
+                {AbilityProgressColumn(row.readingProgress || 0, 'Reading')}
+                {AbilityProgressColumn(row.speakingProgress || 0, 'Speaking')}
               </div>
               <div style={{ display: 'inline-block' }}>
-                {AbilityProgressColumn(row.listeningProgress, 'Listening')}
-                {AbilityProgressColumn(row.writingProgress, 'Writing')}
+                {AbilityProgressColumn(row.listeningProgress || 0, 'Listening')}
+                {AbilityProgressColumn(row.writingProgress || 0, 'Writing')}
               </div>
             </div>
           ) : (

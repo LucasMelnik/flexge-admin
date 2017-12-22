@@ -19,15 +19,19 @@ class ActiveStudentsLastSevenDaysContainer extends Component {
     ActiveStudentsByPeriodService.init(this.props.schoolId, this.props.classId);
   }
 
+  getValue = (value) => {
+    if (value !== null && value !== undefined) {
+      return Number(value.toFixed(0));
+    }
+    return null;
+  }
+
   render() {
     return (
       <ActiveStudentsLastSevenDaysGauge
         fetching={ActiveStudentsByPeriodService.fetch.fetching}
-        value={ActiveStudentsByPeriodService.studiedLast7Days ?
-          Number(ActiveStudentsByPeriodService.studiedLast7Days.toFixed(0)) : 0
-        }
-        schoolAverage={ActiveStudentsByPeriodService.schoolAverageLast7Days ? 
-          ActiveStudentsByPeriodService.schoolAverageLast7Days.toFixed(0) : 0}
+        value={this.getValue(ActiveStudentsByPeriodService.studiedLast7Days)}
+        schoolAverage={this.getValue(ActiveStudentsByPeriodService.schoolAverageLast7Days)}
       />
     );
   }

@@ -80,6 +80,9 @@ import CertificationTestFormScene from './views/certification-test/components/Ce
 import RankingListScene from './views/ranking/components/RankingListScene';
 import SchoolGradeConfigFormSceneContainer from './views/school-grade-config/components/SchoolGradeConfigFormSceneContainer';
 import SchoolClassListSceneContainer from './views/school-class/components/SchoolClassListSceneContainer';
+import ImportStudentsFormScene from './views/import-students/components/ImportStudentsFormScene';
+import ReactivateStudentListScene from './views/reactivate-student/components/ReactivateStudentListScene';
+import ReactivateStudentFormScene from './views/reactivate-student/components/ReactivateStudentFormScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -202,6 +205,9 @@ const Routes = () => (
       <Route path="school-configuration/evaluation-periods" component={SchoolEvaluationSceneContainer} />
       <Route path="rankings" component={RankingListScene} />
       <Route path="student-achievements" component={StudentAchievementsScene} />
+      <Route path="import-students" component={ImportStudentsFormScene} />
+      <Route path="reactivate-student" component={ReactivateStudentListScene} />
+      <Route path="reactivate-student/:studentId" component={ReactivateStudentFormScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

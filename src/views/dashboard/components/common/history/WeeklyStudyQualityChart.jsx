@@ -13,7 +13,7 @@ const WeeklyStudyQualityChart = props => (
   >
     <LineChart
       height={350}
-      labels={range(0, 52).map(week => getLabel(week))}
+      labels={range(1, 53).map(week => getLabel(week))}
       data={range(1, 53).map(week => props.data.find(item => Number(item.id) === week) || {})}
       dataFormat={[
         {

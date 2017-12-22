@@ -28,7 +28,7 @@ class StudentRecordListService {
       if (this.fetch.data) {
         const students = this.fetch.data.map(student => ({
           ...student,
-          coursePercentage: round((student.conqueredPoints / student.availablePoints) * 100),
+          coursePercentage: round((student.conqueredPoints / student.availablePoints) * 100, 2),
         }));
 
         this.fetchStudents.fetch({

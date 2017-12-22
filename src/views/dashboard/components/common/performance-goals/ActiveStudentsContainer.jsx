@@ -19,15 +19,19 @@ class ActiveStudentsContainer extends Component {
     ActiveStudentsByPeriodService.init(this.props.schoolId, this.props.classId);
   }
 
+  getValue = (value) => {
+    if (value !== null && value !== undefined) {
+      return Number(value.toFixed(0));
+    }
+    return null;
+  }
+
   render() {
     return (
       <ActiveStudentsGauge
         fetching={ActiveStudentsByPeriodService.fetch.fetching}
-        value={ActiveStudentsByPeriodService.totalActiveStudents ?
-          Number(ActiveStudentsByPeriodService.totalActiveStudents.toFixed(0)) : 0
-        }
-        schoolAverage={ActiveStudentsByPeriodService.schoolAverage ?
-          ActiveStudentsByPeriodService.schoolAverage.toFixed(0) : 0}
+        value={this.getValue(ActiveStudentsByPeriodService.totalActiveStudents)}
+        schoolAverage={this.getValue(ActiveStudentsByPeriodService.schoolAverage)}
       />
     );
   }

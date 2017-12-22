@@ -51,6 +51,11 @@ const StudentList = props => (
             return cell;
           },
         },
+        {
+          label: 'Status',
+          path: 'deleted',
+          render: value => value ? 'Disabled' : 'Active',
+        },
       ],
       {
         label: 'Actions',
@@ -60,33 +65,56 @@ const StudentList = props => (
           <div>
             {props.editable && (
               <span>
-                <Button
-                  icon="delete"
-                  onClick={() => props.onDelete(row)}
-                />
-                {' '}
-                <Button
-                  icon="edit"
-                  onClick={() => browserHistory.push(`${props.baseUrl}/students/${row.id}`)}
-                />
-                {' '}
-                <Button
-                  icon="mail"
-                  onClick={() => alert('Email sent!')}
-                />
+                {row.deleted ? (
+                  <Button
+                    icon="close"
+                    onClick={() => props.onRemove(row)}
+                  />
+                ) : (
+                  <span>
+                    <Button
+                      icon="delete"
+                      onClick={() => props.onDisable(row)}
+                    />
+                    {' '}
+                    <Button
+                      icon="edit"
+                      onClick={() => browserHistory.push(`${props.baseUrl}/students/${row.id}`)}
+                    />
+                    {' '}
+                    <Button
+                      icon="mail"
+                      onClick={() => alert('Email sent!')}
+                    />
+                  </span>
+                )}
               </span>
             )}
             {!props.hasSchoolClass && (
               <span>
-                <Button
-                  icon="folder-open"
-                  onClick={() => browserHistory.push(`/records/schools/${row.schoolClass.school.id}/classes/${row.schoolClass.id}/students/${row.id}/detail`)}
-                />
-                {' '}
-                <Button
-                  icon="form"
-                  onClick={() => browserHistory.push(`/schools/${row.schoolClass.school.id}/classes/${row.schoolClass.id}/students/${row.id}`)}
-                />
+                {row.deleted ? (
+                  <Button
+                    icon="close"
+                    onClick={() => props.onRemove(row)}
+                  />
+                ) : (
+                  <span>
+                    <Button
+                      icon="delete"
+                      onClick={() => props.onDisable(row)}
+                    />
+                    {' '}
+                    <Button
+                      icon="folder-open"
+                      onClick={() => browserHistory.push(`/records/schools/${row.schoolClass.school.id}/classes/${row.schoolClass.id}/students/${row.id}/detail`)}
+                    />
+                    {' '}
+                    <Button
+                      icon="form"
+                      onClick={() => browserHistory.push(`/schools/${row.schoolClass.school.id}/classes/${row.schoolClass.id}/students/${row.id}`)}
+                    />
+                  </span>
+                )}
               </span>
             )}
           </div>
@@ -107,7 +135,8 @@ StudentList.propTypes = {
   baseUrl: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   editable: PropTypes.bool.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onDisable: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
   onSelect: PropTypes.func,
   hasSchoolClass: PropTypes.bool.isRequired,
 };

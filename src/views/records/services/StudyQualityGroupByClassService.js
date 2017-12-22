@@ -36,14 +36,14 @@ class StudyQualityGroupByClassService {
           }
           return acc;
         }, 0);
-        return totalHigherThanFive / this.total;
+        return (totalHigherThanFive / this.total) * 100;
       }),
       higherThanFiveSchoolAverage: computed(() => {
         if (!this.validateResponse()) return null;
         const totalHigherThanFive = ['good', 'excellent'].reduce((acc, key) => (
           acc + this.data[key].reduce((schoolAcc, school) => schoolAcc + school.schoolCount, 0)
         ), 0);
-        return totalHigherThanFive / this.total;
+        return (totalHigherThanFive / this.total) * 100;
       }),
       totalByGroup: computed(() => {
         const totals = Object.keys(this.data).map((key) => {

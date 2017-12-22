@@ -24,12 +24,10 @@ class AverageStudyQualityService {
             const classCount = filterList(school.classes, this.classId).reduce((classAcc, schoolClass) => (
               classAcc + schoolClass.classAverageScore
             ), 0);
-            console.log('classCount', classCount);
             return schoolAcc + classCount;
           }
           return schoolAcc;
         }, 0);
-        console.log('total', total);
         return this.classId ? total :
           total / this.data.reduce((acc, school) => acc + school.classes.length, 0);
       }),

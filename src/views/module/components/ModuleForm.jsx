@@ -126,6 +126,86 @@ const ModuleForm = props => (
         </Column>
       </Row>
     )}
+    <Row>
+      <Column size={3}>
+        <TextInput
+          disabled
+          label="Available Reading Points"
+          value={get(props.values, 'availableReadingPoints', '')}
+          type="number"
+        />
+      </Column>
+      <Column size={3}>
+        <TextInput
+          disabled
+          label="Available Listening Points"
+          value={get(props.values, 'availableListeningPoints', '')}
+          type="number"
+        />
+      </Column>
+      <Column size={3}>
+        <TextInput
+          disabled
+          label="Available Speaking Points"
+          value={get(props.values, 'availableSpeakingPoints', '')}
+          type="number"
+        />
+      </Column>
+      <Column size={3}>
+        <TextInput
+          disabled
+          label="Available Writing Points"
+          value={get(props.values, 'availableWritingPoints', '')}
+          type="number"
+        />
+      </Column>
+    </Row>
+    <Row>
+      <Column size={3}>
+        <TextInput
+          required
+          disabled={props.submitting}
+          label="Reading Points"
+          value={get(props.values, 'readingPoints', '')}
+          onChange={value => props.onChange('readingPoints', value)}
+          errorText={get(props.errors, 'readingPoints', '')}
+          type="number"
+        />
+      </Column>
+      <Column size={3}>
+        <TextInput
+          required
+          disabled={props.submitting}
+          label="Listening Points"
+          value={get(props.values, 'listeningPoints', '')}
+          onChange={value => props.onChange('listeningPoints', value)}
+          errorText={get(props.errors, 'listeningPoints', '')}
+          type="number"
+        />
+      </Column>
+      <Column size={3}>
+        <TextInput
+          required
+          disabled={props.submitting}
+          label="Speaking Points"
+          value={get(props.values, 'speakingPoints', '')}
+          onChange={value => props.onChange('speakingPoints', value)}
+          errorText={get(props.errors, 'speakingPoints', '')}
+          type="number"
+        />
+      </Column>
+      <Column size={3}>
+        <TextInput
+          required
+          disabled={props.submitting}
+          label="Writing Points"
+          value={get(props.values, 'writingPoints', '')}
+          onChange={value => props.onChange('writingPoints', value)}
+          errorText={get(props.errors, 'writingPoints', '')}
+          type="number"
+        />
+      </Column>
+    </Row>
     <Separator size="md" />
     <FormButtons
       confirmLabel={props.values.id ? 'Update Module' : 'Create Module'}

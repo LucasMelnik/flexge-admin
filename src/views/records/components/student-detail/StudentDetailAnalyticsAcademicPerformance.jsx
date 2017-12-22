@@ -22,7 +22,7 @@ const StudentDetailAnalyticsAcademicPerformance = props => props.currentPerforma
         max={100}
         successCondition={value => value >= 85}
         badCondition={value => value < 70}
-        valueRender={value => `${value}%`}
+        valueRender={value => `${value}`}
       />
       <ColumnSeparator size="lg" />
       <ColumnSeparator size="lg" />
@@ -35,7 +35,7 @@ const StudentDetailAnalyticsAcademicPerformance = props => props.currentPerforma
         max={100}
         successCondition={value => value >= 85}
         badCondition={value => value < 75}
-        valueRender={value => `${value}%`}
+        valueRender={value => `${value}`}
       />
       <ColumnSeparator size="lg" />
       <ColumnSeparator size="lg" />
@@ -48,7 +48,7 @@ const StudentDetailAnalyticsAcademicPerformance = props => props.currentPerforma
         max={100}
         successCondition={value => value >= 90}
         badCondition={value => value < 80}
-        valueRender={value => `${value}%`}
+        valueRender={value => `${value}`}
       />
     </div>
   </Async>

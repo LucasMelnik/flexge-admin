@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import 'moment-duration-format';
 import round from 'lodash/round';
 import findLast from 'lodash/findLast';
 import Async from '../../../../core/layout/Async';
@@ -13,9 +14,7 @@ import TooltipIcon from '../../../../core/layout/TooltipIcon';
 import { englishLevelCourses } from '../../../../core/consts'
 
 const StudentDetailAnalyticsOverviewRecord = (props) => {
-  console.log('props.student', props.student.currentEnglishLevel)
   const currentCourse = findLast(englishLevelCourses, course => course.value <= props.student.currentEnglishLevel);
-  console.log('currentCourse', currentCourse)
   return (
     <Async fetching={props.fetching}>
       <div
@@ -82,6 +81,19 @@ const StudentDetailAnalyticsOverviewRecord = (props) => {
           {/* <h1>{moment.duration(props.student.projection, 'months').format()}</h1> */}
           <h1>-</h1>
         </Tag>
+        <ColumnSeparator size="lg" />
+        <Tag
+          color="none"
+          style={{
+            height: 'auto',
+            padding: 10,
+            textAlign: 'center',
+          }}
+        >
+          <span>Average Studied time on last 4 weeks</span>
+          <br />
+          <h1>{moment.duration(props.student.averageStudiedTime, 'hours').format('HH:mm', { trim: false })}</h1>
+        </Tag>
       </div>
       <Separator size="md" />
       {(props.student.evaluation && props.student.evaluation.id) && (
@@ -127,6 +139,7 @@ StudentDetailAnalyticsOverviewRecord.propTypes = {
     initialEnglishLevel: PropTypes.number,
     currentEnglishLevel: PropTypes.number,
     projection: PropTypes.number,
+    averageStudiedTime: PropTypes.number,
     name: PropTypes.string,
     lastStudied: PropTypes.string,
     semiannualProgress: PropTypes.number,

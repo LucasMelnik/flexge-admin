@@ -138,6 +138,18 @@ const MainScene = props => (
               allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
               group: 'Users',
             },
+            {
+              label: 'Import Students',
+              link: '/import-students',
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
+              group: 'Users',
+            },
+            {
+              label: 'Students to Reactivate',
+              link: '/reactivate-student',
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+              group: 'Users',
+            },
           ]}
         />
         <SubMenu

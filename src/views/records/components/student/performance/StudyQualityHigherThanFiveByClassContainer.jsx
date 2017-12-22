@@ -14,18 +14,19 @@ class StudyQualityHigherThanFiveByClassContainer extends Component {
     StudyQualityGroupByClassService.init(this.props.schoolId, this.props.classId);
   }
 
+  getValue = (value) => {
+    if (value !== null && value !== undefined) {
+      return Number(value.toFixed(0));
+    }
+    return null;
+  }
+
   render() {
     return (
       <StudyQualityHigherThanFiveGauge
         fetching={StudyQualityGroupByClassService.fetch.fetching}
-        value={
-          StudyQualityGroupByClassService.higherThanFive ?
-          Number(StudyQualityGroupByClassService.higherThanFive.toFixed(0)) : 0
-        }
-        schoolAverage={
-          StudyQualityGroupByClassService.higherThanFiveSchoolAverage ?
-          StudyQualityGroupByClassService.higherThanFiveSchoolAverage : 0
-        }
+        value={this.getValue(StudyQualityGroupByClassService.higherThanFive)}
+        schoolAverage={this.getValue(StudyQualityGroupByClassService.higherThanFiveSchoolAverage)}
       />
     );
   }
