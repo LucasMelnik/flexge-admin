@@ -28,13 +28,13 @@ export default class CertificationTestRegisterItems extends Component {
   render() {
     return (
       <Card
-        title={this.state.actualScene === 'LIST' ? 'Grammar Items' : 'Grammar Item Form'}
+        title={this.state.actualScene === 'LIST' ? 'Certification Test Items' : 'Certification Test Item Form'}
         actions={this.state.actualScene === 'LIST' ? (
           <Button
             type="primary"
             icon="plus"
             onClick={this.handleChangeToForm}
-            label="Add new grammar item"
+            label="Add new item"
           />
         ) : (
           <Button
