@@ -8,7 +8,6 @@ const RankingListFilter = props => (
     placeholder="Select the school to check the ranking"
     value={props.value}
     onChange={props.onChange}
-    disabled={props.disabled}
     url={`schools${localStorage.role === 'COMPANY_MANAGER' ? `?company=${JSON.parse(localStorage.getItem('company')).id}` : ''}`}
     resultTransformer={{
       text: 'name',
@@ -20,7 +19,6 @@ const RankingListFilter = props => (
 RankingListFilter.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
 };
 
 export default RankingListFilter;
