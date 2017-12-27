@@ -8,7 +8,7 @@ import Dialog from '../../../core/layout/Dialog';
 import DateInput from '../../../core/form/DateInput';
 import AntTimeInput from '../../../core/form/AntTimeInput';
 
-class CertificationTestListPending extends Component {
+class CertificationTestExecutionListPending extends Component {
   state = {
     visible: false,
     certificationTest: '',
@@ -100,7 +100,7 @@ class CertificationTestListPending extends Component {
   }
 }
 
-CertificationTestListPending.propTypes = {
+CertificationTestExecutionListPending.propTypes = {
   certificationTests: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string,
@@ -112,9 +112,9 @@ CertificationTestListPending.propTypes = {
   onSubmitSchedule: PropTypes.func.isRequired,
 };
 
-CertificationTestListPending.defaultProps = {
+CertificationTestExecutionListPending.defaultProps = {
   values: {},
   errors: {},
 };
 
-export default CertificationTestListPending;
+export default CertificationTestExecutionListPending;

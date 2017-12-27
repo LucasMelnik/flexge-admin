@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
 
-class CertificationTestListScheduled extends Component {
+class CertificationTestExecutionListScheduled extends Component {
   render() {
     return (
       <Table
@@ -60,7 +60,7 @@ class CertificationTestListScheduled extends Component {
   }
 }
 
-CertificationTestListScheduled.propTypes = {
+CertificationTestExecutionListScheduled.propTypes = {
   certificationTests: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -68,4 +68,4 @@ CertificationTestListScheduled.propTypes = {
   fetching: PropTypes.bool.isRequired,
 };
 
-export default CertificationTestListScheduled;
+export default CertificationTestExecutionListScheduled;

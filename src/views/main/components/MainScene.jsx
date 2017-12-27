@@ -234,7 +234,7 @@ const MainScene = props => (
             },
             {
               label: 'Certification Test',
-              link: '/certification-test',
+              link: '/certification-test-executions',
               icon: 'contacts',
             },
             {

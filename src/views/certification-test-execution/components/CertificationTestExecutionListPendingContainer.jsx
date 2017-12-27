@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
-import CertificationTestListPending from './CertificationTestListPending';
-import CertificationTestListService from '../services/CertificationTestListService';
+import CertificationTestExecutionListPending from './CertificationTestExecutionListPending';
+import CertificationTestExecutionListService from '../services/CertificationTestExecutionListService';
 
-class CertificationTestListPendingContainer extends Component {
+class CertificationTestExecutionListPendingContainer extends Component {
   componentDidMount() {
     this.certificationTestListService.init('PENDING');
   }
 
-  certificationTestListService = new CertificationTestListService();
+  certificationTestListService = new CertificationTestExecutionListService();
 
   render() {
     return (
-      <CertificationTestListPending
+      <CertificationTestExecutionListPending
         certificationTests={toJS(this.certificationTestListService.certificationTests)}
         onChange={this.certificationTestListService.form.setValue}
         values={this.certificationTestListService.form.getValues()}
@@ -25,4 +25,4 @@ class CertificationTestListPendingContainer extends Component {
   }
 }
 
-export default observer(CertificationTestListPendingContainer);
+export default observer(CertificationTestExecutionListPendingContainer);

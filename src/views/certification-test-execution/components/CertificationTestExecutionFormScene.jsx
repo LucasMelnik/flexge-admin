@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
-import CertificationTestFormContainer from './CertificationTestFormContainer';
+import CertificationTestExecutionFormContainer from './CertificationTestExecutionFormContainer';
 import Button from '../../../core/form/Button';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 
-const CertificationTestFormScene = props => (
+const CertificationTestExecutionFormScene = props => (
   <div>
     <Breadcrumb
       crumbs={[
@@ -28,19 +28,19 @@ const CertificationTestFormScene = props => (
         )
       }
     >
-      <CertificationTestFormContainer certificationTestId={props.params.certificationTestId} />
+      <CertificationTestExecutionFormContainer certificationTestId={props.params.certificationTestId} />
     </Card>
   </div>
 );
 
-CertificationTestFormScene.propTypes = {
+CertificationTestExecutionFormScene.propTypes = {
   params: PropTypes.shape({
     certificationTestId: PropTypes.string,
   }),
 };
 
-CertificationTestFormScene.defaultProps = {
+CertificationTestExecutionFormScene.defaultProps = {
   params: null,
 };
 
-export default CertificationTestFormScene;
+export default CertificationTestExecutionFormScene;

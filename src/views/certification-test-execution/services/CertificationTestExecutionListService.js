@@ -4,7 +4,7 @@ import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
-class CertificationTestListService {
+export default class CertificationTestExecutionListService {
   fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
@@ -30,7 +30,7 @@ class CertificationTestListService {
 
   load = action(() => {
     this.fetch.fetch({
-      url: '/certification-test',
+      url: '/certification-test-execution',
       query: {
         query: this.filter && {
           name: {
@@ -90,6 +90,3 @@ class CertificationTestListService {
     });
   });
 }
-
-
-export default CertificationTestListService;

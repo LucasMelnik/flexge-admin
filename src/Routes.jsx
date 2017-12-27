@@ -75,8 +75,8 @@ import DistributorUserListSceneContainer from './views/user/components/Distribut
 import DistributorUserFormScene from './views/user/components/DistributorUserFormScene';
 import StudentListScene from './views/student/components/StudentListScene';
 import SchoolEvaluationSceneContainer from './views/school-evaluation/components/SchoolEvaluationSceneContainer';
-import CertificationTestListScene from './views/certification-test/components/CertificationTestListScene';
-import CertificationTestFormScene from './views/certification-test/components/CertificationTestFormScene';
+import CertificationTestExecutionListScene from './views/certification-test-execution/components/CertificationTestExecutionListScene';
+import CertificationTestExecutionForm from './views/certification-test-execution/components/CertificationTestExecutionForm';
 import RankingListScene from './views/ranking/components/RankingListScene';
 import SchoolGradeConfigFormSceneContainer from './views/school-grade-config/components/SchoolGradeConfigFormSceneContainer';
 import SchoolClassListSceneContainer from './views/school-class/components/SchoolClassListSceneContainer';
@@ -197,9 +197,9 @@ const Routes = () => (
       <Route path="achievements" component={AchievementListScene} />
       <Route path="achievements/new" component={AchievementFormScene} />
       <Route path="achievements/:achievementId" component={AchievementFormScene} />
-      <Route path="certification-test" component={CertificationTestListScene} />
-      <Route path="certification-test/new" component={CertificationTestFormScene} />
-      <Route path="certification-test/:certificationTestId" component={CertificationTestFormScene} />
+      <Route path="certification-test-executions" component={CertificationTestExecutionListScene} />
+      {/*<Route path="certification-test-executions/new" component={CertificationTestFormScene} />*/}
+      <Route path="certification-test-executions/:certificationTestId" component={CertificationTestExecutionForm} />
       <Route path="school-configuration/emails" component={EmailsScene} />
       <Route path="school-configuration/grades" component={SchoolGradeConfigFormSceneContainer} />
       <Route path="school-configuration/evaluation-periods" component={SchoolEvaluationSceneContainer} />

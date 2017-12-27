@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Table from '../../../core/form/Table';
 import ImagePreview from '../../../core/layout/ImagePreview';
 
-const CertificationTestListCompleted = props => (
+const CertificationTestExecutionListCompleted = props => (
   <Table
     fetching={props.fetching}
     columns={[
@@ -97,7 +97,7 @@ const CertificationTestListCompleted = props => (
   />
 );
 
-CertificationTestListCompleted.propTypes = {
+CertificationTestExecutionListCompleted.propTypes = {
   certificationTests: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -105,4 +105,4 @@ CertificationTestListCompleted.propTypes = {
   fetching: PropTypes.bool.isRequired,
 };
 
-export default CertificationTestListCompleted;
+export default CertificationTestExecutionListCompleted;

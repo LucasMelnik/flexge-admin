@@ -8,7 +8,7 @@ import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
 import FileInput from '../../../core/form/FileInput';
 
-const CertificationTestForm = props => (
+const CertificationTestExecutionForm = props => (
   <form
     onSubmit={(event) => {
       event.preventDefault();
@@ -61,7 +61,7 @@ const CertificationTestForm = props => (
   </form>
 );
 
-CertificationTestForm.propTypes = {
+CertificationTestExecutionForm.propTypes = {
   onSubmit: PropTypes.func,
   onReset: PropTypes.func,
   values: PropTypes.object,
@@ -71,7 +71,7 @@ CertificationTestForm.propTypes = {
   isDirty: PropTypes.func,
 };
 
-CertificationTestForm.defaultProps = {
+CertificationTestExecutionForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
@@ -80,4 +80,4 @@ CertificationTestForm.defaultProps = {
   onReset: () => false,
 };
 
-export default CertificationTestForm;
+export default CertificationTestExecutionForm;

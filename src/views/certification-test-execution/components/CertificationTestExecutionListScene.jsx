@@ -2,11 +2,11 @@ import React from 'react';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import Tabs from '../../../core/layout/Tabs';
-import CertificationTestListPendingContainer from './CertificationTestListPendingContainer';
-import CertificationTestListScheduledContainer from './CertificationTestListScheduledContainer';
-import CertificationTestListCompletedContainer from './CertificationTestListCompletedContainer';
+import CertificationTestExecutionListPendingContainer from './CertificationTestExecutionListPendingContainer';
+import CertificationTestExecutionListScheduledContainer from './CertificationTestExecutionListScheduledContainer';
+import CertificationTestExecutionListCompletedContainer from './CertificationTestExecutionListCompletedContainer';
 
-const CertificationTestListScene = () => (
+const CertificationTestExecutionListScene = () => (
   <div>
     <Breadcrumb
       crumbs={[
@@ -20,7 +20,7 @@ const CertificationTestListScene = () => (
         {
           content: (
             <Card>
-              <CertificationTestListPendingContainer />
+              <CertificationTestExecutionListPendingContainer />
             </Card>
           ),
           title: 'Pending Schedule',
@@ -28,7 +28,7 @@ const CertificationTestListScene = () => (
         {
           content: (
             <Card>
-              <CertificationTestListScheduledContainer />
+              <CertificationTestExecutionListScheduledContainer />
             </Card>
           ),
           title: 'Scheduled',
@@ -36,7 +36,7 @@ const CertificationTestListScene = () => (
         {
           content: (
             <Card>
-              <CertificationTestListCompletedContainer />
+              <CertificationTestExecutionListCompletedContainer />
             </Card>
           ),
           title: 'Completed',
@@ -46,4 +46,4 @@ const CertificationTestListScene = () => (
   </div>
 );
 
-export default CertificationTestListScene;
+export default CertificationTestExecutionListScene;

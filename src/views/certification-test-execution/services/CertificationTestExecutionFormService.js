@@ -5,7 +5,7 @@ import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
-export default class CourseFormService {
+export default class CertificationTestExecutionFormService {
   fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
