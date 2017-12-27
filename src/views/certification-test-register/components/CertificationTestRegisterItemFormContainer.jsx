@@ -17,14 +17,13 @@ class CertificationTestRegisterItemFormContainer extends Component {
   }
 
   render() {
-    return this.certificationTestRegisterFormService.form.getValue('grammar') ? (
+    return this.certificationTestRegisterFormService.form.getValue('id') ? (
       <ItemFormContainer
         itemsTypeUrl={`/item-types?query[allowedForCertificationTest]=${this.certificationTestRegisterFormService.form.getValue('ability')}`}
         endpointUrl={`certification-test-course-ability/${this.props.certificationTestId}/items`}
         onSaveSuccess={this.props.onSaveSuccess}
         defaultGrammar={this.certificationTestRegisterFormService.form.getValue('grammar')}
         timeProperty="defaultTime"
-        isTestItem
       />
     ) : null;
   }

@@ -66,7 +66,6 @@ const CertificationTestRegisterForm = props => (
       <Column size={4}>
         <FetchSelect
           url="grammars"
-          required
           disabled={props.submitting}
           label="Grammar"
           maxHeight={350}

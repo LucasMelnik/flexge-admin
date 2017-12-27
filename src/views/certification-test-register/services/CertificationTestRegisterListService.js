@@ -28,7 +28,7 @@ class CertificationTestRegisterListService {
       query: {
         query: {
           ...this.form.getValue('grammar') && { grammar: this.form.getValue('grammar') },
-          ...this.form.getValue('course') && { placementTestLevel: this.form.getValue('course') },
+          ...this.form.getValue('course') && { course: this.form.getValue('course') },
         },
       },
     }).then(() => {

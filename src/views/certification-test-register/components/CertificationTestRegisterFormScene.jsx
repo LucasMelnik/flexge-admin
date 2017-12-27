@@ -28,7 +28,7 @@ const CertificationTestRegisterFormScene = props => (
           <Button
             icon="arrow-left"
             label="Back"
-            onClick={() => browserHistory.push('/certification-test')}
+            onClick={() => browserHistory.push('/certification-test-register')}
           />
         )
       }
