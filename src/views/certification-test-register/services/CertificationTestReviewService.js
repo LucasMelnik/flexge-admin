@@ -1,0 +1,69 @@
+import { action, extendObservable } from 'mobx';
+import FetchService from '../../../core/services/FetchService';
+import FormService from '../../../core/services/FormService';
+import NotificationService from '../../../core/services/NotificationService';
+import { isRequired } from '../../../core/validations';
+import CertificationTestRegisterListService from './CertificationTestRegisterListService';
+
+class CertificationTestReviewService {
+  submit = new FetchService();
+  form = new FormService();
+
+  constructor() {
+    extendObservable(this, {
+      status: [isRequired],
+      comments: [isRequired],
+    });
+  }
+
+  handleLoad = action((certificationTestId, review) => {
+    this.certificationTestId = certificationTestId;
+    this.form.setInitialValues(review);
+    this.form.reset();
+  });
+
+  handleSubmit = action(() => {
+    this.form.submitted = true;
+    const comments = this.form.getValue('comments');
+    const status = this.form.getValue('status');
+    if (this.form.errors || (status !== 'APPROVED' && (comments.length === 0 || comments === '<p><br></p>'))) {
+      NotificationService.addNotification(
+        'Please leave a comment to update the review',
+        'error',
+      );
+      return;
+    }
+    this.submit.fetch({
+      method: 'patch',
+      url: `/certification-test-course-ability/${this.certificationTestId}/item/${this.form.getValue('forItem')}/review`,
+      body: {
+        status: this.form.getValue('status'),
+        ...(this.form.getValue('comments') && this.form.getValue('comments').length) && {
+          comments: this.form.getValue('comments'),
+        },
+      },
+    }).then(() => {
+      if (this.submit.data) {
+        this.form.setInitialValues({
+          ...this.submit.data.reviews.find(review => review.forItem === this.form.getValue('forItem')),
+        });
+        this.form.reset();
+        CertificationTestRegisterListService.load();
+        NotificationService.addNotification(
+          'Review updated successfully.',
+          'success',
+        );
+      }
+      if (this.submit.error) {
+        NotificationService.addNotification(
+          'Error to updated Review.',
+          'error',
+        );
+      }
+    });
+  })
+}
+
+const certificationTestReviewService = new CertificationTestReviewService();
+
+export default certificationTestReviewService;

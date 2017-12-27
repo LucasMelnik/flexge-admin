@@ -83,6 +83,8 @@ import SchoolClassListSceneContainer from './views/school-class/components/Schoo
 import ImportStudentsFormScene from './views/import-students/components/ImportStudentsFormScene';
 import ReactivateStudentListScene from './views/reactivate-student/components/ReactivateStudentListScene';
 import ReactivateStudentFormScene from './views/reactivate-student/components/ReactivateStudentFormScene';
+import CertificationTestRegisterListScene from './views/certification-test-register/components/CertificationTestRegisterListScene';
+import CertificationTestRegisterFormScene from './views/certification-test-register/components/CertificationTestRegisterFormScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -208,6 +210,9 @@ const Routes = () => (
       <Route path="import-students" component={ImportStudentsFormScene} />
       <Route path="reactivate-student" component={ReactivateStudentListScene} />
       <Route path="reactivate-student/:studentId" component={ReactivateStudentFormScene} />
+      <Route path="certification-test-register" component={CertificationTestRegisterListScene} />
+      <Route path="certification-test-register/new" component={CertificationTestRegisterFormScene} />
+      <Route path="certification-test-register/:certificationTestId" component={CertificationTestRegisterFormScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

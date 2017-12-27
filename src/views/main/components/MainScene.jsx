@@ -221,6 +221,12 @@ const MainScene = props => (
               group: 'Tests',
               icon: 'database',
             },
+            {
+              label: 'Certification Test',
+              link: '/certification-test-register',
+              group: 'Tests',
+              icon: 'exception',
+            },
           ]}
         />
         <SubMenu
