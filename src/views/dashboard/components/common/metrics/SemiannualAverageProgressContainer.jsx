@@ -5,7 +5,7 @@ import SemiannualAverageProgress from './SemiannualAverageProgress';
 
 const SemiannualAverageProgressContainer = () => (
   <SemiannualAverageProgress
-    progress={SemiannualEnglishLevelProgressService.average.toFixed(2)}
+    progress={SemiannualEnglishLevelProgressService.average.toFixed(1)}
     loading={SemiannualEnglishLevelProgressService.fetch.fetching}
   />
 );
