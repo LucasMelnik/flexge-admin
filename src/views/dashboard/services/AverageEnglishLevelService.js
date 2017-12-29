@@ -1,4 +1,4 @@
-import { action, extendObservable, computed } from 'mobx';
+import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
 class AverageEnglishLevelService {
@@ -6,30 +6,20 @@ class AverageEnglishLevelService {
 
   constructor() {
     extendObservable(this, {
-      data: [],
-      average: computed(() => (
-        this.data.length ? (
-          this.data.reduce((acc, level) => acc + level.averageEnglishLevel, 0)
-            / this.data.length
-        ) : 0
-      )),
+      data: null,
     });
   }
 
-  validateResponse = () => this.data.length > 0;
-
   load = action(() => {
-    this.data = [];
+    this.data = null;
     this.fetch.fetch({
-      url: '/reports/semiannual-average-english-level',
+      url: '/reports/average-english-level',
     }).then(() => {
       if (this.fetch.data) {
-        this.data = this.fetch.data;
+        this.data = this.fetch.data.averageEnglishLevel;
       }
     });
   });
 }
 
-const averageEnglishLevelService = new AverageEnglishLevelService();
-
-export default averageEnglishLevelService;
+export default AverageEnglishLevelService;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import moment from 'moment';
-import AverageEnglishLevelService from '../../services/AverageEnglishLevelService';
+import SemiannualAverageEnglishLevelService from '../../services/SemiannualAverageEnglishLevelService';
 import SemiannualEnglishLevelProgressService from '../../services/SemiannualEnglishLevelProgressService';
 import ActiveStudentsByPeriodService from '../../services/ActiveStudentsByPeriodService';
 import LastWeekAverageStudiedTimeService from '../../services/LastWeekAverageStudiedTimeService';
@@ -22,7 +22,7 @@ class TeacherDashboardContainer extends Component {
     StudyQualityGroupService.load();
     StudiedTimeGroupService.load();
     // Metrics
-    AverageEnglishLevelService.load();
+    SemiannualAverageEnglishLevelService.load();
     SemiannualEnglishLevelProgressService.load();
     // HistoryListFilter
     WeekStatsByPeriodService.load(

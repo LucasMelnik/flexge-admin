@@ -5,7 +5,15 @@ import SemiannualEnglishLevelProgressChart from './SemiannualEnglishLevelProgres
 
 const SemiannualEnglishLevelProgressChartContainer = () => (
   <SemiannualEnglishLevelProgressChart
-    data={SemiannualEnglishLevelProgressService.data}
+    data={localStorage.getItem('role') === 'SCHOOL_MANAGER' ?
+      SemiannualEnglishLevelProgressService.byClass.map(schoolClass => ({
+        averageProgress: schoolClass.classAverageProgress ? schoolClass.classAverageProgress.toFixed(1) : 0,
+        name: schoolClass.name,
+      })) : SemiannualEnglishLevelProgressService.data.map(school => ({
+        averageProgress: school.schoolAverageProgress ? school.schoolAverageProgress.toFixed(1) : 0,
+        name: school.name,
+      }))
+    }
     loading={SemiannualEnglishLevelProgressService.fetch.fetching}
   />
 );
