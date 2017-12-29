@@ -12,11 +12,11 @@ class CertificationTestExecutionListPending extends Component {
   state = {
     visible: false,
     certificationTest: '',
-  }
+  };
 
   handleCancel = () => {
     this.setState({ visible: false });
-  }
+  };
 
   render() {
     return (
@@ -25,20 +25,19 @@ class CertificationTestExecutionListPending extends Component {
           fetching={this.props.fetching}
           columns={[
             {
+              label: 'Course',
+              path: 'course.name',
+              sort: true,
+            },
+            {
               label: 'Student',
               path: 'student.name',
               sort: true,
             },
             {
-              label: 'Schedule At',
-              path: 'scheduledAt',
-              render: (cell, row) => {
-                return (
-                  <div>
-                    {moment(row.scheduledAt).format('DD/MM/YYYY HH:mm')}
-                  </div>
-                );
-              },
+              label: 'Created At',
+              path: 'createdAt',
+              render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
             },
             {
               label: 'Actions',
@@ -49,10 +48,8 @@ class CertificationTestExecutionListPending extends Component {
                   <div>
                     <Button
                       icon="calendar"
-                      onClick={() =>{
+                      onClick={() => {
                        this.setState({ visible: true, certificationTest: row });
-                       this.props.onChange('scheduleForDate', moment(row.scheduledFor));
-                       this.props.onChange('scheduleForTime', moment(row.scheduledFor));
                       }}
                     />
                   </div>

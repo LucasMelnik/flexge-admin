@@ -30,7 +30,7 @@ export default class CertificationTestExecutionListService {
 
   load = action(() => {
     this.fetch.fetch({
-      url: '/certification-test-execution',
+      url: '/certification-test',
       query: {
         query: this.filter && {
           name: {
@@ -72,17 +72,15 @@ export default class CertificationTestExecutionListService {
 
     this.submit.fetch({
       method: 'put',
-      url: `/certification-test/${certificationTest.id}`,
+      url: `/certification-test/${certificationTest.id}/schedule`,
       body: {
-        ...certificationTest,
         scheduledFor: this.form.getValue('scheduleForDate').hours(this.form.getValue('scheduleForTime').hour()).minutes(this.form.getValue('scheduleForTime').minutes()),
-        student: certificationTest.student.id,
       },
     }).then(() => {
       if (this.submit.data) {
         this.load();
         callbackAfterSubmit();
-        NotificationService.addNotification(`Certification test schedule ${this.submit.data.certificationTest.id ? 'updated' : 'created'} successfully.`, 'success');
+        NotificationService.addNotification(`Certification test schedule ${this.submit.data.id ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
         NotificationService.addNotification(`Error ${certificationTest.id ? 'updating' : 'creating'} certificationTest.`, 'error');
