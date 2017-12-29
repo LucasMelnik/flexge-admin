@@ -16,6 +16,15 @@ class SemiannualEnglishLevelProgressService {
       projection: computed(() => (
         4 / (this.average / 6)
       )),
+      byClass: computed(() => {
+        if (!this.data.length) {
+          return [];
+        }
+        return this.data.reduce((acc, school) => ([
+          ...school.classes,
+          ...acc,
+        ]), []);
+      }),
     });
   }
 

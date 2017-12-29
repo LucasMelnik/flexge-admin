@@ -1,7 +1,7 @@
 import { action, extendObservable, computed } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
-class AverageEnglishLevelService {
+class SemiannualAverageEnglishLevelService {
   fetch = new FetchService();
 
   constructor() {
@@ -30,6 +30,6 @@ class AverageEnglishLevelService {
   });
 }
 
-const averageEnglishLevelService = new AverageEnglishLevelService();
+const semiannualAverageEnglishLevelService = new SemiannualAverageEnglishLevelService();
 
-export default averageEnglishLevelService;
+export default semiannualAverageEnglishLevelService;
