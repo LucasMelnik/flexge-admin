@@ -1,6 +1,5 @@
 import { action, extendObservable, toJS } from 'mobx';
 import moment from 'moment';
-import round from 'lodash/round';
 import FetchService from '../../../core/services/FetchService';
 
 export default class StudentOverviewRecordDetailService {
