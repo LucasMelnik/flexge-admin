@@ -1,22 +1,30 @@
-import React  from 'react';
+import React, { Component }  from 'react';
 import { observer } from 'mobx-react';
 import findLast from 'lodash/findLast';
-import SemiannualAverageEnglishLevelService from '../../../services/SemiannualAverageEnglishLevelService';
+import AverageEnglishLevelService from '../../../services/AverageEnglishLevelService';
 import AverageEnglishLevel from './AverageEnglishLevel';
 import { englishLevelCourses } from '../../../../../core/consts';
 
-const AverageEnglishLevelContainer = () => {
-  const course = findLast(
-    englishLevelCourses,
-    level => SemiannualAverageEnglishLevelService.average >= level.value,
-  );
-  return (
-    <AverageEnglishLevel
-      level={SemiannualAverageEnglishLevelService.average.toFixed(1)}
-      course={course.label}
-      loading={SemiannualAverageEnglishLevelService.fetch.fetching}
-    />
-  );
-};
+class AverageEnglishLevelContainer extends Component {
+  averageEnglishLevelService = new AverageEnglishLevelService();
+
+  componentDidMount() {
+    this.averageEnglishLevelService.load();
+  }
+
+  render() {
+    const course = findLast(
+      englishLevelCourses,
+      level => this.averageEnglishLevelService.data >= level.value,
+    );
+    return (
+      <AverageEnglishLevel
+        level={this.averageEnglishLevelService.data ? this.averageEnglishLevelService.data.toFixed(1) : null}
+        course={course ? course.label : '-'}
+        loading={this.averageEnglishLevelService.fetch.fetching}
+      />
+    );
+  }
+}
 
 export default observer(AverageEnglishLevelContainer);
