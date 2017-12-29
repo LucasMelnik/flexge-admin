@@ -11,59 +11,53 @@ class CertificationTestExecutionListScheduled extends Component {
       <Table
         fetching={this.props.fetching}
         columns={[
-        {
-          label: 'Student',
-          path: 'student.name',
-          sort: true,
-        },
-        {
-          label: 'Schedule At',
-          path: 'scheduledAt',
-          render: (cell, row) => {
-            return (
-              <div>
-                {moment(row.scheduledAt).format('DD/MM/YYYY HH:mm')}
-              </div>
-            );
+          {
+            label: 'Course',
+            path: 'course.name',
+            sort: true,
           },
-        },
-        {
-          label: 'Schedule For',
-          path: 'scheduledFor',
-          render: (cell, row) => {
-            return (
-              <div>
-                {moment(row.scheduledFor).format('DD/MM/YYYY HH:mm')}
-              </div>
-            );
+          {
+            label: 'Student',
+            path: 'student.name',
+            sort: true,
           },
-        },
-        {
-          label: 'Actions',
-          path: 'action',
-          width: '85px',
-          render: (cell, row) => {
-            return (
-              <div>
-                <Button
-                  icon="play-circle"
-                  onClick={() => browserHistory.push(`/certification-test/${row.id}`)}
-                />
-              </div>
-            );
+          {
+            label: 'Schedule At',
+            path: 'scheduledAt',
+            render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
           },
-        },
-      ]}
-      rows={this.props.certificationTests}
-    />
-  );
+          {
+            label: 'Schedule For',
+            path: 'scheduledFor',
+            render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
+          },
+          {
+            label: 'Enabled At',
+            path: 'enabledAt',
+            render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
+          },
+          {
+            label: 'Actions',
+            path: 'action',
+            width: '85px',
+            render: (cell, row) => (!row.enabledAt && moment(row.scheduledFor).diff(moment(), 'hours') <= 1) && (
+              <Button
+                icon="play-circle"
+                onClick={() => browserHistory.push(`/certification-test-executions/${row.id}`)}
+              />
+            ),
+          },
+        ]}
+        rows={this.props.certificationTests}
+      />
+    );
   }
 }
 
 CertificationTestExecutionListScheduled.propTypes = {
   certificationTests: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    enabledAt: PropTypes.string,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
 };

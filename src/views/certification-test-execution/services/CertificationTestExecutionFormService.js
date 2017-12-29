@@ -1,5 +1,4 @@
 import { extendObservable, action } from 'mobx';
-import moment from 'moment';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -27,7 +26,6 @@ export default class CertificationTestExecutionFormService {
         url: `/certification-test/${certificationTestId}`,
       }).then(() => {
         if (this.fetch.data) {
-          this.currentStudentName = this.fetch.data.student.name;
           this.form.setInitialValues(this.fetch.data);
         }
       });
@@ -43,35 +41,20 @@ export default class CertificationTestExecutionFormService {
       NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
-    if (this.form.getValue('student.name') !== this.currentStudentName) {
-      this.submit.fetch({
-        method: 'put',
-        url: `/students/${this.form.getValue('student.id')}`,
-        body: {
-          ...this.form.getValue('student'),
-          name: this.form.getValue('student.name'),
-        },
-      });
-    }
 
     const certificationTestId = this.form.getValue('id');
     this.submit.fetch({
       method: 'put',
-      url: `/certification-test/${certificationTestId}`,
+      url: `/certification-test/${certificationTestId}/enable`,
       body: {
         ...this.form.getValues(),
-        student: this.form.getValue('student').id,
-        enabledAt: moment(),
       },
     }).then(() => {
       if (this.submit.data) {
-        const certificationTest = this.submit.data;
-        this.certificationTestId = certificationTest.id;
-
-        NotificationService.addNotification(`Certification ${certificationTestId ? 'enabled' : 'created'} successfully.`, 'success');
+        NotificationService.addNotification('Certification Test successfully Enabled.', 'success');
       }
       if (this.submit.error) {
-        NotificationService.addNotification(`Error ${certificationTestId ? 'updating' : 'creating'} certificationTest.`, 'error');
+        NotificationService.addNotification(`Error to Enable Certification Test.`, 'error');
       }
     });
   });
