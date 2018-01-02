@@ -5,6 +5,7 @@ import Card from '../../../core/layout/Card';
 import CertificationTestExecutionDetailContainer from './CertificationTestExecutionDetailContainer';
 import Separator from '../../../core/layout/Separator';
 import AbilityItemExecutionListContainer from './AbilityItemExecutionListContainer';
+import CertificationTestReviewFormContainer from './CertificationTestReviewFormContainer';
 
 const CertificationTestExecutionDetailScene = props => (
   <div>
@@ -46,6 +47,12 @@ const CertificationTestExecutionDetailScene = props => (
       <AbilityItemExecutionListContainer
         certificationTestId={props.params.certificationTestId}
         ability="SPEAKING"
+      />
+    </Card>
+    <Separator />
+    <Card title="Review">
+      <CertificationTestReviewFormContainer
+        certificationTestId={props.params.certificationTestId}
       />
     </Card>
   </div>
