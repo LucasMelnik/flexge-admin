@@ -85,6 +85,7 @@ import ReactivateStudentFormScene from './views/reactivate-student/components/Re
 import CertificationTestRegisterListScene from './views/certification-test-register/components/CertificationTestRegisterListScene';
 import CertificationTestRegisterFormScene from './views/certification-test-register/components/CertificationTestRegisterFormScene';
 import CertificationTestExecutionFormScene from './views/certification-test-execution/components/CertificationTestExecutionFormScene';
+import CertificationTestExecutionDetailScene from './views/certification-test-execution/components/CertificationTestExecutionDetailScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -201,6 +202,7 @@ const Routes = () => (
       <Route path="achievements/:achievementId" component={AchievementFormScene} />
       <Route path="certification-test-executions" component={CertificationTestExecutionListScene} />
       <Route path="certification-test-executions/:certificationTestId" component={CertificationTestExecutionFormScene} />
+      <Route path="certification-test-executions/:certificationTestId/details" component={CertificationTestExecutionDetailScene} />
       <Route path="school-configuration/emails" component={EmailsScene} />
       <Route path="school-configuration/grades" component={SchoolGradeConfigFormSceneContainer} />
       <Route path="school-configuration/evaluation-periods" component={SchoolEvaluationSceneContainer} />

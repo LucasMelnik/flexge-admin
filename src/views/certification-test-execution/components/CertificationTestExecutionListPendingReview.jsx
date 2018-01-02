@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import Table from '../../../core/form/Table';
+import { browserHistory } from 'react-router';
+import Button from '../../../core/form/Button';
 
 const CertificationTestExecutionListPendingReview = props => (
   <Table
@@ -34,6 +36,17 @@ const CertificationTestExecutionListPendingReview = props => (
       {
         label: 'Listening Score',
         path: 'listeningScore',
+      },
+      {
+        label: 'Actions',
+        path: 'action',
+        width: '85px',
+        render: (cell, row) => (
+          <Button
+            icon="export"
+            onClick={() => browserHistory.push(`/certification-test-executions/${row.id}/details`)}
+          />
+        ),
       },
     ]}
     rows={props.certificationTests}
