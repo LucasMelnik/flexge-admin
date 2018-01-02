@@ -23,6 +23,8 @@ const AbilityItemExecutionList = props => (
       {
         label: 'Correct',
         path: 'correct',
+        width: '100px',
+        align: 'center',
         render: cell => cell !== undefined && <Tag color={cell ? 'green' : 'red'}>{cell ? 'Correct' : 'Wrong'}</Tag>,
       },
     ]}
