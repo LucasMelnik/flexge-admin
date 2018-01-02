@@ -37,6 +37,16 @@ class CertificationTestExecutionListScheduled extends Component {
             render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
           },
           {
+            label: 'Started At',
+            path: 'startedAt',
+            render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
+          },
+          {
+            label: 'Completed At',
+            path: 'completedAt',
+            render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
+          },
+          {
             label: 'Actions',
             path: 'action',
             width: '85px',
