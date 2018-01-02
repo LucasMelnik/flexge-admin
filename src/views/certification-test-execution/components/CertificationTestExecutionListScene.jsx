@@ -5,6 +5,7 @@ import Tabs from '../../../core/layout/Tabs';
 import CertificationTestExecutionListPendingContainer from './CertificationTestExecutionListPendingContainer';
 import CertificationTestExecutionListScheduledContainer from './CertificationTestExecutionListScheduledContainer';
 import CertificationTestExecutionListCompletedContainer from './CertificationTestExecutionListCompletedContainer';
+import CertificationTestExecutionListPendingReviewContainer from './CertificationTestExecutionListPendingReviewContainer';
 
 const CertificationTestExecutionListScene = () => (
   <div>
@@ -32,6 +33,14 @@ const CertificationTestExecutionListScene = () => (
             </Card>
           ),
           title: 'Scheduled',
+        },
+        {
+          content: (
+            <Card>
+              <CertificationTestExecutionListPendingReviewContainer />
+            </Card>
+          ),
+          title: 'Pending Review',
         },
         {
           content: (

@@ -48,9 +48,14 @@ export default class CertificationTestExecutionListService {
           this.certificationTests = this.fetch.data
             .filter(certificationTest => certificationTest.scheduledFor
               && !certificationTest.completedAt);
+        } else if (this.status === 'PENDING_REVIEW') {
+          this.certificationTests = this.fetch.data
+            .filter(certificationTest => certificationTest.completedAt
+              && !certificationTest.approvedAt
+              && !certificationTest.failedAt);
         } else {
           this.certificationTests = this.fetch.data
-            .filter(certificationTest => certificationTest.completedAt);
+            .filter(certificationTest => certificationTest.approvedAt || certificationTest.failedAt);
         }
       } else {
         this.certificationTests = [];
