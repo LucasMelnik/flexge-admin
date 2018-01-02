@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import CertificationTestExecutionDetailContainer from './CertificationTestExecutionDetailContainer';
 import Separator from '../../../core/layout/Separator';
 import AbilityItemExecutionListContainer from './AbilityItemExecutionListContainer';
 import CertificationTestReviewFormContainer from './CertificationTestReviewFormContainer';
+import Button from '../../../core/form/Button';
 
 const CertificationTestExecutionDetailScene = props => (
   <div>
@@ -16,7 +18,16 @@ const CertificationTestExecutionDetailScene = props => (
         },
       ]}
     />
-    <Card title="Certification Test">
+    <Card
+      title="Certification Test Info"
+      actions={
+        <Button
+          icon="arrow-left"
+          label="Back"
+          onClick={() => browserHistory.goBack()}
+        />
+      }
+    >
       <CertificationTestExecutionDetailContainer
         certificationTestId={props.params.certificationTestId}
       />
@@ -50,11 +61,13 @@ const CertificationTestExecutionDetailScene = props => (
       />
     </Card>
     <Separator />
-    <Card title="Review">
-      <CertificationTestReviewFormContainer
-        certificationTestId={props.params.certificationTestId}
-      />
-    </Card>
+    {localStorage.role === 'CERTIFICATION_TEST_PROFESSIONAL' && (
+      <Card title="Review">
+        <CertificationTestReviewFormContainer
+          certificationTestId={props.params.certificationTestId}
+        />
+      </Card>
+    )}
   </div>
 );
 

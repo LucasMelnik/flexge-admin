@@ -1,13 +1,20 @@
 import React from 'react';
-import moment from 'moment';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
+import moment from 'moment';
 import Table from '../../../core/form/Table';
 import ImagePreview from '../../../core/layout/ImagePreview';
+import Button from '../../../core/form/Button';
 
 const CertificationTestExecutionListCompleted = props => (
   <Table
     fetching={props.fetching}
     columns={[
+      {
+        label: 'Course',
+        path: 'course.name',
+        sort: true,
+      },
       {
         label: 'Student',
         path: 'student.name',
@@ -16,81 +23,49 @@ const CertificationTestExecutionListCompleted = props => (
       {
         label: 'Document',
         path: 'document',
-        render: (cell, row) => {
-          if (row.document) {
-            return (
-              <ImagePreview src={row.document} />
-            );
-          }
-        },
-      },
-      {
-        label: 'Schedule At',
-        path: 'scheduledAt',
-        render: (cell, row) => {
-          return (
-            <div>
-              {moment(row.scheduledAt).format('DD/MM/YYYY HH:mm')}
-            </div>
-          );
-        },
-      },
-      {
-        label: 'Schedule For',
-        path: 'scheduledFor',
-        render: (cell, row) => {
-          return (
-            <div>
-              {moment(row.scheduledFor).format('DD/MM/YYYY HH:mm')}
-            </div>
-          );
-        },
-      },
-      {
-        label: 'Enabled At',
-        path: 'enabledAt',
-        render: (cell, row) => {
-          return (
-            <div>
-              {moment(row.enabledAt).format('DD/MM/YYYY HH:mm')}
-            </div>
-          );
-        },
-      },
-      {
-        label: 'Started At',
-        path: 'startedAt',
-      },
-      {
-        label: 'Completed At',
-        path: 'completedAt',
+        render: (cell, row) => <ImagePreview src={row.document} />,
       },
       {
         label: 'Reviewed At',
         path: 'reviewedAt',
+        render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
       },
       {
         label: 'Approved At',
         path: 'approvedAt',
+        render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
       },
       {
         label: 'Failed At',
         path: 'failedAt',
-      },
-      {
-        label: 'Listening Score',
-      },
-      {
-        label: 'Speaking Score',
+        render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
       },
       {
         label: 'Reading Score',
+        path: 'readingScore',
+      },
+      {
+        label: 'Listening Score',
+        path: 'listeningScore',
       },
       {
         label: 'Writing Score',
+        path: 'writingScore',
       },
       {
-        label: 'Total Score',
+        label: 'Speaking Score',
+        path: 'speakingScore',
+      },
+      {
+        label: 'Actions',
+        path: 'action',
+        width: '85px',
+        render: (cell, row) => (
+          <Button
+            icon="export"
+            onClick={() => browserHistory.push(`/certification-test-executions/${row.id}/details`)}
+          />
+        ),
       },
     ]}
     rows={props.certificationTests}
