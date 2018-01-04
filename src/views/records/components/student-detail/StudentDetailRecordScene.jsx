@@ -14,6 +14,7 @@ import StudentDetailAnalyticsAcademicPerformanceHistoryContainer from './Student
 import StudentDetailAchievements from './StudentDetailAchievements';
 import StudentDetailContentRecordListFilterContainer from './StudentDetailContentRecordListFilterContainer';
 import StudentDetailCurrentPerformancePanelContainer from './StudentDetailCurrentPerformancePanelContainer';
+import StudentDetailUnitResultDialogContainer from './StudentDetailUnitResultDialogContainer';
 
 const StudentDetailRecordScene = props => (
   <div>
@@ -96,6 +97,7 @@ const StudentDetailRecordScene = props => (
 
       ]}
     />
+    <StudentDetailUnitResultDialogContainer />
   </div>
 );
 

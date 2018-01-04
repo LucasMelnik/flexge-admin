@@ -8,6 +8,7 @@ const Dialog = props => (
     title={props.title}
     footer={props.actions}
     onCancel={props.onCancel}
+    width={props.width}
   >
     {props.children}
   </Modal>
@@ -19,11 +20,13 @@ Dialog.propTypes = {
   children: PropTypes.node.isRequired,
   actions: PropTypes.arrayOf(PropTypes.node).isRequired,
   isOpen: PropTypes.bool,
+  width: PropTypes.string,
 };
 
 Dialog.defaultProps = {
   isOpen: false,
   onCancel: null,
+  width: null,
 };
 
 export default Dialog;
