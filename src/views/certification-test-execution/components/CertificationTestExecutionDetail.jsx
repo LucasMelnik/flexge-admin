@@ -52,46 +52,50 @@ const CertificationTestExecutionDetail = props => (
         />
       </Column>
     </Row>
-    <Row>
-      <Column size={3}>
-        <TextInput
-          disabled
-          label="Reading Score"
-          value={get(props.values, 'readingScore', '')}
-        />
-      </Column>
-      <Column size={3}>
-        <TextInput
-          disabled
-          label="Listening Score"
-          value={get(props.values, 'listeningScore', '')}
-        />
-      </Column>
-      <Column size={3}>
-        <TextInput
-          disabled
-          label="Writing Score"
-          value={get(props.values, 'writingScore', '')}
-        />
-      </Column>
-      <Column size={3}>
-        <TextInput
-          disabled
-          label="Speaking Score"
-          value={get(props.values, 'speakingScore', '')}
-        />
-      </Column>
-    </Row>
-    <Row>
-      <Column size={12}>
-        <TextInput
-          disabled
-          fieldType="textarea"
-          label="Comments"
-          value={get(props.values, 'comments', '')}
-        />
-      </Column>
-    </Row>
+    {props.values.reviewedAt && (
+      <Row>
+        <Column size={3}>
+          <TextInput
+            disabled
+            label="Reading Score"
+            value={get(props.values, 'readingScore', '')}
+          />
+        </Column>
+        <Column size={3}>
+          <TextInput
+            disabled
+            label="Listening Score"
+            value={get(props.values, 'listeningScore', '')}
+          />
+        </Column>
+        <Column size={3}>
+          <TextInput
+            disabled
+            label="Writing Score"
+            value={get(props.values, 'writingScore', '')}
+          />
+        </Column>
+        <Column size={3}>
+          <TextInput
+            disabled
+            label="Speaking Score"
+            value={get(props.values, 'speakingScore', '')}
+          />
+        </Column>
+      </Row>
+    )}
+    {props.values.reviewedAt && (
+      <Row>
+        <Column size={12}>
+          <TextInput
+            disabled
+            fieldType="textarea"
+            label="Comments"
+            value={get(props.values, 'comments', '')}
+          />
+        </Column>
+      </Row>
+    )}
   </form>
 );
 

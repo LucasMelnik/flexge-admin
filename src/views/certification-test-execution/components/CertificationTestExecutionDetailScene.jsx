@@ -6,8 +6,8 @@ import Card from '../../../core/layout/Card';
 import CertificationTestExecutionDetailContainer from './CertificationTestExecutionDetailContainer';
 import Separator from '../../../core/layout/Separator';
 import AbilityItemExecutionListContainer from './AbilityItemExecutionListContainer';
-import CertificationTestReviewFormContainer from './CertificationTestReviewFormContainer';
 import Button from '../../../core/form/Button';
+import CertificationTestReviewControlBar from './CertificationTestReviewControlBar';
 
 const CertificationTestExecutionDetailScene = props => (
   <div>
@@ -33,20 +33,6 @@ const CertificationTestExecutionDetailScene = props => (
       />
     </Card>
     <Separator />
-    <Card title="Reading Items">
-      <AbilityItemExecutionListContainer
-        certificationTestId={props.params.certificationTestId}
-        ability="READING"
-      />
-    </Card>
-    <Separator />
-    <Card title="Listening Items">
-      <AbilityItemExecutionListContainer
-        certificationTestId={props.params.certificationTestId}
-        ability="LISTENING"
-      />
-    </Card>
-    <Separator />
     <Card title="Writing Items">
       <AbilityItemExecutionListContainer
         certificationTestId={props.params.certificationTestId}
@@ -61,13 +47,23 @@ const CertificationTestExecutionDetailScene = props => (
       />
     </Card>
     <Separator />
-    {localStorage.role === 'CERTIFICATION_TEST_PROFESSIONAL' && (
-      <Card title="Review">
-        <CertificationTestReviewFormContainer
-          certificationTestId={props.params.certificationTestId}
-        />
-      </Card>
-    )}
+    <Card title="Reading Items">
+      <AbilityItemExecutionListContainer
+        certificationTestId={props.params.certificationTestId}
+        ability="READING"
+      />
+    </Card>
+    <Separator />
+    <Card title="Listening Items">
+      <AbilityItemExecutionListContainer
+        certificationTestId={props.params.certificationTestId}
+        ability="LISTENING"
+      />
+    </Card>
+    <Separator />
+    <CertificationTestReviewControlBar
+      certificationTestId={props.params.certificationTestId}
+    />
   </div>
 );
 
