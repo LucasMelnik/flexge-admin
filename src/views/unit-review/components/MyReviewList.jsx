@@ -44,6 +44,11 @@ const MyReviewList = props => (
           width: '105px',
         },
         {
+          label: 'Reviewed By',
+          path: 'review.reviewedBy.name',
+          width: '105px',
+        },
+        {
           label: 'Status Content',
           path: 'review.status',
           sort: true,

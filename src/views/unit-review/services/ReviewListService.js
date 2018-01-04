@@ -1,6 +1,7 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class ReviewListService {
   fetch = new FetchService();
@@ -43,6 +44,10 @@ class ReviewListService {
   handleMyUnits = action(() => {
     this.formMyReviews.setSubmitted();
     if (this.formMyReviews.errors) {
+      NotificationService.addNotification(
+        'Please inform at least one filter',
+        'error',
+      );
       return;
     }
     this.fetch.fetch({
@@ -77,6 +82,10 @@ class ReviewListService {
   handleAllUnits = action(() => {
     this.formAllReviews.setSubmitted();
     if (this.formAllReviews.errors) {
+      NotificationService.addNotification(
+        'Please inform at least one filter',
+        'error',
+      );
       return;
     }
     this.fetch.fetch({
