@@ -8,6 +8,7 @@ import Tabs from '../../../../core/layout/Tabs';
 import GrammarNeedsListContainer from '../common/GrammarNeedsListContainer';
 import StudentRecordPerformance from './StudentRecordPerformance';
 import GrammarAnalysisListContainer from './GrammarAnalysisListContainer';
+import StudentGradeListContainer from './StudentGradeListContainer';
 
 const StudentRecordScene = props => (
   <div>
@@ -59,6 +60,19 @@ const StudentRecordScene = props => (
               fetching={props.fetching}
             >
               <StudentRecordListContainer
+                schoolId={props.schoolId}
+                classId={props.classId}
+              />
+            </Card>
+          ),
+        },
+        {
+          title: 'Students Grades',
+          content: (
+            <Card
+              fetching={props.fetching}
+            >
+              <StudentGradeListContainer
                 schoolId={props.schoolId}
                 classId={props.classId}
               />
