@@ -21,6 +21,7 @@ const CertificationTestRegisterListFilter = props => (
             text: 'name',
             value: 'id',
           }}
+          resultFilter={course => course.name.indexOf('+') < 0 && course.name.toLowerCase().indexOf('pre') < 0}
         />
       </Column>
       <Column size={6}>
