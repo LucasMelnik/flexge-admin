@@ -239,6 +239,20 @@ export default class ItemFormService {
           'item.indexesToRemove': [isRequired],
         };
         break;
+      case 'FREE_TEXT':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.text': [isRequired],
+          'item.charactersMinLimit': [isRequired],
+          'item.charactersMaxLimit': [isRequired],
+        };
+        break;
+      case 'FREE_SPEAK':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.text': [isRequired],
+        };
+        break;
       default:
         break;
     }

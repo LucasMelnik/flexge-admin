@@ -6,6 +6,7 @@ import Table from '../../../../core/form/Table';
 import LinearProgress from '../../../../core/layout/LinearProgress';
 import Tag from '../../../../core/layout/Tag';
 import Icon from '../../../../core/layout/Icon';
+import Button from '../../../../core/form/Button';
 
 const AbilityProgressColumn = (value, label) => value !== undefined && (
   <div
@@ -221,6 +222,17 @@ const StudentDetailContentRecordList = props => (
           </b>
         ) : row.items && row.items.reduce((acc, item) => acc + item.listenCount, 0),
       },
+      {
+        label: 'Actions',
+        path: 'action',
+        width: '85px',
+        render: (value, row) => (!row.children && !row.docType) && (
+          <Button
+            icon="bars"
+            onClick={() => props.onDetailUnitResult(row.id)}
+          />
+        ),
+      },
     ]}
     rows={props.contents}
   />
@@ -230,8 +242,10 @@ StudentDetailContentRecordList.propTypes = {
   contents: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
+    docType: PropTypes.string,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
+  onDetailUnitResult: PropTypes.func.isRequired,
 };
 
 export default StudentDetailContentRecordList;

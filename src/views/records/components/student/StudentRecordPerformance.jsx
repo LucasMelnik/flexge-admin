@@ -7,7 +7,7 @@ import ActiveStudentsByClassContainer from './performance/ActiveStudentsByClassC
 import ActiveStudentsLastSevenDaysByClassContainer from './performance/ActiveStudentsLastSevenDaysByClassContainer';
 import StudyTimeHigherThanTwoByClassContainer from './performance/StudyTimeHigherThanTwoByClassContainer';
 import LastWeekAverageStudiedTimeByClassContainer from './performance/LastWeekAverageStudiedTimeByClassContainer';
-import ClassEnglishLevelOverviewContainer from './ClassEnglishLevelOverviewContainer';
+import ClassEnglishLevelOverview from './overview/ClassEnglishLevelOverview';
 
 const PerformanceGoalWrapper = props => (
   <div
@@ -73,7 +73,7 @@ const StudentRecordPerformance = props => (
       </PerformanceGoalWrapper>
     </div>
     <Separator size="md" />
-    <ClassEnglishLevelOverviewContainer
+    <ClassEnglishLevelOverview
       schoolId={props.schoolId}
       classId={props.classId}
     />

@@ -75,14 +75,17 @@ import DistributorUserListSceneContainer from './views/user/components/Distribut
 import DistributorUserFormScene from './views/user/components/DistributorUserFormScene';
 import StudentListScene from './views/student/components/StudentListScene';
 import SchoolEvaluationSceneContainer from './views/school-evaluation/components/SchoolEvaluationSceneContainer';
-import CertificationTestListScene from './views/certification-test/components/CertificationTestListScene';
-import CertificationTestFormScene from './views/certification-test/components/CertificationTestFormScene';
+import CertificationTestExecutionListScene from './views/certification-test-execution/components/CertificationTestExecutionListScene';
 import RankingListScene from './views/ranking/components/RankingListScene';
 import SchoolGradeConfigFormSceneContainer from './views/school-grade-config/components/SchoolGradeConfigFormSceneContainer';
 import SchoolClassListSceneContainer from './views/school-class/components/SchoolClassListSceneContainer';
 import ImportStudentsFormScene from './views/import-students/components/ImportStudentsFormScene';
 import ReactivateStudentListScene from './views/reactivate-student/components/ReactivateStudentListScene';
 import ReactivateStudentFormScene from './views/reactivate-student/components/ReactivateStudentFormScene';
+import CertificationTestRegisterListScene from './views/certification-test-register/components/CertificationTestRegisterListScene';
+import CertificationTestRegisterFormScene from './views/certification-test-register/components/CertificationTestRegisterFormScene';
+import CertificationTestExecutionFormScene from './views/certification-test-execution/components/CertificationTestExecutionFormScene';
+import CertificationTestExecutionDetailScene from './views/certification-test-execution/components/CertificationTestExecutionDetailScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -197,9 +200,9 @@ const Routes = () => (
       <Route path="achievements" component={AchievementListScene} />
       <Route path="achievements/new" component={AchievementFormScene} />
       <Route path="achievements/:achievementId" component={AchievementFormScene} />
-      <Route path="certification-test" component={CertificationTestListScene} />
-      <Route path="certification-test/new" component={CertificationTestFormScene} />
-      <Route path="certification-test/:certificationTestId" component={CertificationTestFormScene} />
+      <Route path="certification-test-executions" component={CertificationTestExecutionListScene} />
+      <Route path="certification-test-executions/:certificationTestId" component={CertificationTestExecutionFormScene} />
+      <Route path="certification-test-executions/:certificationTestId/details" component={CertificationTestExecutionDetailScene} />
       <Route path="school-configuration/emails" component={EmailsScene} />
       <Route path="school-configuration/grades" component={SchoolGradeConfigFormSceneContainer} />
       <Route path="school-configuration/evaluation-periods" component={SchoolEvaluationSceneContainer} />
@@ -208,6 +211,9 @@ const Routes = () => (
       <Route path="import-students" component={ImportStudentsFormScene} />
       <Route path="reactivate-student" component={ReactivateStudentListScene} />
       <Route path="reactivate-student/:studentId" component={ReactivateStudentFormScene} />
+      <Route path="certification-test-register" component={CertificationTestRegisterListScene} />
+      <Route path="certification-test-register/new" component={CertificationTestRegisterFormScene} />
+      <Route path="certification-test-register/:certificationTestId" component={CertificationTestRegisterFormScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

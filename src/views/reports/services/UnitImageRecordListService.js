@@ -1,6 +1,8 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
+import { isRequired } from '../../../core/validations';
+import NotificationService from '../../../core/services/NotificationService';
 
 class SchoolRecordListService {
   fetch = new FetchService();
@@ -8,19 +10,26 @@ class SchoolRecordListService {
 
   constructor() {
     extendObservable(this, {
-      units: [],
+      units:                        [],
       totalImagesPresentationCount: 0,
       totalImagesSingleChoiceCount: 0,
-      totalApprovedImagesCount: 0,
+      totalApprovedImagesCount:     0,
     });
+    this.form.validations = {
+      imageOwner: [isRequired],
+    };
   }
 
   init = action(() => {
     this.units = [];
-    this.load();
   });
 
   load = action(() => {
+    this.form.submitted = true;
+    if (this.form.errors) {
+      NotificationService.addNotification('Fill the required fields', 'error');
+      return;
+    }
     this.fetch.fetch({
       url: '/reports/units-image',
       query: {

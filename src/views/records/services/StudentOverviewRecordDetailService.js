@@ -1,6 +1,5 @@
 import { action, extendObservable, toJS } from 'mobx';
 import moment from 'moment';
-import round from 'lodash/round';
 import FetchService from '../../../core/services/FetchService';
 
 export default class StudentOverviewRecordDetailService {
@@ -34,15 +33,8 @@ export default class StudentOverviewRecordDetailService {
         }).then(() => {
           if (this.fetch.data) {
             const weeks = toJS(this.fetch.data);
-
-            const levelDiff = (student.currentEnglishLevel - student.initialEnglishLevel);
-            const monthDiff = moment().diff(moment(student.createdAt)) / (1000 * 60 * 60 * 24 * 30);
-            const semiannualProgress = round((levelDiff / monthDiff) * 6, 2);
-
             this.student = {
               ...student,
-              semiannualProgress,
-              projection: 4 / (semiannualProgress / 6),
               averageStudiedTime: weeks.reduce((acc, week) => acc + week.totalStudiedTime, 0) / weeks.length,
             };
           } else {

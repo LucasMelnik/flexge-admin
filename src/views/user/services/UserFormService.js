@@ -81,7 +81,13 @@ export default class UserFormService {
     }).then(() => {
       if (this.submit.data) {
         const user = this.submit.data;
-        if (user.role === 'ADMIN' || user.role === 'CONTENT_ADMIN' || user.role === 'IMAGE_ADMIN' || user.role === 'AUDIO_CONTENT') {
+        if (
+          user.role === 'ADMIN' ||
+          user.role === 'CONTENT_ADMIN' ||
+          user.role === 'IMAGE_ADMIN' ||
+          user.role === 'AUDIO_CONTENT' ||
+          user.role === 'CERTIFICATION_TEST_PROFESSIONAL'
+        ) {
           browserHistory.push(`/admin-users/${user.id}`);
         } else if (user.role === 'DISTRIBUTOR_MANAGER') {
           browserHistory.push(`/distributors/${user.distributor.id}/users/${user.id}`);

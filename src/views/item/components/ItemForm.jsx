@@ -23,6 +23,8 @@ import TrueFalseItemForm from './forms/TrueFalseItemForm';
 import TimeInput from '../../../core/form/TimeInput';
 import Async from '../../../core/layout/Async';
 import FormButtons from '../../../core/form/FormButtons';
+import FreeTextItemForm from './forms/FreeTextItemForm';
+import FreeSpeakItemForm from './forms/FreeSpeakItemForm';
 
 const needCharacter = itemType => localStorage.getItem('role') === 'ADMIN' && ![
   'VIDEO',
@@ -250,6 +252,24 @@ const ItemForm = props => (
           submitting={props.submitting}
           disabled={props.disabled}
           isTestItem={props.isTestItem}
+        />
+      )}
+      {get(props.values.item, 'type.key', '') === 'FREE_TEXT' && (
+        <FreeTextItemForm
+          onChange={(path, value) => props.onChange(`item.${path}`, value)}
+          errors={get(props.errors, 'item', {})}
+          values={props.values.item}
+          submitting={props.submitting}
+          disabled={props.disabled}
+        />
+      )}
+      {get(props.values.item, 'type.key', '') === 'FREE_SPEAK' && (
+        <FreeSpeakItemForm
+          onChange={(path, value) => props.onChange(`item.${path}`, value)}
+          errors={get(props.errors, 'item', {})}
+          values={props.values.item}
+          submitting={props.submitting}
+          disabled={props.disabled}
         />
       )}
       <Separator size="xs" />

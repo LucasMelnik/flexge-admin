@@ -15,6 +15,7 @@ const getRolesByType = (props) => {
       { value: 'CONTENT_ADMIN', label: 'Content Admin' },
       { value: 'IMAGE_ADMIN', label: 'Image Admin' },
       { value: 'AUDIO_CONTENT', label: 'Content Audio' },
+      { value: 'CERTIFICATION_TEST_PROFESSIONAL', label: 'CT Professional' },
     ];
   } else if (props.type === 'COMPANY') {
     return [

@@ -1,13 +1,24 @@
-import React  from 'react';
+import React, { Component }  from 'react';
 import { observer } from 'mobx-react';
-import SemiannualEnglishLevelProgressService from '../../../services/SemiannualEnglishLevelProgressService';
+import SemiannualAverageEnglishLevelProgressService from '../../../services/SemiannualAverageEnglishLevelProgressService';
 import SemiannualAverageProgress from './SemiannualAverageProgress';
 
-const SemiannualAverageProgressContainer = () => (
-  <SemiannualAverageProgress
-    progress={SemiannualEnglishLevelProgressService.average.toFixed(2)}
-    loading={SemiannualEnglishLevelProgressService.fetch.fetching}
-  />
-);
+class SemiannualAverageProgressContainer extends Component {
+  componentDidMount() {
+    SemiannualAverageEnglishLevelProgressService.load();
+  }
+
+  render() {
+    return (
+      <SemiannualAverageProgress
+        progress={
+            SemiannualAverageEnglishLevelProgressService.data ?
+          SemiannualAverageEnglishLevelProgressService.data.toFixed(1) : null
+        }
+        loading={SemiannualAverageEnglishLevelProgressService.fetch.fetching}
+      />
+    );
+  }
+}
 
 export default observer(SemiannualAverageProgressContainer);

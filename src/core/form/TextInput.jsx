@@ -16,6 +16,8 @@ class TextInput extends Component {
     fieldType: PropTypes.oneOf(['textarea', 'input']),
     errorText: PropTypes.string,
     textAreaRows: PropTypes.string,
+    maxNumberValue: PropTypes.number,
+    minNumberValue: PropTypes.number,
   };
 
   static defaultProps = {
@@ -29,6 +31,8 @@ class TextInput extends Component {
     errorText: null,
     textAreaRows: '2',
     onChange: () => false,
+    maxNumberValue: undefined,
+    minNumberValue: undefined,
   };
 
   render() {
@@ -56,6 +60,8 @@ class TextInput extends Component {
           />
         ) : (
           <Input
+            max={this.props.maxNumberValue}
+            min={this.props.minNumberValue}
             type={this.props.type}
             value={this.props.value}
             onChange={e => this.props.onChange && this.props.onChange(e.target.value)}

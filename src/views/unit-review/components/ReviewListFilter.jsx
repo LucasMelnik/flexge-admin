@@ -81,11 +81,6 @@ const ReviewListFilter = props => (
         />
       </Column>
     </Row>
-    {props.errors && (
-      <div style={{ color: 'red', textAlign: 'right' }}>
-        Inform at least one filter
-      </div>
-    )}
   </div>
 );
 
@@ -94,13 +89,11 @@ ReviewListFilter.propTypes = {
   onChange: PropTypes.func.isRequired,
   fetching: PropTypes.bool,
   onSearch: PropTypes.func,
-  errors: PropTypes.object,
 };
 
 ReviewListFilter.defaultProps = {
   fetching: false,
   onSearch: null,
-  errors: null,
 };
 
 export default ReviewListFilter;

@@ -1,56 +1,24 @@
 import { action, extendObservable } from 'mobx';
-import moment from 'moment';
 import FetchService from '../../../core/services/FetchService';
 
-class RankingListService {
-  fetchRegional = new FetchService();
-  fetchNational = new FetchService();
+export default class RankingListService {
+  fetch = new FetchService();
 
   constructor() {
     extendObservable(this, {
-      schoolId: null,
-      regionalRanking: [],
-      nationalRanking: [],
-      from: moment().startOf('month').format('YYYY-MM-DD HH:mm:ss'),
-      to: moment().endOf('month').format('YYYY-MM-DD HH:mm:ss'),
+      rankings: [],
     });
   }
 
-  init = action((schoolId) => {
-    this.schoolId = schoolId;
-  });
-
-  handleFilterChange = action((schoolId) => {
-    this.schoolId = schoolId;
-    this.loadRegionalRanking();
-    this.loadNationalRanking();
-  });
-
-  loadRegionalRanking = action(() => {
-    this.fetchRegional.fetch({
-      url: `/reports/schools/${this.schoolId}/ranking?from=${this.from}&to=${this.to}&level=regional`,
+  load = action((school, from, to, level) => {
+    this.fetch.fetch({
+      url: `/reports/schools/${school}/ranking?from=${from}&to=${to}&level=${level}`,
     }).then(() => {
-      if (this.fetchRegional.data) {
-        this.regionalRanking = this.fetchRegional.data;
+      if (this.fetch.data) {
+        this.rankings = this.fetch.data;
       } else {
-        this.regionalRanking = [];
-      }
-    });
-  });
-
-  loadNationalRanking = action(() => {
-    this.fetchNational.fetch({
-      url: `/reports/schools/${this.schoolId}/ranking?from=${this.from}&to=${this.to}&level=national`,
-    }).then(() => {
-      if (this.fetchNational.data) {
-        this.nationalRanking = this.fetchNational.data;
-      } else {
-        this.nationalRanking = [];
+        this.rankings = [];
       }
     });
   });
 }
-
-const rankingListService = new RankingListService();
-
-export default rankingListService;

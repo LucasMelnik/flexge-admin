@@ -7,7 +7,7 @@ import { toJS } from 'mobx';
 import Select from './Select';
 import FetchService from '../services/FetchService';
 
-export default class FetchSelect extends Component {
+export default class qFetchSelect extends Component {
 
   static propTypes = {
     url: PropTypes.string.isRequired,
@@ -16,6 +16,7 @@ export default class FetchSelect extends Component {
       text: PropTypes.string.isRequired,
       value: PropTypes.string,
     }).isRequired,
+    resultFilter: PropTypes.func,
     placeholder: PropTypes.string,
     errorText: PropTypes.string,
     value: PropTypes.string,
@@ -32,6 +33,7 @@ export default class FetchSelect extends Component {
     disabled: false,
     defaultSelect: false,
     required: false,
+    resultFilter: () => true,
   };
 
   state = { data: [] };
@@ -45,7 +47,7 @@ export default class FetchSelect extends Component {
         if (fetchService.data) {
           const data = toJS(fetchService.data);
           this.setState({
-            data: sortBy(data, item => toLower(item[this.props.resultTransformer.text])),
+            data: sortBy(data.filter(this.props.resultFilter), item => toLower(item[this.props.resultTransformer.text])),
           }, () => {
             if (this.props.defaultSelect) {
               const firstData = this.state.data[0];
