@@ -15,6 +15,7 @@ const UnitImageListFilter = props => (
         disabled={props.fetching}
         value={get(props.values, 'imageOwner')}
         onChange={value => props.onChange('imageOwner', value)}
+        errorText={get(props.errors, 'imageOwner', null)}
         resultTransformer={{
           text: 'name',
           value: 'id',
@@ -37,11 +38,13 @@ UnitImageListFilter.propTypes = {
   onChange: PropTypes.func.isRequired,
   fetching: PropTypes.bool,
   onSearch: PropTypes.func,
+  errors: PropTypes.object,
 };
 
 UnitImageListFilter.defaultProps = {
   fetching: false,
   onSearch: null,
+  errors: null,
 };
 
 export default UnitImageListFilter;
