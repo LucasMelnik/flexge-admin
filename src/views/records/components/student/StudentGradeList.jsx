@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
+import TooltipIcon from '../../../../core/layout/TooltipIcon';
 
 const StudentGradeList = props => (
   <Table
@@ -18,7 +19,14 @@ const StudentGradeList = props => (
         render: (cell, row) => {
           const periodGrade = row.grades.find(grade => grade.evaluation.id === evaluation.id);
           if (periodGrade) {
-            return (<span>{periodGrade.studyQualityGrade} (<b>SQ</b>) + {periodGrade.studyQualityGrade} (<b>Hours</b>) = {periodGrade.finalGrade} <b>Final Grade {periodGrade.isPreview ? '(P)' : ''} </b></span>);
+            return (
+              <div>
+                <span>{periodGrade.finalGrade}</span>
+                <TooltipIcon
+                  text={`${periodGrade.isPreview ? 'Preview' : ''} - SQ (${periodGrade.studyQualityGrade}) + Hours (${periodGrade.hoursGrade})`}
+                />
+              </div>
+            );
           }
           return '-';
         },
