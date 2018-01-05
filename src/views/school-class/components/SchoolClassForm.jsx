@@ -29,6 +29,7 @@ const SchoolClassForm = props => (
       </Column>
       <Column size={3}>
         <FetchSelect
+          required
           url={`/teachers?query[school]=${props.schoolId}`}
           disabled={props.submitting}
           label="Teacher"
