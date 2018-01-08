@@ -84,7 +84,7 @@ const StudentList = props => (
                     {' '}
                     <Button
                       icon="mail"
-                      onClick={() => alert('Email sent!')}
+                      onClick={() => props.onSendWelcomeEmail(row)}
                     />
                   </span>
                 )}
@@ -137,6 +137,7 @@ StudentList.propTypes = {
   editable: PropTypes.bool.isRequired,
   onDisable: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
+  onSendWelcomeEmail: PropTypes.func.isRequired,
   onSelect: PropTypes.func,
   hasSchoolClass: PropTypes.bool.isRequired,
 };

@@ -19,6 +19,8 @@ export default class StudentFormService {
     this.form.validations = {
       name: [isRequired],
       email: [isRequired, isValidEmail],
+      fatherEmail: [isValidEmail],
+      motherEmail: [isValidEmail],
     };
   }
 
@@ -41,7 +43,9 @@ export default class StudentFormService {
         }
       });
     } else {
-      this.form.setInitialValues({});
+      this.form.setInitialValues({
+        sendWelcomeEmail: false,
+      });
     }
     this.studentId = studentId;
   });
