@@ -63,6 +63,9 @@ class ReviewListService {
         ...(localStorage.role === 'ADMIN' && this.formMyReviews.getValue('createdBy')) && {
           unitCreatedBy: this.formMyReviews.getValue('createdBy'),
         },
+        ...(localStorage.role === 'ADMIN' && this.formMyReviews.getValue('reviewedBy')) && {
+          reviewedBy: this.formMyReviews.getValue('reviewedBy'),
+        },
       },
     }).then(() => {
       if (this.fetch.data && this.fetch.data.units) {
@@ -96,6 +99,9 @@ class ReviewListService {
         statusFormat: this.formAllReviews.getValue('statusFormat'),
         ...(localStorage.role === 'ADMIN' && this.formAllReviews.getValue('createdBy')) && {
           unitCreatedBy: this.formAllReviews.getValue('createdBy'),
+        },
+        ...(localStorage.role === 'ADMIN' && this.formMyReviews.getValue('reviewedBy')) && {
+          reviewedBy: this.formMyReviews.getValue('reviewedBy'),
         },
       },
     }).then(() => {
