@@ -26,7 +26,7 @@ Dialog.propTypes = {
 Dialog.defaultProps = {
   isOpen: false,
   onCancel: null,
-  width: null,
+  width: 600,
 };
 
 export default Dialog;
