@@ -32,6 +32,8 @@ class ItemAudioListService {
   load = action((page) => {
     if (page && page.current) {
       this.pagination.current = page.current;
+    } else {
+      this.pagination.current = 1;
     }
 
     this.fetch.fetch({
