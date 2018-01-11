@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 import Table from '../../../core/form/Table';
 import AudioPreview from '../../../core/layout/AudioPreview';
 import StatusItem from '../../../core/layout/StatusItem';
 import Button from '../../../core/form/Button';
 import UploadButton from '../../../core/form/UploadButton';
-import { Link } from 'react-router';
 
 const ItemAudioList = props => (
   <Table
