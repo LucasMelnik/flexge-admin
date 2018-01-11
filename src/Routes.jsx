@@ -56,7 +56,6 @@ import CharacterListScene from './views/character/components/CharacterListScene'
 import CharacterFormScene from './views/character/components/CharacterFormScene';
 import AchievementListScene from './views/achievement/components/AchievementListScene';
 import AchievementFormScene from './views/achievement/components/AchievementFormScene';
-import EmailsScene from './views/emails/components/EmailsScene';
 import StudentAchievementsScene from './views/student-achievements/components/StudentAchievementsScene';
 
 import FilterRecordScene from './views/records/components/FilterRecordScene';
@@ -86,6 +85,7 @@ import CertificationTestRegisterListScene from './views/certification-test-regis
 import CertificationTestRegisterFormScene from './views/certification-test-register/components/CertificationTestRegisterFormScene';
 import CertificationTestExecutionFormScene from './views/certification-test-execution/components/CertificationTestExecutionFormScene';
 import CertificationTestExecutionDetailScene from './views/certification-test-execution/components/CertificationTestExecutionDetailScene';
+import EmailConfigFormSceneContainer from './views/email-config/components/EmailConfigFormSceneContainer';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -202,7 +202,7 @@ const Routes = () => (
       <Route path="certification-test-executions" component={CertificationTestExecutionListScene} />
       <Route path="certification-test-executions/:certificationTestId" component={CertificationTestExecutionFormScene} />
       <Route path="certification-test-executions/:certificationTestId/details" component={CertificationTestExecutionDetailScene} />
-      <Route path="school-configuration/emails" component={EmailsScene} />
+      <Route path="school-configuration/emails" component={EmailConfigFormSceneContainer} />
       <Route path="school-configuration/grades" component={SchoolGradeConfigFormSceneContainer} />
       <Route path="school-configuration/evaluation-periods" component={SchoolEvaluationSceneContainer} />
       <Route path="rankings" component={RankingListScene} />
