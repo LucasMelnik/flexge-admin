@@ -193,7 +193,6 @@ const Routes = () => (
       <Route path="records/schools/:schoolId/classes" component={SchoolClassRecordSceneContainer} />
       <Route path="records/schools/:schoolId/classes/:classId/students" component={StudentRecordSceneContainer} />
       <Route path="records/schools/:schoolId/classes/:classId/students/:studentId/detail" component={StudentDetailRecordSceneContainer} />
-      <Route path="records/students/:studentId/detail" component={StudentDetailRecordSceneContainer} />
       <Route path="reports/unit-images" component={UnitImageRecordScene} />
       <Route path="reports/unit-errors" component={UnitItemErrorRecordScene} />
       <Route path="item-audios" component={ItemAudioListScene} />

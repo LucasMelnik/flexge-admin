@@ -18,8 +18,8 @@ class StudentRecordSelectContainer extends Component {
     });
   };
 
-  handleSelect = (value) => {
-    browserHistory.push(`/records/student/${value}`);
+  handleSelect = (value, student) => {
+    browserHistory.push(`/records/schools/${student.schoolClass.school.id}/classes/${student.schoolClass.id}/students/${value}/detail`);
   };
 
   render() {
