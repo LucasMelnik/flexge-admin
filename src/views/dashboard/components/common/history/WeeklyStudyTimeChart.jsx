@@ -19,17 +19,17 @@ const WeeklyStudyTimeChart = props => (
       data={range(1, 53).map(week => props.data.find(item => item.week === week) || {})}
       dataFormat={[
         {
+          label: 'Total Hours',
+          valueRender: item => item.totalStudiedTime || 0,
+          yAxisID: 'total-hours',
+          type: 'bar',
+        },
+        {
           label: 'Average Hours',
           valueRender: item => item.averageStudiedTime || 0,
           yAxisID: 'average-hours',
           fill: false,
           type: 'line',
-        },
-        {
-          label: 'Total Hours',
-          valueRender: item => item.totalStudiedTime || 0,
-          yAxisID: 'total-hours',
-          type: 'bar',
         },
       ]}
       options={{

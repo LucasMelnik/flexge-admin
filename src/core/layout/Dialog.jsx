@@ -20,7 +20,7 @@ Dialog.propTypes = {
   children: PropTypes.node.isRequired,
   actions: PropTypes.arrayOf(PropTypes.node).isRequired,
   isOpen: PropTypes.bool,
-  width: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Dialog.defaultProps = {
