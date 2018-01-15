@@ -5,6 +5,7 @@ import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
+import Switch from '../../../core/form/Switch';
 
 const CharacterForm = props => (
   <form
@@ -22,6 +23,18 @@ const CharacterForm = props => (
           value={get(props.values, 'name', '')}
           onChange={value => props.onChange('name', value)}
           errorText={get(props.errors, 'name', null)}
+        />
+      </Column>
+      <Column size={3}>
+        <Switch
+          required
+          disabled={props.submitting}
+          value={get(props.values, 'enableForRandom', false)}
+          onChange={value => props.onChange('enableForRandom', value)}
+          errorText={get(props.errors, 'enableForRandom', null)}
+          label="Enable for Random"
+          titleOff="No"
+          titleOn="Yes"
         />
       </Column>
     </Row>

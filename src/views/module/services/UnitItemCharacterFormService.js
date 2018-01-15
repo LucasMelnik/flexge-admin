@@ -13,6 +13,7 @@ export default class UnitItemCharacterFormService {
 
   constructor() {
     extendObservable(this, {
+      characters: [],
     });
     this.form.validations = {
       character: [],
@@ -21,7 +22,7 @@ export default class UnitItemCharacterFormService {
 
   init = action(() => {
     this.fetch.fetch({
-      url: '/characters',
+      url: '/characters?query[enableForRandom]=true',
     }).then(() => {
       if (this.fetch.data) {
         this.characters = this.fetch.data;
@@ -36,14 +37,21 @@ export default class UnitItemCharacterFormService {
     this.form.submitted = true;
     if (this.form.errors) {
       NotificationService.addNotification(
-        'Select the Character',
+        'Select the Character.',
         'error',
       );
       return;
     }
     if (!this.form.getValue('randomCharacters') && !this.form.getValue('character')) {
       NotificationService.addNotification(
-        'Select the Character',
+        'Select the Character or use the random option.',
+        'error',
+      );
+      return;
+    }
+    if (this.form.getValue('randomCharacters') && !toJS(this.characters).length) {
+      NotificationService.addNotification(
+        'No Character available for random set.',
         'error',
       );
       return;
