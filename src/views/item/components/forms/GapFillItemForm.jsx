@@ -4,9 +4,6 @@ import get from 'lodash/get';
 import TranslationContainer from '../inputs/TranslationInputContainer';
 import AnswersContainer from '../inputs/AnswersInputContainer';
 import SlicesInputContainer from '../inputs/SlicesInputContainer';
-import AudioPreview from '../../../../core/layout/AudioPreview';
-import Row from '../../../../core/layout/Row';
-import Column from '../../../../core/layout/Column';
 import Audios from '../inputs/Audios';
 
 const GapFillItemForm = props => (
