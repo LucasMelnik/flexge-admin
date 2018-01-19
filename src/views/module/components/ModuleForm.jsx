@@ -10,6 +10,7 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import Select from '../../../core/form/Select';
 import FormButtons from '../../../core/form/FormButtons';
 import FileInput from '../../../core/form/FileInput';
+import Switch from '../../../core/form/Switch';
 
 const ModuleForm = props => (
   <form
@@ -203,6 +204,17 @@ const ModuleForm = props => (
           onChange={value => props.onChange('writingPoints', value)}
           errorText={get(props.errors, 'writingPoints', '')}
           type="number"
+        />
+      </Column>
+    </Row>
+    <Row>
+      <Column size={2}>
+        <Switch
+          label="Disabled for Student ?"
+          titleOff="No"
+          titleOn="Yes"
+          value={get(props.values, 'disabledForStudent', false)}
+          onChange={value => props.onChange('disabledForStudent', value)}
         />
       </Column>
     </Row>
