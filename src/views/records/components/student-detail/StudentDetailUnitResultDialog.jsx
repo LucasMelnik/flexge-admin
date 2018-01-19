@@ -12,13 +12,13 @@ const StudentDetailUnitResultDialog = props => (
     isOpen={props.isOpen}
     title="Unit Execution Details"
     onCancel={props.onClose}
-    actions={
+    actions={[
       <Button
         icon="close-circle"
         label="Close"
         onClick={props.onClose}
-      />
-    }
+      />,
+    ]}
   >
     <Table
       rows={props.items}

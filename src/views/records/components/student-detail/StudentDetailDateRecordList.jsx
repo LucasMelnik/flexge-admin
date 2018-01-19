@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
 import Tag from '../../../../core/layout/Tag';
+import Button from '../../../../core/form/Button';
 
 const StudentDetailDateRecordList = props => (
   <Table
@@ -138,6 +139,17 @@ const StudentDetailDateRecordList = props => (
           </b>
         ) : row.items.reduce((acc, item) => acc + item.listenCount, 0),
       },
+      {
+        label: 'Actions',
+        path: 'action',
+        width: '85px',
+        render: (value, row) => (!row.children && !row.docType) && (
+          <Button
+            icon="bars"
+            onClick={() => props.onDetailUnitResult(row.id)}
+          />
+        ),
+      },
     ]}
     rows={props.contents}
   />
@@ -157,6 +169,7 @@ StudentDetailDateRecordList.propTypes = {
     }),
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
+  onDetailUnitResult: PropTypes.func.isRequired,
 };
 
 export default StudentDetailDateRecordList;

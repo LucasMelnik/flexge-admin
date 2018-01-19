@@ -14,7 +14,16 @@ const AbilityProgressColumn = (value, label) => value !== undefined && (
       width: 250,
     }}
   >
-    <small>{value}% </small>
+    <small
+      style={{
+        display: 'inline-block',
+        textAlign: 'right',
+        width: 30,
+        marginRight: 5,
+      }}
+    >
+      {value > 100 ? 100 : value}%
+    </small>
     <div
       style={{
         display: 'inline-block',

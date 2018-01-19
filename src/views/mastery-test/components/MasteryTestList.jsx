@@ -47,7 +47,7 @@ const MasteryTestList = props => (
               {' '}
               <Button
                 icon="edit"
-                onClick={() => browserHistory.push(`/modules/${row.module}/mastery-tests/${row.id}`)}
+                onClick={() => browserHistory.push(`/modules/${row.module.id}/mastery-tests/${row.id}`)}
               />
             </div>
           );
@@ -63,7 +63,9 @@ MasteryTestList.propTypes = {
     id: PropTypes.string.isRequired,
     modulePercentageToActive: PropTypes.string.isRequired,
     scoreToPass: PropTypes.number.isRequired,
-    module: PropTypes.string.isRequired,
+    module: PropTypes.shape({
+      id: PropTypes.string,
+    }).isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func,

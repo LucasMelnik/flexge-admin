@@ -8,7 +8,7 @@ const LinearProgress = props => (
       green: 'success',
       blue: 'active',
     }[props.color]}
-    percent={props.value}
+    percent={props.value <= 100 ? props.value : 100}
     showInfo={props.showInfo}
   />
 );
