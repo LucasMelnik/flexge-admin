@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
+import Audios from '../inputs/Audios';
 
 const TextItemForm = props => (
   <div>
@@ -19,6 +20,7 @@ const TextItemForm = props => (
         />
       </Column>
     </Row>
+    <Audios values={props.values} />
   </div>
 );
 

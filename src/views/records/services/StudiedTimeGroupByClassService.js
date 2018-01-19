@@ -51,7 +51,7 @@ class StudiedTimeGroupByClassService {
             }
             return acc;
           }, 0);
-        return totalHigherThanTwo / this.total;
+        return (totalHigherThanTwo / this.total) || null;
       }),
       higherThanTwoSchoolAverage: computed(() => {
         if (!this.validateResponse()) return null;

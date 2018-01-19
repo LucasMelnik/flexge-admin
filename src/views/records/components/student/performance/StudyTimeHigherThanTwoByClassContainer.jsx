@@ -21,7 +21,7 @@ class StudyTimeHigherThanTwoByClassContainer extends Component {
       return Number((value * 100).toFixed(0));
     }
     return null;
-  }
+  };
 
   render() {
     return (
