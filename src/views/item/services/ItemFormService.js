@@ -323,7 +323,7 @@ export default class ItemFormService {
           text: this.form.getValue('item.text') && this.form.getValue('item.text').length > 0 ? this.form.getValue('item.text').trim() : undefined,
         },
         order: this.form.getValue('order') || this.order,
-        group: 1,
+        group: this.form.getValue('group') || 1,
       },
     }).then(() => {
       if (this.submit.data) {
