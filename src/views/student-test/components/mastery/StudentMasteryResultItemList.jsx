@@ -10,7 +10,7 @@ const StudentMasteryResultItemList = props => (
       {
         label: 'Status',
         path: 'correct',
-        width: '100',
+        width: '100px',
         render: cell => (
           <StatusItem
             color={{

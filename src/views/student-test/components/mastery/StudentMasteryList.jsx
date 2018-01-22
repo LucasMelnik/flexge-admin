@@ -32,6 +32,7 @@ const StudentMasteryList = props => (
       },
     ]}
     rows={props.masteries}
+    selectable
     onSelect={row => props.onSelect(row.masteryTest)}
   />
 );
