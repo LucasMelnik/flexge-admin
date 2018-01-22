@@ -14,9 +14,9 @@ export default class StudentMasteryDetails extends Component {
 
   state = { currentState: 'LIST', currentMastery: null };
 
-  handleSelectMastery = (idMastery) => {
+  handleSelectMastery = (mastery) => {
     this.setState({
-      currentMastery: idMastery,
+      currentMastery: mastery,
       currentExecution: null,
       currentState: 'DETAIL',
     });

@@ -28,6 +28,7 @@ const StudentMasteryResultList = props => (
       },
     ]}
     rows={props.executions}
+    selectable
     onSelect={row => props.onSelect(row)}
   />
 );
