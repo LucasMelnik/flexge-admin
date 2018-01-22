@@ -31,6 +31,12 @@ const ItemTypeList = props => (
         },
       },
       {
+        label: 'Certification',
+        path: 'allowedForCertificationTest',
+        width: '120px',
+        render: (cell) => cell && cell.reduce((acc, item) => acc.concat(', ').concat(item), '').replace(', ', ''),
+      },
+      {
         label: 'Time',
         path: 'defaultTime',
         width: '90px',

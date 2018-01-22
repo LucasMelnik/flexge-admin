@@ -20,7 +20,7 @@ const TopStudentsTable = props => (
         },
         {
           label: 'Class',
-          path: 'schoolclass.name',
+          path: 'schoolClass.name',
         },
         {
           label: 'Time',

@@ -26,7 +26,7 @@ export default class AutoComplete extends Component {
         dropdownMatchSelectWidth={false}
         value={this.props.value}
         dataSource={this.props.dataSource.map(this.renderOptions)}
-        onSelect={this.props.onSelect}
+        onSelect={(value) => this.props.onSelect(value, this.props.dataSource.find(item => item.id === value))}
         onChange={this.props.onChange}
         placeholder={this.props.placeholder}
         optionLabelProp={this.props.labelPath}

@@ -6,12 +6,23 @@ import BarChart from '../../../../../core/chart/BarChart';
 const SemiannualEnglishLevelProgressChart = props => (
   <Card
     title={`Semiannual English Level Progress by
-      ${['TEACHER', 'SCHOOL_MANAGER'].indexOf(localStorage.role) > -1 ? 'class' : 'school'}`}
+      ${localStorage.getItem('role') === 'SCHOOL_MANAGER' ? 'class' : 'school'}`}
     loading={props.loading}
   >
     <BarChart
       labels={props.data.map(item => item.name)}
-      data={props.data.map(item => item.schoolAverageProgress)}
+      data={props.data.map(item => item.averageProgress)}
+      options={{
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                min: 0,
+              },
+            },
+          ],
+        },
+      }}
     />
   </Card>
 );

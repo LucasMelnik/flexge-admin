@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import TranslationContainer from '../inputs/TranslationInputContainer';
 import AnswersContainer from '../inputs/AnswersInputContainer';
 import SlicesInputContainer from '../inputs/SlicesInputContainer';
-import AudioPreview from '../../../../core/layout/AudioPreview';
+import Audios from '../inputs/Audios';
 
 const GapFillItemForm = props => (
   <div>
@@ -16,12 +16,7 @@ const GapFillItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    {get(props.values, 'generatedAudio', null) && (
-      <div>
-        <p>Generated Audio</p>
-        <AudioPreview src={get(props.values, 'generatedAudio', '')} />
-      </div>
-    )}
+    <Audios values={props.values} />
     <SlicesInputContainer
       onChange={(answers) => {
         props.onChange('answers', answers);

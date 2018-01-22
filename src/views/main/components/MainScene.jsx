@@ -79,7 +79,7 @@ const MainScene = props => (
           groups={[
             {
               group: 'Organizations',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
             },
             {
               group: 'Users',
@@ -96,16 +96,23 @@ const MainScene = props => (
             {
               label: 'Companies',
               link: '/companies',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
               group: 'Organizations',
               icon: 'bank',
             },
             {
               label: 'Schools',
               link: '/schools',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'SCHOOL_MANAGER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
               group: 'Organizations',
               icon: 'contacts',
+            },
+            {
+              label: 'Classes',
+              link: '/classes',
+              allowedFor: ['SCHOOL_MANAGER', 'TEACHER'],
+              group: 'Organizations',
+              icon: 'profile',
             },
             {
               label: 'Admin Users',
@@ -128,6 +135,18 @@ const MainScene = props => (
             {
               label: 'Students',
               link: '/students',
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+              group: 'Users',
+            },
+            {
+              label: 'Import Students',
+              link: '/import-students',
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
+              group: 'Users',
+            },
+            {
+              label: 'Students to Reactivate',
+              link: '/reactivate-student',
               allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
               group: 'Users',
             },
@@ -191,6 +210,13 @@ const MainScene = props => (
               allowedFor: ['ADMIN'],
             },
             {
+              label: 'Unit Items Execution Stats',
+              link: '/unit-items-execution-stats',
+              group: 'Reports',
+              icon: 'warning',
+              allowedFor: ['CONTENT_ADMIN', 'ADMIN'],
+            },
+            {
               label: 'Placement Test',
               link: '/placement-test',
               group: 'Tests',
@@ -202,6 +228,12 @@ const MainScene = props => (
               group: 'Tests',
               icon: 'database',
             },
+            {
+              label: 'Certification Test',
+              link: '/certification-test-register',
+              group: 'Tests',
+              icon: 'exception',
+            },
           ]}
         />
         <SubMenu
@@ -210,12 +242,12 @@ const MainScene = props => (
           items={[
             {
               label: 'Achievements',
-              link: '/achievements',
+              link: '/student-achievements',
               icon: 'trophy',
             },
             {
               label: 'Certification Test',
-              link: '/certification-test',
+              link: '/certification-test-executions',
               icon: 'contacts',
             },
             {
@@ -226,10 +258,6 @@ const MainScene = props => (
             {
               label: 'Student Placement/Mastery Tests',
               link: '/student-tests',
-            },
-            {
-              label: 'Grades',
-              link: '/grades',
             },
           ]}
         />

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import StudyQualityAverageContainer from './StudyQualityAverageContainer';
 import StudyQualityHigherThanFiveContainer from './StudyQualityHigherThanFiveContainer';
 import ActiveStudentsContainer from './ActiveStudentsContainer';
@@ -20,7 +21,7 @@ const PerformanceGoalWrapper = props => (
   </div>
 );
 
-const PerformanceGoals = () => (
+const PerformanceGoals = props => (
   <div
     style={{
       display: 'flex',
@@ -32,24 +33,52 @@ const PerformanceGoals = () => (
     }}
   >
     <PerformanceGoalWrapper>
-      <StudyQualityAverageContainer />
+      <StudyQualityAverageContainer
+        classId={props.classId}
+        schoolId={props.schoolId}
+      />
     </PerformanceGoalWrapper>
     <PerformanceGoalWrapper>
-      <StudyQualityHigherThanFiveContainer />
+      <StudyQualityHigherThanFiveContainer
+        classId={props.classId}
+        schoolId={props.schoolId}
+      />
     </PerformanceGoalWrapper>
     <PerformanceGoalWrapper>
-      <ActiveStudentsContainer />
+      <ActiveStudentsContainer
+        classId={props.classId}
+        schoolId={props.schoolId}
+      />
     </PerformanceGoalWrapper>
     <PerformanceGoalWrapper>
-      <ActiveStudentsLastSevenDaysContainer />
+      <ActiveStudentsLastSevenDaysContainer
+        classId={props.classId}
+        schoolId={props.schoolId}
+      />
     </PerformanceGoalWrapper>
     <PerformanceGoalWrapper>
-      <StudyTimeHigherThanTwoContainer />
+      <StudyTimeHigherThanTwoContainer
+        classId={props.classId}
+        schoolId={props.schoolId}
+      />
     </PerformanceGoalWrapper>
     <PerformanceGoalWrapper>
-      <LastWeekAverageStudiedTimeContainer />
+      <LastWeekAverageStudiedTimeContainer
+        classId={props.classId}
+        schoolId={props.schoolId}
+      />
     </PerformanceGoalWrapper>
   </div>
 );
+
+PerformanceGoals.propTypes = {
+  classId: PropTypes.string,
+  schoolId: PropTypes.string,
+};
+
+PerformanceGoals.defaultProps = {
+  classId: null,
+  schoolId: null,
+};
 
 export default PerformanceGoals;

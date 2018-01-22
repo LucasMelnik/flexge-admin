@@ -18,7 +18,7 @@ class StudentAcademicPerformanceHistoryService {
     }).then(() => {
       if (this.fetch.data) {
         this.history = orderBy(this.fetch.data, 'completedAt', 'desc');
-        this.currentPerformance = this.fetch.data.find(course => !course.completedAt)
+        this.currentPerformance = this.fetch.data.find(performance => !performance.completedAt);
       } else {
         this.history = [];
         this.currentPerformance = {};

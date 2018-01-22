@@ -4,6 +4,7 @@ import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import StudentDetailContentRecordList from './StudentDetailContentRecordList';
 import StudentRecordDetailService from '../../services/StudentRecordDetailService';
+import StudentRecordDetailUnitResultDialogService from '../../services/StudentRecordDetailUnitResultDialogService';
 
 class StudentDetailContentRecordListContainer extends Component {
 
@@ -19,7 +20,8 @@ class StudentDetailContentRecordListContainer extends Component {
     return (
       <StudentDetailContentRecordList
         contents={toJS(StudentRecordDetailService.contentsDetail)}
-        fetching={StudentRecordDetailService.fetch.fetching}
+        fetching={StudentRecordDetailService.fetchContent.fetching}
+        onDetailUnitResult={StudentRecordDetailUnitResultDialogService.handleShow}
       />
     );
   }

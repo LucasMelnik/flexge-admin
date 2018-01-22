@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import TranslationInputContainer from '../inputs/TranslationInputContainer';
 import TrueFalseAnswerInputContainer from '../inputs/TrueFalseAnswerInputContainer';
-import AudioPreview from '../../../../core/layout/AudioPreview';
+import Audios from '../inputs/Audios';
 
 const TrueFalseItemForm = props => (
   <div>
@@ -15,12 +15,7 @@ const TrueFalseItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    {get(props.values, 'generatedAudio', null) && (
-      <div>
-        <p>Generated Audio</p>
-        <AudioPreview src={get(props.values, 'generatedAudio', '')} />
-      </div>
-    )}
+    <Audios values={props.values} />
     <TrueFalseAnswerInputContainer
       value={get(props.values, 'answers', [])}
       onChange={answers => props.onChange('answers', answers)}

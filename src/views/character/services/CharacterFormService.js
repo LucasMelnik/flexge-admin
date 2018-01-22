@@ -15,6 +15,7 @@ export default class CharacterFormService {
     });
     this.form.validations = {
       name: [isRequired],
+      enableForRandom: [isRequired],
     };
   }
 
@@ -25,11 +26,14 @@ export default class CharacterFormService {
         url: `/characters/${characterId}`,
       }).then(() => {
         if (this.fetch.data) {
-          this.form.setInitialValues(this.fetch.data);
+          this.form.setInitialValues({
+            ...this.fetch.data,
+            enableForRandom: this.fetch.data.enableForRandom || false
+          });
         }
       });
     } else {
-      this.form.setInitialValues({});
+      this.form.setInitialValues({ enableForRandom: false });
     }
     this.characterId = characterId;
   });

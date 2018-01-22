@@ -8,17 +8,20 @@ const LinearProgress = props => (
       green: 'success',
       blue: 'active',
     }[props.color]}
-    percent={props.value}
+    percent={props.value <= 100 ? props.value : 100}
+    showInfo={props.showInfo}
   />
 );
 
 LinearProgress.propTypes = {
   value: PropTypes.number.isRequired,
   color: PropTypes.oneOf(['green', 'blue']),
+  showInfo: PropTypes.bool,
 };
 
 LinearProgress.defaultProps = {
   color: 'blue',
+  showInfo: true,
 };
 
 export default LinearProgress;

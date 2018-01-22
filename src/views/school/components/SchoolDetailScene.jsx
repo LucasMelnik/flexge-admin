@@ -5,7 +5,6 @@ import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import SchoolClassListFilterContainer from '../../school-class/components/SchoolClassListFilterContainer';
-import SchoolClassFileImportContainer from '../../school-class/components/SchoolClassFileImportContainer';
 import SchoolClassListContainer from '../../school-class/components/SchoolClassListContainer';
 
 const SchoolDetailScene = props => (
@@ -53,8 +52,6 @@ const SchoolDetailScene = props => (
             icon="plus"
             onClick={() => browserHistory.push(`${props.baseUrl}/classes/new`)}
           />
-          {' '}
-          {props.school.id && (<SchoolClassFileImportContainer schoolId={props.school.id} />)}
         </div>
       }
     >

@@ -5,7 +5,7 @@ import StudyQualityGroupService from '../../../services/StudyQualityGroupService
 
 const StudyQualityGroupChartContainer = () => (
   <StudyQualityGroupChart
-    data={StudyQualityGroupService.rates}
+    data={StudyQualityGroupService.totalByGroup}
     loading={StudyQualityGroupService.fetch.fetching}
   />
 );

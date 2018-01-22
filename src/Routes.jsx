@@ -56,7 +56,7 @@ import CharacterListScene from './views/character/components/CharacterListScene'
 import CharacterFormScene from './views/character/components/CharacterFormScene';
 import AchievementListScene from './views/achievement/components/AchievementListScene';
 import AchievementFormScene from './views/achievement/components/AchievementFormScene';
-import EmailsScene from './views/emails/components/EmailsScene';
+import StudentAchievementsScene from './views/student-achievements/components/StudentAchievementsScene';
 
 import FilterRecordScene from './views/records/components/FilterRecordScene';
 import SchoolClassRecordSceneContainer from './views/records/components/school-class/SchoolClassRecordSceneContainer';
@@ -74,10 +74,19 @@ import DistributorUserListSceneContainer from './views/user/components/Distribut
 import DistributorUserFormScene from './views/user/components/DistributorUserFormScene';
 import StudentListScene from './views/student/components/StudentListScene';
 import SchoolEvaluationSceneContainer from './views/school-evaluation/components/SchoolEvaluationSceneContainer';
-import CertificationTestListScene from './views/certification-test/components/CertificationTestListScene';
-import CertificationTestFormScene from './views/certification-test/components/CertificationTestFormScene';
+import CertificationTestExecutionListScene from './views/certification-test-execution/components/CertificationTestExecutionListScene';
 import RankingListScene from './views/ranking/components/RankingListScene';
 import SchoolGradeConfigFormSceneContainer from './views/school-grade-config/components/SchoolGradeConfigFormSceneContainer';
+import SchoolClassListSceneContainer from './views/school-class/components/SchoolClassListSceneContainer';
+import ImportStudentsFormScene from './views/import-students/components/ImportStudentsFormScene';
+import ReactivateStudentListScene from './views/reactivate-student/components/ReactivateStudentListScene';
+import ReactivateStudentFormScene from './views/reactivate-student/components/ReactivateStudentFormScene';
+import CertificationTestRegisterListScene from './views/certification-test-register/components/CertificationTestRegisterListScene';
+import CertificationTestRegisterFormScene from './views/certification-test-register/components/CertificationTestRegisterFormScene';
+import CertificationTestExecutionFormScene from './views/certification-test-execution/components/CertificationTestExecutionFormScene';
+import CertificationTestExecutionDetailScene from './views/certification-test-execution/components/CertificationTestExecutionDetailScene';
+import EmailConfigFormSceneContainer from './views/email-config/components/EmailConfigFormSceneContainer';
+import UnitItemExecutionStatsListScene from './views/reports/components/unit-execution-stats/UnitItemExecutionStatsListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -86,7 +95,7 @@ function authRequired(nextState, replace) {
 }
 
 const Routes = () => (
-  <Router history={browserHistory}>
+  <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
     <Route path="/login" component={LoginScene} />
     <Route path="/" component={MainScene} onEnter={authRequired}>
       <IndexRoute component={DashboardScene} />
@@ -129,6 +138,12 @@ const Routes = () => (
       <Route path="schools/:schoolId/classes/:classId/details" component={SchoolClassDetailSceneContainer} />
       <Route path="schools/:schoolId/classes/:classId/students/new" component={StudentFormSceneContainer} />
       <Route path="schools/:schoolId/classes/:classId/students/:studentId" component={StudentFormSceneContainer} />
+      <Route path="classes" component={SchoolClassListSceneContainer} />
+      <Route path="classes/new" component={SchoolClassFormSceneContainer} />
+      <Route path="classes/:classId" component={SchoolClassFormSceneContainer} />
+      <Route path="classes/:classId/details" component={SchoolClassDetailSceneContainer} />
+      <Route path="classes/:classId/students/new" component={StudentFormSceneContainer} />
+      <Route path="classes/:classId/students/:studentId" component={StudentFormSceneContainer} />
       <Route path="modules" component={ModuleListScene} />
       <Route path="modules/new" component={ModuleFormScene} />
       <Route path="modules/:moduleId" component={ModuleFormScene} />
@@ -179,20 +194,27 @@ const Routes = () => (
       <Route path="records/schools/:schoolId/classes" component={SchoolClassRecordSceneContainer} />
       <Route path="records/schools/:schoolId/classes/:classId/students" component={StudentRecordSceneContainer} />
       <Route path="records/schools/:schoolId/classes/:classId/students/:studentId/detail" component={StudentDetailRecordSceneContainer} />
-      <Route path="records/students/:studentId/detail" component={StudentDetailRecordSceneContainer} />
       <Route path="reports/unit-images" component={UnitImageRecordScene} />
       <Route path="reports/unit-errors" component={UnitItemErrorRecordScene} />
       <Route path="item-audios" component={ItemAudioListScene} />
       <Route path="achievements" component={AchievementListScene} />
       <Route path="achievements/new" component={AchievementFormScene} />
       <Route path="achievements/:achievementId" component={AchievementFormScene} />
-      <Route path="certification-test" component={CertificationTestListScene} />
-      <Route path="certification-test/new" component={CertificationTestFormScene} />
-      <Route path="certification-test/:certificationTestId" component={CertificationTestFormScene} />
-      <Route path="school-configuration/emails" component={EmailsScene} />
+      <Route path="certification-test-executions" component={CertificationTestExecutionListScene} />
+      <Route path="certification-test-executions/:certificationTestId" component={CertificationTestExecutionFormScene} />
+      <Route path="certification-test-executions/:certificationTestId/details" component={CertificationTestExecutionDetailScene} />
+      <Route path="school-configuration/emails" component={EmailConfigFormSceneContainer} />
       <Route path="school-configuration/grades" component={SchoolGradeConfigFormSceneContainer} />
       <Route path="school-configuration/evaluation-periods" component={SchoolEvaluationSceneContainer} />
       <Route path="rankings" component={RankingListScene} />
+      <Route path="student-achievements" component={StudentAchievementsScene} />
+      <Route path="import-students" component={ImportStudentsFormScene} />
+      <Route path="reactivate-student" component={ReactivateStudentListScene} />
+      <Route path="reactivate-student/:studentId" component={ReactivateStudentFormScene} />
+      <Route path="certification-test-register" component={CertificationTestRegisterListScene} />
+      <Route path="certification-test-register/new" component={CertificationTestRegisterFormScene} />
+      <Route path="certification-test-register/:certificationTestId" component={CertificationTestRegisterFormScene} />
+      <Route path="unit-items-execution-stats" component={UnitItemExecutionStatsListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

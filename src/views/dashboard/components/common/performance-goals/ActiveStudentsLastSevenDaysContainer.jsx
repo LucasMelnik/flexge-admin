@@ -1,21 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import ActiveStudentsByPeriodService from '../../../services/ActiveStudentsByPeriodService';
-import CircularProgress from '../../../../../core/layout/CircularProgress';
+import ActiveStudentsLastSevenDaysGauge from '../../../../../core/chart/ActiveStudentsLastSevenDaysGauge';
 
-const ActiveStudentsLastSevenDaysContainer = () => (
-  <CircularProgress
-    fetching={ActiveStudentsByPeriodService.fetch.fetching}
-    noDataText="No students found"
-    title="Active Students 7 days"
-    tooltip="Students which studied at least once in the last 7 days"
-    value={ActiveStudentsByPeriodService.studiedLast7Days}
-    max={100}
-    successCondition={value => value > 50}
-    badCondition={value => value <= 35}
-    valueRender={value => `${value}%`}
-    legend={localStorage.role === 'TEACHER' && `School average ${ActiveStudentsByPeriodService.schoolAverage}%`}
-  />
-);
+class ActiveStudentsLastSevenDaysContainer extends Component {
+  static propTypes = {
+    schoolId: PropTypes.string,
+    classId: PropTypes.string,
+  };
+
+  static defaultProps = {
+    schoolId: null,
+    classId: null,
+  };
+
+  componentWillMount() {
+    ActiveStudentsByPeriodService.init(this.props.schoolId, this.props.classId);
+  }
+
+  getValue = (value) => {
+    if (value !== null && value !== undefined) {
+      return Number(value.toFixed(0));
+    }
+    return null;
+  }
+
+  render() {
+    return (
+      <ActiveStudentsLastSevenDaysGauge
+        fetching={ActiveStudentsByPeriodService.fetch.fetching}
+        value={this.getValue(ActiveStudentsByPeriodService.studiedLast7Days)}
+        schoolAverage={this.getValue(ActiveStudentsByPeriodService.schoolAverageLast7Days)}
+      />
+    );
+  }
+}
 
 export default observer(ActiveStudentsLastSevenDaysContainer);

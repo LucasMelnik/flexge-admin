@@ -37,10 +37,11 @@ const EnglishLevelByPeriodChart = props => (
           },
         },
       ]}
+      xAxesLabelString="Time studying"
       tooltipsCallbacks={{
         label: (tooltipItem, data) => {
           const level = data.datasets[0].data[tooltipItem.index] || 0;
-          return `Level: ${level.toFixed(2)}`;
+          return `Level: ${level.toFixed(1)}`;
         },
       }}
     />

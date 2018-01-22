@@ -17,8 +17,7 @@ export default class SchoolClassFormService {
     });
     this.form.validations = {
       name: [isRequired],
-      start: [isRequired],
-      end: [isRequired],
+      teacher: [isRequired],
     };
   }
 

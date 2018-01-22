@@ -1,12 +1,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import B2Projection from './B2Projection';
-import SemiannualEnglishLevelProgressService from '../../../services/SemiannualEnglishLevelProgressService';
+import SemiannualAverageEnglishLevelProgressService from '../../../services/SemiannualAverageEnglishLevelProgressService';
 
 const B2ProjectionContainer = () => (
   <B2Projection
-    projection={SemiannualEnglishLevelProgressService.projection}
-    loading={SemiannualEnglishLevelProgressService.fetch.fetching}
+    projection={SemiannualAverageEnglishLevelProgressService.projection}
+    loading={SemiannualAverageEnglishLevelProgressService.fetch.fetching}
   />
 );
 

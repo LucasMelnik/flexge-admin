@@ -20,7 +20,7 @@ const Table = props => (
       }) || false}
       rowKey="id"
       bordered={props.bordered}
-      indentSize={10}
+      indentSize={props.indentSize}
       locale={{
         filterConfirm: 'Ok',
         filterReset: 'Reset',
@@ -36,12 +36,14 @@ const Table = props => (
         defaultSortOrder: column.defaultSortOrder,
         className: column.className,
         onCellClick: props.selectable && column.path !== 'action' ? row => props.onSelect(row) : null,
+        align: column.align,
       }))}
       onChange={props.onChange}
       loading={props.fetching}
       expandedRowRender={props.expandableComponent}
       filteredValue={props.filteredValue}
       sortOrder={props.sortOrder}
+      size="small"
     />
     {(!props.pagination && props.showTableCount) && (
       <small>{props.rows.length} registers found.</small>
@@ -66,6 +68,7 @@ Table.propTypes = {
   sortOrder: PropTypes.string,
   bordered: PropTypes.bool,
   showTableCount: PropTypes.bool,
+  indentSize: PropTypes.number,
 };
 
 Table.defaultProps = {
@@ -79,6 +82,7 @@ Table.defaultProps = {
   sortOrder: null,
   bordered: true,
   showTableCount: true,
+  indentSize: 10,
 };
 
 export default Table;

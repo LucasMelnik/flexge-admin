@@ -6,6 +6,7 @@ import UnitImageListFilter from './UnitImageListFilter';
 const UnitImageListFilterContainer = () => (
   <UnitImageListFilter
     values={UnitImageRecordListService.form.getValues()}
+    errors={UnitImageRecordListService.form.errors}
     onChange={UnitImageRecordListService.form.setValue}
     onSearch={UnitImageRecordListService.load}
     fetching={UnitImageRecordListService.fetch.fetching}

@@ -88,8 +88,12 @@ h1, h2, h3, h4, h5 {
   border-color: #26c3a4;
 }
 
-.ant-btn:focus, .ant-btn:hover {
+.ant-btn.ant-btn-default:hover {
   color: #26c3a4;
+  border-color: #26c3a4;
+}
+.ant-btn:focus, .ant-btn:hover {
+  color: #fff;
   border-color: #26c3a4;
 }
 .ant-switch-checked {
@@ -112,4 +116,16 @@ h1, h2, h3, h4, h5 {
 
 .ant-table-thead > tr > th {
   color: rgb(103, 106, 108) !important;
+}
+
+#performance-goals-card > .ant-card > div > .ant-card-head > .ant-card-head-wrapper > .ant-card-head-title {
+  font-size: 26px !important;
+}
+
+.ant-table-tbody>tr>td, .ant-table-thead>tr>th {
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.ant-table {
+  font-size: 13px;
 }

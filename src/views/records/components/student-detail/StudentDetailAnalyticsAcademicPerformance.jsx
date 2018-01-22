@@ -5,7 +5,7 @@ import Async from '../../../../core/layout/Async';
 import CircularProgress from '../../../../core/layout/CircularProgress';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 
-const StudentDetailAnalyticsAcademicPerformance = props => (
+const StudentDetailAnalyticsAcademicPerformance = props => props.currentPerformance ? (
   <Async fetching={props.loading}>
     <div
       style={{
@@ -22,7 +22,7 @@ const StudentDetailAnalyticsAcademicPerformance = props => (
         max={100}
         successCondition={value => value >= 85}
         badCondition={value => value < 70}
-        valueRender={value => `${value}%`}
+        valueRender={value => `${value}`}
       />
       <ColumnSeparator size="lg" />
       <ColumnSeparator size="lg" />
@@ -31,11 +31,11 @@ const StudentDetailAnalyticsAcademicPerformance = props => (
         tooltip="Average score of Speech Recognition"
         fetching={props.loading}
         noDataText="No data"
-        value={props.currentPerformance.averageMasteryTestScore && round(props.currentPerformance.averageMasteryTestScore)}
+        value={props.currentPerformance.averageSpeechRecognitionScore && round(props.currentPerformance.averageSpeechRecognitionScore)}
         max={100}
-        successCondition={value => value >= 85}
-        badCondition={value => value < 75}
-        valueRender={value => `${value}%`}
+        successCondition={value => value >= 90}
+        badCondition={value => value < 80}
+        valueRender={value => `${value}`}
       />
       <ColumnSeparator size="lg" />
       <ColumnSeparator size="lg" />
@@ -48,16 +48,17 @@ const StudentDetailAnalyticsAcademicPerformance = props => (
         max={100}
         successCondition={value => value >= 90}
         badCondition={value => value < 80}
-        valueRender={value => `${value}%`}
+        valueRender={value => `${value}`}
       />
     </div>
   </Async>
-);
+) : null;
 
 StudentDetailAnalyticsAcademicPerformance.propTypes = {
   loading: PropTypes.bool.isRequired,
   currentPerformance: PropTypes.shape({
     averageMasteryTestScore: PropTypes.number,
+    averageSpeechRecognitionScore: PropTypes.number,
     averageUnitScore: PropTypes.number,
   }).isRequired,
 };

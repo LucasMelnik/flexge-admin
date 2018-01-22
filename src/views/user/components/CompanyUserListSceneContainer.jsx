@@ -6,8 +6,14 @@ import CompanyUserListScene from './CompanyUserListScene';
 
 class CompanyUserListSceneContainer extends Component {
 
+  roles = [];
   componentDidMount() {
     CompanyListService.load();
+    if (localStorage.role === 'SCHOOL_MANAGER') {
+      this.roles = ['TEACHER', 'SCHOOL_MANAGER'];
+    } else {
+      this.roles = ['COMPANY_MANAGER', 'TEACHER', 'SCHOOL_MANAGER'];
+    }
   }
 
   render() {
@@ -15,6 +21,7 @@ class CompanyUserListSceneContainer extends Component {
       <CompanyUserListScene
         companies={toJS(CompanyListService.filteredCompanies)}
         fetching={CompanyListService.fetch.fetching}
+        roles={this.roles}
       />
     );
   }

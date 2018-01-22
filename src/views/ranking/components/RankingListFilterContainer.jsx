@@ -1,16 +1,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import RankingListFilter from './RankingListFilter';
-import RankingListService from '../services/RankingListService';
+import RankingListFilterService from '../services/RankingListFilterService';
 
 const RankingListFilterContainer = () => (
   <RankingListFilter
-    value={RankingListService.schoolId || ''}
-    onChange={RankingListService.handleFilterChange}
-    disabled={
-      RankingListService.fetchRegional.fetching ||
-      RankingListService.fetchNational.fetching
-    }
+    value={RankingListFilterService.schoolId || ''}
+    onChange={RankingListFilterService.handleFilterChange}
   />
 );
 

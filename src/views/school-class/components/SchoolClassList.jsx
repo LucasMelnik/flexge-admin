@@ -10,12 +10,12 @@ const SchoolClassList = props => (
     fetching={props.fetching}
     columns={[
       {
-        label: 'Name',
-        path: 'name',
-      },
-      {
         label: 'School',
         path: 'school.name',
+      },
+      {
+        label: 'Class',
+        path: 'name',
       },
       {
         label: 'Teacher',
@@ -39,21 +39,19 @@ const SchoolClassList = props => (
         label: 'Actions',
         path: 'action',
         width: '105px',
-        render: (cell, row) => {
-          return (
-            <div>
-              <Button
-                icon="delete"
-                onClick={() => props.onDelete(row)}
-              />
-              {' '}
-              <Button
-                icon="edit"
-                onClick={() => browserHistory.push(`${props.baseUrl}/classes/${row.id}`)}
-              />
-            </div>
-          );
-        },
+        render: (cell, row) => localStorage.role !== 'TEACHER' && (
+          <div>
+            <Button
+              icon="delete"
+              onClick={() => props.onDelete(row)}
+            />
+            {' '}
+            <Button
+              icon="edit"
+              onClick={() => browserHistory.push(`${props.baseUrl}/classes/${row.id}`)}
+            />
+          </div>
+        ),
       },
     ]}
     rows={props.classes}

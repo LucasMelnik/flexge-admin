@@ -20,6 +20,10 @@ export default class ModuleFormService {
       academicPlan: [isRequired],
       group: [isRequired],
       order: [isRequired],
+      readingPoints: [isRequired],
+      listeningPoints: [isRequired],
+      speakingPoints: [isRequired],
+      writingPoints: [isRequired],
     };
   }
 

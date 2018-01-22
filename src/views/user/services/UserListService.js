@@ -30,7 +30,7 @@ class UserListService {
       if (this.fetch.data) {
         this.users = this.fetch.data.map(user => ({
           ...user,
-          role: capitalize(user.role.replace('_', ' ')),
+          role: capitalize(user.role.replace(/_/g, ' ')),
         }));
       } else {
         this.users = [];

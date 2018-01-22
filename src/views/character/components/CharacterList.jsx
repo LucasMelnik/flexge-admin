@@ -19,6 +19,12 @@ const CharacterList = props => (
         path: 'description',
       },
       {
+        label: 'Enable for Random',
+        path: 'enableForRandom',
+        render: value => value ? 'Yes' : 'No',
+        width: '180px',
+      },
+      {
         label: 'Actions',
         path: 'action',
         width: '105px',

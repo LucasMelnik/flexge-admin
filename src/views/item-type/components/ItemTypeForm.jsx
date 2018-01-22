@@ -35,7 +35,7 @@ const ItemTypeForm = props => (
           errorText={get(props.errors, 'key', null)}
         />
       </Column>
-      <Column size={3}>
+      <Column size={2}>
         <Select
           disabled={props.submitting}
           label="Allowed for Placement"
@@ -47,7 +47,7 @@ const ItemTypeForm = props => (
           ]}
         />
       </Column>
-      <Column size={3}>
+      <Column size={2}>
         <Select
           disabled={props.submitting}
           label="Allowed for Mastery"
@@ -56,6 +56,21 @@ const ItemTypeForm = props => (
           options={[
             { value: false, label: 'No' },
             { value: true, label: 'Yes' },
+          ]}
+        />
+      </Column>
+      <Column size={2}>
+        <Select
+          multiple
+          disabled={props.submitting}
+          label="Allowed for Certification Ability"
+          value={get(props.values, 'allowedForCertificationTest', [])}
+          onChange={value => props.onChange('allowedForCertificationTest', value)}
+          options={[
+            { value: 'READING', label: 'Reading' },
+            { value: 'WRITING', label: 'Writing' },
+            { value: 'SPEAKING', label: 'Speaking' },
+            { value: 'LISTENING', label: 'Listening' },
           ]}
         />
       </Column>

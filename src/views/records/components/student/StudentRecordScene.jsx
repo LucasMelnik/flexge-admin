@@ -4,7 +4,11 @@ import Card from '../../../../core/layout/Card';
 import Breadcrumb from '../../../../core/layout/Breadcrumb';
 import StudentRecordListContainer from './StudentRecordListContainer';
 import Separator from '../../../../core/layout/Separator';
+import Tabs from '../../../../core/layout/Tabs';
 import GrammarNeedsListContainer from '../common/GrammarNeedsListContainer';
+import StudentRecordPerformance from './StudentRecordPerformance';
+import GrammarAnalysisListContainer from './GrammarAnalysisListContainer';
+import StudentGradeListContainer from './StudentGradeListContainer';
 
 const StudentRecordScene = props => (
   <div>
@@ -16,33 +20,80 @@ const StudentRecordScene = props => (
           link: '/records/filters',
         },
         {
-          text: `School - ${props.school.name}`,
+          text: props.school.name,
           link: `/records/schools/${props.school.id}/classes`,
         },
         {
-          text: `Class - ${props.class.name}`,
+          text: props.class.name,
         },
       ]}
     />
-    <Card
-      title="Students Grammar Needs"
-      fetching={props.fetching}
-    >
-      <GrammarNeedsListContainer
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
-    </Card>
-    <Separator />
-    <Card
-      title="Students Records"
-      fetching={props.fetching}
-    >
-      <StudentRecordListContainer
-        schoolId={props.schoolId}
-        classId={props.classId}
-      />
-    </Card>
+    <Tabs
+      tabs={[
+        {
+          title: 'Analytics',
+          content: (
+            <div>
+              <Card title="Performance Goals">
+                <StudentRecordPerformance
+                  schoolId={props.schoolId}
+                  classId={props.classId}
+                />
+              </Card>
+              <Separator />
+              <Card
+                title="Grammar Needs"
+                fetching={props.fetching}
+              >
+                <GrammarNeedsListContainer
+                  schoolId={props.schoolId}
+                  classId={props.classId}
+                />
+              </Card>
+            </div>
+          ),
+        },
+        {
+          title: 'Students Records',
+          content: (
+            <Card
+              fetching={props.fetching}
+            >
+              <StudentRecordListContainer
+                schoolId={props.schoolId}
+                classId={props.classId}
+              />
+            </Card>
+          ),
+        },
+        {
+          title: 'Students Grades',
+          content: (
+            <Card
+              fetching={props.fetching}
+            >
+              <StudentGradeListContainer
+                schoolId={props.schoolId}
+                classId={props.classId}
+              />
+            </Card>
+          ),
+        },
+        {
+          title: 'Grammar Analysis - last 60 days',
+          content: (
+            <Card
+              fetching={props.fetching}
+            >
+              <GrammarAnalysisListContainer
+                schoolId={props.schoolId}
+                classId={props.classId}
+              />
+            </Card>
+          ),
+        },
+      ]}
+    />
   </div>
 );
 
@@ -51,12 +102,12 @@ StudentRecordScene.propTypes = {
   classId: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   school: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    name: PropTypes.string,
   }),
   class: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    name: PropTypes.string,
   }),
 };
 

@@ -13,12 +13,12 @@ const WeeklyStudyQualityChart = props => (
   >
     <LineChart
       height={350}
-      labels={range(0, 52).map(week => getLabel(week))}
+      labels={range(1, 53).map(week => getLabel(week))}
       data={range(1, 53).map(week => props.data.find(item => Number(item.id) === week) || {})}
       dataFormat={[
         {
           label: 'Study Quality',
-          valueRender: item => item.averageScore || 0,
+          valueRender: item => item.averageScore ? item.averageScore.toFixed(1) : 0,
         },
       ]}
       yAxes={[{
@@ -33,7 +33,7 @@ const WeeklyStudyQualityChart = props => (
         label: (tooltipItem, data) => {
           const index = findIndex(data.labels, label => label === tooltipItem.xLabel);
           const studyQuality = data.datasets[tooltipItem.datasetIndex].data[index] || 0;
-          return `${data.datasets[tooltipItem.datasetIndex].label}: ${Number(studyQuality).toFixed(2)}`;
+          return `${data.datasets[tooltipItem.datasetIndex].label}: ${studyQuality}`;
         },
       }}
     />

@@ -30,13 +30,19 @@ class SchoolClassFormSceneContainer extends Component {
     }
   }
 
+  getSchoolFromLocalStorage = () => {
+    const school = JSON.parse(localStorage.getItem('school'));
+    school.id = school._id;
+    return school;
+  };
+
   render() {
     return (
       <SchoolClassFormScene
         classId={this.props.params.classId}
         company={this.schoolClassDetailService.company}
         distributor={this.schoolClassDetailService.distributor}
-        school={this.schoolClassDetailService.school}
+        school={localStorage.role === 'SCHOOL_MANAGER' ? this.getSchoolFromLocalStorage() : this.schoolClassDetailService.school}
         fetching={
           this.schoolClassDetailService.fetchDistributor.fetching ||
           this.schoolClassDetailService.fetchCompany.fetching ||

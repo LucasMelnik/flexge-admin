@@ -16,7 +16,7 @@ const DoughnutChart = props => (
       datasets: [{
         fill: true,
         backgroundColor: props.colors.map(color => hexToRgb(color, 0.7)),
-        data: props.data,
+        data: props.data.map(data => data.rate),
       }],
     }}
     options={{
@@ -29,7 +29,7 @@ const DoughnutChart = props => (
         callbacks: props.tooltipsCallbacks || {
           label: (tooltipItem, data) => {
             const rate = data.datasets[0].data[tooltipItem.index] || 0;
-            return `${data.labels[tooltipItem.index]}: ${rate}%`;
+            return `${data.labels[tooltipItem.index]}: ${rate.toFixed(1)}% (${props.data[tooltipItem.index].value} students)`;
           },
         },
       },
@@ -39,13 +39,14 @@ const DoughnutChart = props => (
 
 DoughnutChart.propTypes = {
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
-  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({})),
   colors: PropTypes.arrayOf(PropTypes.string).isRequired,
   tooltipsCallbacks: PropTypes.object,
 };
 
 DoughnutChart.defaultProps = {
   tooltipsCallbacks: null,
+  data: [],
 };
 
 export default DoughnutChart;

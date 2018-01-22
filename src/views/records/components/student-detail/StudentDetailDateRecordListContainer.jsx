@@ -4,6 +4,7 @@ import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import StudentDetailDateRecordList from './StudentDetailDateRecordList';
 import StudentRecordDetailService from '../../services/StudentRecordDetailService';
+import StudentRecordDetailUnitResultDialogService from '../../services/StudentRecordDetailUnitResultDialogService';
 
 class StudentDetailDateRecordListContainer extends Component {
 
@@ -12,14 +13,15 @@ class StudentDetailDateRecordListContainer extends Component {
   };
 
   componentDidMount() {
-    StudentRecordDetailService.init(this.props.studentId);
+    StudentRecordDetailService.loadByDates(this.props.studentId);
   }
 
   render() {
     return (
       <StudentDetailDateRecordList
         contents={toJS(StudentRecordDetailService.contents)}
-        fetching={StudentRecordDetailService.fetch.fetching}
+        fetching={StudentRecordDetailService.fetchDates.fetching}
+        onDetailUnitResult={StudentRecordDetailUnitResultDialogService.handleShow}
       />
     );
   }

@@ -60,6 +60,7 @@ class StudentListService {
       url: '/students',
       query: {
         query: {
+          removedAt: null,
           ...this.form.getValue('name') && {
             name: {
               $regex: this.form.getValue('name'),
@@ -120,16 +121,46 @@ class StudentListService {
       student.name.toLowerCase().search(value.toLowerCase()) !== -1);
   });
 
+  handleDisable = action((student) => {
+    ConfirmationDialogService.show(
+      'Delete Student',
+      `You are about to disable the student "${student.name}", Do you want to continue ?`,
+      () => {
+        this.fetch.fetch({
+          url: this.schoolId && this.classId ? `/schools/${this.schoolId}/classes/${this.classId}/students/${student.id}` : `/students/${student.id}`,
+          method: 'delete',
+        }).then(() => {
+          NotificationService.addNotification('Student disabled', 'success');
+          this.load();
+        });
+      });
+  });
+
   handleRemove = action((student) => {
     ConfirmationDialogService.show(
       'Delete Student',
-      `You are about to delete the student "${student.name}", Do you want to continue ?`,
+      `You are about to remove the student "${student.name}", Do you want to continue ?`,
       () => {
         this.fetch.fetch({
-          url: `/students/${student.id}`,
-          method: 'delete',
+          url: this.schoolId && this.classId ? `/schools/${this.schoolId}/classes/${this.classId}/students/${student.id}/remove` : `/students/${student.id}/remove`,
+          method: 'post',
         }).then(() => {
-          NotificationService.addNotification('Student deleted', 'success');
+          NotificationService.addNotification('Student removed', 'success');
+          this.load();
+        });
+      });
+  });
+
+  handleSendWelcomeEmail= action((student) => {
+    ConfirmationDialogService.show(
+      'Send Welcome Email',
+      `You are about to send welcome to "${student.name}", Do you want to continue ?`,
+      () => {
+        this.fetch.fetch({
+          url: `/students/${student.id}/welcome-email`,
+          method: 'post',
+        }).then(() => {
+          NotificationService.addNotification('Email sent.', 'success');
           this.load();
         });
       });

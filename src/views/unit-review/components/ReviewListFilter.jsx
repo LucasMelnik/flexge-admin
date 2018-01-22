@@ -13,6 +13,7 @@ const ReviewListFilter = props => (
     <Row>
       <Column size={2}>
         <Select
+          disabled={props.fetching}
           options={['NOT_SENT_TO_REVIEW', 'APPROVED', 'NOT_APPROVED', 'PENDING_REVIEW'].map(value => ({
             value,
             label: value.replace('_', ' '),
@@ -24,6 +25,7 @@ const ReviewListFilter = props => (
       </Column>
       <Column size={2}>
         <Select
+          disabled={props.fetching}
           options={['PENDING', 'APPROVED', 'NOT_APPROVED', 'PENDING_REVIEW'].map(value => ({
             value,
             label: value.replace('_', ' '),
@@ -35,6 +37,7 @@ const ReviewListFilter = props => (
       </Column>
       <Column size={2}>
         <Select
+          disabled={props.fetching}
           options={['NOT SENT TO REVIEW', 'PENDING', 'REVIEWED', 'DONE'].map(value => ({
             value,
             label: value,
@@ -57,8 +60,10 @@ const ReviewListFilter = props => (
           }}
         />
       </Column>
-      <Column size={2}>
-        <PermissionValidator allowedFor={['ADMIN']}>
+    </Row>
+    <PermissionValidator allowedFor={['ADMIN']}>
+      <Row>
+        <Column size={3}>
           <FetchSelect
             url="/users?query[role]=CONTENT_ADMIN"
             label="Unit Creator"
@@ -70,10 +75,24 @@ const ReviewListFilter = props => (
               value: 'id',
             }}
           />
-        </PermissionValidator>
-      </Column>
-      <Column size={2}>
-        <div style={{ height: 33 }} />
+        </Column>
+        <Column size={3}>
+          <FetchSelect
+            url="/users?query[role]=CONTENT_ADMIN"
+            label="Unit Reviewer"
+            disabled={props.fetching}
+            value={get(props.values, 'reviewedBy', '')}
+            onChange={value => props.onChange('reviewedBy', value)}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </Column>
+      </Row>
+    </PermissionValidator>
+    <Row>
+      <Column size={12}>
         <Button
           label="Search"
           icon="search"
@@ -81,11 +100,6 @@ const ReviewListFilter = props => (
         />
       </Column>
     </Row>
-    {props.errors && (
-      <div style={{ color: 'red', textAlign: 'right' }}>
-        Inform at least one filter
-      </div>
-    )}
   </div>
 );
 
@@ -94,13 +108,11 @@ ReviewListFilter.propTypes = {
   onChange: PropTypes.func.isRequired,
   fetching: PropTypes.bool,
   onSearch: PropTypes.func,
-  errors: PropTypes.object,
 };
 
 ReviewListFilter.defaultProps = {
   fetching: false,
   onSearch: null,
-  errors: null,
 };
 
 export default ReviewListFilter;

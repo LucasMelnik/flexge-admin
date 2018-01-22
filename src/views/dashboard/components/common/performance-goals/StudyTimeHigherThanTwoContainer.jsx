@@ -1,24 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import StudiedTimeGroupService from '../../../services/StudiedTimeGroupService';
-import CircularProgress from '../../../../../core/layout/CircularProgress';
+import StudyTimeHigherThanTwoGauge from '../../../../../core/chart/StudyTimeHigherThanTwoGauge';
 
-const StudyTimeHigherThanTwoContainer = () => {
-  const school = JSON.parse(localStorage.getItem('school'));
-  return (
-    <CircularProgress
-      fetching={StudiedTimeGroupService.fetch.fetching}
-      noDataText="No students found"
-      title={`${school ? school.weeklyHoursRequired : 2} hours last 7 days`}
-      tooltip={`Students which studied at least ${school ? school.weeklyHoursRequired : 2} hours last 7 days`}
-      value={StudiedTimeGroupService.higherThanTwo}
-      max={100}
-      successCondition={value => value > 50}
-      badCondition={value => value <= 35}
-      valueRender={value => `${value}%`}
-      legend={localStorage.role === 'TEACHER' && `School average ${StudiedTimeGroupService.higherThanTwoSchoolAverage}%`}
-    />
-  );
-};
+class StudyTimeHigherThanTwoContainer extends Component {
+  school = JSON.parse(localStorage.getItem('school'));
+
+  static propTypes = {
+    schoolId: PropTypes.string,
+    classId: PropTypes.string,
+  };
+
+  static defaultProps = {
+    schoolId: null,
+    classId: null,
+  };
+
+  componentWillMount() {
+    StudiedTimeGroupService.init(this.props.schoolId, this.props.classId);
+  }
+
+  getValue = (value) => {
+    if (value !== null && value !== undefined) {
+      return Number((value * 100).toFixed(0));
+    }
+    return null;
+  }
+
+  render() {
+    return (
+      <StudyTimeHigherThanTwoGauge
+        fetching={StudiedTimeGroupService.fetch.fetching}
+        value={this.getValue(StudiedTimeGroupService.higherThanTwo)}
+        schoolAverage={this.getValue(StudiedTimeGroupService.higherThanTwoSchoolAverage)}
+        weeklyHoursRequired={this.school ? this.school.weeklyHoursRequired : 2}
+      />
+    );
+  }
+}
 
 export default observer(StudyTimeHigherThanTwoContainer);

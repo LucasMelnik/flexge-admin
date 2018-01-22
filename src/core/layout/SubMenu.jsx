@@ -26,7 +26,7 @@ const SubMenu = props => (
               .filter(item => item.group === group.group)
               .map(item => (
                 <MenuItem
-                  key={item.label}
+                  key={item.link}
                   link={item.link}
                   title={item.label}
                   icon={item.icon}
@@ -38,7 +38,7 @@ const SubMenu = props => (
         </PermissionValidator>
       )) : props.items.map(item => (
         <MenuItem
-          key={item.label}
+          key={item.link}
           link={item.link}
           title={item.label}
           icon={item.icon}
