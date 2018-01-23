@@ -110,6 +110,7 @@ const ModuleForm = props => (
           onChange={value => props.onChange('educationGoal', value)}
           errorText={get(props.errors, 'educationGoal', '')}
           fieldType="textarea"
+          textAreaRows="8"
         />
       </Column>
     </Row>
