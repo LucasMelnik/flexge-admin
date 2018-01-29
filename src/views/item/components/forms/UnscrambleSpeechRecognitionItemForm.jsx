@@ -5,6 +5,7 @@ import TranslationInputContainer from '../inputs/TranslationInputContainer';
 import AnswersInputContainer from '../inputs/AnswersInputContainer';
 import SlicesInputContainer from '../inputs/SlicesInputContainer';
 import Audios from '../inputs/Audios';
+import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
 
 const UnscrambleSpeechRecognitionItemForm = props => (
   <div>
@@ -15,6 +16,12 @@ const UnscrambleSpeechRecognitionItemForm = props => (
       errors={props.errors}
       disabled={props.disabled}
       isTestItem={props.isTestItem}
+    />
+    <SpellCheckInputContainer
+      onChange={props.onChange}
+      submitting={props.submitting}
+      values={props.values}
+      disabled={props.disabled}
     />
     <Audios values={props.values} />
     <SlicesInputContainer
@@ -33,6 +40,7 @@ const UnscrambleSpeechRecognitionItemForm = props => (
       onChange={answers => props.onChange('answers', answers)}
       errorText={get(props.errors, 'answers', '')}
       disabled={props.disabled}
+      allowSpellCheck
     />
   </div>
 );

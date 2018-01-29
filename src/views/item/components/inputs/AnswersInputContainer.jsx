@@ -11,6 +11,7 @@ class AnswersInputContainer extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
+    allowSpellCheck: PropTypes.bool,
     answerType: PropTypes.oneOf([
       'CORRECT',
       'WRONG',
@@ -35,6 +36,7 @@ class AnswersInputContainer extends Component {
     errorText: null,
     type: null,
     disabled: false,
+    allowSpellCheck: false,
     value: [],
   };
 
@@ -154,6 +156,7 @@ class AnswersInputContainer extends Component {
         label={this.props.label}
         type={this.props.type}
         disabled={this.props.disabled}
+        allowSpellCheck={this.props.allowSpellCheck}
       />
     );
   }
