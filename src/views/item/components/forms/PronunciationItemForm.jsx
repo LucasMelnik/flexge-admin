@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
 import TranslationInputContainer from '../inputs/TranslationInputContainer';
-import AudioPreview from '../../../../core/layout/AudioPreview';
+import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
+import Audios from '../inputs/Audios';
 
 const PronunciationItemForm = props => (
   <div>
@@ -14,12 +14,13 @@ const PronunciationItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    {get(props.values, 'generatedAudio', null) && (
-      <div>
-        <p>Generated Audio</p>
-        <AudioPreview src={get(props.values, 'generatedAudio', '')} />
-      </div>
-    )}
+    <SpellCheckInputContainer
+      onChange={props.onChange}
+      submitting={props.submitting}
+      values={props.values}
+      disabled={props.disabled}
+    />
+    <Audios values={props.values} />
   </div>
 );
 

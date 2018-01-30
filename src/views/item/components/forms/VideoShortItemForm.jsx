@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import VideoInputContainer from '../inputs/VideoInputContainer';
 import TranslationInputContainer from '../inputs/TranslationInputContainer';
 import TextInput from '../../../../core/form/TextInput';
+import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
 
 const VideoShortItemForm = props => (
   <div>
@@ -21,6 +22,12 @@ const VideoShortItemForm = props => (
       submitting={props.submitting}
       disabled={props.disabled}
       isTestItem={props.isTestItem}
+    />
+    <SpellCheckInputContainer
+      onChange={props.onChange}
+      submitting={props.submitting}
+      values={props.values}
+      disabled={props.disabled}
     />
     <VideoInputContainer
       onChange={props.onChange}
