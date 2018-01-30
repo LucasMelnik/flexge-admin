@@ -5,6 +5,7 @@ import TranslationContainer from '../inputs/TranslationInputContainer';
 import AnswersContainer from '../inputs/AnswersInputContainer';
 import SlicesInputContainer from '../inputs/SlicesInputContainer';
 import Audios from '../inputs/Audios';
+import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
 
 const GapFillItemForm = props => (
   <div>
@@ -15,6 +16,12 @@ const GapFillItemForm = props => (
       errors={props.errors}
       disabled={props.disabled}
       isTestItem={props.isTestItem}
+    />
+    <SpellCheckInputContainer
+      onChange={props.onChange}
+      submitting={props.submitting}
+      values={props.values}
+      disabled={props.disabled}
     />
     <Audios values={props.values} />
     <SlicesInputContainer
