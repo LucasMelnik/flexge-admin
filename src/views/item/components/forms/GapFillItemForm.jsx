@@ -34,6 +34,7 @@ const GapFillItemForm = props => (
       onChange={answers => props.onChange('answers', answers)}
       errorText={get(props.errors, 'answers', '')}
       disabled={props.disabled}
+      allowSpellCheck
     />
   </div>
 );

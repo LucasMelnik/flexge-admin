@@ -12,6 +12,7 @@ import Table from '../../../../core/form/Table';
 import AudioPreview from '../../../../core/layout/AudioPreview';
 import ImagePreview from '../../../../core/layout/ImagePreview';
 import ErrorText from '../../../../core/layout/ErrorText';
+import SpellCheckInputContainer from './SpellCheckInputContainer';
 
 const AnswersInput = props => (
   <div>
@@ -65,6 +66,13 @@ const AnswersInput = props => (
           </div>
         </Column>
       </Row>
+    )}
+    {(!props.disabled && props.allowSpellCheck) && (
+      <SpellCheckInputContainer
+        onChange={props.onChange}
+        values={props.values}
+        disabled={props.disabled}
+      />
     )}
     {!props.disabled && (
       <Row>
@@ -178,6 +186,7 @@ AnswersInput.propTypes = {
     'BOTH',
   ]).isRequired,
   disabled: PropTypes.bool,
+  allowSpellCheck: PropTypes.bool,
   label: PropTypes.string.isRequired,
   type: PropTypes.oneOf(
     [
@@ -204,6 +213,7 @@ AnswersInput.defaultProps = {
   errorText: null,
   type: null,
   disabled: false,
+  allowSpellCheck: false,
 };
 
 export default AnswersInput;
