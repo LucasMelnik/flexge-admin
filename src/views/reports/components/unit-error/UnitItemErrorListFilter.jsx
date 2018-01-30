@@ -98,6 +98,18 @@ const UnitItemErrorListFilter = props => (
             label: 'START_LOWER_CASE_TRANSLATION',
             value: 'START_LOWER_CASE_TRANSLATION',
           },
+          {
+            label: 'NO_NATIVE_AUDIO',
+            value: 'NO_NATIVE_AUDIO',
+          },
+          {
+            label: 'NO_NATIVE_ANSWER_AUDIO',
+            value: 'NO_NATIVE_ANSWER_AUDIO',
+          },
+          {
+            label: 'SPEECH_ACE_ERROR',
+            value: 'SPEECH_ACE_ERROR',
+          },
         ]}
       />
     </Column>
