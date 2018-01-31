@@ -54,6 +54,7 @@ class ReviewListService {
       url: '/reviews',
       query: {
         course: this.formMyReviews.getValue('course'),
+        module: this.formMyReviews.getValue('module'),
         status: this.formMyReviews.getValue('status'),
         statusImage: this.formMyReviews.getValue('statusImage'),
         statusFormat: this.formMyReviews.getValue('statusFormat'),
@@ -95,6 +96,7 @@ class ReviewListService {
       url: '/reviews',
       query: {
         course: this.formAllReviews.getValue('course'),
+        module: this.formMyReviews.getValue('module'),
         status: this.formAllReviews.getValue('status'),
         statusFormat: this.formAllReviews.getValue('statusFormat'),
         ...(localStorage.role === 'ADMIN' && this.formAllReviews.getValue('createdBy')) && {

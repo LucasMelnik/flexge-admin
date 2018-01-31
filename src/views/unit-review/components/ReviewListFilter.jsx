@@ -60,6 +60,21 @@ const ReviewListFilter = props => (
           }}
         />
       </Column>
+      {get(props.values, 'course', undefined) && (
+        <Column size={2}>
+          <FetchSelect
+            url={`/modules?query[course]=${get(props.values, 'course', '')}`}
+            label="Modules"
+            disabled={props.fetching}
+            value={get(props.values, 'module', '')}
+            onChange={value => props.onChange('module', value)}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </Column>
+      )}
     </Row>
     <PermissionValidator allowedFor={['ADMIN']}>
       <Row>
