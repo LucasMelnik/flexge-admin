@@ -210,6 +210,13 @@ const MainScene = props => (
               allowedFor: ['ADMIN'],
             },
             {
+              label: 'Items By Words',
+              link: '/items-by-words',
+              group: 'Reports',
+              icon: 'file-text',
+              allowedFor: ['ADMIN'],
+            },
+            {
               label: 'Unit Items Execution Stats',
               link: '/unit-items-execution-stats',
               group: 'Reports',
