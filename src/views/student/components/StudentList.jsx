@@ -66,10 +66,17 @@ const StudentList = props => (
             {props.editable && (
               <span>
                 {row.deleted ? (
-                  <Button
-                    icon="close"
-                    onClick={() => props.onRemove(row)}
-                  />
+                  <span>
+                    <Button
+                      icon="close"
+                      onClick={() => props.onRemove(row)}
+                    />
+                    {' '}
+                    <Button
+                      icon="check"
+                      onClick={() => props.onRestore(row)}
+                    />
+                  </span>
                 ) : (
                   <span>
                     <Button
@@ -138,6 +145,7 @@ StudentList.propTypes = {
   onDisable: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
   onSendWelcomeEmail: PropTypes.func.isRequired,
+  onRestore: PropTypes.func.isRequired,
   onSelect: PropTypes.func,
   hasSchoolClass: PropTypes.bool.isRequired,
 };

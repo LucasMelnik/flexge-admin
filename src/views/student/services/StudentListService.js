@@ -151,6 +151,21 @@ class StudentListService {
       });
   });
 
+  handleRestore = action((student) => {
+    ConfirmationDialogService.show(
+      'Enable Student',
+      `You are about to enable the student "${student.name}", Do you want to continue ?`,
+      () => {
+        this.fetch.fetch({
+          url: `/schools/${this.schoolId}/classes/${this.classId}/students/${student.id}/restore`,
+          method: 'post',
+        }).then(() => {
+          NotificationService.addNotification('Student enable.', 'success');
+          this.load();
+        });
+      });
+  });
+
   handleSendWelcomeEmail= action((student) => {
     ConfirmationDialogService.show(
       'Send Welcome Email',
