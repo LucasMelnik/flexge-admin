@@ -87,6 +87,7 @@ import CertificationTestExecutionFormScene from './views/certification-test-exec
 import CertificationTestExecutionDetailScene from './views/certification-test-execution/components/CertificationTestExecutionDetailScene';
 import EmailConfigFormSceneContainer from './views/email-config/components/EmailConfigFormSceneContainer';
 import UnitItemExecutionStatsListScene from './views/reports/components/unit-execution-stats/UnitItemExecutionStatsListScene';
+import ItemByWordsListScene from './views/reports/components/item-by-words/ItemByWordsListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -215,6 +216,7 @@ const Routes = () => (
       <Route path="certification-test-register/new" component={CertificationTestRegisterFormScene} />
       <Route path="certification-test-register/:certificationTestId" component={CertificationTestRegisterFormScene} />
       <Route path="unit-items-execution-stats" component={UnitItemExecutionStatsListScene} />
+      <Route path="items-by-words" component={ItemByWordsListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
