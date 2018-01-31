@@ -96,6 +96,7 @@ class ReviewListService {
       url: '/reviews',
       query: {
         course: this.formAllReviews.getValue('course'),
+        module: this.formMyReviews.getValue('module'),
         status: this.formAllReviews.getValue('status'),
         statusFormat: this.formAllReviews.getValue('statusFormat'),
         ...(localStorage.role === 'ADMIN' && this.formAllReviews.getValue('createdBy')) && {
