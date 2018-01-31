@@ -37,6 +37,7 @@ class StudentListContainer extends Component {
         onDisable={StudentListService.handleDisable}
         onRemove={StudentListService.handleRemove}
         onSendWelcomeEmail={StudentListService.handleSendWelcomeEmail}
+        onRestore={StudentListService.handleRestore}
         editable={this.props.editable}
         onSelect={this.props.onSelect}
         baseUrl={this.props.baseUrl}
