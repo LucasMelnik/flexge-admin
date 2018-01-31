@@ -52,7 +52,7 @@ const MyReviewList = props => (
           label: 'Status Content',
           path: 'review.status',
           sort: true,
-          width: '140px',
+          width: '115px',
           render: (cell, row) => (
             <StatusItem
               color={{
@@ -70,7 +70,7 @@ const MyReviewList = props => (
           label: 'Status format',
           path: 'review.statusFormat',
           sort: true,
-          width: '140px',
+          width: '115px',
           render: (cell,row) => (
             <StatusItem
               color={{
@@ -88,7 +88,7 @@ const MyReviewList = props => (
           label: 'Status image',
           path: 'review.statusImage',
           sort: true,
-          width: '140px',
+          width: '115px',
           render: (cell, row) => {
             if (row.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))) {
               return (
@@ -110,7 +110,7 @@ const MyReviewList = props => (
           label: 'Final Status',
           path: 'review.finalStatus',
           sort: true,
-          width: '140px',
+          width: '115px',
           render: (cell, row) => (
             <StatusItem
               color={{
@@ -125,7 +125,7 @@ const MyReviewList = props => (
         {
           label: 'Actions',
           path: 'action',
-          width: localStorage.role === 'ADMIN' ? '120px' : '70px',
+          width: localStorage.role === 'ADMIN' ? '100px' : '70px',
           render: (cell, row) => {
             if (localStorage.role === 'CONTENT_ADMIN' && !row.review.id) {
               return (
