@@ -41,13 +41,15 @@ class ReviewListService {
     };
   }
 
-  handleMyUnits = action(() => {
+  handleMyUnits = action((backgroundLoad) => {
     this.formMyReviews.setSubmitted();
     if (this.formMyReviews.errors) {
-      NotificationService.addNotification(
-        'Please inform at least one filter',
-        'error',
-      );
+      if (!backgroundLoad) {
+        NotificationService.addNotification(
+          'Please inform at least one filter',
+          'error',
+        );
+      }
       return;
     }
     this.fetch.fetch({
@@ -83,13 +85,15 @@ class ReviewListService {
     });
   });
 
-  handleAllUnits = action(() => {
+  handleAllUnits = action((backgroundLoad) => {
     this.formAllReviews.setSubmitted();
     if (this.formAllReviews.errors) {
-      NotificationService.addNotification(
-        'Please inform at least one filter',
-        'error',
-      );
+      if (!backgroundLoad) {
+        NotificationService.addNotification(
+          'Please inform at least one filter',
+          'error',
+        );
+      }
       return;
     }
     this.fetch.fetch({

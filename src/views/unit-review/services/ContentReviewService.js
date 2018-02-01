@@ -58,8 +58,8 @@ class ContentReviewService {
           },
         }).then((res) => {
           if (res) {
-            ReviewListService.handleMyUnits();
-            ReviewListService.handleAllUnits();
+            ReviewListService.handleMyUnits(true);
+            ReviewListService.handleAllUnits(true);
             NotificationService.addNotification(
               'Review sent successfully.',
               'success',
@@ -90,8 +90,8 @@ class ContentReviewService {
           },
         }).then((res) => {
           if (res) {
-            ReviewListService.handleMyUnits();
-            ReviewListService.handleAllUnits();
+            ReviewListService.handleMyUnits(true);
+            ReviewListService.handleAllUnits(true);
             browserHistory.push('/reviews');
             NotificationService.addNotification(
               'Status changed successfully.',
