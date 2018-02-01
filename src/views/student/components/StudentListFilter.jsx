@@ -10,7 +10,7 @@ import Column from '../../../core/layout/Column';
 const StudentListFilter = props => (
   <div>
     <Row>
-      <Column size={3}>
+      <Column size={2}>
         <TextInput
           label="Name"
           placeholder="Name student"
@@ -19,7 +19,7 @@ const StudentListFilter = props => (
           disabled={props.fetching}
         />
       </Column>
-      <Column size={3}>
+      <Column size={2}>
         <TextInput
           label="Email"
           placeholder="Email student"
@@ -28,22 +28,36 @@ const StudentListFilter = props => (
           disabled={props.fetching}
         />
       </Column>
-      <Column size={4}>
+      <Column size={3}>
         <FetchSelect
           url="/schools"
           label="School"
           disabled={props.fetching}
           value={get(props.values, 'school', '')}
           onChange={school => props.onChange('school', school)}
-          errorText={get(props.errors, 'school', '')}
           resultTransformer={{
             text: 'name',
             value: 'id',
           }}
         />
       </Column>
+      {get(props.values, 'school', undefined) && (
+        <Column size={2}>
+          <FetchSelect
+            url={`/schools/${props.values.school}/classes`}
+            label="Class rooms"
+            disabled={props.fetching}
+            value={get(props.values, 'schoolClass', '')}
+            onChange={school => props.onChange('schoolClass', school)}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </Column>
+      )}
       <Column size={2}>
-        <div style={{ height: 33 }} />
+        <div style={{ height: 32 }} />
         <Button
           icon="search"
           label="Search"
@@ -51,24 +65,17 @@ const StudentListFilter = props => (
         />
       </Column>
     </Row>
-    {props.errors && (
-      <div style={{ color: 'red', textAlign: 'right' }}>
-        Inform at least one filter
-      </div>
-    )}
   </div>
 );
 
 StudentListFilter.propTypes = {
   values: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
-  errors: PropTypes.object,
   fetching: PropTypes.bool,
   onSearch: PropTypes.func.isRequired,
 };
 
 StudentListFilter.defaultProps = {
-  errors: {},
   fetching: false,
 };
 
