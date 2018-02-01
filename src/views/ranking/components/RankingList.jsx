@@ -25,6 +25,21 @@ const RankingList = props => (
         ),
       },
       {
+        label: 'Points',
+        path: 'points',
+        className: 'no-padding-column',
+        render: (value, row) => (
+          <div
+            style={{
+              backgroundColor: row.schoolClass.teacher === localStorage.id ? 'rgba(77, 189, 167, 0.5)' : '#fff',
+              padding: 16,
+            }}
+          >
+            {value}
+          </div>
+        ),
+      },
+      {
         label: 'Student',
         path: 'name',
         sort: true,

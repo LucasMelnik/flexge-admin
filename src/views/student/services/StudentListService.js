@@ -54,6 +54,10 @@ class StudentListService {
   loadAllStudents = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      NotificationService.addNotification(
+        'Please inform at least one filter',
+        'error',
+      );
       return;
     }
     this.fetch.fetch({
@@ -75,6 +79,9 @@ class StudentListService {
           },
           ...this.form.getValue('school') && {
             school: this.form.getValue('school'),
+          },
+          ...this.form.getValue('schoolClass') && {
+            schoolClass: this.form.getValue('schoolClass'),
           },
         },
       },

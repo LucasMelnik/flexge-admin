@@ -53,7 +53,7 @@ const MyReviewList = props => (
           path: 'review.status',
           sort: true,
           width: '115px',
-          render: (cell, row) => (
+          render: (cell, row) => cell && (
             <StatusItem
               color={{
                 PENDING: '#ef8c3b',
@@ -71,7 +71,7 @@ const MyReviewList = props => (
           path: 'review.statusFormat',
           sort: true,
           width: '115px',
-          render: (cell,row) => (
+          render: (cell,row) => cell && (
             <StatusItem
               color={{
                 PENDING: '#ef8c3b',
@@ -111,7 +111,7 @@ const MyReviewList = props => (
           path: 'review.finalStatus',
           sort: true,
           width: '115px',
-          render: (cell, row) => (
+          render: (cell, row) => cell && (
             <StatusItem
               color={{
                 PENDING: '#ef8c3b',
