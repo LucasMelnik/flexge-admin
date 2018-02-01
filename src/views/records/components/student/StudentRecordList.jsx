@@ -21,31 +21,32 @@ const StudentRecordList = props => (
           label: 'Initial Level (PT)',
           path: 'initialEnglishLevel',
           width: '130px',
-          render: value => value ? round(value, 1).toFixed(1) : 'N/A',
+          render: value => value >= 0 ? round(value, 1).toFixed(1) : 'N/A',
         },
         {
           label: 'Current Level',
           path: 'currentEnglishLevel',
           width: '110px',
-          render: value => value ? round(value, 1).toFixed(1) : 'N/A',
+          render: value => value >= 0 ? round(value, 1).toFixed(1) : 'N/A',
         },
         {
           label: 'Study Quality',
           path: 'studyQualityScore',
           width: '110px',
-          render: value => value ? round(value, 1).toFixed(1) : 'N/A',
+          render: value => value != null ? round(value, 1).toFixed(1) : 'N/A',
         },
         {
           label: 'Current Course',
           path: 'course.name',
-          render: (cell, row) => row.initialEnglishLevel ? (
-            <div style={{ display: 'flex', width: 150 }}>
+          width: '200px',
+          render: (cell, row) => row.initialEnglishLevel != null ? (
+            <div style={{ display: 'flex' }}>
               {cell}
               <div
                 style={{
                   display: 'flex',
                   flex: 1,
-                  marginLeft: 5,
+                  marginLeft: 10,
                 }}
               >
                 <LinearProgress
@@ -65,6 +66,7 @@ const StudentRecordList = props => (
         {
           label: 'Last Studied',
           path: 'lastStudy',
+          width: '120px',
           render: (cell, row) => {
             if (row.lastStudy) {
               const now = moment();
@@ -81,7 +83,7 @@ const StudentRecordList = props => (
         },
         {
           label: 'CT Status',
-          width: '80px',
+          width: '90px',
         },
       ]}
       rows={props.students}
@@ -95,9 +97,9 @@ StudentRecordList.propTypes = {
   students: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    lastStudy: PropTypes.string.isRequired,
-    coursePercentage: PropTypes.number.isRequired,
-    totalStudiedTime: PropTypes.number.isRequired,
+    lastStudy: PropTypes.string,
+    coursePercentage: PropTypes.number,
+    totalStudiedTime: PropTypes.number,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onSelect: PropTypes.func.isRequired,
