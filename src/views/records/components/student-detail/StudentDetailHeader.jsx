@@ -34,7 +34,7 @@ const StudentDetailHeader = props => (
           }}
         >
           Study Quality
-          <h2>{props.student.studyQuality ? props.student.studyQuality.score.toFixed(1) : 'not available yet'}</h2>
+          <h2>{(props.student.studyQuality && props.student.studyQuality.score) ? props.student.studyQuality.score.toFixed(1) : 'not available yet'}</h2>
         </div>
       </Column>
       <Column size={2}>
