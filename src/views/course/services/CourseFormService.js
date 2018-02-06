@@ -15,7 +15,6 @@ export default class CourseFormService {
     });
     this.form.validations = {
       name: [isRequired],
-      description: [isRequired],
     };
   }
 

@@ -17,6 +17,7 @@ class ConfigurationFormService {
       percentageToEnableNextModuleGroup: [isRequired],
       percentageToEnableNextUnitGroup: [isRequired],
       pointsToIncreaseAfterTestFailure: [isRequired],
+      pointsToIncreaseAfterCertificationTestFailure: [isRequired],
       videoUrl: [isRequired],
       scoreToPassOfSpeechRecognition: [isRequired],
     };

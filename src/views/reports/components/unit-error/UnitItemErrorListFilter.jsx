@@ -110,6 +110,10 @@ const UnitItemErrorListFilter = props => (
             label: 'SPEECH_ACE_ERROR',
             value: 'SPEECH_ACE_ERROR',
           },
+          {
+            label: 'NO_IMAGE',
+            value: 'NO_IMAGE',
+          },
         ]}
       />
     </Column>
