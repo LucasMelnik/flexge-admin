@@ -15,9 +15,10 @@ const ConfigurationForm = props => (
     }}
   >
     <Row>
-      <Column size={4}>
+      <Column size={3}>
         <TextInput
           type="number"
+          required
           disabled={props.submitting}
           label="Points to increase after test failure"
           value={get(props.values, 'pointsToIncreaseAfterTestFailure', '')}
@@ -25,7 +26,18 @@ const ConfigurationForm = props => (
           errorText={get(props.errors, 'pointsToIncreaseAfterTestFailure', null)}
         />
       </Column>
-      <Column size={4}>
+      <Column size={3}>
+        <TextInput
+          type="number"
+          required
+          disabled={props.submitting}
+          label="Points to increase after certification test failure"
+          value={get(props.values, 'pointsToIncreaseAfterCertificationTestFailure', '')}
+          onChange={value => props.onChange('pointsToIncreaseAfterCertificationTestFailure', value)}
+          errorText={get(props.errors, 'pointsToIncreaseAfterCertificationTestFailure', null)}
+        />
+      </Column>
+      <Column size={3}>
         <TextInput
           type="number"
           required
@@ -36,7 +48,7 @@ const ConfigurationForm = props => (
           errorText={get(props.errors, 'scoreToPassOfSpeechRecognition', null)}
         />
       </Column>
-      <Column size={4}>
+      <Column size={3}>
         <TextInput
           required
           label="Placement Introduction video"

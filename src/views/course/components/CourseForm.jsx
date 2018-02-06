@@ -5,7 +5,7 @@ import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
-import FetchSelect from '../../../core/form/FetchSelect';
+import Switch from '../../../core/form/Switch';
 
 const CourseForm = props => (
   <form
@@ -26,17 +26,13 @@ const CourseForm = props => (
         />
       </Column>
       <Column size={3}>
-        <FetchSelect
-          url="courses"
-          disabled={props.submitting}
-          label="Certification Test Course"
-          value={get(props.values, 'certificationTestCourse', '')}
-          onChange={course => props.onChange('certificationTestCourse', course)}
-          errorText={get(props.errors, 'certificationTestCourse', '')}
-          resultTransformer={{
-            text: 'name',
-            value: 'id',
-          }}
+        <Switch
+          label="Does the course need a Certification Test?"
+          titleOff="No"
+          titleOn="Yes"
+          value={get(props.values, 'needCertification', false)}
+          onChange={value => props.onChange('needCertification', value)}
+          errorText={get(props.errors, 'needCertification', null)}
         />
       </Column>
     </Row>

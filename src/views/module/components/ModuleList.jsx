@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import Button from '../../../core/form/Button';
 import Table from '../../../core/form/Table';
-import Tag from '../../../core/layout/Tag';
 
 const ModuleList = props => (
   <Table
@@ -94,21 +93,25 @@ const ModuleList = props => (
       {
         label: 'Points',
         path: 'readingPoints',
-        render: (value, row) => {
-          const invalidPoints = !!(row.readingPoints > row.availableReadingPoints
-            || row.speakingPoints > row.availableSpeakingPoints
-            || row.listeningPoints > row.availableListeningPoints
-            || row.writingPoints > row.availableWritingPoints);
-
-          return {
-            children: (<Tag color={invalidPoints ? 'red' : 'green'}>{invalidPoints ? 'Invalid' : 'Ok'}</Tag>),
-            props: {
-              style: {
-                backgroundColor: row.disabledForStudent ? '#eee' : '#fff',
-              },
+        width: '120px',
+        render: (value, row) => ({
+          children: (
+            <div>
+              <span>L: {row.listeningPoints || 0} / {row.availableListeningPoints || 0}</span>
+              <br />
+              <span>R: {row.readingPoints || 0} / {row.availableReadingPoints || 0}</span>
+              <br />
+              <span>W: {row.writingPoints || 0} / {row.availableWritingPoints || 0}</span>
+              <br />
+              <span>S: {row.speakingPoints || 0} / {row.availableSpeakingPoints || 0}</span>
+            </div>
+          ),
+          props: {
+            style: {
+              backgroundColor: row.disabledForStudent ? '#eee' : '#fff',
             },
-          }
-        },
+          },
+        }),
       },
       {
         label: 'Units count',
