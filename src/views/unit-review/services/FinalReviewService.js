@@ -17,8 +17,8 @@ class FinalReviewService {
       },
     }).then((res) => {
       if (res) {
-        ReviewListService.handleMyUnits();
-        ReviewListService.handleAllUnits();
+        ReviewListService.handleMyUnits(true);
+        ReviewListService.handleAllUnits(true);
         browserHistory.push('/reviews');
         NotificationService.addNotification(
           'Status changed successfully.',
