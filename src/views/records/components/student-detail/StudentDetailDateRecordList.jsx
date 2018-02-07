@@ -87,7 +87,11 @@ const StudentDetailDateRecordList = props => (
         align: 'center',
         render: (value, row) => row.unit && (
           <Tag color={(value || 0) > row.unit.scoreToPass ? 'green' : 'red'}>
-            {value || 0} / {row.unit.scoreToPass}
+            {!row.completedAt ? 'Not finished' : (
+              <span>
+                {value || 0} / {row.unit.scoreToPass}
+              </span>
+            )}
           </Tag>
         ),
       },
