@@ -97,13 +97,21 @@ const ModuleList = props => (
         render: (value, row) => ({
           children: (
             <div>
-              <span>L: {row.listeningPoints || 0} / {row.availableListeningPoints || 0}</span>
+              <span style={{ color: row.listeningPoints > row.availableListeningPoints && 'red' }}>
+                L: {row.listeningPoints || 0} / {row.availableListeningPoints || 0}
+              </span>
               <br />
-              <span>R: {row.readingPoints || 0} / {row.availableReadingPoints || 0}</span>
+              <span style={{ color: row.readingPoints > row.availableReadingPoints && 'red' }}>
+                R: {row.readingPoints || 0} / {row.availableReadingPoints || 0}
+              </span>
               <br />
-              <span>W: {row.writingPoints || 0} / {row.availableWritingPoints || 0}</span>
+              <span style={{ color: row.writingPoints > row.availableWritingPoints && 'red' }}>
+                W: {row.writingPoints || 0} / {row.availableWritingPoints || 0}
+              </span>
               <br />
-              <span>S: {row.speakingPoints || 0} / {row.availableSpeakingPoints || 0}</span>
+              <span style={{ color: row.speakingPoints > row.availableSpeakingPoints && 'red' }}>
+                S: {row.speakingPoints || 0} / {row.availableSpeakingPoints || 0}
+              </span>
             </div>
           ),
           props: {
