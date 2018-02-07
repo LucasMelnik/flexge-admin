@@ -113,7 +113,11 @@ const StudentDetailContentRecordList = props => (
             <Tag
               color={row.points ? 'green' : 'red'}
             >
-              {value || 0}
+              {!row.completedAt ? 'Not finished' : (
+                <span>
+                  {value || 0}
+                </span>
+              )}
             </Tag>
           ),
           props: {
