@@ -17,6 +17,7 @@ const TextItemForm = props => (
           value={get(props.values, 'text', '')}
           onChange={value => props.onChange('text', value)}
           errorText={get(props.errors, 'text', '')}
+          textAreaRows="15"
         />
       </Column>
     </Row>

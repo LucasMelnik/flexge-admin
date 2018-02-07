@@ -162,7 +162,7 @@ const MainScene = props => (
             },
             {
               group: 'Reports',
-              allowedFor: ['ADMIN', 'AUDIO_CONTENT'],
+              allowedFor: ['ADMIN', 'AUDIO_CONTENT', 'IMAGE_ADMIN'],
             },
             {
               group: 'Tests',
@@ -207,7 +207,7 @@ const MainScene = props => (
               link: '/reports/unit-errors',
               group: 'Reports',
               icon: 'exclamation-circle-o',
-              allowedFor: ['ADMIN'],
+              allowedFor: ['ADMIN', 'IMAGE_ADMIN'],
             },
             {
               label: 'Items By Words',
