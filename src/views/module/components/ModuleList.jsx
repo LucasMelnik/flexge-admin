@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import Button from '../../../core/form/Button';
 import Table from '../../../core/form/Table';
+import ImagePreview from '../../../core/layout/ImagePreview';
 
 const ModuleList = props => (
   <Table
@@ -137,7 +138,7 @@ const ModuleList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: '105px',
+        width: '125px',
         render: (cell, row) => ({
           children: (
             <div>
@@ -153,7 +154,11 @@ const ModuleList = props => (
                 icon="edit"
                 onClick={() => browserHistory.push(`/modules/${row.id}`)}
               />
-                        )}
+              )}
+              {' '}
+              {row.backgroundUrl && (
+                <ImagePreview src={row.backgroundUrl} />
+              )}
             </div>
           ),
           props: {
@@ -175,6 +180,7 @@ ModuleList.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.string,
+    backgroundUrl: PropTypes.string,
     course: PropTypes.object.isRequired,
     disabledForStudent: PropTypes.bool,
     availableReadingPoints: PropTypes.number,
