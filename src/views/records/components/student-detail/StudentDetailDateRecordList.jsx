@@ -85,15 +85,23 @@ const StudentDetailDateRecordList = props => (
         label: 'Score',
         path: 'score',
         align: 'center',
-        render: (value, row) => row.unit && (
-          <Tag color={(value || 0) > row.unit.scoreToPass ? 'green' : 'red'}>
-            {!row.completedAt ? 'Not finished' : (
-              <span>
+        render: (value, row) => {
+          if (row.unit && row.completedAt) {
+            return (
+              <Tag color={(value || 0) > row.unit.scoreToPass ? 'green' : 'red'}>
                 {value || 0} / {row.unit.scoreToPass}
+              </Tag>
+            );
+          }
+          if (row.unit && !row.completedAt) {
+            return (
+              <span style={{ color: 'red' }}>
+                Not finished
               </span>
-            )}
-          </Tag>
-        ),
+            );
+          }
+          return null;
+        },
       },
       {
         label: 'Points',
