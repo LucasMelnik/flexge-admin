@@ -110,15 +110,15 @@ const StudentDetailContentRecordList = props => (
           children: (row.docType === 'UNIT' || row.docType === 'MASTERY') ? (
             <div style={{ textAlign: 'left', fontWeight: 'bold' }}>To pass: {row.scoreToPass}</div>
           ) : (
-            <Tag
-              color={row.points ? 'green' : 'red'}
-            >
-              {!row.completedAt ? 'Not finished' : (
-                <span>
-                  {value || 0}
-                </span>
-              )}
-            </Tag>
+            row.completedAt ? (
+              <Tag color={row.points ? 'green' : 'red'}>
+                {value || 0}
+              </Tag>
+            ) : (
+              <span style={{ color: 'red'}} >
+                Not finished
+              </span>
+            )
           ),
           props: {
             colSpan: row.docType === 'MODULE' ? 0 : row.docType ? 3 : 1,
