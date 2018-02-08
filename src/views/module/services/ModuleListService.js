@@ -24,6 +24,7 @@ class ModuleListService {
     this.fetch.fetch({
       url: '/modules',
       query: {
+        verbose: true,
         query: {
           ...this.form.getValue('filter') && {
             name: {
