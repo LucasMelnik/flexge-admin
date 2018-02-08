@@ -31,7 +31,7 @@ export default class ModuleFormService {
     this.form.reset();
     if (moduleId) {
       this.fetch.fetch({
-        url: `/modules/${moduleId}`,
+        url: `/modules/${moduleId}?verbose=true`,
       }).then(() => {
         if (this.fetch.data) {
           this.form.setInitialValues({
