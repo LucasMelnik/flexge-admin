@@ -1,4 +1,5 @@
 import { action, extendObservable } from 'mobx';
+import orderBy from 'lodash/orderBy';
 import FetchService from '../../../core/services/FetchService';
 
 class StudentRecordDetailUnitResultDialogService {
@@ -16,7 +17,7 @@ class StudentRecordDetailUnitResultDialogService {
       url: `/results/${unitResultId}/items`,
     }).then(() => {
       if (this.fetch.data) {
-        this.items = this.fetch.data;
+        this.items = orderBy(this.fetch.data, 'answeredAt', 'asc');
       } else {
         this.items = [];
       }
