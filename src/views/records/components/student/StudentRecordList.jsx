@@ -20,24 +20,28 @@ const StudentRecordList = props => (
         {
           label: 'Initial Level (PT)',
           path: 'initialEnglishLevel',
+          sort: true,
           width: '130px',
           render: value => value >= 0 ? round(value, 1).toFixed(1) : 'N/A',
         },
         {
           label: 'Current Level',
           path: 'currentEnglishLevel',
+          sort: true,
           width: '110px',
           render: value => value >= 0 ? round(value, 1).toFixed(1) : 'N/A',
         },
         {
           label: 'Study Quality',
           path: 'studyQualityScore',
+          sort: true,
           width: '110px',
           render: value => value != null ? round(value, 1).toFixed(1) : 'N/A',
         },
         {
           label: 'Current Course',
           path: 'course.name',
+          sort: true,
           width: '200px',
           render: (cell, row) => row.initialEnglishLevel != null ? (
             <div style={{ display: 'flex' }}>
@@ -60,12 +64,14 @@ const StudentRecordList = props => (
         {
           label: 'Time Studied',
           path: 'totalStudiedTime',
+          sort: true,
           width: '110px',
           render: value => value ? moment.duration(value, 'seconds').format('hh:mm', { trim: false }) : 'N/A',
         },
         {
           label: 'Last Studied',
           path: 'lastStudy',
+          sort: true,
           width: '120px',
           render: (cell, row) => {
             if (row.lastStudy) {
