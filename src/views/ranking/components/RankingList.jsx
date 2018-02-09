@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '../../../core/form/Table';
+import { Link } from 'react-router';
 
 const RankingList = props => (
   <Table
@@ -51,7 +52,9 @@ const RankingList = props => (
               padding: 16,
             }}
           >
-            {value}
+            <Link to={`records/schools/${row.schoolClass.school.id}/classes/${row.schoolClass.id}/students/${row.id}/detail`}>
+              {value}
+            </Link>
           </div>
         ),
       },

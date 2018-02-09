@@ -42,7 +42,7 @@ const MasteryTestList = props => (
             <div>
               <Button
                 icon="delete"
-                onClick={() => props.onDelete(row.module, row.id)}
+                onClick={() => props.onDelete(row.module.id, row.id)}
               />
               {' '}
               <Button
