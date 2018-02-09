@@ -41,7 +41,7 @@ const StudentDetailAnalyticsAcademicPerformanceHistory = props => (
         align: 'center',
         render: value => value && (
           <Tag
-            color={value >= 90 ? 'green' : (value < 90 && value >= 80) ? 'orange' : 'red'}
+            color={value >= 80 ? 'green' : (value < 80 && value >= 70) ? 'orange' : 'red'}
           >
             {round(value, 2)}
           </Tag>
