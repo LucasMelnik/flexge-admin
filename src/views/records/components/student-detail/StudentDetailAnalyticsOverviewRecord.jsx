@@ -91,6 +91,32 @@ const StudentDetailAnalyticsOverviewRecord = props => (
         <br />
         <h1>{moment.duration(props.student.averageStudiedTime, 'hours').format('HH:mm', { trim: false })}</h1>
       </Tag>
+      <ColumnSeparator size="lg" />
+      <Tag
+        color="none"
+        style={{
+          height: 'auto',
+          padding: 10,
+          textAlign: 'center',
+        }}
+      >
+        <span>Total Hours</span>
+        <br />
+        <h1>{moment.duration(get(props.student, 'stats.hours', 0), 'hours').format('HH:mm', { trim: false })}</h1>
+      </Tag>
+      <ColumnSeparator size="lg" />
+      <Tag
+        color="none"
+        style={{
+          height: 'auto',
+          padding: 10,
+          textAlign: 'center',
+        }}
+      >
+        <span>Total Points</span>
+        <br />
+        <h1>{get(props.student, 'stats.points', 0)}</h1>
+      </Tag>
     </div>
     <Separator size="md" />
     {(props.student.evaluation && props.student.evaluation.id) && (
