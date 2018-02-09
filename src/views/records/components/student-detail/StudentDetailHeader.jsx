@@ -98,7 +98,7 @@ export default class StudentDetailHeader extends Component {
             >
               Study Quality
               <br />
-              {(this.props.student.studyQuality && this.props.student.studyQuality.score) ? (
+              {(this.props.student.studyQuality && this.props.student.studyQuality.score != null) ? (
                 <button
                   onClick={this.handleToggleStudyQualityDetails}
                   style={{
