@@ -88,7 +88,7 @@ const StudentDetailDateRecordList = props => (
         render: (value, row) => {
           if (row.unit && row.completedAt) {
             return (
-              <Tag color={(value || 0) > row.unit.scoreToPass ? 'green' : 'red'}>
+              <Tag color={(value || 0) >= row.unit.scoreToPass ? 'green' : 'red'}>
                 {value || 0} / {row.unit.scoreToPass}
               </Tag>
             );

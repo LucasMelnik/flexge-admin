@@ -115,7 +115,7 @@ const StudentDetailContentRecordList = props => (
                 {value || 0}
               </Tag>
             ) : (
-              <span style={{ color: 'red'}} >
+              <span style={{ color: 'red' }} >
                 Not finished
               </span>
             )
