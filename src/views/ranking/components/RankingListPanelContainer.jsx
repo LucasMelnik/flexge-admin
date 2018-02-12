@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment/moment';
 import { observer } from 'mobx-react';
-import RankingListFilterService from '../services/RankingListFilterService';
 import RankingListPanel from './RankingListPanel';
 
 const format = 'YYYY-MM-DD HH:mm:ss';
@@ -41,7 +40,6 @@ const getTo = (type) => {
 
 const RankingListPanelContainer = props => (
   <RankingListPanel
-    school={RankingListFilterService.schoolId}
     from={getFrom(props.type)}
     to={getTo(props.type)}
   />

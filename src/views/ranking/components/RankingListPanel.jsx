@@ -11,7 +11,6 @@ const RankingListPanel = props => (
       <Column size={6}>
         <p>Regional Ranking</p>
         <RankingListContainer
-          school={props.school}
           from={props.from}
           to={props.to}
           level="regional"
@@ -20,7 +19,6 @@ const RankingListPanel = props => (
       <Column size={6}>
         <p>National Ranking</p>
         <RankingListContainer
-          school={props.school}
           from={props.from}
           to={props.to}
           level="national"
@@ -31,13 +29,8 @@ const RankingListPanel = props => (
 );
 
 RankingListPanel.propTypes = {
-  school: PropTypes.string,
   from: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
-};
-
-RankingListPanel.defaultProps = {
-  school: null,
 };
 
 export default RankingListPanel;
