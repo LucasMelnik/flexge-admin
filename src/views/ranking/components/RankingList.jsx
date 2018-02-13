@@ -14,6 +14,7 @@ const RankingList = props => (
         sort: true,
         defaultSortOrder: 'ascend',
         className: 'no-padding-column',
+        width: '100px',
         render: (value, row) => (
           <div
             style={{
@@ -28,6 +29,7 @@ const RankingList = props => (
       {
         label: 'Points',
         path: 'points',
+        width: '80px',
         className: 'no-padding-column',
         render: (value, row) => (
           <div
