@@ -97,11 +97,8 @@ function authRequired(nextState, replace) {
 }
 
 if (process.env.REACT_APP_GA_ID) {
-  ReactGA.initialize('UA-000000-01');
-  browserHistory.listen((location) => {
-    ReactGA.pageview(location.pathname);
-    window.ga('set', 'page', location.pathname + location.search);
-  });
+  ReactGA.initialize(process.env.REACT_APP_GA_ID);
+  browserHistory.listen(location => ReactGA.pageview(location.pathname));
 }
 
 const Routes = () => (
