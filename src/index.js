@@ -15,5 +15,5 @@ const App = () => (
   </LocaleProvider>
 );
 
-window.__myapp_container = document.getElementById('root')
-ReactDOM.render(<App />, window.__myapp_container)
+window.__myapp_container = document.getElementById('root');
+ReactDOM.render(<App />, window.__myapp_container);
