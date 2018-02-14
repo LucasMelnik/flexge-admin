@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactGA from 'react-ga';
 import { browserHistory, IndexRoute, Route, Router } from 'react-router';
 
 import LoginScene from './views/login/components/LoginScene';
@@ -93,6 +94,14 @@ function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
     replace('/login');
   }
+}
+
+if (process.env.REACT_APP_GA_ID) {
+  ReactGA.initialize('UA-000000-01');
+  browserHistory.listen((location) => {
+    ReactGA.pageview(location.pathname);
+    window.ga('set', 'page', location.pathname + location.search);
+  });
 }
 
 const Routes = () => (
