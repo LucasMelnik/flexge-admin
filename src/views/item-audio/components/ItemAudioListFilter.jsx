@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import ColumnSeparator from '../../../core/layout/ColumnSeparator';
 import FetchSelect from '../../../core/form/FetchSelect';
 import Select from '../../../core/form/Select';
+import TextInput from '../../../core/form/TextInput';
 
 const ItemAudioListFilter = props => (
   <div
@@ -16,8 +17,8 @@ const ItemAudioListFilter = props => (
         width: 250,
       }}
     >
-      Filter by Character
       <FetchSelect
+        label="Filter by Character"
         url="characters"
         disabled={props.fetching}
         value={get(props.values, 'character')}
@@ -37,8 +38,8 @@ const ItemAudioListFilter = props => (
         width: 200,
       }}
     >
-      Filter by status
       <Select
+        label="Filter by status"
         placeholder="Filter by status"
         value={get(props.values, 'status', '')}
         onChange={(value) => {
@@ -65,11 +66,11 @@ const ItemAudioListFilter = props => (
     <ColumnSeparator />
     <div
       style={{
-        width: 110,
+        width: 220,
       }}
     >
-      Filter by Audio
       <Select
+        label="Filter by Audio"
         placeholder="Filter by audio"
         value={get(props.values, 'hasAudio', '')}
         onChange={(value) => {
@@ -80,13 +81,28 @@ const ItemAudioListFilter = props => (
         options={[
           {
             label: 'With audios',
-            value: '$ne',
+            value: 'WITH_AUDIOS',
           },
           {
             label: 'Without audios',
-            value: '$eq',
+            value: 'WITHOUT_AUDIOS',
           },
         ]}
+      />
+    </div>
+    <ColumnSeparator />
+    <div
+      style={{
+        width: 300,
+      }}
+    >
+      <TextInput
+        label="Filter by item text"
+        placeholder="Filter by item text"
+        value={get(props.values, 'text', '')}
+        onChange={value => props.onChange('text', value)}
+        onBlur={props.onSearch}
+        disabled={props.fetching}
       />
     </div>
   </div>
