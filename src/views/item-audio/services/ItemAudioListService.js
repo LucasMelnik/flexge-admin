@@ -44,10 +44,16 @@ class ItemAudioListService {
             statusAudio: this.form.getValue('status'),
           },
           ...this.form.getValue('hasAudio') && {
-            audio: { [this.form.getValue('hasAudio')]: 'null' },
+            hasAudio: this.form.getValue('hasAudio'),
           },
           ...this.form.getValue('character') && {
             character: this.form.getValue('character'),
+          },
+          ...this.form.getValue('text') && {
+            text: {
+              $regex: this.form.getValue('text').trim(),
+              $options: 'i',
+            },
           },
         },
       },
