@@ -42,7 +42,7 @@ const ItemAudioList = props => (
         path: 'statusAudio',
         width: '130px',
         sort: true,
-        render: text => (
+        render: text => text && (
           <StatusItem
             color={{
               PENDING: '#ef8c3b',

@@ -9,6 +9,7 @@ class TextInput extends Component {
     label: PropTypes.string.isRequired,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
     type: PropTypes.oneOf(['text', 'password', 'number']),
     placeholder: PropTypes.string,
     disabled: PropTypes.bool,
@@ -22,6 +23,7 @@ class TextInput extends Component {
 
   static defaultProps = {
     onFocus: null,
+    onBlur: null,
     value: '',
     placeholder: null,
     type: 'text',
@@ -66,6 +68,7 @@ class TextInput extends Component {
             value={this.props.value}
             onChange={e => this.props.onChange && this.props.onChange(e.target.value)}
             onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
             placeholder={this.props.placeholder}
             disabled={this.props.disabled}
           />
