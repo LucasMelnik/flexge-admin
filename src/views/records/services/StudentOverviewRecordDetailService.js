@@ -2,7 +2,7 @@ import { action, extendObservable, toJS } from 'mobx';
 import moment from 'moment';
 import FetchService from '../../../core/services/FetchService';
 
-export default class StudentOverviewRecordDetailService {
+class StudentOverviewRecordDetailService {
   fetch = new FetchService();
 
   constructor() {
@@ -47,3 +47,7 @@ export default class StudentOverviewRecordDetailService {
     });
   });
 }
+
+const studentOverviewRecordDetailService = new StudentOverviewRecordDetailService();
+
+export default studentOverviewRecordDetailService;
