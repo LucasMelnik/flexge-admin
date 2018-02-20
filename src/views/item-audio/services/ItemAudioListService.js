@@ -14,7 +14,7 @@ class ItemAudioListService {
       pagination: {
         current: 1,
         total: 0,
-        pageSize: 15,
+        pageSize: 25,
       },
     });
   }
@@ -24,7 +24,7 @@ class ItemAudioListService {
     this.pagination = {
       current: 1,
       total: 0,
-      pageSize: 15,
+      pageSize: 25,
     };
     this.load();
   });
@@ -37,7 +37,7 @@ class ItemAudioListService {
     }
 
     this.fetch.fetch({
-      url: `/item-audio-reviews?page=${this.pagination.current}`,
+      url: `/item-audio-reviews?page=${this.pagination.current}&size=${this.pagination.pageSize}`,
       query: {
         query: {
           ...this.form.getValue('status') && {
@@ -72,7 +72,7 @@ class ItemAudioListService {
         this.pagination = {
           current: 1,
           total: 0,
-          pageSize: 15,
+          pageSize: 25,
         };
       }
     });
