@@ -7,6 +7,7 @@ import FileInput from '../../../../core/form/FileInput';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import AudioPreview from '../../../../core/layout/AudioPreview';
+import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
 
 const DictationItemForm = props => (
   <div>
@@ -17,6 +18,12 @@ const DictationItemForm = props => (
       errors={props.errors}
       disabled={props.disabled}
       isTestItem={props.isTestItem}
+    />
+    <SpellCheckInputContainer
+      onChange={props.onChange}
+      submitting={props.submitting}
+      values={props.values}
+      disabled={props.disabled}
     />
     <Row>
       {get(props.values, 'generatedAudio', null) && (
@@ -42,6 +49,7 @@ const DictationItemForm = props => (
       onChange={answers => props.onChange('answers', answers)}
       errorText={get(props.errors, 'answers', '')}
       disabled={props.disabled}
+      allowSpellCheck
     />
   </div>
 );
