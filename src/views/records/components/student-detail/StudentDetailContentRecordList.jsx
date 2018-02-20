@@ -111,7 +111,7 @@ const StudentDetailContentRecordList = props => (
             <div style={{ textAlign: 'left', fontWeight: 'bold' }}>To pass: {row.scoreToPass}</div>
           ) : (
             row.completedAt ? (
-              <Tag color={row.points ? 'green' : 'red'}>
+              <Tag color={(row.points || row.score) ? 'green' : 'red'}>
                 {value || 0}
               </Tag>
             ) : (
@@ -171,7 +171,7 @@ const StudentDetailContentRecordList = props => (
         align: 'center',
         path: 'averageSpeechRecognitionScore',
         width: '50px',
-        render: (value, row) => ({
+        render: (value, row) => row && ({
           children: value,
           props: {
             colSpan: row.docType && 0,
@@ -187,7 +187,7 @@ const StudentDetailContentRecordList = props => (
           <b style={{ fontSize: 14 }}>
             {row.children && row.children.reduce((moduleAcc, mod) => (
               moduleAcc + (mod.children ? mod.children.reduce((unitAcc, unit) => (
-                unitAcc + unit.repeatCount
+                unitAcc + (unit.repeatCount || 0)
               ), 0) : 0)
             ), 0)}
           </b>
@@ -195,7 +195,7 @@ const StudentDetailContentRecordList = props => (
           <b>
             {row.children ? row.children.reduce((acc, unit) => acc + unit.repeatCount, 0) : 0}
           </b>
-        ) : row.items && row.items.reduce((acc, item) => acc + item.repeatCount, 0),
+        ) : row.items && row.items.reduce((acc, item) => acc + (item.repeatCount || 0), 0),
       },
       {
         label: 'Record',
@@ -206,7 +206,7 @@ const StudentDetailContentRecordList = props => (
           <b style={{ fontSize: 14 }}>
             {row.children && row.children.reduce((moduleAcc, mod) => (
               moduleAcc + (mod.children ? mod.children.reduce((unitAcc, unit) => (
-                unitAcc + unit.recordCount
+                unitAcc + (unit.recordCount || 0)
               ), 0) : 0)
             ), 0)}
           </b>
@@ -214,7 +214,7 @@ const StudentDetailContentRecordList = props => (
           <b>
             {row.children ? row.children.reduce((acc, unit) => acc + unit.recordCount, 0) : 0}
           </b>
-        ) : row.items && row.items.reduce((acc, item) => acc + item.recordCount, 0),
+        ) : row.items && row.items.reduce((acc, item) => acc + (item.recordCount || 0), 0),
       },
       {
         label: 'Listen',
@@ -225,7 +225,7 @@ const StudentDetailContentRecordList = props => (
           <b style={{ fontSize: 14 }}>
             {row.children && row.children.reduce((moduleAcc, mod) => (
               moduleAcc + (mod.children ? mod.children.reduce((unitAcc, unit) => (
-                unitAcc + unit.listenCount
+                unitAcc + (unit.listenCount || 0)
               ), 0) : 0)
             ), 0)}
           </b>
@@ -233,13 +233,13 @@ const StudentDetailContentRecordList = props => (
           <b>
             {row.children ? row.children.reduce((acc, unit) => acc + unit.listenCount, 0) : 0}
           </b>
-        ) : row.items && row.items.reduce((acc, item) => acc + item.listenCount, 0),
+        ) : row.items && row.items.reduce((acc, item) => acc + (item.listenCount || 0), 0),
       },
       {
         label: 'Actions',
         path: 'action',
         width: '85px',
-        render: (value, row) => (!row.children && !row.docType) && (
+        render: (value, row) => (!row.children && !row.docType && !row.studentMasteryTest) && (
           <Button
             icon="bars"
             onClick={() => props.onDetailUnitResult(row.id)}

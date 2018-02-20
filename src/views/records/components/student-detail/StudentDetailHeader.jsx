@@ -113,7 +113,7 @@ export default class StudentDetailHeader extends Component {
                       margin: 0,
                     }}
                   >
-                    {this.props.student.studyQuality.score.toFixed(1)}
+                    {this.props.student.studyQuality.score.toFixed(0)}
                   </h2>
                 </button>
               ) : (
@@ -138,7 +138,7 @@ export default class StudentDetailHeader extends Component {
               }}
             >
               School Class
-              <h2>{this.props.student.schoolClass.name}</h2>
+              <h2>{get(this.props.student, 'schoolClass.name', '')}</h2>
             </div>
           </Column>
         </Row>
