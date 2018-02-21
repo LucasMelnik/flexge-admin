@@ -23,7 +23,7 @@ export default class EvaluationTemplateFormService {
     this.form.reset();
     if (evaluationTemplateId) {
       this.fetch.fetch({
-        url: `/evaluations-templates/${evaluationTemplateId}`,
+        url: `/evaluation-templates/${evaluationTemplateId}`,
       }).then(() => {
         if (this.fetch.data) {
           this.form.setInitialValues(this.fetch.data);
@@ -47,13 +47,13 @@ export default class EvaluationTemplateFormService {
     const evaluationId = this.form.getValue('id');
     this.submit.fetch({
       method: evaluationId ? 'put' : 'post',
-      url: evaluationId ? `/evaluations-templates/${evaluationId}` : '/evaluations-templates',
+      url: evaluationId ? `/evaluation-templates/${evaluationId}` : '/evaluation-templates',
       body: {
         ...this.form.getValues(),
       },
     }).then(() => {
       if (this.submit.data) {
-        browserHistory.push(`/evaluations-templates/${this.submit.data.id}`);
+        browserHistory.push(`/evaluation-templates/${this.submit.data.id}`);
         NotificationService.addNotification(`Evaluation Template ${evaluationId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
