@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
+import { browserHistory } from 'react-router';
 
 const EvaluationTemplateList = props => (
   <Table
@@ -23,10 +24,17 @@ const EvaluationTemplateList = props => (
         path: 'action',
         width: '105px',
         render: (cell, row) => (
-          <Button
-            icon="delete"
-            onClick={() => props.onDelete(row)}
-          />
+          <div>
+            <Button
+              icon="edit"
+              onClick={() => browserHistory.push(`/evaluation-templates/${row.id}`)}
+            />
+            {' '}
+            <Button
+              icon="delete"
+              onClick={() => props.onDelete(row)}
+            />
+          </div>
         ),
       },
     ]}

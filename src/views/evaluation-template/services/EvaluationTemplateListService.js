@@ -1,5 +1,4 @@
 import { action, extendObservable } from 'mobx';
-import orderBy from 'lodash/orderBy';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
@@ -38,7 +37,7 @@ class EvaluationTemplateListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.templates = orderBy(this.fetch.data, 'start', 'asc');
+        this.templates = this.fetch.data;
       } else {
         this.templates = [];
       }
