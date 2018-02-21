@@ -89,6 +89,7 @@ import EmailConfigFormSceneContainer from './views/email-config/components/Email
 import UnitItemExecutionStatsListScene from './views/reports/components/unit-execution-stats/UnitItemExecutionStatsListScene';
 import ItemByWordsListScene from './views/reports/components/item-by-words/ItemByWordsListScene';
 import EvaluationTemplateListScene from './views/evaluation-template/components/EvaluationTemplateListScene';
+import EvaluationTemplateFormScene from './views/evaluation-template/components/EvaluationTemplateFormScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -213,6 +214,8 @@ const Routes = () => (
       <Route path="school-configuration/emails" component={EmailConfigFormSceneContainer} />
       <Route path="school-configuration/grades" component={SchoolGradeConfigFormSceneContainer} />
       <Route path="evaluation-templates" component={EvaluationTemplateListScene} />
+      <Route path="evaluation-templates/new" component={EvaluationTemplateFormScene} />
+      <Route path="evaluation-templates/:evaluationTemplateId" component={EvaluationTemplateFormScene} />
       <Route path="rankings" component={RankingListScene} />
       <Route path="student-achievements" component={StudentAchievementsScene} />
       <Route path="import-students" component={ImportStudentsFormScene} />
