@@ -111,7 +111,7 @@ const StudentDetailContentRecordList = props => (
             <div style={{ textAlign: 'left', fontWeight: 'bold' }}>To pass: {row.scoreToPass}</div>
           ) : (
             row.completedAt ? (
-              <Tag color={(row.points || row.score) ? 'green' : 'red'}>
+              <Tag color={(row.points || (row.studentMasteryTest && row.score)) ? 'green' : 'red'}>
                 {value || 0}
               </Tag>
             ) : (
