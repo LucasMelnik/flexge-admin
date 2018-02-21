@@ -5,6 +5,8 @@ import Button from '../../../core/form/Button';
 import Card from '../../../core/layout/Card';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import EvaluationTemplateFormContainer from './EvaluationTemplateFormContainer';
+import Separator from '../../../core/layout/Separator';
+import EvaluationPeriodListContainer from './evaluation-period/EvaluationPeriodListContainer';
 
 const EvaluationTemplateFormScene = props => (
   <div>
@@ -30,6 +32,15 @@ const EvaluationTemplateFormScene = props => (
     >
       <EvaluationTemplateFormContainer evaluationTemplateId={props.params.evaluationTemplateId} />
     </Card>
+    {props.params.evaluationTemplateId && [
+      <Separator key="separator" />,
+      <Card
+        key="content"
+        title="Evaluation Periods"
+      >
+        <EvaluationPeriodListContainer evaluationTemplateId={props.params.evaluationTemplateId} />
+      </Card>,
+    ]}
   </div>
 );
 

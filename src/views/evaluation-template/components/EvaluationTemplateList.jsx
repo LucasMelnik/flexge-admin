@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
-import { browserHistory } from 'react-router';
 
 const EvaluationTemplateList = props => (
   <Table
