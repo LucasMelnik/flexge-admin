@@ -8,6 +8,7 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import FormButtons from '../../../core/form/FormButtons';
 import Switch from '../../../core/form/Switch';
 import DateInput from '../../../core/form/DateInput';
+import Select from '../../../core/form/Select';
 
 const SchoolClassForm = props => (
   <form
@@ -63,6 +64,50 @@ const SchoolClassForm = props => (
               date.valueOf() < props.values.start.valueOf()
             )
           }
+        />
+      </Column>
+    </Row>
+    <Row>
+      <Column size={3}>
+        <FetchSelect
+          url={`/evaluation-templates?query[school]=${props.schoolId}`}
+          disabled={props.submitting}
+          label="Evaluation Template"
+          value={get(props.values, 'evaluationTemplate', '')}
+          onChange={teacher => props.onChange('evaluationTemplate', teacher)}
+          errorText={get(props.errors, 'evaluationTemplate', null)}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
+      <Column size={2}>
+        <Select
+          required
+          disabled={props.submitting}
+          label="Required hours in week"
+          value={get(props.values, 'weeklyHoursRequired', '')}
+          onChange={value => props.onChange('weeklyHoursRequired', value)}
+          errorText={get(props.errors, 'weeklyHoursRequired', '')}
+          options={[
+            {
+              label: '1h',
+              value: 1,
+            },
+            {
+              label: '1,5h',
+              value: 1.5,
+            },
+            {
+              label: '2h',
+              value: 2,
+            },
+            {
+              label: '2,5h',
+              value: 2.5,
+            },
+          ]}
         />
       </Column>
     </Row>
