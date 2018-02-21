@@ -45,11 +45,19 @@ const StudentRecordList = props => (
           width: '200px',
           render: (cell, row) => row.initialEnglishLevel != null ? (
             <div style={{ display: 'flex' }}>
-              {cell}
+              <span
+                style={{
+                  width: '40px',
+                  textAlign: 'right',
+                }}
+              >
+                {cell}
+              </span>
               <div
                 style={{
                   display: 'flex',
                   flex: 1,
+                  maxWidth: '75%',
                   marginLeft: 10,
                 }}
               >
