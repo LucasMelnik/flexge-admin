@@ -74,7 +74,6 @@ import CompanyUserFormScene from './views/user/components/CompanyUserFormScene';
 import DistributorUserListSceneContainer from './views/user/components/DistributorUserListSceneContainer';
 import DistributorUserFormScene from './views/user/components/DistributorUserFormScene';
 import StudentListScene from './views/student/components/StudentListScene';
-import SchoolEvaluationSceneContainer from './views/school-evaluation/components/SchoolEvaluationSceneContainer';
 import CertificationTestExecutionListScene from './views/certification-test-execution/components/CertificationTestExecutionListScene';
 import RankingListScene from './views/ranking/components/RankingListScene';
 import SchoolGradeConfigFormSceneContainer from './views/school-grade-config/components/SchoolGradeConfigFormSceneContainer';
@@ -89,6 +88,7 @@ import CertificationTestExecutionDetailScene from './views/certification-test-ex
 import EmailConfigFormSceneContainer from './views/email-config/components/EmailConfigFormSceneContainer';
 import UnitItemExecutionStatsListScene from './views/reports/components/unit-execution-stats/UnitItemExecutionStatsListScene';
 import ItemByWordsListScene from './views/reports/components/item-by-words/ItemByWordsListScene';
+import EvaluationTemplateListScene from './views/evaluation-template/components/EvaluationTemplateListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -212,7 +212,7 @@ const Routes = () => (
       <Route path="certification-test-executions/:certificationTestId/details" component={CertificationTestExecutionDetailScene} />
       <Route path="school-configuration/emails" component={EmailConfigFormSceneContainer} />
       <Route path="school-configuration/grades" component={SchoolGradeConfigFormSceneContainer} />
-      <Route path="school-configuration/evaluation-periods" component={SchoolEvaluationSceneContainer} />
+      <Route path="evaluation-templates" component={EvaluationTemplateListScene} />
       <Route path="rankings" component={RankingListScene} />
       <Route path="student-achievements" component={StudentAchievementsScene} />
       <Route path="import-students" component={ImportStudentsFormScene} />

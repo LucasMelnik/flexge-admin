@@ -9,9 +9,9 @@ const Select = props => (
     label={props.label}
     help={props.errorText}
     validateStatus={props.errorText && 'error'}
-    style={{
-      minWidth: 200,
-    }}
+    // style={{
+    //   minWidth: 200,
+    // }}
   >
     <AntSelect
       allowClear
