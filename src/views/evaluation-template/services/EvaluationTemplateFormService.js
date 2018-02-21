@@ -1,9 +1,9 @@
 import { action, extendObservable } from 'mobx';
+import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
-import { browserHistory } from 'react-router';
 
 export default class EvaluationTemplateFormService {
   fetch = new FetchService();

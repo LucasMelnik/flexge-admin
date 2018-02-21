@@ -29,7 +29,7 @@ const EvaluationPeriodList = props => (
         label: 'Actions',
         path: 'action',
         width: '105px',
-        render: (cell, row, index) => index === row.periods.length - 1 && (
+        render: (cell, row, index) => index === props.periods.length - 1 && (
           <Button
             icon="delete"
             onClick={() => props.onDelete(row)}
