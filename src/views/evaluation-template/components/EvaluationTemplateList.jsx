@@ -8,35 +8,44 @@ const EvaluationTemplateList = props => (
   <Table
     fetching={props.fetching}
     columns={[
-      {
-        label: 'Name',
-        path: 'name',
-        sort: true,
-      },
-      {
-        label: 'Year',
-        path: 'year',
-        sort: true,
-        width: '120px',
-      },
-      {
-        label: 'Actions',
-        path: 'action',
-        width: '105px',
-        render: (cell, row) => (
-          <div>
-            <Button
-              icon="edit"
-              onClick={() => browserHistory.push(`/evaluation-templates/${row.id}`)}
-            />
-            {' '}
-            <Button
-              icon="delete"
-              onClick={() => props.onDelete(row)}
-            />
-          </div>
-        ),
-      },
+      ...(localStorage.role === 'ADMIN' || localStorage.role === 'COMPANY_MANAGER') ? [
+        {
+          label: 'School',
+          path: 'school.name',
+          sort: true,
+        },
+      ] : [],
+      ...[
+        {
+          label: 'Name',
+          path: 'name',
+          sort: true,
+        },
+        {
+          label: 'Year',
+          path: 'year',
+          sort: true,
+          width: '120px',
+        },
+        {
+          label: 'Actions',
+          path: 'action',
+          width: '105px',
+          render: (cell, row) => (
+            <div>
+              <Button
+                icon="edit"
+                onClick={() => browserHistory.push(`/evaluation-templates/${row.id}`)}
+              />
+              {' '}
+              <Button
+                icon="delete"
+                onClick={() => props.onDelete(row)}
+              />
+            </div>
+          ),
+        },
+      ],
     ]}
     rows={props.templates}
   />

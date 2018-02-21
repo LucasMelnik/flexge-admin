@@ -15,8 +15,7 @@ const EvaluationTemplateListFilter = props => (
     {(localStorage.role === 'ADMIN' || localStorage.role === 'COMPANY_MANAGER') && (
       <Column size={3}>
         <FetchSelect
-          label="Select the school"
-          placeholder="Select the school to check the ranking"
+          label="Filter by school"
           value={get(props.values, 'school', '')}
           onChange={value => props.onChange('school', value)}
           url={`schools${localStorage.role === 'COMPANY_MANAGER' ? `?company=${JSON.parse(localStorage.getItem('company')).id}` : ''}`}
@@ -29,7 +28,7 @@ const EvaluationTemplateListFilter = props => (
     )}
     <Column size={1}>
       <Select
-        label="Year"
+        label="Filter by Year"
         value={get(props.values, 'year', '')}
         onChange={value => props.onChange('year', value)}
         options={range(2018, toInteger(moment().format('YYYY')) + 5).map(year => ({
