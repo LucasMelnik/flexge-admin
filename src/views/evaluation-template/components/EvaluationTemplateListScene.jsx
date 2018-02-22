@@ -6,6 +6,7 @@ import Separator from '../../../core/layout/Separator';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import EvaluationTemplateListContainer from './EvaluationTemplateListContainer';
 import EvaluationTemplateListFilterContainer from './EvaluationTemplateListFilterContainer';
+import EvaluationTemplateLinkListContainer from './evaluation-link/EvaluationTemplateLinkListContainer';
 
 const EvaluationTemplateListScene = () => (
   <div>
@@ -30,6 +31,10 @@ const EvaluationTemplateListScene = () => (
       <EvaluationTemplateListFilterContainer />
       <Separator />
       <EvaluationTemplateListContainer />
+    </Card>
+    <Separator />
+    <Card title="Class rooms config">
+      <EvaluationTemplateLinkListContainer />
     </Card>
   </div>
 );
