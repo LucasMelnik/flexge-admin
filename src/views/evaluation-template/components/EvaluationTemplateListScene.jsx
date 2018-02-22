@@ -33,7 +33,7 @@ const EvaluationTemplateListScene = () => (
       <EvaluationTemplateListContainer />
     </Card>
     <Separator />
-    <Card title="Class rooms config">
+    <Card title="Classrooms config">
       <EvaluationTemplateLinkListContainer />
     </Card>
   </div>

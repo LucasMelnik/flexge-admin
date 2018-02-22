@@ -61,7 +61,7 @@ class EvaluationTemplateLinkService {
         if (this.submit.response.data.find(d => d.path === 'weeklyHoursRequired')) {
           NotificationService.addNotification('Select the Weekly hours before set the template', 'error');
         } else {
-          NotificationService.addNotification('Error to set class room configs', 'error');
+          NotificationService.addNotification('Error to set classroom configs', 'error');
         }
       }
     });
