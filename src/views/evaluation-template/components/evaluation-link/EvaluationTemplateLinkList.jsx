@@ -14,7 +14,7 @@ const EvaluationTemplateLinkList = props => (
         sort: true,
       },
       {
-        label: 'Class room',
+        label: 'Classroom',
         path: 'name',
         sort: true,
       },
