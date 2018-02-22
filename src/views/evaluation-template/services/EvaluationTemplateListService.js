@@ -28,11 +28,13 @@ class EvaluationTemplateListService {
     this.fetch.fetch({
       url: '/evaluation-templates',
       query: {
-        ...this.filterForm.getValue('school') && {
-          school: this.filterForm.getValue('school'),
-        },
-        ...this.filterForm.getValue('year') && {
-          year: this.filterForm.getValue('year'),
+        query: {
+          ...this.filterForm.getValue('school') && {
+            school: this.filterForm.getValue('school'),
+          },
+          ...this.filterForm.getValue('year') && {
+            year: this.filterForm.getValue('year'),
+          },
         },
       },
     }).then(() => {
