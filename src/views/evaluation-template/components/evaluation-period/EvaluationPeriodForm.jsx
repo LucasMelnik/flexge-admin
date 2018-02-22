@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Row from '../../../core/layout/Row';
-import Column from '../../../core/layout/Column';
-import TextInput from '../../../core/form/TextInput';
-import DateInput from '../../../core/form/DateInput';
-import FormButtons from '../../../core/form/FormButtons';
+import Row from '../../../../core/layout/Row';
+import Column from '../../../../core/layout/Column';
+import TextInput from '../../../../core/form/TextInput';
+import DateInput from '../../../../core/form/DateInput';
+import FormButtons from '../../../../core/form/FormButtons';
 
 const SchoolEvaluationForm = props => (
   <form
@@ -15,16 +15,6 @@ const SchoolEvaluationForm = props => (
     }}
   >
     <Row>
-      <Column size={3}>
-        <TextInput
-          required
-          disabled={props.submitting}
-          label="Period Name"
-          value={get(props.values, 'name', '')}
-          onChange={value => props.onChange('name', value)}
-          errorText={get(props.errors, 'name', null)}
-        />
-      </Column>
       <Column size={2}>
         <TextInput
           required
@@ -47,7 +37,7 @@ const SchoolEvaluationForm = props => (
             props.onChange('end', value.clone().days(7));
           }}
           errorText={get(props.errors, 'start', '')}
-          disabledDate={date => date && (date.day() !== 1 || date.year() !== props.selectedYear)}
+          disabledDate={date => date && (date.day() !== 1)}
         />
       </Column>
       <Column size={2}>
@@ -61,8 +51,7 @@ const SchoolEvaluationForm = props => (
           disabledDate={date => date &&
             (
               date.day() !== 0 ||
-              date.valueOf() < props.values.start ||
-              date.year() !== props.selectedYear
+              date.valueOf() < props.values.start
             )
           }
         />
@@ -85,7 +74,6 @@ SchoolEvaluationForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
-  selectedYear: PropTypes.number.isRequired,
   allowSelectStart: PropTypes.bool.isRequired,
 };
 

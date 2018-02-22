@@ -291,7 +291,7 @@ const MainScene = props => (
             },
             {
               label: 'Evaluation Periods',
-              link: '/school-configuration/evaluation-periods',
+              link: '/evaluation-templates',
               icon: 'calendar',
             },
             {
