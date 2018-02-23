@@ -280,6 +280,18 @@ const MainScene = props => (
           ]}
         />
         <SubMenu
+          title="Reports"
+          icon="filter"
+          allowedFor={['ADMIN', 'COMPANY_MANAGER', 'SCHOOL_MANAGER']}
+          items={[
+            {
+              label: 'Usage Stats',
+              icon: 'pie-chart',
+              link: '/usage-stats',
+            },
+          ]}
+        />
+        <SubMenu
           title="Config"
           icon="setting"
           allowedFor={['SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER']}
