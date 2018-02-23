@@ -90,6 +90,7 @@ import UnitItemExecutionStatsListScene from './views/reports/components/unit-exe
 import ItemByWordsListScene from './views/reports/components/item-by-words/ItemByWordsListScene';
 import EvaluationTemplateListScene from './views/evaluation-template/components/EvaluationTemplateListScene';
 import EvaluationTemplateFormScene from './views/evaluation-template/components/EvaluationTemplateFormScene';
+import UsageStatsListScene from './views/usage-stats/components/UsageStatsListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -226,6 +227,7 @@ const Routes = () => (
       <Route path="certification-test-register/:certificationTestId" component={CertificationTestRegisterFormScene} />
       <Route path="unit-items-execution-stats" component={UnitItemExecutionStatsListScene} />
       <Route path="items-by-words" component={ItemByWordsListScene} />
+      <Route path="usage-stats" component={UsageStatsListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
