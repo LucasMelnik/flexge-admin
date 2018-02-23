@@ -17,7 +17,7 @@ const StudentGradeList = props => (
         label: `${moment(evaluation.start).format('DD/MM/YY')} - ${moment(evaluation.end).format('DD/MM/YY')}`,
         path: `grade_${evaluation.id}`,
         render: (cell, row) => {
-          const periodGrade = row.grades.find(grade => grade.evaluation.id === evaluation.id);
+          const periodGrade = row.grades.find(grade => grade.evaluationPeriod.id === evaluation.id);
           if (periodGrade) {
             return (
               <div>

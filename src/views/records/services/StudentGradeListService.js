@@ -14,22 +14,30 @@ export default class StudentGradeListService {
 
   load = action((schoolId, schoolClassId) => {
     this.fetch.fetch({
-      url: `/schools/${schoolId}/evaluations?query[year]=${moment().format('YYYY')}`,
+      url: `/schools/${schoolId}/classes/${schoolClassId}`,
     }).then(() => {
       if (this.fetch.data) {
-        this.evaluationPeriods = this.fetch.data;
+        const schoolClass = this.fetch.data;
 
         this.fetch.fetch({
-          url: `/records/schools/${schoolId}/school-classes/${schoolClassId}/grades`,
+          url: `/evaluation-templates/${schoolClass.evaluationTemplate}/periods`,
         }).then(() => {
           if (this.fetch.data) {
-            this.students = this.fetch.data;
+            this.evaluationPeriods = this.fetch.data;
+
+            this.fetch.fetch({
+              url: `/records/schools/${schoolId}/school-classes/${schoolClassId}/grades`,
+            }).then(() => {
+              if (this.fetch.data) {
+                this.students = this.fetch.data;
+              } else {
+                this.students = [];
+              }
+            });
           } else {
-            this.students = [];
+            this.evaluationPeriods = [];
           }
         });
-      } else {
-        this.evaluationPeriods = [];
       }
     });
   });
