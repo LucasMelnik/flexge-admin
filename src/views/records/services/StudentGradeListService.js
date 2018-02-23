@@ -1,5 +1,4 @@
 import { action, extendObservable } from 'mobx';
-import moment from 'moment';
 import FetchService from '../../../core/services/FetchService';
 
 export default class StudentGradeListService {
