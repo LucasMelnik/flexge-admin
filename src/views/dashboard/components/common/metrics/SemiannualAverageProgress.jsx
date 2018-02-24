@@ -7,7 +7,7 @@ const SemiannualAverageProgress = props => (
     loading={props.loading}
     title="Semiannual Average Progress"
   >
-    {props.progress}
+    {props.progress || 0}
   </MetricStatusCard>
 );
 
