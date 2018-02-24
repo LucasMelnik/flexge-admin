@@ -114,6 +114,10 @@ const UnitItemErrorListFilter = props => (
             label: 'NO_IMAGE',
             value: 'NO_IMAGE',
           },
+          {
+            label: 'UNSCRAMBLE_4_CHUNK',
+            value: 'UNSCRAMBLE_4_CHUNK',
+          },
         ]}
       />
     </Column>
