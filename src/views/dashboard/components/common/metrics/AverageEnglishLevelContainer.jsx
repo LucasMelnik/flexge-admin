@@ -19,7 +19,7 @@ class AverageEnglishLevelContainer extends Component {
     );
     return (
       <AverageEnglishLevel
-        level={this.averageEnglishLevelService.data ? this.averageEnglishLevelService.data.toFixed(1) : null}
+        level={this.averageEnglishLevelService.data ? this.averageEnglishLevelService.data.toFixed(1) : 0}
         course={course ? course.label : '-'}
         loading={this.averageEnglishLevelService.fetch.fetching}
       />

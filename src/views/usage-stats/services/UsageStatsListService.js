@@ -19,10 +19,6 @@ class UsageStatsListService {
 
   init = action(() => {
     this.schools = [];
-    if (localStorage.role === 'SCHOOL_MANAGER') {
-      const school = JSON.parse(localStorage.getItem('school'));
-      this.form.setValue('school', school._id);
-    }
   });
 
   load = action(() => {
@@ -35,8 +31,8 @@ class UsageStatsListService {
     this.fetch.fetch({
       url: `/reports/${this.form.getValue('month').format('MM-YYYY')}/usage-stats`,
       query: {
-        ...this.form.getValue('school') && {
-          school: this.form.getValue('school'),
+        ...this.form.getValue('company') && {
+          company: this.form.getValue('company'),
         },
       },
     }).then(() => {

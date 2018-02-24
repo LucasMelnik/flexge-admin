@@ -19,11 +19,12 @@ const ActiveStudentsLastSevenDaysGauge = props => (
 
 ActiveStudentsLastSevenDaysGauge.propTypes = {
   fetching: PropTypes.bool.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number,
   schoolAverage: PropTypes.number,
 };
 
 ActiveStudentsLastSevenDaysGauge.defaultProps = {
+  value: null,
   schoolAverage: null,
 };
 

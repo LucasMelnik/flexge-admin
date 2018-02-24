@@ -28,7 +28,7 @@ class LastWeekAverageStudiedTimeContainer extends Component {
         fetching={LastWeekAverageStudiedTimeService.fetch.fetching}
         value={LastWeekAverageStudiedTimeService.average}
         schoolAverage={LastWeekAverageStudiedTimeService.schoolAverage}
-        weeklyHoursRequired={this.school ? this.school.weeklyHoursRequired : 2}
+        weeklyHoursRequired={1.5}
       />
     );
   }

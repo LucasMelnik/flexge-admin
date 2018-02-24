@@ -9,14 +9,14 @@ import MonthInput from '../../../core/form/MonthInput';
 
 const UsageStatsListFilter = props => (
   <Row>
-    {(localStorage.role === 'ADMIN' || localStorage.role === 'COMPANY_MANAGER') && (
+    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
       <Column size={3}>
         <FetchSelect
-          label="Filter by school"
+          label="Filter by Company"
           disabled={props.fetching}
-          value={get(props.values, 'school', '')}
-          onChange={value => props.onChange('school', value)}
-          url={`schools${localStorage.role === 'COMPANY_MANAGER' ? `?company=${JSON.parse(localStorage.getItem('company')).id}` : ''}`}
+          value={get(props.values, 'company', '')}
+          onChange={value => props.onChange('company', value)}
+          url={`companies${localStorage.role === 'DISTRIBUTOR_MANAGER' ? `?distributor=${JSON.parse(localStorage.getItem('distributor')).id}` : ''}`}
           resultTransformer={{
             text: 'name',
             value: 'id',

@@ -19,11 +19,12 @@ const StudyQualityAverageGauge = props => (
 
 StudyQualityAverageGauge.propTypes = {
   fetching: PropTypes.bool.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number,
   schoolAverage: PropTypes.number,
 };
 
 StudyQualityAverageGauge.defaultProps = {
+  value: null,
   schoolAverage: null,
 };
 

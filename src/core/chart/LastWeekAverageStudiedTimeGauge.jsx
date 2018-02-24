@@ -10,8 +10,8 @@ const LastWeekAverageStudiedTimeGauge = props => (
     title="Average time last week"
     tooltip="Average studied time from Monday to Sunday last week"
     value={props.value}
-    max={props.weeklyHoursRequired || 2}
-    successCondition={value => props.weeklyHoursRequiredl ? (value > props.weeklyHoursRequired) : (value > 2)}
+    max={props.weeklyHoursRequired || 1.5}
+    successCondition={value => props.weeklyHoursRequired ? (value > props.weeklyHoursRequired) : (value > 1.5)}
     badCondition={value => value < 1}
     valueRender={value => moment.duration(value, 'hours').format('hh:mm', { trim: false })}
     legend={localStorage.role === 'TEACHER' &&
@@ -23,14 +23,15 @@ const LastWeekAverageStudiedTimeGauge = props => (
 
 LastWeekAverageStudiedTimeGauge.propTypes = {
   fetching: PropTypes.bool.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number,
   schoolAverage: PropTypes.number,
   weeklyHoursRequired: PropTypes.number,
 };
 
 LastWeekAverageStudiedTimeGauge.defaultProps = {
+  value: null,
   schoolAverage: null,
-  weeklyHoursRequired: null,
+  weeklyHoursRequired: 1.5,
 };
 
 export default LastWeekAverageStudiedTimeGauge;
