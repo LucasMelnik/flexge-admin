@@ -8,8 +8,7 @@ import { DARK_GREEN, GREEN, ORANGE, RED } from '../../../../../core/chart/colors
 import TopStudentsTableContainer from './TopStudentsTableContainer';
 
 const StudiedTimeChart = (props) => {
-  const school = JSON.parse(localStorage.getItem('school'));
-  const weeklyHoursRequired = school ? school.weeklyHoursRequired : 2;
+  const weeklyHoursRequired = 1.5;
   return (
     <Card
       title="Studied time last 7 days"

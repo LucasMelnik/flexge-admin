@@ -26,7 +26,7 @@ class StudyTimeHigherThanTwoContainer extends Component {
       return Number((value * 100).toFixed(0));
     }
     return null;
-  }
+  };
 
   render() {
     return (
@@ -34,7 +34,7 @@ class StudyTimeHigherThanTwoContainer extends Component {
         fetching={StudiedTimeGroupService.fetch.fetching}
         value={this.getValue(StudiedTimeGroupService.higherThanTwo)}
         schoolAverage={this.getValue(StudiedTimeGroupService.higherThanTwoSchoolAverage)}
-        weeklyHoursRequired={this.school ? this.school.weeklyHoursRequired : 2}
+        weeklyHoursRequired={1.5}
       />
     );
   }
