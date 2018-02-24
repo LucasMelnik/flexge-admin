@@ -30,7 +30,7 @@ const SemiannualEnglishLevelProgressChart = props => (
 SemiannualEnglishLevelProgressChart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    schoolAverageProgress: PropTypes.number.isRequired,
+    schoolAverageProgress: PropTypes.number,
   })),
   loading: PropTypes.bool.isRequired,
 };

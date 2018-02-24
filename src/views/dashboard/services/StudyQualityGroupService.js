@@ -1,4 +1,5 @@
 import { action, extendObservable, computed } from 'mobx';
+import isFinite from 'lodash/isFinite';
 import FetchService from '../../../core/services/FetchService';
 import filterList from './filterList';
 
@@ -36,20 +37,17 @@ class StudyQualityGroupService {
           }
           return acc;
         }, 0);
-        console.log({
-          totalHigherThanFive,
-          total: this.total,
-        });
-        const rate = totalHigherThanFive / this.total * 100;
-        return isNaN(rate) ? 0 : rate;
+
+        const rate = (totalHigherThanFive / this.total) * 100;
+        return isFinite(rate) ? 0 : rate;
       }),
       higherThanFiveSchoolAverage: computed(() => {
         if (!this.validateResponse()) return null;
         const totalHigherThanFive = ['good', 'excellent'].reduce((acc, key) => (
           acc + this.data[key].reduce((schoolAcc, school) => schoolAcc + school.schoolCount, 0)
         ), 0);
-        const rate = totalHigherThanFive / this.total * 100;
-        return isNaN(rate) ? 0 : rate;
+        const rate = (totalHigherThanFive / this.total) * 100;
+        return isFinite(rate) ? 0 : rate;
       }),
       totalByGroup: computed(() => {
         const totals = Object.keys(this.data).map((key) => {

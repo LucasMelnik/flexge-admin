@@ -20,11 +20,12 @@ const StudyQualityHigherThanFiveGauge = props => (
 
 StudyQualityHigherThanFiveGauge.propTypes = {
   fetching: PropTypes.bool.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number,
   schoolAverage: PropTypes.number,
 };
 
 StudyQualityHigherThanFiveGauge.defaultProps = {
+  value: null,
   schoolAverage: null,
 };
 

@@ -13,7 +13,7 @@ class SemiannualAverageProgressContainer extends Component {
       <SemiannualAverageProgress
         progress={
             SemiannualAverageEnglishLevelProgressService.data ?
-          SemiannualAverageEnglishLevelProgressService.data.toFixed(1) : null
+          SemiannualAverageEnglishLevelProgressService.data.toFixed(1) : 0
         }
         loading={SemiannualAverageEnglishLevelProgressService.fetch.fetching}
       />

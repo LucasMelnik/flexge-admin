@@ -29,7 +29,7 @@ class StudyTimeHigherThanTwoByClassContainer extends Component {
         fetching={StudiedTimeGroupByClassService.fetch.fetching}
         value={this.getValue(StudiedTimeGroupByClassService.higherThanTwo)}
         schoolAverage={this.getValue(StudiedTimeGroupByClassService.higherThanTwoSchoolAverage)}
-        weeklyHoursRequired={this.school ? this.school.weeklyHoursRequired : 2}
+        weeklyHoursRequired={ 1.5}
       />
     );
   }
