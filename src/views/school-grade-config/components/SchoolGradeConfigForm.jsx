@@ -16,30 +16,6 @@ const SchoolGradeConfigForm = props => (
   >
     <Row>
       <Column size={2}>
-        <Select
-          required
-          disabled={props.submitting}
-          label="Required hours in week"
-          value={get(props.values, 'weeklyHoursRequired', '')}
-          onChange={value => props.onChange('weeklyHoursRequired', value)}
-          errorText={get(props.errors, 'weeklyHoursRequired', '')}
-          options={[
-            {
-              label: '1,5h',
-              value: 1.5,
-            },
-            {
-              label: '2h',
-              value: 2,
-            },
-            {
-              label: '2,5h',
-              value: 2.5,
-            },
-          ]}
-        />
-      </Column>
-      <Column size={2}>
         <TextInput
           required
           disabled={props.submitting}
