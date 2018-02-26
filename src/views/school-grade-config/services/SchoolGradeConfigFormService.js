@@ -14,7 +14,6 @@ export default class SchoolGradeConfigFormService {
       schoolId: null,
     });
     this.form.validations = {
-      weeklyHoursRequired: [isRequired],
       maximumGrade: [isRequired],
       gradeFormat: [isRequired],
       percentHoursRelevanceInGrade: [isRequired],
