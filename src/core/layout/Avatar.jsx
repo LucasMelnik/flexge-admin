@@ -10,7 +10,7 @@ const Avatar = props => (
       md: 'default',
       lg: 'large',
     }[props.size]}
-    src={props.src}
+    src={`${process.env.REACT_APP_API_URL}/files/${props.src}`}
     icon="user"
   />
 );
