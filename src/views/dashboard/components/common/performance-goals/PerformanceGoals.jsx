@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import StudyQualityAverageContainer from './StudyQualityAverageContainer';
 import StudyQualityHigherThanFiveContainer from './StudyQualityHigherThanFiveContainer';
 import ActiveStudentsContainer from './ActiveStudentsContainer';
-import StudyTimeHigherThanTwoContainer from './StudyTimeHigherThanTwoContainer';
+import WeeklyHoursStatsContainer from './WeeklyHoursStatsContainer';
 import ActiveStudentsLastSevenDaysContainer from './ActiveStudentsLastSevenDaysContainer';
 import LastWeekAverageStudiedTimeContainer from './LastWeekAverageStudiedTimeContainer';
 
@@ -57,7 +57,7 @@ const PerformanceGoals = props => (
       />
     </PerformanceGoalWrapper>
     <PerformanceGoalWrapper>
-      <StudyTimeHigherThanTwoContainer
+      <WeeklyHoursStatsContainer
         classId={props.classId}
         schoolId={props.schoolId}
       />

@@ -1,4 +1,5 @@
 import { action, extendObservable, computed } from 'mobx';
+import reverse from 'lodash/reverse';
 import FetchService from '../../../core/services/FetchService';
 import filterList from './filterList';
 
@@ -24,7 +25,7 @@ class StudiedTimeGroupService {
       }),
       totalByGroup: computed(() => {
         if (!this.validateResponse()) return null;
-        const studentsCount = Object.keys(this.data).map((key) => {
+        const studentsCount = reverse(Object.keys(this.data)).map((key) => {
           if (this.data[key]) {
             return filterList(this.data[key], this.schoolId).reduce((schoolAcc, school) => {
               if (school.classes) {
@@ -40,23 +41,6 @@ class StudiedTimeGroupService {
           value: studentCount,
           rate: (studentCount / this.total) * 100,
         }));
-      }),
-      higherThanTwo: computed(() => {
-        if (!this.validateResponse()) return null;
-        const totalHigherThanTwo = filterList(this.data.excellent, this.schoolId)
-          .reduce((acc, school) => {
-            if (school.classes) {
-              return acc + filterList(school.classes, this.classId)
-                .reduce((classAcc, schoolClass) => classAcc + schoolClass.classCount, 0);
-            }
-            return acc;
-          }, 0);
-        return totalHigherThanTwo / this.total;
-      }),
-      higherThanTwoSchoolAverage: computed(() => {
-        if (!this.validateResponse()) return null;
-        const totalHigherThanTwo = this.data.excellent.reduce((schoolAcc, school) => schoolAcc + school.schoolCount, 0)
-        return totalHigherThanTwo / this.total;
       }),
     });
   }
