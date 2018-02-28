@@ -5,7 +5,7 @@ import AverageStudyQualityByClassContainer from './performance/AverageStudyQuali
 import StudyQualityHigherThanFiveByClassContainer from './performance/StudyQualityHigherThanFiveByClassContainer';
 import ActiveStudentsByClassContainer from './performance/ActiveStudentsByClassContainer';
 import ActiveStudentsLastSevenDaysByClassContainer from './performance/ActiveStudentsLastSevenDaysByClassContainer';
-import StudyTimeHigherThanTwoByClassContainer from './performance/StudyTimeHigherThanTwoByClassContainer';
+import WeeklyHoursStatsByClassContainer from './performance/WeeklyHoursStatsByClassContainer';
 import LastWeekAverageStudiedTimeByClassContainer from './performance/LastWeekAverageStudiedTimeByClassContainer';
 import ClassEnglishLevelOverview from './overview/ClassEnglishLevelOverview';
 
@@ -60,7 +60,7 @@ const StudentRecordPerformance = props => (
         />
       </PerformanceGoalWrapper>
       <PerformanceGoalWrapper>
-        <StudyTimeHigherThanTwoByClassContainer
+        <WeeklyHoursStatsByClassContainer
           schoolId={props.schoolId}
           classId={props.classId}
         />

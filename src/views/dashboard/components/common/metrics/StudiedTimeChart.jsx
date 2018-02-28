@@ -4,42 +4,41 @@ import moment from 'moment';
 import Card from '../../../../../core/layout/Card';
 import DoughnutChart from '../../../../../core/chart/DoughnutChart';
 import Separator from '../../../../../core/layout/Separator';
-import { DARK_GREEN, GREEN, ORANGE, RED } from '../../../../../core/chart/colors';
+import { DARK_GREEN, GREEN, ORANGE, YELLOW, RED, DARK_RED } from '../../../../../core/chart/colors';
 import TopStudentsTableContainer from './TopStudentsTableContainer';
 
-const StudiedTimeChart = (props) => {
-  const weeklyHoursRequired = 1.5;
-  return (
-    <Card
-      title="Studied time last 7 days"
-    >
-      {!props.loading && (
-        <div>
-          <DoughnutChart
-            labels={[
-              `More than ${weeklyHoursRequired}h`,
-              `Until ${weeklyHoursRequired}h`,
-              'Until 1h',
-              'Didn\'t study',
-            ]}
-            data={props.data}
-            colors={[DARK_GREEN, GREEN, ORANGE, RED]}
-          />
-        </div>
-      )}
-      {props.showDetails && (
-        <Separator size="md" />
-      )}
-      {props.showDetails && (
-        <TopStudentsTableContainer
-          days={7}
-          from={moment().subtract(7, 'days').startOf('day').toDate()}
-          to={moment().endOf('day').toDate()}
+const StudiedTimeChart = props => (
+  <Card
+    title="Studied time last 7 days"
+  >
+    {!props.loading && (
+      <div>
+        <DoughnutChart
+          labels={[
+            'More than 2h',
+            'Until 2h',
+            'Until 1h 30m',
+            'Until 1h',
+            'Until 30m',
+            'Didn\'t study',
+          ]}
+          data={props.data}
+          colors={[DARK_GREEN, GREEN, ORANGE, YELLOW, RED, DARK_RED]}
         />
-      )}
-    </Card>
-  );
-};
+      </div>
+    )}
+    {props.showDetails && (
+      <Separator size="md" />
+    )}
+    {props.showDetails && (
+      <TopStudentsTableContainer
+        days={7}
+        from={moment().subtract(7, 'days').startOf('day').toDate()}
+        to={moment().endOf('day').toDate()}
+      />
+    )}
+  </Card>
+);
 
 StudiedTimeChart.propTypes = {
   showDetails: PropTypes.bool,
