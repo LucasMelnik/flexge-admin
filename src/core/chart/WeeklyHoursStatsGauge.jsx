@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '../layout/CircularProgress';
 
-const StudyTimeHigherThanTwoGauge = props => (
+const WeeklyHoursStatsGauge = props => (
   <CircularProgress
     fetching={props.fetching}
     noDataText="No students found"
-    title={`${props.weeklyHoursRequired || 1.5} hours last 7 days`}
-    tooltip={`Students which studied at least ${props.weeklyHoursRequired || 1.5} hours last 7 days`}
+    title="Hours stats of last 7 days"
+    tooltip="Students which studied more than the classroom weekly required hours last 7 days"
     value={props.value}
     max={100}
     successCondition={value => value > 50}
@@ -17,17 +17,15 @@ const StudyTimeHigherThanTwoGauge = props => (
   />
 );
 
-StudyTimeHigherThanTwoGauge.propTypes = {
+WeeklyHoursStatsGauge.propTypes = {
   fetching: PropTypes.bool.isRequired,
   value: PropTypes.number,
   schoolAverage: PropTypes.number,
-  weeklyHoursRequired: PropTypes.number,
 };
 
-StudyTimeHigherThanTwoGauge.defaultProps = {
+WeeklyHoursStatsGauge.defaultProps = {
   value: null,
   schoolAverage: null,
-  weeklyHoursRequired: 1.5,
 };
 
-export default StudyTimeHigherThanTwoGauge;
+export default WeeklyHoursStatsGauge;
