@@ -4,6 +4,8 @@ import { browserHistory } from 'react-router';
 import { formatTimeFromSeconds } from '../../../core/util';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
+import replace from 'lodash/replace';
+import StatusItem from '../../../core/layout/StatusItem';
 
 const MasteryTestList = props => (
   <Table
@@ -32,6 +34,38 @@ const MasteryTestList = props => (
         label: 'Items Count',
         path: 'itemsCount',
         width: '105px',
+      },
+      {
+        label: 'Status Format',
+        path: 'review.statusFormat',
+        width: '150px',
+        render: value => (
+          <StatusItem
+            color={{
+              PENDING: '#ef8c3b',
+              APPROVED: '#009687',
+              NOT_APPROVED: '#FF5233',
+              AWAITING_REVIEW: '#758C98',
+            }[value || 'AWAITING_REVIEW']}
+            text={replace((value || 'AWAITING_REVIEW'), '_', ' ')}
+          />
+        ),
+      },
+      {
+        label: 'Status Content',
+        path: 'review.statusContent',
+        width: '150px',
+        render: value => (
+          <StatusItem
+            color={{
+              PENDING: '#ef8c3b',
+              APPROVED: '#009687',
+              NOT_APPROVED: '#FF5233',
+              AWAITING_REVIEW: '#758C98',
+            }[value || 'AWAITING_REVIEW']}
+            text={replace((value || 'AWAITING_REVIEW'), '_', ' ')}
+          />
+        ),
       },
       {
         label: 'Actions',
