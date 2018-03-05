@@ -19,6 +19,16 @@ const SchoolEvaluationForm = props => (
         <TextInput
           required
           disabled={props.submitting}
+          label="Period Name"
+          value={get(props.values, 'name', null)}
+          onChange={value => props.onChange('name', value)}
+          errorText={get(props.errors, 'name', null)}
+        />
+      </Column>
+      <Column size={2}>
+        <TextInput
+          required
+          disabled={props.submitting}
           type="number"
           label="Bonus Weeks"
           value={get(props.values, 'bonusWeeks', null)}

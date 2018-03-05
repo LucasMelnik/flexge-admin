@@ -9,6 +9,11 @@ const EvaluationPeriodList = props => (
     fetching={props.fetching}
     columns={[
       {
+        label: 'Period Name',
+        path: 'name',
+        sort: true,
+      },
+       {
         label: 'Start',
         path: 'start',
         sort: true,

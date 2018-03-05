@@ -15,6 +15,7 @@ export default class EvaluationPeriodFormService {
       evaluationTemplateId: null,
     });
     this.form.validations = {
+      name: [isRequired],
       bonusWeeks: [isRequired],
       start: [isRequired],
       end: [isRequired],
