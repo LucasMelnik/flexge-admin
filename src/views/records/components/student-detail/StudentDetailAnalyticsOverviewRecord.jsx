@@ -128,7 +128,11 @@ const StudentDetailAnalyticsOverviewRecord = props => (
             label: 'Preview Grade',
             path: 'id',
             render: (value, row) => (
-              <span>{moment(row.start).format('YYYY, MMM DD')} - {moment(row.end).format('YYYY, MMM DD')}</span>
+              <div>
+                <span>{row.name}</span>
+                <br />
+                <span>{moment(row.start).format('YYYY, MMM DD')} - {moment(row.end).format('YYYY, MMM DD')}</span>
+              </div>
             ),
           },
           {
