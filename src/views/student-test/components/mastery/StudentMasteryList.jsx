@@ -8,6 +8,10 @@ const StudentMasteryList = props => (
     fetching={props.fetching}
     columns={[
       {
+        label: 'Course',
+        path: 'masteryTest.module.course.name',
+      },
+      {
         label: 'Module',
         path: 'masteryTest.module.name',
       },

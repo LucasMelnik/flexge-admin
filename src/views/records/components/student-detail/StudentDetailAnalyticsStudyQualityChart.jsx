@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment/moment';
 import findIndex from 'lodash/findIndex';
 import range from 'lodash/range';
 import { getLabel } from '../../../dashboard/components/common/history/utils';
@@ -10,8 +11,8 @@ const StudentDetailAnalyticsStudyQualityChart = props => (
   <Async fetching={props.loading}>
     <LineChart
       height={350}
-      labels={range(1, 53).map(week => getLabel(week))}
-      data={range(1, 53).map(week => props.data.find(item => Number(item.id) === week) || {})}
+      labels={range(1, moment().format('WW')).map(week => getLabel(week))}
+      data={range(1, moment().format('WW')).map(week => props.data.find(item => Number(item.id) === week) || {})}
       dataFormat={[
         {
           label: 'Study Quality',

@@ -43,7 +43,7 @@ export default class StudentDetailHeader extends Component {
   };
 
   getScoreByRequirement = (item) => {
-    const totalScore = item.firstScore + item.secondScore + item.thirdScore;
+    const totalScore = ((item.firstScore * 2.5) / 3) + (((item.secondScore || 0) * 1.6) / 3) + (((item.thirdScore || 0) * 0.9) / 3);
     if (
       [
         'DAYS_STUDIED',
@@ -53,7 +53,7 @@ export default class StudentDetailHeader extends Component {
         'TIME_STUDIED',
       ].find(type => type === item.requirement)
     ) {
-      return toInteger((totalScore * 5) / 9);
+      return toInteger(((item.firstScore * 2.5) / 3) + (((item.secondScore || 0) * 1.6) / 3) + (((item.thirdScore || 0) * 0.9) / 3));
     } else if (
       [
         'SINGLE_CHOICE_AVERAGE_SCORE',
@@ -61,7 +61,7 @@ export default class StudentDetailHeader extends Component {
         'LISTEN_USAGE',
       ].find(type => type === item.requirement)
     ) {
-      return toInteger((totalScore * 5) / 6);
+      return toInteger(((item.firstScore * 2.5) / 2) + (((item.secondScore || 0) * 1.6) / 2) + (((item.thirdScore || 0) * 0.9) / 2));
     } else if (item.requirement === 'REPEAT_RECORD_LISTEN_RELATION') {
       return toInteger((totalScore * 5) / 3);
     }
