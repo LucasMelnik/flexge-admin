@@ -46,8 +46,8 @@ const StudentDetailAnalyticsAcademicPerformance = props => props.currentPerforma
         noDataText="No data"
         value={props.currentPerformance.averageMasteryTestScore && round(props.currentPerformance.averageMasteryTestScore)}
         max={100}
-        successCondition={value => value >= 90}
-        badCondition={value => value < 80}
+        successCondition={value => value >= 85}
+        badCondition={value => value < 75}
         valueRender={value => `${value}`}
       />
     </div>
