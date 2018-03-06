@@ -11,10 +11,10 @@ import StudentDetailAnalyticsOverviewRecordContainer from './StudentDetailAnalyt
 import StudentDetailAnalyticsStudiedTimeChartContainer from './StudentDetailAnalyticsStudiedTimeChartContainer';
 import StudentDetailAnalyticsStudyQualityChartContainer from './StudentDetailAnalyticsStudyQualityChartContainer';
 import StudentDetailAnalyticsAcademicPerformanceHistoryContainer from './StudentDetailAnalyticsAcademicPerformanceHistoryContainer';
-import StudentDetailAchievements from './StudentDetailAchievements';
 import StudentDetailContentRecordListFilterContainer from './StudentDetailContentRecordListFilterContainer';
 import StudentDetailCurrentPerformancePanelContainer from './StudentDetailCurrentPerformancePanelContainer';
 import StudentDetailUnitResultDialogContainer from './StudentDetailUnitResultDialogContainer';
+import StudentDetailAchievementListContainer from './StudentDetailAchievementListContainer';
 
 const StudentDetailRecordScene = props => (
   <div>
@@ -90,7 +90,7 @@ const StudentDetailRecordScene = props => (
           content:
            (
              <Card>
-               <StudentDetailAchievements />
+               <StudentDetailAchievementListContainer studentId={props.studentId} />
              </Card>
            ),
         },
