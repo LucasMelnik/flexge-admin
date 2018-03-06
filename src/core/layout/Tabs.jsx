@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { Tabs as AntTabs } from 'antd';
 
 const Tabs = props => (
-  <AntTabs defaultActiveKey={props.tabs[0].title}>
+  <AntTabs defaultActiveKey={(props.tabs[0].key || props.tabs[0].title)}>
     {props.tabs.map(tab => (
       <AntTabs.TabPane
         tab={tab.title}
-        key={tab.title}
+        key={tab.key || tab.title}
       >
         {tab.content}
       </AntTabs.TabPane>
@@ -17,9 +17,10 @@ const Tabs = props => (
 
 Tabs.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    title: PropTypes.oneOfType(PropTypes.string, PropTypes.node).isRequired,
     content: PropTypes.node.isRequired,
     icon: PropTypes.string,
+    key: PropTypes.string,
   })).isRequired,
 };
 

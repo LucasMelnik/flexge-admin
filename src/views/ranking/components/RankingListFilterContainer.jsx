@@ -1,14 +1,14 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import RankingListFilter from './RankingListFilter';
-import RankingListService from '../services/RankingListService';
+import RankingListFilterService from '../services/RankingListFilterService';
 
 const RankingListFilterContainer = () => (
   <RankingListFilter
-    values={RankingListService.form.getValues()}
-    errors={RankingListService.form.errors}
-    onChange={RankingListService.form.setValue}
-    onSearch={RankingListService.handleSearch}
+    values={RankingListFilterService.form.getValues()}
+    errors={RankingListFilterService.form.errors}
+    onChange={RankingListFilterService.form.setValue}
+    onSearch={RankingListFilterService.handleSearch}
   />
 );
 

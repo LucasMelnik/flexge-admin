@@ -42,6 +42,7 @@ const RankingListPanelContainer = props => (
   <RankingListPanel
     from={getFrom(props.type)}
     to={getTo(props.type)}
+    type={props.type}
   />
 );
 

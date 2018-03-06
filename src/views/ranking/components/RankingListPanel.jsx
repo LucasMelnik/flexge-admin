@@ -14,6 +14,7 @@ const RankingListPanel = props => (
           from={props.from}
           to={props.to}
           level="regional"
+          type={props.type}
         />
       </Column>
       <Column size={6}>
@@ -22,6 +23,7 @@ const RankingListPanel = props => (
           from={props.from}
           to={props.to}
           level="national"
+          type={props.type}
         />
       </Column>
     </Row>
@@ -31,6 +33,7 @@ const RankingListPanel = props => (
 RankingListPanel.propTypes = {
   from: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['month', 'semester', 'year', 'all']).isRequired,
 };
 
 export default RankingListPanel;
