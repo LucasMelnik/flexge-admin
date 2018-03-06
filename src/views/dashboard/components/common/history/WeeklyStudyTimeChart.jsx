@@ -15,8 +15,8 @@ const WeeklyStudyTimeChart = props => (
   >
     <BarChart
       height={350}
-      labels={range(1, 53).map(week => getLabel(week))}
-      data={range(1, 53).map(week => props.data.find(item => item.week === week) || {})}
+      labels={range(1, moment().format('WW')).map(week => getLabel(week))}
+      data={range(1, moment().format('WW')).map(week => props.data.find(item => item.week === week) || {})}
       dataFormat={[
         {
           label: 'Total Hours',

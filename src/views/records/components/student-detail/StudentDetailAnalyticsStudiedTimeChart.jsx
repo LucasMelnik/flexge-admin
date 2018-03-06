@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import range from 'lodash/range';
 import moment from 'moment/moment';
-import { getLabel } from '../../../dashboard/components/common/history/utils';
 import findIndex from 'lodash/findIndex';
+import { getLabel } from '../../../dashboard/components/common/history/utils';
 import Async from '../../../../core/layout/Async';
 import LineChart from '../../../../core/chart/LineChart';
 
@@ -11,8 +11,8 @@ const StudentDetailAnalyticsStudiedTimeChart = props => (
   <Async fetching={props.loading}>
     <LineChart
       height={350}
-      labels={range(1, 53).map(week => getLabel(week))}
-      data={range(1, 53).map(week => props.data.find(item => item.week === week) || {})}
+      labels={range(1, moment().format('WW')).map(week => getLabel(week))}
+      data={range(1, moment().format('WW')).map(week => props.data.find(item => item.week === week) || {})}
       dataFormat={[
         {
           label: 'Total Hours',
