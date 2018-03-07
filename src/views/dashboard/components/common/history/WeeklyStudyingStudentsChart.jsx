@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment/moment';
 import range from 'lodash/range';
 import Card from '../../../../../core/layout/Card';
 import LineChart from '../../../../../core/chart/LineChart';
@@ -12,8 +13,8 @@ const WeeklyStudyingStudentsChart = props => (
   >
     <LineChart
       height={350}
-      labels={range(1, 53).map(week => getLabel(week))}
-      data={range(1, 53).map(week => props.data.find(item => item.week === week) || {})}
+      labels={range(1, moment().format('WW')).map(week => getLabel(week))}
+      data={range(1, moment().format('WW')).map(week => props.data.find(item => item.week === week) || {})}
       dataFormat={[
         {
           label: 'Total Students',

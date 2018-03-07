@@ -17,12 +17,17 @@ class RankingListFilterService {
       region: localStorage.role === 'ADMIN' ? [(value, all) => !value && !all.school && 'Required'] : [],
     };
 
-    this.form.setValue('month', moment().format('MM'));
     if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
       const school = JSON.parse(localStorage.getItem('school'));
       this.form.setValue('school', school._id);
     }
   }
+
+  init = action(() => {
+    this.services = {};
+    this.form.setInitialValues({});
+    this.form.setValue('month', moment().format('MM'));
+  });
 
   registerService = action((type, service) => {
     if (!this.services[type]) {
@@ -42,7 +47,7 @@ class RankingListFilterService {
       return;
     }
     Object.keys(this.services).forEach((key) => {
-      this.services[key].forEach(service => service.load(key === 'monthly'));
+      this.services[key].forEach(service => service.load(key === 'month'));
     });
   });
 
