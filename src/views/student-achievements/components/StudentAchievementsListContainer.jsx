@@ -15,6 +15,7 @@ class StudentAchievementsListContainer extends Component {
       <StudentAchievementsList
         achievements={toJS(StudentAchievementsListService.achievements)}
         fetching={StudentAchievementsListService.fetch.fetching}
+        onDownload={StudentAchievementsListService.handleDownloadCertificate}
       />
     );
   }

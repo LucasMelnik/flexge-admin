@@ -7,6 +7,7 @@ import NotificationService from '../../../core/services/NotificationService';
 
 class StudentAchievementsListService {
   fetch = new FetchService();
+  download = new FetchService();
   form = new FormService();
 
   constructor() {
@@ -53,6 +54,23 @@ class StudentAchievementsListService {
         ];
       } else {
         this.achievements = [];
+      }
+    });
+  });
+
+  handleDownloadCertificate = action((studentAchievement) => {
+    this.download.fetch({
+      responseType: 'blob',
+      url: `/students/${studentAchievement.student.id}/achievements/${studentAchievement.id}/certificate`,
+    }).then(() => {
+      if (this.download.data) {
+        const link = document.createElement('a');
+        const fileUrl = window.URL.createObjectURL(this.download.data);
+        link.href = fileUrl;
+
+        link.download = 'achievement_certificate.pdf';
+        link.click();
+        setTimeout(() => window.URL.revokeObjectURL(fileUrl), 500);
       }
     });
   });

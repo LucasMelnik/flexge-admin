@@ -7,6 +7,7 @@ const StudentAchievementsListFilterContainer = () => (
   <StudentAchievementsListFilter
     values={StudentAchievementsListService.form.getValues()}
     onChange={StudentAchievementsListService.form.setValue}
+    errors={StudentAchievementsListService.form.errors}
     onSearch={StudentAchievementsListService.load}
     fetching={StudentAchievementsListService.fetch.fetching}
   />

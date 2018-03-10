@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '../../../core/form/Table';
+import Button from '../../../core/form/Button';
 
 const StudentAchievementsList = props => (
   <Table
@@ -44,6 +45,19 @@ const StudentAchievementsList = props => (
         label: 'Student',
         path: 'student.name',
       },
+      {
+        label: 'Actions',
+        path: 'action',
+        width: '80px',
+        render: (cell, row) => !row.children && (
+          <div>
+            <Button
+              icon="download"
+              onClick={() => props.onDownload(row)}
+            />
+          </div>
+        ),
+      },
     ]}
     rows={props.achievements}
     showTableCount={false}
@@ -55,6 +69,7 @@ StudentAchievementsList.propTypes = {
     id: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
+  onDownload: PropTypes.func.isRequired,
 };
 
 export default StudentAchievementsList;
