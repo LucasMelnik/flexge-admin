@@ -45,19 +45,19 @@ const StudentAchievementsList = props => (
         label: 'Student',
         path: 'student.name',
       },
-      {
-        label: 'Actions',
-        path: 'action',
-        width: '80px',
-        render: (cell, row) => !row.children && (
-          <div>
-            <Button
-              icon="download"
-              onClick={() => props.onDownload(row)}
-            />
-          </div>
-        ),
-      },
+      // {
+      //   label: 'Actions',
+      //   path: 'action',
+      //   width: '80px',
+      //   render: (cell, row) => !row.children && (
+      //     <div>
+      //       <Button
+      //         icon="download"
+      //         onClick={() => props.onDownload(row)}
+      //       />
+      //     </div>
+      //   ),
+      // },
     ]}
     rows={props.achievements}
     showTableCount={false}
