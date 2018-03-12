@@ -114,10 +114,7 @@ export default class UserFormService {
             'error',
           );
         } else {
-          NotificationService.addNotification(
-            `Error ${userId ? 'updating' : 'creating'} student.`,
-            'error',
-          );
+          NotificationService.addNotification(this.submit.error, 'error');
         }
       }
     });

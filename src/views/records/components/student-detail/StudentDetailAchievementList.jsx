@@ -47,7 +47,7 @@ const StudentDetailAchievementList = props => (
             SCHOOL: 'School',
           }[row.achievement.level]}
           </span>
-        )
+        ),
       },
     ]}
   />

@@ -1,5 +1,5 @@
 export const englishLevelCourses = [
-  { value: 0, label: 'Initial' },
+  { value: 0, label: 'Pre A1' },
   { value: 0.5, label: 'Pre A1' },
   { value: 1.0, label: 'A1' },
   { value: 1.5, label: 'A1+' },

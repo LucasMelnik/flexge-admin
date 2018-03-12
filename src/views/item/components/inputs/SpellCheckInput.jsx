@@ -34,6 +34,7 @@ const SpellCheckInput = props => (
         <Column size={12}>
           {props.wrongWords.map(word => (
             <span
+              key={word.replace(/[.]/g, '_')}
               style={{
                 display: 'inline-block',
                 marginRight: 10,
@@ -42,11 +43,11 @@ const SpellCheckInput = props => (
               <TextInput
                 label={word}
                 disabled={props.submitting || props.disabled}
-                value={get(props.values, `speechRecognitionDictionary.${word}`, '')}
+                value={get(props.values, `speechRecognitionDictionary.${word.replace(/[.]/g, '_')}`, '')}
                 onChange={(value) => {
                   props.onChange('speechRecognitionDictionary', {
                     ...get(props.values, 'speechRecognitionDictionary', {}),
-                    [word]: value,
+                    [word.replace(/[.]/g, '_')]: value,
                   });
                 }}
               />
