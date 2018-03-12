@@ -11,6 +11,7 @@ import Tag from '../../../../core/layout/Tag';
 import Icon from '../../../../core/layout/Icon';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import TooltipIcon from '../../../../core/layout/TooltipIcon';
+import { englishLevelCourses } from '../../../../core/consts';
 
 const StudentDetailAnalyticsOverviewRecord = props => (
   <Async fetching={props.fetching}>
@@ -35,7 +36,7 @@ const StudentDetailAnalyticsOverviewRecord = props => (
         >
           <div style={{ textAlign: 'center' }}>
             <span>Initial Level</span>
-            <h1>{round(props.student.initialEnglishLevel, 1).toFixed(1)} / {get(props.student, 'initialCourse.name', '-')}</h1>
+            <h1>{round(props.student.initialEnglishLevel, 1).toFixed(1)} / {get(englishLevelCourses.find(level => level.value === props.student.initialEnglishLevel), 'label', '-')}</h1>
           </div>
           <Icon
             name="arrow-right"
@@ -46,7 +47,7 @@ const StudentDetailAnalyticsOverviewRecord = props => (
           />
           <div style={{ textAlign: 'center' }}>
             <span>Current Level</span>
-            <h1>{round(props.student.currentEnglishLevel, 1).toFixed(1)} / {get(props.student, 'currentCourse.name', '-')}</h1>
+            <h1>{round(props.student.currentEnglishLevel, 1).toFixed(1)} / {get(englishLevelCourses.find(level => level.value === props.student.currentEnglishLevel), 'label', '-')}</h1>
           </div>
         </div>
       </Tag>
@@ -136,19 +137,45 @@ const StudentDetailAnalyticsOverviewRecord = props => (
             ),
           },
           {
-            label: 'Hours Grade',
-            path: 'previewGrade.hoursGrade',
-            align: 'center',
-          },
-          {
-            label: (<span>Study Quality Grade <TooltipIcon text="Average Study Quality generated every Sunday at midnight" /></span>),
+            label: (<span>Study Quality Grade ({get(props.student, 'schoolClass.school.percentStudyQualityRelevanceInGrade', '-')}%) <TooltipIcon text="Average Study Quality generated every Sunday at midnight" /></span>),
             path: 'previewGrade.studyQualityGrade',
             align: 'center',
+            render: (grade, row) => grade ? (
+              <div>
+                {grade}
+                <br />
+                <span>Media SQ: {row.previewGrade.averageStudyQuality.toFixed(1)}</span>
+                <br />
+                <span>
+                  {row.previewGrade.averageStudyQuality >= 10 && ('Excellent!')}
+                  {(row.previewGrade.averageStudyQuality < 10 && row.previewGrade.averageStudyQuality >= 7) && ('Very Good!')}
+                  {(row.previewGrade.averageStudyQuality < 7 && row.previewGrade.averageStudyQuality >= 4) && ('Good!')}
+                  {(row.previewGrade.averageStudyQuality < 4 && row.previewGrade.averageStudyQuality >= 1) && ('Moderate!')}
+                  {(row.previewGrade.averageStudyQuality < 1 && row.previewGrade.averageStudyQuality >= -2) && ('Weak!')}
+                  {(row.previewGrade.averageStudyQuality < -2) && ('Very Weak!')}
+                </span>
+              </div>
+            ) : 'N/A',
+          },
+          {
+            label: `Hours Grade (${get(props.student, 'schoolClass.school.percentHoursRelevanceInGrade', '-')}%)`,
+            path: 'previewGrade.hoursGrade',
+            align: 'center',
+            render: (grade, row) => (
+              <div>
+                {grade}
+                <br />
+                <span>Total study time: {moment.duration(row.previewGrade.hoursStudied, 'hours').format('hh:mm')}</span>
+                <br />
+                <span>Required study time: {moment.duration(row.previewGrade.hoursRequired, 'hours').format('hh:mm')}</span>
+              </div>
+            ),
           },
           {
             label: 'Preview Final Grade',
             path: 'previewGrade.finalGrade',
             align: 'center',
+            render: value => value || 'N/A'
           },
         ]}
       />
@@ -178,7 +205,10 @@ StudentDetailAnalyticsOverviewRecord.propTypes = {
       name: PropTypes.string,
       previewGrade: PropTypes.shape({
         hoursGrade: PropTypes.number,
+        hoursStudied: PropTypes.number,
+        hoursRequired: PropTypes.number,
         studyQualityGrade: PropTypes.number,
+        averageStudyQuality: PropTypes.number,
         finalGrade: PropTypes.number,
       }),
     }),
