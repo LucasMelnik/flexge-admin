@@ -1,95 +1,116 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from '../../../core/form/Table';
 import { Link } from 'react-router';
+import Table from '../../../core/form/Table';
 
 const RankingList = props => (
   <Table
     fetching={props.fetching}
     bordered={false}
     columns={[
-      {
-        label: 'Positions',
-        path: 'position',
-        sort: true,
-        defaultSortOrder: 'ascend',
-        className: 'no-padding-column',
-        width: '100px',
-        render: (value, row) => (
-          <div
-            style={{
-              backgroundColor: row.schoolClass.teacher === localStorage.id ? 'rgba(77, 189, 167, 0.5)' : '#fff',
-              padding: 16,
-            }}
-          >
-            {value}
-          </div>
-        ),
-      },
-      {
-        label: 'Points',
-        path: 'points',
-        width: '80px',
-        className: 'no-padding-column',
-        render: (value, row) => (
-          <div
-            style={{
-              backgroundColor: row.schoolClass.teacher === localStorage.id ? 'rgba(77, 189, 167, 0.5)' : '#fff',
-              padding: 16,
-            }}
-          >
-            {value}
-          </div>
-        ),
-      },
-      {
-        label: 'Student',
-        path: 'name',
-        sort: true,
-        className: 'no-padding-column',
-        render: (value, row) => (
-          <div
-            style={{
-              backgroundColor: row.schoolClass.teacher === localStorage.id ? 'rgba(77, 189, 167, 0.5)' : '#fff',
-              padding: 16,
-            }}
-          >
-            <Link to={`records/schools/${row.schoolClass.school.id}/classes/${row.schoolClass.id}/students/${row.id}/detail`}>
+      ...[
+        {
+          label: '#',
+          path: 'position',
+          sort: true,
+          defaultSortOrder: 'ascend',
+          className: 'no-padding-column',
+          width: '60px',
+          render: (value, row) => (
+            <div
+              style={{
+                backgroundColor: row.schoolClass.teacher === localStorage.id ? 'rgba(77, 189, 167, 0.5)' : '#fff',
+                padding: 16,
+              }}
+            >
               {value}
-            </Link>
-          </div>
-        ),
-      },
-      {
-        label: 'School Classes',
-        path: 'schoolClass.name',
-        className: 'no-padding-column',
-        render: (value, row) => (
-          <div
-            style={{
-              backgroundColor: row.schoolClass.teacher === localStorage.id ? 'rgba(77, 189, 167, 0.5)' : '#fff',
-              padding: 16,
-            }}
-          >
-            {value}
-          </div>
-        ),
-      },
-      {
-        label: 'School',
-        path: 'schoolClass.school.name',
-        className: 'no-padding-column',
-        render: (value, row) => (
-          <div
-            style={{
-              backgroundColor: row.schoolClass.teacher === localStorage.id ? 'rgba(77, 189, 167, 0.5)' : '#fff',
-              padding: 16,
-            }}
-          >
-            {value}
-          </div>
-        ),
-      },
+            </div>
+          ),
+        },
+        {
+          label: 'Points',
+          path: 'points',
+          width: '70px',
+          className: 'no-padding-column',
+          render: (value, row) => (
+            <div
+              style={{
+                backgroundColor: row.schoolClass.teacher === localStorage.id ? 'rgba(77, 189, 167, 0.5)' : '#fff',
+                padding: 16,
+              }}
+            >
+              {value}
+            </div>
+          ),
+        },
+        {
+          label: 'Student',
+          path: 'name',
+          sort: true,
+          width: '40%',
+          className: 'no-padding-column',
+          render: (value, row) => (
+            <div
+              style={{
+                backgroundColor: row.schoolClass.teacher === localStorage.id ? 'rgba(77, 189, 167, 0.5)' : '#fff',
+                padding: 16,
+              }}
+            >
+              <Link to={`records/schools/${row.schoolClass.school.id}/classes/${row.schoolClass.id}/students/${row.id}/detail`}>
+                {value}
+              </Link>
+            </div>
+          ),
+        },
+        {
+          label: 'School Classes',
+          path: 'schoolClass.name',
+          className: 'no-padding-column',
+          render: (value, row) => (
+            <div
+              style={{
+                backgroundColor: row.schoolClass.teacher === localStorage.id ? 'rgba(77, 189, 167, 0.5)' : '#fff',
+                padding: 16,
+              }}
+            >
+              {value}
+            </div>
+          ),
+        },
+        {
+          label: 'School',
+          path: 'schoolClass.school.name',
+          className: 'no-padding-column',
+          render: (value, row) => (
+            <div
+              style={{
+                backgroundColor: row.schoolClass.teacher === localStorage.id ? 'rgba(77, 189, 167, 0.5)' : '#fff',
+                padding: 16,
+              }}
+            >
+              {value}
+            </div>
+          ),
+        },
+      ],
+      ...localStorage.role === 'ADMIN' ? [
+        {
+          label: 'Course',
+          path: 'studentCourse.course.name',
+          className: 'no-padding-column',
+          width: '80px',
+          render: (value, row) => (
+            <div
+              style={{
+                backgroundColor: row.schoolClass.teacher === localStorage.id ? 'rgba(77, 189, 167, 0.5)' : '#fff',
+                padding: 16,
+              }}
+            >
+              {value}
+            </div>
+          ),
+        },
+      ] : [],
     ]}
     rows={props.rankings}
   />
