@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '../../../core/form/Table';
-import Button from '../../../core/form/Button';
 
 const StudentAchievementsList = props => (
   <Table
