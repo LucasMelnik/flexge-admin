@@ -57,7 +57,7 @@ const StudentRecordList = props => (
                 style={{
                   display: 'flex',
                   flex: 1,
-                  maxWidth: '75%',
+                  maxWidth: '65%',
                   marginLeft: 10,
                 }}
               >
@@ -70,7 +70,14 @@ const StudentRecordList = props => (
           ) : 'N/A',
         },
         {
-          label: 'Time Studied',
+          label: 'Week Time',
+          path: 'weekStudiedTime',
+          sort: true,
+          width: '110px',
+          render: value => value ? moment.duration(value, 'seconds').format('hh:mm', { trim: false }) : 'N/A',
+        },
+        {
+          label: 'Total Time',
           path: 'totalStudiedTime',
           sort: true,
           width: '110px',
