@@ -47,8 +47,13 @@ class UserListService {
           url: `/users/${user.id}`,
           method: 'delete',
         }).then(() => {
-          NotificationService.addNotification('User deleted', 'success');
-          this.load();
+          if (this.fetch.data) {
+            NotificationService.addNotification('User deleted', 'success');
+            this.load();
+          }
+          if (this.fetch.error) {
+            NotificationService.addNotification(this.fetch.error, 'error');
+          }
         });
       });
   });

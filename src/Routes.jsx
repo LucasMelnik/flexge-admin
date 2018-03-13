@@ -13,10 +13,6 @@ import CompanyDetailSceneContainer from './views/company/components/CompanyDetai
 import DistributorListScene from './views/distributor/components/DistributorListScene';
 import DistributorFormScene from './views/distributor/components/DistributorFormScene';
 import DistributorDetailSceneContainer from './views/distributor/components/DistributorDetailSceneContainer';
-//
-// import TeacherListScene from './views/teacher/components/TeacherListScene';
-// import TeacherFormScene from './views/teacher/components/TeacherFormScene';
-//
 import SchoolListScene from './views/school/components/SchoolListScene';
 import SchoolFormSceneContainer from './views/school/components/SchoolFormSceneContainer';
 import SchoolDetailSceneContainer from './views/school/components/SchoolDetailSceneContainer';
@@ -57,7 +53,6 @@ import CharacterListScene from './views/character/components/CharacterListScene'
 import CharacterFormScene from './views/character/components/CharacterFormScene';
 import AchievementListScene from './views/achievement/components/AchievementListScene';
 import AchievementFormScene from './views/achievement/components/AchievementFormScene';
-import StudentAchievementsScene from './views/student-achievements/components/StudentAchievementsScene';
 
 import FilterRecordScene from './views/records/components/FilterRecordScene';
 import SchoolClassRecordSceneContainer from './views/records/components/school-class/SchoolClassRecordSceneContainer';
@@ -91,6 +86,7 @@ import ItemByWordsListScene from './views/reports/components/item-by-words/ItemB
 import EvaluationTemplateListScene from './views/evaluation-template/components/EvaluationTemplateListScene';
 import EvaluationTemplateFormScene from './views/evaluation-template/components/EvaluationTemplateFormScene';
 import UsageStatsListScene from './views/usage-stats/components/UsageStatsListScene';
+import StudentAchievementsListScene from './views/student-achievements/components/StudentAchievementsListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -135,9 +131,6 @@ const Routes = () => (
       <Route path="companies/:companyId/schools/:schoolId/classes/:classId/details" component={SchoolClassDetailSceneContainer} />
       <Route path="companies/:companyId/schools/:schoolId/classes/:classId/students/new" component={StudentFormSceneContainer} />
       <Route path="companies/:companyId/schools/:schoolId/classes/:classId/students/:studentId" component={StudentFormSceneContainer} />
-      {/*<Route path="teachers" component={TeacherListScene} />*/}
-      {/*<Route path="teachers/new" component={TeacherFormScene} />*/}
-      {/*<Route path="teachers/:teacherId" component={TeacherFormScene} />*/}
       <Route path="schools" component={SchoolListScene} />
       <Route path="schools/new" component={SchoolFormSceneContainer} />
       <Route path="schools/:schoolId" component={SchoolFormSceneContainer} />
@@ -218,7 +211,7 @@ const Routes = () => (
       <Route path="evaluation-templates/new" component={EvaluationTemplateFormScene} />
       <Route path="evaluation-templates/:evaluationTemplateId" component={EvaluationTemplateFormScene} />
       <Route path="rankings" component={RankingListScene} />
-      <Route path="student-achievements" component={StudentAchievementsScene} />
+      <Route path="student-achievements" component={StudentAchievementsListScene} />
       <Route path="import-students" component={ImportStudentsFormScene} />
       <Route path="reactivate-student" component={ReactivateStudentListScene} />
       <Route path="reactivate-student/:studentId" component={ReactivateStudentFormScene} />

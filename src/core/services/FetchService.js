@@ -28,6 +28,7 @@ class FetchService {
         ...localStorage.accessToken && { Authorization: `Bearer ${localStorage.accessToken}` },
       },
       ...params.auth && { auth: params.auth },
+      ...params.responseType && { responseType: params.responseType },
     }).then(action((response) => {
       this.fetching = false;
       this.response = response;

@@ -17,6 +17,7 @@ class RankingListFilterService {
       region: localStorage.role === 'ADMIN' ? [(value, all) => !value && !all.school && 'Required'] : [],
     };
 
+    this.form.setValue('month', moment().format('MM'));
     if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
       const school = JSON.parse(localStorage.getItem('school'));
       this.form.setValue('school', school._id);
@@ -35,7 +36,7 @@ class RankingListFilterService {
     }
     this.services[type].push(service);
 
-    if (!this.form.errors) {
+    if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
       service.load();
     }
   });
