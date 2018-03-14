@@ -237,6 +237,7 @@ export default class ItemFormService {
           'item.text': [isRequired],
           'item.translation': this.isTestItem ? [] : [isRequired],
           'item.indexesToRemove': [isRequired],
+          'item.answers': [value => value && value.filter(answer => !answer.linkTo).length > 4 && 'The maximum of gaps os 4'],
         };
         break;
       case 'FREE_TEXT':
