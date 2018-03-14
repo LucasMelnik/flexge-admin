@@ -6,7 +6,7 @@ import UnitAverageExecutionTimeListFilterContainer from './UnitAverageExecutionT
 
 const UnitAverageExecutionTimeListScene = () => (
   <div>
-    <Card title="Items by words">
+    <Card title="Average execution time">
       <UnitAverageExecutionTimeListFilterContainer />
     </Card>
     <Separator />

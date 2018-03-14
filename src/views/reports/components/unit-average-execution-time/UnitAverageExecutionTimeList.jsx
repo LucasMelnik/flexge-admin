@@ -30,6 +30,20 @@ const UnitAverageExecutionTimeList = props => (
         sort: true,
         render: value => formatTimeFromSeconds(value),
       },
+      {
+        label: 'Higher time (mm:ss)',
+        path: 'higherTime',
+        width: '190px',
+        sort: true,
+        render: value => formatTimeFromSeconds(value),
+      },
+      {
+        label: 'Lower time (mm:ss)',
+        path: 'lowerTime',
+        width: '190px',
+        sort: true,
+        render: value => formatTimeFromSeconds(value),
+      },
     ]}
     rows={props.units}
   />
