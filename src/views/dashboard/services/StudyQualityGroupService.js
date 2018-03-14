@@ -39,7 +39,7 @@ class StudyQualityGroupService {
         }, 0);
 
         const rate = (totalHigherThanFive / this.total) * 100;
-        return isFinite(rate) ? 0 : rate;
+        return isFinite(rate) ? rate : 0;
       }),
       higherThanFiveSchoolAverage: computed(() => {
         if (!this.validateResponse()) return null;
@@ -47,7 +47,7 @@ class StudyQualityGroupService {
           acc + this.data[key].reduce((schoolAcc, school) => schoolAcc + school.schoolCount, 0)
         ), 0);
         const rate = (totalHigherThanFive / this.total) * 100;
-        return isFinite(rate) ? 0 : rate;
+        return isFinite(rate) ? rate : 0;
       }),
       totalByGroup: computed(() => {
         const totals = Object.keys(this.data).map((key) => {
