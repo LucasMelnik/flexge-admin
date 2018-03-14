@@ -15,7 +15,7 @@ const RankingListFilter = props => (
         value={get(props.values, 'school', '')}
         onChange={name => props.onChange('school', name)}
         errorText={get(props.errors, 'school', '')}
-        url={`schools${localStorage.role === 'COMPANY_MANAGER' ? `?company=${JSON.parse(localStorage.getItem('company')).id}` : ''}`}
+        url="schools"
         resultTransformer={{
           text: 'name',
           value: 'id',
