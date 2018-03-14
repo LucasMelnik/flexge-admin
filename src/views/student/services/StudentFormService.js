@@ -46,6 +46,7 @@ export default class StudentFormService {
     } else {
       this.form.setInitialValues({
         sendWelcomeEmail: false,
+        demoStudent: false,
       });
     }
     this.studentId = studentId;
