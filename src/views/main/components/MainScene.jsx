@@ -147,7 +147,7 @@ const MainScene = props => (
             {
               label: 'Students to Reactivate',
               link: '/reactivate-student',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
               group: 'Users',
             },
           ]}

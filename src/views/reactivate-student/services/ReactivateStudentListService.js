@@ -63,6 +63,9 @@ class ReactivateStudentListService {
               $options: 'i',
             },
           },
+          ...this.form.getValue('cpf') && {
+            cpf: this.form.getValue('cpf'),
+          },
           ...this.form.getValue('school') && {
             school: this.form.getValue('school'),
           },
