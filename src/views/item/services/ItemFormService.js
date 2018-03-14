@@ -263,7 +263,7 @@ export default class ItemFormService {
         item: this.form.getValue('item'),
       });
     }
-    this.form.reset();
+    // this.form.reset();
   });
 
   handleLoad = action((itemId, defaultGrammar) => {
