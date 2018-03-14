@@ -1,4 +1,5 @@
 import isEmail from 'validator/lib/isEmail';
+import CPF from 'gerador-validador-cpf/dist/js/CPF.min';
 
 export const isRequired = value => (value === null || value === undefined || !value.toString().length) && 'Required';
 
@@ -73,6 +74,8 @@ export const isCNPJ = (value) => {
     return 'Please inform a valid CPNJ';
   }
 };
+
+export const isCPF = value => value && !CPF.validate(value) && 'Invalid CPF';
 
 export const isValidTime = (value) => {
   return value.length !== 6 && 'The time must be in 00:00:00 format';
