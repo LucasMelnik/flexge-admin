@@ -22,6 +22,8 @@ class StudentResetButtonContainer extends Component {
         disabled={this.studentResetService.submit.fetching}
         onClick={this.studentResetService.handleReset}
         label="Reset Student"
+        icon="reload"
+        type="danger"
       />
     );
   }
