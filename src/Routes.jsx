@@ -87,6 +87,7 @@ import EvaluationTemplateListScene from './views/evaluation-template/components/
 import EvaluationTemplateFormScene from './views/evaluation-template/components/EvaluationTemplateFormScene';
 import UsageStatsListScene from './views/usage-stats/components/UsageStatsListScene';
 import StudentAchievementsListScene from './views/student-achievements/components/StudentAchievementsListScene';
+import UnitAverageExecutionTimeListScene from './views/reports/components/unit-average-execution-time/UnitAverageExecutionTimeListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -219,6 +220,7 @@ const Routes = () => (
       <Route path="certification-test-register/new" component={CertificationTestRegisterFormScene} />
       <Route path="certification-test-register/:certificationTestId" component={CertificationTestRegisterFormScene} />
       <Route path="unit-items-execution-stats" component={UnitItemExecutionStatsListScene} />
+      <Route path="unit-average-execution-time" component={UnitAverageExecutionTimeListScene} />
       <Route path="items-by-words" component={ItemByWordsListScene} />
       <Route path="usage-stats" component={UsageStatsListScene} />
       <Route path="*" component={NotFoundScene} />

@@ -7,7 +7,7 @@ import { toJS } from 'mobx';
 import Select from './Select';
 import FetchService from '../services/FetchService';
 
-export default class qFetchSelect extends Component {
+export default class FetchSelect extends Component {
 
   static propTypes = {
     url: PropTypes.string.isRequired,
@@ -54,6 +54,9 @@ export default class qFetchSelect extends Component {
               this.props.onChange(get(firstData, this.props.resultTransformer.value) || null);
             }
           });
+          if (this.props.value && !data.find(item => item[this.props.resultTransformer.value] === this.props.value)) {
+            this.props.onChange(null);
+          }
         }
       });
   };

@@ -6,6 +6,7 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import Button from '../../../core/form/Button';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
+import MaskInput from '../../../core/form/MaskInput';
 
 const ReactivateStudentListFilter = props => (
   <div>
@@ -19,6 +20,16 @@ const ReactivateStudentListFilter = props => (
           disabled={props.fetching}
         />
       </Column>
+      <Column size={1}>
+        <MaskInput
+          label="CPF"
+          value={get(props.values, 'cpf', '')}
+          onChange={value => props.onChange('cpf', value)}
+          delimiters={['.', '.', '-']}
+          blocks={[3, 3, 3, 2]}
+          numericOnly
+        />
+      </Column>
       <Column size={3}>
         <TextInput
           label="Email"
@@ -28,7 +39,7 @@ const ReactivateStudentListFilter = props => (
           disabled={props.fetching}
         />
       </Column>
-      <Column size={4}>
+      <Column size={3}>
         <FetchSelect
           url="/schools"
           label="School"

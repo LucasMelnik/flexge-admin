@@ -9,6 +9,7 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import Select from '../../../core/form/Select';
 import DateInput from '../../../core/form/DateInput';
 import Switch from '../../../core/form/Switch';
+import MaskInput from '../../../core/form/MaskInput';
 
 const StudentForm = props => (
   <form
@@ -28,6 +29,18 @@ const StudentForm = props => (
           errorText={get(props.errors, 'name', null)}
         />
       </Column>
+      <Column size={2}>
+        <MaskInput
+          disabled={props.submitting}
+          label="CPF"
+          value={get(props.values, 'cpf', '')}
+          onChange={value => props.onChange('cpf', value)}
+          errorText={get(props.errors, 'cpf', '')}
+          delimiters={['.', '.', '-']}
+          blocks={[3, 3, 3, 2]}
+          numericOnly
+        />
+      </Column>
       <Column size={4}>
         <TextInput
           required
@@ -38,7 +51,7 @@ const StudentForm = props => (
           errorText={get(props.errors, 'email', null)}
         />
       </Column>
-      <Column size={4}>
+      <Column size={2}>
         <TextInput
           type="password"
           disabled={props.submitting}
@@ -150,16 +163,32 @@ const StudentForm = props => (
         />
       </Column>
     </Row>
-    {!props.values.id && (
-      <Switch
-        label="Welcome Email"
-        titleOff="Don't send"
-        titleOn="Send"
-        onChange={value => props.onChange('sendWelcomeEmail', value)}
-        value={get(props.values, 'sendWelcomeEmail', false)}
-        disabled={props.submitting}
-      />
-    )}
+    <Row>
+      {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+        <Column size={2}>
+          <Switch
+            label="Demo Student"
+            titleOff="No"
+            titleOn="Yes"
+            onChange={value => props.onChange('demoStudent', value)}
+            value={get(props.values, 'demoStudent', false)}
+            disabled={props.submitting}
+          />
+        </Column>
+      )}
+      {!props.values.id && (
+        <Column size={2}>
+          <Switch
+            label="Welcome Email"
+            titleOff="Don't send"
+            titleOn="Send"
+            onChange={value => props.onChange('sendWelcomeEmail', value)}
+            value={get(props.values, 'sendWelcomeEmail', false)}
+            disabled={props.submitting}
+          />
+        </Column>
+      )}
+    </Row>
     <FormButtons
       confirmLabel={props.values.id ? 'Update Student' : 'Create Student'}
       isDisabled={props.submitting || !props.isDirty()}

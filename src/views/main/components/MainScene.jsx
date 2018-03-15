@@ -147,7 +147,7 @@ const MainScene = props => (
             {
               label: 'Students to Reactivate',
               link: '/reactivate-student',
-              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+              allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
               group: 'Users',
             },
           ]}
@@ -222,6 +222,13 @@ const MainScene = props => (
               group: 'Reports',
               icon: 'warning',
               allowedFor: ['CONTENT_ADMIN', 'ADMIN'],
+            },
+            {
+              label: 'Unit Average Execution Time',
+              link: '/unit-average-execution-time',
+              group: 'Reports',
+              icon: 'hourglass',
+              allowedFor: ['ADMIN'],
             },
             {
               label: 'Placement Test',

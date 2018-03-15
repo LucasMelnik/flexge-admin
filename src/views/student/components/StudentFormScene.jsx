@@ -5,6 +5,9 @@ import Breadcrumb from '../../../core/layout/Breadcrumb';
 import StudentFormContainer from './StudentFormContainer';
 import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
+import StudentResetButtonContainer from './StudentResetButtonContainer';
+import ColumnSeparator from '../../../core/layout/ColumnSeparator';
+import StudentSendWelcomeEmailButtonContainer from './StudentSendWelcomeEmailButtonContainer';
 
 const StudentFormScene = props => (
   <div>
@@ -52,12 +55,22 @@ const StudentFormScene = props => (
       loading={props.fetching || !props.class.id || !props.school.id}
       actions={
         (
-          <Button
-            icon="arrow-left"
-            label="Back"
-            type="default"
-            onClick={() => browserHistory.goBack()}
-          />
+          <div>
+            {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && props.studentId && ([
+              <StudentResetButtonContainer studentId={props.studentId} key="reset-student" />,
+              <ColumnSeparator key="separator-pt" size="xs" />,
+            ])}
+            {props.studentId && ([
+              <StudentSendWelcomeEmailButtonContainer studentId={props.studentId} key="send-welcome" />,
+              <ColumnSeparator key="separator-email" size="xs" />,
+            ])}
+            <Button
+              icon="arrow-left"
+              label="Back"
+              type="default"
+              onClick={() => browserHistory.goBack()}
+            />
+          </div>
         )
       }
     >
