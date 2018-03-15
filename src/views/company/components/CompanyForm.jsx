@@ -199,7 +199,6 @@ const CompanyForm = props => (
       </Column>
       <Column size={2}>
         <TextInput
-          required
           type="number"
           disabled={props.submitting}
           label="Demo Limit"
