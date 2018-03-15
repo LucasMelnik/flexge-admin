@@ -85,7 +85,7 @@ export default class StudentFormService {
           );
         } else {
           NotificationService.addNotification(
-            `Error ${studentId ? 'updating' : 'creating'} student.`,
+            this.submit.error || `Error ${studentId ? 'updating' : 'creating'} student.`,
             'error',
           );
         }
