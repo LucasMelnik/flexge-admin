@@ -15,6 +15,10 @@ const DistributorList = props => (
         defaultSortOrder: 'ascend',
       },
       {
+        label: 'Demo Limit',
+        path: 'demoStudentLimit',
+      },
+      {
         label: 'Actions',
         path: 'action',
         width: '105px',
