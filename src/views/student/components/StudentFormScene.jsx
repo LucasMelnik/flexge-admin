@@ -7,6 +7,7 @@ import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import StudentResetButtonContainer from './StudentResetButtonContainer';
 import ColumnSeparator from '../../../core/layout/ColumnSeparator';
+import StudentSendWelcomeEmailButtonContainer from './StudentSendWelcomeEmailButtonContainer';
 
 const StudentFormScene = props => (
   <div>
@@ -57,7 +58,11 @@ const StudentFormScene = props => (
           <div>
             {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && props.studentId && ([
               <StudentResetButtonContainer studentId={props.studentId} key="reset-student" />,
-              <ColumnSeparator key="separator-pt" />,
+              <ColumnSeparator key="separator-pt" size="xs" />,
+            ])}
+            {props.studentId && ([
+              <StudentSendWelcomeEmailButtonContainer studentId={props.studentId} key="send-welcome" />,
+              <ColumnSeparator key="separator-email" size="xs" />,
             ])}
             <Button
               icon="arrow-left"

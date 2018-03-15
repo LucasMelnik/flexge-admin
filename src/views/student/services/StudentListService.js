@@ -175,21 +175,6 @@ class StudentListService {
         });
       });
   });
-
-  handleSendWelcomeEmail= action((student) => {
-    ConfirmationDialogService.show(
-      'Send Welcome Email',
-      `You are about to send welcome to "${student.name}", Do you want to continue ?`,
-      () => {
-        this.fetch.fetch({
-          url: `/students/${student.id}/welcome-email`,
-          method: 'post',
-        }).then(() => {
-          NotificationService.addNotification('Email sent.', 'success');
-          this.load();
-        });
-      });
-  });
 }
 
 const studentListService = new StudentListService();

@@ -67,7 +67,17 @@ const SchoolForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column size={3}>
+      <Column size={2}>
+        <TextInput
+          type="number"
+          disabled={props.submitting}
+          label="Demo Limit"
+          value={get(props.values, 'demoStudentLimit', '')}
+          onChange={value => props.onChange('demoStudentLimit', value)}
+          errorText={get(props.errors, 'demoStudentLimit', null)}
+        />
+      </Column>
+      <Column size={2}>
         <FetchSelect
           url={`regions${props.values.company ? `?query[company]=${get(props.values, 'company', '')}` : ''}`}
           fullWidth
@@ -82,7 +92,7 @@ const SchoolForm = props => (
           }}
         />
       </Column>
-      <Column size={3}>
+      <Column size={2}>
         <Select
           disabled={props.submitting}
           label="State"

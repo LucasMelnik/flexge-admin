@@ -46,6 +46,7 @@ export default class StudentFormService {
     } else {
       this.form.setInitialValues({
         sendWelcomeEmail: false,
+        demoStudent: false,
       });
     }
     this.studentId = studentId;
@@ -84,7 +85,7 @@ export default class StudentFormService {
           );
         } else {
           NotificationService.addNotification(
-            `Error ${studentId ? 'updating' : 'creating'} student.`,
+            this.submit.error || `Error ${studentId ? 'updating' : 'creating'} student.`,
             'error',
           );
         }

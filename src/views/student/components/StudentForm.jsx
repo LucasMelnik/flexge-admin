@@ -163,16 +163,32 @@ const StudentForm = props => (
         />
       </Column>
     </Row>
-    {!props.values.id && (
-      <Switch
-        label="Welcome Email"
-        titleOff="Don't send"
-        titleOn="Send"
-        onChange={value => props.onChange('sendWelcomeEmail', value)}
-        value={get(props.values, 'sendWelcomeEmail', false)}
-        disabled={props.submitting}
-      />
-    )}
+    <Row>
+      {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+        <Column size={2}>
+          <Switch
+            label="Demo Student"
+            titleOff="No"
+            titleOn="Yes"
+            onChange={value => props.onChange('demoStudent', value)}
+            value={get(props.values, 'demoStudent', false)}
+            disabled={props.submitting}
+          />
+        </Column>
+      )}
+      {!props.values.id && (
+        <Column size={2}>
+          <Switch
+            label="Welcome Email"
+            titleOff="Don't send"
+            titleOn="Send"
+            onChange={value => props.onChange('sendWelcomeEmail', value)}
+            value={get(props.values, 'sendWelcomeEmail', false)}
+            disabled={props.submitting}
+          />
+        </Column>
+      )}
+    </Row>
     <FormButtons
       confirmLabel={props.values.id ? 'Update Student' : 'Create Student'}
       isDisabled={props.submitting || !props.isDirty()}

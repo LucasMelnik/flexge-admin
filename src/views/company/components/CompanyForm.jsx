@@ -159,7 +159,7 @@ const CompanyForm = props => (
           numericOnly
         />
       </Column>
-      <Column size={3}>
+      <Column size={2}>
         <MaskInput
           disabled={props.submitting}
           label="License Package Price"
@@ -169,7 +169,7 @@ const CompanyForm = props => (
           maskType="numeral"
         />
       </Column>
-      <Column size={3}>
+      <Column size={2}>
         <MaskInput
           disabled={props.submitting}
           label="Price per Extra License"
@@ -195,6 +195,16 @@ const CompanyForm = props => (
           value={get(props.values, 'contractEnd', null)}
           onChange={value => props.onChange('contractEnd', value)}
           errorText={get(props.errors, 'contractEnd', '')}
+        />
+      </Column>
+      <Column size={2}>
+        <TextInput
+          type="number"
+          disabled={props.submitting}
+          label="Demo Limit"
+          value={get(props.values, 'demoStudentLimit', '')}
+          onChange={value => props.onChange('demoStudentLimit', value)}
+          errorText={get(props.errors, 'demoStudentLimit', null)}
         />
       </Column>
     </Row>
