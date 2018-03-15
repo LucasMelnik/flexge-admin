@@ -17,6 +17,7 @@ export default class CompanyFormService {
       name: [isRequired],
       state: [isRequired],
       distributor: [isRequired],
+      demoStudentLimit: [isRequired],
       cnpj: [isRequired, isCNPJ],
     };
   }
