@@ -4,6 +4,7 @@ import Table from '../../../../core/form/Table';
 
 const ItemByWordsList = props => (
   <Table
+    rowKey="module.unit.unititems.item.id"
     fetching={props.fetching}
     columns={[
       {
