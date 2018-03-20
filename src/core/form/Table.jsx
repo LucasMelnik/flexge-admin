@@ -18,7 +18,7 @@ const Table = props => (
         showTotal: total => `Total ${total} items`,
         ...props.pagination,
       }) || false}
-      rowKey="id"
+      rowKey={props.rowKey}
       bordered={props.bordered}
       indentSize={props.indentSize}
       locale={{
@@ -66,6 +66,7 @@ Table.propTypes = {
   expandableComponent: PropTypes.func,
   filteredValue: PropTypes.string,
   sortOrder: PropTypes.string,
+  rowKey: PropTypes.string,
   bordered: PropTypes.bool,
   showTableCount: PropTypes.bool,
   indentSize: PropTypes.number,
@@ -83,6 +84,7 @@ Table.defaultProps = {
   bordered: true,
   showTableCount: true,
   indentSize: 10,
+  rowKey: 'id',
 };
 
 export default Table;
