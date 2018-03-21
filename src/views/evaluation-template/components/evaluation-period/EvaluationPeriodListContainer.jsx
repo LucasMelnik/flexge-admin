@@ -22,6 +22,7 @@ class EvaluationPeriodListContainer extends Component {
         periods={toJS(EvaluationPeriodListService.periods)}
         fetching={EvaluationPeriodListService.fetch.fetching}
         onDelete={EvaluationPeriodListService.handleRemove}
+        onSyncGrades={EvaluationPeriodListService.handleSyncGrades}
         onEdit={EvaluationPeriodFormService.handleEdit}
       />
     );
