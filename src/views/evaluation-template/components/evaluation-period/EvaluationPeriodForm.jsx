@@ -39,7 +39,7 @@ const SchoolEvaluationForm = props => (
       <Column size={2}>
         <DateInput
           required
-          disabled={props.submitting || !props.allowSelectStart}
+          disabled={props.submitting || !props.allowSelectStart || get(props.values, 'id', null)}
           label="Start"
           value={get(props.values, 'start', undefined) ? props.values.start.toDate() : undefined}
           onChange={(value) => {
@@ -53,7 +53,7 @@ const SchoolEvaluationForm = props => (
       <Column size={2}>
         <DateInput
           required
-          disabled={props.submitting || !get(props.values, 'start', undefined)}
+          disabled={props.submitting || !get(props.values, 'start', undefined) || get(props.values, 'id', null)}
           label="End"
           value={get(props.values, 'end', undefined) ? props.values.end.toDate() : undefined}
           onChange={value => props.onChange('end', value)}

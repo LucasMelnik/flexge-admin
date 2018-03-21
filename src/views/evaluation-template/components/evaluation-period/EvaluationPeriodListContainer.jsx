@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import EvaluationPeriodList from './EvaluationPeriodList';
+import EvaluationPeriodFormService from '../../services/EvaluationPeriodFormService';
 import EvaluationPeriodListService from '../../services/EvaluationPeriodListService';
 
 class EvaluationPeriodListContainer extends Component {
@@ -21,6 +22,7 @@ class EvaluationPeriodListContainer extends Component {
         periods={toJS(EvaluationPeriodListService.periods)}
         fetching={EvaluationPeriodListService.fetch.fetching}
         onDelete={EvaluationPeriodListService.handleRemove}
+        onEdit={EvaluationPeriodFormService.handleEdit}
       />
     );
   }

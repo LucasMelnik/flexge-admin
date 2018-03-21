@@ -10,21 +10,20 @@ class EvaluationPeriodFormContainer extends Component {
     evaluationTemplateId: PropTypes.string.isRequired,
   };
 
-  evaluationPeriodFormService = new EvaluationPeriodFormService();
   componentWillMount() {
-    this.evaluationPeriodFormService.init(this.props.evaluationTemplateId);
+    EvaluationPeriodFormService.init(this.props.evaluationTemplateId);
   }
 
   render() {
     return (
       <EvaluationPeriodForm
-        onSubmit={this.evaluationPeriodFormService.handleSubmit}
-        onChange={this.evaluationPeriodFormService.form.setValue}
-        onReset={this.evaluationPeriodFormService.form.reset}
-        values={this.evaluationPeriodFormService.form.getValues()}
-        errors={this.evaluationPeriodFormService.form.errors}
-        submitting={this.evaluationPeriodFormService.submit.fetching}
-        isDirty={this.evaluationPeriodFormService.form.isDirty}
+        onSubmit={EvaluationPeriodFormService.handleSubmit}
+        onChange={EvaluationPeriodFormService.form.setValue}
+        onReset={EvaluationPeriodFormService.form.reset}
+        values={EvaluationPeriodFormService.form.getValues()}
+        errors={EvaluationPeriodFormService.form.errors}
+        submitting={EvaluationPeriodFormService.submit.fetching}
+        isDirty={EvaluationPeriodFormService.form.isDirty}
         allowSelectStart={!EvaluationPeriodListService.periods.length}
       />
     );

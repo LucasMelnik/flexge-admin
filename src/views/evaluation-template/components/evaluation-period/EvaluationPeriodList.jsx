@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
 import Button from '../../../../core/form/Button';
+import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 
 const EvaluationPeriodList = props => (
   <Table
@@ -34,11 +35,20 @@ const EvaluationPeriodList = props => (
         label: 'Actions',
         path: 'action',
         width: '105px',
-        render: (cell, row, index) => index === props.periods.length - 1 && (
-          <Button
-            icon="delete"
-            onClick={() => props.onDelete(row)}
-          />
+        render: (cell, row, index) => (
+          <div>
+            <Button
+              icon="edit"
+              onClick={() => props.onEdit(row)}
+            />
+            <ColumnSeparator size="xs" />
+            {index === props.periods.length - 1 && (
+              <Button
+                icon="delete"
+                onClick={() => props.onDelete(row)}
+              />
+            )}
+          </div>
         ),
       },
     ]}
@@ -52,6 +62,7 @@ EvaluationPeriodList.propTypes = {
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
 };
 
 export default EvaluationPeriodList;
