@@ -5,7 +5,7 @@ import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
 import DateInput from '../../../../core/form/DateInput';
-import FormButtons from '../../../../core/form/FormButtons';
+import Button from '../../../../core/form/Button';
 
 const SchoolEvaluationForm = props => (
   <form
@@ -66,13 +66,18 @@ const SchoolEvaluationForm = props => (
           }
         />
       </Column>
+      <Column size={2}>
+        <div style={{ height: 30.5 }} />
+        <Button
+          icon="check"
+          type="primary"
+          disabled={props.submitting || !props.isDirty()}
+          loading={props.submitting}
+          buttonType="submit"
+          label={props.values.id ? 'Update Evaluation Period' : 'Add Evaluation Period'}
+        />
+      </Column>
     </Row>
-    <FormButtons
-      confirmLabel={props.values.id ? 'Update Evaluation Period' : 'Add Evaluation Period'}
-      isDisabled={props.submitting || !props.isDirty()}
-      isSubmitting={props.submitting}
-      onReset={props.onReset}
-    />
   </form>
 );
 

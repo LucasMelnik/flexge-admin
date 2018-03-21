@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
 import Button from '../../../../core/form/Button';
-import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 
 const EvaluationPeriodList = props => (
   <Table
@@ -41,7 +40,7 @@ const EvaluationPeriodList = props => (
               icon="edit"
               onClick={() => props.onEdit(row)}
             />
-            <ColumnSeparator size="xs" />
+            {' '}
             {index === props.periods.length - 1 && (
               <Button
                 icon="delete"
