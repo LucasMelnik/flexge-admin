@@ -1,4 +1,5 @@
 import { action, extendObservable } from 'mobx';
+import orderBy from 'lodash/orderBy';
 import FetchService from '../../../core/services/FetchService';
 
 export default class StudentGradeListService {
@@ -28,7 +29,7 @@ export default class StudentGradeListService {
               url: `/records/schools/${schoolId}/school-classes/${schoolClassId}/grades`,
             }).then(() => {
               if (this.fetch.data) {
-                this.students = this.fetch.data;
+                this.students = orderBy(this.fetch.data, 'name');
               } else {
                 this.students = [];
               }

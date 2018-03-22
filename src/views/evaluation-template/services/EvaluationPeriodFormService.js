@@ -6,7 +6,7 @@ import NotificationService from '../../../core/services/NotificationService';
 import EvaluationPeriodListService from './EvaluationPeriodListService';
 import { isRequired } from '../../../core/validations';
 
-export default class EvaluationPeriodFormService {
+class EvaluationPeriodFormService {
   submit = new FetchService();
   form = new FormService();
 
@@ -42,6 +42,15 @@ export default class EvaluationPeriodFormService {
     });
   });
 
+  handleEdit = action((evaluationPeriod) => {
+    this.form.setInitialValues({
+      ...evaluationPeriod,
+      start: moment(evaluationPeriod.start),
+      end: moment(evaluationPeriod.end),
+    });
+    this.form.reset();
+  });
+
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
@@ -66,3 +75,7 @@ export default class EvaluationPeriodFormService {
     });
   })
 }
+
+const evaluationPeriodFormService = new EvaluationPeriodFormService();
+
+export default evaluationPeriodFormService;

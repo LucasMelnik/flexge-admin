@@ -22,7 +22,7 @@ class StudentAcademicPerformanceHistoryService {
           ...course,
           level: englishLevelCourses.find(englishLevel => englishLevel.label === course.name).value,
         }));
-        console.log(dataWithLevel)
+
         this.history = orderBy(dataWithLevel, 'level', 'desc');
         this.currentPerformance = this.fetch.data.find(performance => !performance.completedAt);
       } else {

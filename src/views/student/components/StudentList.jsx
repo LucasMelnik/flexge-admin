@@ -34,7 +34,7 @@ const StudentList = props => (
           align: 'center',
           render: (value, row) => value && (
             <span>
-              {value}<span style={{ color: 'red' }}>{row.lastPlacementResult === -2 ? '*' : ''}</span>
+              {value}<span style={{ color: 'red' }}>{(row.lastPlacementResult === -2 || row.lastPlacementResult !== value) ? '*' : ''}</span>
             </span>
           ),
         },

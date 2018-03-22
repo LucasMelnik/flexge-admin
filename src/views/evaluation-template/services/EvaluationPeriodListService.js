@@ -53,6 +53,26 @@ class EvaluationPeriodListService {
       },
     );
   });
+
+  handleSyncGrades = action((evaluationPeriod) => {
+    ConfirmationDialogService.show(
+      'Sync Evaluation Period',
+      'You are about to recreate the grades, you just need to do it if you had changed the bonus weeks, Do you want to continue ?',
+      () => {
+        this.fetch.fetch({
+          url: `/evaluation-templates/${this.evaluationTemplateId}/periods/${evaluationPeriod.id}/sync`,
+          method: 'post',
+        }).then(() => {
+          if (this.fetch.data) {
+            NotificationService.addNotification('Evaluation Period sync started.', 'success');
+          }
+          if (this.fetch.error) {
+            NotificationService.addNotification('Error to start the Evaluation Period sync.', 'error');
+          }
+        });
+      },
+    );
+  });
 }
 
 const evaluationPeriodListService = new EvaluationPeriodListService();

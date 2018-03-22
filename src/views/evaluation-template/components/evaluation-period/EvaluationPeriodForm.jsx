@@ -5,7 +5,7 @@ import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
 import DateInput from '../../../../core/form/DateInput';
-import FormButtons from '../../../../core/form/FormButtons';
+import Button from '../../../../core/form/Button';
 
 const SchoolEvaluationForm = props => (
   <form
@@ -39,7 +39,7 @@ const SchoolEvaluationForm = props => (
       <Column size={2}>
         <DateInput
           required
-          disabled={props.submitting || !props.allowSelectStart}
+          disabled={props.submitting || !props.allowSelectStart || get(props.values, 'id', null)}
           label="Start"
           value={get(props.values, 'start', undefined) ? props.values.start.toDate() : undefined}
           onChange={(value) => {
@@ -53,7 +53,7 @@ const SchoolEvaluationForm = props => (
       <Column size={2}>
         <DateInput
           required
-          disabled={props.submitting || !get(props.values, 'start', undefined)}
+          disabled={props.submitting || !get(props.values, 'start', undefined) || get(props.values, 'id', null)}
           label="End"
           value={get(props.values, 'end', undefined) ? props.values.end.toDate() : undefined}
           onChange={value => props.onChange('end', value)}
@@ -66,13 +66,18 @@ const SchoolEvaluationForm = props => (
           }
         />
       </Column>
+      <Column size={2}>
+        <div style={{ height: 30.5 }} />
+        <Button
+          icon="check"
+          type="primary"
+          disabled={props.submitting || !props.isDirty()}
+          loading={props.submitting}
+          buttonType="submit"
+          label={props.values.id ? 'Update Evaluation Period' : 'Add Evaluation Period'}
+        />
+      </Column>
     </Row>
-    <FormButtons
-      confirmLabel={props.values.id ? 'Update Evaluation Period' : 'Add Evaluation Period'}
-      isDisabled={props.submitting || !props.isDirty()}
-      isSubmitting={props.submitting}
-      onReset={props.onReset}
-    />
   </form>
 );
 

@@ -34,11 +34,27 @@ const EvaluationPeriodList = props => (
         label: 'Actions',
         path: 'action',
         width: '105px',
-        render: (cell, row, index) => index === props.periods.length - 1 && (
-          <Button
-            icon="delete"
-            onClick={() => props.onDelete(row)}
-          />
+        render: (cell, row, index) => (
+          <div>
+            <Button
+              icon="edit"
+              onClick={() => props.onEdit(row)}
+            />
+            {' '}
+            {moment().isAfter(moment(row.end)) && (
+              <Button
+                icon="sync"
+                onClick={() => props.onSyncGrades(row)}
+              />
+            )}
+            {' '}
+            {index === props.periods.length - 1 && (
+              <Button
+                icon="delete"
+                onClick={() => props.onDelete(row)}
+              />
+            )}
+          </div>
         ),
       },
     ]}
@@ -52,6 +68,8 @@ EvaluationPeriodList.propTypes = {
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onSyncGrades: PropTypes.func.isRequired,
 };
 
 export default EvaluationPeriodList;
