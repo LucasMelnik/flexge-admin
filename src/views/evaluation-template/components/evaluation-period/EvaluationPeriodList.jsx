@@ -41,7 +41,7 @@ const EvaluationPeriodList = props => (
               onClick={() => props.onEdit(row)}
             />
             {' '}
-            {moment().isAfter(moment(row.end)) && (
+            {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && moment().isAfter(moment(row.end)) && (
               <Button
                 icon="sync"
                 onClick={() => props.onSyncGrades(row)}
