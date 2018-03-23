@@ -130,9 +130,14 @@ const StudentDetailAnalyticsOverviewRecord = props => (
             path: 'id',
             render: (value, row) => (
               <div>
-                <span>{row.name}</span>
-                <br />
+                <h2 style={{ margin: 0 }}>{row.name}</h2>
                 <span>{moment(row.start).format('YYYY, MMM DD')} - {moment(row.end).format('YYYY, MMM DD')}</span>
+                {row.bonusWeeks && (
+                  <br />
+                )}
+                {row.bonusWeeks && (
+                  <span>Bonus: {row.bonusWeeks} weeks</span>
+                )}
               </div>
             ),
           },
@@ -142,8 +147,7 @@ const StudentDetailAnalyticsOverviewRecord = props => (
             align: 'center',
             render: (grade, row) => grade ? (
               <div>
-                {grade}
-                <br />
+                <h2 style={{ margin: 0 }}>{grade}</h2>
                 <span>Media SQ: {row.previewGrade.averageStudyQuality.toFixed(1)}</span>
                 <br />
                 <span>
@@ -155,7 +159,12 @@ const StudentDetailAnalyticsOverviewRecord = props => (
                   {(row.previewGrade.averageStudyQuality < -2) && ('Very Weak!')}
                 </span>
               </div>
-            ) : 'N/A',
+            ) : (
+              <div>
+                <h2 style={{ margin: 0 }}>N/A</h2>
+                <span>{moment().diff(moment(row.start).add(row.bonusWeeks, 'isoWeeks'), 'weeks', true).toFixed(1)} weeks to SQ Score</span>
+              </div>
+            ),
           },
           {
             label: `Hours Grade (${get(props.student, 'schoolClass.school.percentHoursRelevanceInGrade', '-')}%)`,
@@ -163,8 +172,7 @@ const StudentDetailAnalyticsOverviewRecord = props => (
             align: 'center',
             render: (grade, row) => (
               <div>
-                {grade}
-                <br />
+                <h2 style={{ margin: 0 }}>{grade}</h2>
                 <span>Total study time: {moment.duration(row.previewGrade.hoursStudied, 'hours').format('hh:mm')}</span>
                 <br />
                 <span>Required study time: {moment.duration(row.previewGrade.hoursRequired, 'hours').format('hh:mm')}</span>
@@ -175,7 +183,17 @@ const StudentDetailAnalyticsOverviewRecord = props => (
             label: 'Preview Final Grade',
             path: 'previewGrade.finalGrade',
             align: 'center',
-            render: value => value || 'N/A'
+            render: value => value ? (
+              <div>
+                <h2 style={{ margin: 0 }}>{value}</h2>
+                <span>Preview</span>
+              </div>
+            ) : (
+              <div>
+                <h2 style={{ margin: 0 }}>N/A</h2>
+                <span>Awaiting SQ Score</span>
+              </div>
+            ),
           },
         ]}
       />
