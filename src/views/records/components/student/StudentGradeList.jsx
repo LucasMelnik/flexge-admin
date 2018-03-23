@@ -21,9 +21,9 @@ const StudentGradeList = props => (
           if (periodGrade) {
             return (
               <div>
-                <span>{periodGrade.finalGrade}</span>
+                <span>{periodGrade.finalGrade || 'Awaiting SQ Score'}</span>
                 <TooltipIcon
-                  text={`${periodGrade.isPreview ? 'Preview -' : ''} SQ (${periodGrade.studyQualityGrade}) + Hours (${periodGrade.hoursGrade})`}
+                  text={`${periodGrade.isPreview ? 'Preview -' : ''} SQ (${periodGrade.studyQualityGrade || 'N/A'}) + Hours (${periodGrade.hoursGrade})`}
                 />
               </div>
             );
