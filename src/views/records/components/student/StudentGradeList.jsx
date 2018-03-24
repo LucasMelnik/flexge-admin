@@ -17,13 +17,13 @@ const StudentGradeList = props => (
         label: `${moment(evaluation.start).format('DD/MM/YY')} - ${moment(evaluation.end).format('DD/MM/YY')}`,
         path: `grade_${evaluation.id}`,
         render: (cell, row) => {
-          const periodGrade = row.grades.find(grade => grade.evaluationPeriod.id === evaluation.id);
+          const periodGrade = row.grades.find(grade => (grade.evaluationPeriod.id || grade.evaluationPeriod) === evaluation.id);
           if (periodGrade) {
             return (
               <div>
-                <span>{periodGrade.finalGrade}</span>
+                <span>{periodGrade.finalGrade || 'Awaiting SQ Score'}</span>
                 <TooltipIcon
-                  text={`${periodGrade.isPreview ? 'Preview' : ''} - SQ (${periodGrade.studyQualityGrade}) + Hours (${periodGrade.hoursGrade})`}
+                  text={`${periodGrade.isPreview ? 'Preview -' : ''} SQ (${periodGrade.studyQualityGrade || 'N/A'}) + Hours (${periodGrade.hoursGrade})`}
                 />
               </div>
             );
