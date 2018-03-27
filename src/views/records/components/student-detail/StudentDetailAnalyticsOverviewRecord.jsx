@@ -187,6 +187,8 @@ const StudentDetailAnalyticsOverviewRecord = props => (
               <div>
                 <h2 style={{ margin: 0 }}>{value}</h2>
                 <span>Preview</span>
+                <br />
+                <span>Maximum grade: {get(props.student, 'schoolClass.school.maximumGrade', '-')}</span>
               </div>
             ) : (
               <div>
