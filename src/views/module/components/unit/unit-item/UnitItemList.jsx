@@ -89,6 +89,7 @@ const UnitItemList = props => (
         path: 'item.type.name',
         width: '150px',
         sort: true,
+        render: (cell, row) => <span style={{color: row.item.invalidItemType ? 'red' : 'inherited' }}>{cell}</span>,
       },
       {
         label: 'Time',
