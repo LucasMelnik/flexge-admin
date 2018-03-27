@@ -25,10 +25,11 @@ const GrammarAnalysisList = props => (
         label: '% Error',
         path: 'errorCount',
         align: 'center',
+        sort: true,
         width: 100,
         render: (value,row) => {
           const percentage = round((value / row.total) * 100, 2);
-          if (percentage >= 50) {
+          if (percentage >= 25) {
             return (
               <Tag color="red">
                 {percentage}%
