@@ -1,4 +1,4 @@
-import { action, extendObservable } from 'mobx';
+import { action, extendObservable, toJS } from 'mobx';
 import { orderBy } from 'lodash';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
@@ -16,19 +16,37 @@ class UnitItemListService {
     });
   }
 
-  init = action((unitId) => {
+  init = action((unit) => {
     this.items = [];
-    this.unitId = unitId;
+    this.unitId = unit.id;
+    this.unitType = unit.type.id;
     this.load();
   });
 
   load = action(() => {
     this.fetch.fetch({
-      url: `/units/${this.unitId}/items`,
+      url: `/unit-types/${this.unitType}/item-types`,
     }).then(() => {
       if (this.fetch.data) {
-        this.items = orderBy(this.fetch.data, ['order', 'group'], ['asc',  'asc']);
-        this.reorderSubmitting = false;
+        const unitTypes = toJS(this.fetch.data);
+
+        this.fetch.fetch({
+          url: `/units/${this.unitId}/items`,
+        }).then(() => {
+          if (this.fetch.data) {
+            this.items = orderBy(this.fetch.data, ['order', 'group'], ['asc',  'asc']).map(unitItem => ({
+              ...unitItem,
+              item: {
+                ...unitItem.item,
+                invalidItemType: !unitTypes.find(unitType => unitType.id === unitItem.item.type.id),
+              },
+            }));
+
+            this.reorderSubmitting = false;
+          } else {
+            this.items = [];
+          }
+        });
       } else {
         this.items = [];
       }

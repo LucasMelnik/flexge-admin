@@ -16,8 +16,18 @@ const StudentAchievementsListScene = () => (
     />
     <Card title="Students Achievements">
       <StudentAchievementsListFilterContainer />
-      <Separator />
-      <StudentAchievementsListContainer />
+    </Card>
+    <Separator />
+    <Card title="School">
+      <StudentAchievementsListContainer type="school" />
+    </Card>
+    <Separator />
+    <Card title="Regional">
+      <StudentAchievementsListContainer type="regional" />
+    </Card>
+    <Separator />
+    <Card title="National">
+      <StudentAchievementsListContainer type="national" />
     </Card>
   </div>
 );

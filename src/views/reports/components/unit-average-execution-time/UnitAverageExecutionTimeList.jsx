@@ -18,6 +18,19 @@ const UnitAverageExecutionTimeList = props => (
         sort: true,
       },
       {
+        label: 'Items',
+        path: 'itemsCount',
+        width: '120px',
+        sort: true,
+      },
+      {
+        label: 'Avg Score',
+        path: 'averageScore',
+        width: '120px',
+        sort: true,
+        render: value => value.toFixed(2),
+      },
+      {
         label: 'Executions',
         path: 'executionCount',
         width: '120px',

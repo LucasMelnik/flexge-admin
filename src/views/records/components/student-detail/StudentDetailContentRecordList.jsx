@@ -22,7 +22,7 @@ const AbilityProgressColumn = (value, label) => value !== undefined && (
         marginRight: 5,
       }}
     >
-      {value > 100 ? 100 : value}%
+      {value}%
     </small>
     <div
       style={{
@@ -33,6 +33,7 @@ const AbilityProgressColumn = (value, label) => value !== undefined && (
       <LinearProgress
         value={value}
         showInfo={false}
+        color={value >= 100 ? 'green' : 'blue'}
       />
     </div>
     <small> {label}</small>

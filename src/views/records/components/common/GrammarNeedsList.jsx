@@ -29,10 +29,14 @@ const GrammarNeedsList = props => (
         label: '% Error',
         path: 'errorPercentage',
         width: 100,
+        sort: true,
         render: value => value && `${round(value, 2)}%`,
       },
     ]}
     rows={props.grammars}
+    locale={{
+      emptyText: 'No grammar needs for this student',
+    }}
   />
 );
 

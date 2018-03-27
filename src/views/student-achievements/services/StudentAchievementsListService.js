@@ -12,7 +12,11 @@ class StudentAchievementsListService {
 
   constructor() {
     extendObservable(this, {
-      achievements: [],
+      achievements: {
+        national: [],
+        regional: [],
+        school: [],
+      },
     });
     this.form.validations = {
       school: [],
@@ -21,7 +25,11 @@ class StudentAchievementsListService {
   }
 
   init = action(() => {
-    this.achievements = [];
+    this.achievements = {
+      national: [],
+      regional: [],
+      school: [],
+    };
     if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
       const school = JSON.parse(localStorage.getItem('school'));
       this.form.setValue('school', school._id);
@@ -47,13 +55,15 @@ class StudentAchievementsListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.achievements = [
-          { id: 1, name: 'School Ranking', children: orderBy(this.fetch.data.filter(sa => sa.achievement.level === 'SCHOOL'), ['student.schoolClass.school.name', 'position']) },
-          { id: 2, name: 'Regional Ranking', children: orderBy(this.fetch.data.filter(sa => sa.achievement.level === 'REGIONAL'), ['student.schoolClass.school.region.name', 'position']) },
-          { id: 3, name: 'National Ranking', children: orderBy(this.fetch.data.filter(sa => sa.achievement.level === 'NATIONAL'), ['student.schoolClass.school.company.country.name', 'position']) },
-        ];
+        this.achievements.school = orderBy(this.fetch.data.filter(sa => sa.achievement.level === 'SCHOOL'), ['student.schoolClass.school.name', 'position']);
+        this.achievements.regional = orderBy(this.fetch.data.filter(sa => sa.achievement.level === 'REGIONAL'), ['student.schoolClass.school.region.name', 'position']);
+        this.achievements.national = orderBy(this.fetch.data.filter(sa => sa.achievement.level === 'NATIONAL'), ['student.schoolClass.school.company.country.name', 'position']);
       } else {
-        this.achievements = [];
+        this.achievements = {
+          national: [],
+          regional: [],
+          school: [],
+        };
       }
     });
   });

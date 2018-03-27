@@ -46,6 +46,9 @@ export default class FetchSelect extends Component {
       .then(() => {
         if (fetchService.data) {
           const data = toJS(fetchService.data);
+          if (this.props.value && !data.find(item => item[this.props.resultTransformer.value] === this.props.value)) {
+            this.props.onChange(null);
+          }
           this.setState({
             data: sortBy(data.filter(this.props.resultFilter), item => toLower(item[this.props.resultTransformer.text])),
           }, () => {
@@ -54,9 +57,6 @@ export default class FetchSelect extends Component {
               this.props.onChange(get(firstData, this.props.resultTransformer.value) || null);
             }
           });
-          if (this.props.value && !data.find(item => item[this.props.resultTransformer.value] === this.props.value)) {
-            this.props.onChange(null);
-          }
         }
       });
   };
