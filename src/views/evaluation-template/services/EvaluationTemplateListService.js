@@ -12,11 +12,11 @@ class EvaluationTemplateListService {
     extendObservable(this, {
       templates: [],
     });
+    this.filterForm.setInitialValues({});
   }
 
   init = action(() => {
     this.templates = [];
-    this.filterForm.setInitialValues({});
     if (localStorage.role === 'SCHOOL_MANAGER') {
       const school = JSON.parse(localStorage.getItem('school'));
       this.filterForm.setValue('school', school._id);
