@@ -23,7 +23,17 @@ class StudentAcademicPerformanceHistoryService {
           level: englishLevelCourses.find(englishLevel => englishLevel.label === course.name).value,
         }));
 
-        this.history = orderBy(dataWithLevel, 'level', 'desc');
+        this.history = orderBy(dataWithLevel, 'level', 'desc').map(course => ({
+          ...course,
+          coursePercentage: (
+            course.conqueredListeningPoints +
+            course.conqueredReadingPoints +
+            course.conqueredSpeakingPoints +
+            course.conqueredWritingPoints
+          ) / (
+            course.listeningPoints + course.readingPoints + course.speakingPoints + course.writingPoints
+          ),
+        }));
         this.currentPerformance = this.fetch.data.find(performance => !performance.completedAt);
       } else {
         this.history = [];

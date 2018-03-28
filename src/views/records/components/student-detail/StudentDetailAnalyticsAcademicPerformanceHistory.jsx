@@ -18,8 +18,8 @@ const StudentDetailAnalyticsAcademicPerformanceHistory = props => (
       },
       {
         label: '% complete',
-        path: 'availablePoints',
-        render: (value, row) => <LinearProgress value={round((row.conqueredPoints / value) * 100, 2)} />,
+        path: 'coursePercentage',
+        render: value => <LinearProgress value={round(value * 100, 2)} />,
       },
       {
         label: 'Average Unit Score',
