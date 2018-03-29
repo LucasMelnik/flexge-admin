@@ -90,6 +90,7 @@ import StudentAchievementsListScene from './views/student-achievements/component
 import UnitAverageExecutionTimeListScene from './views/reports/components/unit-average-execution-time/UnitAverageExecutionTimeListScene';
 import MessageListScene from './views/message/components/MessageListScene';
 import MessageFormScene from './views/message/components/MessageFormScene';
+import MessageChatSceneContainer from './views/message/components/MessageChatSceneContainer';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -227,6 +228,7 @@ const Routes = () => (
       <Route path="usage-stats" component={UsageStatsListScene} />
       <Route path="messages" component={MessageListScene} />
       <Route path="new-message" component={MessageFormScene} />
+      <Route path="messages/:id/chat" component={MessageChatSceneContainer} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

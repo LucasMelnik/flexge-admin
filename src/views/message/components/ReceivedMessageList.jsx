@@ -35,7 +35,7 @@ const ReceivedMessageList = props => (
     ]}
     rows={props.messages}
     selectable
-    onSelect={row => browserHistory.push(`messages/${row.id}/chat`)}
+    onSelect={row => browserHistory.push(`/messages/${row.id}/chat`)}
   />
 );
 
