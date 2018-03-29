@@ -11,13 +11,14 @@ const StudentAchievementsList = props => (
         label: 'Achievement',
         path: 'achievement',
         defaultSortOrder: 'asc',
-        width: 150,
-        render: (achievement, row) => achievement ? (
+        align: 'center',
+        width: 120,
+        render: (achievement, row) => (
           <img
             alt="icon"
             src={`${process.env.REACT_APP_API_URL}/files/${achievement.iconByPosition.find(icon => icon.position === row.position).icon}`}
           />
-        ) : row.name,
+        ),
       },
       {
         label: 'Position',
@@ -52,7 +53,7 @@ const StudentAchievementsList = props => (
         render: (cell, row) => !row.children && (
           <div>
             <Button
-              icon="download"
+              icon="file-pdf"
               onClick={() => props.onDownload(row)}
             />
           </div>

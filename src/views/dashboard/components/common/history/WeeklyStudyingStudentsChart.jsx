@@ -13,8 +13,8 @@ const WeeklyStudyingStudentsChart = props => (
   >
     <LineChart
       height={350}
-      labels={range(1, moment().format('WW')).map(week => getLabel(week))}
-      data={range(1, moment().format('WW')).map(week => props.data.find(item => item.week === week) || {})}
+      labels={range(1, moment().add(1, 'week').format('WW')).map(week => getLabel(week))}
+      data={range(1, moment().add(1, 'week').format('WW')).map(week => props.data.find(item => item.week === week) || {})}
       dataFormat={[
         {
           label: 'Total Students',

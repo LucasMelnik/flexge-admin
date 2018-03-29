@@ -62,7 +62,7 @@ const StudentRecordList = props => (
                 }}
               >
                 <LinearProgress
-                  color={row.coursePercentage > 80 ? 'green' : 'blue'}
+                  color={row.coursePercentage >= 100 ? 'green' : 'blue'}
                   value={row.coursePercentage}
                 />
               </div>

@@ -25,6 +25,7 @@ const Table = props => (
         filterConfirm: 'Ok',
         filterReset: 'Reset',
         emptyText: 'No Data',
+        ...props.locale,
       }}
       dataSource={props.rows}
       columns={props.columns.map(column => ({
@@ -70,6 +71,11 @@ Table.propTypes = {
   bordered: PropTypes.bool,
   showTableCount: PropTypes.bool,
   indentSize: PropTypes.number,
+  locale: PropTypes.shape({
+    filterConfirm: PropTypes.string,
+    filterReset: PropTypes.string,
+    emptyText: PropTypes.string,
+  }),
 };
 
 Table.defaultProps = {
@@ -85,6 +91,7 @@ Table.defaultProps = {
   showTableCount: true,
   indentSize: 10,
   rowKey: 'id',
+  locale: {},
 };
 
 export default Table;

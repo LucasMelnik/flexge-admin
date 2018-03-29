@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import round from 'lodash/round';
 import moment from 'moment';
 import 'moment-duration-format';
 import Table from '../../../../core/form/Table';
@@ -22,7 +23,7 @@ const AbilityProgressColumn = (value, label) => value !== undefined && (
         marginRight: 5,
       }}
     >
-      {value > 100 ? 100 : value}%
+      {value}%
     </small>
     <div
       style={{
@@ -33,6 +34,7 @@ const AbilityProgressColumn = (value, label) => value !== undefined && (
       <LinearProgress
         value={value}
         showInfo={false}
+        color={value >= 100 ? 'green' : 'blue'}
       />
     </div>
     <small> {label}</small>
@@ -156,23 +158,13 @@ const StudentDetailContentRecordList = props => (
           };
         },
       },
-      // {
-      //   label: 'Correct',
-      //   path: 'items',
-      //   render: (value, row) => ({
-      //     children: value && `${value.filter(item => item.correct).length}/${value.length}`,
-      //     props: {
-      //       colSpan: row.docType && 0,
-      //     },
-      //   }),
-      // },
       {
         label: 'SR',
         align: 'center',
         path: 'averageSpeechRecognitionScore',
         width: '50px',
         render: (value, row) => row && ({
-          children: value,
+          children: value && round(value),
           props: {
             colSpan: row.docType && 0,
           },
@@ -180,7 +172,7 @@ const StudentDetailContentRecordList = props => (
       },
       {
         label: 'Repeat',
-        path: 'repeat',
+        path: 'repeatCount',
         align: 'center',
         width: '110px',
         render: (value, row) => row.docType === 'MODULE' ? (
@@ -195,7 +187,7 @@ const StudentDetailContentRecordList = props => (
           <b>
             {row.children ? row.children.reduce((acc, unit) => acc + unit.repeatCount, 0) : 0}
           </b>
-        ) : row.items && row.items.reduce((acc, item) => acc + (item.repeatCount || 0), 0),
+        ) : value,
       },
       {
         label: 'Record',
@@ -214,11 +206,11 @@ const StudentDetailContentRecordList = props => (
           <b>
             {row.children ? row.children.reduce((acc, unit) => acc + unit.recordCount, 0) : 0}
           </b>
-        ) : row.items && row.items.reduce((acc, item) => acc + (item.recordCount || 0), 0),
+        ) : value,
       },
       {
         label: 'Listen',
-        path: 'listen',
+        path: 'listenCount',
         align: 'center',
         width: '100px',
         render: (value, row) => row.docType === 'MODULE' ? (
@@ -233,7 +225,7 @@ const StudentDetailContentRecordList = props => (
           <b>
             {row.children ? row.children.reduce((acc, unit) => acc + unit.listenCount, 0) : 0}
           </b>
-        ) : row.items && row.items.reduce((acc, item) => acc + (item.listenCount || 0), 0),
+        ) : value,
       },
       {
         label: 'Actions',
