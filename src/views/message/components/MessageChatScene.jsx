@@ -5,7 +5,6 @@ import moment from 'moment';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
-import MessageChatList from './MessageChatList';
 import MessageChatListContainer from './MessageChatListContainer';
 
 const MessageChatScene = props => (

@@ -19,6 +19,7 @@ class MessageChatListContainer extends Component {
     return (
       <Async fetching={MessageChatListService.fetch.fetching}>
         <MessageChatList
+          messageChannelId={this.props.messageChannelId}
           messages={toJS(MessageChatListService.messages)}
         />
       </Async>
