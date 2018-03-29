@@ -10,7 +10,7 @@ const ReviewUnitItemImageScene = props => (
   >
     <Async fetching={props.fetching}>
       <ReviewUnitItemImageListContainer
-        unit={props.unit.id}
+        unit={props.unit}
       />
     </Async>
   </Card>
