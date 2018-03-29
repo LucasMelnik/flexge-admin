@@ -14,7 +14,7 @@ class ReviewUnitItemImageListContainer extends Component {
   };
 
   componentWillMount() {
-    UnitItemListService.init(this.props.unit.id);
+    UnitItemListService.init(this.props.unit);
   }
 
   render() {
