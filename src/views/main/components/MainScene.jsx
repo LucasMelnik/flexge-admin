@@ -320,6 +320,11 @@ const MainScene = props => (
             },
           ]}
         />
+        <MenuItem
+          title="Messages"
+          link="/messages"
+          icon="message"
+        />
       </Menu>
       <div
         style={{

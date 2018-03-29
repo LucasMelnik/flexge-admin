@@ -67,7 +67,7 @@ Table.propTypes = {
   expandableComponent: PropTypes.func,
   filteredValue: PropTypes.string,
   sortOrder: PropTypes.string,
-  rowKey: PropTypes.string,
+  rowKey: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   bordered: PropTypes.bool,
   showTableCount: PropTypes.bool,
   indentSize: PropTypes.number,

@@ -43,7 +43,12 @@ Select.propTypes = {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]).isRequired,
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   })).isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]),
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   disabled: PropTypes.bool,
   required: PropTypes.bool,
   multiple: PropTypes.bool,
