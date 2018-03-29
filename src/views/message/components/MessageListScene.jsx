@@ -7,6 +7,8 @@ import Button from '../../../core/form/Button';
 import SentMessageListContainer from './SentMessageListContainer';
 import Separator from '../../../core/layout/Separator';
 import SentMessageListFilterContainer from './SentMessageListFilterContainer';
+import ReceivedMessageListFilterContainer from './ReceivedMessageListFilterContainer';
+import ReceivedMessageListContainer from './ReceivedMessageListContainer';
 
 const MessageListScene = () => (
   <div>
@@ -41,7 +43,14 @@ const MessageListScene = () => (
           },
           {
             title: 'Messages Received',
-            content: <div />,
+            content: (
+              <div>
+                <Separator />
+                <ReceivedMessageListFilterContainer />
+                <Separator />
+                <ReceivedMessageListContainer />
+              </div>
+             ),
           },
         ]}
       />

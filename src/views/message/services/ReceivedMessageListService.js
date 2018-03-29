@@ -2,7 +2,7 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 
-class SentMessageListService {
+class ReceivedMessageListService {
   fetch = new FetchService();
   filterForm = new FormService();
 
@@ -31,7 +31,7 @@ class SentMessageListService {
     }
 
     this.fetch.fetch({
-      url: '/sent-messages',
+      url: '/received-messages',
       query: {
         page: this.pagination.current,
         size: this.pagination.pageSize,
@@ -55,6 +55,6 @@ class SentMessageListService {
   });
 }
 
-const sentMessageListService = new SentMessageListService();
+const receivedMessageListService = new ReceivedMessageListService();
 
-export default sentMessageListService;
+export default receivedMessageListService;
