@@ -6,6 +6,7 @@ import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import MessageChatListContainer from './MessageChatListContainer';
+import MessageChatReplayFormContainer from './MessageChatReplayFormContainer';
 
 const MessageChatScene = props => (
   <div>
@@ -35,9 +36,16 @@ const MessageChatScene = props => (
         />
       )}
     >
-      {props.messageChannel.id && (
-        <MessageChatListContainer messageChannelId={props.messageChannel.id} />
-      )}
+      {props.messageChannel.id && [
+        <MessageChatListContainer
+          key="message-list"
+          messageChannelId={props.messageChannel.id}
+        />,
+        <MessageChatReplayFormContainer
+          key="message-reply-form"
+          messageChannelId={props.messageChannel.id}
+        />,
+      ]}
     </Card>
   </div>
 );

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MessageChatListItem from './MessageChatListItem';
-import MessageChatReplayFormContainer from './MessageChatReplayFormContainer';
 
 const MessageChatList = props => (
   <div
@@ -20,12 +19,10 @@ const MessageChatList = props => (
         message={message}
       />
     ))}
-    <MessageChatReplayFormContainer messageChannelId={props.messageChannelId} />
   </div>
 );
 
 MessageChatList.propTypes = {
-  messageChannelId: PropTypes.string.isRequired,
   messages: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
