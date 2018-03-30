@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
-import moment from 'moment';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import MessageChatListContainer from './MessageChatListContainer';
 import MessageChatReplayFormContainer from './MessageChatReplayFormContainer';
+import MessageChatHeader from './MessageChatHeader';
 
 const MessageChatScene = props => (
   <div>
@@ -25,7 +25,7 @@ const MessageChatScene = props => (
       ]}
     />
     <Card
-      title={`Subject:${props.messageChannel.subject} - from: ${moment(props.messageChannel.sentAt).format('DD/MM/YYYY HH:mm')}`}
+      title="Messages History"
       loading={props.fetching}
       actions={(
         <Button
@@ -37,6 +37,12 @@ const MessageChatScene = props => (
       )}
     >
       {props.messageChannel.id && [
+        <MessageChatHeader
+          key="message-chat-header"
+          subject={props.messageChannel.subject}
+          startedAt={props.messageChannel.sentAt}
+          members={props.messageChannel.members}
+        />,
         <MessageChatListContainer
           key="message-list"
           messageChannelId={props.messageChannel.id}
@@ -55,6 +61,7 @@ MessageChatScene.propTypes = {
     id: PropTypes.string,
     subject: PropTypes.string,
     sentAt: PropTypes.string,
+    members: PropTypes.arrayOf(PropTypes.shape({})),
   }).isRequired,
   fetching: PropTypes.bool.isRequired,
 };

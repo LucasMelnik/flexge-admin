@@ -16,6 +16,9 @@ const MessageChatReplayForm = props => (
       style={{
         display: 'flex',
         backgroundColor: '#cecece7a',
+        border: '1px solid #ececec',
+        borderBottomLeftRadius: 3,
+        borderBottomRightRadius: 3,
         height: 50,
         padding: 10,
       }}

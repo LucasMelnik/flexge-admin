@@ -1,29 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
+import get from 'lodash/get'
 import MessageChatListItem from './MessageChatListItem';
+import Separator from '../../../core/layout/Separator';
 
-const MessageChatList = props => (
-  <div
-    style={{
-      padding: 0,
-      backgroundColor: '#ecebeb59',
-      border: '1px solid #ececec',
-      borderRadius: 3,
-      maxHeight: 500,
-      overflowY: 'auto',
-    }}
-  >
-    {props.messages.map(message => (
-      <MessageChatListItem
-        key={message.id}
-        message={message}
-      />
-    ))}
-  </div>
-);
+export default class MessageChatList extends Component {
+  static propTypes = {
+    messages: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  };
 
-MessageChatList.propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-};
+  componentDidUpdate() {
+    $('#chat-list').scrollTop($('#chat-list').prop('scrollHeight'));
+  }
 
-export default MessageChatList;
+  render() {
+    return (
+      <div
+        id="chat-list"
+        style={{
+          padding: 10,
+          backgroundColor: '#f1f1f1',
+          border: '1px solid #ececec',
+          borderBottom: 'none',
+          borderTop: 'none',
+          maxHeight: 500,
+          overflowY: 'auto',
+        }}
+      >
+        {this.props.messages.map((message, index) => (
+          <div>
+            <MessageChatListItem
+              key={message.id}
+              message={message}
+              shouldGroup={message.sender.id === get(this.props.messages[index + 1],'sender.id', '')}
+            />
+            {message.sender.id !== get(this.props.messages[index + 1],'sender.id', '') && (<Separator size="xs" />)}
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
