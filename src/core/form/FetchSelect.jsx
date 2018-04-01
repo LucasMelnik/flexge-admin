@@ -19,11 +19,12 @@ export default class FetchSelect extends Component {
     resultFilter: PropTypes.func,
     placeholder: PropTypes.string,
     errorText: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
     defaultSelect: PropTypes.bool,
     required: PropTypes.bool,
+    multiple: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -33,6 +34,7 @@ export default class FetchSelect extends Component {
     disabled: false,
     defaultSelect: false,
     required: false,
+    multiple: false,
     resultFilter: () => true,
   };
 
@@ -76,6 +78,7 @@ export default class FetchSelect extends Component {
   render() {
     return (
       <Select
+        multiple={this.props.multiple}
         required={this.props.required}
         value={this.props.value}
         label={this.props.label}

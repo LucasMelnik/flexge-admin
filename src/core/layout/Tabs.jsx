@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { Tabs as AntTabs } from 'antd';
 
 const Tabs = props => (
-  <AntTabs defaultActiveKey={(props.tabs[0].key || props.tabs[0].title)}>
+  <AntTabs
+    defaultActiveKey={(props.tabs[0].key || props.tabs[0].title)}
+    tabBarExtraContent={props.actions}
+  >
     {props.tabs.map(tab => (
       <AntTabs.TabPane
         tab={tab.title}
@@ -22,6 +25,11 @@ Tabs.propTypes = {
     icon: PropTypes.string,
     key: PropTypes.string,
   })).isRequired,
+  actions: PropTypes.node,
+};
+
+Tabs.defaultProps = {
+  actions: null,
 };
 
 export default Tabs;
