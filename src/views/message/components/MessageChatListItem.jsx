@@ -6,13 +6,13 @@ import ColumnSeparator from '../../../core/layout/ColumnSeparator';
 import Icon from '../../../core/layout/Icon';
 
 const MessageChatListItem = (props) => {
-  const shouldReverse = localStorage.id === props.message.sender.id;
+  const isUserMessage = localStorage.id === props.message.sender.id;
   return (
     <div
       style={{
         display: 'flex',
         alignItems: 'flex-end',
-        flexFlow: shouldReverse ? 'row-reverse' : 'row',
+        flexFlow: isUserMessage ? 'row-reverse' : 'row',
       }}
     >
       <div
@@ -35,12 +35,11 @@ const MessageChatListItem = (props) => {
           borderRadius: 8,
           padding: '5px 15px',
           backgroundColor: '#fff',
-          ...(shouldReverse) && {
+          ...(isUserMessage) && {
             borderBottomRightRadius: !props.shouldGroup ? 0 : 8,
             boxShadow: '1px 2px 10px 0 rgba(0, 0, 0, 0.1)',
           },
-          ...(!shouldReverse) && {
-            // marginRight: 'auto',
+          ...(!isUserMessage) && {
             borderBottomLeftRadius: !props.shouldGroup ? 0 : 8,
             boxShadow: '-1px 2px 10px 0 rgba(0, 0, 0, 0.1)',
           },
@@ -62,14 +61,14 @@ const MessageChatListItem = (props) => {
           {moment(props.message.sentAt).format('DD/MM/YY HH:mm')}
         </span>
       </div>
-      {props.message.readAt && (
+      {(isUserMessage && props.message.readAt) && (
         <div
           style={{
             marginBottom: 5,
-            ...(shouldReverse) && {
+            ...(isUserMessage) && {
               marginRight: 5,
             },
-            ...(!shouldReverse) && {
+            ...(!isUserMessage) && {
               marginLeft: 5,
             },
           }}

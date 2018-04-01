@@ -3,6 +3,7 @@ import FetchService from '../../../core/services/FetchService';
 
 class MessageChatListService {
   fetch = new FetchService();
+  markRead = new FetchService();
 
   constructor() {
     extendObservable(this, {
@@ -23,6 +24,13 @@ class MessageChatListService {
     }).then(() => {
       if (this.fetch.data) {
         this.messages = this.fetch.data;
+
+        this.fetch.data.filter(message => !message.readAt && message.sender.id !== localStorage.getItem('id')).map((message) => {
+          return this.markRead.fetch({
+            url: `/message-channels/${message.messageChannel}/messages/${message.id}/read`,
+            method: 'patch',
+          });
+        });
       } else {
         this.messages = [];
       }
