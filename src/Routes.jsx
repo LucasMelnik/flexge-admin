@@ -88,6 +88,9 @@ import EvaluationTemplateFormScene from './views/evaluation-template/components/
 import UsageStatsListScene from './views/usage-stats/components/UsageStatsListScene';
 import StudentAchievementsListScene from './views/student-achievements/components/StudentAchievementsListScene';
 import UnitAverageExecutionTimeListScene from './views/reports/components/unit-average-execution-time/UnitAverageExecutionTimeListScene';
+import MessageListScene from './views/message/components/MessageListScene';
+import MessageFormScene from './views/message/components/MessageFormScene';
+import MessageChatSceneContainer from './views/message/components/MessageChatSceneContainer';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -223,6 +226,15 @@ const Routes = () => (
       <Route path="unit-average-execution-time" component={UnitAverageExecutionTimeListScene} />
       <Route path="items-by-words" component={ItemByWordsListScene} />
       <Route path="usage-stats" component={UsageStatsListScene} />
+      {!process.env.REACT_APP_BLOCK_FOR_PROD && (
+        <Route path="messages" component={MessageListScene} />
+      )}
+      {!process.env.REACT_APP_BLOCK_FOR_PROD && (
+        <Route path="new-message" component={MessageFormScene} />
+      )}
+      {!process.env.REACT_APP_BLOCK_FOR_PROD && (
+        <Route path="messages/:id/chat" component={MessageChatSceneContainer} />
+      )}
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

@@ -320,6 +320,13 @@ const MainScene = props => (
             },
           ]}
         />
+        {!process.env.REACT_APP_BLOCK_FOR_PROD && (
+          <MenuItem
+            title="Messages"
+            link="/messages"
+            icon="message"
+          />
+        )}
       </Menu>
       <div
         style={{
