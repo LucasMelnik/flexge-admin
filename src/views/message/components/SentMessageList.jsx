@@ -23,14 +23,13 @@ const SentMessageList = props => (
         render: (value, row) => row.children ? value : row.name,
       },
       {
-        label: 'Message',
-        path: 'message',
-        render: (text, row) => row.children ? (<div dangerouslySetInnerHTML={{ __html: text }} />) : row.schoolClass.name,
+        label: 'Classroom',
+        path: 'schoolClass.name',
       },
       {
         label: 'Status',
         path: 'readAt',
-        render: (value, row) => row.children ? '' : (row.readAt ? 'Read' : 'Not Read'),
+        render: (value, row) => row.children ? '' : (row.readAt ? `Read ${moment(row.readAt).format('DD/MM/YYYY HH:mm')}` : 'Not Read'),
       },
     ]}
     rows={props.messages}

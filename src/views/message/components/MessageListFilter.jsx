@@ -5,6 +5,7 @@ import Button from '../../../core/form/Button';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import DateInput from '../../../core/form/DateInput';
+import TextInput from '../../../core/form/TextInput';
 
 const MessageListFilter = props => (
   <Row>
@@ -24,6 +25,15 @@ const MessageListFilter = props => (
         value={get(props.values, 'to', undefined) ? props.values.from.toDate() : undefined}
         onChange={value => props.onChange('to', value)}
         errorText={get(props.errors, 'to', '')}
+      />
+    </Column>
+    <Column size={2}>
+      <TextInput
+        label="Subject"
+        disabled={props.fetching}
+        value={get(props.values, 'subject', '')}
+        onChange={value => props.onChange('subject', value)}
+        errorText={get(props.errors, 'subject', '')}
       />
     </Column>
     <Column size={2}>

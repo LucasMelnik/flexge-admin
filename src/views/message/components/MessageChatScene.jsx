@@ -15,9 +15,7 @@ const MessageChatScene = props => (
       crumbs={[
         {
           text: 'Messages',
-        },
-        {
-          text: `Subject: ${props.messageChannel.subject}`,
+          link: '/messages'
         },
         {
           text: 'Chat',

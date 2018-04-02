@@ -10,6 +10,10 @@ const MessageFormScene = () => (
     <Breadcrumb
       crumbs={[
         {
+          text: 'Messages',
+          link: '/messages'
+        },
+        {
           text: 'New Message',
         },
       ]}

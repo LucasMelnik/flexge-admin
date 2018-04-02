@@ -42,6 +42,9 @@ class ReceivedMessageListService {
           ...this.filterForm.getValue('to') && {
             to: this.filterForm.getValue('to').toDate(),
           },
+          ...this.filterForm.getValue('subject') && {
+            subject: this.filterForm.getValue('subject'),
+          },
         },
       },
     }).then(() => {

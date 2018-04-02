@@ -20,11 +20,11 @@ const MessageForm = props => (
     <Row>
       <Column size={6}>
         <Switch
-          label="Message To"
-          titleOff="Entire Classrooms"
-          titleOn="Specific Students"
-          value={get(props.values, 'forStudents', false)}
-          onChange={value => props.onChange('forStudents', value)}
+          label="Message to Entire Classrooms ?"
+          titleOff="No"
+          titleOn="Yes"
+          value={get(props.values, 'messageToClassRoom', false)}
+          onChange={value => props.onChange('messageToClassRoom', value)}
         />
       </Column>
     </Row>
@@ -49,12 +49,12 @@ const MessageForm = props => (
       <Column size={4}>
         <FetchSelect
           required
-          multiple={!get(props.values, 'forStudents', false)}
+          multiple={get(props.values, 'messageToClassRoom', false)}
           url={`schools/${get(props.values, 'school', undefined)}/classes`}
           disabled={props.submitting || !get(props.values, 'school', undefined)}
           label="Classroom"
           value={get(props.values, 'schoolClasses', '')}
-          onChange={value => props.onChange('schoolClasses', get(props.values, 'forStudents', false) ? [value] : value)}
+          onChange={value => props.onChange('schoolClasses', get(props.values, 'messageToClassRoom', false) ? value : [value])}
           errorText={get(props.errors, 'schoolClasses', '')}
           resultTransformer={{
             text: 'name',
@@ -62,11 +62,11 @@ const MessageForm = props => (
           }}
         />
       </Column>
-      {(get(props.values, 'forStudents', false) && get(props.values, 'schoolClasses', false)) && (
+      {(!get(props.values, 'messageToClassRoom', false) && get(props.values, 'schoolClasses', false)) && (
         <Column size={4}>
           <FetchSelect
             multiple
-            required={get(props.values, 'forStudents', false)}
+            required={!get(props.values, 'messageToClassRoom', false)}
             url={`schools/${get(props.values, 'school', undefined)}/classes/${get(props.values, 'schoolClasses', undefined)}/students`}
             disabled={props.submitting}
             label="Students"

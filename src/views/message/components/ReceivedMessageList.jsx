@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import moment from 'moment';
 import get from 'lodash/get';
 import Table from '../../../core/form/Table';
+import Tag from '../../../core/layout/Tag';
 
 const ReceivedMessageList = props => (
   <Table
@@ -13,7 +14,7 @@ const ReceivedMessageList = props => (
     onChange={props.onChange}
     columns={[
       {
-        label: 'Date',
+        label: 'Received At',
         path: 'sentAt',
         render: value => moment(value).format('DD/MM/YYYY HH:mm'),
         width: 160,
@@ -30,7 +31,13 @@ const ReceivedMessageList = props => (
       {
         label: 'Status',
         path: 'readAt',
-        render: value => (value ? 'Read' : 'Not Read'),
+        width: 120,
+        align: 'center',
+        render: value => (
+          <Tag color={(value ? 'green' : 'red')}>
+            {value ? 'Read' : 'Not Read'}
+          </Tag>
+        ),
       },
     ]}
     rows={props.messages}
