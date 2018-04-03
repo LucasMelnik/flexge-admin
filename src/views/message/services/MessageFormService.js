@@ -17,11 +17,11 @@ export default class MessageFormService {
       text: [isRequired],
       school: (localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') ? [isRequired] : [],
       schoolClasses: [isRequired],
-      students: [(value, all) => !value && all.forStudents && 'Required'],
+      students: [(value, all) => !value && !all.messageToClassRoom && 'Required'],
     };
 
     this.form.setInitialValues({
-      forStudents: false,
+      messageToClassRoom: false,
     });
 
     if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
@@ -43,11 +43,11 @@ export default class MessageFormService {
       body: {
         text: this.form.getValue('text'),
         subject: this.form.getValue('subject'),
-        ...this.form.getValue('forStudents') && {
+        ...!this.form.getValue('messageToClassRoom') && {
           students: this.form.getValue('students'),
         },
         schoolClasses: this.form.getValue('schoolClasses'),
-        type: this.form.getValue('forStudents') ? 'TO_STUDENTS' : 'TO_CLASSROOM',
+        type: this.form.getValue('messageToClassRoom') ? 'TO_CLASSROOM' : 'TO_STUDENTS',
       },
     }).then(() => {
       if (this.submit.data) {

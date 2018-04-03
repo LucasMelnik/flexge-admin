@@ -37,7 +37,7 @@ const MessageChatReplayForm = props => (
             padding: '0px 10px',
           }}
           label=""
-          placeholder="Type the replay"
+          placeholder="Type the reply"
           disabled={props.submitting}
           value={get(props.values, 'text', '')}
           onChange={value => props.onChange('text', value)}
