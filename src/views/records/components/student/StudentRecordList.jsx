@@ -4,6 +4,7 @@ import round from 'lodash/round';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
 import LinearProgress from '../../../../core/layout/LinearProgress';
+import Tag from '../../../../core/layout/Tag';
 
 const StudentRecordList = props => (
   <div>
@@ -93,6 +94,13 @@ const StudentRecordList = props => (
               const now = moment();
               const lastStudy = moment(row.lastStudy);
               const diff = moment.duration(lastStudy.diff(now));
+              if (diff.days() < -10) {
+                return (
+                  <Tag color="red">
+                    {diff.humanize(true)}
+                  </Tag>
+                );
+              }
               return (
                 <div style={{ width: 100 }}>{diff.humanize(true)}</div>
               );
