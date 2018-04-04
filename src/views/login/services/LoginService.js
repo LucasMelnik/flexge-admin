@@ -49,6 +49,16 @@ class LoginService {
         }
         browserHistory.push('/');
         NotificationService.addNotification('Welcome again!', 'info');
+
+        this.fetch.fetch({
+          url: '/received-messages/count-unread',
+        }).then(() => {
+          if (this.fetch.data) {
+            NotificationService.addNotification(`You have ${this.fetch.data.total} new message${this.fetch.data.total === 1 ? '' : 's'}`, 'info');
+          } else {
+            this.total = 0;
+          }
+        });
       }
       if (this.fetch.error) {
         NotificationService.addNotification('Unable to login. Please check your credentials.', 'error');

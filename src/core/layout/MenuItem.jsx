@@ -25,7 +25,7 @@ const MenuItem = props => (
 
 MenuItem.propTypes = {
   allowedFor: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   icon: PropTypes.string,
   link: PropTypes.string.isRequired,
 };
