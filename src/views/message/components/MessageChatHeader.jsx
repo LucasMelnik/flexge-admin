@@ -11,8 +11,17 @@ const MessageChatHeader = props => (
       borderTopRightRadius: 3,
     }}
   >
-    <h4>Subject: {props.subject}</h4>
-    <h5>With: {props.members.reduce((acc, member) => acc.concat(' ').concat(member.name), '')}</h5>
+    <span
+      style={{
+        fontSize: 22,
+        color: 'green',
+      }}
+    >
+      {props.members.reduce((acc, member) => acc.concat(' ').concat(member.name), '')}
+    </span>
+    <br />
+    <span>Subject: {props.subject}</span>
+    <br />
     <span>Since: {moment(props.startedAt).format('DD/MM/YYYY HH:mm')}</span>
   </div>
 );

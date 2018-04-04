@@ -9,6 +9,7 @@ import Separator from '../../../core/layout/Separator';
 import SentMessageListFilterContainer from './SentMessageListFilterContainer';
 import ReceivedMessageListFilterContainer from './ReceivedMessageListFilterContainer';
 import ReceivedMessageListContainer from './ReceivedMessageListContainer';
+import UnReadeMessageCountContainer from './UnReadeMessageCountContainer';
 
 const MessageListScene = () => (
   <div>
@@ -31,7 +32,7 @@ const MessageListScene = () => (
         )}
         tabs={[
           {
-            title: 'Messages Sent',
+            title: 'Sent Mail',
             content: (
               <div>
                 <Separator />
@@ -42,7 +43,11 @@ const MessageListScene = () => (
              ),
           },
           {
-            title: 'Messages Received',
+            title: (
+              <UnReadeMessageCountContainer>
+                Inbox
+              </UnReadeMessageCountContainer>
+           ),
             content: (
               <div>
                 <Separator />

@@ -100,6 +100,11 @@ const MessageForm = props => (
           isRequired
           value={get(props.values, 'text', '')}
           onChange={value => props.onChange('text', value)}
+          options={{
+            toolbar: [
+              ['bold', 'italic', 'underline'],
+            ],
+          }}
         />
       </Column>
     </Row>
