@@ -321,17 +321,15 @@ const MainScene = props => (
             },
           ]}
         />
-        {!process.env.REACT_APP_BLOCK_FOR_PROD && (
-          <MenuItem
-            link="/messages"
-            icon="message"
-            title={(
-              <UnReadeMessageCountContainer>
-                <span style={{ color: 'hsla(0,0%,100%,.65)' }}>Messages</span>
-              </UnReadeMessageCountContainer>
-            )}
-          />
-        )}
+        <MenuItem
+          link="/messages"
+          icon="message"
+          title={(
+            <UnReadeMessageCountContainer>
+              <span style={{ color: 'hsla(0,0%,100%,.65)' }}>Messages</span>
+            </UnReadeMessageCountContainer>
+          )}
+        />
       </Menu>
       <div
         style={{
