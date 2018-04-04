@@ -4,15 +4,13 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 export default class TextEditor extends Component {
-
-  state = { error: false }
-
   static propTypes = {
     style: PropTypes.object,
     placeholder: PropTypes.string,
     readOnly: PropTypes.bool,
     value: PropTypes.string,
     onChange: PropTypes.func,
+    options: PropTypes.shape({}),
   };
 
   static defaultProps = {
@@ -21,38 +19,27 @@ export default class TextEditor extends Component {
     readOnly: false,
     value: null,
     onChange: null,
-  }
-
-  constructor(props) {
-    super(props);
-    this.toolbarOptions = {
+    options: {
       toolbar: [
         ['bold', 'italic', 'underline', 'strike'],
         ['blockquote', 'code-block'],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'script': 'sub'}, { 'script': 'super' }],
-        [{ 'indent': '-1'}, { 'indent': '+1' }],
-
-        [{ 'size': ['small', false, 'large', 'huge'] }],
-
-        [{ 'color': [] }, { 'background': [] }],
-        [{ 'align': [] }],
-
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        [{ script: 'sub' }, { script: 'super' }],
+        [{ indent: '-1' }, { indent: '+1' }],
+        [{ size: ['small', false, 'large', 'huge'] }],
+        [{ color: [] }, { background: [] }],
+        [{ align: [] }],
         ['clean'],
       ],
-    };
-
-    this.noToolbar = {
-      toolbar: [],
-    };
-  }
+    },
+  };
 
   render() {
     return (
       <ReactQuill
         style={this.props.style}
         placeholder={this.props.placeholder}
-        modules={this.toolbarOptions}
+        modules={this.props.options}
         readOnly={this.props.readOnly}
         value={this.props.value}
         onKeyPress={this.onKeyPress}
@@ -66,5 +53,4 @@ export default class TextEditor extends Component {
       </ReactQuill>
     );
   }
-
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import MessageChatScene from './MessageChatScene';
 import MessageChatLoadService from '../services/MessageChatLoadService';
@@ -21,7 +22,7 @@ class MessageChatSceneContainer extends Component {
     return (
       <Async fetching={this.messageChatLoadService.fetch.fetching}>
         <MessageChatScene
-          messageChannel={this.messageChatLoadService.messageChannel}
+          messageChannel={toJS(this.messageChatLoadService.messageChannel)}
           fetching={this.messageChatLoadService.fetch.fetching}
         />
       </Async>

@@ -29,9 +29,8 @@ export default class MessageChatList extends Component {
         }}
       >
         {this.props.messages.map((message, index) => (
-          <div>
+          <div key={message.id}>
             <MessageChatListItem
-              key={message.id}
               message={message}
               shouldGroup={message.sender.id === get(this.props.messages[index + 1],'sender.id', '')}
             />
