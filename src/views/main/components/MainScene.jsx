@@ -6,6 +6,7 @@ import MenuItem from '../../../core/layout/MenuItem';
 import SubMenu from '../../../core/layout/SubMenu';
 import ConfirmDialogContainer from './ConfirmDialogContainer';
 import Button from '../../../core/form/Button';
+import UnReadeMessageCountContainer from '../../message/components/UnReadeMessageCountContainer';
 
 const MainScene = props => (
   <Layout>
@@ -322,9 +323,13 @@ const MainScene = props => (
         />
         {!process.env.REACT_APP_BLOCK_FOR_PROD && (
           <MenuItem
-            title="Messages"
             link="/messages"
             icon="message"
+            title={(
+              <UnReadeMessageCountContainer>
+                <span style={{ color: '#fff' }}>Messages</span>
+              </UnReadeMessageCountContainer>
+            )}
           />
         )}
       </Menu>
