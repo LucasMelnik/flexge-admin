@@ -327,7 +327,7 @@ const MainScene = props => (
             icon="message"
             title={(
               <UnReadeMessageCountContainer>
-                <span style={{ color: '#fff' }}>Messages</span>
+                <span style={{ color: 'hsla(0,0%,100%,.65)' }}>Messages</span>
               </UnReadeMessageCountContainer>
             )}
           />
