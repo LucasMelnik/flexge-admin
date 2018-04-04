@@ -226,15 +226,9 @@ const Routes = () => (
       <Route path="unit-average-execution-time" component={UnitAverageExecutionTimeListScene} />
       <Route path="items-by-words" component={ItemByWordsListScene} />
       <Route path="usage-stats" component={UsageStatsListScene} />
-      {!process.env.REACT_APP_BLOCK_FOR_PROD && (
-        <Route path="messages" component={MessageListScene} />
-      )}
-      {!process.env.REACT_APP_BLOCK_FOR_PROD && (
-        <Route path="new-message" component={MessageFormScene} />
-      )}
-      {!process.env.REACT_APP_BLOCK_FOR_PROD && (
-        <Route path="messages/:id/chat" component={MessageChatSceneContainer} />
-      )}
+      <Route path="messages" component={MessageListScene} />
+      <Route path="new-message" component={MessageFormScene} />
+      <Route path="messages/:id/chat" component={MessageChatSceneContainer} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
