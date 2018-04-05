@@ -13,6 +13,11 @@ const MainScene = props => (
     <Layout.Header>
       <Menu>
         <MenuItem
+          title="Profile"
+          icon="idcard"
+          link="/profile"
+        />
+        <MenuItem
           title="Dashboard"
           icon="dashboard"
           link="/"
@@ -324,11 +329,11 @@ const MainScene = props => (
         <MenuItem
           link="/messages"
           icon="message"
-          title={(
+          title={
             <UnReadeMessageCountContainer>
               <span style={{ color: 'hsla(0,0%,100%,.65)' }}>Messages</span>
             </UnReadeMessageCountContainer>
-          )}
+          }
         />
       </Menu>
       <div
