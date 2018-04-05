@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { toJS } from 'mobx';
 import PropTypes from 'prop-types';
 import sortBy from 'lodash/sortBy';
 import toLower from 'lodash/toLower';
 import get from 'lodash/get';
-import { toJS } from 'mobx';
+import startsWith from 'lodash/startsWith';
 import Select from './Select';
 import FetchService from '../services/FetchService';
 
@@ -90,6 +91,7 @@ export default class FetchSelect extends Component {
           label: get(option, this.props.resultTransformer.text),
           value: get(option, this.props.resultTransformer.value),
         }))}
+        filterOption={(value, option) => startsWith(option.props.children.toLowerCase(), value.toLowerCase())}
       />
     );
   }

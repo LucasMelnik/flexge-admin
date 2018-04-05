@@ -23,6 +23,7 @@ const Select = props => (
       value={props.value || undefined}
       onChange={value => props.onChange && props.onChange(value)}
       mode={props.multiple ? 'multiple' : null}
+      filterOption={props.filterOption}
     >
       {props.options.map(option => (
         <AntSelect.Option
@@ -54,6 +55,7 @@ Select.propTypes = {
   multiple: PropTypes.bool,
   placeholder: PropTypes.string,
   errorText: PropTypes.string,
+  filterOption: PropTypes.func,
 };
 
 Select.defaultProps = {
@@ -63,6 +65,7 @@ Select.defaultProps = {
   multiple: false,
   value: null,
   errorText: null,
+  filterOption: null,
   placeholder: '',
 };
 
