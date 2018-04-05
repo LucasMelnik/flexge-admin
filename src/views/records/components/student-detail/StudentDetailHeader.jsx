@@ -67,6 +67,9 @@ export default class StudentDetailHeader extends Component {
       return getScore(2);
     } else if (item.requirement === 'REPEAT_RECORD_LISTEN_RELATION') {
       return getScore(1);
+    } else if (item.requirement === 'TRANSLATE_USAGE' || item.requirement === 'READING_USAGE') {
+      const score = getScore(-3);
+      return score <= 0 ? 5 : 5 - getScore(-3);
     }
     return null;
   };
@@ -161,7 +164,7 @@ export default class StudentDetailHeader extends Component {
         >
           <Table
             showTableCount={false}
-            rows={get(this.props.student, 'studyQuality.requirements', []).filter(item => item.requirement !== 'TRANSLATE_USAGE' && item.requirement !== 'READING_USAGE')}
+            rows={get(this.props.student, 'studyQuality.requirements', [])}
             columns={[
               {
                 label: 'Requirement',
@@ -185,6 +188,10 @@ export default class StudentDetailHeader extends Component {
                     return 'Uso do botão Escutar';
                   } else if (type === 'REPEAT_RECORD_LISTEN_RELATION') {
                     return 'Usar 2x mais o botão Repetir do que o Escutar e Falar';
+                  } else if (type === 'TRANSLATE_USAGE') {
+                    return 'Não usar excessivamente o botão Translate';
+                  } else if (type === 'READING_USAGE') {
+                    return 'Não usar excessivamente o botão Reading';
                   }
                   return '';
                 },
@@ -201,16 +208,19 @@ export default class StudentDetailHeader extends Component {
                       flex: 1,
                     }}
                   >
-                    {range(5).map(index => (
-                      <img
-                        alt="sq-icon"
-                        src={this.getScoreByRequirement(row) <= index ? EmptyStar : Star}
-                        style={{
-                          marginLeft: 10,
-                          opacity: this.getScoreByRequirement(row) <= index ? 0.3 : 1,
-                        }}
-                      />
-                    ))}
+                    {range(5).map((index) => {
+                      const score = this.getScoreByRequirement(row);
+                      return (
+                        <img
+                          alt="sq-icon"
+                          src={score <= index ? EmptyStar : Star}
+                          style={{
+                            marginLeft: 10,
+                            opacity: score <= index ? 0.3 : 1,
+                          }}
+                        />
+                      );
+                    })}
                   </div>
                 ),
               },

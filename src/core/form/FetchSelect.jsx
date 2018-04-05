@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { toJS } from 'mobx';
 import PropTypes from 'prop-types';
 import sortBy from 'lodash/sortBy';
 import toLower from 'lodash/toLower';
 import get from 'lodash/get';
-import { toJS } from 'mobx';
+import startsWith from 'lodash/startsWith';
 import Select from './Select';
 import FetchService from '../services/FetchService';
 
@@ -19,11 +20,12 @@ export default class FetchSelect extends Component {
     resultFilter: PropTypes.func,
     placeholder: PropTypes.string,
     errorText: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
     defaultSelect: PropTypes.bool,
     required: PropTypes.bool,
+    multiple: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -33,6 +35,7 @@ export default class FetchSelect extends Component {
     disabled: false,
     defaultSelect: false,
     required: false,
+    multiple: false,
     resultFilter: () => true,
   };
 
@@ -76,6 +79,7 @@ export default class FetchSelect extends Component {
   render() {
     return (
       <Select
+        multiple={this.props.multiple}
         required={this.props.required}
         value={this.props.value}
         label={this.props.label}
@@ -87,6 +91,7 @@ export default class FetchSelect extends Component {
           label: get(option, this.props.resultTransformer.text),
           value: get(option, this.props.resultTransformer.value),
         }))}
+        filterOption={(value, option) => startsWith(option.props.children.toLowerCase(), value.toLowerCase())}
       />
     );
   }
