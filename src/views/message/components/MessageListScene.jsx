@@ -32,7 +32,7 @@ const MessageListScene = () => (
         )}
         tabs={[
           {
-            title: 'Sent Mail',
+            title: 'Sent',
             content: (
               <div>
                 <Separator />
@@ -45,7 +45,7 @@ const MessageListScene = () => (
           {
             title: (
               <UnReadeMessageCountContainer>
-                Inbox
+                Received
               </UnReadeMessageCountContainer>
            ),
             content: (
