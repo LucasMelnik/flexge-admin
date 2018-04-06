@@ -5,8 +5,6 @@ import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
-import DateInput from '../../../core/form/DateInput';
-import Select from '../../../core/form/Select';
 import ImagePicker from '../../../core/form/ImagePicker';
 
 const ProfileForm = props => (
