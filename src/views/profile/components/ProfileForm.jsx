@@ -46,34 +46,6 @@ const ProfileForm = props => (
           errorText={get(props.errors, 'email', null)}
         />
       </Column>
-      <Column size={1}>
-        <DateInput
-          disabled={props.submitting}
-          label="Birthdate"
-          value={get(props.values, 'birthDate', undefined)}
-          onChange={value => props.onChange('birthDate', value)}
-          errorText={get(props.errors, 'birthDate', null)}
-        />
-      </Column>
-      <Column size={1}>
-        <Select
-          disabled={props.submitting}
-          label="Gender"
-          value={get(props.values, 'gender', undefined)}
-          onChange={value => props.onChange('gender', value)}
-          errorText={get(props.errors, 'gender', null)}
-          options={[
-            {
-              label: 'Male',
-              value: 'M',
-            },
-            {
-              label: 'Female',
-              value: 'F',
-            },
-          ]}
-        />
-      </Column>
     </Row>
     <Row>
       <p>You can change your password, you just need to type your current password and the new desired password.</p>

@@ -40,7 +40,16 @@ export default class ProfileFormService {
     this.submit.fetch({
       method: 'put',
       url: '/profile',
-      body: this.form.getValues(),
+      body: {
+        name: this.form.getValue('name'),
+        email: this.form.getValue('email'),
+        ...this.form.getValue('password') && {
+          password: this.form.getValue('password'),
+        },
+        ...this.form.getValue('newPassword') && {
+          newPassword: this.form.getValue('newPassword'),
+        },
+      },
     }).then(() => {
       if (this.submit.data) {
         this.form.reset();
