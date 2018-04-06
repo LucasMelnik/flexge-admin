@@ -110,7 +110,7 @@ export default class ImagePicker extends Component {
             />
             <Separator size="xs" />
             <Button
-              label="Alterar Avatar"
+              label="Change Picture"
               onClick={() => this.fileInput.click()}
             />
             <input
