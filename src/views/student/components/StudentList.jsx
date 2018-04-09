@@ -1,6 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
 
@@ -53,8 +54,8 @@ const StudentList = props => (
         },
         {
           label: 'Status',
-          path: 'deleted',
-          render: value => value ? 'Disabled' : 'Active',
+          path: 'deletedAt',
+          render: value => value ? `Disabled - ${moment(value).format('DD/MM/YYYY - HH:mm')}` : 'Active',
         },
       ],
       {
