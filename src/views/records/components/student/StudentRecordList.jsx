@@ -17,6 +17,22 @@ const StudentRecordList = props => (
           sort: true,
           width: '40%',
           defaultSortOrder: 'ascend',
+          render: (value, row) => (
+            <div>
+              {value}
+              {row.deletedAt && (
+                <span
+                  style={{
+                    color: '#ff000066',
+                    fontSize: 11,
+                    marginLeft: 10,
+                  }}
+                >
+                  Disabled at {moment(row.deletedAt).format('DD/MM/YY HH:mm')}
+                </span>
+              )}
+            </div>
+          ),
         },
         {
           label: 'Initial Level (PT)',
@@ -64,7 +80,7 @@ const StudentRecordList = props => (
               >
                 <LinearProgress
                   color={row.coursePercentage >= 100 ? 'green' : 'blue'}
-                  value={row.coursePercentage}
+                  value={row.coursePercentage || 0}
                 />
               </div>
             </div>
@@ -117,7 +133,7 @@ const StudentRecordList = props => (
       ]}
       rows={props.students}
       selectable
-      onSelect={row => row.initialEnglishLevel >= 0 && props.onSelect(row)}
+      onSelect={row => (!row.deletedAt && row.initialEnglishLevel >= 0) && props.onSelect(row)}
     />
   </div>
 );
@@ -127,6 +143,7 @@ StudentRecordList.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     lastStudy: PropTypes.string,
+    deletedAt: PropTypes.string,
     coursePercentage: PropTypes.number,
     totalStudiedTime: PropTypes.number,
   })).isRequired,
