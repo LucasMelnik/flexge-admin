@@ -13,12 +13,12 @@ const DemoStudentList = props => (
        {
         label: 'Name',
         path: 'name',
-        sort: true,
-        defaultSortOrder: 'ascend',
       },
       {
         label: 'School',
         path: 'schoolClass.school.name',
+        defaultSortOrder: 'ascend',
+        sort: true,
       },
       {
         label: 'School Class',

@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import round from 'lodash/round';
 import { formatTimeFromSeconds } from '../../../core/util';
 import Table from '../../../core/form/Table';
+import Tag from '../../../core/layout/Tag';
+import ColumnSeparator from '../../../core/layout/ColumnSeparator';
 
 const UsageStatsList = props => (
   <div>
@@ -27,6 +30,24 @@ const UsageStatsList = props => (
           width: '180px',
           sort: true,
           align: 'center',
+        },
+        {
+          label: 'Students to Charge',
+          path: 'charge',
+          width: '180px',
+          sort: true,
+          align: 'center',
+          render: (value, row) => (
+            <div>
+              {row.activeStudents - row.placementCount}
+              {!!row.chargeVariation && (<ColumnSeparator />)}
+              {!!row.chargeVariation && (
+                <Tag color={row.chargeVariation > 0 ? 'green' : 'red'}>
+                  {round(row.chargeVariation, 1)}%
+                </Tag>
+              )}
+            </div>
+          ),
         },
         {
           label: 'Studied Time',
@@ -73,6 +94,14 @@ const UsageStatsList = props => (
           }}
         >
           {props.schools.reduce((acc, school) => acc + school.placementCount, 0)}
+        </span>
+        <span
+          style={{
+            width: 180,
+            textAlign: 'center',
+          }}
+        >
+          {props.schools.reduce((acc, school) => acc + (school.activeStudents - school.placementCount), 0)}
         </span>
         <span
           style={{
