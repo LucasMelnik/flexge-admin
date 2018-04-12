@@ -37,7 +37,18 @@ class UsageStatsListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.schools = this.fetch.data;
+        this.schools = this.fetch.data.map((school) => {
+          if (school.activeStudentsLastMonth) {
+            const currentCharge = school.activeStudents - school.placementCount;
+            const lastMonthCharge = school.activeStudentsLastMonth - school.placementCountLastMonth;
+
+            return {
+              ...school,
+              chargeVariation: lastMonthCharge && currentCharge ? ((currentCharge - lastMonthCharge) / lastMonthCharge) * 100 : undefined,
+            };
+          }
+          return school;
+        });
       } else {
         this.schools = [];
       }
