@@ -31,6 +31,7 @@ export default class SchoolClassFormService {
       this.form.reset();
       this.form.setInitialValues({
         school: this.schoolId,
+        isIntensiveCourse: false,
       });
     }
   });
@@ -45,6 +46,7 @@ export default class SchoolClassFormService {
           ...this.fetch.data,
           teacher: this.fetch.data.teacher && this.fetch.data.teacher.id,
           isPlacementTestClass: this.fetch.data.isPlacementTestClass,
+          isIntensiveCourse: this.fetch.data.isIntensiveCourse || false,
           school: this.fetch.data.school.id,
           start: this.fetch.data.start && moment(this.fetch.data.start),
           end: this.fetch.data.start && moment(this.fetch.data.end),
@@ -68,6 +70,7 @@ export default class SchoolClassFormService {
         ...this.form.getValues(),
         teacher: this.form.getValue('teacher'),
         isPlacementTestClass: this.form.getValue('isPlacementTestClass') ? this.form.getValue('isPlacementTestClass') : false,
+        isIntensiveCourse: this.form.getValue('isIntensiveCourse') ? this.form.getValue('isIntensiveCourse') : false,
       },
     }).then(() => {
       if (this.submit.data) {
