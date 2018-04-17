@@ -113,13 +113,23 @@ const SchoolClassForm = props => (
     </Row>
     {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
       <Row>
-        <Column size={4}>
+        <Column size={2}>
           <Switch
             label="Is Placement Test Class?"
-            titleOff="False"
-            titleOn="True"
+            titleOff="No"
+            titleOn="Yes"
             onChange={value => props.onChange('isPlacementTestClass', value)}
             value={get(props.values, 'isPlacementTestClass', false)}
+            disabled={props.submitting}
+          />
+        </Column>
+        <Column size={4}>
+          <Switch
+            label="Is Intensive Course?"
+            titleOff="No"
+            titleOn="Yes"
+            onChange={value => props.onChange('isIntensiveCourse', value)}
+            value={get(props.values, 'isIntensiveCourse', false)}
             disabled={props.submitting}
           />
         </Column>
