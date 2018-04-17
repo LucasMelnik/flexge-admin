@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import range from 'lodash/range';
+import round from 'lodash/round';
 import PermissionValidator from '../../../core/layout/PermissionValidator';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
@@ -133,8 +135,23 @@ const SchoolForm = props => (
         />
       </Column>
     </Row>
-    {get(props.values, 'id', '') && (
-      <Row>
+    <Row>
+      {localStorage.role === 'ADMIN' && (
+        <Column size={2}>
+          <Select
+            disabled={props.submitting}
+            label="Module Points Weight"
+            value={get(props.values, 'modulePointRelevance', '')}
+            onChange={value => props.onChange('modulePointRelevance', value)}
+            errorText={get(props.errors, 'modulePointRelevance', '')}
+            options={range(0.3, 1.01, 0.05).map(value => ({
+              value: round(value, 2),
+              label: `${round(value * 100)}%`,
+            }))}
+          />
+        </Column>
+      )}
+      {get(props.values, 'id', '') && (
         <Column size={4}>
           <FileInput
             label="Upload a logo to the school"
@@ -145,8 +162,8 @@ const SchoolForm = props => (
             errorText={get(props.errors, 'logoUrl', '')}
           />
         </Column>
-      </Row>
-    )}
+      )}
+    </Row>
     <FormButtons
       confirmLabel={props.values.id ? 'Update School' : 'Create School'}
       isDisabled={props.submitting || !props.isDirty()}

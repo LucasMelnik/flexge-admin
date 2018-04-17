@@ -16,6 +16,7 @@ export default class SchoolFormService {
     this.form.validations = {
       name: [isRequired],
       company: [isRequired],
+      modulePointRelevance: [isRequired],
     };
   }
 
@@ -35,12 +36,16 @@ export default class SchoolFormService {
           const data = {
             ...this.fetch.data,
             company: this.fetch.data.company.id,
+            modulePointRelevance: this.fetch.data.modulePointRelevance || 1,
           };
           this.form.setInitialValues(data);
         }
       });
     } else {
-      this.form.setInitialValues({ company: this.companyId });
+      this.form.setInitialValues({
+        company: this.companyId,
+        modulePointRelevance: 1,
+      });
     }
   });
 
