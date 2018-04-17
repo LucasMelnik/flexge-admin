@@ -35,6 +35,10 @@ const EmailConfigForm = props => (
               label: 'Monthly',
               value: 'MONTHLY',
             },
+            {
+              label: 'Don\'t send email',
+              value: 'NO_EMAIL',
+            },
           ]}
         />
       </Column>
