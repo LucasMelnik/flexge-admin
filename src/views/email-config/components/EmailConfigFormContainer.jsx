@@ -14,6 +14,12 @@ class EmailConfigFormContainer extends Component {
     this.emailConfigFormService.init(this.props.schoolId);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.schoolId !== this.props.schoolId) {
+      this.emailConfigFormService.init(nextProps.schoolId);
+    }
+  }
+
   render() {
     return (
       <EmailConfigForm
