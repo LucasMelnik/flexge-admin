@@ -248,10 +248,24 @@ export default class ItemFormService {
           'item.charactersMaxLimit': [isRequired],
         };
         break;
+      case 'FREE_TEXT_IMAGE':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.image': [isRequired],
+          'item.charactersMinLimit': [isRequired],
+          'item.charactersMaxLimit': [isRequired],
+        };
+        break;
       case 'FREE_SPEAK':
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
+        };
+        break;
+      case 'FREE_SPEAK_IMAGE':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.image': [isRequired],
         };
         break;
       default:
