@@ -25,6 +25,8 @@ import Async from '../../../core/layout/Async';
 import FormButtons from '../../../core/form/FormButtons';
 import FreeTextItemForm from './forms/FreeTextItemForm';
 import FreeSpeakItemForm from './forms/FreeSpeakItemForm';
+import FreeTextImageItemForm from './forms/FreeTextImageItemForm';
+import FreeSpeakImageItemForm from './forms/FreeSpeakImageItemForm';
 
 const needCharacter = itemType => localStorage.getItem('role') === 'ADMIN' && ![
   'VIDEO',
@@ -263,8 +265,26 @@ const ItemForm = props => (
           disabled={props.disabled}
         />
       )}
+      {get(props.values.item, 'type.key', '') === 'FREE_TEXT_IMAGE' && (
+        <FreeTextImageItemForm
+          onChange={(path, value) => props.onChange(`item.${path}`, value)}
+          errors={get(props.errors, 'item', {})}
+          values={props.values.item}
+          submitting={props.submitting}
+          disabled={props.disabled}
+        />
+      )}
       {get(props.values.item, 'type.key', '') === 'FREE_SPEAK' && (
         <FreeSpeakItemForm
+          onChange={(path, value) => props.onChange(`item.${path}`, value)}
+          errors={get(props.errors, 'item', {})}
+          values={props.values.item}
+          submitting={props.submitting}
+          disabled={props.disabled}
+        />
+      )}
+      {get(props.values.item, 'type.key', '') === 'FREE_SPEAK_IMAGE' && (
+        <FreeSpeakImageItemForm
           onChange={(path, value) => props.onChange(`item.${path}`, value)}
           errors={get(props.errors, 'item', {})}
           values={props.values.item}
