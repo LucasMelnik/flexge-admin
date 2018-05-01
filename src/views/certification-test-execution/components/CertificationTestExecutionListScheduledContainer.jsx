@@ -16,6 +16,7 @@ class CertificationTestExecutionListScheduledContainer extends Component {
       <CertificationTestExecutionListScheduled
         certificationTests={toJS(this.certificationTestListService.certificationTests)}
         fetching={this.certificationTestListService.fetch.fetching}
+        onLoad={this.certificationTestListService.load}
       />
     );
   }
