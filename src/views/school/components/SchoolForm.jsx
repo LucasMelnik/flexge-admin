@@ -12,6 +12,7 @@ import Select from '../../../core/form/Select';
 import FetchSelect from '../../../core/form/FetchSelect';
 import FormButtons from '../../../core/form/FormButtons';
 import FileInput from '../../../core/form/FileInput';
+import Switch from '../../../core/form/Switch';
 
 const SchoolForm = props => (
   <form
@@ -136,6 +137,18 @@ const SchoolForm = props => (
       </Column>
     </Row>
     <Row>
+      {localStorage.role === 'ADMIN' && (
+        <Column size={1}>
+          <Switch
+            label="Allow SR Bonus"
+            titleOff="No"
+            titleOn="Yes"
+            onChange={value => props.onChange('allowSpeechRecognitionBonus', value)}
+            value={get(props.values, 'allowSpeechRecognitionBonus', false)}
+            disabled={props.submitting}
+          />
+        </Column>
+      )}
       {localStorage.role === 'ADMIN' && (
         <Column size={2}>
           <Select
