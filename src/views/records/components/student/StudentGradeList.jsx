@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
-import TooltipIcon from '../../../../core/layout/TooltipIcon';
 
 const StudentGradeList = props => (
   <Table
@@ -21,10 +20,14 @@ const StudentGradeList = props => (
           if (periodGrade) {
             return (
               <div>
-                <span>{periodGrade.finalGrade || 'Awaiting SQ Score'}</span>
-                <TooltipIcon
-                  text={`${periodGrade.isPreview ? 'Preview -' : ''} SQ (${periodGrade.studyQualityGrade || 'N/A'}) + Hours (${periodGrade.hoursGrade})`}
-                />
+                {periodGrade.studyQualityGrade && (
+                  <div>SQ: {periodGrade.studyQualityGrade} <small>(AVG SQ: {periodGrade.averageStudyQuality.toFixed(1)})</small></div>
+                )}
+                {!periodGrade.studyQualityGrade && (
+                  <div>SQ: N/A</div>
+                )}
+                <div>Hours: {periodGrade.hoursGrade} <small>(Studied Hours: {moment.duration(periodGrade.hoursStudied, 'hours').format('hh:mm', { trim: false })})</small></div>
+                <div><b>Final Grade: {periodGrade.finalGrade || 'Awaiting SQ Score'}</b></div>
               </div>
             );
           }
