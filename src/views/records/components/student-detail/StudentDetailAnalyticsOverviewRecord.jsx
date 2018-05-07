@@ -13,6 +13,13 @@ import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import TooltipIcon from '../../../../core/layout/TooltipIcon';
 import { englishLevelCourses } from '../../../../core/consts';
 
+const getFinalGrade = (grade, school) => {
+  const hoursGrade = grade.hoursGrade * school.percentHoursRelevanceInGrade;
+  const sqGrade = grade.studyQualityGrade * school.percentStudyQualityRelevanceInGrade;
+
+  return round((hoursGrade + sqGrade) / 100, school.gradeFormat.indexOf('.') > -1 ? 1 : 0);
+};
+
 const StudentDetailAnalyticsOverviewRecord = props => (
   <Async fetching={props.fetching}>
     <div
@@ -183,12 +190,14 @@ const StudentDetailAnalyticsOverviewRecord = props => (
             label: 'Preview Final Grade',
             path: 'previewGrade.finalGrade',
             align: 'center',
-            render: value => value ? (
+            render: (value, row) => value ? (
               <div>
-                <h2 style={{ margin: 0 }}>{value}</h2>
+                <h2 style={{ margin: 0 }}>{getFinalGrade(row.previewGrade, props.student.schoolClass.school)}</h2>
                 <span>Preview</span>
                 <br />
-                <span>Maximum grade: {get(props.student, 'schoolClass.school.maximumGrade', '-')}</span>
+                <span>Student school grade: {value}</span>
+                <br />
+                <span>Maximum school grade: {get(props.student, 'schoolClass.school.maximumGrade', '-')}</span>
               </div>
             ) : (
               <div>
