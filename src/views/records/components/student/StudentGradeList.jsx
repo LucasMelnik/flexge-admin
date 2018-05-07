@@ -29,19 +29,18 @@ const StudentGradeList = props => (
           if (periodGrade) {
             return (
               <div>
-                {periodGrade.studyQualityGrade && (
-                  <div>SQ: {periodGrade.studyQualityGrade} <small>(AVG SQ: {periodGrade.averageStudyQuality.toFixed(1)})</small></div>
-                )}
-                {!periodGrade.studyQualityGrade && (
+                {periodGrade.studyQualityGrade !== null ? (
+                  <div>SQ: {periodGrade.studyQualityGrade} <small>(AVG SQ: {periodGrade.averageStudyQuality !== null ? periodGrade.averageStudyQuality.toFixed(1) : 'N/A'})</small></div>
+                ) : (
                   <div>SQ: N/A</div>
                 )}
                 <div>Hours: {periodGrade.hoursGrade} <small>(Studied Hours: {moment.duration(periodGrade.hoursStudied, 'hours').format('hh:mm', { trim: false })})</small></div>
-                <div><b>Final grade: {getFinalGrade(periodGrade, row.schoolClass.school) || 'Awaiting SQ Score'}</b></div>
-                {periodGrade.finalGrade && (
-                  <div><b>Student school grade: {periodGrade.finalGrade || 'Awaiting SQ Score'}</b></div>
-                )}
-                {periodGrade.finalGrade && (
-                  <div><b>Maximum school grade: {row.schoolClass.school.maximumGrade || 'Awaiting SQ Score'}</b></div>
+                <div>Final grade: {getFinalGrade(periodGrade, row.schoolClass.school) !== null ? getFinalGrade(periodGrade, row.schoolClass.school) : 'Awaiting SQ Score'}</div>
+                {periodGrade.finalGrade !== null && (
+                  <div>
+                    <b>Student school grade: {periodGrade.finalGrade !== null ? periodGrade.finalGrade : 'Awaiting SQ Score'}</b>
+                    <small> (Max school grade: {row.schoolClass.school.maximumGrade})</small>
+                  </div>
                 )}
               </div>
             );
