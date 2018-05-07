@@ -152,19 +152,21 @@ const StudentDetailAnalyticsOverviewRecord = props => (
             label: (<span>Study Quality Grade ({get(props.student, 'schoolClass.school.percentStudyQualityRelevanceInGrade', '-')}%) <TooltipIcon text="Average Study Quality generated every Sunday at midnight" /></span>),
             path: 'previewGrade.studyQualityGrade',
             align: 'center',
-            render: (grade, row) => grade ? (
+            render: (grade, row) => grade !== null ? (
               <div>
                 <h2 style={{ margin: 0 }}>{grade}</h2>
-                <span>Media SQ: {row.previewGrade.averageStudyQuality.toFixed(1)}</span>
+                <span>Media SQ: {row.previewGrade.averageStudyQuality != null ? row.previewGrade.averageStudyQuality.toFixed(1) : 'N/A'}</span>
                 <br />
-                <span>
-                  {row.previewGrade.averageStudyQuality >= 10 && ('Excellent!')}
-                  {(row.previewGrade.averageStudyQuality < 10 && row.previewGrade.averageStudyQuality >= 7) && ('Very Good!')}
-                  {(row.previewGrade.averageStudyQuality < 7 && row.previewGrade.averageStudyQuality >= 4) && ('Good!')}
-                  {(row.previewGrade.averageStudyQuality < 4 && row.previewGrade.averageStudyQuality >= 1) && ('Moderate!')}
-                  {(row.previewGrade.averageStudyQuality < 1 && row.previewGrade.averageStudyQuality >= -2) && ('Weak!')}
-                  {(row.previewGrade.averageStudyQuality < -2) && ('Very Weak!')}
-                </span>
+                {row.previewGrade.averageStudyQuality != null && (
+                  <span>
+                    {row.previewGrade.averageStudyQuality >= 10 && ('Excellent!')}
+                    {(row.previewGrade.averageStudyQuality < 10 && row.previewGrade.averageStudyQuality >= 7) && ('Very Good!')}
+                    {(row.previewGrade.averageStudyQuality < 7 && row.previewGrade.averageStudyQuality >= 4) && ('Good!')}
+                    {(row.previewGrade.averageStudyQuality < 4 && row.previewGrade.averageStudyQuality >= 1) && ('Moderate!')}
+                    {(row.previewGrade.averageStudyQuality < 1 && row.previewGrade.averageStudyQuality >= -2) && ('Weak!')}
+                    {(row.previewGrade.averageStudyQuality < -2) && ('Very Weak!')}
+                  </span>
+                )}
               </div>
             ) : (
               <div>
@@ -190,7 +192,7 @@ const StudentDetailAnalyticsOverviewRecord = props => (
             label: 'Preview Final Grade',
             path: 'previewGrade.finalGrade',
             align: 'center',
-            render: (value, row) => value ? (
+            render: (value, row) => value !== null ? (
               <div>
                 <h2 style={{ margin: 0 }}>{getFinalGrade(row.previewGrade, props.student.schoolClass.school)}</h2>
                 <span>Preview</span>
