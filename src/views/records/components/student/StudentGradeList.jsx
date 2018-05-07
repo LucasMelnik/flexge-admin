@@ -1,7 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import round from 'lodash/round';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
+
+const getFinalGrade = (grade, school) => {
+  const hoursGrade = grade.hoursGrade * school.percentHoursRelevanceInGrade;
+  const sqGrade = grade.studyQualityGrade * school.percentStudyQualityRelevanceInGrade;
+
+  return round((hoursGrade + sqGrade) / 100, school.gradeFormat.indexOf('.') > -1 ? 1 : 0);
+};
+
 
 const StudentGradeList = props => (
   <Table
@@ -27,7 +36,13 @@ const StudentGradeList = props => (
                   <div>SQ: N/A</div>
                 )}
                 <div>Hours: {periodGrade.hoursGrade} <small>(Studied Hours: {moment.duration(periodGrade.hoursStudied, 'hours').format('hh:mm', { trim: false })})</small></div>
-                <div><b>Final Grade: {periodGrade.finalGrade || 'Awaiting SQ Score'}</b></div>
+                <div><b>Final grade: {getFinalGrade(periodGrade, row.schoolClass.school) || 'Awaiting SQ Score'}</b></div>
+                {periodGrade.finalGrade && (
+                  <div><b>Student school grade: {periodGrade.finalGrade || 'Awaiting SQ Score'}</b></div>
+                )}
+                {periodGrade.finalGrade && (
+                  <div><b>Maximum school grade: {row.schoolClass.school.maximumGrade || 'Awaiting SQ Score'}</b></div>
+                )}
               </div>
             );
           }
