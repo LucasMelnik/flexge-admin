@@ -12,17 +12,11 @@ class DemoStudentListService {
 
   init = action(() => {
     this.students = [];
-    this.load();
   });
 
-  load = action(() => {
+  load = action((month) => {
     this.fetch.fetch({
-      url: '/students',
-      query: {
-        query: {
-          demoStudent: true,
-        },
-      },
+      url: `/reports/${month.format('MM-YYYY')}/demo-students`,
     }).then(() => {
       if (this.fetch.data) {
         this.students = this.fetch.data;

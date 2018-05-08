@@ -2,7 +2,6 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import { isRequired } from '../../../core/validations';
-import NotificationService from '../../../core/services/NotificationService';
 
 class UsageStatsListService {
   fetch = new FetchService();
@@ -21,18 +20,13 @@ class UsageStatsListService {
     this.schools = [];
   });
 
-  load = action(() => {
-    this.form.submitted = true;
-    if (this.form.errors) {
-      NotificationService.addNotification('Fill the required fields', 'error');
-      return;
-    }
+  load = action((month, company) => {
 
     this.fetch.fetch({
-      url: `/reports/${this.form.getValue('month').format('MM-YYYY')}/usage-stats`,
+      url: `/reports/${month.format('MM-YYYY')}/usage-stats`,
       query: {
-        ...this.form.getValue('company') && {
-          company: this.form.getValue('company'),
+        ...company && {
+          company,
         },
       },
     }).then(() => {
