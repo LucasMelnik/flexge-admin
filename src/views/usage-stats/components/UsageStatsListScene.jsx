@@ -1,9 +1,9 @@
 import React from 'react';
 import Card from '../../../core/layout/Card';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
-import UsageStatsListContainer from './UsageStatsListContainer';
-import UsageStatsListFilterContainer from './UsageStatsListFilterContainer';
 import Separator from '../../../core/layout/Separator';
+import UsageStatsListContainer from './UsageStatsListContainer';
+import UsageStatsFilterContainer from './UsageStatsFilterContainer';
 import DemoStudentListContainer from './DemoStudentListContainer';
 
 const UsageStatsListScene = () => (
@@ -18,7 +18,7 @@ const UsageStatsListScene = () => (
     <Card
       title="Usage Stats"
     >
-      <UsageStatsListFilterContainer />
+      <UsageStatsFilterContainer />
       <UsageStatsListContainer />
     </Card>
     <Separator />

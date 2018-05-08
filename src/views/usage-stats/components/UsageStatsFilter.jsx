@@ -7,7 +7,7 @@ import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import MonthInput from '../../../core/form/MonthInput';
 
-const UsageStatsListFilter = props => (
+const UsageStatsFilter = props => (
   <Row>
     {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
       <Column size={3}>
@@ -45,7 +45,7 @@ const UsageStatsListFilter = props => (
   </Row>
 );
 
-UsageStatsListFilter.propTypes = {
+UsageStatsFilter.propTypes = {
   values: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   fetching: PropTypes.bool,
@@ -53,10 +53,10 @@ UsageStatsListFilter.propTypes = {
   errors: PropTypes.object,
 };
 
-UsageStatsListFilter.defaultProps = {
+UsageStatsFilter.defaultProps = {
   fetching: false,
   onSearch: null,
   errors: {},
 };
 
-export default UsageStatsListFilter;
+export default UsageStatsFilter;
