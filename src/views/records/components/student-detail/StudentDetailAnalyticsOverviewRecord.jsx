@@ -182,9 +182,9 @@ const StudentDetailAnalyticsOverviewRecord = props => (
             render: (grade, row) => (
               <div>
                 <h2 style={{ margin: 0 }}>{grade}</h2>
-                <span>Total study time: {moment.duration(row.previewGrade.hoursStudied, 'hours').format('hh:mm')}</span>
+                <span>Total study time: {moment.duration(row.previewGrade.hoursStudied, 'hours').format('hh:mm', { trim: false })}</span>
                 <br />
-                <span>Required study time: {moment.duration(row.previewGrade.hoursRequired, 'hours').format('hh:mm')}</span>
+                <span>Required study time: {moment.duration(row.previewGrade.hoursRequired, 'hours').format('hh:mm', { trim: false })}</span>
               </div>
             ),
           },
