@@ -185,7 +185,7 @@ const StudentDetailContentRecordList = props => (
           </b>
         ) : row.docType === 'UNIT' ? (
           <b>
-            {row.children ? row.children.reduce((acc, unit) => acc + unit.repeatCount, 0) : 0}
+            {row.children ? row.children.reduce((acc, unit) => acc + (unit.repeatCount || 0), 0) : 0}
           </b>
         ) : value,
       },
@@ -204,7 +204,7 @@ const StudentDetailContentRecordList = props => (
           </b>
         ) : row.docType === 'UNIT' ? (
           <b>
-            {row.children ? row.children.reduce((acc, unit) => acc + unit.recordCount, 0) : 0}
+            {row.children ? row.children.reduce((acc, unit) => acc + (unit.recordCount || 0), 0) : 0}
           </b>
         ) : value,
       },
@@ -223,7 +223,7 @@ const StudentDetailContentRecordList = props => (
           </b>
         ) : row.docType === 'UNIT' ? (
           <b>
-            {row.children ? row.children.reduce((acc, unit) => acc + unit.listenCount, 0) : 0}
+            {row.children ? row.children.reduce((acc, unit) => acc + (unit.listenCount || 0), 0) : 0}
           </b>
         ) : value,
       },

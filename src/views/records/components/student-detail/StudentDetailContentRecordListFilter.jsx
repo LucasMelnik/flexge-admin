@@ -8,7 +8,6 @@ const StudentDetailContentRecordListFilter = props => (
   <Row>
     <Column size={6}>
       <FetchSelect
-        defaultSelect
         label="Select the Course"
         value={props.course}
         url={`students/${props.studentId}/courses`}
