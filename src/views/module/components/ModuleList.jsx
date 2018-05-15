@@ -94,7 +94,7 @@ const ModuleList = props => (
       {
         label: 'Points',
         path: 'readingPoints',
-        width: '120px',
+        width: '130px',
         render: (value, row) => ({
           children: (
             <div>
@@ -112,6 +112,10 @@ const ModuleList = props => (
               <br />
               <span style={{ color: row.speakingPoints > row.availableSpeakingPoints && 'red' }}>
                 S: {row.speakingPoints || 0} / {row.availableSpeakingPoints || 0}
+              </span>
+              <br />
+              <span style={{ color: row.pendingMasteryTestCount && 'red' }}>
+                MT: {row.pendingMasteryTestCount ? `${row.pendingMasteryTestCount} Pending` : 'All Approved'}
               </span>
             </div>
           ),
@@ -187,6 +191,7 @@ ModuleList.propTypes = {
     availableSpeakingPoints: PropTypes.number,
     availableListeningPoints: PropTypes.number,
     availableWritingPoints: PropTypes.number,
+    pendingMasteryTestCount: PropTypes.number,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
