@@ -42,7 +42,7 @@ export default class ImagePreview extends Component {
           ]}
         >
           <img
-            src={`${process.env.REACT_APP_API_URL}/files/${this.props.src}`}
+            src={`${process.env.REACT_APP_FILES_URL}/${this.props.src}`}
             width="100%"
             alt=""
           />
