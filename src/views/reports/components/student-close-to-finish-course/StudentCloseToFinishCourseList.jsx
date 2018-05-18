@@ -36,12 +36,12 @@ const StudentCloseToFinishCourseList = props => (
           label: 'Student',
           path: 'name',
         },
-      ],
-      ...localStorage.role !== 'TEACHER' && [
         {
           label: 'Classroom',
           path: 'schoolClass.name',
         },
+      ],
+      ...localStorage.role !== 'TEACHER' && [
         {
           label: 'Teacher',
           path: 'schoolClass.teacher.name',

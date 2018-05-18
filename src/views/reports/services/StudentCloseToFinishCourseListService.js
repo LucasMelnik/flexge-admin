@@ -14,14 +14,14 @@ class StudentCloseToFinishCourseListService {
       school: [],
       schoolClass: [],
     };
-    if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
-      const school = JSON.parse(localStorage.getItem('school'));
-      this.form.setValue('school', school._id);
-    }
   }
 
   init = action(() => {
     this.students = [];
+    if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
+      const school = JSON.parse(localStorage.getItem('school'));
+      this.form.setValue('school', school._id);
+    }
   });
 
   load = action(() => {
