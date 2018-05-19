@@ -306,12 +306,10 @@ const MainScene = props => (
             {
               label: 'Student Close to Finish Course',
               link: '/student-close-to-finish-course',
-              allowedFor: ['ADMIN'],
             },
             {
               label: 'Finished Courses',
               link: '/finished-courses',
-              allowedFor: ['ADMIN'],
             },
           ]}
         />
