@@ -6,7 +6,10 @@ import StudentCloseToFinishCourseListFilterContainer from './StudentCloseToFinis
 
 const StudentCloseToFinishCourseListScene = () => (
   <div>
-    <Card title="Students Close to Finish Course">
+    <Card
+      title="Students Close to Finish Course"
+      actions={(<small>more than 80% completed</small>)}
+    >
       <StudentCloseToFinishCourseListFilterContainer />
     </Card>
     <Separator />
