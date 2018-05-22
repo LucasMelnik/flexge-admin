@@ -13,6 +13,7 @@ const FinishedStudentCourseList = props => (
         path: 'studentCourse.completedAt',
         width: '140px',
         sort: true,
+        defaultSortOrder: 'descend',
         render: value => moment(value).format('DD/MM/YYYY HH:mm')
       },
       {
