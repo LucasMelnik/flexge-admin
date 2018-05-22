@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '../../../../core/form/Table';
 import { formatTimeFromSeconds } from '../../../../core/util';
+import { browserHistory } from 'react-router';
+import Button from '../../../../core/form/Button';
 
 const StudentCloseToFinishCourseList = props => (
   <Table
@@ -13,7 +15,7 @@ const StudentCloseToFinishCourseList = props => (
           path: 'percentageComplete',
           width: '120px',
           sort: true,
-          render: value => `${value.toFixed(2)}%`,
+          render: value => `${value.toFixed(1)}%`,
         },
         {
           label: 'Studied Time',
@@ -51,6 +53,19 @@ const StudentCloseToFinishCourseList = props => (
         {
           label: 'School',
           path: 'schoolClass.school.name',
+        },
+      ],
+      ...[
+        {
+          label: 'Actions',
+          patch: 'action',
+          width: '75px',
+          render: (value, row) => (
+            <Button
+              icon="folder-open"
+              onClick={() => browserHistory.push(`/records/schools/${row.schoolClass.school.id}/classes/${row.schoolClass.id}/students/${row.id}/detail`)}
+            />
+          )
         },
       ],
     ]}
