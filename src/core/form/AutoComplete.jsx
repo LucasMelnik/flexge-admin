@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AutoComplete as AntAutoComplete } from 'antd';
+import { Form, AutoComplete as AntAutoComplete } from 'antd';
 
 export default class AutoComplete extends Component {
 
@@ -9,8 +9,16 @@ export default class AutoComplete extends Component {
     value: PropTypes.oneOfType([PropTypes.string]).isRequired,
     onSelect: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
-    placeholder: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
+    placeholder: PropTypes.string,
+    label: PropTypes.string,
     labelPath: PropTypes.string.isRequired,
+  };
+
+  static defaultProps = {
+    placeholder: '',
+    label: '',
+    disabled: false,
   };
 
   renderOptions = item => (
@@ -21,19 +29,26 @@ export default class AutoComplete extends Component {
 
   render() {
     return (
-      <AntAutoComplete
-        allowClear
-        dropdownMatchSelectWidth={false}
-        value={this.props.value}
-        dataSource={this.props.dataSource.map(this.renderOptions)}
-        onSelect={(value) => this.props.onSelect(value, this.props.dataSource.find(item => item.id === value))}
-        onChange={this.props.onChange}
-        placeholder={this.props.placeholder}
-        optionLabelProp={this.props.labelPath}
-        style={{
-          width: '100%',
-        }}
-      />
+      <Form.Item
+        colon={false}
+        label={this.props.label}
+      >
+        <AntAutoComplete
+          allowClear
+          dropdownMatchSelectWidth={false}
+          disabled={this.props.disabled}
+          value={this.props.value}
+          onSelect={(value) => this.props.onSelect(value, this.props.dataSource.find(item => item.id === value))}
+          onChange={this.props.onChange}
+          placeholder={this.props.placeholder}
+          optionLabelProp={this.props.labelPath}
+          style={{
+            width: '100%',
+          }}
+        >
+          {this.props.dataSource.map(this.renderOptions)}
+        </AntAutoComplete>
+      </Form.Item>
     );
   }
 }

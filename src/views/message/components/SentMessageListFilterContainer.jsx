@@ -5,6 +5,7 @@ import MessageListFilter from './MessageListFilter';
 
 const SentMessageListFilterContainer = () => (
   <MessageListFilter
+    filterByStudent
     values={SentMessageListService.filterForm.getValues()}
     onChange={SentMessageListService.filterForm.setValue}
     onSearch={SentMessageListService.load}
