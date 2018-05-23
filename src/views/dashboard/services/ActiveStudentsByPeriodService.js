@@ -40,7 +40,7 @@ class ActiveStudentsByPeriodService {
               periodAcc + school[`studyOnLast${period}Days`]
             ), 0)
           ), 0);
-        return activeStudents / this.totalSchoolStudents * 100;
+        return (activeStudents / this.totalSchoolStudents) * 100;
       }),
       studiedLast7Days: computed(() => {
         if (!this.validateResponse()) return null;
