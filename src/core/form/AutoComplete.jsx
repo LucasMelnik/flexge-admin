@@ -27,6 +27,11 @@ export default class AutoComplete extends Component {
     </AntAutoComplete.Option>
   );
 
+  getValue = () => {
+    const row = this.props.dataSource && this.props.dataSource.find(item => item.id === this.props.value);
+    return row ? row[this.props.labelPath] : this.props.value;
+  };
+
   render() {
     return (
       <Form.Item
@@ -37,9 +42,9 @@ export default class AutoComplete extends Component {
           allowClear
           dropdownMatchSelectWidth={false}
           disabled={this.props.disabled}
-          value={this.props.value}
-          onSelect={(value) => this.props.onSelect(value, this.props.dataSource.find(item => item.id === value))}
-          onChange={this.props.onChange}
+          value={this.getValue()}
+          onSelect={value => this.props.onSelect(value, this.props.dataSource.find(item => item.id === value))}
+          onSearch={this.props.onChange}
           placeholder={this.props.placeholder}
           optionLabelProp={this.props.labelPath}
           style={{
