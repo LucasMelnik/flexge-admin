@@ -17,7 +17,7 @@ class LastWeekAverageStudiedTimeByClassService {
             acc + school.classes
               .filter(schoolClass => !this.classId || schoolClass.id === this.classId)
               .reduce((classAcc, schoolClass) => (
-                acc + schoolClass.averageStudiedTime
+                classAcc + schoolClass.averageStudiedTime
               ), 0)
           ), 0);
         return total / this.data.reduce((acc, school) => acc + school.classes.length, 0);
