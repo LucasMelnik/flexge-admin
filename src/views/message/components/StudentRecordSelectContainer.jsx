@@ -15,7 +15,12 @@ class StudentRecordSelectContainer extends Component {
 
   handleChange = (value) => {
     if (value && value.length > 2) {
-      StudentListService.searchStudents(value);
+      if (this.searchTimeout) {
+        clearTimeout(this.searchTimeout);
+      }
+      this.searchTimeout = setTimeout(() => {
+        StudentListService.searchStudents(value);
+      }, 500);
     }
     this.props.onSelect(value);
   };

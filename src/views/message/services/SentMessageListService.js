@@ -46,7 +46,7 @@ class SentMessageListService {
             subject: this.filterForm.getValue('subject'),
           },
           ...this.filterForm.getValue('member') && {
-            member: this.filterForm.getValue('member.id'),
+            member: this.filterForm.getValue('member'),
           },
         },
       },
