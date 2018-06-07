@@ -37,22 +37,16 @@ const MessageListFilter = props => (
         errorText={get(props.errors, 'subject', '')}
       />
     </Column>
-    {props.filterByStudent && (
-      <Column size={2}>
-        <StudentRecordSelectContainer
-          disabled={props.fetching}
-          value={get(props.values, 'member', '')}
-          onSelect={value => props.onChange('member', value)}
-        />
-      </Column>
-    )}
+    <Column size={2}>
+      <StudentRecordSelectContainer
+        disabled={props.fetching}
+        value={get(props.values, 'member', '')}
+        onSelect={value => props.onChange('member', value)}
+      />
+    </Column>
     <Column size={2}>
       <div style={{ height: 31 }} />
-      <Button
-        label="Search"
-        icon="search"
-        onClick={props.onSearch}
-      />
+      <Button label="Search" icon="search" onClick={props.onSearch} />
     </Column>
   </Row>
 );

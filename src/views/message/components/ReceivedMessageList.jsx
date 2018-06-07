@@ -8,7 +8,7 @@ import Tag from '../../../core/layout/Tag';
 
 const ReceivedMessageList = props => (
   <Table
-    rowKey={(row) => `${row.id}_${get(row, 'group', 'expander')}`}
+    rowKey={row => `${row.id}_${get(row, 'group', 'expander')}`}
     fetching={props.fetching}
     pagination={props.pagination}
     onChange={props.onChange}
@@ -17,27 +17,29 @@ const ReceivedMessageList = props => (
         label: 'Received At',
         path: 'sentAt',
         render: value => moment(value).format('DD/MM/YYYY HH:mm'),
-        width: 160,
+        width: 130,
       },
       {
         label: 'Subject',
         path: 'subject',
+        width: 250,
+      },
+      {
+        label: 'Student',
+        path: 'sender.name',
+        width: 250,
       },
       {
         label: 'Message',
         path: 'message',
-        render: text => (<div dangerouslySetInnerHTML={{ __html: text }} />),
+        render: text => <div dangerouslySetInnerHTML={{ __html: text }} />,
       },
       {
         label: 'Status',
         path: 'readAt',
         width: 120,
         align: 'center',
-        render: value => (
-          <Tag color={(value ? 'green' : 'red')}>
-            {value ? 'Read' : 'Not Read'}
-          </Tag>
-        ),
+        render: value => <Tag color={value ? 'green' : 'red'}>{value ? 'Read' : 'Not Read'}</Tag>,
       },
     ]}
     rows={props.messages}
@@ -47,9 +49,11 @@ const ReceivedMessageList = props => (
 );
 
 ReceivedMessageList.propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  })).isRequired,
+  messages: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   pagination: PropTypes.shape({
     current: PropTypes.number,
     total: PropTypes.number,
