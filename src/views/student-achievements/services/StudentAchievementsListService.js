@@ -19,7 +19,7 @@ class StudentAchievementsListService {
       },
     });
     this.form.validations = {
-      school: [],
+      school: localStorage.role === 'COMPANY_MANAGER' ? [isRequired] : [],
       month: [isRequired],
     };
   }
@@ -43,46 +43,61 @@ class StudentAchievementsListService {
       return;
     }
 
-    this.fetch.fetch({
-      url: '/reports/achievements',
-      query: {
-        ...this.form.getValue('month') && {
-          month: this.form.getValue('month').format('MM-YYYY'),
+    this.fetch
+      .fetch({
+        url: '/reports/achievements',
+        query: {
+          ...(this.form.getValue('month') && {
+            month: this.form.getValue('month').format('MM-YYYY'),
+          }),
+          ...(this.form.getValue('school') && {
+            school: this.form.getValue('school'),
+          }),
         },
-        ...this.form.getValue('school') && {
-          school: this.form.getValue('school'),
-        },
-      },
-    }).then(() => {
-      if (this.fetch.data) {
-        this.achievements.school = orderBy(this.fetch.data.filter(sa => sa.achievement.level === 'SCHOOL'), ['student.schoolClass.school.name', 'position']);
-        this.achievements.regional = orderBy(this.fetch.data.filter(sa => sa.achievement.level === 'REGIONAL'), ['student.schoolClass.school.region.name', 'position']);
-        this.achievements.national = orderBy(this.fetch.data.filter(sa => sa.achievement.level === 'NATIONAL'), ['student.schoolClass.school.company.country.name', 'position']);
-      } else {
-        this.achievements = {
-          national: [],
-          regional: [],
-          school: [],
-        };
-      }
-    });
+      })
+      .then(() => {
+        if (this.fetch.data) {
+          this.achievements.school = orderBy(
+            this.fetch.data.filter(sa => sa.achievement.level === 'SCHOOL'),
+            ['student.schoolClass.school.name', 'position']
+          );
+          this.achievements.regional = orderBy(
+            this.fetch.data.filter(sa => sa.achievement.level === 'REGIONAL'),
+            ['student.schoolClass.school.region.name', 'position']
+          );
+          this.achievements.national = orderBy(
+            this.fetch.data.filter(sa => sa.achievement.level === 'NATIONAL'),
+            ['student.schoolClass.school.company.country.name', 'position']
+          );
+        } else {
+          this.achievements = {
+            national: [],
+            regional: [],
+            school: [],
+          };
+        }
+      });
   });
 
-  handleDownloadCertificate = action((studentAchievement) => {
-    this.download.fetch({
-      responseType: 'blob',
-      url: `/students/${studentAchievement.student.id}/achievements/${studentAchievement.id}/certificate`,
-    }).then(() => {
-      if (this.download.data) {
-        const link = document.createElement('a');
-        const fileUrl = window.URL.createObjectURL(this.download.data);
-        link.href = fileUrl;
+  handleDownloadCertificate = action(studentAchievement => {
+    this.download
+      .fetch({
+        responseType: 'blob',
+        url: `/students/${studentAchievement.student.id}/achievements/${
+          studentAchievement.id
+        }/certificate`,
+      })
+      .then(() => {
+        if (this.download.data) {
+          const link = document.createElement('a');
+          const fileUrl = window.URL.createObjectURL(this.download.data);
+          link.href = fileUrl;
 
-        link.download = 'achievement_certificate.pdf';
-        link.click();
-        setTimeout(() => window.URL.revokeObjectURL(fileUrl), 500);
-      }
-    });
+          link.download = 'achievement_certificate.pdf';
+          link.click();
+          setTimeout(() => window.URL.revokeObjectURL(fileUrl), 500);
+        }
+      });
   });
 }
 

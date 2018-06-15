@@ -9,14 +9,23 @@ import Button from '../../../core/form/Button';
 
 const StudentAchievementsListFilter = props => (
   <Row>
-    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+    {(localStorage.role === 'ADMIN' ||
+      localStorage.role === 'DISTRIBUTOR_MANAGER' ||
+      localStorage.role === 'COMPANY_MANAGER') && (
       <Column size={3}>
         <FetchSelect
-          label="Filter by Company"
+          label="Filter by School"
           disabled={props.fetching}
           value={get(props.values, 'school', '')}
+          errorText={get(props.errors, 'school', '')}
           onChange={value => props.onChange('school', value)}
-          url={`schools${localStorage.role === 'DISTRIBUTOR_MANAGER' ? `?distributor=${JSON.parse(localStorage.getItem('distributor')).id}` : ''}`}
+          url={`schools${
+            localStorage.role === 'DISTRIBUTOR_MANAGER'
+              ? `?distributor=${JSON.parse(localStorage.getItem('distributor')).id}`
+              : localStorage.role === 'COMPANY_MANAGER'
+                ? `?company=${JSON.parse(localStorage.getItem('company')).id}`
+                : ''
+          }`}
           resultTransformer={{
             text: 'name',
             value: 'id',
@@ -36,11 +45,7 @@ const StudentAchievementsListFilter = props => (
     </Column>
     <Column size={2}>
       <div style={{ height: 31 }} />
-      <Button
-        label="Search"
-        icon="search"
-        onClick={props.onSearch}
-      />
+      <Button label="Search" icon="search" onClick={props.onSearch} />
     </Column>
   </Row>
 );
