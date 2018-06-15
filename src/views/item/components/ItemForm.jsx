@@ -28,16 +28,13 @@ import FreeSpeakItemForm from './forms/FreeSpeakItemForm';
 import FreeTextImageItemForm from './forms/FreeTextImageItemForm';
 import FreeSpeakImageItemForm from './forms/FreeSpeakImageItemForm';
 
-const needCharacter = itemType => localStorage.getItem('role') === 'ADMIN' && ![
-  'VIDEO',
-  'VIDEO_SHORT',
-  'VIDEO_TEXT_AREA',
-  'TEXT',
-].find(type => type === itemType);
+const needCharacter = itemType =>
+  localStorage.getItem('role') === 'ADMIN' &&
+  !['VIDEO', 'VIDEO_SHORT', 'VIDEO_TEXT_AREA', 'TEXT'].find(type => type === itemType);
 
 const ItemForm = props => (
   <form
-    onSubmit={(event) => {
+    onSubmit={event => {
       event.preventDefault();
       props.onSubmit();
     }}
@@ -96,7 +93,9 @@ const ItemForm = props => (
               disabled={props.submitting || props.disabled}
               label="Character"
               value={get(props.values, 'item.character', '')}
-              onChange={(character) => props.onChange('item.character', character)}
+              onChange={character => {
+                props.onChange('item.character', character || null);
+              }}
               errorText={get(props.errors, 'item.character', '')}
               resultTransformer={{
                 text: 'name',
@@ -134,7 +133,9 @@ const ItemForm = props => (
           disabled={props.disabled}
         />
       )}
-      {['SINGLE_CHOICE_TEXT', 'SINGLE_CHOICE_AUDIO', 'SINGLE_CHOICE_IMAGE'].find(type => type === get(props.values.item, 'type.key')) && (
+      {['SINGLE_CHOICE_TEXT', 'SINGLE_CHOICE_AUDIO', 'SINGLE_CHOICE_IMAGE'].find(
+        type => type === get(props.values.item, 'type.key')
+      ) && (
         <SingleChoiceItemForm
           onChange={(path, value) => props.onChange(`item.${path}`, value)}
           errors={get(props.errors, 'item', {})}
@@ -295,7 +296,9 @@ const ItemForm = props => (
       <Separator size="xs" />
       {!props.disabled && (
         <FormButtons
-          confirmLabel={props.values.id || get(props.values, 'item.id', '') ? 'Update Item' : 'Create Item'}
+          confirmLabel={
+            props.values.id || get(props.values, 'item.id', '') ? 'Update Item' : 'Create Item'
+          }
           isDisabled={props.submitting || !props.isDirty()}
           isSubmitting={props.submitting}
           onReset={props.onReset}
