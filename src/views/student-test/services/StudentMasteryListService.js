@@ -21,7 +21,7 @@ class StudentMasteryListService {
 
   loadMasteries = action(() => {
     this.fetch.fetch({
-      url: `/students/${this.studentId}/mastery-tests`,
+      url: `/students/${this.studentId}/mastery-tests?withDeleted=true`,
     }).then(() => {
       if (this.fetch.data) {
         this.masteries = this.fetch.data;
@@ -33,7 +33,7 @@ class StudentMasteryListService {
 
   loadResults = action((masteryId) => {
     this.fetch.fetch({
-      url: `/students/${this.studentId}/mastery-tests/${masteryId}/executions`,
+      url: `/students/${this.studentId}/mastery-tests/${masteryId}/executions?withDeleted=true`,
     }).then(() => {
       if (this.fetch.data) {
         this.executions = this.fetch.data;
