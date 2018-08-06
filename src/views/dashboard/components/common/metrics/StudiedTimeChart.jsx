@@ -33,8 +33,8 @@ const StudiedTimeChart = props => (
     {props.showDetails && (
       <TopStudentsTableContainer
         days={7}
-        from={moment().subtract(7, 'days').startOf('day').toDate()}
-        to={moment().endOf('day').toDate()}
+        from={moment().subtract(7, 'days').startOf('day').format('YYYY-MM-DD')}
+        to={moment().endOf('day').format('YYYY-MM-DD')}
       />
     )}
   </Card>

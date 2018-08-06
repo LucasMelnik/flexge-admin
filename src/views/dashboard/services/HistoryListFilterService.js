@@ -13,12 +13,12 @@ class HistoryListFilterService {
   changeYear = action((newYear) => {
     this.year = newYear;
     WeekStatsByPeriodService.load(
-      moment().year(newYear).startOf('year').toDate(),
-      moment().year(newYear).endOf('year').toDate(),
+      moment().year(newYear).startOf('year').format('YYYY-MM-DD'),
+      moment().year(newYear).endOf('year').format('YYYY-MM-DD'),
     );
     AverageStudyQualityByPeriodService.load(
-      moment().year(newYear).startOf('year').toDate(),
-      moment().year(newYear).endOf('year').toDate(),
+      moment().year(newYear).startOf('year').format('YYYY-MM-DD'),
+      moment().year(newYear).endOf('year').format('YYYY-MM-DD'),
     );
   });
 }

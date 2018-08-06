@@ -31,7 +31,7 @@ class EvaluationPeriodFormService {
       const size = EvaluationPeriodListService.periods.length;
       if (size) {
         const lastEvaluation = EvaluationPeriodListService.periods[size - 1];
-        const nextStart = moment(lastEvaluation.end).days(moment(lastEvaluation.end).days() + 1);
+        const nextStart = moment(moment.utc(lastEvaluation.end).format('YYYY-MM-DD'), 'YYYY-MM-DD').add(1, 'days');
         this.form.setValue('start', nextStart);
         this.form.setValue('end', nextStart.clone().days(7));
         this.form.setValue('bonusWeeks', lastEvaluation.bonusWeeks);
