@@ -25,8 +25,8 @@ class StudentOverviewRecordDetailService {
       if (this.fetch.data) {
         const student = this.fetch.data;
 
-        const from = moment().subtract(4, 'week').startOf('isoWeeks').format('YYYY-MM-DD HH:mm:ss');
-        const to = moment().endOf('isoWeeks').format('YYYY-MM-DD HH:mm:ss');
+        const from = moment().subtract(4, 'week').startOf('isoWeeks').format('YYYY-MM-DD');
+        const to = moment().endOf('isoWeeks').format('YYYY-MM-DD');
 
         this.fetch.fetch({
           url: `/reports/students/${idStudent}/week-stats-by-period?from=${from}&to=${to}`,

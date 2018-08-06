@@ -12,8 +12,8 @@ export default class StudentStudiedTimeHistoryService {
   }
 
   handleLoad = action((idStudent) => {
-    const from = moment().startOf('year').toDate();
-    const to = moment().endOf('year').toDate();
+    const from = moment().startOf('year').format('YYYY-MM-DD');
+    const to = moment().endOf('year').format('YYYY-MM-DD');
     this.fetch.fetch({
       url: `/reports/students/${idStudent}/week-stats-by-period?from=${from}&to=${to}`,
     }).then(() => {

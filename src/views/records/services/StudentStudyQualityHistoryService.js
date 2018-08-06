@@ -12,8 +12,8 @@ export default class StudentStudyQualityHistoryService {
   }
 
   handleLoad = action((idStudent) => {
-    const from = moment().startOf('year').toDate();
-    const to = moment().endOf('year').toDate();
+    const from = moment().startOf('year').format('YYYY-MM-DD');
+    const to = moment().endOf('year').format('YYYY-MM-DD');
     this.fetch.fetch({
       url: `/reports/students/${idStudent}/average-study-quality-by-period?from=${from}&to=${to}&level=week`,
     }).then(() => {

@@ -26,12 +26,12 @@ class TeacherDashboardContainer extends Component {
     SemiannualEnglishLevelProgressService.load();
     // HistoryListFilter
     WeekStatsByPeriodService.load(
-      moment().year(HistoryListFilterService.year).startOf('year').toDate(),
-      moment().year(HistoryListFilterService.year).endOf('year').toDate(),
+      moment().year(HistoryListFilterService.year).startOf('year').format('YYYY-MM-DD'),
+      moment().year(HistoryListFilterService.year).endOf('year').format('YYYY-MM-DD'),
     );
     AverageStudyQualityByPeriodService.load(
-      moment().year(HistoryListFilterService.year).startOf('year').toDate(),
-      moment().year(HistoryListFilterService.year).endOf('year').toDate(),
+      moment().year(HistoryListFilterService.year).startOf('year').format('YYYY-MM-DD'),
+      moment().year(HistoryListFilterService.year).endOf('year').format('YYYY-MM-DD'),
     );
   }
 

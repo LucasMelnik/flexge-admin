@@ -17,13 +17,13 @@ const EvaluationPeriodList = props => (
         label: 'Start',
         path: 'start',
         sort: true,
-        render: value => moment(value).format('DD/MM/YYYY'),
+        render: value => moment.utc(value).format('DD/MM/YYYY'),
       },
       {
         label: 'End',
         path: 'end',
         sort: true,
-        render: value => moment(value).format('DD/MM/YYYY'),
+        render: value => moment.utc(value).format('DD/MM/YYYY'),
       },
       {
         label: 'Bonus Weeks',
