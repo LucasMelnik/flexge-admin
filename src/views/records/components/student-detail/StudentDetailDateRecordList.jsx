@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import round from 'lodash/round';
+import get from 'lodash/get';
 import Table from '../../../../core/form/Table';
 import Tag from '../../../../core/layout/Tag';
 import Button from '../../../../core/form/Button';
+import Icon from '../../../../core/layout/Icon';
+import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 
 const StudentDetailDateRecordList = props => (
   <Table
@@ -14,7 +17,13 @@ const StudentDetailDateRecordList = props => (
       {
         label: 'Date',
         path: 'startedAt',
-        render: (value, row) => (row.children && row.children.length && <b>{moment(value).format('DD/MM/YYYY')}</b>) || moment(value).format('DD/MM/YYYY HH:mm'),
+        render: (value, row) => (row.children && row.children.length && <b>{moment(value).format('DD/MM/YYYY')}</b>) || (
+          <span>
+            {row.studentAccess && (row.studentAccess.os === 'ios' || row.studentAccess.os === 'android') ? (<Icon name="mobile" />) : (<Icon name="desktop" />)}
+            <ColumnSeparator size="xs" />
+            {moment(value).format('DD/MM/YYYY HH:mm')}
+          </span>
+        ),
       },
       {
         label: 'Course',
@@ -45,7 +54,7 @@ const StudentDetailDateRecordList = props => (
           if (row.unit) {
             return row.unit.name;
           } else if (row.masteryTest) {
-            return row.masteryTest.modulePercentageToActive;
+            return `${row.masteryTest.modulePercentageToActive}% Module`;
           }
           return '';
         },
@@ -64,6 +73,8 @@ const StudentDetailDateRecordList = props => (
               return 'SR';
             case 'SIMPLE_REVIEW':
               return 'SI';
+            case 'MASTERY_TEST':
+              return 'MT';
             default:
               return '';
           }
@@ -94,7 +105,14 @@ const StudentDetailDateRecordList = props => (
               </Tag>
             );
           }
-          if (row.unit && !row.completedAt) {
+          if (row.masteryTest && row.completedAt) {
+            return (
+              <Tag color={(value || 0) >= row.scoreToPass ? 'green' : 'red'}>
+                {value || 0} / {row.scoreToPass}
+              </Tag>
+            );
+          }
+          if ((row.unit || row.masteryTest) && !row.completedAt) {
             return (
               <span style={{ color: 'red' }}>
                 Not finished
@@ -122,11 +140,11 @@ const StudentDetailDateRecordList = props => (
         align: 'center',
         render: (value, row) => row.children ? (
           <b>
-            {row.children.reduce((dateAcc, unit) => (
+            {row.children.filter(c => c.type !== 'MASTERY_TEST').reduce((dateAcc, unit) => (
               dateAcc + unit.items.reduce((unitAcc, item) => unitAcc + item.repeatCount, 0)
             ), 0)}
           </b>
-        ) : row.items.reduce((acc, item) => acc + item.repeatCount, 0),
+        ) : get(row, 'items', []).reduce((acc, item) => acc + item.repeatCount, 0),
       },
       {
         label: 'Record',
@@ -134,11 +152,11 @@ const StudentDetailDateRecordList = props => (
         align: 'center',
         render: (value, row) => row.children ? (
           <b>
-            {row.children.reduce((dateAcc, unit) => (
+            {row.children.filter(c => c.type !== 'MASTERY_TEST').reduce((dateAcc, unit) => (
               dateAcc + unit.items.reduce((unitAcc, item) => unitAcc + item.recordCount, 0)
             ), 0)}
           </b>
-        ) : row.items.reduce((acc, item) => acc + item.recordCount, 0),
+        ) : get(row, 'items', []).reduce((acc, item) => acc + item.recordCount, 0),
       },
       {
         label: 'Listen',
@@ -146,17 +164,17 @@ const StudentDetailDateRecordList = props => (
         align: 'center',
         render: (value, row) => row.children ? (
           <b>
-            {row.children.reduce((dateAcc, unit) => (
+            {row.children.filter(c => c.type !== 'MASTERY_TEST').reduce((dateAcc, unit) => (
               dateAcc + unit.items.reduce((unitAcc, item) => unitAcc + item.listenCount, 0)
             ), 0)}
           </b>
-        ) : row.items.reduce((acc, item) => acc + item.listenCount, 0),
+        ) : get(row, 'items', []).reduce((acc, item) => acc + item.listenCount, 0),
       },
       {
         label: 'Actions',
         path: 'action',
         width: '85px',
-        render: (value, row) => (!row.children && !row.docType) && (
+        render: (value, row) => (!row.children && !row.docType && row.type !== 'MASTERY_TEST') && (
           <Button
             icon="bars"
             onClick={() => props.onDetailUnitResult(row.id)}

@@ -46,6 +46,18 @@ const EvaluationTemplateLinkList = props => (
                 label: '2,5h',
                 value: 2.5,
               },
+              {
+                label: '3h',
+                value: 3,
+              },
+              {
+                label: '3,5h',
+                value: 3.5,
+              },
+              {
+                label: '4h',
+                value: 4,
+              },
             ]}
           />
         ),
