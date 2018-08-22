@@ -12,7 +12,7 @@ const WeeklyStudyQualityChart = props => (
   >
     <LineChart
       height={350}
-      labels={props.data.map(charItem => moment(charItem.id, 'YYYY-MM-DD').format('MM/DD/YYYY'))}
+      labels={props.data.map(charItem => moment(charItem.id, 'YYYY-MM-DD').format('DD/MM/YYYY'))}
       data={props.data}
       dataFormat={[
         {
