@@ -21,6 +21,21 @@ const CertificationTestExecutionListCompleted = props => (
         sort: true,
       },
       {
+        label: 'Classroom',
+        path: 'student.schoolClass.name',
+        sort: true,
+      },
+      {
+        label: 'School',
+        path: 'student.schoolClass.school.name',
+        sort: true,
+      },
+      {
+        label: 'Teacher',
+        path: 'student.schoolClass.teacher.name',
+        sort: true,
+      },
+      {
         label: 'Document',
         path: 'document',
         render: (cell, row) => <ImagePreview src={row.document} />,
