@@ -1,6 +1,8 @@
 import { action, extendObservable } from 'mobx';
 import orderBy from 'lodash/orderBy';
+import round from 'lodash/round';
 import FetchService from '../../../core/services/FetchService';
+import CertificationTestReviewFormService from './CertificationTestReviewFormService';
 
 export default class CertificationTestExecutionAbilityItemListService {
   fetch = new FetchService();
@@ -18,6 +20,10 @@ export default class CertificationTestExecutionAbilityItemListService {
     }).then(() => {
       if (this.fetch.data) {
         this.items = orderBy(this.fetch.data, 'order', 'asc');
+      }
+      if ((ability === 'SPEAKING' || ability === 'WRITING') && !this.items.find(item => item.correct === null || item.correct === undefined)) {
+        const score = round((this.items.filter(item => item.correct).length / this.items.length) * 100);
+        CertificationTestReviewFormService.form.setValue(`${ability.toLowerCase()}Score`, score);
       }
       if (this.fetch.error) {
         this.items = [];
