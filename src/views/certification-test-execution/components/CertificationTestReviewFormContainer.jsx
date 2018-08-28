@@ -14,21 +14,20 @@ class CertificationTestReviewFormContainer extends Component {
     certificationTestId: null,
   };
 
-  certificationTestReviewFormService = new CertificationTestReviewFormService();
   componentWillMount() {
-    this.certificationTestReviewFormService.handleLoad(this.props.certificationTestId);
+    CertificationTestReviewFormService.handleLoad(this.props.certificationTestId);
   }
 
   render() {
     return (
       <CertificationTestReviewForm
-        onSubmit={this.certificationTestReviewFormService.handleSubmit}
-        onChange={this.certificationTestReviewFormService.form.setValue}
-        onReset={this.certificationTestReviewFormService.form.reset}
-        values={this.certificationTestReviewFormService.form.getValues()}
-        errors={this.certificationTestReviewFormService.form.errors}
-        submitting={this.certificationTestReviewFormService.fetch.fetching}
-        isDirty={this.certificationTestReviewFormService.form.isDirty}
+        onSubmit={CertificationTestReviewFormService.handleSubmit}
+        onChange={CertificationTestReviewFormService.form.setValue}
+        onReset={CertificationTestReviewFormService.form.reset}
+        values={CertificationTestReviewFormService.form.getValues()}
+        errors={CertificationTestReviewFormService.form.errors}
+        submitting={CertificationTestReviewFormService.fetch.fetching}
+        isDirty={CertificationTestReviewFormService.form.isDirty}
       />
     );
   }

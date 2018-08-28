@@ -5,7 +5,7 @@ import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
 
-export default class CertificationTestReviewFormService {
+class CertificationTestReviewFormService {
   fetch = new FetchService();
   submit = new FetchService();
   form = new FormService();
@@ -63,3 +63,7 @@ export default class CertificationTestReviewFormService {
     });
   });
 }
+
+const certificationTestReviewFormService = new CertificationTestReviewFormService();
+
+export default certificationTestReviewFormService;

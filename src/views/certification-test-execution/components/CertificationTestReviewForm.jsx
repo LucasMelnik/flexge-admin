@@ -38,7 +38,7 @@ const CertificationTestReviewForm = props => (
           type="number"
           maxNumberValue={100}
           minNumberValue={0}
-          disabled={props.submitting}
+          disabled
           label="Writing Score"
           value={get(props.values, 'writingScore', '')}
           onChange={value => props.onChange('writingScore', value)}
@@ -50,7 +50,7 @@ const CertificationTestReviewForm = props => (
           type="number"
           maxNumberValue={100}
           minNumberValue={0}
-          disabled={props.submitting}
+          disabled
           label="Speaking Score"
           value={get(props.values, 'speakingScore', '')}
           onChange={value => props.onChange('speakingScore', value)}
@@ -62,6 +62,7 @@ const CertificationTestReviewForm = props => (
       <Column size={12}>
         <TextEditor
           value={get(props.values, 'comments', '')}
+          onChange={value => props.onChange('comments', value)}
           placeholder="Leave your comments here"
           style={{
             height: 160,
