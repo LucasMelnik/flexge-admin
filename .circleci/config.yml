@@ -1,0 +1,137 @@
+version: 2
+jobs:
+  checkout:
+    working_directory: ~/project
+    docker:
+    - image: circleci/node:7.10
+
+    steps:
+    - checkout
+    - restore_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+    - run:
+        name: Install dependencies
+        command: npm install
+    - save_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+        paths:
+        - node_modules
+
+  production_build:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node:7.10
+
+    steps:
+    - checkout
+    - restore_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+    - run:
+        name: build
+        command: npm run build
+    - save_cache:
+        key: build-cache-{{ .Revision }}
+        paths:
+          - build
+
+  staging_build:
+    working_directory: ~/project
+    docker:
+    - image: circleci/node:7.10
+
+    steps:
+    - checkout
+    - restore_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+    - run:
+        name: build
+        command: |
+          rm -f .env.production
+          npm run build
+    - save_cache:
+        key: build-cache-{{ .Revision }}
+        paths:
+          - build
+
+  production_deploy:
+    working_directory: ~/project
+    docker:
+    - image: circleci/node:7.10
+    steps:
+    - run:
+        name: Installing deployment dependencies
+        command: |
+          sudo apt-get -y -qq update
+          sudo apt-get install python-pip python-dev build-essential
+          sudo pip install awscli --upgrade
+    - restore_cache:
+        key: build-cache-{{ .Revision }}
+    - deploy:
+        name: deploy to AWS
+        command: |
+          aws s3 sync --delete build/ s3://admin.flexge.com
+
+  staging_deploy:
+    working_directory: ~/project
+    docker:
+    - image: circleci/node:7.10
+    steps:
+    - run:
+        name: Installing deployment dependencies
+        command: |
+          sudo apt-get -y -qq update
+          sudo apt-get install python-pip python-dev build-essential
+          sudo pip install awscli --upgrade
+    - restore_cache:
+        key: build-cache-{{ .Revision }}
+    - deploy:
+        name: deploy to AWS
+        command: |
+          aws s3 sync --delete build/ s3://staging-admin.flexge.com
+
+workflows:
+  version: 2
+
+  build:
+    jobs:
+    - checkout:
+        filters:
+          branches:
+            only:
+            - master
+    - production_build:
+        requires:
+          - checkout
+        filters:
+          branches:
+            only:
+            - master
+    - production_deploy:
+        requires:
+        - production_build
+        filters:
+          branches:
+            only:
+            - master
+
+  staging_build:
+    jobs:
+    - checkout:
+        filters:
+          branches:
+            only:
+            - staging
+    - staging_build:
+        requires:
+        - checkout
+        filters:
+          branches:
+            only:
+            - staging
+    - staging_deploy:
+        requires:
+        - staging_build
+        filters:
+          branches:
+            only:
+            - staging
