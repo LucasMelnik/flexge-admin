@@ -98,21 +98,21 @@ workflows:
         filters:
           branches:
             only:
-            - master
+              - master
     - production_build:
         requires:
           - checkout
         filters:
           branches:
             only:
-            - master
+              - master
     - production_deploy:
         requires:
-        - production_build
+          - production_build
         filters:
           branches:
             only:
-            - master
+              - master
 
   staging_build:
     jobs:
@@ -120,18 +120,18 @@ workflows:
         filters:
           branches:
             only:
-            - staging
+              - staging
     - staging_build:
         requires:
-        - checkout
+          - checkout
         filters:
           branches:
             only:
-            - staging
+              - staging
     - staging_deploy:
         requires:
-        - staging_build
+          - staging_build
         filters:
           branches:
             only:
-            - staging
+              - staging
