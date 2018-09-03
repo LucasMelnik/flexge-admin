@@ -1,5 +1,5 @@
 import isEmail from 'validator/lib/isEmail';
-import CPF from 'gerador-validador-cpf/dist/js/CPF.min';
+import CPF from 'gerador-validador-cpf/dist/js/CPF';
 
 export const isRequired = value => (value === null || value === undefined || !value.toString().length) && 'Required';
 
