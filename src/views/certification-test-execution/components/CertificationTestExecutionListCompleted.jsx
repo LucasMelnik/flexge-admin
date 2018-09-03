@@ -56,20 +56,27 @@ const CertificationTestExecutionListCompleted = props => (
         render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
       },
       {
-        label: 'Reading Score',
+        label: 'Score',
         path: 'readingScore',
-      },
-      {
-        label: 'Listening Score',
-        path: 'listeningScore',
-      },
-      {
-        label: 'Writing Score',
-        path: 'writingScore',
-      },
-      {
-        label: 'Speaking Score',
-        path: 'speakingScore',
+        render: (cell, row) => (
+          <div>
+            <span>
+              R: {row.readingScore}
+            </span>
+            <br />
+            <span>
+              L: {row.listeningScore}
+            </span>
+            <br />
+            <span>
+              W: {row.writingScore}
+            </span>
+            <br />
+            <span>
+              S: {row.speakingScore}
+            </span>
+          </div>
+        ),
       },
       {
         label: 'Actions',
