@@ -6,8 +6,8 @@ import AnswersContainer from '../inputs/AnswersInputContainer';
 import FileInput from '../../../../core/form/FileInput';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
-import AudioPreview from '../../../../core/layout/AudioPreview';
 import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
+import Audios from '../inputs/Audios';
 
 const DictationItemForm = props => (
   <div>
@@ -26,11 +26,15 @@ const DictationItemForm = props => (
       disabled={props.disabled}
     />
     <Row>
-      {get(props.values, 'generatedAudio', null) && (
-        <Column size={4}>
-          <AudioPreview src={get(props.values, 'generatedAudio', '')} />
-        </Column>
-      )}
+      <Column size={4}>
+        <Audios
+          values={props.values}
+          submitting={props.submitting}
+          disabled={props.disabled}
+          onChange={props.onChange}
+          errors={props.errors}
+        />
+      </Column>
       <Column size={6}>
         <FileInput
           label="Upload an audio to item"

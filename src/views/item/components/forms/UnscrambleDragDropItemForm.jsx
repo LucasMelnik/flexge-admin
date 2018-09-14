@@ -16,7 +16,13 @@ const UnscrambleDragDropItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    <Audios values={props.values} />
+    <Audios
+      values={props.values}
+      submitting={props.submitting}
+      disabled={props.disabled}
+      onChange={props.onChange}
+      errors={props.errors}
+    />
     <SlicesInputContainer
       onChange={(answers) => {
         props.onChange('answers', answers);

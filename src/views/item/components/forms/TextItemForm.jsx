@@ -21,7 +21,13 @@ const TextItemForm = props => (
         />
       </Column>
     </Row>
-    <Audios values={props.values} />
+    <Audios
+      values={props.values}
+      submitting={props.submitting}
+      disabled={props.disabled}
+      onChange={props.onChange}
+      errors={props.errors}
+    />
   </div>
 );
 
