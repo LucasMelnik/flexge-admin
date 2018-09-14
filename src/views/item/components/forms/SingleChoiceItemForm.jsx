@@ -18,7 +18,13 @@ const SingleChoiceItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    <Audios values={props.values} />
+    <Audios
+      values={props.values}
+      submitting={props.submitting}
+      disabled={props.disabled}
+      onChange={props.onChange}
+      errors={props.errors}
+    />
     <Separator size="xs" />
     {(props.showPostPhrase && !props.isTestItem) && (
       <TextInput

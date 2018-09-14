@@ -15,7 +15,13 @@ const TrueFalseItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    <Audios values={props.values} />
+    <Audios
+      values={props.values}
+      submitting={props.submitting}
+      disabled={props.disabled}
+      onChange={props.onChange}
+      errors={props.errors}
+    />
     <TrueFalseAnswerInputContainer
       value={get(props.values, 'answers', [])}
       onChange={answers => props.onChange('answers', answers)}
