@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Form } from 'antd';
+import { Form, Popconfirm } from 'antd';
 import Button from './Button';
 import AudioPreview from '../layout/AudioPreview';
 import ImagePreview from '../layout/ImagePreview';
@@ -91,12 +91,19 @@ export default class FileInput extends Component {
           )}
           {' '}
           {(hasValue && !this.props.disabled) && (
-            <Button
-              tooltip="Delete the file"
-              disabled={this.props.disabled}
-              onClick={this.handleDelete}
-              icon="delete"
-            />
+            <Popconfirm
+              title="This action cannot be undone. Are you sure?"
+              onConfirm={this.handleDelete}
+              okText="Yes"
+              okType="danger"
+              cancelText="No"
+            >
+              <Button
+                tooltip="Delete the file"
+                disabled={this.props.disabled}
+                icon="delete"
+              />
+            </Popconfirm>
           )}
           {' '}
           {(this.props.accept === 'audio' && hasValue) && (

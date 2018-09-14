@@ -8,7 +8,7 @@ const Button = props => (
     disabled={props.disabled}
     type={props.type}
     htmlType={props.buttonType}
-    onClick={() => props.onClick && props.onClick()}
+    onClick={props.onClick}
     icon={props.icon}
     shape={props.rounded ? 'circle' : null}
     loading={props.loading}

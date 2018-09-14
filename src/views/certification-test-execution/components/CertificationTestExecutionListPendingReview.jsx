@@ -20,6 +20,21 @@ const CertificationTestExecutionListPendingReview = props => (
         sort: true,
       },
       {
+        label: 'Classroom',
+        path: 'student.schoolClass.name',
+        sort: true,
+      },
+      {
+        label: 'School',
+        path: 'student.schoolClass.school.name',
+        sort: true,
+      },
+      {
+        label: 'Teacher',
+        path: 'student.schoolClass.teacher.name',
+        sort: true,
+      },
+      {
         label: 'Started At',
         path: 'startedAt',
         render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),

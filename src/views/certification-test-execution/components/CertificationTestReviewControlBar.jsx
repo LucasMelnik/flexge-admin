@@ -28,7 +28,7 @@ const CertificationTestReviewControlBar = props => (
 );
 
 CertificationTestReviewControlBar.propTypes = {
-  certificationTestId: PropTypes.number.isRequired,
+  certificationTestId: PropTypes.string.isRequired,
 };
 
 export default CertificationTestReviewControlBar;

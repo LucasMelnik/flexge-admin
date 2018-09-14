@@ -7,7 +7,8 @@ import CertificationTestExecutionDetailContainer from './CertificationTestExecut
 import Separator from '../../../core/layout/Separator';
 import AbilityItemExecutionListContainer from './AbilityItemExecutionListContainer';
 import Button from '../../../core/form/Button';
-import CertificationTestReviewControlBar from './CertificationTestReviewControlBar';
+import CertificationTestReviewControlBarContainer from './CertificationTestReviewControlBarContainer';
+import CertificationTestReviewItemFormDialogContainer from './CertificationTestReviewItemFormDialogContainer';
 
 const CertificationTestExecutionDetailScene = props => (
   <div>
@@ -61,7 +62,8 @@ const CertificationTestExecutionDetailScene = props => (
       />
     </Card>
     <Separator />
-    <CertificationTestReviewControlBar
+    <CertificationTestReviewItemFormDialogContainer />
+    <CertificationTestReviewControlBarContainer
       certificationTestId={props.params.certificationTestId}
     />
   </div>

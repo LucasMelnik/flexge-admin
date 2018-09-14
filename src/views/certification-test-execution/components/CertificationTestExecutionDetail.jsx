@@ -5,6 +5,8 @@ import moment from 'moment';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
+import TextEditor from '../../../core/form/TextEditor';
+import Tag from '../../../core/layout/Tag';
 
 const CertificationTestExecutionDetail = props => (
   <form>
@@ -37,20 +39,18 @@ const CertificationTestExecutionDetail = props => (
           value={moment(props.values.completedAt).format('DD/MM/YYYY HH:mm')}
         />
       </Column>
-      <Column size={2}>
-        <TextInput
-          disabled
-          label="Failed At"
-          value={props.values.failedAt && moment(props.values.failedAt).format('DD/MM/YYYY HH:mm')}
-        />
-      </Column>
-      <Column size={2}>
-        <TextInput
-          disabled
-          label="Approved At"
-          value={props.values.approvedAt && moment(props.values.approvedAt).format('DD/MM/YYYY HH:mm')}
-        />
-      </Column>
+      {props.values.failedAt && (
+        <Column size={2}>
+          <div style={{ height: 33 }} />
+          <Tag color="red">Failed - {moment(props.values.failedAt).format('DD/MM/YYYY HH:mm')}</Tag>
+        </Column>
+      )}
+      {props.values.approvedAt && (
+        <Column size={2}>
+          <div style={{ height: 33 }} />
+          <Tag color="green">Approved - {moment(props.values.approvedAt).format('DD/MM/YYYY HH:mm')}</Tag>
+        </Column>
+      )}
     </Row>
     {props.values.reviewedAt && (
       <Row>
@@ -87,11 +87,14 @@ const CertificationTestExecutionDetail = props => (
     {props.values.reviewedAt && (
       <Row>
         <Column size={12}>
-          <TextInput
-            disabled
-            fieldType="textarea"
-            label="Comments"
+          <TextEditor
+            readOnly
             value={get(props.values, 'comments', '')}
+            placeholder="Comments"
+            style={{
+              height: 160,
+              paddingBottom: 60,
+            }}
           />
         </Column>
       </Row>

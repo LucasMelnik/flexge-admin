@@ -21,6 +21,21 @@ const CertificationTestExecutionListScheduled = props => (
         sort: true,
       },
       {
+        label: 'Classroom',
+        path: 'student.schoolClass.name',
+        sort: true,
+      },
+      {
+        label: 'School',
+        path: 'student.schoolClass.school.name',
+        sort: true,
+      },
+      {
+        label: 'Teacher',
+        path: 'student.schoolClass.teacher.name',
+        sort: true,
+      },
+      {
         label: 'Schedule At',
         path: 'scheduledAt',
         render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
