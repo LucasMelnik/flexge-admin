@@ -29,6 +29,7 @@ const Table = props => (
       }}
       dataSource={props.rows}
       columns={props.columns.map(column => ({
+        ...column,
         title: column.label,
         width: column.width,
         dataIndex: column.path,
@@ -45,6 +46,7 @@ const Table = props => (
       filteredValue={props.filteredValue}
       sortOrder={props.sortOrder}
       size="small"
+      scroll={props.scroll}
     />
     {(!props.pagination && props.showTableCount) && (
       <small>{props.rows.length} registers found.</small>
@@ -76,6 +78,9 @@ Table.propTypes = {
     filterReset: PropTypes.string,
     emptyText: PropTypes.string,
   }),
+  scroll: PropTypes.shape({
+    x: PropTypes.number,
+  }),
 };
 
 Table.defaultProps = {
@@ -92,6 +97,7 @@ Table.defaultProps = {
   indentSize: 10,
   rowKey: 'id',
   locale: {},
+  scroll: {},
 };
 
 export default Table;
