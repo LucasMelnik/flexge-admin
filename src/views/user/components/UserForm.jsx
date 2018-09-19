@@ -147,7 +147,7 @@ const UserForm = props => (
 );
 
 UserForm.propTypes = {
-  type: PropTypes.oneOf(['ADMIN','DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER']).isRequired,
+  type: PropTypes.oneOf(['ADMIN', 'DISTRIBUTOR', 'COMPANY', 'SCHOOL_MANAGER']).isRequired,
   onSubmit: PropTypes.func,
   onReset: PropTypes.func,
   values: PropTypes.object,

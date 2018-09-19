@@ -5,12 +5,11 @@ import UserForm from './UserForm';
 import UserFormService from '../services/UserFormService';
 
 class UserFormContainer extends Component {
-
   static propTypes = {
     userId: PropTypes.string,
     companyId: PropTypes.string,
     distributorId: PropTypes.string,
-    type: PropTypes.oneOf(['ADMIN','DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER']).isRequired,
+    type: PropTypes.oneOf(['ADMIN', 'DISTRIBUTOR', 'COMPANY', 'SCHOOL_MANAGER']).isRequired,
   };
 
   static defaultProps = {
@@ -21,7 +20,12 @@ class UserFormContainer extends Component {
 
   userFormService = new UserFormService();
   componentWillMount() {
-    this.userFormService.handleLoad(this.props.userId, this.props.companyId, this.props.distributorId);
+    this.userFormService.handleLoad(
+      this.props.userId,
+      this.props.companyId,
+      this.props.distributorId,
+      this.props.type,
+    );
   }
 
   render() {

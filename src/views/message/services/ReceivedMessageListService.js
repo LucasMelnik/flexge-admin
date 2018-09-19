@@ -23,38 +23,43 @@ class ReceivedMessageListService {
     this.load();
   });
 
-  load = action((page) => {
+  load = action(page => {
     if (page && page.current) {
       this.pagination.current = page.current;
     } else {
       this.pagination.current = 1;
     }
 
-    this.fetch.fetch({
-      url: '/received-messages',
-      query: {
-        page: this.pagination.current,
-        size: this.pagination.pageSize,
+    this.fetch
+      .fetch({
+        url: '/received-messages',
         query: {
-          ...this.filterForm.getValue('from') && {
-            from: this.filterForm.getValue('from').toDate(),
-          },
-          ...this.filterForm.getValue('to') && {
-            to: this.filterForm.getValue('to').toDate(),
-          },
-          ...this.filterForm.getValue('subject') && {
-            subject: this.filterForm.getValue('subject'),
+          page: this.pagination.current,
+          size: this.pagination.pageSize,
+          query: {
+            ...(this.filterForm.getValue('from') && {
+              from: this.filterForm.getValue('from').toDate(),
+            }),
+            ...(this.filterForm.getValue('to') && {
+              to: this.filterForm.getValue('to').toDate(),
+            }),
+            ...(this.filterForm.getValue('subject') && {
+              subject: this.filterForm.getValue('subject'),
+            }),
+            ...(this.filterForm.getValue('member') && {
+              sender: this.filterForm.getValue('member'),
+            }),
           },
         },
-      },
-    }).then(() => {
-      if (this.fetch.data) {
-        this.messages = this.fetch.data.docs;
-        this.pagination.total = this.fetch.data.total;
-      } else {
-        this.messages = [];
-      }
-    });
+      })
+      .then(() => {
+        if (this.fetch.data) {
+          this.messages = this.fetch.data.docs;
+          this.pagination.total = this.fetch.data.total;
+        } else {
+          this.messages = [];
+        }
+      });
   });
 }
 
