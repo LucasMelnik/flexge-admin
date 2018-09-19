@@ -5,9 +5,16 @@ import moment from 'moment';
 import Table from '../../../../core/form/Table';
 import LinearProgress from '../../../../core/layout/LinearProgress';
 import Tag from '../../../../core/layout/Tag';
+import Icon from '../../../../core/layout/Icon';
+import StudentRecordListFilter from './StudentRecordListFilter';
 
 const StudentRecordList = props => (
   <div>
+    <StudentRecordListFilter
+      values={props.filterValues}
+      onChange={props.onChange}
+      onFilter={props.onFilter}
+    />
     <Table
       fetching={props.fetching}
       columns={[
@@ -15,7 +22,6 @@ const StudentRecordList = props => (
           label: 'Name',
           path: 'name',
           sort: true,
-          width: '40%',
           defaultSortOrder: 'ascend',
           render: (value, row) => (
             <div>
@@ -35,24 +41,37 @@ const StudentRecordList = props => (
           ),
         },
         {
-          label: 'Initial Level (PT)',
+          label: 'English Level',
           path: 'initialEnglishLevel',
-          sort: true,
-          width: '130px',
-          render: value => value >= 0 ? round(value, 1).toFixed(1) : 'N/A',
-        },
-        {
-          label: 'Current Level',
-          path: 'currentEnglishLevel',
-          sort: true,
-          width: '110px',
-          render: value => value >= 0 ? round(value, 1).toFixed(1) : 'N/A',
+          width: '100px',
+          render: (value, row) => (
+            <span>
+              {(row.initialEnglishLevel === null || row.initialEnglishLevel === undefined) && 'N/A'}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-around',
+                }}
+              >
+                {row.initialEnglishLevel >= 0 && round(row.initialEnglishLevel, 1).toFixed(1)}
+                <Icon
+                  name="arrow-right"
+                  style={{
+                    fontSize: 16,
+                  }}
+                />
+                {row.currentEnglishLevel >= 0 && round(row.currentEnglishLevel, 1).toFixed(1)}
+              </div>
+            </span>
+          ),
         },
         {
           label: 'Study Quality',
           path: 'studyQualityScore',
           sort: true,
-          width: '110px',
+          width: '130px',
+          align: 'center',
           render: value => value != null ? round(value, 1).toFixed(1) : 'N/A',
         },
         {
@@ -80,7 +99,7 @@ const StudentRecordList = props => (
               >
                 <LinearProgress
                   color={row.coursePercentage >= 100 ? 'green' : 'blue'}
-                  value={row.coursePercentage || 0}
+                  value={round(row.coursePercentage || 0, 1)}
                 />
               </div>
             </div>
@@ -90,14 +109,14 @@ const StudentRecordList = props => (
           label: 'Week Time',
           path: 'weekStudiedTime',
           sort: true,
-          width: '110px',
+          width: '115px',
           render: value => value ? moment.duration(value, 'seconds').format('hh:mm', { trim: false }) : 'N/A',
         },
         {
           label: 'Total Time',
           path: 'totalStudiedTime',
           sort: true,
-          width: '110px',
+          width: '115px',
           render: value => value ? moment.duration(value, 'seconds').format('hh:mm', { trim: false }) : 'N/A',
         },
         {
@@ -149,6 +168,9 @@ StudentRecordList.propTypes = {
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onSelect: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onFilter: PropTypes.func.isRequired,
+  filterValues: PropTypes.shape({}).isRequired,
 };
 
 export default StudentRecordList;
