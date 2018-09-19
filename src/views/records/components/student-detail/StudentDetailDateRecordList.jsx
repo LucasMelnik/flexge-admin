@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Tooltip } from 'antd';
 import moment from 'moment';
 import round from 'lodash/round';
 import get from 'lodash/get';
@@ -18,11 +19,18 @@ const StudentDetailDateRecordList = props => (
         label: 'Date',
         path: 'startedAt',
         render: (value, row) => (row.children && row.children.length && <b>{moment(value).format('DD/MM/YYYY')}</b>) || (
-          <span>
-            {row.studentAccess && (row.studentAccess.os === 'ios' || row.studentAccess.os === 'android') ? (<Icon name="mobile" />) : (<Icon name="desktop" />)}
+          <Tooltip
+            placement="top"
+            title={row.studentAccess && (row.studentAccess.os === 'ios' || row.studentAccess.os === 'android') ? 'Executado no aplicativo' : 'Executado em um computador'}
+          >
+            {row.studentAccess && (row.studentAccess.os === 'ios' || row.studentAccess.os === 'android') ? (
+              <Icon name="mobile" />
+            ) : (
+              <Icon name="desktop" />
+            )}
             <ColumnSeparator size="xs" />
             {moment(value).format('DD/MM/YYYY HH:mm')}
-          </span>
+          </Tooltip>
         ),
       },
       {
