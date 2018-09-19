@@ -41,13 +41,11 @@ const StudentGradeList = props => (
                   <div>SQ: N/A</div>
                 )}
                 <div>
-                  Hours: {periodGrade.hoursGrade}
+                  Hours: {periodGrade.hoursGrade}{' '}
                   <small>
-                    (
-                      Studied: {moment.duration(periodGrade.hoursStudied, 'hours').format('hh:mm', { trim: false })}
+                    (Studied: {moment.duration(periodGrade.hoursStudied, 'hours').format('hh:mm', { trim: false })}
                       {' '}
-                      Required: {moment.duration(periodGrade.hoursRequired, 'hours').format('hh:mm', { trim: false })}
-                    )
+                      Required: {moment.duration(periodGrade.hoursRequired, 'hours').format('hh:mm', { trim: false })})
                   </small>
                 </div>
                 <div>Final grade: {getFinalGrade(periodGrade, row.schoolClass.school) !== null ? getFinalGrade(periodGrade, row.schoolClass.school) : 'Awaiting SQ Score'}</div>
