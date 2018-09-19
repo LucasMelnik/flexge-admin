@@ -1,5 +1,4 @@
 import { action, extendObservable } from 'mobx';
-import moment from 'moment';
 import round from 'lodash/round';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
@@ -22,7 +21,8 @@ class StudentRecordListService {
     this.schoolId = schoolId;
     this.classId = classId;
     this.form.setInitialValues({
-      studiedTime: [moment().startOf('isoWeeks'), moment().endOf('isoWeeks')],
+      isCustomPeriod: false,
+      studiedTime: [],
     });
     this.load();
   });
@@ -31,8 +31,10 @@ class StudentRecordListService {
     this.fetch.fetch({
       url: `/records/schools/${this.schoolId}/school-classes/${this.classId}/students`,
       query: {
-        studiedTimeFrom: this.form.getValue('studiedTime')[0].toDate(),
-        studiedTimeTo: this.form.getValue('studiedTime')[1].toDate(),
+        ...this.form.getValue('isCustomPeriod') && {
+          studiedTimeFrom: this.form.getValue('studiedTime')[0].toDate(),
+          studiedTimeTo: this.form.getValue('studiedTime')[1].toDate(),
+        },
       },
     }).then(() => {
       if (this.fetch.data) {

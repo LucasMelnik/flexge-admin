@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import round from 'lodash/round';
+import get from 'lodash/get';
 import moment from 'moment';
+import { Tooltip } from 'antd';
 import Table from '../../../../core/form/Table';
 import LinearProgress from '../../../../core/layout/LinearProgress';
 import Tag from '../../../../core/layout/Tag';
@@ -44,9 +46,11 @@ const StudentRecordList = props => (
           label: 'English Level',
           path: 'initialEnglishLevel',
           width: '100px',
-          render: (value, row) => (
-            <span>
-              {(row.initialEnglishLevel === null || row.initialEnglishLevel === undefined) && 'N/A'}
+          render: (value, row) => (row.initialEnglishLevel === null || row.initialEnglishLevel === undefined) ? 'N/A' : (
+            <Tooltip
+              position="top"
+              title="Initial Level -> Current Level"
+            >
               <div
                 style={{
                   display: 'flex',
@@ -63,7 +67,7 @@ const StudentRecordList = props => (
                 />
                 {row.currentEnglishLevel >= 0 && round(row.currentEnglishLevel, 1).toFixed(1)}
               </div>
-            </span>
+            </Tooltip>
           ),
         },
         {
@@ -105,13 +109,30 @@ const StudentRecordList = props => (
             </div>
           ) : 'N/A',
         },
-        {
-          label: 'Week Time',
-          path: 'weekStudiedTime',
-          sort: true,
-          width: '115px',
-          render: value => value ? moment.duration(value, 'seconds').format('hh:mm', { trim: false }) : 'N/A',
-        },
+        ...get(props.filterValues, 'isCustomPeriod', false) ? [
+          {
+            label: 'Custom Period',
+            path: 'weekStudiedTime',
+            sort: true,
+            width: '150px',
+            render: value => value ? moment.duration(value, 'seconds').format('hh:mm', { trim: false }) : 'N/A',
+          },
+        ] : [
+          {
+            label: 'Week Time',
+            path: 'weekStudiedTime',
+            sort: true,
+            width: '115px',
+            render: value => value ? moment.duration(value, 'seconds').format('hh:mm', { trim: false }) : 'N/A',
+          },
+          {
+            label: 'Last Week Time',
+            path: 'lastWeekStudiedTime',
+            sort: true,
+            width: '145px',
+            render: value => value ? moment.duration(value, 'seconds').format('hh:mm', { trim: false }) : 'N/A',
+          },
+        ],
         {
           label: 'Total Time',
           path: 'totalStudiedTime',
