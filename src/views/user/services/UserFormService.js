@@ -21,7 +21,7 @@ export default class UserFormService {
     };
   }
 
-  handleLoad = action((userId, companyId, distributorId) => {
+  handleLoad = action((userId, companyId, distributorId, type) => {
     this.form.reset();
     if (userId) {
       this.fetch.fetch({
@@ -50,6 +50,9 @@ export default class UserFormService {
         },
         ...distributorId && {
           distributor: distributorId,
+        },
+        ...(type && type === 'DISTRIBUTOR') && {
+          role: 'DISTRIBUTOR_MANAGER',
         },
       });
     }
