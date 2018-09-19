@@ -9,9 +9,16 @@ import Tag from '../../../../core/layout/Tag';
 import Button from '../../../../core/form/Button';
 import Icon from '../../../../core/layout/Icon';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
+import StudentDetailDateRecordListFilter from './StudentDetailDateRecordListFilter';
 
 const StudentDetailDateRecordList = props => (
-  <Table
+  <div>
+    <StudentDetailDateRecordListFilter
+      values={props.filterValues}
+      onChange={props.onChange}
+      onFilter={props.onFilter}
+    />
+    <Table
     showTableCount={false}
     fetching={props.fetching}
     columns={[
@@ -192,6 +199,7 @@ const StudentDetailDateRecordList = props => (
     ]}
     rows={props.contents}
   />
+  </div>
 );
 
 StudentDetailDateRecordList.propTypes = {
@@ -209,6 +217,9 @@ StudentDetailDateRecordList.propTypes = {
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDetailUnitResult: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onFilter: PropTypes.func.isRequired,
+  filterValues: PropTypes.shape({}).isRequired,
 };
 
 export default StudentDetailDateRecordList;

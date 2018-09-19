@@ -1,8 +1,11 @@
 import { action, extendObservable, toJS } from 'mobx';
 import round from 'lodash/round';
+import moment from 'moment';
 import FetchService from '../../../core/services/FetchService';
+import FormService from '../../../core/services/FormService';
 
 class StudentRecordDetailService {
+  form = new FormService();
   fetchContent = new FetchService();
   fetchDates = new FetchService();
 
@@ -14,10 +17,16 @@ class StudentRecordDetailService {
       contents: [],
       contentsDetail: [],
     });
+    this.form.setInitialValues({
+      period: [moment().subtract(30, 'days'), moment()],
+    });
   }
 
   init = action((studentId) => {
     this.studentId = studentId;
+    this.form.setInitialValues({
+      period: [moment().subtract(30, 'days'), moment()],
+    });
   });
 
   handleContentFilterChange = action((courseId) => {
@@ -43,9 +52,13 @@ class StudentRecordDetailService {
     });
   });
 
-  loadByDates = action((studentId) => {
+  loadByDates = action(() => {
     this.fetchDates.fetch({
-      url: `/records/students/${studentId}/date-details`,
+      url: `/records/students/${this.studentId}/date-details`,
+      query: {
+        from: this.form.getValue('period')[0].toDate(),
+        to: this.form.getValue('period')[1].toDate(),
+      },
     }).then(() => {
       if (this.fetchDates.data) {
         this.contents = this.fetchDates.data;

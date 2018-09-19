@@ -15,6 +15,7 @@ const RangeDateInput = props =>  (
   >
     <DatePicker.RangePicker
       ranges={props.ranges}
+      allowClear={props.allowClear}
       value={props.value}
       onChange={props.onChange}
       format={props.format}
@@ -34,6 +35,7 @@ RangeDateInput.propTypes = {
   format: PropTypes.string,
   errorText: PropTypes.string,
   showTime: PropTypes.bool,
+  allowClear: PropTypes.bool,
   label: PropTypes.string.isRequired,
   value: PropTypes.array,
   placeholder: PropTypes.array,
@@ -48,6 +50,7 @@ RangeDateInput.defaultProps = {
   ranges: null,
   errorText: null,
   showTime: false,
+  allowClear: true,
   value: [],
   placeholder: [],
   disabled: false,
