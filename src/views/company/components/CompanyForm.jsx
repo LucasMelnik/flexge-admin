@@ -51,16 +51,12 @@ const CompanyForm = props => (
     </Row>
     <Row>
       <Column size={4}>
-        <MaskInput
+        <TextInput
           disabled={props.submitting}
           label="CNPJ"
           value={get(props.values, 'cnpj', '')}
           onChange={value => props.onChange('cnpj', value)}
           errorText={get(props.errors, 'cnpj', '')}
-          delimiters={['.', '.', '/', '-']}
-          blocks={[2, 3, 3, 4, 2]}
-          numericOnly
-          required
         />
       </Column>
       <Column size={6}>
@@ -99,17 +95,19 @@ const CompanyForm = props => (
           }}
         />
       </Column>
-      <Column size={3}>
-        <Select
-          disabled={props.submitting}
-          label="State"
-          value={get(props.values, 'state', '')}
-          onChange={value => props.onChange('state', value)}
-          errorText={get(props.errors, 'state', '')}
-          options={props.states}
-          required
-        />
-      </Column>
+      {(get(props.values, 'country', '') === '5a01ff39898e1571b5d5172b') && (
+        <Column size={3}>
+          <Select
+            disabled={props.submitting}
+            label="State"
+            value={get(props.values, 'state', '')}
+            onChange={value => props.onChange('state', value)}
+            errorText={get(props.errors, 'state', '')}
+            options={props.states}
+            required
+          />
+        </Column>
+      )}
       <Column size={6}>
         <TextInput
           floatingLabel
