@@ -2,7 +2,7 @@ import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
-import { isRequired, isCNPJ } from '../../../core/validations';
+import { isRequired } from '../../../core/validations';
 
 export default class CompanyFormService {
   fetch = new FetchService();
@@ -15,9 +15,9 @@ export default class CompanyFormService {
     });
     this.form.validations = {
       name: [isRequired],
-      state: [isRequired],
+      // state: [isRequired],
       distributor: [isRequired],
-      cnpj: [isRequired, isCNPJ],
+      // cnpj: [isRequired, isCNPJ],
     };
   }
 
@@ -63,7 +63,7 @@ export default class CompanyFormService {
       url: companyId ? `/companies/${companyId}` : '/companies',
       body: {
         ...this.form.getValues(),
-        state: this.form.getValue('state'),
+        // state: this.form.getValue('state'),
       },
     }).then(() => {
       if (this.submit.data) {
