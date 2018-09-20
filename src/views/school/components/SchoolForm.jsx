@@ -84,6 +84,7 @@ const SchoolForm = props => (
         <FetchSelect
           url={`regions${props.values.company ? `?query[company]=${get(props.values, 'company', '')}` : ''}`}
           fullWidth
+          required
           disabled={props.submitting || !get(props.values, 'company', '')}
           label="Region"
           value={get(props.values, 'region', '')}

@@ -53,6 +53,7 @@ const StudentForm = props => (
       </Column>
       <Column size={2}>
         <TextInput
+          required={!props.values.id}
           type="password"
           disabled={props.submitting}
           label="Password"

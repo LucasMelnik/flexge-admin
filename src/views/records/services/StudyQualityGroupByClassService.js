@@ -36,6 +36,9 @@ class StudyQualityGroupByClassService {
           }
           return acc;
         }, 0);
+        if (!totalHigherThanFive || !this.total) {
+          return null;
+        }
         return (totalHigherThanFive / this.total) * 100;
       }),
       higherThanFiveSchoolAverage: computed(() => {
