@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Tooltip } from 'antd';
 import moment from 'moment';
 import round from 'lodash/round';
 import get from 'lodash/get';
@@ -8,9 +9,16 @@ import Tag from '../../../../core/layout/Tag';
 import Button from '../../../../core/form/Button';
 import Icon from '../../../../core/layout/Icon';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
+import StudentDetailDateRecordListFilter from './StudentDetailDateRecordListFilter';
 
 const StudentDetailDateRecordList = props => (
-  <Table
+  <div>
+    <StudentDetailDateRecordListFilter
+      values={props.filterValues}
+      onChange={props.onChange}
+      onFilter={props.onFilter}
+    />
+    <Table
     showTableCount={false}
     fetching={props.fetching}
     columns={[
@@ -18,11 +26,18 @@ const StudentDetailDateRecordList = props => (
         label: 'Date',
         path: 'startedAt',
         render: (value, row) => (row.children && row.children.length && <b>{moment(value).format('DD/MM/YYYY')}</b>) || (
-          <span>
-            {row.studentAccess && (row.studentAccess.os === 'ios' || row.studentAccess.os === 'android') ? (<Icon name="mobile" />) : (<Icon name="desktop" />)}
+          <Tooltip
+            placement="top"
+            title={row.studentAccess && (row.studentAccess.os === 'ios' || row.studentAccess.os === 'android') ? 'Executado no aplicativo' : 'Executado em um computador'}
+          >
+            {row.studentAccess && (row.studentAccess.os === 'ios' || row.studentAccess.os === 'android') ? (
+              <Icon name="mobile" />
+            ) : (
+              <Icon name="desktop" />
+            )}
             <ColumnSeparator size="xs" />
             {moment(value).format('DD/MM/YYYY HH:mm')}
-          </span>
+          </Tooltip>
         ),
       },
       {
@@ -184,6 +199,7 @@ const StudentDetailDateRecordList = props => (
     ]}
     rows={props.contents}
   />
+  </div>
 );
 
 StudentDetailDateRecordList.propTypes = {
@@ -201,6 +217,9 @@ StudentDetailDateRecordList.propTypes = {
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDetailUnitResult: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onFilter: PropTypes.func.isRequired,
+  filterValues: PropTypes.shape({}).isRequired,
 };
 
 export default StudentDetailDateRecordList;

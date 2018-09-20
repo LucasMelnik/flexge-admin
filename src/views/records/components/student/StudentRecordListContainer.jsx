@@ -21,8 +21,14 @@ class StudentRecordListContainer extends Component {
     return (
       <StudentRecordList
         students={toJS(StudentRecordListService.students)}
-        fetching={StudentRecordListService.fetch.fetching || StudentRecordListService.fetchStudents.fetching}
+        fetching={
+          StudentRecordListService.fetch.fetching ||
+          StudentRecordListService.fetchStudents.fetching
+        }
         onSelect={this.handleSelect}
+        onFilter={StudentRecordListService.load}
+        onChange={StudentRecordListService.form.setValue}
+        filterValues={StudentRecordListService.form.getValues()}
       />
     );
   }
