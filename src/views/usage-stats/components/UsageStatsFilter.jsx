@@ -16,7 +16,7 @@ const UsageStatsFilter = props => (
           disabled={props.fetching}
           value={get(props.values, 'company', '')}
           onChange={value => props.onChange('company', value)}
-          url={`companies${localStorage.role === 'DISTRIBUTOR_MANAGER' ? `?distributor=${JSON.parse(localStorage.getItem('distributor')).id}` : ''}`}
+          url={`companies${localStorage.role === 'DISTRIBUTOR_MANAGER' ? `?distributor=${localStorage.getItem('distributor')}` : ''}`}
           resultTransformer={{
             text: 'name',
             value: 'id',

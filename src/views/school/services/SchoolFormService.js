@@ -16,6 +16,7 @@ export default class SchoolFormService {
     this.form.validations = {
       name: [isRequired],
       company: [isRequired],
+      region: [isRequired],
       modulePointRelevance: [isRequired],
     };
   }

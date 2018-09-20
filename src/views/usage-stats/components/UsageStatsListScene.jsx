@@ -22,7 +22,7 @@ const UsageStatsListScene = () => (
       <UsageStatsListContainer />
     </Card>
     <Separator />
-    {localStorage.role === 'ADMIN' && (
+    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
       <Card title="Demo Students">
         <DemoStudentListContainer />
       </Card>

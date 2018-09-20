@@ -21,7 +21,7 @@ const StudentAchievementsListFilter = props => (
           onChange={value => props.onChange('school', value)}
           url={`schools${
             localStorage.role === 'DISTRIBUTOR_MANAGER'
-              ? `?distributor=${JSON.parse(localStorage.getItem('distributor')).id}`
+              ? `?distributor=${localStorage.getItem('distributor')}`
               : localStorage.role === 'COMPANY_MANAGER'
                 ? `?company=${JSON.parse(localStorage.getItem('company')).id}`
                 : ''

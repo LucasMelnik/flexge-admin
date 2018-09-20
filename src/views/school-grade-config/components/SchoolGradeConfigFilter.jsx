@@ -8,7 +8,13 @@ const SchoolGradeConfigFilter = props => (
     placeholder="Select the school to check the ranking"
     value={props.value}
     onChange={props.onChange}
-    url={`schools${localStorage.role === 'COMPANY_MANAGER' ? `?company=${JSON.parse(localStorage.getItem('company')).id}` : ''}`}
+    url={`schools${
+      localStorage.role === 'DISTRIBUTOR_MANAGER'
+        ? `?distributor=${localStorage.getItem('distributor')}`
+        : localStorage.role === 'COMPANY_MANAGER'
+        ? `?company=${JSON.parse(localStorage.getItem('company')).id}`
+        : ''
+      }`}
     resultTransformer={{
       text: 'name',
       value: 'id',
