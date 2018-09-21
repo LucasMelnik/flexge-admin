@@ -57,6 +57,7 @@ const SchoolFormScene = props => (
       <SchoolFormContainer
         schoolId={props.schoolId}
         currentCompany={props.currentCompany}
+        companyCountry={props.company.country}
       />
     </Card>
   </div>
