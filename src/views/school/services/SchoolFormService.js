@@ -37,6 +37,7 @@ export default class SchoolFormService {
           const data = {
             ...this.fetch.data,
             company: this.fetch.data.company.id,
+            companyCountry: this.fetch.data.company.country,
             modulePointRelevance: this.fetch.data.modulePointRelevance || 1,
           };
           this.form.setInitialValues(data);
@@ -74,6 +75,7 @@ export default class SchoolFormService {
         this.form.setInitialValues({
           ...school,
           company: this.form.getValue('company'),
+          companyCountry: this.form.getValue('companyCountry'),
         });
         NotificationService.addNotification(`School ${schoolId ? 'updated' : 'created'} successfully.`, 'success');
       }

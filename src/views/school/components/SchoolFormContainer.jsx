@@ -11,11 +11,13 @@ class SchoolFormContainer extends Component {
   static propTypes = {
     schoolId: PropTypes.string,
     currentCompany: PropTypes.string,
+    companyCountry: PropTypes.string,
   };
 
   static defaultProps = {
     schoolId: null,
     currentCompany: null,
+    companyCountry: null,
   };
 
   schoolFormService = new SchoolFormService();
@@ -35,6 +37,7 @@ class SchoolFormContainer extends Component {
         isDirty={this.schoolFormService.form.isDirty}
         states={toJS(StateService.states)}
         disableCompany={!!this.props.currentCompany}
+        companyCountry={this.props.companyCountry}
       />
     );
   }
