@@ -44,6 +44,7 @@ export default class StudentFormService {
         }
       });
     } else {
+      this.form.validations.password = [isRequired]
       this.form.setInitialValues({
         sendWelcomeEmail: false,
         demoStudent: false,

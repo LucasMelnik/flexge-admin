@@ -15,7 +15,7 @@ export default class EvaluationTemplateFormService {
     this.form.validations = {
       name: [isRequired],
       year: [isRequired],
-      school: (localStorage.role === 'ADMIN' || localStorage.role === 'COMPANY_MANAGER') ? [isRequired] : [],
+      school: (localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') ? [isRequired] : [],
     };
   }
 

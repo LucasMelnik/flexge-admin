@@ -15,7 +15,7 @@ const SchoolGradeConfigFormScene = props => (
         },
       ]}
     />
-    {(localStorage.role === 'ADMIN' || localStorage.role === 'COMPANY_MANAGER') && ([
+    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && ([
       <Card key="card">
         <SchoolGradeConfigFilterContainer />
       </Card>,

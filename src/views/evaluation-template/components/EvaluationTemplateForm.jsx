@@ -29,14 +29,20 @@ const EvaluationTemplateForm = props => (
           errorText={get(props.errors, 'name', null)}
         />
       </Column>
-      {(localStorage.role === 'ADMIN' || localStorage.role === 'COMPANY_MANAGER') && (
+      {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
         <Column size={3}>
           <FetchSelect
             required
             label="School"
             value={get(props.values, 'school', '')}
             onChange={value => props.onChange('school', value)}
-            url={`schools${localStorage.role === 'COMPANY_MANAGER' ? `?company=${JSON.parse(localStorage.getItem('company')).id}` : ''}`}
+            url={`schools${
+              localStorage.role === 'DISTRIBUTOR_MANAGER'
+                ? `?distributor=${localStorage.getItem('distributor')}`
+                : localStorage.role === 'COMPANY_MANAGER'
+                ? `?company=${JSON.parse(localStorage.getItem('company')).id}`
+                : ''
+              }`}
             errorText={get(props.errors, 'school', null)}
             resultTransformer={{
               text: 'name',

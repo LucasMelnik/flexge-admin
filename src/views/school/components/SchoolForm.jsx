@@ -45,8 +45,9 @@ const SchoolForm = props => (
             disabled={props.submitting || props.disableCompany}
             label="Company"
             value={get(props.values, 'company', '')}
-            onChange={(company) => {
-              props.onChange('company', company);
+            onChange={(companyId, company) => {
+              props.onChange('companyCountry', get(company, 'country', null));
+              props.onChange('company', companyId);
             }}
             errorText={get(props.errors, 'company', null)}
             resultTransformer={{
@@ -84,6 +85,7 @@ const SchoolForm = props => (
         <FetchSelect
           url={`regions${props.values.company ? `?query[company]=${get(props.values, 'company', '')}` : ''}`}
           fullWidth
+          required
           disabled={props.submitting || !get(props.values, 'company', '')}
           label="Region"
           value={get(props.values, 'region', '')}
@@ -95,16 +97,18 @@ const SchoolForm = props => (
           }}
         />
       </Column>
-      <Column size={2}>
-        <Select
-          disabled={props.submitting}
-          label="State"
-          value={get(props.values, 'state', '')}
-          onChange={value => props.onChange('state', value)}
-          errorText={get(props.errors, 'state', '')}
-          options={props.states}
-        />
-      </Column>
+      {(get(props.values, 'companyCountry', '') === '5a01ff39898e1571b5d5172b' || props.companyCountry === '5a01ff39898e1571b5d5172b') && (
+        <Column size={2}>
+          <Select
+            disabled={props.submitting}
+            label="State"
+            value={get(props.values, 'state', '')}
+            onChange={value => props.onChange('state', value)}
+            errorText={get(props.errors, 'state', '')}
+            options={props.states}
+          />
+        </Column>
+      )}
       <Column size={6}>
         <TextInput
           disabled={props.submitting}
@@ -195,6 +199,7 @@ SchoolForm.propTypes = {
   submitting: PropTypes.bool,
   disableCompany: PropTypes.bool,
   isDirty: PropTypes.func,
+  companyCountry: PropTypes.string,
   states: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
@@ -203,6 +208,7 @@ SchoolForm.defaultProps = {
   errors: {},
   submitting: false,
   disableCompany: false,
+  companyCountry: true,
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
   onReset: () => false,
