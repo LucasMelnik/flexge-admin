@@ -187,7 +187,6 @@ const MainScene = props => (
             key: 'content',
             title: 'Content',
             icon: 'book',
-            allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
             groups: [
               {
                 group: 'Content',
@@ -198,9 +197,17 @@ const MainScene = props => (
               },
               {
                 group: 'Tests',
+                allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
               },
             ],
             items: [
+              {
+                label: 'Search Content',
+                link: '/contents',
+                key: 'contents',
+                group: 'Content',
+                icon: 'search',
+              },
               {
                 label: 'Audio',
                 link: '/item-audios',

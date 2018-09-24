@@ -40,7 +40,7 @@ const CertificationTestExecutionListScene = () => (
               <CertificationTestExecutionListPendingReviewContainer />
             </Card>
           ),
-          title: 'Pending Review',
+          title: 'Pending Correction',
         },
         ...localStorage.role !== 'CERTIFICATION_TEST_PROFESSIONAL' && [{
           content: (
