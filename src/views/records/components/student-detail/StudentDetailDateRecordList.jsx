@@ -10,6 +10,7 @@ import Button from '../../../../core/form/Button';
 import Icon from '../../../../core/layout/Icon';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import StudentDetailDateRecordListFilter from './StudentDetailDateRecordListFilter';
+import {browserHistory} from 'react-router';
 
 const StudentDetailDateRecordList = props => (
   <div>
@@ -190,10 +191,17 @@ const StudentDetailDateRecordList = props => (
           path: 'action',
           width: '85px',
           render: (value, row) => (!row.children && !row.docType && row.type !== 'MASTERY_TEST') && (
-            <Button
-              icon="bars"
-              onClick={() => props.onDetailUnitResult(row.id)}
-            />
+            <div>
+              <Button
+                icon="eye"
+                onClick={() => browserHistory.push(`/contents/${row.id}/details`)}
+              />
+              {' '}
+              <Button
+                icon="bars"
+                onClick={() => props.onDetailUnitResult(row.id)}
+              />
+            </div>
           ),
         },
       ]}
