@@ -7,7 +7,7 @@ import Separator from '../../../../core/layout/Separator';
 import Tabs from '../../../../core/layout/Tabs';
 import GrammarNeedsListContainer from '../common/GrammarNeedsListContainer';
 import StudentRecordPerformance from './StudentRecordPerformance';
-import GrammarAnalysisListContainer from './GrammarAnalysisListContainer';
+import StudiedGrammarListContainer from '../common/StudiedGrammarListContainer';
 import StudentGradeListContainer from './StudentGradeListContainer';
 
 const StudentRecordScene = props => (
@@ -80,12 +80,12 @@ const StudentRecordScene = props => (
           ),
         },
         {
-          title: 'Grammar Analysis - last 60 days',
+          title: 'Studied Grammars - last 60 days',
           content: (
             <Card
               fetching={props.fetching}
             >
-              <GrammarAnalysisListContainer
+              <StudiedGrammarListContainer
                 schoolId={props.schoolId}
                 classId={props.classId}
               />

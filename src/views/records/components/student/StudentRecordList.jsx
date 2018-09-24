@@ -134,7 +134,11 @@ const StudentRecordList = props => (
           },
         ],
         {
-          label: 'Total Time',
+          label: (
+            <Tooltip title="Total course time" placement="top">
+              <span>Total Time</span>
+            </Tooltip>
+          ),
           path: 'totalStudiedTime',
           sort: true,
           width: '115px',
