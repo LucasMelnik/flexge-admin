@@ -94,6 +94,8 @@ import MessageChatSceneContainer from './views/message/components/MessageChatSce
 import ProfileFormScene from './views/profile/components/ProfileFormScene';
 import StudentCloseToFinishCourseListScene from './views/reports/components/student-close-to-finish-course/StudentCloseToFinishCourseListScene';
 import FinishedStudentCourseListScene from './views/reports/components/finished-student-course/FinishedStudentCourseListScene';
+import ContentListScene from './views/content/components/ContentListScene';
+import ContentDetailScene from './views/content/components/detail/ContentDetailScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -235,6 +237,8 @@ const Routes = () => (
       <Route path="profile" component={ProfileFormScene} />
       <Route path="student-close-to-finish-course" component={StudentCloseToFinishCourseListScene} />
       <Route path="finished-courses" component={FinishedStudentCourseListScene} />
+      <Route path="contents" component={ContentListScene} />
+      <Route path="contents/:contentId/details" component={ContentDetailScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

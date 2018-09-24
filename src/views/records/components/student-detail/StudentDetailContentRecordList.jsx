@@ -8,6 +8,7 @@ import LinearProgress from '../../../../core/layout/LinearProgress';
 import Tag from '../../../../core/layout/Tag';
 import Icon from '../../../../core/layout/Icon';
 import Button from '../../../../core/form/Button';
+import {browserHistory} from 'react-router';
 
 const AbilityProgressColumn = (value, label) => value !== undefined && (
   <div
@@ -231,12 +232,25 @@ const StudentDetailContentRecordList = props => (
         label: 'Actions',
         path: 'action',
         width: '85px',
-        render: (value, row) => (!row.children && !row.docType && !row.studentMasteryTest) && (
-          <Button
-            icon="bars"
-            onClick={() => props.onDetailUnitResult(row.id)}
-          />
-        ),
+        render: (value, row) => {
+          if (row.docType === 'UNIT') {
+            return (
+              <Button
+                icon="eye"
+                onClick={() => browserHistory.push(`/contents/${row.id}/details`)}
+              />
+            );
+          }
+          if (!row.children && !row.docType && !row.studentMasteryTest) {
+            return (
+              <Button
+                icon="bars"
+                onClick={() => props.onDetailUnitResult(row.id)}
+              />
+            );
+          }
+          return null;
+        },
       },
     ]}
     rows={props.contents}

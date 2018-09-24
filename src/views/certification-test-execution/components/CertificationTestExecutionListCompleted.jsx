@@ -41,7 +41,7 @@ const CertificationTestExecutionListCompleted = props => (
         render: (cell, row) => <ImagePreview src={row.document} />,
       },
       {
-        label: 'Reviewed At',
+        label: 'Corrected At',
         path: 'reviewedAt',
         render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
       },
