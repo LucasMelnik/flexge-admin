@@ -4,6 +4,7 @@ import round from 'lodash/round';
 import Table from '../../../../core/form/Table';
 import LinearProgress from '../../../../core/layout/LinearProgress';
 import Tag from '../../../../core/layout/Tag';
+import {formatTimeFromSeconds} from '../../../../core/util';
 
 const StudentDetailAnalyticsAcademicPerformanceHistory = props => (
   <Table
@@ -20,6 +21,12 @@ const StudentDetailAnalyticsAcademicPerformanceHistory = props => (
         label: '% complete',
         path: 'coursePercentage',
         render: value => <LinearProgress value={round(value * 100, 1)} />,
+      },
+      {
+        label: 'Studied time',
+        path: 'studiedTime',
+        align: 'center',
+        render: value => formatTimeFromSeconds(value, 'HH:mm'),
       },
       {
         label: 'Average Unit Score',
@@ -50,6 +57,7 @@ const StudentDetailAnalyticsAcademicPerformanceHistory = props => (
       {
         label: 'Average Mastery Test Score',
         path: 'averageMasteryTestScore',
+        align: 'center',
         render: value => value && (
           <Tag
             color={value >= 85 ? 'green' : (value < 85 && value >= 75) ? 'orange' : 'red'}

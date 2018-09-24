@@ -13,7 +13,8 @@ class StudentDetailDateRecordListContainer extends Component {
   };
 
   componentDidMount() {
-    StudentRecordDetailService.loadByDates(this.props.studentId);
+    StudentRecordDetailService.init(this.props.studentId);
+    StudentRecordDetailService.loadByDates();
   }
 
   render() {
@@ -22,6 +23,9 @@ class StudentDetailDateRecordListContainer extends Component {
         contents={toJS(StudentRecordDetailService.contents)}
         fetching={StudentRecordDetailService.fetchDates.fetching}
         onDetailUnitResult={StudentRecordDetailUnitResultDialogService.handleShow}
+        onChange={StudentRecordDetailService.form.setValue}
+        onFilter={StudentRecordDetailService.loadByDates}
+        filterValues={StudentRecordDetailService.form.getValues()}
       />
     );
   }

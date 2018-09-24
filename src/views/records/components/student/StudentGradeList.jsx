@@ -16,14 +16,20 @@ const StudentGradeList = props => (
   <Table
     rows={props.students}
     fetching={props.fetching}
+    scroll={{
+      x: (props.evaluationPeriods.length * 310) + 250,
+    }}
     columns={[
       {
         label: 'Student',
         path: 'name',
+        fixed: 'left',
+        width: 250,
       },
       ...props.evaluationPeriods.map(evaluation => ({
         label: `${moment(evaluation.start).format('DD/MM/YY')} - ${moment(evaluation.end).format('DD/MM/YY')}`,
         path: `grade_${evaluation.id}`,
+        width: 310,
         render: (cell, row) => {
           const periodGrade = row.grades.find(grade => (grade.evaluationPeriod.id || grade.evaluationPeriod) === evaluation.id);
           if (periodGrade) {
@@ -34,7 +40,14 @@ const StudentGradeList = props => (
                 ) : (
                   <div>SQ: N/A</div>
                 )}
-                <div>Hours: {periodGrade.hoursGrade} <small>(Studied Hours: {moment.duration(periodGrade.hoursStudied, 'hours').format('hh:mm', { trim: false })})</small></div>
+                <div>
+                  Hours: {periodGrade.hoursGrade}{' '}
+                  <small>
+                    (Studied: {moment.duration(periodGrade.hoursStudied, 'hours').format('hh:mm', { trim: false })}
+                      {' '}
+                      Required: {moment.duration(periodGrade.hoursRequired, 'hours').format('hh:mm', { trim: false })})
+                  </small>
+                </div>
                 <div>Final grade: {getFinalGrade(periodGrade, row.schoolClass.school) !== null ? getFinalGrade(periodGrade, row.schoolClass.school) : 'Awaiting SQ Score'}</div>
                 {periodGrade.finalGrade !== null && (
                   <div>
