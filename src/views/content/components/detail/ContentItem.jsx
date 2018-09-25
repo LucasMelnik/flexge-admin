@@ -31,6 +31,7 @@ const ContentItem = props => (
           alt={props.item.text}
           style={{
             margin: '0  auto',
+            height: 250,
           }}
         />
         <Separator size="md" />

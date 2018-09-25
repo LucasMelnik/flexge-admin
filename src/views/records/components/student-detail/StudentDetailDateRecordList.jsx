@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Tooltip } from 'antd';
+import {Link} from 'react-router';
+import {Tooltip} from 'antd';
 import moment from 'moment';
 import round from 'lodash/round';
 import get from 'lodash/get';
@@ -10,7 +11,6 @@ import Button from '../../../../core/form/Button';
 import Icon from '../../../../core/layout/Icon';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import StudentDetailDateRecordListFilter from './StudentDetailDateRecordListFilter';
-import {browserHistory} from 'react-router';
 
 const StudentDetailDateRecordList = props => (
   <div>
@@ -68,7 +68,14 @@ const StudentDetailDateRecordList = props => (
           label: 'Unit',
           render: (cell, row) => {
             if (row.unit) {
-              return row.unit.name;
+              return (
+                <Link
+                  target="_blank"
+                  to={`/contents/${row.unit.id}/details`}
+                >
+                  {row.unit.name}
+                </Link>
+              );
             } else if (row.masteryTest) {
               return `${row.masteryTest.modulePercentageToActive}% Module`;
             }
@@ -189,19 +196,13 @@ const StudentDetailDateRecordList = props => (
         {
           label: 'Actions',
           path: 'action',
-          width: '85px',
+          width: '75px',
+          align: 'center',
           render: (value, row) => (!row.children && !row.docType && row.type !== 'MASTERY_TEST') && (
-            <div>
-              <Button
-                icon="eye"
-                onClick={() => browserHistory.push(`/contents/${row.id}/details`)}
-              />
-              {' '}
-              <Button
-                icon="bars"
-                onClick={() => props.onDetailUnitResult(row.id)}
-              />
-            </div>
+            <Button
+              icon="bars"
+              onClick={() => props.onDetailUnitResult(row.id)}
+            />
           ),
         },
       ]}

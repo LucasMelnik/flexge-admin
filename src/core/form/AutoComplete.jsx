@@ -10,15 +10,19 @@ export default class AutoComplete extends Component {
     onSelect: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
+    fetching: PropTypes.bool,
     placeholder: PropTypes.string,
     label: PropTypes.string,
+    errorText: PropTypes.string,
     labelPath: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
     placeholder: '',
     label: '',
+    errorText: null,
     disabled: false,
+    fetching: false,
   };
 
   renderOptions = item => (
@@ -37,6 +41,9 @@ export default class AutoComplete extends Component {
       <Form.Item
         colon={false}
         label={this.props.label}
+        help={this.props.errorText}
+        hasFeedback={this.props.fetching}
+        validateStatus={(this.props.fetching && 'validating') || (this.props.errorText && 'error')}
       >
         <AntAutoComplete
           allowClear

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
+import get from 'lodash/get';
 import Card from '../../../../core/layout/Card';
 import Breadcrumb from '../../../../core/layout/Breadcrumb';
 import ContentItemListContainer from './ContentItemListContainer';
@@ -18,7 +19,8 @@ const ContentDetailScene = props => (
       ]}
     />
     <Card
-      title="Content Details"
+      title={get(props.unit, 'name', '')}
+      loading={props.fetching}
       actions={
         <div
           style={{
@@ -37,15 +39,19 @@ const ContentDetailScene = props => (
         </div>
       }
     >
-      <ContentItemListContainer contentId={props.params.contentId} />
+      {get(props.unit, 'id', false) && (
+        <ContentItemListContainer contentId={get(props.unit, 'id', '')} />
+      )}
     </Card>
   </div>
 );
 
 ContentDetailScene.propTypes = {
-  params: PropTypes.shape({
-    contentId: PropTypes.string,
+  unit: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
   }).isRequired,
+  fetching: PropTypes.bool.isRequired,
 };
 
 export default ContentDetailScene;

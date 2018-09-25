@@ -8,7 +8,7 @@ import LinearProgress from '../../../../core/layout/LinearProgress';
 import Tag from '../../../../core/layout/Tag';
 import Icon from '../../../../core/layout/Icon';
 import Button from '../../../../core/form/Button';
-import {browserHistory} from 'react-router';
+import {Link} from 'react-router';
 
 const AbilityProgressColumn = (value, label) => value !== undefined && (
   <div
@@ -56,7 +56,14 @@ const StudentDetailContentRecordList = props => (
           if (row.docType === 'MODULE') {
             return <b style={{ fontSize: 14 }}>{row.name}</b>;
           } else if (row.docType === 'UNIT') {
-            return <b>{row.name}</b>;
+            return (
+              <Link
+                target="_blank"
+                to={`/contents/${row.id}/details`}
+              >
+                <b>{row.name}</b>
+              </Link>
+            );
           } else if (row.docType === 'MASTERY') {
             return <span><Icon name="file-text" />{' '}<b>Mastery Test for {row.modulePercentageToActive}%</b></span>;
           }
@@ -231,16 +238,9 @@ const StudentDetailContentRecordList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: '85px',
+        width: '75px',
+        align: 'center',
         render: (value, row) => {
-          if (row.docType === 'UNIT') {
-            return (
-              <Button
-                icon="eye"
-                onClick={() => browserHistory.push(`/contents/${row.id}/details`)}
-              />
-            );
-          }
           if (!row.children && !row.docType && !row.studentMasteryTest) {
             return (
               <Button

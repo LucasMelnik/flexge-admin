@@ -2,6 +2,8 @@ import { action, extendObservable } from 'mobx';
 import { orderBy, throttle } from 'lodash';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
+import NotificationService from '../../../core/services/NotificationService';
+import {isRequired} from '../../../core/validations';
 
 class ContentListService {
   fetch = new FetchService();
@@ -15,6 +17,10 @@ class ContentListService {
       modules: [],
       units: [],
     });
+    this.form.validations = {
+      module: [(value, allValues) => !allValues.unit && isRequired(value)],
+      unit: [(value, allValues) => !allValues.module && isRequired(value)],
+    };
   }
 
   init = action(() => {
@@ -24,6 +30,11 @@ class ContentListService {
   });
 
   load = action(() => {
+    this.form.submitted = true;
+    if (this.form.errors) {
+      NotificationService.addNotification('Please select a Module or Unit', 'error');
+      return false;
+    }
     this.fetch.fetch({
       url: '/reports/approved-content',
       query: {
@@ -35,6 +46,7 @@ class ContentListService {
         },
       },
     }).then(() => {
+      this.form.submitted = false;
       if (this.fetch.data) {
         this.contents = orderBy(this.fetch.data, ['course', 'group', 'order'], ['asc', 'asc', 'asc']);
       } else {
@@ -44,7 +56,7 @@ class ContentListService {
   });
 
   loadModules = throttle(action(() => {
-    if (this.form.getValue('moduleFilter').length < 3) {
+    if (this.form.getValue('moduleFilter').trim().length < 3) {
       return;
     }
 
@@ -66,7 +78,7 @@ class ContentListService {
   }), 1000);
 
   loadUnits = throttle(action(() => {
-    if (this.form.getValue('unitFilter').length < 3) {
+    if (this.form.getValue('unitFilter').trim().length < 3) {
       return;
     }
 

@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import { Link } from 'react-router';
 import round from 'lodash/round';
 import Table from '../../../../core/form/Table';
 import Tag from '../../../../core/layout/Tag';
-import Button from '../../../../core/form/Button';
 
 const StudiedGrammarList = props => (
   <Table
@@ -19,7 +18,7 @@ const StudiedGrammarList = props => (
         render: (value, row) => ({
           children: row.children ? row.name : row.unit.module.course.name,
           props: {
-            colSpan: row.children ? 3 : 1,
+            colSpan: row.children ? 4 : 1,
           },
         }),
       },
@@ -37,9 +36,27 @@ const StudiedGrammarList = props => (
         label: '',
         path: 'unit.name',
         render: (value, row) => ({
-          children: row.children ? '' : row.unit.name,
+          children: row.children ? '' : (
+            <Link
+              target="_blank"
+              to={`/contents/${row.unit.id}/details`}
+            >
+              {row.unit.name}
+            </Link>
+          ),
           props: {
             colSpan: row.children ? 0 : 1,
+          },
+        }),
+      },
+      {
+        label: '',
+        path: 'item.text',
+        width: '40%',
+        render: (value, row) => ({
+          children: row.children ? '' : row.item.text,
+          props: {
+            colSpan: row.children ? 0 : 4,
           },
         }),
       },
@@ -52,7 +69,7 @@ const StudiedGrammarList = props => (
         render: (value, row) => ({
           children: row.children ? row.total : row.item.text,
           props: {
-            colSpan: row.children ? 1 : 2,
+            colSpan: row.children ? 1 : 0,
           },
         }),
       },
@@ -76,10 +93,11 @@ const StudiedGrammarList = props => (
         sort: true,
         width: 100,
         render: (value, row) => {
+          let content = null;
           if (row.children) {
             const percentage = round((row.errorCount / row.total) * 100, 2);
             if (percentage >= 25) {
-              return (
+              content = (
                 <Tag color="red">
                   {percentage}%
                 </Tag>
@@ -87,12 +105,12 @@ const StudiedGrammarList = props => (
             }
             return `${percentage}%`;
           }
-          return (
-            <Button
-              icon="eye"
-              onClick={() => browserHistory.push(`/contents/${row.unit.id}/details`)}
-            />
-          );
+          return {
+            children: content,
+            props: {
+              colSpan: row.children ? 1 : 0,
+            },
+          };
         },
       },
     ]}
