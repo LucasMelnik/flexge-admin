@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactGA from 'react-ga';
-import { browserHistory, IndexRoute, Route, Router } from 'react-router';
+import {browserHistory, IndexRoute, Route, Router} from 'react-router';
 
 import LoginScene from './views/login/components/LoginScene';
 import MainScene from './views/main/components/MainScene';
@@ -27,7 +27,8 @@ import MasteryTestFormSceneContainer from './views/mastery-test/components/Maste
 import UnitFormSceneContainer from './views/module/components/unit/UnitFormSceneContainer';
 import UnitItemListSceneContainer from './views/module/components/unit/unit-item/UnitItemListSceneContainer';
 import UnitItemFormSceneContainer from './views/module/components/unit/unit-item/UnitItemFormSceneContainer';
-import UnitReviewItemListSceneContainer from './views/module/components/unit/unit-item/UnitReviewItemListSceneContainer';
+import UnitReviewItemListSceneContainer
+  from './views/module/components/unit/unit-item/UnitReviewItemListSceneContainer';
 
 import ReviewListSceneContainer from './views/unit-review/components/ReviewListSceneContainer';
 import ReviewFormSceneContainer from './views/unit-review/components/ReviewFormSceneContainer';
@@ -57,7 +58,8 @@ import AchievementFormScene from './views/achievement/components/AchievementForm
 import FilterRecordScene from './views/records/components/FilterRecordScene';
 import SchoolClassRecordSceneContainer from './views/records/components/school-class/SchoolClassRecordSceneContainer';
 import StudentRecordSceneContainer from './views/records/components/student/StudentRecordSceneContainer';
-import StudentDetailRecordSceneContainer from './views/records/components/student-detail/StudentDetailRecordSceneContainer';
+import StudentDetailRecordSceneContainer
+  from './views/records/components/student-detail/StudentDetailRecordSceneContainer';
 import UnitImageRecordScene from './views/reports/components/unit-image/UnitImageRecordScene';
 import UnitItemErrorRecordScene from './views/reports/components/unit-error/UnitItemErrorRecordScene';
 import ItemAudioListScene from './views/item-audio/components/ItemAudioListScene';
@@ -69,33 +71,43 @@ import CompanyUserFormScene from './views/user/components/CompanyUserFormScene';
 import DistributorUserListSceneContainer from './views/user/components/DistributorUserListSceneContainer';
 import DistributorUserFormScene from './views/user/components/DistributorUserFormScene';
 import StudentListScene from './views/student/components/StudentListScene';
-import CertificationTestExecutionListScene from './views/certification-test-execution/components/CertificationTestExecutionListScene';
+import CertificationTestExecutionListScene
+  from './views/certification-test-execution/components/CertificationTestExecutionListScene';
 import RankingListScene from './views/ranking/components/RankingListScene';
-import SchoolGradeConfigFormSceneContainer from './views/school-grade-config/components/SchoolGradeConfigFormSceneContainer';
+import SchoolGradeConfigFormSceneContainer
+  from './views/school-grade-config/components/SchoolGradeConfigFormSceneContainer';
 import SchoolClassListSceneContainer from './views/school-class/components/SchoolClassListSceneContainer';
 import ImportStudentsFormScene from './views/import-students/components/ImportStudentsFormScene';
 import ReactivateStudentListScene from './views/reactivate-student/components/ReactivateStudentListScene';
 import ReactivateStudentFormScene from './views/reactivate-student/components/ReactivateStudentFormScene';
-import CertificationTestRegisterListScene from './views/certification-test-register/components/CertificationTestRegisterListScene';
-import CertificationTestRegisterFormScene from './views/certification-test-register/components/CertificationTestRegisterFormScene';
-import CertificationTestExecutionFormScene from './views/certification-test-execution/components/CertificationTestExecutionFormScene';
-import CertificationTestExecutionDetailScene from './views/certification-test-execution/components/CertificationTestExecutionDetailScene';
+import CertificationTestRegisterListScene
+  from './views/certification-test-register/components/CertificationTestRegisterListScene';
+import CertificationTestRegisterFormScene
+  from './views/certification-test-register/components/CertificationTestRegisterFormScene';
+import CertificationTestExecutionFormScene
+  from './views/certification-test-execution/components/CertificationTestExecutionFormScene';
+import CertificationTestExecutionDetailScene
+  from './views/certification-test-execution/components/CertificationTestExecutionDetailScene';
 import EmailConfigFormSceneContainer from './views/email-config/components/EmailConfigFormSceneContainer';
-import UnitItemExecutionStatsListScene from './views/reports/components/unit-execution-stats/UnitItemExecutionStatsListScene';
+import UnitItemExecutionStatsListScene
+  from './views/reports/components/unit-execution-stats/UnitItemExecutionStatsListScene';
 import ItemByWordsListScene from './views/reports/components/item-by-words/ItemByWordsListScene';
 import EvaluationTemplateListScene from './views/evaluation-template/components/EvaluationTemplateListScene';
 import EvaluationTemplateFormScene from './views/evaluation-template/components/EvaluationTemplateFormScene';
 import UsageStatsListScene from './views/usage-stats/components/UsageStatsListScene';
 import StudentAchievementsListScene from './views/student-achievements/components/StudentAchievementsListScene';
-import UnitAverageExecutionTimeListScene from './views/reports/components/unit-average-execution-time/UnitAverageExecutionTimeListScene';
+import UnitAverageExecutionTimeListScene
+  from './views/reports/components/unit-average-execution-time/UnitAverageExecutionTimeListScene';
 import MessageListScene from './views/message/components/MessageListScene';
 import MessageFormScene from './views/message/components/MessageFormScene';
 import MessageChatSceneContainer from './views/message/components/MessageChatSceneContainer';
 import ProfileFormScene from './views/profile/components/ProfileFormScene';
-import StudentCloseToFinishCourseListScene from './views/reports/components/student-close-to-finish-course/StudentCloseToFinishCourseListScene';
-import FinishedStudentCourseListScene from './views/reports/components/finished-student-course/FinishedStudentCourseListScene';
+import StudentCloseToFinishCourseListScene
+  from './views/reports/components/student-close-to-finish-course/StudentCloseToFinishCourseListScene';
+import FinishedStudentCourseListScene
+  from './views/reports/components/finished-student-course/FinishedStudentCourseListScene';
 import ContentListScene from './views/content/components/ContentListScene';
-import ContentDetailScene from './views/content/components/detail/ContentDetailScene';
+import ContentDetailSceneContainer from './views/content/components/detail/ContentDetailSceneContainer';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -238,7 +250,7 @@ const Routes = () => (
       <Route path="student-close-to-finish-course" component={StudentCloseToFinishCourseListScene} />
       <Route path="finished-courses" component={FinishedStudentCourseListScene} />
       <Route path="contents" component={ContentListScene} />
-      <Route path="contents/:contentId/details" component={ContentDetailScene} />
+      <Route path="contents/:contentId/details" component={ContentDetailSceneContainer} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

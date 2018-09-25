@@ -222,6 +222,7 @@ const MainScene = props => (
                 link: '/modules',
                 group: 'Content',
                 icon: 'book',
+                allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
               },
               {
                 label: 'Review',
@@ -229,6 +230,7 @@ const MainScene = props => (
                 link: '/reviews',
                 group: 'Content',
                 icon: 'eye-o',
+                allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
               },
               {
                 label: 'Approved Images Records',

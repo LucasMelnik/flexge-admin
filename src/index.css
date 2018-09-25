@@ -147,3 +147,7 @@ h1, h2, h3, h4, h5 {
   color: #cecece;
   font-size: 36px;
 }
+
+.selectable-table {
+  cursor: pointer;
+}

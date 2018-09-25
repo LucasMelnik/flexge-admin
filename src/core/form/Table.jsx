@@ -36,7 +36,7 @@ const Table = props => (
         render: column.render,
         sorter: column.sort ? (a, b) => sort(a, b, column.path) : null,
         defaultSortOrder: column.defaultSortOrder,
-        className: column.className,
+        className: `${column.className || ''} ${props.selectable ? 'selectable-table' : ''}`,
         onCellClick: props.selectable && column.path !== 'action' ? row => props.onSelect(row) : null,
         align: column.align,
       }))}

@@ -35,7 +35,7 @@ const GrammarNeedsList = props => (
     ]}
     rows={props.grammars}
     locale={{
-      emptyText: 'No grammar needs for this student',
+      emptyText: 'No grammar needs found',
     }}
   />
 );

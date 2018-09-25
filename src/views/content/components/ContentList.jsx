@@ -26,12 +26,6 @@ const ContentList = props => (
           sort: true,
           width: 110,
         },
-        // {
-        //   label: 'Unit Order',
-        //   path: 'order',
-        //   sort: true,
-        //   width: 110,
-        // },
         {
           label: 'Unit',
           path: 'name',
@@ -72,7 +66,7 @@ const ContentList = props => (
     ]}
     rows={props.modules}
     selectable
-    onSelect={row => browserHistory.push(`/contents/${row.id}/details`)}
+    onSelect={row => window.open(`/contents/${row.id}/details`, '_blank')}
   />
 );
 

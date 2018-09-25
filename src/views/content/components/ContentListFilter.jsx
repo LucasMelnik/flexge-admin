@@ -13,6 +13,7 @@ const ContentListFilter = props => (
         disabled={props.fetching}
         label="Module"
         value={get(props.values, 'module', get(props.values, 'moduleFilter'))}
+        errorText={get(props.errors, 'module', null)}
         labelPath="name"
         onChange={(value) => {
           props.onChange('moduleFilter', value);
@@ -21,6 +22,7 @@ const ContentListFilter = props => (
         }}
         onSelect={value => props.onChange('module', value)}
         dataSource={props.modules}
+        fetching={props.fetchingModules}
         placeholder="Type to find a module"
       />
     </Column>
@@ -28,6 +30,7 @@ const ContentListFilter = props => (
       <AutoComplete
         disabled={props.fetching}
         label="Unit"
+        errorText={get(props.errors, 'unit', null)}
         value={get(props.values, 'unit', get(props.values, 'unitFilter'))}
         labelPath="name"
         onChange={(value) => {
@@ -37,6 +40,7 @@ const ContentListFilter = props => (
         }}
         onSelect={value => props.onChange('unit', value)}
         dataSource={props.units}
+        fetching={props.fetchingUnits}
         placeholder="Type to find a unit"
       />
     </Column>
@@ -53,8 +57,11 @@ const ContentListFilter = props => (
 
 ContentListFilter.propTypes = {
   values: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   fetching: PropTypes.bool.isRequired,
+  fetchingModules: PropTypes.bool.isRequired,
+  fetchingUnits: PropTypes.bool.isRequired,
   onSearch: PropTypes.func.isRequired,
   onModuleSearch: PropTypes.func.isRequired,
   modules: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
