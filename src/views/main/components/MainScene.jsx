@@ -308,6 +308,7 @@ const MainScene = props => (
             key: 'academic',
             title: 'Academic',
             icon: 'folder-open',
+            allowedFor: ['TEACHER', 'SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER'],
             items: [
               {
                 label: 'Achievements',
@@ -339,6 +340,7 @@ const MainScene = props => (
             key: 'ranking',
             title: 'Ranking',
             icon: 'trophy',
+            allowedFor: ['TEACHER', 'SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER'],
             items: [
               {
                 label: 'Students',
@@ -406,6 +408,7 @@ const MainScene = props => (
             key: 'messages',
             link: '/messages',
             icon: 'message',
+            allowedFor: ['TEACHER', 'SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER'],
             title: (
               <UnReadeMessageCountContainer>
                 <span style={{ color: 'hsla(0,0%,100%,.65)' }}>Messages</span>
