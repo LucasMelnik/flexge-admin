@@ -108,6 +108,10 @@ import FinishedStudentCourseListScene
   from './views/reports/components/finished-student-course/FinishedStudentCourseListScene';
 import ContentListScene from './views/content/components/ContentListScene';
 import ContentDetailSceneContainer from './views/content/components/detail/ContentDetailSceneContainer';
+import CountryListScene from './views/country/components/CountryListScene';
+import CountryFormScene from './views/country/components/CountryFormScene';
+import StateListScene from './views/state/components/StateListScene';
+import StateFormScene from './views/state/components/StateFormScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -207,6 +211,12 @@ const Routes = () => (
       <Route path="characters" component={CharacterListScene} />
       <Route path="characters/new" component={CharacterFormScene} />
       <Route path="characters/:characterId" component={CharacterFormScene} />
+      <Route path="countries" component={CountryListScene} />
+      <Route path="countries/new" component={CountryFormScene} />
+      <Route path="countries/:countryId" component={CountryFormScene} />
+      <Route path="states" component={StateListScene} />
+      <Route path="states/new" component={StateFormScene} />
+      <Route path="states/:stateId" component={StateFormScene} />
       <Route path="regions" component={RegionListScene} />
       <Route path="regions/new" component={RegionFormScene} />
       <Route path="regions/:regionId" component={RegionFormScene} />

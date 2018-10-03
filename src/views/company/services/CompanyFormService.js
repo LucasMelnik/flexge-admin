@@ -17,7 +17,7 @@ export default class CompanyFormService {
       name: [isRequired],
       state: [isRequired],
       distributor: [isRequired],
-      cnpj: [isRequired, isCNPJ],
+      cnpj: [isRequired],
     };
   }
 
@@ -53,6 +53,11 @@ export default class CompanyFormService {
 
   handleSubmit = action(() => {
     this.form.submitted = true;
+    if (this.form.getValue('country') === '5a01ff39898e1571b5d5172b') {
+      this.form.validations.cnpj.push(isCNPJ);
+    } else {
+      this.form.validations.cnpj = [isRequired];
+    }
     if (this.form.errors) {
       NotificationService.addNotification('Fill the required fields', 'error');
       return;
@@ -63,13 +68,11 @@ export default class CompanyFormService {
       url: companyId ? `/companies/${companyId}` : '/companies',
       body: {
         ...this.form.getValues(),
-        state: this.form.getValue('state'),
       },
     }).then(() => {
       if (this.submit.data) {
         const company = this.submit.data;
         this.companyId = company.id;
-        this.form.reset();
         if (company.contractStart) {
           company.contractStart = new Date(company.contractStart);
         }
@@ -77,11 +80,12 @@ export default class CompanyFormService {
           company.contractEnd = new Date(company.contractEnd);
         }
         this.form.setInitialValues(company);
+        this.form.reset();
 
         NotificationService.addNotification(`Company ${companyId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
-        NotificationService.addNotification( `Error ${companyId ? 'updating' : 'creating'} company.`, 'error');
+        NotificationService.addNotification(`Error ${companyId ? 'updating' : 'creating'} company.`, 'error');
       }
     });
   });

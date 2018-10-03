@@ -36,6 +36,7 @@ export default class SchoolFormService {
           const data = {
             ...this.fetch.data,
             company: this.fetch.data.company.id,
+            country: this.fetch.data.company.country,
             modulePointRelevance: this.fetch.data.modulePointRelevance || 1,
           };
           this.form.setInitialValues(data);
