@@ -4,7 +4,6 @@ import get from 'lodash/get';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
-import Select from '../../../core/form/Select';
 import DateInput from '../../../core/form/DateInput';
 import FormButtons from '../../../core/form/FormButtons';
 import MaskInput from '../../../core/form/MaskInput';
@@ -50,14 +49,72 @@ const CompanyForm = props => (
       </PermissionValidator>
     </Row>
     <Row>
-      <Column size={4}>
-        <TextInput
+      <Column size={3}>
+        <FetchSelect
+          required
+          url="countries"
           disabled={props.submitting}
-          label="CNPJ"
-          value={get(props.values, 'cnpj', '')}
-          onChange={value => props.onChange('cnpj', value)}
-          errorText={get(props.errors, 'cnpj', '')}
+          label="Country"
+          value={get(props.values, 'country', '')}
+          onChange={country => props.onChange('country', country)}
+          errorText={get(props.errors, 'country', '')}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
         />
+      </Column>
+      <Column size={3}>
+        <FetchSelect
+          required
+          url={`states?country=${get(props.values, 'country', '')}`}
+          disabled={props.submitting || !get(props.values, 'country', false)}
+          label="State"
+          value={get(props.values, 'state', '')}
+          onChange={state => props.onChange('state', state)}
+          errorText={get(props.errors, 'state', '')}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
+      <Column size={6}>
+        <TextInput
+          floatingLabel
+          fullWidth
+          disabled={props.submitting}
+          label="City"
+          value={get(props.values, 'city', '')}
+          onChange={value => props.onChange('city', value)}
+          errorText={get(props.errors, 'city', '')}
+        />
+      </Column>
+    </Row>
+    <Row>
+      <Column size={4}>
+        {props.values.country === '5a01ff39898e1571b5d5172b' ? ( // Brazil
+          <MaskInput
+            disabled={props.submitting}
+            label="CNPJ"
+            value={get(props.values, 'cnpj', '')}
+            onChange={value => props.onChange('cnpj', value)}
+            errorText={get(props.errors, 'cnpj', '')}
+            delimiters={['.', '.', '/', '-']}
+            blocks={[2, 3, 3, 4, 2]}
+            numericOnly
+            required
+          />
+        ) : (
+          <TextInput
+            required
+            disabled={props.submitting}
+            label="Company Document Number"
+            value={get(props.values, 'cnpj', '')}
+            onChange={value => props.onChange('cnpj', value)}
+            errorText={get(props.errors, 'cnpj', '')}
+          />
+        )}
       </Column>
       <Column size={6}>
         <TextInput
@@ -77,46 +134,6 @@ const CompanyForm = props => (
           errorText={get(props.errors, 'foundationYear', '')}
           blocks={[4]}
           numericOnly
-        />
-      </Column>
-    </Row>
-    <Row>
-      <Column size={3}>
-        <FetchSelect
-          url="countries"
-          disabled={props.submitting}
-          label="Country"
-          value={get(props.values, 'country', '')}
-          onChange={country => props.onChange('country', country)}
-          errorText={get(props.errors, 'country', '')}
-          resultTransformer={{
-            text: 'name',
-            value: 'id',
-          }}
-        />
-      </Column>
-      {(get(props.values, 'country', '') === '5a01ff39898e1571b5d5172b') && (
-        <Column size={3}>
-          <Select
-            disabled={props.submitting}
-            label="State"
-            value={get(props.values, 'state', '')}
-            onChange={value => props.onChange('state', value)}
-            errorText={get(props.errors, 'state', '')}
-            options={props.states}
-            required
-          />
-        </Column>
-      )}
-      <Column size={6}>
-        <TextInput
-          floatingLabel
-          fullWidth
-          disabled={props.submitting}
-          label="City"
-          value={get(props.values, 'city', '')}
-          onChange={value => props.onChange('city', value)}
-          errorText={get(props.errors, 'city', '')}
         />
       </Column>
     </Row>
@@ -244,7 +261,6 @@ CompanyForm.propTypes = {
   submitting: PropTypes.bool,
   disableDistributor: PropTypes.bool,
   isDirty: PropTypes.func,
-  states: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 CompanyForm.defaultProps = {

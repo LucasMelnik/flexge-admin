@@ -18,6 +18,7 @@ const Select = props => (
       style={{
         width: '100%',
       }}
+      showSearch={props.showSearch}
       placeholder={props.placeholder}
       disabled={props.disabled}
       value={props.value || undefined}
@@ -53,6 +54,7 @@ Select.propTypes = {
   disabled: PropTypes.bool,
   required: PropTypes.bool,
   multiple: PropTypes.bool,
+  showSearch: PropTypes.bool,
   placeholder: PropTypes.string,
   errorText: PropTypes.string,
   filterOption: PropTypes.func,
@@ -63,6 +65,7 @@ Select.defaultProps = {
   disabled: false,
   required: false,
   multiple: false,
+  showSearch: false,
   value: null,
   errorText: null,
   filterOption: null,

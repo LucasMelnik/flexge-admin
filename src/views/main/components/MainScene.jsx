@@ -55,6 +55,20 @@ const MainScene = props => (
                 key: 'courses',
               },
               {
+                label: 'Countries',
+                link: '/countries',
+                group: 'Admin Register',
+                icon: 'compass',
+                key: 'countries',
+              },
+              {
+                label: 'States',
+                link: '/states',
+                group: 'Admin Register',
+                icon: 'compass',
+                key: 'states',
+              },
+              {
                 label: 'Regions',
                 link: '/regions',
                 group: 'Admin Register',

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
 
-const DistributorList = props => (
+const StateList = props => (
   <Table
     fetching={props.fetching}
     columns={[
@@ -19,36 +19,32 @@ const DistributorList = props => (
         path: 'country.name',
       },
       {
-        label: 'Demo Limit',
-        path: 'demoStudentLimit',
-      },
-      {
         label: 'Actions',
         path: 'action',
         width: '105px',
-        render: (cell, row) => (
-          <div>
-            <Button
-              icon="edit"
-              onClick={() => browserHistory.push(`/distributors/${row.id}`)}
-            />
-            {' '}
-            <Button
-              icon="delete"
-              onClick={() => props.onDelete(row)}
-            />
-          </div>
-        ),
+        render: (cell, row) => {
+          return (
+            <div>
+              <Button
+                icon="delete"
+                onClick={() => props.onDelete(row)}
+              />
+              {' '}
+              <Button
+                icon="edit"
+                onClick={() => browserHistory.push(`/states/${row.id}`)}
+              />
+            </div>
+          );
+        },
       },
     ]}
-    rows={props.distributors}
-    selectable
-    onSelect={row => browserHistory.push(`/distributors/${row.id}/details`)}
+    rows={props.states}
   />
 );
 
-DistributorList.propTypes = {
-  distributors: PropTypes.arrayOf(PropTypes.shape({
+StateList.propTypes = {
+  states: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
@@ -56,4 +52,4 @@ DistributorList.propTypes = {
   onDelete: PropTypes.func.isRequired,
 };
 
-export default DistributorList;
+export default StateList;

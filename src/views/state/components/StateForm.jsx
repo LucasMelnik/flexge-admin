@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import TextInput from '../../../core/form/TextInput';
-import FormButtons from '../../../core/form/FormButtons';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
+import TextInput from '../../../core/form/TextInput';
+import FormButtons from '../../../core/form/FormButtons';
 import FetchSelect from '../../../core/form/FetchSelect';
 
-const DistributorForm = props => (
+const StateForm = props => (
   <form
     onSubmit={(event) => {
       event.preventDefault();
@@ -19,13 +19,13 @@ const DistributorForm = props => (
         <TextInput
           required
           disabled={props.submitting}
-          label="Distributor Name"
+          label="Name"
           value={get(props.values, 'name', '')}
           onChange={value => props.onChange('name', value)}
           errorText={get(props.errors, 'name', null)}
         />
       </Column>
-      <Column size={3}>
+      <Column size={6}>
         <FetchSelect
           required
           url="countries"
@@ -40,19 +40,9 @@ const DistributorForm = props => (
           }}
         />
       </Column>
-      <Column size={2}>
-        <TextInput
-          type="number"
-          disabled={props.submitting}
-          label="Demo Limit"
-          value={get(props.values, 'demoStudentLimit', '')}
-          onChange={value => props.onChange('demoStudentLimit', value)}
-          errorText={get(props.errors, 'demoStudentLimit', null)}
-        />
-      </Column>
     </Row>
     <FormButtons
-      confirmLabel={props.values.id ? 'Update Distributor' : 'Create Distributor'}
+      confirmLabel={props.values.id ? 'Update State' : 'Create State'}
       isDisabled={props.submitting || !props.isDirty()}
       isSubmitting={props.submitting}
       onReset={props.onReset}
@@ -60,7 +50,7 @@ const DistributorForm = props => (
   </form>
 );
 
-DistributorForm.propTypes = {
+StateForm.propTypes = {
   onSubmit: PropTypes.func,
   onReset: PropTypes.func,
   values: PropTypes.object,
@@ -70,7 +60,7 @@ DistributorForm.propTypes = {
   isDirty: PropTypes.func,
 };
 
-DistributorForm.defaultProps = {
+StateForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
@@ -79,4 +69,4 @@ DistributorForm.defaultProps = {
   onReset: () => false,
 };
 
-export default DistributorForm;
+export default StateForm;

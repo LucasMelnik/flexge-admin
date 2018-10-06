@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import CompanyForm from './CompanyForm';
 import CompanyFormService from '../services/CompanyFormService';
-import StateService from '../../../core/services/StateService';
 
 class CompanyFormContainer extends Component {
 
@@ -34,7 +32,6 @@ class CompanyFormContainer extends Component {
         submitting={this.companyFormService.fetch.fetching}
         error={this.companyFormService.submit.error}
         isDirty={this.companyFormService.form.isDirty}
-        states={toJS(StateService.states)}
         disableDistributor={!!this.props.currentDistributor}
       />
     );

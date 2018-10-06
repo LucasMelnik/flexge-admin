@@ -45,9 +45,9 @@ const SchoolForm = props => (
             disabled={props.submitting || props.disableCompany}
             label="Company"
             value={get(props.values, 'company', '')}
-            onChange={(companyId, company) => {
-              props.onChange('companyCountry', get(company, 'country', null));
-              props.onChange('company', companyId);
+            onChange={(company, object) => {
+              props.onChange('company', company);
+              props.onChange('country', get(object, 'country', null));
             }}
             errorText={get(props.errors, 'company', null)}
             resultTransformer={{
@@ -97,18 +97,21 @@ const SchoolForm = props => (
           }}
         />
       </Column>
-      {(get(props.values, 'companyCountry', '') === '5a01ff39898e1571b5d5172b' || props.companyCountry === '5a01ff39898e1571b5d5172b') && (
-        <Column size={2}>
-          <Select
-            disabled={props.submitting}
-            label="State"
-            value={get(props.values, 'state', '')}
-            onChange={value => props.onChange('state', value)}
-            errorText={get(props.errors, 'state', '')}
-            options={props.states}
-          />
-        </Column>
-      )}
+      <Column size={2}>
+        <FetchSelect
+          required
+          url={`states?country=${get(props.values, 'country', '')}`}
+          disabled={props.submitting || !get(props.values, 'company', false)}
+          label="State"
+          value={get(props.values, 'state', '')}
+          onChange={state => props.onChange('state', state)}
+          errorText={get(props.errors, 'state', '')}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
       <Column size={6}>
         <TextInput
           disabled={props.submitting}
