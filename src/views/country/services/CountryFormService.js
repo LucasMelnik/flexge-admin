@@ -16,6 +16,7 @@ export default class CountryFormService {
     this.form.validations = {
       name: [isRequired],
       timezone: [isRequired],
+      locale: [isRequired],
     };
   }
 

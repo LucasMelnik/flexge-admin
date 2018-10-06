@@ -27,7 +27,7 @@ const CountryForm = props => (
           errorText={get(props.errors, 'name', null)}
         />
       </Column>
-      <Column size={6}>
+      <Column size={4}>
         <Select
           required
           showSearch
@@ -40,6 +40,16 @@ const CountryForm = props => (
             label: timezone,
             value: timezone,
           }))}
+        />
+      </Column>
+      <Column size={6}>
+        <TextInput
+          required
+          disabled={props.submitting}
+          label="Locale"
+          value={get(props.values, 'locale', '')}
+          onChange={value => props.onChange('locale', value)}
+          errorText={get(props.errors, 'locale', null)}
         />
       </Column>
     </Row>
