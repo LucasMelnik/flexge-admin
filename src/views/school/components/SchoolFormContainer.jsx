@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import { toJS } from 'mobx';
 import SchoolForm from './SchoolForm';
 import SchoolFormService from '../services/SchoolFormService';
-import StateService from '../../../core/services/StateService';
 
 class SchoolFormContainer extends Component {
 
@@ -35,7 +33,6 @@ class SchoolFormContainer extends Component {
         errors={this.schoolFormService.form.errors}
         submitting={this.schoolFormService.submit.fetching}
         isDirty={this.schoolFormService.form.isDirty}
-        states={toJS(StateService.states)}
         disableCompany={!!this.props.currentCompany}
         companyCountry={this.props.companyCountry}
       />

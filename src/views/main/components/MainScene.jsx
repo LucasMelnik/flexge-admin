@@ -55,6 +55,20 @@ const MainScene = props => (
                 key: 'courses',
               },
               {
+                label: 'Countries',
+                link: '/countries',
+                group: 'Admin Register',
+                icon: 'compass',
+                key: 'countries',
+              },
+              {
+                label: 'States',
+                link: '/states',
+                group: 'Admin Register',
+                icon: 'compass',
+                key: 'states',
+              },
+              {
                 label: 'Regions',
                 link: '/regions',
                 group: 'Admin Register',
@@ -187,7 +201,6 @@ const MainScene = props => (
             key: 'content',
             title: 'Content',
             icon: 'book',
-            allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
             groups: [
               {
                 group: 'Content',
@@ -198,9 +211,17 @@ const MainScene = props => (
               },
               {
                 group: 'Tests',
+                allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
               },
             ],
             items: [
+              {
+                label: 'Search Content',
+                link: '/contents',
+                key: 'contents',
+                group: 'Content',
+                icon: 'search',
+              },
               {
                 label: 'Audio',
                 link: '/item-audios',
@@ -215,6 +236,7 @@ const MainScene = props => (
                 link: '/modules',
                 group: 'Content',
                 icon: 'book',
+                allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
               },
               {
                 label: 'Review',
@@ -222,6 +244,7 @@ const MainScene = props => (
                 link: '/reviews',
                 group: 'Content',
                 icon: 'eye-o',
+                allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
               },
               {
                 label: 'Approved Images Records',
@@ -299,6 +322,7 @@ const MainScene = props => (
             key: 'academic',
             title: 'Academic',
             icon: 'folder-open',
+            allowedFor: ['TEACHER', 'SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER'],
             items: [
               {
                 label: 'Achievements',
@@ -330,6 +354,7 @@ const MainScene = props => (
             key: 'ranking',
             title: 'Ranking',
             icon: 'trophy',
+            allowedFor: ['TEACHER', 'SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER'],
             items: [
               {
                 label: 'Students',
@@ -397,6 +422,7 @@ const MainScene = props => (
             key: 'messages',
             link: '/messages',
             icon: 'message',
+            allowedFor: ['TEACHER', 'SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER'],
             title: (
               <UnReadeMessageCountContainer>
                 <span style={{ color: 'hsla(0,0%,100%,.65)' }}>Messages</span>

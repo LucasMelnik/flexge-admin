@@ -17,6 +17,7 @@ export default class SchoolFormService {
       name: [isRequired],
       company: [isRequired],
       region: [isRequired],
+      state: [isRequired],
       modulePointRelevance: [isRequired],
     };
   }
@@ -37,7 +38,7 @@ export default class SchoolFormService {
           const data = {
             ...this.fetch.data,
             company: this.fetch.data.company.id,
-            companyCountry: this.fetch.data.company.country,
+            country: this.fetch.data.company.country,
             modulePointRelevance: this.fetch.data.modulePointRelevance || 1,
           };
           this.form.setInitialValues(data);

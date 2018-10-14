@@ -129,3 +129,25 @@ h1, h2, h3, h4, h5 {
 .ant-table {
   font-size: 13px;
 }
+
+.ant-carousel .slick-dots li button,
+.ant-carousel .slick-dots li.slick-active button {
+  background: #cecece;
+}
+
+.ant-carousel .slick-prev {
+  left: -15px;
+}
+.ant-carousel .slick-next {
+  right: 0;
+}
+
+.ant-carousel .slick-prev:before,
+.ant-carousel .slick-next:before{
+  color: #cecece;
+  font-size: 36px;
+}
+
+.selectable-table {
+  cursor: pointer;
+}

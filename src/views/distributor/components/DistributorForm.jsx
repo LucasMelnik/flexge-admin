@@ -5,6 +5,7 @@ import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
+import FetchSelect from '../../../core/form/FetchSelect';
 
 const DistributorForm = props => (
   <form
@@ -22,6 +23,21 @@ const DistributorForm = props => (
           value={get(props.values, 'name', '')}
           onChange={value => props.onChange('name', value)}
           errorText={get(props.errors, 'name', null)}
+        />
+      </Column>
+      <Column size={3}>
+        <FetchSelect
+          required
+          url="countries"
+          disabled={props.submitting}
+          label="Country"
+          value={get(props.values, 'country', '')}
+          onChange={country => props.onChange('country', country)}
+          errorText={get(props.errors, 'country', '')}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
         />
       </Column>
       <Column size={2}>

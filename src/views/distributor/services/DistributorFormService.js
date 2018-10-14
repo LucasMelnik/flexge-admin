@@ -16,6 +16,7 @@ export default class DistributorFormService {
     });
     this.form.validations = {
       name: [isRequired],
+      country: [isRequired],
     };
   }
 

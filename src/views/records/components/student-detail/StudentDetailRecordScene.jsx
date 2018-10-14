@@ -15,6 +15,7 @@ import StudentDetailContentRecordListFilterContainer from './StudentDetailConten
 import StudentDetailCurrentPerformancePanelContainer from './StudentDetailCurrentPerformancePanelContainer';
 import StudentDetailUnitResultDialogContainer from './StudentDetailUnitResultDialogContainer';
 import StudentDetailAchievementListContainer from './StudentDetailAchievementListContainer';
+import StudentStudiedGrammarListContainer from '../common/StudentStudiedGrammarListContainer';
 
 const StudentDetailRecordScene = props => (
   <div>
@@ -84,6 +85,14 @@ const StudentDetailRecordScene = props => (
                 <StudentDetailDateRecordListContainer studentId={props.studentId} />
               </Card>
             ),
+        },
+        {
+          title: 'Studied Grammars - last 60 days',
+          content: (
+            <Card>
+              <StudentStudiedGrammarListContainer studentId={props.studentId} />
+            </Card>
+          ),
         },
         {
           title: 'Achievements',

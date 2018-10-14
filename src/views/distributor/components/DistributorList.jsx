@@ -15,6 +15,10 @@ const DistributorList = props => (
         defaultSortOrder: 'ascend',
       },
       {
+        label: 'Country',
+        path: 'country.name',
+      },
+      {
         label: 'Demo Limit',
         path: 'demoStudentLimit',
       },
