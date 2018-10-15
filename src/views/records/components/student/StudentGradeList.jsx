@@ -18,6 +18,7 @@ const StudentGradeList = props => (
     fetching={props.fetching}
     scroll={{
       x: (props.evaluationPeriods.length * 310) + 250,
+      y: 'calc(100vh - 300px)'
     }}
     columns={[
       {
@@ -27,7 +28,13 @@ const StudentGradeList = props => (
         width: 250,
       },
       ...props.evaluationPeriods.map(evaluation => ({
-        label: `${moment(evaluation.start).format('DD/MM/YY')} - ${moment(evaluation.end).format('DD/MM/YY')}`,
+        label: (
+          <span>
+            <b>{evaluation.name}</b>
+            <br />
+            {moment(evaluation.start).format('DD/MM/YY')} - {moment(evaluation.end).format('DD/MM/YY')}
+          </span>
+        ),
         path: `grade_${evaluation.id}`,
         width: 310,
         render: (cell, row) => {
