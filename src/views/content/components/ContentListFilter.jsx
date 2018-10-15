@@ -16,6 +16,7 @@ const ContentListFilter = props => (
         errorText={get(props.errors, 'module', null)}
         labelPath="name"
         onChange={(value) => {
+          console.log(value)
           props.onChange('moduleFilter', value);
           props.onChange('module', undefined);
           props.onModuleSearch();
@@ -35,7 +36,7 @@ const ContentListFilter = props => (
         labelPath="name"
         onChange={(value) => {
           props.onChange('unitFilter', value);
-          props.onChange('module', undefined);
+          props.onChange('unit', undefined);
           props.onUnitSearch();
         }}
         onSelect={value => props.onChange('unit', value)}

@@ -197,10 +197,19 @@ const MainScene = props => (
             ],
           },
           {
+            label: 'Search Content',
+            link: '/contents',
+            key: 'contents',
+            group: 'Content',
+            icon: 'search',
+            allowedFor: ['TEACHER'],
+          },
+          {
             type: 'submenu',
             key: 'content',
             title: 'Content',
             icon: 'book',
+            allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
             groups: [
               {
                 group: 'Content',

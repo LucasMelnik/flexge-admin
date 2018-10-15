@@ -1,31 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Select from '../../../../core/form/Select';
+import Button from '../../../../core/form/Button';
+import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 
 const ContentDetailFilter = props => (
-  <Select
-    disabled={props.fetching}
-    value={get(props.values, 'type')}
-    onChange={(value) => {
-      props.onChange('type', value);
-      props.onFilter();
-    }}
-    options={[
-      {
-        value: 1,
-        label: 'Your Challenge',
-      },
-      {
-        value: 2,
-        label: 'First Review',
-      },
-      {
-        value: 3,
-        label: 'Second Review',
-      },
-    ]}
-  />
+  <div>
+    {props.availableTypes.find(type => type === 1) && (
+      <Button
+        label="Your Challenge/Simple Review"
+        disabled={props.fetching}
+        type={get(props.values, 'type', 0) === 1 ? 'primary' : 'default'}
+        onClick={() => {
+          props.onChange('type', 1);
+          props.onFilter();
+        }}
+      />
+    )}
+    {props.availableTypes.find(type => type === 1) && (
+      <ColumnSeparator size="xs" />
+    )}
+    {props.availableTypes.find(type => type === 2) && (
+      <Button
+        label="First Review"
+        disabled={props.fetching}
+        type={get(props.values, 'type', 0) === 2 ? 'primary' : 'default'}
+        onClick={() => {
+          props.onChange('type', 2);
+          props.onFilter();
+        }}
+      />
+    )}
+    {props.availableTypes.find(type => type === 2) && (
+      <ColumnSeparator size="xs" />
+    )}
+    {props.availableTypes.find(type => type === 3) && (
+      <Button
+        label="Second Review"
+        disabled={props.fetching}
+        type={get(props.values, 'type', 0) === 3 ? 'primary' : 'default'}
+        onClick={() => {
+          props.onChange('type', 3);
+          props.onFilter();
+        }}
+      />
+    )}
+  </div>
 );
 
 ContentDetailFilter.propTypes = {
@@ -33,6 +53,7 @@ ContentDetailFilter.propTypes = {
   onChange: PropTypes.func.isRequired,
   fetching: PropTypes.bool.isRequired,
   onFilter: PropTypes.func.isRequired,
+  availableTypes: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default ContentDetailFilter;
