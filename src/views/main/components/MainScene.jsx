@@ -197,11 +197,11 @@ const MainScene = props => (
             ],
           },
           {
-            label: 'Search Content',
-            link: '/contents',
-            key: 'contents',
-            group: 'Content',
+            title: 'Search Content',
             icon: 'search',
+            link: '/contents',
+            type: 'menu',
+            key: 'contents',
             allowedFor: ['DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
           },
           {
