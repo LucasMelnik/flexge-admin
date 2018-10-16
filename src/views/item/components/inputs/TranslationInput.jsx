@@ -19,7 +19,7 @@ const TranslationInput = props => (
       />
     </Column>
     {!props.isTestItem && (
-      <Row>
+      <div>
         <Column size={6}>
           <TextInput
             label="Translation"
@@ -40,7 +40,7 @@ const TranslationInput = props => (
             errorText={get(props.errors, 'spanishTranslation', '')}
           />
         </Column>
-      </Row>
+      </div>
     )}
   </Row>
 );
