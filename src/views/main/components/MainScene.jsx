@@ -202,7 +202,7 @@ const MainScene = props => (
             key: 'contents',
             group: 'Content',
             icon: 'search',
-            allowedFor: ['TEACHER'],
+            allowedFor: ['DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
           },
           {
             type: 'submenu',
