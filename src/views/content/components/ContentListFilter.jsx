@@ -35,7 +35,7 @@ const ContentListFilter = props => (
         labelPath="name"
         onChange={(value) => {
           props.onChange('unitFilter', value);
-          props.onChange('module', undefined);
+          props.onChange('unit', undefined);
           props.onUnitSearch();
         }}
         onSelect={value => props.onChange('unit', value)}

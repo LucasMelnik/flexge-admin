@@ -7,7 +7,11 @@ export default class ContentDetailService {
 
   constructor() {
     extendObservable(this, {
-      unit: {},
+      unit: {
+        module: {
+          course: {},
+        },
+      },
     });
   }
 
@@ -15,7 +19,12 @@ export default class ContentDetailService {
     this.fetch.fetch({
       url: `/approved-units?_id=${unitId}`,
     }).then(() => {
-      this.unit = head(this.fetch.data);
+      const unit = head(this.fetch.data);
+      this.fetch.fetch({
+        url: `/modules/${unit.module}/units/${unit.id}`,
+      }).then(() => {
+        this.unit = this.fetch.data;
+      });
     });
   });
 

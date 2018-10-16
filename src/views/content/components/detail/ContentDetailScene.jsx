@@ -19,7 +19,7 @@ const ContentDetailScene = props => (
       ]}
     />
     <Card
-      title={get(props.unit, 'name', '')}
+      title={`${get(props.unit, 'module.course.name', '')} - ${get(props.unit, 'module.name', '')} - ${get(props.unit, 'name', '')}`}
       loading={props.fetching}
       actions={
         <div
