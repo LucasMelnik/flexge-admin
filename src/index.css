@@ -34,8 +34,16 @@ html, body, #root {
   white-space: pre-wrap;
 }
 
-.ant-progress-circle-path {
+.ant-progress.ant-progress-status-active .ant-progress-inner .ant-progress-circle .ant-progress-circle-path {
   stroke: #ff972b;
+}
+
+.ant-progress.ant-progress-status-exception .ant-progress-inner .ant-progress-circle .ant-progress-circle-path {
+  stroke: #f5222d;
+}
+
+.ant-progress.ant-progress-status-success .ant-progress-inner .ant-progress-circle .ant-progress-circle-path .ant-progress-circle-path {
+  stroke: #52c41a;
 }
 
 .ant-card-head-title {
