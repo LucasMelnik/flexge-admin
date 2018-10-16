@@ -7,7 +7,7 @@ import TextInput from '../../../../core/form/TextInput';
 
 const TranslationInput = props => (
   <Row>
-    <Column size={props.isTestItem ? 12 : 6}>
+    <Column size={12}>
       <TextInput
         required
         label="Text"
@@ -19,16 +19,28 @@ const TranslationInput = props => (
       />
     </Column>
     {!props.isTestItem && (
-      <Column size={6}>
-        <TextInput
-          label="Translation"
-          fieldType="textarea"
-          disabled={props.submitting || props.disabled}
-          value={get(props.values, 'translation', '')}
-          onChange={value => props.onChange('translation', value)}
-          errorText={get(props.errors, 'translation', '')}
-        />
-      </Column>
+      <Row>
+        <Column size={6}>
+          <TextInput
+            label="Translation"
+            fieldType="textarea"
+            disabled={props.submitting || props.disabled}
+            value={get(props.values, 'translation', '')}
+            onChange={value => props.onChange('translation', value)}
+            errorText={get(props.errors, 'translation', '')}
+          />
+        </Column>
+        <Column size={6}>
+          <TextInput
+            label="Spanish Translation"
+            fieldType="textarea"
+            disabled={props.submitting || props.disabled}
+            value={get(props.values, 'spanishTranslation', '')}
+            onChange={value => props.onChange('spanishTranslation', value)}
+            errorText={get(props.errors, 'spanishTranslation', '')}
+          />
+        </Column>
+      </Row>
     )}
   </Row>
 );
