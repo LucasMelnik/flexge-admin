@@ -1,6 +1,7 @@
 import { action, extendObservable } from 'mobx';
 import moment from 'moment';
 import uniqBy from 'lodash/uniqBy';
+import orderBy from 'lodash/orderBy';
 import FetchService from '../../../core/services/FetchService';
 
 export default class StudiedGrammarListService {
@@ -21,7 +22,7 @@ export default class StudiedGrammarListService {
       if (this.fetch.data) {
         this.grammars = this.fetch.data.map(grammar => ({
           ...grammar,
-          children: uniqBy(grammar.children, unitItem => unitItem.item.id),
+          children: orderBy(uniqBy(grammar.children, unitItem => unitItem.item.id), ['unit.module.course.name', 'unit.module.name', 'unit.name'], ['asc', 'asc', 'asc']),
         }));
       } else {
         this.grammars = [];
@@ -38,7 +39,7 @@ export default class StudiedGrammarListService {
       if (this.fetch.data) {
         this.grammars = this.fetch.data.map(grammar => ({
           ...grammar,
-          children: uniqBy(grammar.children, unitItem => unitItem.item.id),
+          children: orderBy(uniqBy(grammar.children, unitItem => unitItem.item.id), ['unit.module.course.name', 'unit.module.name', 'unit.name'], ['asc', 'asc', 'asc']),
         }));
       } else {
         this.grammars = [];
