@@ -1,6 +1,8 @@
 import { action, extendObservable, computed } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import filterList from './filterList';
+import get from 'lodash/get';
+import {formatTimeFromSeconds} from '../../../core/util';
 
 class ActiveStudentsByPeriodService {
   fetch = new FetchService();
@@ -71,14 +73,27 @@ class ActiveStudentsByPeriodService {
           }, {});
         // Return total by period and total that didn't study
         const totalDidntStudy = this.totalStudents - Object.keys(activeStudentsByPeriod).reduce((acc, period) => acc + activeStudentsByPeriod[period], 0);
+        console.log(activeStudentsByPeriod)
         return [
           ...Object.keys(activeStudentsByPeriod).map(period => ({
             value: activeStudentsByPeriod[period],
             rate: (activeStudentsByPeriod[period] / this.totalStudents) * 100,
+            details: filterList(this.data, this.schoolId)
+              .reduce((schoolAcc, school) => [...schoolAcc, ...get(school, 'classes', []).reduce((acc, item) => [...acc, ...item[period]], [])], [])
+              .map(item => ({
+                ...item,
+                value: formatTimeFromSeconds(item.totalStudiedTime, 'hh:mm:ss'),
+              })),
           })),
           {
             value: totalDidntStudy,
             rate: (totalDidntStudy / this.totalStudents) * 100,
+            details: filterList(this.data, this.schoolId)
+              .reduce((schoolAcc, school) => [...schoolAcc, ...get(school, 'classes', []).reduce((acc, item) => [...acc, ...item.noStudy], [])], [])
+              .map(item => ({
+                ...item,
+                value: formatTimeFromSeconds(item.totalStudiedTime, 'hh:mm:ss'),
+              })),
           },
         ];
       }),
@@ -87,7 +102,7 @@ class ActiveStudentsByPeriodService {
 
   getdata = (classes, key) => (
     filterList(classes, this.classId).reduce((acc, schoolClass) => (
-      acc + schoolClass[key]
+      acc + schoolClass[key].length
     ), 0)
   )
 

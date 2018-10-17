@@ -1,7 +1,9 @@
 import { action, extendObservable, computed } from 'mobx';
 import reverse from 'lodash/reverse';
+import get from 'lodash/get';
 import FetchService from '../../../core/services/FetchService';
 import filterList from './filterList';
+import {formatTimeFromSeconds} from '../../../core/util';
 
 class StudiedTimeGroupService {
   fetch = new FetchService();
@@ -37,9 +39,16 @@ class StudiedTimeGroupService {
           }
           return [];
         });
-        return studentsCount.map(studentCount => ({
+
+        return studentsCount.map((studentCount, index) => ({
           value: studentCount,
           rate: (studentCount / this.total) * 100,
+          details: filterList(this.data[reverse(Object.keys(this.data))[index]], this.schoolId)
+            .reduce((schoolAcc, school) => [...schoolAcc, ...get(school, 'classes', []).reduce((acc, item) => [...acc, ...item.students], [])], [])
+            .map(item => ({
+              ...item,
+              value: formatTimeFromSeconds(item.totalStudiedTime),
+            })),
         }));
       }),
     });
