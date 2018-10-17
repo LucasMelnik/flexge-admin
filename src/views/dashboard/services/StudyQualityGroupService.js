@@ -1,7 +1,8 @@
-import { action, extendObservable, computed } from 'mobx';
+import {action, computed, extendObservable} from 'mobx';
 import isFinite from 'lodash/isFinite';
 import FetchService from '../../../core/services/FetchService';
 import filterList from './filterList';
+import get from 'lodash/get';
 
 class StudyQualityGroupService {
   fetch = new FetchService();
@@ -62,9 +63,15 @@ class StudyQualityGroupService {
           }
           return [];
         });
-        return totals.map(total => ({
+        return totals.map((total, index) => ({
           value: total,
           rate: (total / this.total) * 100,
+          details: filterList(this.data[Object.keys(this.data)[index]], this.schoolId)
+            .reduce((schoolAcc, school) => [...schoolAcc, ...get(school, 'classes', []).reduce((acc, item) => [...acc, ...item.students], [])], [])
+            .map(item => ({
+              ...item,
+              value: item.score,
+            })),
         }));
       }),
     });

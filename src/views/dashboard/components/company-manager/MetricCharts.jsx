@@ -4,11 +4,10 @@ import StudyQualityGroupChartContainer from '../common/metrics/StudyQualityGroup
 import StudiedTimeChartContainer from '../common/metrics/StudiedTimeChartContainer';
 import ActiveStudentsByPeriodChartContainer from '../common/metrics/ActiveStudentsByPeriodChartContainer';
 import EnglishLevelByPeriodChartContainer from '../common/metrics/EnglishLevelByPeriodChartContainer';
-import SemiannualEnglishLevelProgressChartContainer from '../common/metrics/SemiannualEnglishLevelProgressChartContainer';
+import SemiannualEnglishLevelProgressChartContainer
+  from '../common/metrics/SemiannualEnglishLevelProgressChartContainer';
 import StudyQualityChartContainer from '../common/metrics/StudyQualityChartContainer';
 import AverageEnglishLevelContainer from '../common/metrics/AverageEnglishLevelContainer';
-import SemiannualAverageProgressContainer from '../common/metrics/SemiannualAverageProgressContainer';
-import B2ProjectionContainer from '../common/metrics/B2ProjectionContainer';
 
 const MetricCharts = () => (
   <div>
@@ -28,22 +27,22 @@ const MetricCharts = () => (
       >
         <AverageEnglishLevelContainer />
       </div>
-      <div
-        style={{
-          width: '33%',
-          textAlign: 'center',
-        }}
-      >
-        <SemiannualAverageProgressContainer />
-      </div>
-      <div
-        style={{
-          width: '33%',
-          textAlign: 'center',
-        }}
-      >
-        <B2ProjectionContainer />
-      </div>
+      {/*<div*/}
+        {/*style={{*/}
+          {/*width: '33%',*/}
+          {/*textAlign: 'center',*/}
+        {/*}}*/}
+      {/*>*/}
+        {/*<SemiannualAverageProgressContainer />*/}
+      {/*</div>*/}
+      {/*<div*/}
+        {/*style={{*/}
+          {/*width: '33%',*/}
+          {/*textAlign: 'center',*/}
+        {/*}}*/}
+      {/*>*/}
+        {/*<B2ProjectionContainer />*/}
+      {/*</div>*/}
     </div>
     <Separator />
     <div

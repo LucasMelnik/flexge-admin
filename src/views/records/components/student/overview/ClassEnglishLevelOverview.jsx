@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ClassSemiannualAverageEnglishLevelProgressContainer from './ClassSemiannualAverageEnglishLevelProgressContainer';
-import B2ProjectionContainer from './B2ProjectionContainer';
 import ClassAverageEnglishLevelContainer from './ClassAverageEnglishLevelContainer';
 
 const ClassEnglishLevelOverview = props => (
   <div
     style={{
       display: 'flex',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
       alignItems: 'center',
       width: 630,
       margin: 'auto',
@@ -18,11 +16,11 @@ const ClassEnglishLevelOverview = props => (
       schoolId={props.schoolId}
       classId={props.classId}
     />
-    <ClassSemiannualAverageEnglishLevelProgressContainer
-      schoolId={props.schoolId}
-      classId={props.classId}
-    />
-    <B2ProjectionContainer />
+    {/*<ClassSemiannualAverageEnglishLevelProgressContainer*/}
+      {/*schoolId={props.schoolId}*/}
+      {/*classId={props.classId}*/}
+    {/*/>*/}
+    {/*<B2ProjectionContainer />*/}
   </div>
 );
 
