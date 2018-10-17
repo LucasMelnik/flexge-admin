@@ -59,34 +59,32 @@ const StudentDetailAnalyticsOverviewRecord = props => (
         </div>
       </Tag>
       <ColumnSeparator size="lg" />
-      <Tag
-        color="none"
-        style={{
-          height: 'auto',
-          padding: 10,
-          textAlign: 'center',
-        }}
-      >
-        <span>Semiannual Progress</span>
-        <br />
+      {/*<Tag*/}
+        {/*color="none"*/}
+        {/*style={{*/}
+          {/*height: 'auto',*/}
+          {/*padding: 10,*/}
+          {/*textAlign: 'center',*/}
+        {/*}}*/}
+      {/*>*/}
+        {/*<span>Semiannual Progress</span>*/}
+        {/*<br />*/}
         {/* <h1>{props.student.semiannualProgress}</h1> */}
-        <h1>-</h1>
-      </Tag>
-      <ColumnSeparator size="lg" />
-      <Tag
-        color="none"
-        style={{
-          height: 'auto',
-          padding: 10,
-          textAlign: 'center',
-        }}
-      >
-        <span>B2 Projection</span>
-        <br />
-        {/* <h1>{moment.duration(props.student.projection, 'months').format()}</h1> */}
-        <h1>-</h1>
-      </Tag>
-      <ColumnSeparator size="lg" />
+      {/*</Tag>*/}
+      {/*<ColumnSeparator size="lg" />*/}
+      {/*<Tag*/}
+        {/*color="none"*/}
+        {/*style={{*/}
+          {/*height: 'auto',*/}
+          {/*padding: 10,*/}
+          {/*textAlign: 'center',*/}
+        {/*}}*/}
+      {/*>*/}
+        {/*<span>B2 Projection</span>*/}
+        {/*<br />*/}
+        {/*/!* <h1>{moment.duration(props.student.projection, 'months').format()}</h1> *!/*/}
+      {/*</Tag>*/}
+      {/*<ColumnSeparator size="lg" />*/}
       <Tag
         color="none"
         style={{
