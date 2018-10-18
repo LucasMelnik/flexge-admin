@@ -37,9 +37,7 @@ const MessageChatScene = props => (
       {props.messageChannel.id && [
         <MessageChatHeader
           key="message-chat-header"
-          subject={props.messageChannel.subject}
-          startedAt={props.messageChannel.sentAt}
-          members={props.messageChannel.members}
+          messageChannel={props.messageChannel}
         />,
         <MessageChatListContainer
           key="message-list"
