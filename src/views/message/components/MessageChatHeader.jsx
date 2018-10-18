@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import head from 'lodash/head';
-import get from 'lodash/get';
 import { Link } from 'react-router';
 
 const MessageChatHeader = props => (
