@@ -331,7 +331,7 @@ const MainScene = props => (
             key: 'academic',
             title: 'Academic',
             icon: 'folder-open',
-            allowedFor: ['TEACHER', 'SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER'],
+            allowedFor: ['TEACHER', 'SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER', 'CERTIFICATION_TEST_PROFESSIONAL'],
             items: [
               {
                 label: 'Achievements',
