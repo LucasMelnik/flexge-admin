@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import head from 'lodash/head';
 import get from 'lodash/get';
+import uniqBy from 'lodash/uniqBy';
 import { Doughnut } from 'react-chartjs-2';
 import Dialog from '../layout/Dialog';
 import Table from '../form/Table';
 import Button from '../form/Button';
+import Select from '../form/Select';
 
 const hexToRgb = (hex, opacity) => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -19,6 +21,7 @@ class DoughnutChart extends React.Component {
     showDetails: false,
     chartDetails: [],
     title: '',
+    chartFilter: 'all',
   };
 
   handleShowDetails = (event) => {
@@ -37,6 +40,13 @@ class DoughnutChart extends React.Component {
       chartDetails: [],
       showDetails: false,
       title: '',
+      chartFilter: 'all',
+    });
+  };
+
+  handleChangeFilter = (filter) => {
+    this.setState({
+      chartFilter: filter,
     });
   };
 
@@ -66,6 +76,13 @@ class DoughnutChart extends React.Component {
                 },
               },
             },
+            hover: {
+              onHover: function(e) {
+                const point = this.getElementAtEvent(e);
+                if (point.length) e.target.style.cursor = 'pointer';
+                else e.target.style.cursor = 'default';
+              },
+            },
           }}
           onElementsClick={this.handleShowDetails}
         />
@@ -75,13 +92,33 @@ class DoughnutChart extends React.Component {
           isOpen={this.state.showDetails}
           onCancel={this.handleCloseDetails}
         >
+          <Select
+            onChange={this.handleChangeFilter}
+            value={this.state.chartFilter}
+            options={[
+              {
+                label: 'All classrooms',
+                value: 'all',
+              },
+              ...uniqBy(this.state.chartDetails.map(item => item.schoolClass), item => item.id)
+                .map(item => ({
+                  label: item.name,
+                  value: item.id,
+                })),
+            ]}
+          />
           <Table
-            rows={this.state.chartDetails}
+            rows={this.state.chartDetails.filter(item => this.state.chartFilter === 'all' || this.state.chartFilter === item.schoolClass.id)}
             columns={
               [
                 {
                   label: 'Student',
                   path: 'name',
+                  sort: true,
+                },
+                {
+                  label: 'Classroom',
+                  path: 'schoolClass.name',
                   sort: true,
                 },
                 {

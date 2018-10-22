@@ -1,9 +1,10 @@
 import { action, extendObservable, computed } from 'mobx';
 import reverse from 'lodash/reverse';
 import get from 'lodash/get';
+import moment from 'moment';
+import 'moment-duration-format';
 import FetchService from '../../../core/services/FetchService';
 import filterList from './filterList';
-import {formatTimeFromSeconds} from '../../../core/util';
 
 class StudiedTimeGroupService {
   fetch = new FetchService();
@@ -47,7 +48,7 @@ class StudiedTimeGroupService {
             .reduce((schoolAcc, school) => [...schoolAcc, ...get(school, 'classes', []).reduce((acc, item) => [...acc, ...item.students], [])], [])
             .map(item => ({
               ...item,
-              value: formatTimeFromSeconds(item.totalStudiedTime),
+              value: moment.duration(item.totalStudiedTime, 'hours').format('hh:mm', { trim: false }),
             })),
         }));
       }),
