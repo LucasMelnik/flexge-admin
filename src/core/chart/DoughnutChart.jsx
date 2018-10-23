@@ -77,7 +77,7 @@ class DoughnutChart extends React.Component {
               },
             },
             hover: {
-              onHover: function(e) {
+              onHover: e => {
                 const point = this.getElementAtEvent(e);
                 if (point.length) e.target.style.cursor = 'pointer';
                 else e.target.style.cursor = 'default';
@@ -93,6 +93,7 @@ class DoughnutChart extends React.Component {
           onCancel={this.handleCloseDetails}
         >
           <Select
+            label="Filter by classroom"
             onChange={this.handleChangeFilter}
             value={this.state.chartFilter}
             options={[
