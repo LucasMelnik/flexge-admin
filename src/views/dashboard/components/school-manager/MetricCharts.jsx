@@ -5,10 +5,7 @@ import StudyQualityGroupChartContainer from '../common/metrics/StudyQualityGroup
 import StudiedTimeChartContainer from '../common/metrics/StudiedTimeChartContainer';
 import ActiveStudentsByPeriodChartContainer from '../common/metrics/ActiveStudentsByPeriodChartContainer';
 import EnglishLevelByPeriodChartContainer from '../common/metrics/EnglishLevelByPeriodChartContainer';
-import SemiannualEnglishLevelProgressChartContainer from '../common/metrics/SemiannualEnglishLevelProgressChartContainer';
 import AverageEnglishLevelContainer from '../common/metrics/AverageEnglishLevelContainer';
-import SemiannualAverageProgressContainer from '../common/metrics/SemiannualAverageProgressContainer';
-import B2ProjectionContainer from '../common/metrics/B2ProjectionContainer';
 
 const MetricCharts = () => (
   <div>
@@ -22,28 +19,28 @@ const MetricCharts = () => (
     >
       <div
         style={{
-          width: '33%',
+          width: '100%',
           textAlign: 'center',
         }}
       >
         <AverageEnglishLevelContainer />
       </div>
-      <div
-        style={{
-          width: '33%',
-          textAlign: 'center',
-        }}
-      >
-        <SemiannualAverageProgressContainer />
-      </div>
-      <div
-        style={{
-          width: '33%',
-          textAlign: 'center',
-        }}
-      >
-        <B2ProjectionContainer />
-      </div>
+      {/*<div*/}
+        {/*style={{*/}
+          {/*width: '33%',*/}
+          {/*textAlign: 'center',*/}
+        {/*}}*/}
+      {/*>*/}
+        {/*<SemiannualAverageProgressContainer />*/}
+      {/*</div>*/}
+      {/*<div*/}
+        {/*style={{*/}
+          {/*width: '33%',*/}
+          {/*textAlign: 'center',*/}
+        {/*}}*/}
+      {/*>*/}
+        {/*<B2ProjectionContainer />*/}
+      {/*</div>*/}
     </div>
     <Separator />
     <div
@@ -55,23 +52,23 @@ const MetricCharts = () => (
       <div
         style={{
           display: 'inline-block',
-          width: '33%',
+          width: '45%',
         }}
       >
         <EnglishLevelByPeriodChartContainer />
       </div>
+      {/*<div*/}
+        {/*style={{*/}
+          {/*display: 'inline-block',*/}
+          {/*width: '33%',*/}
+        {/*}}*/}
+      {/*>*/}
+        {/*<SemiannualEnglishLevelProgressChartContainer />*/}
+      {/*</div>*/}
       <div
         style={{
           display: 'inline-block',
-          width: '33%',
-        }}
-      >
-        <SemiannualEnglishLevelProgressChartContainer />
-      </div>
-      <div
-        style={{
-          display: 'inline-block',
-          width: '33%',
+          width: '45%',
         }}
       >
         <StudyQualityChartContainer />
