@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import {browserHistory} from 'react-router';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import StudentFormContainer from './StudentFormContainer';
 import Card from '../../../core/layout/Card';
@@ -8,6 +8,8 @@ import Button from '../../../core/form/Button';
 import StudentResetButtonContainer from './StudentResetButtonContainer';
 import ColumnSeparator from '../../../core/layout/ColumnSeparator';
 import StudentSendWelcomeEmailButtonContainer from './StudentSendWelcomeEmailButtonContainer';
+import Separator from '../../../core/layout/Separator';
+import ParentScene from './parent/ParentScene';
 
 const StudentFormScene = props => (
   <div>
@@ -80,6 +82,10 @@ const StudentFormScene = props => (
         schoolId={props.school.id}
       />
     </Card>
+    <Separator size="sm" />
+    {props.studentId && (
+      <ParentScene studentId={props.studentId} />
+    )}
   </div>
 );
 
