@@ -43,7 +43,8 @@ class ParentListService {
           NotificationService.addNotification('Student parent removed', 'success');
           this.load();
         });
-      });
+      },
+    );
   });
 }
 
