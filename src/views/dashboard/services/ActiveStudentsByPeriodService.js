@@ -1,8 +1,8 @@
 import { action, extendObservable, computed } from 'mobx';
+import get from 'lodash/get';
+import { formatTimeFromSeconds } from '../../../core/util';
 import FetchService from '../../../core/services/FetchService';
 import filterList from './filterList';
-import get from 'lodash/get';
-import {formatTimeFromSeconds} from '../../../core/util';
 
 class ActiveStudentsByPeriodService {
   fetch = new FetchService();
@@ -17,9 +17,10 @@ class ActiveStudentsByPeriodService {
         const periods = [7, 14, 21, 30];
         const activeStudents = filterList(this.data, this.schoolId).reduce((schoolAcc, school) => (
           schoolAcc + filterList(school.classes, this.classId).reduce((acc, schoolClass) => (
-            acc + periods.reduce((classAcc, period) => classAcc + schoolClass[`studyOnLast${period}Days`] || 0, 0)
+            acc + periods.reduce((classAcc, period) => classAcc + schoolClass[`studyOnLast${period}Days`].length || 0, 0)
           ), 0)
         ), 0);
+
         return (activeStudents / this.totalStudents) * 100;
       }),
       totalSchoolStudents: computed(() => (
@@ -73,7 +74,7 @@ class ActiveStudentsByPeriodService {
           }, {});
         // Return total by period and total that didn't study
         const totalDidntStudy = this.totalStudents - Object.keys(activeStudentsByPeriod).reduce((acc, period) => acc + activeStudentsByPeriod[period], 0);
-        console.log(activeStudentsByPeriod)
+
         return [
           ...Object.keys(activeStudentsByPeriod).map(period => ({
             value: activeStudentsByPeriod[period],
