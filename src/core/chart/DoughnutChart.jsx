@@ -77,7 +77,7 @@ class DoughnutChart extends React.Component {
               },
             },
             hover: {
-              onHover: e => {
+              onHover: function(e) {
                 const point = this.getElementAtEvent(e);
                 if (point.length) e.target.style.cursor = 'pointer';
                 else e.target.style.cursor = 'default';

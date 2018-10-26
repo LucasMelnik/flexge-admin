@@ -15,7 +15,7 @@ class ActiveStudentsByPeriodAndClassService {
         const periods = [7, 14, 21, 30];
         const activeStudents = filterList(this.data, this.schoolId).reduce((schoolAcc, school) => (
           schoolAcc + filterList(school.classes, this.classId).reduce((acc, schoolClass) => (
-            acc + periods.reduce((classAcc, period) => classAcc + schoolClass[`studyOnLast${period}Days`] || 0, 0)
+            acc + periods.reduce((classAcc, period) => classAcc + schoolClass[`studyOnLast${period}Days`].length || 0, 0)
           ), 0)
         ), 0);
         return (activeStudents / this.totalStudents) * 100;
@@ -74,7 +74,7 @@ class ActiveStudentsByPeriodAndClassService {
 
   getdata = (classes, key) => (
     filterList(classes, this.classId).reduce((acc, schoolClass) => (
-      acc + schoolClass[key]
+      acc + schoolClass[key].length
     ), 0)
   );
 
