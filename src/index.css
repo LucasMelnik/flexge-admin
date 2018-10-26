@@ -35,15 +35,15 @@ html, body, #root {
 }
 
 .ant-progress.ant-progress-status-active .ant-progress-inner .ant-progress-circle .ant-progress-circle-path {
-  stroke: #ff972b;
+  stroke: #ff972b !important;
 }
 
 .ant-progress.ant-progress-status-exception .ant-progress-inner .ant-progress-circle .ant-progress-circle-path {
-  stroke: #f5222d;
+  stroke: #f5222d !important;
 }
 
 .ant-progress.ant-progress-status-success .ant-progress-inner .ant-progress-circle .ant-progress-circle-path .ant-progress-circle-path {
-  stroke: #52c41a;
+  stroke: #52c41a !important;
 }
 
 .ant-card-head-title {
