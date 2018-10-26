@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {observer} from 'mobx-react';
+import { observer } from 'mobx-react';
 import ParentForm from './ParentForm';
 import ParentFormService from '../../services/ParentFormService';
 
