@@ -84,7 +84,9 @@ const StudentFormScene = props => (
     </Card>
     <Separator size="sm" />
     {props.studentId && (
-      <ParentScene studentId={props.studentId} />
+      <ParentScene
+        studentId={props.studentId}
+      />
     )}
   </div>
 );

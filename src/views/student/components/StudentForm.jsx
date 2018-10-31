@@ -123,48 +123,6 @@ const StudentForm = props => (
       )}
     </Row>
     <Row>
-      <Column size={3}>
-        <TextInput
-          disabled={props.submitting}
-          label="Responsible Name (1)"
-          type="text"
-          value={get(props.values, 'fatherName', '')}
-          onChange={value => props.onChange('fatherName', value)}
-          errorText={get(props.errors, 'fatherName', null)}
-        />
-      </Column>
-      <Column size={3}>
-        <TextInput
-          disabled={props.submitting}
-          label="Responsible Email (1)"
-          type="text"
-          value={get(props.values, 'fatherEmail', '')}
-          onChange={value => props.onChange('fatherEmail', value)}
-          errorText={get(props.errors, 'fatherEmail', null)}
-        />
-      </Column>
-      <Column size={3}>
-        <TextInput
-          disabled={props.submitting}
-          label="Responsible Name (2)"
-          type="text"
-          value={get(props.values, 'motherName', '')}
-          onChange={value => props.onChange('motherName', value)}
-          errorText={get(props.errors, 'motherName', null)}
-        />
-      </Column>
-      <Column size={3}>
-        <TextInput
-          disabled={props.submitting}
-          label="Responsible Email (2)"
-          type="text"
-          value={get(props.values, 'motherEmail', '')}
-          onChange={value => props.onChange('motherEmail', value)}
-          errorText={get(props.errors, 'motherEmail', null)}
-        />
-      </Column>
-    </Row>
-    <Row>
       {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
         <Column size={2}>
           <Switch

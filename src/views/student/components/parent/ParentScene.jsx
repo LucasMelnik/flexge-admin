@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ParentsListContainer from './ParentListContainer';
 import Card from '../../../../core/layout/Card';
 import Button from '../../../../core/form/Button';
+import Separator from '../../../../core/layout/Separator';
+import ParentsListContainer from './ParentListContainer';
 import ParentFormContainer from './ParentFormContainer';
+import ParentLinkFormContainer from './ParentLinkFormContainer';
 
 export default class ParentScene extends React.Component {
   static propTypes = {
@@ -45,7 +47,7 @@ export default class ParentScene extends React.Component {
             {this.state.currentScene === 'LIST' && (
               <Button
                 type="primary"
-                label="Add Parent"
+                label="New Parent"
                 icon="plus"
                 onClick={this.handleNew}
               />
@@ -62,10 +64,16 @@ export default class ParentScene extends React.Component {
         }
       >
         {this.state.currentScene === 'LIST' && (
-          <ParentsListContainer
-            studentId={this.props.studentId}
-            onEdit={this.handleEdit}
-          />
+          <div>
+            <ParentLinkFormContainer
+              studentId={this.props.studentId}
+            />
+            <Separator size="sm" />
+            <ParentsListContainer
+              studentId={this.props.studentId}
+              onEdit={this.handleEdit}
+            />
+          </div>
         )}
         {this.state.currentScene === 'FORM' && (
           <ParentFormContainer

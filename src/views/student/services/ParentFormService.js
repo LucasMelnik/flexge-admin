@@ -51,7 +51,20 @@ export default class ParentFormService {
       method: parentId ? 'put' : 'post',
       url: parentId ? `/students/${this.studentId}/parents/${parentId}` : `/students/${this.studentId}/parents`,
       body: {
-        ...this.form.getValues(),
+        name: this.form.getValue('name'),
+        email: this.form.getValue('email'),
+        ...this.form.getValue('cpf') && {
+          cpf: this.form.getValue('cpf'),
+        },
+        ...this.form.getValue('password') && {
+          password: this.form.getValue('password'),
+        },
+        ...this.form.getValue('gender') && {
+          gender: this.form.getValue('gender'),
+        },
+        ...this.form.getValue('birthDate') && {
+          birthDate: this.form.getValue('birthDate'),
+        },
       },
     }).then(() => {
       if (this.submit.data) {

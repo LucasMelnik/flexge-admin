@@ -21,7 +21,7 @@ class FetchService {
       method: params.method || 'get',
       url: `${process.env.REACT_APP_API_URL}${params.url}`,
       params: params.query,
-      paramsSerializer: params => qs.stringify(params, { arrayFormat: 'brackets' }),
+      paramsSerializer: params => qs.stringify(params),
       data: params.body,
       headers: {
         ...params.headers,
