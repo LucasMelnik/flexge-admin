@@ -32,7 +32,7 @@ const StudentForm = props => (
       <Column size={2}>
         <MaskInput
           disabled={props.submitting}
-          label="CPF"
+          label="CPF / ID"
           value={get(props.values, 'cpf', '')}
           onChange={value => props.onChange('cpf', value)}
           errorText={get(props.errors, 'cpf', '')}
@@ -126,7 +126,7 @@ const StudentForm = props => (
       <Column size={3}>
         <TextInput
           disabled={props.submitting}
-          label="Responsible Name (1)"
+          label="Parent / Guardian Name (1)"
           type="text"
           value={get(props.values, 'fatherName', '')}
           onChange={value => props.onChange('fatherName', value)}
@@ -136,7 +136,7 @@ const StudentForm = props => (
       <Column size={3}>
         <TextInput
           disabled={props.submitting}
-          label="Responsible Email (1)"
+          label="Parent / Guardian Email (1)"
           type="text"
           value={get(props.values, 'fatherEmail', '')}
           onChange={value => props.onChange('fatherEmail', value)}
@@ -146,7 +146,7 @@ const StudentForm = props => (
       <Column size={3}>
         <TextInput
           disabled={props.submitting}
-          label="Responsible Name (2)"
+          label="Parent / Guardian Name (2)"
           type="text"
           value={get(props.values, 'motherName', '')}
           onChange={value => props.onChange('motherName', value)}
@@ -156,7 +156,7 @@ const StudentForm = props => (
       <Column size={3}>
         <TextInput
           disabled={props.submitting}
-          label="Responsible Email (2)"
+          label="Parent / Guardian Email (2)"
           type="text"
           value={get(props.values, 'motherEmail', '')}
           onChange={value => props.onChange('motherEmail', value)}
@@ -168,7 +168,7 @@ const StudentForm = props => (
       {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
         <Column size={2}>
           <Switch
-            label="Demo Student"
+            label="Student Demo"
             titleOff="No"
             titleOn="Yes"
             onChange={value => props.onChange('demoStudent', value)}
