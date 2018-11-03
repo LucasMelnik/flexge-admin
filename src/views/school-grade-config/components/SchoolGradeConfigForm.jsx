@@ -29,7 +29,7 @@ const SchoolGradeConfigForm = props => (
       <Column size={2}>
         <Select
           required
-          disabled={props.submitting}
+          disabled={get(props.values, 'isGradeFormatDisabled', false) || props.submitting}
           label="Grade Format"
           value={get(props.values, 'gradeFormat', '')}
           onChange={value => props.onChange('gradeFormat', value)}
