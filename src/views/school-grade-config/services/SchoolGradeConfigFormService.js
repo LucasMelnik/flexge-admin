@@ -41,6 +41,10 @@ export default class SchoolGradeConfigFormService {
           ...!this.fetch.data.percentStudyQualityRelevanceInGrade && {
             percentStudyQualityRelevanceInGrade: 40,
           },
+          ...this.fetch.data.company.country !== '5a01ff39898e1571b5d5172b' && {
+            gradeFormat: '0.0',
+            isGradeFormatDisabled: true,
+          },
         };
         this.form.setInitialValues(data);
       }
@@ -72,6 +76,7 @@ export default class SchoolGradeConfigFormService {
         const school = this.submit.data;
         this.schoolId = school.id;
         this.form.setInitialValues({
+          ...this.form.getValues(),
           ...school,
           company: this.form.getValue('company'),
         });
