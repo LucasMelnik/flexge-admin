@@ -9,7 +9,6 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import Select from '../../../core/form/Select';
 import DateInput from '../../../core/form/DateInput';
 import Switch from '../../../core/form/Switch';
-import MaskInput from '../../../core/form/MaskInput';
 
 const StudentForm = props => (
   <form
@@ -30,15 +29,12 @@ const StudentForm = props => (
         />
       </Column>
       <Column size={2}>
-        <MaskInput
+        <TextInput
           disabled={props.submitting}
-          label="CPF / ID"
+          label="ID"
           value={get(props.values, 'cpf', '')}
           onChange={value => props.onChange('cpf', value)}
           errorText={get(props.errors, 'cpf', '')}
-          delimiters={['.', '.', '-']}
-          blocks={[3, 3, 3, 2]}
-          numericOnly
         />
       </Column>
       <Column size={4}>

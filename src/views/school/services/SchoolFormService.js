@@ -19,6 +19,7 @@ export default class SchoolFormService {
       region: [isRequired],
       state: [isRequired],
       modulePointRelevance: [isRequired],
+      locale: [isRequired],
     };
   }
 
