@@ -8,6 +8,7 @@ import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
 import Select from '../../../core/form/Select';
+import LocaleSelect from '../../../core/form/LocaleSelect';
 
 const CountryForm = props => (
   <form
@@ -42,11 +43,10 @@ const CountryForm = props => (
           }))}
         />
       </Column>
-      <Column size={6}>
-        <TextInput
+      <Column size={2}>
+        <LocaleSelect
           required
           disabled={props.submitting}
-          label="Locale"
           value={get(props.values, 'locale', '')}
           onChange={value => props.onChange('locale', value)}
           errorText={get(props.errors, 'locale', null)}
