@@ -28,6 +28,7 @@ import FreeSpeakItemForm from './forms/FreeSpeakItemForm';
 import FreeTextImageItemForm from './forms/FreeTextImageItemForm';
 import FreeSpeakImageItemForm from './forms/FreeSpeakImageItemForm';
 import ConnectingDotsItemForm from './forms/ConnectingDotsItemForm';
+import GapFillLetterItemForm from './forms/GapFillLetterItemForm';
 
 const needCharacter = itemType =>
   localStorage.getItem('role') === 'ADMIN' &&
@@ -307,6 +308,16 @@ const ItemForm = props => (
           values={props.values.item}
           submitting={props.submitting}
           disabled={props.disabled}
+        />
+      )}
+      {get(props.values.item, 'type.key', '') === 'GAP_FILL_LETTER' && (
+        <GapFillLetterItemForm
+          onChange={(path, value) => props.onChange(`item.${path}`, value)}
+          errors={get(props.errors, 'item', {})}
+          values={props.values.item}
+          submitting={props.submitting}
+          disabled={props.disabled}
+          isTestItem={props.isTestItem}
         />
       )}
       <Separator size="xs" />
