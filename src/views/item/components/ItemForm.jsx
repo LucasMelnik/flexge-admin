@@ -162,7 +162,7 @@ const ItemForm = props => (
           isTestItem={props.isTestItem}
         />
       )}
-      {get(props.values.item, 'type.key', '') === 'GAP_FILL' && (
+      {['GAP_FILL', 'GAP_FILL_IMAGE'].find(type => type === get(props.values.item, 'type.key', '')) && (
         <GapFillItemForm
           onChange={(path, value) => props.onChange(`item.${path}`, value)}
           errors={get(props.errors, 'item', {})}
@@ -170,6 +170,7 @@ const ItemForm = props => (
           submitting={props.submitting}
           disabled={props.disabled}
           isTestItem={props.isTestItem}
+          hasImage={get(props.values.item, 'type.key', '') === 'GAP_FILL_IMAGE'}
         />
       )}
       {get(props.values.item, 'type.key', '') === 'GAP_FILL_SELECT' && (

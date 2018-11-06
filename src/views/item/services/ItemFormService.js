@@ -169,6 +169,18 @@ export default class ItemFormService {
           ],
         };
         break;
+      case 'GAP_FILL_IMAGE':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.indexesToRemove': [isRequired, minLength(1)],
+          'item.answers': [
+            onlyOneCorrectAnswer,
+            minFilteredLength(2, wrongAnswerPredicate, 'Add at least 2 wrong answers'),
+          ],
+        };
+        break;
       case 'GAP_FILL_SELECT':
         this.form.validations = {
           ...this.defaultValidations,
