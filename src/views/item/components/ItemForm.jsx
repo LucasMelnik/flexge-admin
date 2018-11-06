@@ -133,7 +133,12 @@ const ItemForm = props => (
           disabled={props.disabled}
         />
       )}
-      {['SINGLE_CHOICE_TEXT', 'SINGLE_CHOICE_AUDIO', 'SINGLE_CHOICE_IMAGE'].find(
+      {[
+        'SINGLE_CHOICE_TEXT',
+        'SINGLE_CHOICE_AUDIO',
+        'SINGLE_CHOICE_IMAGE',
+        'SINGLE_CHOICE_KIDS',
+      ].find(
         type => type === get(props.values.item, 'type.key')
       ) && (
         <SingleChoiceItemForm

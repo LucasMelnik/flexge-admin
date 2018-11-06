@@ -138,6 +138,18 @@ export default class ItemFormService {
           ],
         };
         break;
+      case 'SINGLE_CHOICE_KIDS':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.answers': [
+            onlyOneCorrectAnswer,
+            // minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),
+            minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
+          ],
+        };
+        break;
       case 'DICTATION':
         this.form.validations = {
           ...this.defaultValidations,
