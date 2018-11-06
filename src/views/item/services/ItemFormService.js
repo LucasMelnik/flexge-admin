@@ -8,6 +8,7 @@ import {
   minFilteredLength,
   onlyOneCorrectAnswer,
   isValidTime,
+  exactLength,
 } from '../../../core/validations';
 
 export default class ItemFormService {
@@ -138,6 +139,30 @@ export default class ItemFormService {
           ],
         };
         break;
+      case 'SINGLE_CHOICE_KIDS':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.answers': [
+            onlyOneCorrectAnswer,
+            // minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),
+            minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
+          ],
+        };
+        break;
+      case 'SINGLE_CHOICE_GAME':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.answers': [
+            onlyOneCorrectAnswer,
+            minFilteredLength(2, wrongAnswerPredicate, 'Add at least 2 wrong answers'),
+            exactLength(3),
+          ],
+        };
+        break;
       case 'DICTATION':
         this.form.validations = {
           ...this.defaultValidations,
@@ -154,6 +179,18 @@ export default class ItemFormService {
           'item.answers': [
             onlyOneCorrectAnswer,
             minFilteredLength(3, wrongAnswerPredicate, 'Add at least 3 wrong answers'),
+          ],
+        };
+        break;
+      case 'GAP_FILL_IMAGE':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.indexesToRemove': [isRequired, minLength(1)],
+          'item.answers': [
+            onlyOneCorrectAnswer,
+            minFilteredLength(2, wrongAnswerPredicate, 'Add at least 2 wrong answers'),
           ],
         };
         break;
@@ -176,6 +213,18 @@ export default class ItemFormService {
           'item.indexesToRemove': [isRequired, minLength(2)],
           'item.answers': [
             minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
+          ],
+        };
+        break;
+      case 'GAP_FILL_LETTER':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.indexesToRemove': [isRequired, minLength(1)],
+          'item.answers': [
+            onlyOneCorrectAnswer,
+            minFilteredLength(2, wrongAnswerPredicate, 'Add at least 2 wrong letters'),
           ],
         };
         break;
@@ -216,7 +265,19 @@ export default class ItemFormService {
           'item.answers': [
             onlyOneCorrectAnswer,
             isRequired,
-            minLength(2),
+            exactLength(2),
+          ],
+        };
+        break;
+      case 'TRUE_FALSE_KIDS':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.answers': [
+            onlyOneCorrectAnswer,
+            isRequired,
+            exactLength(2),
           ],
         };
         break;
@@ -266,6 +327,46 @@ export default class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.image': [isRequired],
+        };
+        break;
+      case 'CONNECTING_DOTS':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.title': [isRequired],
+          'item.answers': [
+            isRequired,
+            exactLength(6),
+          ],
+        };
+        break;
+      case 'MEMORY_GAME':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.title': [isRequired],
+          'item.answers': [
+            isRequired,
+            exactLength(6),
+          ],
+        };
+        break;
+      case 'VOCABULARY_GAME':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.title': [isRequired],
+          'item.answers': [
+            isRequired,
+            exactLength(9),
+          ],
+        };
+        break;
+      case 'VOCABULARY':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.title': [isRequired],
+          'item.answers': [
+            isRequired,
+            exactLength(8),
+          ],
         };
         break;
       default:

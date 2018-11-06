@@ -10,6 +10,7 @@ class UnitFormContainer extends Component {
   static propTypes = {
     unitId: PropTypes.string,
     moduleId: PropTypes.string,
+    academicPlanId: PropTypes.string,
     disabled: PropTypes.bool,
     reviewId: PropTypes.string,
   };
@@ -17,13 +18,14 @@ class UnitFormContainer extends Component {
   static defaultProps = {
     unitId: null,
     moduleId: null,
+    academicPlanId: null,
     disabled: false,
     reviewId: null,
   };
 
   unitFormService = new UnitFormService();
   componentDidMount() {
-    this.unitFormService.handleLoad(this.props.unitId, this.props.moduleId);
+    this.unitFormService.handleLoad(this.props.unitId, this.props.moduleId, this.props.academicPlanId);
   }
 
   render() {

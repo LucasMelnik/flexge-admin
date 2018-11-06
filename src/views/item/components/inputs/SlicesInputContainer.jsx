@@ -7,6 +7,7 @@ export default class SlicesInputContainer extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
+    onSplit: PropTypes.func,
     text: PropTypes.string.isRequired,
     value: PropTypes.arrayOf(PropTypes.shape({
       index: PropTypes.number,
@@ -27,6 +28,7 @@ export default class SlicesInputContainer extends Component {
     sequenceRemove: false,
     allowLinkSlices: false,
     disabled: false,
+    onSplit: text => text.trim().split(' ')
   };
 
   state = { slices: [], removedSlices: [] };
@@ -34,7 +36,7 @@ export default class SlicesInputContainer extends Component {
   componentWillMount() {
     if (this.props.text.length > 0) {
       this.setState({
-        slices: this.props.text.trim().split(' '),
+        slices: this.props.onSplit(this.props.text),
         removedSlices: this.props.value,
       });
     }
@@ -43,7 +45,7 @@ export default class SlicesInputContainer extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.text.length > 0) {
       this.setState({
-        slices: nextProps.text.trim().split(' '),
+        slices: nextProps.onSplit(nextProps.text),
       });
     }
     if (nextProps.value) {

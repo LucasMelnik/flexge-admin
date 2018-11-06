@@ -13,13 +13,14 @@ import AudioPreview from '../../../../core/layout/AudioPreview';
 import ImagePreview from '../../../../core/layout/ImagePreview';
 import ErrorText from '../../../../core/layout/ErrorText';
 import SpellCheckInputContainer from './SpellCheckInputContainer';
+import Separator from '../../../../core/layout/Separator';
 
 const AnswersInput = props => (
   <div>
     {!props.disabled && (
       <Row>
         <Column
-          size={props.answerType === 'BOTH' ? 7 : 9}
+          size={props.answerType === 'BOTH' ? 7 : 6}
         >
           <TextInput
             label={props.label}
@@ -28,6 +29,18 @@ const AnswersInput = props => (
             errorText={get(props.errors, 'text', '')}
           />
         </Column>
+        {props.hasPostPhrase && (
+          <Column
+            size={6}
+          >
+            <TextInput
+              label="Post Phrase"
+              value={get(props.values, 'postPhrase', '')}
+              onChange={value => props.onChange('postPhrase', value)}
+              errorText={get(props.errors, 'postPhrase', '')}
+            />
+          </Column>
+        )}
         {props.answerType === 'BOTH' && (
           <Column size={2}>
             <Select
@@ -42,29 +55,6 @@ const AnswersInput = props => (
             />
           </Column>
         )}
-        <Column size={3}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'flex-end',
-              height: 62,
-            }}
-          >
-            <Button
-              icon="check"
-              type="primary"
-              label={props.values.id ? 'Update' : 'Add'}
-              disabled={!props.isDirty()}
-              onClick={() => props.onSubmit()}
-            />
-            <ColumnSeparator size="xs" />
-            <Button
-              icon="reload"
-              label="Discard"
-              onClick={() => props.onReset()}
-            />
-          </div>
-        </Column>
       </Row>
     )}
     {(!props.disabled && props.allowSpellCheck) && (
@@ -94,75 +84,125 @@ const AnswersInput = props => (
             errorText={get(props.errors, 'image', '')}
           />
         </Column>
+        {props.hasPostPhrase && (
+          <Column size={3}>
+            <FileInput
+              label="Upload an post phrase to the answer"
+              accept="audio"
+              value={get(props.values, 'postPhraseAudio', '')}
+              onChange={(key) => props.onChange('postPhraseAudio', key)}
+              errorText={get(props.errors, 'postPhraseAudio', '')}
+            />
+          </Column>
+        )}
       </Row>
     )}
+    {!props.disabled && (
+      <Row>
+        <Column size={12}>
+          <Button
+            icon="check"
+            type="primary"
+            label={props.values.id ? 'Update' : 'Add'}
+            disabled={!props.isDirty()}
+            onClick={() => props.onSubmit()}
+          />
+          <ColumnSeparator size="xs" />
+          <Button
+            icon="reload"
+            label="Discard"
+            onClick={() => props.onReset()}
+          />
+        </Column>
+      </Row>
+    )}
+    <Separator size="sm" />
     <Row>
       <Column size={12}>
         <Table
           columns={[
-            {
-              label: 'Answer',
-              path: 'text',
-              width: '350px',
-            },
-            {
-              label: 'Correct',
-              path: 'correct',
-              width: '105px',
-              render: (cell) => cell ? 'Yes' : 'No',
-            },
-            {
-              label: 'Generated Audio',
-              render: (cell, row) => {
-                if (row.generatedAudio) {
-                  return (<AudioPreview src={row.generatedAudio} />);
-                }
-                return '-';
+            ...[
+              {
+                label: 'Answer',
+                path: 'text',
+                width: '350px',
               },
-            },
-            {
-              label: 'Audio',
-              render: (cell, row) => {
-                if (row.audio) {
-                  return (<AudioPreview src={row.audio} />);
-                }
-                return 'No Audio uploaded';
+              {
+                label: 'Correct',
+                path: 'correct',
+                width: '105px',
+                render: (cell) => cell ? 'Yes' : 'No',
               },
-            },
-            {
-              label: 'Image',
-              render: (cell, row) => {
-                if (row.image) {
-                  return (<ImagePreview src={row.image} />);
-                } else if (props.type === 'SINGLE_CHOICE_IMAGE') {
-                  return 'No Image uploaded';
-                }
-                return '-';
+              {
+                label: 'Generated Audio',
+                render: (cell, row) => {
+                  if (row.generatedAudio) {
+                    return (<AudioPreview src={row.generatedAudio} />);
+                  }
+                  return '-';
+                },
               },
-            },
-            {
-              label: 'Actions',
-              path: 'action',
-              width: '105px',
-              render: (cell, row) => {
-                if (!props.disabled) {
-                  return (
-                    <div>
-                      <Button
-                        icon="delete"
-                        onClick={() => props.onDelete(row.id)}
-                      />
-                      {' '}
-                      <Button
-                        icon="edit"
-                        onClick={() => props.onEdit(row.id)}
-                      />
-                    </div>
-                  );
-                }
-                return null;
+              {
+                label: 'Audio',
+                render: (cell, row) => {
+                  if (row.audio) {
+                    return (<AudioPreview src={row.audio} />);
+                  }
+                  return 'No Audio uploaded';
+                },
               },
-            },
+              {
+                label: 'Image',
+                render: (cell, row) => {
+                  if (row.image) {
+                    return (<ImagePreview src={row.image} />);
+                  } else if (props.type === 'SINGLE_CHOICE_IMAGE') {
+                    return 'No Image uploaded';
+                  }
+                  return '-';
+                },
+              },
+            ],
+            ...props.hasPostPhrase ? [
+              {
+                label: 'Post Phrase',
+                path: 'postPhrase',
+              },
+              {
+                label: 'Post Phrase',
+                render: (cell, row) => {
+                  if (row.audio) {
+                    return (<AudioPreview src={row.postPhraseAudio} />);
+                  }
+                  return 'No Post phrase Audio uploaded';
+                },
+              },
+            ] : [],
+            ...[
+              {
+                label: 'Actions',
+                path: 'action',
+                width: '105px',
+                render: (cell, row) => {
+                  if (!props.disabled) {
+                    return (
+                      <div>
+                        <Button
+                          icon="delete"
+                          onClick={() => props.onDelete(row.id)}
+                        />
+                        {' '}
+                        <Button
+                          icon="edit"
+                          onClick={() => props.onEdit(row.id)}
+                        />
+                      </div>
+                    );
+                  }
+                  return null;
+                },
+              },
+            ]
           ]}
           rows={props.answers}
         />
@@ -187,6 +227,7 @@ AnswersInput.propTypes = {
   ]).isRequired,
   disabled: PropTypes.bool,
   allowSpellCheck: PropTypes.bool,
+  hasPostPhrase: PropTypes.bool,
   label: PropTypes.string.isRequired,
   type: PropTypes.oneOf(
     [
@@ -214,6 +255,7 @@ AnswersInput.defaultProps = {
   type: null,
   disabled: false,
   allowSpellCheck: false,
+  hasPostPhrase: false,
 };
 
 export default AnswersInput;

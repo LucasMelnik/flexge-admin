@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
+import get from 'lodash/get';
 import UnitFormContainer from './UnitFormContainer';
 import Button from '../../../../core/form/Button';
 import Card from '../../../../core/layout/Card';
@@ -27,19 +28,20 @@ const UnitFormScene = props => (
       ]}
     />
     <Card
-      loading={props.fetching}
+      loading={props.fetching || !props.module.id}
       title={props.unitId ? 'Edit Unit' : 'New unit'}
       actions={
         <Button
           icon="arrow-left"
           label="back"
-          onClick={() => browserHistory.push(`/modules/${props.moduleId}/details`)}
+          onClick={() => browserHistory.push(`/modules/${props.module.id}/details`)}
         />
       }
     >
       <UnitFormContainer
         unitId={props.unitId}
-        moduleId={props.moduleId}
+        moduleId={props.module.id}
+        academicPlanId={get(props.module, 'academicPlan.id', '')}
       />
     </Card>
     {(localStorage.role === 'ADMIN' && props.unitId) && (
@@ -48,7 +50,7 @@ const UnitFormScene = props => (
         <Card title="Move Unit to other Course/Module">
           <MoveUnitFormContainer
             unitId={props.unitId}
-            moduleId={props.moduleId}
+            moduleId={props.module.id}
           />
         </Card>
       </div>
@@ -59,7 +61,6 @@ const UnitFormScene = props => (
 UnitFormScene.propTypes = {
   fetching: PropTypes.bool,
   unitId: PropTypes.string,
-  moduleId: PropTypes.string.isRequired,
   module: PropTypes.object,
 };
 UnitFormScene.defaultProps = {

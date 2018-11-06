@@ -6,20 +6,22 @@ import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
 
 const TranslationInput = props => (
-  <Row>
-    <Column size={12}>
-      <TextInput
-        required
-        label="Text"
-        fieldType="textarea"
-        disabled={props.submitting || props.disabled}
-        value={get(props.values, 'text', '')}
-        onChange={value => props.onChange('text', value)}
-        errorText={get(props.errors, 'text', '')}
-      />
-    </Column>
+  <div>
+    <Row>
+      <Column size={12}>
+        <TextInput
+          required
+          label="Text"
+          fieldType="textarea"
+          disabled={props.submitting || props.disabled}
+          value={get(props.values, 'text', '')}
+          onChange={value => props.onChange('text', value)}
+          errorText={get(props.errors, 'text', '')}
+        />
+      </Column>
+    </Row>
     {!props.isTestItem && (
-      <div>
+      <Row>
         <Column size={6}>
           <TextInput
             label="Translation"
@@ -40,9 +42,9 @@ const TranslationInput = props => (
             errorText={get(props.errors, 'spanishTranslation', '')}
           />
         </Column>
-      </div>
+      </Row>
     )}
-  </Row>
+  </div>
 );
 
 TranslationInput.propTypes = {

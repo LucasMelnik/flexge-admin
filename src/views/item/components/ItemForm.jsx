@@ -27,6 +27,8 @@ import FreeTextItemForm from './forms/FreeTextItemForm';
 import FreeSpeakItemForm from './forms/FreeSpeakItemForm';
 import FreeTextImageItemForm from './forms/FreeTextImageItemForm';
 import FreeSpeakImageItemForm from './forms/FreeSpeakImageItemForm';
+import GameItemForm from './forms/GameItemForm';
+import GapFillLetterItemForm from './forms/GapFillLetterItemForm';
 
 const needCharacter = itemType =>
   localStorage.getItem('role') === 'ADMIN' &&
@@ -133,7 +135,13 @@ const ItemForm = props => (
           disabled={props.disabled}
         />
       )}
-      {['SINGLE_CHOICE_TEXT', 'SINGLE_CHOICE_AUDIO', 'SINGLE_CHOICE_IMAGE'].find(
+      {[
+        'SINGLE_CHOICE_TEXT',
+        'SINGLE_CHOICE_AUDIO',
+        'SINGLE_CHOICE_IMAGE',
+        'SINGLE_CHOICE_KIDS',
+        'SINGLE_CHOICE_GAME',
+      ].find(
         type => type === get(props.values.item, 'type.key')
       ) && (
         <SingleChoiceItemForm
@@ -144,7 +152,13 @@ const ItemForm = props => (
           disabled={props.disabled}
           type={get(props.values.item, 'type.key')}
           isTestItem={props.isTestItem}
-          showPostPhrase={get(props.values.item, 'type.key') === 'SINGLE_CHOICE_IMAGE'}
+          showPostPhrase={
+            [
+              'SINGLE_CHOICE_IMAGE',
+              'SINGLE_CHOICE_KIDS',
+            ].find(type => type === get(props.values.item, 'type.key'))
+          }
+          hasImage={get(props.values.item, 'type.key') === 'SINGLE_CHOICE_GAME'}
         />
       )}
       {get(props.values.item, 'type.key', '') === 'DICTATION' && (
@@ -157,7 +171,7 @@ const ItemForm = props => (
           isTestItem={props.isTestItem}
         />
       )}
-      {get(props.values.item, 'type.key', '') === 'GAP_FILL' && (
+      {['GAP_FILL', 'GAP_FILL_IMAGE'].find(type => type === get(props.values.item, 'type.key', '')) && (
         <GapFillItemForm
           onChange={(path, value) => props.onChange(`item.${path}`, value)}
           errors={get(props.errors, 'item', {})}
@@ -165,6 +179,7 @@ const ItemForm = props => (
           submitting={props.submitting}
           disabled={props.disabled}
           isTestItem={props.isTestItem}
+          hasImage={get(props.values.item, 'type.key', '') === 'GAP_FILL_IMAGE'}
         />
       )}
       {get(props.values.item, 'type.key', '') === 'GAP_FILL_SELECT' && (
@@ -247,7 +262,7 @@ const ItemForm = props => (
           isTestItem={props.isTestItem}
         />
       )}
-      {get(props.values.item, 'type.key', '') === 'TRUE_FALSE' && (
+      {['TRUE_FALSE', 'TRUE_FALSE_KIDS'].find(type => type === get(props.values.item, 'type.key', '')) && (
         <TrueFalseItemForm
           onChange={(path, value) => props.onChange(`item.${path}`, value)}
           errors={get(props.errors, 'item', {})}
@@ -255,6 +270,7 @@ const ItemForm = props => (
           submitting={props.submitting}
           disabled={props.disabled}
           isTestItem={props.isTestItem}
+          hasImage={get(props.values.item, 'type.key', '') === 'TRUE_FALSE_KIDS'}
         />
       )}
       {get(props.values.item, 'type.key', '') === 'FREE_TEXT' && (
@@ -291,6 +307,25 @@ const ItemForm = props => (
           values={props.values.item}
           submitting={props.submitting}
           disabled={props.disabled}
+        />
+      )}
+      {['CONNECTING_DOTS', 'MEMORY_GAME', 'VOCABULARY_GAME', 'VOCABULARY'].find(type => type === get(props.values.item, 'type.key', '')) && (
+        <GameItemForm
+          onChange={(path, value) => props.onChange(`item.${path}`, value)}
+          errors={get(props.errors, 'item', {})}
+          values={props.values.item}
+          submitting={props.submitting}
+          disabled={props.disabled}
+        />
+      )}
+      {get(props.values.item, 'type.key', '') === 'GAP_FILL_LETTER' && (
+        <GapFillLetterItemForm
+          onChange={(path, value) => props.onChange(`item.${path}`, value)}
+          errors={get(props.errors, 'item', {})}
+          values={props.values.item}
+          submitting={props.submitting}
+          disabled={props.disabled}
+          isTestItem={props.isTestItem}
         />
       )}
       <Separator size="xs" />
