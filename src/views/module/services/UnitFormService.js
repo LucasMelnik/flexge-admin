@@ -34,7 +34,7 @@ export default class UnitFormService {
           this.form.setInitialValues({
             ...this.fetch.data,
             module: this.fetch.data.module.id,
-            academicPlan: this.fetch.data.module.academicPlan.id,
+            academicPlan: this.fetch.data.module.academicPlan,
             type: this.fetch.data.type.id,
           });
         }
