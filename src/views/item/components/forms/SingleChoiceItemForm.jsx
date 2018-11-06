@@ -7,6 +7,8 @@ import TranslationInputContainer from '../inputs/TranslationInputContainer';
 import TextInput from '../../../../core/form/TextInput';
 import FileInput from '../../../../core/form/FileInput';
 import Audios from '../inputs/Audios';
+import Column from '../../../../core/layout/Column';
+import Row from '../../../../core/layout/Row';
 
 const SingleChoiceItemForm = props => (
   <div>
@@ -18,13 +20,29 @@ const SingleChoiceItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    <Audios
-      values={props.values}
-      submitting={props.submitting}
-      disabled={props.disabled}
-      onChange={props.onChange}
-      errors={props.errors}
-    />
+    <Row>
+      <Column size={4}>
+        <Audios
+          values={props.values}
+          submitting={props.submitting}
+          disabled={props.disabled}
+          onChange={props.onChange}
+          errors={props.errors}
+        />
+      </Column>
+      {props.hasImage && (
+        <Column size={4}>
+          <FileInput
+            label="Upload an image to the item"
+            accept="image"
+            disabled={props.disabled}
+            value={get(props.values, 'image', '')}
+            onChange={(key) => props.onChange('image', key)}
+            errorText={get(props.errors, 'image', '')}
+          />
+        </Column>
+      )}
+    </Row>
     <Separator size="xs" />
     {(props.showPostPhrase && !props.isTestItem) && (
       <TextInput
@@ -69,6 +87,7 @@ SingleChoiceItemForm.propTypes = {
     'SINGLE_CHOICE_IMAGE',
   ]).isRequired,
   showPostPhrase: PropTypes.bool,
+  hasImage: PropTypes.bool,
 };
 
 SingleChoiceItemForm.defaultProps = {
@@ -78,6 +97,7 @@ SingleChoiceItemForm.defaultProps = {
   disabled: false,
   showPostPhrase: false,
   isTestItem: false,
+  hasImage: false,
 };
 
 export default SingleChoiceItemForm;

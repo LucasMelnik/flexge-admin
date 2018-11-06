@@ -27,7 +27,7 @@ import FreeTextItemForm from './forms/FreeTextItemForm';
 import FreeSpeakItemForm from './forms/FreeSpeakItemForm';
 import FreeTextImageItemForm from './forms/FreeTextImageItemForm';
 import FreeSpeakImageItemForm from './forms/FreeSpeakImageItemForm';
-import ConnectingDotsItemForm from './forms/ConnectingDotsItemForm';
+import GameItemForm from './forms/GameItemForm';
 import GapFillLetterItemForm from './forms/GapFillLetterItemForm';
 
 const needCharacter = itemType =>
@@ -140,6 +140,7 @@ const ItemForm = props => (
         'SINGLE_CHOICE_AUDIO',
         'SINGLE_CHOICE_IMAGE',
         'SINGLE_CHOICE_KIDS',
+        'SINGLE_CHOICE_GAME',
       ].find(
         type => type === get(props.values.item, 'type.key')
       ) && (
@@ -151,7 +152,13 @@ const ItemForm = props => (
           disabled={props.disabled}
           type={get(props.values.item, 'type.key')}
           isTestItem={props.isTestItem}
-          showPostPhrase={get(props.values.item, 'type.key') === 'SINGLE_CHOICE_IMAGE'}
+          showPostPhrase={
+            [
+              'SINGLE_CHOICE_IMAGE',
+              'SINGLE_CHOICE_KIDS',
+            ].find(type => type === get(props.values.item, 'type.key'))
+          }
+          hasImage={get(props.values.item, 'type.key') === 'SINGLE_CHOICE_GAME'}
         />
       )}
       {get(props.values.item, 'type.key', '') === 'DICTATION' && (
@@ -301,8 +308,8 @@ const ItemForm = props => (
           disabled={props.disabled}
         />
       )}
-      {get(props.values.item, 'type.key', '') === 'CONNECTING_DOTS' && (
-        <ConnectingDotsItemForm
+      {['CONNECTING_DOTS', 'MEMORY_GAME', 'VOCABULARY_GAME'].find(type => type === get(props.values.item, 'type.key', '')) && (
+        <GameItemForm
           onChange={(path, value) => props.onChange(`item.${path}`, value)}
           errors={get(props.errors, 'item', {})}
           values={props.values.item}

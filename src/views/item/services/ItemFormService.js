@@ -8,6 +8,7 @@ import {
   minFilteredLength,
   onlyOneCorrectAnswer,
   isValidTime,
+  exactLength,
 } from '../../../core/validations';
 
 export default class ItemFormService {
@@ -147,6 +148,18 @@ export default class ItemFormService {
             onlyOneCorrectAnswer,
             // minFilteredLength(1, correctAnswerPredicate, 'Add at least 1 correct answer'),
             minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
+          ],
+        };
+        break;
+      case 'SINGLE_CHOICE_GAME':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.answers': [
+            onlyOneCorrectAnswer,
+            minFilteredLength(2, wrongAnswerPredicate, 'Add at least 2 wrong answers'),
+            exactLength(3),
           ],
         };
         break;
@@ -310,7 +323,27 @@ export default class ItemFormService {
           'item.title': [isRequired],
           'item.answers': [
             isRequired,
-            minLength(6),
+            exactLength(6),
+          ],
+        };
+        break;
+      case 'MEMORY_GAME':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.title': [isRequired],
+          'item.answers': [
+            isRequired,
+            exactLength(6),
+          ],
+        };
+        break;
+      case 'VOCABULARY_GAME':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.title': [isRequired],
+          'item.answers': [
+            isRequired,
+            exactLength(9),
           ],
         };
         break;

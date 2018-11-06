@@ -6,7 +6,7 @@ import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
 
-const ConnectingDotsItemForm = props => (
+const GameItemForm = props => (
   <div>
     <Row>
       <Column size={12}>
@@ -32,7 +32,7 @@ const ConnectingDotsItemForm = props => (
   </div>
 );
 
-ConnectingDotsItemForm.propTypes = {
+GameItemForm.propTypes = {
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
@@ -40,11 +40,11 @@ ConnectingDotsItemForm.propTypes = {
   disabled: PropTypes.bool,
 };
 
-ConnectingDotsItemForm.defaultProps = {
+GameItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
   disabled: false,
 };
 
-export default ConnectingDotsItemForm;
+export default GameItemForm;
