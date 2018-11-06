@@ -309,7 +309,7 @@ const ItemForm = props => (
           disabled={props.disabled}
         />
       )}
-      {['CONNECTING_DOTS', 'MEMORY_GAME', 'VOCABULARY_GAME'].find(type => type === get(props.values.item, 'type.key', '')) && (
+      {['CONNECTING_DOTS', 'MEMORY_GAME', 'VOCABULARY_GAME', 'VOCABULARY'].find(type => type === get(props.values.item, 'type.key', '')) && (
         <GameItemForm
           onChange={(path, value) => props.onChange(`item.${path}`, value)}
           errors={get(props.errors, 'item', {})}

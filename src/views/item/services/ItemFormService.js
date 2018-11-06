@@ -359,6 +359,16 @@ export default class ItemFormService {
           ],
         };
         break;
+      case 'VOCABULARY':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.title': [isRequired],
+          'item.answers': [
+            isRequired,
+            exactLength(8),
+          ],
+        };
+        break;
       default:
         break;
     }
