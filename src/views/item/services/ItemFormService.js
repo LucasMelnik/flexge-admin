@@ -292,6 +292,16 @@ export default class ItemFormService {
           'item.image': [isRequired],
         };
         break;
+      case 'CONNECTING_DOTS':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.title': [isRequired],
+          'item.answers': [
+            isRequired,
+            minLength(6),
+          ],
+        };
+        break;
       default:
         break;
     }

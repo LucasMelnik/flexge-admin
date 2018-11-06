@@ -27,6 +27,7 @@ import FreeTextItemForm from './forms/FreeTextItemForm';
 import FreeSpeakItemForm from './forms/FreeSpeakItemForm';
 import FreeTextImageItemForm from './forms/FreeTextImageItemForm';
 import FreeSpeakImageItemForm from './forms/FreeSpeakImageItemForm';
+import ConnectingDotsItemForm from './forms/ConnectingDotsItemForm';
 
 const needCharacter = itemType =>
   localStorage.getItem('role') === 'ADMIN' &&
@@ -292,6 +293,15 @@ const ItemForm = props => (
       )}
       {get(props.values.item, 'type.key', '') === 'FREE_SPEAK_IMAGE' && (
         <FreeSpeakImageItemForm
+          onChange={(path, value) => props.onChange(`item.${path}`, value)}
+          errors={get(props.errors, 'item', {})}
+          values={props.values.item}
+          submitting={props.submitting}
+          disabled={props.disabled}
+        />
+      )}
+      {get(props.values.item, 'type.key', '') === 'CONNECTING_DOTS' && (
+        <ConnectingDotsItemForm
           onChange={(path, value) => props.onChange(`item.${path}`, value)}
           errors={get(props.errors, 'item', {})}
           values={props.values.item}
