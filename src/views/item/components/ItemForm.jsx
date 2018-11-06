@@ -262,7 +262,7 @@ const ItemForm = props => (
           isTestItem={props.isTestItem}
         />
       )}
-      {get(props.values.item, 'type.key', '') === 'TRUE_FALSE' && (
+      {['TRUE_FALSE', 'TRUE_FALSE_KIDS'].find(type => type === get(props.values.item, 'type.key', '')) && (
         <TrueFalseItemForm
           onChange={(path, value) => props.onChange(`item.${path}`, value)}
           errors={get(props.errors, 'item', {})}
@@ -270,6 +270,7 @@ const ItemForm = props => (
           submitting={props.submitting}
           disabled={props.disabled}
           isTestItem={props.isTestItem}
+          hasImage={get(props.values.item, 'type.key', '') === 'TRUE_FALSE_KIDS'}
         />
       )}
       {get(props.values.item, 'type.key', '') === 'FREE_TEXT' && (

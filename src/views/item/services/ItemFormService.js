@@ -265,7 +265,19 @@ export default class ItemFormService {
           'item.answers': [
             onlyOneCorrectAnswer,
             isRequired,
-            minLength(2),
+            exactLength(2),
+          ],
+        };
+        break;
+      case 'TRUE_FALSE_KIDS':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.text': [isRequired],
+          'item.translation': this.isTestItem ? [] : [isRequired],
+          'item.answers': [
+            onlyOneCorrectAnswer,
+            isRequired,
+            exactLength(2),
           ],
         };
         break;
