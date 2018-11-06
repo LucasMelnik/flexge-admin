@@ -28,7 +28,6 @@ class UnitFormSceneContainer extends Component {
     return (
       <UnitFormScene
         unitId={this.props.params.unitId}
-        moduleId={this.props.params.moduleId}
         module={LoadModuleService.module}
         fetching={LoadModuleService.fetch.fetching}
       />
