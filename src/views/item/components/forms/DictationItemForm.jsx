@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import TranslationContainer from '../inputs/TranslationInputContainer';
 import AnswersContainer from '../inputs/AnswersInputContainer';
-import FileInput from '../../../../core/form/FileInput';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
@@ -26,23 +25,13 @@ const DictationItemForm = props => (
       disabled={props.disabled}
     />
     <Row>
-      <Column size={4}>
+      <Column size={6}>
         <Audios
           values={props.values}
           submitting={props.submitting}
           disabled={props.disabled}
           onChange={props.onChange}
           errors={props.errors}
-        />
-      </Column>
-      <Column size={6}>
-        <FileInput
-          label="Upload an audio to item"
-          accept="audio"
-          value={get(props.values, 'audio', '')}
-          onChange={(key) => props.onChange('audio', key)}
-          errorText={get(props.errors, 'audio', '')}
-          disabled={props.disabled}
         />
       </Column>
     </Row>

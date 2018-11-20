@@ -29,6 +29,8 @@ import FreeTextImageItemForm from './forms/FreeTextImageItemForm';
 import FreeSpeakImageItemForm from './forms/FreeSpeakImageItemForm';
 import GameItemForm from './forms/GameItemForm';
 import GapFillLetterItemForm from './forms/GapFillLetterItemForm';
+import PhonemeItemForm from './forms/PhonemeItemForm';
+import VocabularyItemForm from './forms/VocabularyItemForm';
 
 const needCharacter = itemType =>
   localStorage.getItem('role') === 'ADMIN' &&
@@ -271,6 +273,7 @@ const ItemForm = props => (
           disabled={props.disabled}
           isTestItem={props.isTestItem}
           hasImage={get(props.values.item, 'type.key', '') === 'TRUE_FALSE_KIDS'}
+          hasPostPhrase={get(props.values.item, 'type.key', '') === 'TRUE_FALSE_KIDS'}
         />
       )}
       {get(props.values.item, 'type.key', '') === 'FREE_TEXT' && (
@@ -309,8 +312,26 @@ const ItemForm = props => (
           disabled={props.disabled}
         />
       )}
-      {['CONNECTING_DOTS', 'MEMORY_GAME', 'VOCABULARY_GAME', 'VOCABULARY'].find(type => type === get(props.values.item, 'type.key', '')) && (
+      {['CONNECTING_DOTS', 'MEMORY_GAME', 'VOCABULARY_GAME'].find(type => type === get(props.values.item, 'type.key', '')) && (
         <GameItemForm
+          onChange={(path, value) => props.onChange(`item.${path}`, value)}
+          errors={get(props.errors, 'item', {})}
+          values={props.values.item}
+          submitting={props.submitting}
+          disabled={props.disabled}
+        />
+      )}
+      {['VOCABULARY'].find(type => type === get(props.values.item, 'type.key', '')) && (
+        <VocabularyItemForm
+          onChange={(path, value) => props.onChange(`item.${path}`, value)}
+          errors={get(props.errors, 'item', {})}
+          values={props.values.item}
+          submitting={props.submitting}
+          disabled={props.disabled}
+        />
+      )}
+      {['PHONEME'].find(type => type === get(props.values.item, 'type.key', '')) && (
+        <PhonemeItemForm
           onChange={(path, value) => props.onChange(`item.${path}`, value)}
           errors={get(props.errors, 'item', {})}
           values={props.values.item}

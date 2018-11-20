@@ -4,27 +4,25 @@ import get from 'lodash/get';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
-import TranslationInputContainer from '../inputs/TranslationInputContainer';
 import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
 import Audios from '../inputs/Audios';
 import FileInput from '../../../../core/form/FileInput';
 import AudioPreview from '../../../../core/layout/AudioPreview';
 
-const GameItemForm = props => (
+const VocabularyItemForm = props => (
   <div>
-    <TranslationInputContainer
-      onChange={props.onChange}
-      submitting={props.submitting}
-      values={props.values}
-      errors={props.errors}
-      disabled={props.disabled}
-    />
-    <SpellCheckInputContainer
-      onChange={props.onChange}
-      submitting={props.submitting}
-      values={props.values}
-      disabled={props.disabled}
-    />
+    <Row>
+      <Column size={12}>
+        <TextInput
+          label="Vocabulary"
+          disabled={props.submitting || props.disabled}
+          value={get(props.values, 'text', '')}
+          onChange={value => props.onChange('text', value)}
+          description={get(props.errors, 'text', '')}
+          fieldValidation={get(props.errors, 'text', null) && 'error'}
+        />
+      </Column>
+    </Row>
     <Row>
       <Column size={4}>
         <Audios
@@ -40,7 +38,7 @@ const GameItemForm = props => (
           accept="image"
           disabled={props.disabled}
           value={get(props.values, 'image', '')}
-          onChange={(key) => props.onChange('image', key)}
+          onChange={key => props.onChange('image', key)}
           errorText={get(props.errors, 'image', '')}
         />
       </Column>
@@ -54,6 +52,15 @@ const GameItemForm = props => (
           onChange={value => props.onChange('postPhrase', value)}
           description={get(props.errors, 'postPhrase', '')}
           fieldValidation={get(props.errors, 'postPhrase', null) && 'error'}
+        />
+      </Column>
+      <Column size={12}>
+        <SpellCheckInputContainer
+          onChange={props.onChange}
+          submitting={props.submitting}
+          values={props.values}
+          textPath="postPhrase"
+          disabled={props.disabled}
         />
       </Column>
       {get(props.values, 'generatedPostPhraseAudio', null) && (
@@ -76,7 +83,7 @@ const GameItemForm = props => (
   </div>
 );
 
-GameItemForm.propTypes = {
+VocabularyItemForm.propTypes = {
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
@@ -84,11 +91,11 @@ GameItemForm.propTypes = {
   disabled: PropTypes.bool,
 };
 
-GameItemForm.defaultProps = {
+VocabularyItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
   disabled: false,
 };
 
-export default GameItemForm;
+export default VocabularyItemForm;

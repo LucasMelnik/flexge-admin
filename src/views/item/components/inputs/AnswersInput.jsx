@@ -29,18 +29,6 @@ const AnswersInput = props => (
             errorText={get(props.errors, 'text', '')}
           />
         </Column>
-        {props.hasPostPhrase && (
-          <Column
-            size={6}
-          >
-            <TextInput
-              label="Post Phrase"
-              value={get(props.values, 'postPhrase', '')}
-              onChange={value => props.onChange('postPhrase', value)}
-              errorText={get(props.errors, 'postPhrase', '')}
-            />
-          </Column>
-        )}
         {props.answerType === 'BOTH' && (
           <Column size={2}>
             <Select
@@ -84,17 +72,6 @@ const AnswersInput = props => (
             errorText={get(props.errors, 'image', '')}
           />
         </Column>
-        {props.hasPostPhrase && (
-          <Column size={3}>
-            <FileInput
-              label="Upload an post phrase to the answer"
-              accept="audio"
-              value={get(props.values, 'postPhraseAudio', '')}
-              onChange={(key) => props.onChange('postPhraseAudio', key)}
-              errorText={get(props.errors, 'postPhraseAudio', '')}
-            />
-          </Column>
-        )}
       </Row>
     )}
     {!props.disabled && (
@@ -121,88 +98,69 @@ const AnswersInput = props => (
       <Column size={12}>
         <Table
           columns={[
-            ...[
-              {
-                label: 'Answer',
-                path: 'text',
-                width: '350px',
+            {
+              label: 'Answer',
+              path: 'text',
+              width: '350px',
+            },
+            {
+              label: 'Correct',
+              path: 'correct',
+              width: '105px',
+              render: (cell) => cell ? 'Yes' : 'No',
+            },
+            {
+              label: 'Generated Audio',
+              render: (cell, row) => {
+                if (row.generatedAudio) {
+                  return (<AudioPreview src={row.generatedAudio} />);
+                }
+                return '-';
               },
-              {
-                label: 'Correct',
-                path: 'correct',
-                width: '105px',
-                render: (cell) => cell ? 'Yes' : 'No',
+            },
+            {
+              label: 'Audio',
+              render: (cell, row) => {
+                if (row.audio) {
+                  return (<AudioPreview src={row.audio} />);
+                }
+                return 'No Audio uploaded';
               },
-              {
-                label: 'Generated Audio',
-                render: (cell, row) => {
-                  if (row.generatedAudio) {
-                    return (<AudioPreview src={row.generatedAudio} />);
-                  }
-                  return '-';
-                },
+            },
+            {
+              label: 'Image',
+              render: (cell, row) => {
+                if (row.image) {
+                  return (<ImagePreview src={row.image} />);
+                } else if (props.type === 'SINGLE_CHOICE_IMAGE') {
+                  return 'No Image uploaded';
+                }
+                return '-';
               },
-              {
-                label: 'Audio',
-                render: (cell, row) => {
-                  if (row.audio) {
-                    return (<AudioPreview src={row.audio} />);
-                  }
-                  return 'No Audio uploaded';
-                },
+            },
+            {
+              label: 'Actions',
+              path: 'action',
+              width: '105px',
+              render: (cell, row) => {
+                if (!props.disabled) {
+                  return (
+                    <div>
+                      <Button
+                        icon="delete"
+                        onClick={() => props.onDelete(row.id)}
+                      />
+                      {' '}
+                      <Button
+                        icon="edit"
+                        onClick={() => props.onEdit(row.id)}
+                      />
+                    </div>
+                  );
+                }
+                return null;
               },
-              {
-                label: 'Image',
-                render: (cell, row) => {
-                  if (row.image) {
-                    return (<ImagePreview src={row.image} />);
-                  } else if (props.type === 'SINGLE_CHOICE_IMAGE') {
-                    return 'No Image uploaded';
-                  }
-                  return '-';
-                },
-              },
-            ],
-            ...props.hasPostPhrase ? [
-              {
-                label: 'Post Phrase',
-                path: 'postPhrase',
-              },
-              {
-                label: 'Post Phrase',
-                render: (cell, row) => {
-                  if (row.audio) {
-                    return (<AudioPreview src={row.postPhraseAudio} />);
-                  }
-                  return 'No Post phrase Audio uploaded';
-                },
-              },
-            ] : [],
-            ...[
-              {
-                label: 'Actions',
-                path: 'action',
-                width: '105px',
-                render: (cell, row) => {
-                  if (!props.disabled) {
-                    return (
-                      <div>
-                        <Button
-                          icon="delete"
-                          onClick={() => props.onDelete(row.id)}
-                        />
-                        {' '}
-                        <Button
-                          icon="edit"
-                          onClick={() => props.onEdit(row.id)}
-                        />
-                      </div>
-                    );
-                  }
-                  return null;
-                },
-              },
-            ]
+            },
           ]}
           rows={props.answers}
         />
@@ -227,7 +185,6 @@ AnswersInput.propTypes = {
   ]).isRequired,
   disabled: PropTypes.bool,
   allowSpellCheck: PropTypes.bool,
-  hasPostPhrase: PropTypes.bool,
   label: PropTypes.string.isRequired,
   type: PropTypes.oneOf(
     [
@@ -255,7 +212,6 @@ AnswersInput.defaultProps = {
   type: null,
   disabled: false,
   allowSpellCheck: false,
-  hasPostPhrase: false,
 };
 
 export default AnswersInput;

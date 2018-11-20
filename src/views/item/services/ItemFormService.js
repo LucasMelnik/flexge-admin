@@ -332,41 +332,37 @@ export default class ItemFormService {
       case 'CONNECTING_DOTS':
         this.form.validations = {
           ...this.defaultValidations,
-          'item.title': [isRequired],
-          'item.answers': [
-            isRequired,
-            exactLength(6),
-          ],
+          'item.text': [isRequired],
+          'item.postPhrase': [isRequired],
         };
         break;
       case 'MEMORY_GAME':
         this.form.validations = {
           ...this.defaultValidations,
-          'item.title': [isRequired],
-          'item.answers': [
-            isRequired,
-            exactLength(6),
-          ],
+          'item.text': [isRequired],
+          'item.postPhrase': [isRequired],
         };
         break;
       case 'VOCABULARY_GAME':
         this.form.validations = {
           ...this.defaultValidations,
-          'item.title': [isRequired],
-          'item.answers': [
-            isRequired,
-            exactLength(9),
-          ],
+          'item.text': [isRequired],
+          'item.postPhrase': [isRequired],
         };
         break;
       case 'VOCABULARY':
         this.form.validations = {
           ...this.defaultValidations,
+          'item.text': [isRequired],
+          'item.postPhrase': [isRequired],
+        };
+        break;
+      case 'PHONEME':
+        this.form.validations = {
+          ...this.defaultValidations,
           'item.title': [isRequired],
-          'item.answers': [
-            isRequired,
-            exactLength(8),
-          ],
+          'item.text': [isRequired],
+          'item.postPhrase': [isRequired],
         };
         break;
       default:
