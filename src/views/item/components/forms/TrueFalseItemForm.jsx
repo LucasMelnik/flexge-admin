@@ -7,6 +7,8 @@ import Audios from '../inputs/Audios';
 import Column from '../../../../core/layout/Column';
 import FileInput from '../../../../core/form/FileInput';
 import Row from '../../../../core/layout/Row';
+import TextInput from '../../../../core/form/TextInput';
+import AudioPreview from '../../../../core/layout/AudioPreview';
 
 const TrueFalseItemForm = props => (
   <div>
@@ -18,6 +20,36 @@ const TrueFalseItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
+    {(props.hasPostPhrase && !props.isTestItem) && (
+      <Row>
+        <Column size={12}>
+          <TextInput
+            label="Post Phrase"
+            disabled={props.submitting}
+            value={get(props.values, 'postPhrase', '')}
+            onChange={value => props.onChange('postPhrase', value)}
+            description={get(props.errors, 'postPhrase', '')}
+            fieldValidation={get(props.errors, 'postPhrase', null) && 'error'}
+          />
+        </Column>
+        {get(props.values, 'generatedPostPhraseAudio', null) && (
+          <Column size={4}>
+            <p>Generated Post Phrase Audio</p>
+            <AudioPreview src={get(props.values, 'generatedPostPhraseAudio', '')} />
+          </Column>
+        )}
+        <Column size={6}>
+          <FileInput
+            label="Upload the post phrase audio"
+            accept="audio"
+            value={get(props.values, 'postPhraseAudio', '')}
+            onChange={(key) => props.onChange('postPhraseAudio', key)}
+            errorText={get(props.errors, 'postPhraseAudio', '')}
+            disabled={props.disabled}
+          />
+        </Column>
+      </Row>
+    )}
     <Row>
       <Column size={4}>
         <Audios
@@ -57,6 +89,7 @@ TrueFalseItemForm.propTypes = {
   disabled: PropTypes.bool,
   isTestItem: PropTypes.bool,
   hasImage: PropTypes.bool,
+  hasPostPhrase: PropTypes.bool,
 };
 
 TrueFalseItemForm.defaultProps = {
@@ -66,6 +99,7 @@ TrueFalseItemForm.defaultProps = {
   disabled: false,
   isTestItem: false,
   hasImage: false,
+  hasPostPhrase: false,
 };
 
 export default TrueFalseItemForm;

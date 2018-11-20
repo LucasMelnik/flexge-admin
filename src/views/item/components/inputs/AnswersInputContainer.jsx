@@ -12,7 +12,6 @@ class AnswersInputContainer extends Component {
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
     allowSpellCheck: PropTypes.bool,
-    hasPostPhrase: PropTypes.bool,
     answerType: PropTypes.oneOf([
       'CORRECT',
       'WRONG',
@@ -38,7 +37,6 @@ class AnswersInputContainer extends Component {
     type: null,
     disabled: false,
     allowSpellCheck: false,
-    hasPostPhrase: false,
     value: [],
   };
 
@@ -159,7 +157,6 @@ class AnswersInputContainer extends Component {
         type={this.props.type}
         disabled={this.props.disabled}
         allowSpellCheck={this.props.allowSpellCheck}
-        hasPostPhrase={this.props.hasPostPhrase}
       />
     );
   }

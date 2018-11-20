@@ -9,6 +9,7 @@ import FileInput from '../../../../core/form/FileInput';
 import Audios from '../inputs/Audios';
 import Column from '../../../../core/layout/Column';
 import Row from '../../../../core/layout/Row';
+import AudioPreview from '../../../../core/layout/AudioPreview';
 
 const SingleChoiceItemForm = props => (
   <div>
@@ -55,14 +56,26 @@ const SingleChoiceItemForm = props => (
       />
     )}
     {(props.showPostPhrase && !props.isTestItem) && (
-      <FileInput
-        label="Upload the post phrase audio"
-        accept="audio"
-        value={get(props.values, 'postPhraseAudio', '')}
-        onChange={(key) => props.onChange('postPhraseAudio', key)}
-        errorText={get(props.errors, 'postPhraseAudio', '')}
-        disabled={props.disabled}
-      />
+      <Row>
+        <Column size={4}>
+          {get(props.values, 'generatedPostPhraseAudio', null) && (
+            <Column size={4}>
+              <p>Generated Post Phrase Audio</p>
+              <AudioPreview src={get(props.values, 'generatedPostPhraseAudio', '')} />
+            </Column>
+          )}
+        </Column>
+        <Column size={4}>
+          <FileInput
+            label="Upload the post phrase audio"
+            accept="audio"
+            value={get(props.values, 'postPhraseAudio', '')}
+            onChange={(key) => props.onChange('postPhraseAudio', key)}
+            errorText={get(props.errors, 'postPhraseAudio', '')}
+            disabled={props.disabled}
+          />
+        </Column>
+      </Row>
     )}
     <AnswersInputContainer
       value={get(props.values, 'answers', [])}

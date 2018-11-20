@@ -12,10 +12,10 @@ const SpellCheckInput = props => (
     <Row>
       <Column size={12}>
         <Button
-          disabled={props.submitting || props.disabled || !get(props.values, 'text', undefined)}
+          disabled={props.submitting || props.disabled || !get(props.values, props.textPath, undefined)}
           label="Spell Check"
           loading={props.spellChecking}
-          onClick={() => props.onSpellCheck(get(props.values, 'text', undefined))}
+          onClick={() => props.onSpellCheck(get(props.values, props.textPath, undefined))}
         />
         <span
           style={{
@@ -65,6 +65,7 @@ SpellCheckInput.propTypes = {
   spellCheckStatus: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   spellChecking: PropTypes.bool.isRequired,
+  textPath: PropTypes.string.isRequired,
   values: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
