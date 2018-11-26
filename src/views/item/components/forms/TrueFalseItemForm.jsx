@@ -8,7 +8,6 @@ import Column from '../../../../core/layout/Column';
 import FileInput from '../../../../core/form/FileInput';
 import Row from '../../../../core/layout/Row';
 import TextInput from '../../../../core/form/TextInput';
-import AudioPreview from '../../../../core/layout/AudioPreview';
 
 const TrueFalseItemForm = props => (
   <div>
@@ -32,27 +31,21 @@ const TrueFalseItemForm = props => (
             fieldValidation={get(props.errors, 'postPhrase', null) && 'error'}
           />
         </Column>
-        {get(props.values, 'generatedPostPhraseAudio', null) && (
-          <Column size={4}>
-            <p>Generated Post Phrase Audio</p>
-            <AudioPreview src={get(props.values, 'generatedPostPhraseAudio', '')} />
-          </Column>
-        )}
-        <Column size={6}>
-          <FileInput
-            label="Upload the post phrase audio"
-            accept="audio"
-            value={get(props.values, 'postPhraseAudio', '')}
-            onChange={(key) => props.onChange('postPhraseAudio', key)}
-            errorText={get(props.errors, 'postPhraseAudio', '')}
-            disabled={props.disabled}
-          />
-        </Column>
+        <Audios
+          audioPath="postPhraseAudio"
+          generatedAudioPath="generatedPostPhraseAudio"
+          values={props.values}
+          disabled={props.disabled}
+          onChange={props.onChange}
+          errors={props.errors}
+        />
       </Row>
     )}
     <Row>
       <Column size={4}>
         <Audios
+          audioPath="audio"
+          generatedAudioPath="generatedAudio"
           values={props.values}
           submitting={props.submitting}
           disabled={props.disabled}

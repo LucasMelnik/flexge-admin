@@ -8,26 +8,29 @@ import Column from '../../../../core/layout/Column';
 
 const Audios = props => (
   <Row>
-    {get(props.values, 'generatedAudio', null) && (
+    {get(props.values, props.generatedAudioPath, null) && (
       <Column size={3}>
-        <p>Generated Audio</p>
-        <AudioPreview src={get(props.values, 'generatedAudio', '')} />
+        <p>Generated {props.label} audio</p>
+        <AudioPreview src={get(props.values, props.generatedAudioPath, '')} />
       </Column>
     )}
     <Column size={8}>
       <FileInput
-        label="Upload an audio to the item"
+        label={`Upload an audio to the ${props.label}`}
         accept="audio"
         disabled={props.disabled || props.submitting}
-        value={get(props.values, 'audio', '')}
-        onChange={(key) => props.onChange('audio', key)}
-        errorText={get(props.errors, 'audio', '')}
+        value={get(props.values, props.audioPath, '')}
+        onChange={(key) => props.onChange(props.audioPath, key)}
+        errorText={get(props.errors, props.audioPath, '')}
       />
     </Column>
   </Row>
 );
 
 Audios.propTypes = {
+  audioPath: PropTypes.string.isRequired,
+  generatedAudioPath: PropTypes.string.isRequired,
+  label: PropTypes.string,
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
@@ -36,6 +39,7 @@ Audios.propTypes = {
 };
 
 Audios.defaultProps = {
+  label: 'item',
   values: null,
   errors: null,
   submitting: false,

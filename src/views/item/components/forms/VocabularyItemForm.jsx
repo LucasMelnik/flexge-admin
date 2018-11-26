@@ -7,7 +7,6 @@ import TextInput from '../../../../core/form/TextInput';
 import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
 import Audios from '../inputs/Audios';
 import FileInput from '../../../../core/form/FileInput';
-import AudioPreview from '../../../../core/layout/AudioPreview';
 
 const VocabularyItemForm = props => (
   <div>
@@ -26,6 +25,8 @@ const VocabularyItemForm = props => (
     <Row>
       <Column size={4}>
         <Audios
+          audioPath="audio"
+          generatedAudioPath="generatedAudio"
           values={props.values}
           disabled={props.disabled}
           onChange={props.onChange}
@@ -63,22 +64,15 @@ const VocabularyItemForm = props => (
           disabled={props.disabled}
         />
       </Column>
-      {get(props.values, 'generatedPostPhraseAudio', null) && (
-        <Column size={4}>
-          <p>Generated Post Phrase Audio</p>
-          <AudioPreview src={get(props.values, 'generatedPostPhraseAudio', '')} />
-        </Column>
-      )}
-      <Column size={6}>
-        <FileInput
-          label="Upload the post phrase audio"
-          accept="audio"
-          value={get(props.values, 'postPhraseAudio', '')}
-          onChange={(key) => props.onChange('postPhraseAudio', key)}
-          errorText={get(props.errors, 'postPhraseAudio', '')}
-          disabled={props.disabled}
-        />
-      </Column>
+      <Audios
+        label="post phrase"
+        audioPath="postPhraseAudio"
+        generatedAudioPath="generatedPostPhraseAudio"
+        values={props.values}
+        disabled={props.disabled}
+        onChange={props.onChange}
+        errors={props.errors}
+      />
     </Row>
   </div>
 );

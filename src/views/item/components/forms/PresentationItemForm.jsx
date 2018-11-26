@@ -40,6 +40,8 @@ const PresentationItemForm = props => (
     <Row>
       <Column size={4}>
         <Audios
+          audioPath="audio"
+          generatedAudioPath="generatedAudio"
           values={props.values}
           disabled={props.disabled}
           onChange={props.onChange}
@@ -68,13 +70,13 @@ const PresentationItemForm = props => (
             description={get(props.errors, 'postPhrase', '')}
             fieldValidation={get(props.errors, 'postPhrase', null) && 'error'}
           />
-          <FileInput
-            label="Upload the post phrase audio"
-            accept="audio"
-            value={get(props.values, 'postPhraseAudio', '')}
-            onChange={(key) => props.onChange('postPhraseAudio', key)}
-            errorText={get(props.errors, 'postPhraseAudio', '')}
+          <Audios
+            audioPath="postPhraseAudio"
+            generatedAudioPath="generatedPostPhraseAudio"
+            values={props.values}
             disabled={props.disabled}
+            onChange={props.onChange}
+            errors={props.errors}
           />
         </Column>
       </Row>

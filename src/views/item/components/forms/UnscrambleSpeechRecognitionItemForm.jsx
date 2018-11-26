@@ -24,6 +24,8 @@ const UnscrambleSpeechRecognitionItemForm = props => (
       disabled={props.disabled}
     />
     <Audios
+      audioPath="audio"
+      generatedAudioPath="generatedAudio"
       values={props.values}
       submitting={props.submitting}
       disabled={props.disabled}
