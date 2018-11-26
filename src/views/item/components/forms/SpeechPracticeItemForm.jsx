@@ -21,6 +21,8 @@ const SpeechPracticeItemForm = props => (
       disabled={props.disabled}
     />
     <Audios
+      audioPath="audio"
+      generatedAudioPath="generatedAudio"
       values={props.values}
       disabled={props.disabled}
       onChange={props.onChange}

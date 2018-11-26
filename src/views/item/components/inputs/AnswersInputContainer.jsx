@@ -27,7 +27,9 @@ class AnswersInputContainer extends Component {
     type: PropTypes.oneOf([
       'SINGLE_CHOICE_TEXT',
       'SINGLE_CHOICE_AUDIO',
-      'SINGLE_CHOICE_IMAGE']),
+      'SINGLE_CHOICE_IMAGE',
+      'SINGLE_CHOICE_GAME',
+    ]),
   };
 
   static defaultProps = {

@@ -27,6 +27,8 @@ const DictationItemForm = props => (
     <Row>
       <Column size={6}>
         <Audios
+          audioPath="audio"
+          generatedAudioPath="generatedAudio"
           values={props.values}
           submitting={props.submitting}
           disabled={props.disabled}

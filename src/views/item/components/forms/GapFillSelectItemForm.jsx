@@ -17,6 +17,8 @@ const GapFillSelectItemForm = props => (
       isTestItem={props.isTestItem}
     />
     <Audios
+      audioPath="audio"
+      generatedAudioPath="generatedAudio"
       values={props.values}
       submitting={props.submitting}
       disabled={props.disabled}

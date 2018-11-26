@@ -22,6 +22,8 @@ const TextItemForm = props => (
       </Column>
     </Row>
     <Audios
+      audioPath="audio"
+      generatedAudioPath="generatedAudio"
       values={props.values}
       submitting={props.submitting}
       disabled={props.disabled}

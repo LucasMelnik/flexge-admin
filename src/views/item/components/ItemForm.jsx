@@ -31,6 +31,7 @@ import GameItemForm from './forms/GameItemForm';
 import GapFillLetterItemForm from './forms/GapFillLetterItemForm';
 import PhonemeItemForm from './forms/PhonemeItemForm';
 import VocabularyItemForm from './forms/VocabularyItemForm';
+import SingleChoiceGameItemForm from './forms/SingleChoiceGameItemForm';
 
 const needCharacter = itemType =>
   localStorage.getItem('role') === 'ADMIN' &&
@@ -142,10 +143,7 @@ const ItemForm = props => (
         'SINGLE_CHOICE_AUDIO',
         'SINGLE_CHOICE_IMAGE',
         'SINGLE_CHOICE_KIDS',
-        'SINGLE_CHOICE_GAME',
-      ].find(
-        type => type === get(props.values.item, 'type.key')
-      ) && (
+      ].find(type => type === get(props.values.item, 'type.key')) && (
         <SingleChoiceItemForm
           onChange={(path, value) => props.onChange(`item.${path}`, value)}
           errors={get(props.errors, 'item', {})}
@@ -160,7 +158,6 @@ const ItemForm = props => (
               'SINGLE_CHOICE_KIDS',
             ].find(type => type === get(props.values.item, 'type.key'))
           }
-          hasImage={get(props.values.item, 'type.key') === 'SINGLE_CHOICE_GAME'}
         />
       )}
       {get(props.values.item, 'type.key', '') === 'DICTATION' && (
@@ -347,6 +344,15 @@ const ItemForm = props => (
           submitting={props.submitting}
           disabled={props.disabled}
           isTestItem={props.isTestItem}
+        />
+      )}
+      {get(props.values.item, 'type.key', '') === 'SINGLE_CHOICE_GAME' && (
+        <SingleChoiceGameItemForm
+          onChange={(path, value) => props.onChange(`item.${path}`, value)}
+          errors={get(props.errors, 'item', {})}
+          values={props.values.item}
+          submitting={props.submitting}
+          disabled={props.disabled}
         />
       )}
       <Separator size="xs" />
