@@ -3,6 +3,8 @@ import CPF from 'gerador-validador-cpf/dist/js/CPF';
 
 export const isRequired = value => (value === null || value === undefined || !value.toString().length) && 'Required';
 
+export const exactLength = exactLengthInformed => value => value && value.length !== exactLengthInformed && `You must have exact ${exactLengthInformed} items`;
+
 export const minLength = minLengthInformed => valueue => valueue && valueue.length < minLengthInformed && `Min. length: ${minLengthInformed}`;
 
 export const minFilteredLength = (minLengthInformed, filterPrediction, message) => valueue => (!valueue || valueue.filter(filterPrediction).length < minLengthInformed) && (message || `Min. length: ${minLengthInformed}`);

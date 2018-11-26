@@ -24,7 +24,7 @@ export default class UnitFormService {
     };
   }
 
-  handleLoad = action((unitId, moduleId) => {
+  handleLoad = action((unitId, moduleId, academicPlanId) => {
     this.form.reset();
     if (unitId) {
       this.fetch.fetch({
@@ -34,6 +34,7 @@ export default class UnitFormService {
           this.form.setInitialValues({
             ...this.fetch.data,
             module: this.fetch.data.module.id,
+            academicPlan: this.fetch.data.module.academicPlan,
             type: this.fetch.data.type.id,
           });
         }
@@ -41,6 +42,7 @@ export default class UnitFormService {
     } else {
       this.form.setInitialValues({
         module: moduleId,
+        academicPlan: academicPlanId,
       });
     }
     this.unitId = unitId;

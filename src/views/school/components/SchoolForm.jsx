@@ -13,6 +13,7 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import FormButtons from '../../../core/form/FormButtons';
 import FileInput from '../../../core/form/FileInput';
 import Switch from '../../../core/form/Switch';
+import LocaleSelect from '../../../core/form/LocaleSelect';
 
 const SchoolForm = props => (
   <form
@@ -48,6 +49,7 @@ const SchoolForm = props => (
             onChange={(company, object) => {
               props.onChange('company', company);
               props.onChange('country', get(object, 'country', null));
+              props.onChange('locale', get(object, 'country.locale', null));
             }}
             errorText={get(props.errors, 'company', null)}
             resultTransformer={{
@@ -100,7 +102,7 @@ const SchoolForm = props => (
       <Column size={2}>
         <FetchSelect
           required
-          url={`states?country=${get(props.values, 'country', '')}`}
+          url={`states?country=${get(props.values, 'country.id', '')}`}
           disabled={props.submitting || !get(props.values, 'company', false)}
           label="State"
           value={get(props.values, 'state', '')}
@@ -112,7 +114,16 @@ const SchoolForm = props => (
           }}
         />
       </Column>
-      <Column size={6}>
+      <Column size={2}>
+        <LocaleSelect
+          required
+          disabled={props.submitting || !get(props.values, 'company', false)}
+          value={get(props.values, 'locale', '')}
+          onChange={value => props.onChange('locale', value)}
+          errorText={get(props.errors, 'locale', null)}
+        />
+      </Column>
+      <Column size={4}>
         <TextInput
           disabled={props.submitting}
           label="City"

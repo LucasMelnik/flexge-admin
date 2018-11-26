@@ -64,6 +64,7 @@ const ItemAudioList = props => (
           >
             {(
               localStorage.getItem('role') === 'AUDIO_CONTENT' &&
+              (record.itemTypeKey !== 'SINGLE_CHOICE_GAME' || !(record.itemTypeKey === 'SINGLE_CHOICE_GAME' && record.children)) &&
               (!record.statusAudio || record.statusAudio === 'PENDING' || record.statusAudio === 'NOT_APPROVED')
             ) && (
               <UploadButton
@@ -73,10 +74,12 @@ const ItemAudioList = props => (
             )}
             {(localStorage.getItem('role') === 'ADMIN') && (
               <div>
-                <UploadButton
-                  label="Click to upload an audio"
-                  onChange={key => props.onAudioUpload(key, record)}
-                />
+                {(record.itemTypeKey !== 'SINGLE_CHOICE_GAME' || !(record.itemTypeKey === 'SINGLE_CHOICE_GAME' && record.children)) && (
+                  <UploadButton
+                    label="Click to upload an audio"
+                    onChange={key => props.onAudioUpload(key, record)}
+                  />
+                )}
                 {' '}
                 {record.statusAudio === 'PENDING' && (
                   <Button

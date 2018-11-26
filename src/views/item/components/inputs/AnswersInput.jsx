@@ -13,13 +13,14 @@ import AudioPreview from '../../../../core/layout/AudioPreview';
 import ImagePreview from '../../../../core/layout/ImagePreview';
 import ErrorText from '../../../../core/layout/ErrorText';
 import SpellCheckInputContainer from './SpellCheckInputContainer';
+import Separator from '../../../../core/layout/Separator';
 
 const AnswersInput = props => (
   <div>
     {!props.disabled && (
       <Row>
         <Column
-          size={props.answerType === 'BOTH' ? 7 : 9}
+          size={props.answerType === 'BOTH' ? 7 : 6}
         >
           <TextInput
             label={props.label}
@@ -42,29 +43,6 @@ const AnswersInput = props => (
             />
           </Column>
         )}
-        <Column size={3}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'flex-end',
-              height: 62,
-            }}
-          >
-            <Button
-              icon="check"
-              type="primary"
-              label={props.values.id ? 'Update' : 'Add'}
-              disabled={!props.isDirty()}
-              onClick={() => props.onSubmit()}
-            />
-            <ColumnSeparator size="xs" />
-            <Button
-              icon="reload"
-              label="Discard"
-              onClick={() => props.onReset()}
-            />
-          </div>
-        </Column>
       </Row>
     )}
     {(!props.disabled && props.allowSpellCheck) && (
@@ -96,6 +74,26 @@ const AnswersInput = props => (
         </Column>
       </Row>
     )}
+    {!props.disabled && (
+      <Row>
+        <Column size={12}>
+          <Button
+            icon="check"
+            type="primary"
+            label={props.values.id ? 'Update' : 'Add'}
+            disabled={!props.isDirty()}
+            onClick={() => props.onSubmit()}
+          />
+          <ColumnSeparator size="xs" />
+          <Button
+            icon="reload"
+            label="Discard"
+            onClick={() => props.onReset()}
+          />
+        </Column>
+      </Row>
+    )}
+    <Separator size="sm" />
     <Row>
       <Column size={12}>
         <Table

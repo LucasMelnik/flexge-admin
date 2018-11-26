@@ -10,6 +10,7 @@ class SpellCheckInputContainer extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
+    textPath: PropTypes.string,
     values: PropTypes.object,
     submitting: PropTypes.bool,
     disabled: PropTypes.bool,
@@ -17,6 +18,7 @@ class SpellCheckInputContainer extends Component {
 
   static defaultProps = {
     values: {},
+    textPath: 'text',
     submitting: false,
     disabled: false,
   };
@@ -29,6 +31,7 @@ class SpellCheckInputContainer extends Component {
         wrongWords={toJS(this.spellCheckService.words)}
         spellCheckStatus={this.spellCheckService.status}
         values={this.props.values}
+        textPath={this.props.textPath}
         onChange={this.props.onChange}
         submitting={this.props.submitting}
         disabled={this.props.disabled}

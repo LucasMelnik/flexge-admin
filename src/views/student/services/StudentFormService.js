@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
-import { isRequired, isValidEmail, isCPF } from '../../../core/validations';
+import { isRequired, isValidEmail } from '../../../core/validations';
 
 export default class StudentFormService {
   fetch = new FetchService();
@@ -21,7 +21,6 @@ export default class StudentFormService {
       email: [isRequired, isValidEmail],
       fatherEmail: [isValidEmail],
       motherEmail: [isValidEmail],
-      cpf: [isCPF],
     };
   }
 
@@ -44,7 +43,7 @@ export default class StudentFormService {
         }
       });
     } else {
-      this.form.validations.password = [isRequired]
+      this.form.validations.password = [isRequired];
       this.form.setInitialValues({
         sendWelcomeEmail: false,
         demoStudent: false,

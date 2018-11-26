@@ -5,31 +5,18 @@ import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
 import TranslationInputContainer from '../inputs/TranslationInputContainer';
-import FileInput from '../../../../core/form/FileInput';
 import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
 import Audios from '../inputs/Audios';
+import FileInput from '../../../../core/form/FileInput';
 
-const PresentationItemForm = props => (
+const GameItemForm = props => (
   <div>
-    <Row>
-      <Column size={12}>
-        <TextInput
-          label="Title (The field is just required for Vocabulary units.)"
-          disabled={props.submitting || props.disabled}
-          value={get(props.values, 'title', '')}
-          onChange={value => props.onChange('title', value)}
-          description={get(props.errors, 'title', '')}
-          fieldValidation={get(props.errors, 'title', null) && 'error'}
-        />
-      </Column>
-    </Row>
     <TranslationInputContainer
       onChange={props.onChange}
       submitting={props.submitting}
       values={props.values}
       errors={props.errors}
       disabled={props.disabled}
-      isTestItem={props.isTestItem}
     />
     <SpellCheckInputContainer
       onChange={props.onChange}
@@ -59,48 +46,43 @@ const PresentationItemForm = props => (
         />
       </Column>
     </Row>
-    {(props.showPostPhrase && !props.isTestItem) && (
-      <Row>
-        <Column size={12}>
-          <TextInput
-            label="Post Phrase"
-            disabled={props.submitting}
-            value={get(props.values, 'postPhrase', '')}
-            onChange={value => props.onChange('postPhrase', value)}
-            description={get(props.errors, 'postPhrase', '')}
-            fieldValidation={get(props.errors, 'postPhrase', null) && 'error'}
-          />
-          <Audios
-            audioPath="postPhraseAudio"
-            generatedAudioPath="generatedPostPhraseAudio"
-            values={props.values}
-            disabled={props.disabled}
-            onChange={props.onChange}
-            errors={props.errors}
-          />
-        </Column>
-      </Row>
-    )}
+    <Row>
+      <Column size={12}>
+        <TextInput
+          label="Post Phrase"
+          disabled={props.submitting}
+          value={get(props.values, 'postPhrase', '')}
+          onChange={value => props.onChange('postPhrase', value)}
+          description={get(props.errors, 'postPhrase', '')}
+          fieldValidation={get(props.errors, 'postPhrase', null) && 'error'}
+        />
+      </Column>
+      <Audios
+        label="post phrase"
+        audioPath="postPhraseAudio"
+        generatedAudioPath="generatedPostPhraseAudio"
+        values={props.values}
+        disabled={props.disabled}
+        onChange={props.onChange}
+        errors={props.errors}
+      />
+    </Row>
   </div>
 );
 
-PresentationItemForm.propTypes = {
+GameItemForm.propTypes = {
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
-  isTestItem: PropTypes.bool,
-  showPostPhrase: PropTypes.bool,
 };
 
-PresentationItemForm.defaultProps = {
+GameItemForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
-  showPostPhrase: false,
   disabled: false,
-  isTestItem: false,
 };
 
-export default PresentationItemForm;
+export default GameItemForm;
