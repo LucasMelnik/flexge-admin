@@ -14,7 +14,7 @@ const SingleChoiceGameItemForm = props => (
         <TextInput
           required
           label="Text"
-          fieldType="text"
+          fieldType="input"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'text', '')}
           onChange={value => props.onChange('text', value)}
