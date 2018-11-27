@@ -86,7 +86,7 @@ const StudentForm = props => (
         <FetchSelect
           url="academic-plans"
           fullWidth
-          disabled={props.submitting || (props.values.id && props.values.currentCourse)}
+          disabled={props.submitting || !!(props.values.id && props.values.currentCourse)}
           label="Academic Plan"
           value={get(props.values, 'academicPlan', '')}
           onChange={(value) => {
@@ -104,7 +104,7 @@ const StudentForm = props => (
         <FetchSelect
           url={`academic-plans/${get(props.values, 'academicPlan', null)}/courses`}
           fullWidth
-          disabled={props.submitting || !get(props.values, 'academicPlan', null) || (props.values.id && props.values.currentCourse)}
+          disabled={props.submitting || !get(props.values, 'academicPlan', null) || !!(props.values.id && props.values.currentCourse)}
           label="Current course"
           value={get(props.values, 'currentCourse', '')}
           onChange={value => props.onChange('currentCourse', value)}
