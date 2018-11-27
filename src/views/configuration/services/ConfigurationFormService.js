@@ -12,6 +12,8 @@ class ConfigurationFormService {
   constructor() {
     extendObservable(this);
     this.form.validations = {
+      name: [isRequired],
+      academicPlans: [isRequired],
       numberOfDayBeforeFirstReview: [isRequired],
       numberOfDayBeforeSecondReview: [isRequired],
       percentageToEnableNextModuleGroup: [isRequired],
@@ -23,17 +25,19 @@ class ConfigurationFormService {
     };
   }
 
-  handleLoad = action(() => {
+  handleLoad = action((configurationId) => {
     this.form.setInitialValues({});
     this.form.reset();
 
-    this.fetch.fetch({
-      url: '/configuration',
-    }).then(() => {
-      if (this.fetch.data) {
-        this.form.setInitialValues(this.fetch.data);
-      }
-    });
+    if (configurationId) {
+      this.fetch.fetch({
+        url: `/configurations/${configurationId}`,
+      }).then(() => {
+        if (this.fetch.data) {
+          this.form.setInitialValues(this.fetch.data);
+        }
+      });
+    }
   });
 
   handleSubmit = action(() => {
@@ -45,7 +49,7 @@ class ConfigurationFormService {
     const configurationId = this.form.getValue('id');
     this.submit.fetch({
       method: configurationId ? 'put' : 'post',
-      url: configurationId ? `/configuration/${configurationId}` : '/configuration',
+      url: configurationId ? `/configurations/${configurationId}` : '/configurations',
       body: {
         ...this.form.getValues(),
       },

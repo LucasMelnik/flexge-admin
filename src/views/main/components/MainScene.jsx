@@ -84,7 +84,7 @@ const MainScene = props => (
               },
               {
                 label: 'General Configuration',
-                link: '/configuration',
+                link: '/configurations',
                 group: 'System Configuration',
                 icon: 'tool',
                 key: 'configuration',

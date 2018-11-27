@@ -6,6 +6,7 @@ import FormButtons from '../../../core/form/FormButtons';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import AudioMessageFormContainer from './AudioMessageFormContainer';
+import FetchSelect from '../../../core/form/FetchSelect';
 
 const ConfigurationForm = props => (
   <form
@@ -14,6 +15,35 @@ const ConfigurationForm = props => (
       props.onSubmit();
     }}
   >
+    <Row>
+      <Column size={6}>
+        <TextInput
+          required
+          disabled={props.submitting}
+          label="Name"
+          value={get(props.values, 'name', '')}
+          onChange={value => props.onChange('name', value)}
+          errorText={get(props.errors, 'name', null)}
+        />
+      </Column>
+      <Column size={6}>
+        <FetchSelect
+          url="academic-plans"
+          required
+          fullWidth
+          multiple
+          disabled={props.submitting}
+          label="Academic Plans"
+          value={get(props.values, 'academicPlans', '')}
+          onChange={value => props.onChange('academicPlans', value)}
+          errorText={get(props.errors, 'academicPlans', '')}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
+    </Row>
     <Row>
       <Column size={3}>
         <TextInput

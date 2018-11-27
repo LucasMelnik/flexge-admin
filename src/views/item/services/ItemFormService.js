@@ -155,7 +155,6 @@ export default class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': this.isTestItem ? [] : [isRequired],
           'item.answers': [
             onlyOneCorrectAnswer,
             minFilteredLength(2, wrongAnswerPredicate, 'Add at least 2 wrong answers'),

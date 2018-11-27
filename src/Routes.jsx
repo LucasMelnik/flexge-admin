@@ -112,6 +112,7 @@ import CountryListScene from './views/country/components/CountryListScene';
 import CountryFormScene from './views/country/components/CountryFormScene';
 import StateListScene from './views/state/components/StateListScene';
 import StateFormScene from './views/state/components/StateFormScene';
+import ConfigurationListScene from './views/configuration/components/ConfigurationListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -198,7 +199,9 @@ const Routes = () => (
       <Route path="distributor-users" component={DistributorUserListSceneContainer} />
       <Route path="distributors/:distributorId/users/new" component={DistributorUserFormScene} />
       <Route path="distributors/:distributorId/users/:userId" component={DistributorUserFormScene} />
-      <Route path="configuration" component={ConfigurationFormScene} />
+      <Route path="configurations" component={ConfigurationListScene} />
+      <Route path="configurations/new" component={ConfigurationFormScene} />
+      <Route path="configurations/:configurationId" component={ConfigurationFormScene} />
       <Route path="item-types" component={ItemTypeListScene} />
       <Route path="item-types/new" component={ItemTypeFormScene} />
       <Route path="item-types/:itemTypeId" component={ItemTypeFormScene} />

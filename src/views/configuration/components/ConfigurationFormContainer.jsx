@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import ConfigurationFormService from '../services/ConfigurationFormService';
 import ConfigurationForm from './ConfigurationForm';
 
 class ConfigurationFormContainer extends Component {
+  static propTypes = {
+    configurationId: PropTypes.string,
+  };
+
+  static defaultProps = {
+    configurationId: null,
+  };
 
   componentWillMount() {
-    ConfigurationFormService.handleLoad();
+    ConfigurationFormService.handleLoad(this.props.configurationId);
   }
 
   render() {
