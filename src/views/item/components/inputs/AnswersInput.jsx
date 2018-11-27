@@ -186,13 +186,12 @@ AnswersInput.propTypes = {
   disabled: PropTypes.bool,
   allowSpellCheck: PropTypes.bool,
   label: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(
-    [
-      'SINGLE_CHOICE_TEXT',
-      'SINGLE_CHOICE_AUDIO',
-      'SINGLE_CHOICE_IMAGE',
-    ],
-  ),
+  type: PropTypes.oneOf([
+    'SINGLE_CHOICE_TEXT',
+    'SINGLE_CHOICE_AUDIO',
+    'SINGLE_CHOICE_IMAGE',
+    'SINGLE_CHOICE_GAME',
+  ]),
   errorText: PropTypes.string,
   values: PropTypes.object,
   errors: PropTypes.object,
