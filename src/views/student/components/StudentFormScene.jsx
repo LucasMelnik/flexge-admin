@@ -80,6 +80,7 @@ const StudentFormScene = props => (
         studentId={props.studentId}
         classId={props.class.id}
         schoolId={props.school.id}
+        academicPlanId={props.class.academicPlan}
       />
     </Card>
     <Separator size="sm" />

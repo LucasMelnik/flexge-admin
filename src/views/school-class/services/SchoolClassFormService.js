@@ -19,6 +19,7 @@ export default class SchoolClassFormService {
       name: [isRequired],
       teacher: [isRequired],
       weeklyHoursRequired: [isRequired],
+      academicPlan: [isRequired],
     };
   }
 

@@ -18,13 +18,14 @@ export default class StudentFormService {
     });
     this.form.validations = {
       name: [isRequired],
+      academicPlan: [isRequired],
       email: [isRequired, isValidEmail],
       fatherEmail: [isValidEmail],
       motherEmail: [isValidEmail],
     };
   }
 
-  handleLoad = action((studentId, schoolId, classId) => {
+  handleLoad = action((studentId, schoolId, classId, academicPlanId) => {
     this.schoolId = schoolId;
     this.classId = classId;
     this.form.reset();
@@ -38,6 +39,9 @@ export default class StudentFormService {
             ...this.fetch.data.currentCourse && {
               currentCourse: this.fetch.data.currentCourse.id,
             },
+            ...this.fetch.data.academicPlan && {
+              academicPlan: this.fetch.data.academicPlan.id,
+            },
           };
           this.form.setInitialValues(data);
         }
@@ -47,6 +51,7 @@ export default class StudentFormService {
       this.form.setInitialValues({
         sendWelcomeEmail: false,
         demoStudent: false,
+        academicPlan: academicPlanId,
       });
     }
     this.studentId = studentId;
