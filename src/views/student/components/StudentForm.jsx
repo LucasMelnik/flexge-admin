@@ -60,7 +60,7 @@ const StudentForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column size={3}>
+      <Column size={2}>
         <Select
           label="Gender"
           disabled={props.submitting}
@@ -73,7 +73,7 @@ const StudentForm = props => (
           }))}
         />
       </Column>
-      <Column size={3}>
+      <Column size={2}>
         <DateInput
           disabled={props.submitting}
           label="Birth Date"
@@ -82,11 +82,29 @@ const StudentForm = props => (
           errorText={get(props.errors, 'birthDate', '')}
         />
       </Column>
-      <Column size={3}>
+      <Column size={2}>
         <FetchSelect
-          url="courses"
+          url="academic-plans"
           fullWidth
           disabled={props.submitting || (props.values.id && props.values.currentCourse)}
+          label="Academic Plan"
+          value={get(props.values, 'academicPlan', '')}
+          onChange={(value) => {
+            props.onChange('academicPlan', value);
+            props.onChange('currentCourse', null);
+          }}
+          errorText={get(props.errors, 'academicPlan', '')}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
+      <Column size={2}>
+        <FetchSelect
+          url={`academic-plans/${get(props.values, 'academicPlan', null)}/courses`}
+          fullWidth
+          disabled={props.submitting || !get(props.values, 'academicPlan', null) || (props.values.id && props.values.currentCourse)}
           label="Current course"
           value={get(props.values, 'currentCourse', '')}
           onChange={value => props.onChange('currentCourse', value)}
@@ -98,9 +116,9 @@ const StudentForm = props => (
         />
       </Column>
       {props.values.id && (
-        <Column size={3}>
+        <Column size={4}>
           <FetchSelect
-            url={`/schools/${props.values.schoolClass.school.id}/classes`}
+            url={`schools/${props.values.schoolClass.school.id}/classes`}
             fullWidth
             disabled={props.submitting}
             label="School Class"

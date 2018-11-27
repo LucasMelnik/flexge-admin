@@ -10,17 +10,24 @@ class StudentFormContainer extends Component {
     studentId: PropTypes.string,
     schoolId: PropTypes.string,
     classId: PropTypes.string,
+    academicPlanId: PropTypes.string,
   };
 
   static defaultProps = {
     studentId: null,
     schoolId: null,
     classId: null,
+    academicPlanId: null,
   };
 
   studentFormService = new StudentFormService();
   componentWillMount() {
-    this.studentFormService.handleLoad(this.props.studentId, this.props.schoolId, this.props.classId);
+    this.studentFormService.handleLoad(
+      this.props.studentId,
+      this.props.schoolId,
+      this.props.classId,
+      this.props.academicPlanId,
+    );
   }
 
   render() {
