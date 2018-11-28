@@ -110,7 +110,7 @@ const ItemForm = props => (
           </Column>
         )}
       </Row>
-      {get(props.values.item, 'type.key', '') === 'VIDEO' && (
+      {(get(props.values.item, 'type.key', '') === 'VIDEO' || get(props.values.item, 'type.key', '') === 'MUSIC') && (
         <VideoItemForm
           onChange={(path, value) => props.onChange(`item.${path}`, value)}
           errors={get(props.errors, 'item', {})}
