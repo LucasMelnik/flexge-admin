@@ -19,28 +19,6 @@ const TrueFalseItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    {(props.hasPostPhrase && !props.isTestItem) && (
-      <Row>
-        <Column size={12}>
-          <TextInput
-            label="Post Phrase"
-            disabled={props.submitting}
-            value={get(props.values, 'postPhrase', '')}
-            onChange={value => props.onChange('postPhrase', value)}
-            description={get(props.errors, 'postPhrase', '')}
-            fieldValidation={get(props.errors, 'postPhrase', null) && 'error'}
-          />
-        </Column>
-        <Audios
-          audioPath="postPhraseAudio"
-          generatedAudioPath="generatedPostPhraseAudio"
-          values={props.values}
-          disabled={props.disabled}
-          onChange={props.onChange}
-          errors={props.errors}
-        />
-      </Row>
-    )}
     <Row>
       <Column size={4}>
         <Audios
@@ -66,6 +44,30 @@ const TrueFalseItemForm = props => (
         </Column>
       )}
     </Row>
+    {(props.hasPostPhrase && !props.isTestItem) && (
+      <Row>
+        <Column size={12}>
+          <TextInput
+            label="Post Phrase"
+            disabled={props.submitting}
+            value={get(props.values, 'postPhrase', '')}
+            onChange={value => props.onChange('postPhrase', value)}
+            description={get(props.errors, 'postPhrase', '')}
+            fieldValidation={get(props.errors, 'postPhrase', null) && 'error'}
+          />
+        </Column>
+      </Row>
+    )}
+    {(props.hasPostPhrase && !props.isTestItem) && (
+      <Audios
+        audioPath="postPhraseAudio"
+        generatedAudioPath="generatedPostPhraseAudio"
+        values={props.values}
+        disabled={props.disabled}
+        onChange={props.onChange}
+        errors={props.errors}
+      />
+    )}
     <TrueFalseAnswerInputContainer
       value={get(props.values, 'answers', [])}
       onChange={answers => props.onChange('answers', answers)}

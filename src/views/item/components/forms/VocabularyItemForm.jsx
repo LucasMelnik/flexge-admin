@@ -64,16 +64,16 @@ const VocabularyItemForm = props => (
           disabled={props.disabled}
         />
       </Column>
-      <Audios
-        label="post phrase"
-        audioPath="postPhraseAudio"
-        generatedAudioPath="generatedPostPhraseAudio"
-        values={props.values}
-        disabled={props.disabled}
-        onChange={props.onChange}
-        errors={props.errors}
-      />
     </Row>
+    <Audios
+      label="post phrase"
+      audioPath="postPhraseAudio"
+      generatedAudioPath="generatedPostPhraseAudio"
+      values={props.values}
+      disabled={props.disabled}
+      onChange={props.onChange}
+      errors={props.errors}
+    />
   </div>
 );
 
