@@ -19,6 +19,7 @@ const ReviewFormScene = props => {
       'SINGLE_CHOICE_IMAGE',
       'SINGLE_CHOICE_KIDS',
       'GAP_FILL_IMAGE',
+      'GAP_FILL_LETTER',
       'VOCABULARY',
       'PHONEME',
       'TRUE_FALSE_KIDS',
