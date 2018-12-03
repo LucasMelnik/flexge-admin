@@ -75,7 +75,7 @@ const ModuleForm = props => (
       <Column size={3}>
         <Select
           required
-          options={['A', 'B', 'C', 'D'].map(value => ({
+          options={['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].map(value => ({
             value,
             label: value,
           }))}
