@@ -76,7 +76,6 @@ export default class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.videoLink': [isRequired],
-          'item.reference': [isRequired],
           'item.videoStartTime': [isRequired, isValidTime],
           'item.videoEndTime': [isRequired, isValidTime],
         };
@@ -85,9 +84,7 @@ export default class ItemFormService {
         this.form.validations = {
           ...this.defaultValidations,
           'item.text': [isRequired],
-          'item.translation': [isRequired],
           'item.videoLink': [isRequired],
-          // 'item.reference': [isRequired],
           'item.videoStartTime': [isRequired, isValidTime],
           'item.videoEndTime': [isRequired, isValidTime],
         };
