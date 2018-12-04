@@ -39,7 +39,7 @@ const needCharacter = itemType =>
 
 const ItemForm = props => (
   <form
-    onSubmit={event => {
+    onSubmit={(event) => {
       event.preventDefault();
       props.onSubmit();
     }}
@@ -98,7 +98,7 @@ const ItemForm = props => (
               disabled={props.submitting || props.disabled}
               label="Character"
               value={get(props.values, 'item.character', '')}
-              onChange={character => {
+              onChange={(character) => {
                 props.onChange('item.character', character || null);
               }}
               errorText={get(props.errors, 'item.character', '')}
@@ -110,7 +110,7 @@ const ItemForm = props => (
           </Column>
         )}
       </Row>
-      {get(props.values.item, 'type.key', '') === 'VIDEO' && (
+      {(get(props.values.item, 'type.key', '') === 'VIDEO' || get(props.values.item, 'type.key', '') === 'MUSIC') && (
         <VideoItemForm
           onChange={(path, value) => props.onChange(`item.${path}`, value)}
           errors={get(props.errors, 'item', {})}
@@ -152,6 +152,7 @@ const ItemForm = props => (
           disabled={props.disabled}
           type={get(props.values.item, 'type.key')}
           isTestItem={props.isTestItem}
+          hasImage={get(props.values.item, 'type.key') === 'SINGLE_CHOICE_KIDS'}
           showPostPhrase={
             [
               'SINGLE_CHOICE_IMAGE',

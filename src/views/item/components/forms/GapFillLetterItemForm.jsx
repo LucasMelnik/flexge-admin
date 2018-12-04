@@ -5,6 +5,9 @@ import TranslationContainer from '../inputs/TranslationInputContainer';
 import AnswersInputContainer from '../inputs/AnswersInputContainer';
 import SlicesInputContainer from '../inputs/SlicesInputContainer';
 import Audios from '../inputs/Audios';
+import Column from '../../../../core/layout/Column';
+import FileInput from '../../../../core/form/FileInput';
+import Row from '../../../../core/layout/Row';
 
 const GapFillLetterItemForm = props => (
   <div>
@@ -16,15 +19,29 @@ const GapFillLetterItemForm = props => (
       disabled={props.disabled}
       isTestItem={props.isTestItem}
     />
-    <Audios
-      audioPath="audio"
-      generatedAudioPath="generatedAudio"
-      values={props.values}
-      submitting={props.submitting}
-      disabled={props.disabled}
-      onChange={props.onChange}
-      errors={props.errors}
-    />
+    <Row>
+      <Column size={4}>
+        <Audios
+          audioPath="audio"
+          generatedAudioPath="generatedAudio"
+          values={props.values}
+          submitting={props.submitting}
+          disabled={props.disabled}
+          onChange={props.onChange}
+          errors={props.errors}
+        />
+      </Column>
+      <Column size={4}>
+        <FileInput
+          label="Upload an image to the item"
+          accept="image"
+          disabled={props.disabled}
+          value={get(props.values, 'image', '')}
+          onChange={(key) => props.onChange('image', key)}
+          errorText={get(props.errors, 'image', '')}
+        />
+      </Column>
+    </Row>
     <SlicesInputContainer
       onSplit={value => [...value]}
       onChange={(answers) => {

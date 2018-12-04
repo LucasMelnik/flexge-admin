@@ -14,7 +14,20 @@ import ReviewUnitItemImageScene from './ReviewUnitItemImageScene';
 const ReviewFormScene = props => {
   const isUnitWithImage = props.unit &&
     props.unit.type &&
-    props.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key));
+    props.unit.type.itemsType.find(itemType => [
+      'PRESENTATION',
+      'SINGLE_CHOICE_IMAGE',
+      'SINGLE_CHOICE_KIDS',
+      'GAP_FILL_IMAGE',
+      'GAP_FILL_LETTER',
+      'VOCABULARY',
+      'PHONEME',
+      'TRUE_FALSE_KIDS',
+      'VOCABULARY_GAME',
+      'MEMORY_GAME',
+      'CONNECTING_DOTS_GAME',
+      'SINGLE_CHOICE_GAME',
+    ].find(type => type === itemType.key));
 
   return (
     <div>

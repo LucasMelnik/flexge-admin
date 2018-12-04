@@ -21,15 +21,17 @@ const PhonemeItemForm = props => (
           fieldValidation={get(props.errors, 'title', null) && 'error'}
         />
       </Column>
-      <Audios
-        label="title"
-        audioPath="titleAudio"
-        generatedAudioPath="generatedTitleAudio"
-        values={props.values}
-        disabled={props.disabled}
-        onChange={props.onChange}
-        errors={props.errors}
-      />
+    </Row>
+    <Audios
+      label="title"
+      audioPath="titleAudio"
+      generatedAudioPath="generatedTitleAudio"
+      values={props.values}
+      disabled={props.disabled}
+      onChange={props.onChange}
+      errors={props.errors}
+    />
+    <Row>
       <Column size={12}>
         <TextInput
           label="Example"
@@ -83,16 +85,16 @@ const PhonemeItemForm = props => (
           disabled={props.disabled}
         />
       </Column>
-      <Audios
-        label="post phrase"
-        audioPath="postPhraseAudio"
-        generatedAudioPath="generatedPostPhraseAudio"
-        values={props.values}
-        disabled={props.disabled}
-        onChange={props.onChange}
-        errors={props.errors}
-      />
     </Row>
+    <Audios
+      label="post phrase"
+      audioPath="postPhraseAudio"
+      generatedAudioPath="generatedPostPhraseAudio"
+      values={props.values}
+      disabled={props.disabled}
+      onChange={props.onChange}
+      errors={props.errors}
+    />
   </div>
 );
 

@@ -8,6 +8,21 @@ import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
 import StatusItem from '../../../core/layout/StatusItem';
 
+const typeWithImage =  [
+  'PRESENTATION',
+  'SINGLE_CHOICE_IMAGE',
+  'SINGLE_CHOICE_KIDS',
+  'GAP_FILL_IMAGE',
+  'GAP_FILL_LETTER',
+  'VOCABULARY',
+  'PHONEME',
+  'TRUE_FALSE_KIDS',
+  'VOCABULARY_GAME',
+  'MEMORY_GAME',
+  'CONNECTING_DOTS_GAME',
+  'SINGLE_CHOICE_GAME',
+];
+
 const MyReviewList = props => (
   <div>
     <MyReviewListFilterContainer />
@@ -90,7 +105,7 @@ const MyReviewList = props => (
           sort: true,
           width: '115px',
           render: (cell, row) => {
-            if (row.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))) {
+            if (row.unit.type.itemsType.find(itemType => typeWithImage.find(type => type === itemType.key))) {
               return (
                 <StatusItem
                   color={{
