@@ -11,13 +11,19 @@ import FileInput from '../../../../core/form/FileInput';
 
 const GameItemForm = props => (
   <div>
-    <TranslationInputContainer
-      onChange={props.onChange}
-      submitting={props.submitting}
-      values={props.values}
-      errors={props.errors}
-      disabled={props.disabled}
-    />
+    <Row>
+      <Column size={12}>
+        <TextInput
+          required
+          label="Text"
+          fieldType="textarea"
+          disabled={props.submitting || props.disabled}
+          value={get(props.values, 'text', '')}
+          onChange={value => props.onChange('text', value)}
+          errorText={get(props.errors, 'text', '')}
+        />
+      </Column>
+    </Row>
     <SpellCheckInputContainer
       onChange={props.onChange}
       submitting={props.submitting}
@@ -66,6 +72,13 @@ const GameItemForm = props => (
       disabled={props.disabled}
       onChange={props.onChange}
       errors={props.errors}
+    />
+    <TranslationInputContainer
+      onChange={props.onChange}
+      submitting={props.submitting}
+      values={props.values}
+      errors={props.errors}
+      disabled={props.disabled}
     />
   </div>
 );

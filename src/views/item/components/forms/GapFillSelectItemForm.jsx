@@ -5,17 +5,34 @@ import TranslationContainer from '../inputs/TranslationInputContainer';
 import SlicesInputContainer from '../inputs/SlicesInputContainer';
 import AnswersInputContainer from '../inputs/AnswersInputContainer';
 import Audios from '../inputs/Audios';
+import Column from '../../../../core/layout/Column';
+import TextInput from '../../../../core/form/TextInput';
+import Row from '../../../../core/layout/Row';
 
 const GapFillSelectItemForm = props => (
   <div>
-    <TranslationContainer
-      onChange={props.onChange}
-      submitting={props.submitting}
-      values={props.values}
-      errors={props.errors}
-      disabled={props.disabled}
-      isTestItem={props.isTestItem}
-    />
+    <Row>
+      <Column size={12}>
+        <TextInput
+          required
+          label="Text"
+          fieldType="textarea"
+          disabled={props.submitting || props.disabled}
+          value={get(props.values, 'text', '')}
+          onChange={value => props.onChange('text', value)}
+          errorText={get(props.errors, 'text', '')}
+        />
+      </Column>
+    </Row>
+    {!props.isTestItem && (
+      <TranslationContainer
+        onChange={props.onChange}
+        submitting={props.submitting}
+        values={props.values}
+        errors={props.errors}
+        disabled={props.disabled}
+      />
+    )}
     <Audios
       audioPath="audio"
       generatedAudioPath="generatedAudio"

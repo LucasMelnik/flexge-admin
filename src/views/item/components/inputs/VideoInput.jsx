@@ -11,7 +11,7 @@ const VideoInput = props => (
     <Row>
       <Column size={8}>
         <TextInput
-          label="Youtube link"
+          label="Vimeo link"
           disabled={props.submitting || props.disabled}
           value={get(props.values, 'videoLink', '')}
           onChange={value => props.onChange('videoLink', value)}

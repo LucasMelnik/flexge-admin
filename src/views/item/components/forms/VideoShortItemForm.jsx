@@ -5,6 +5,8 @@ import VideoInputContainer from '../inputs/VideoInputContainer';
 import TranslationInputContainer from '../inputs/TranslationInputContainer';
 import TextInput from '../../../../core/form/TextInput';
 import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
+import Column from '../../../../core/layout/Column';
+import Row from '../../../../core/layout/Row';
 
 const VideoShortItemForm = props => (
   <div>
@@ -15,14 +17,28 @@ const VideoShortItemForm = props => (
       onChange={value => props.onChange('title', value)}
       errorText={get(props.errors, 'title', '')}
     />
-    <TranslationInputContainer
-      onChange={props.onChange}
-      errors={props.errors}
-      values={props.values}
-      submitting={props.submitting}
-      disabled={props.disabled}
-      isTestItem={props.isTestItem}
-    />
+    <Row>
+      <Column size={12}>
+        <TextInput
+          required
+          label="Text"
+          fieldType="textarea"
+          disabled={props.submitting || props.disabled}
+          value={get(props.values, 'text', '')}
+          onChange={value => props.onChange('text', value)}
+          errorText={get(props.errors, 'text', '')}
+        />
+      </Column>
+    </Row>
+    {!props.isTestItem && (
+      <TranslationInputContainer
+        onChange={props.onChange}
+        submitting={props.submitting}
+        values={props.values}
+        errors={props.errors}
+        disabled={props.disabled}
+      />
+    )}
     <SpellCheckInputContainer
       onChange={props.onChange}
       submitting={props.submitting}
