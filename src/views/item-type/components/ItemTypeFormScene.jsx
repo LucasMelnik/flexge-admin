@@ -5,6 +5,8 @@ import ItemTypeFormContainer from './ItemTypeFormContainer';
 import Button from '../../../core/form/Button';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
+import Separator from '../../../core/layout/Separator';
+import InstructionScene from './instructions/InstructionScene';
 
 const ItemTypeFormScene = props => (
   <div>
@@ -30,6 +32,12 @@ const ItemTypeFormScene = props => (
     >
       <ItemTypeFormContainer itemTypeId={props.params.itemTypeId} />
     </Card>
+    {props.params.itemTypeId && (
+      <div>
+        <Separator size="md" />
+        <InstructionScene itemTypeId={props.params.itemTypeId} />
+      </div>
+    )}
   </div>
 );
 
