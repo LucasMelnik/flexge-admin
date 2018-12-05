@@ -54,18 +54,6 @@ const VideoInput = props => (
         </Column>
       )}
     </Row>
-    <Row>
-      <Column size={12}>
-        <TextInput
-          label="Reference (example: Universal; Harry Potter e o Prisioneiro de Azkaban (2004))"
-          disabled={props.submitting || props.disabled}
-          value={get(props.values, 'reference', '')}
-          onChange={value => props.onChange('reference', value)}
-          errorText={get(props.errors, 'reference', '')}
-          fieldValidation={get(props.errors, 'reference', null) && 'error'}
-        />
-      </Column>
-    </Row>
   </div>
 );
 

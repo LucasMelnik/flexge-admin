@@ -94,8 +94,15 @@ const UnitItemList = props => (
       {
         label: 'Time',
         path: 'item.time',
-        width: '50px',
-        render: (cell, row) => formatTimeFromSeconds(row.item.time),
+        width: '110px',
+        render: (cell, row) => (
+          <div>
+            <div>{formatTimeFromSeconds(row.item.time)}</div>
+            {(row.item.type.key === 'VIDEO' || row.item.type.key === 'VIDEO_SHORT') && (
+              <div>{`${row.item.videoStartTime.slice(0, 2)}:${row.item.videoStartTime.slice(2, 4)}:${row.item.videoStartTime.slice(4, 6)}`} - {`${row.item.videoEndTime.slice(0, 2)}:${row.item.videoEndTime.slice(2, 4)}:${row.item.videoEndTime.slice(4, 6)}`}</div>
+            )}
+          </div>
+        ),
       },
       {
         label: 'Actions',
