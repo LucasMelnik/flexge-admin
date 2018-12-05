@@ -7,6 +7,7 @@ import TextInput from '../../../../core/form/TextInput';
 import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
 import Audios from '../inputs/Audios';
 import FileInput from '../../../../core/form/FileInput';
+import TranslationContainer from '../inputs/TranslationInputContainer';
 
 const PhonemeItemForm = props => (
   <div>
@@ -94,6 +95,13 @@ const PhonemeItemForm = props => (
       disabled={props.disabled}
       onChange={props.onChange}
       errors={props.errors}
+    />
+    <TranslationContainer
+      onChange={props.onChange}
+      submitting={props.submitting}
+      values={props.values}
+      errors={props.errors}
+      disabled={props.disabled}
     />
   </div>
 );

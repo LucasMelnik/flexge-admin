@@ -6,17 +6,34 @@ import AnswersInputContainer from '../inputs/AnswersInputContainer';
 import SlicesInputContainer from '../inputs/SlicesInputContainer';
 import Audios from '../inputs/Audios';
 import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
+import Column from '../../../../core/layout/Column';
+import TextInput from '../../../../core/form/TextInput';
+import Row from '../../../../core/layout/Row';
 
 const UnscrambleSpeechRecognitionItemForm = props => (
   <div>
-    <TranslationInputContainer
-      onChange={props.onChange}
-      submitting={props.submitting}
-      values={props.values}
-      errors={props.errors}
-      disabled={props.disabled}
-      isTestItem={props.isTestItem}
-    />
+    <Row>
+      <Column size={12}>
+        <TextInput
+          required
+          label="Text"
+          fieldType="textarea"
+          disabled={props.submitting || props.disabled}
+          value={get(props.values, 'text', '')}
+          onChange={value => props.onChange('text', value)}
+          errorText={get(props.errors, 'text', '')}
+        />
+      </Column>
+    </Row>
+    {!props.isTestItem && (
+      <TranslationInputContainer
+        onChange={props.onChange}
+        submitting={props.submitting}
+        values={props.values}
+        errors={props.errors}
+        disabled={props.disabled}
+      />
+    )}
     <SpellCheckInputContainer
       onChange={props.onChange}
       submitting={props.submitting}
