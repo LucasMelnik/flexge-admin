@@ -18,6 +18,7 @@ export default class InstructionFormService {
     this.form.validations = {
       text: [isRequired],
       locale: [isRequired],
+      type: [isRequired],
     };
   }
 
@@ -50,6 +51,7 @@ export default class InstructionFormService {
     fileData.append('file', this.form.getValue('files')[0]);
     fileData.append('text', this.form.getValue('text'));
     fileData.append('locale', this.form.getValue('locale'));
+    fileData.append('type', this.form.getValue('type'));
 
     const instructionId = this.form.getValue('id');
     this.submit.fetch({

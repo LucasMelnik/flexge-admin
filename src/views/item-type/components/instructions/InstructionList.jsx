@@ -20,6 +20,11 @@ const InstructionList = props => (
         width: '70px',
       },
       {
+        label: 'Type',
+        path: 'type',
+        width: '130px',
+      },
+      {
         label: 'Generated Audio',
         render: (cell, row) => {
           if (row.generatedAudio) {
