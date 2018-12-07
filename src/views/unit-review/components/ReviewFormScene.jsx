@@ -25,7 +25,7 @@ const ReviewFormScene = props => {
       'TRUE_FALSE_KIDS',
       'VOCABULARY_GAME',
       'MEMORY_GAME',
-      'CONNECTING_DOTS_GAME',
+      'CONNECTING_DOTS',
       'SINGLE_CHOICE_GAME',
     ].find(type => type === itemType.key));
 

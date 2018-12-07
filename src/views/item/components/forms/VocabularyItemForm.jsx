@@ -7,6 +7,7 @@ import TextInput from '../../../../core/form/TextInput';
 import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
 import Audios from '../inputs/Audios';
 import FileInput from '../../../../core/form/FileInput';
+import TranslationInputContainer from '../inputs/TranslationInputContainer';
 
 const VocabularyItemForm = props => (
   <div>
@@ -73,6 +74,13 @@ const VocabularyItemForm = props => (
       disabled={props.disabled}
       onChange={props.onChange}
       errors={props.errors}
+    />
+    <TranslationInputContainer
+      onChange={props.onChange}
+      submitting={props.submitting}
+      values={props.values}
+      errors={props.errors}
+      disabled={props.disabled}
     />
   </div>
 );
