@@ -30,6 +30,9 @@ export default class StudentDetailHeader extends Component {
       schoolClass: PropTypes.shape({
         name: PropTypes.string,
       }),
+      academicPlan: PropTypes.shape({
+        name: PropTypes.string,
+      })
     }).isRequired,
     fetching: PropTypes.bool.isRequired,
   };
@@ -78,7 +81,7 @@ export default class StudentDetailHeader extends Component {
     return (
       <Async fetching={this.props.fetching}>
         <Row>
-          <Column size={6}>
+          <Column size={4}>
             <div
               style={{
                 display: 'flex',
@@ -145,6 +148,16 @@ export default class StudentDetailHeader extends Component {
             >
               School Class
               <h2>{get(this.props.student, 'schoolClass.name', '')}</h2>
+            </div>
+          </Column>
+          <Column size={2}>
+            <div
+              style={{
+                textAlign: 'center',
+              }}
+            >
+              Academic Plan
+              <h2>{get(this.props.student, 'academicPlan.name', '')}</h2>
             </div>
           </Column>
         </Row>

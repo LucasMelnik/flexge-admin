@@ -11,6 +11,7 @@ class StudentOverviewRecordDetailService {
         studyQuality: {},
         initialCourse: {},
         currentCourse: {},
+        academicPlan: {},
         evaluation: {
           previewGrade: {},
         },
