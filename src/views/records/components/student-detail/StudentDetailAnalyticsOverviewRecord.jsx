@@ -28,36 +28,38 @@ const StudentDetailAnalyticsOverviewRecord = props => (
         justifyContent: 'center',
       }}
     >
-      <Tag
-        color="none"
-        style={{
-          height: 'auto',
-          padding: 10,
-        }}
-      >
-        <div
+      {get(props.student, 'academicPlan.name', '').toLowerCase() !== 'kids' && (
+        <Tag
+          color="none"
           style={{
-            display: 'flex',
-            alignItems: 'center',
+            height: 'auto',
+            padding: 10,
           }}
         >
-          <div style={{ textAlign: 'center' }}>
-            <span>Initial Level</span>
-            <h1>{round(props.student.initialEnglishLevel, 1).toFixed(1)} / {get(englishLevelCourses.find(level => level.value === props.student.initialEnglishLevel), 'label', '-')}</h1>
-          </div>
-          <Icon
-            name="arrow-right"
+          <div
             style={{
-              fontSize: 30,
-              margin: '0 15px',
+              display: 'flex',
+              alignItems: 'center',
             }}
-          />
-          <div style={{ textAlign: 'center' }}>
-            <span>Current Level</span>
-            <h1>{round(props.student.currentEnglishLevel, 1).toFixed(1)} / {get(englishLevelCourses.find(level => level.value === props.student.currentEnglishLevel), 'label', '-')}</h1>
+          >
+            <div style={{ textAlign: 'center' }}>
+              <span>Initial Level</span>
+              <h1>{round(props.student.initialEnglishLevel, 1).toFixed(1)} / {get(englishLevelCourses.find(level => level.value === props.student.initialEnglishLevel), 'label', '-')}</h1>
+            </div>
+            <Icon
+              name="arrow-right"
+              style={{
+                fontSize: 30,
+                margin: '0 15px',
+              }}
+            />
+            <div style={{ textAlign: 'center' }}>
+              <span>Current Level</span>
+              <h1>{round(props.student.currentEnglishLevel, 1).toFixed(1)} / {get(englishLevelCourses.find(level => level.value === props.student.currentEnglishLevel), 'label', '-')}</h1>
+            </div>
           </div>
-        </div>
-      </Tag>
+        </Tag>
+      )}
       <ColumnSeparator size="lg" />
       {/*<Tag*/}
         {/*color="none"*/}

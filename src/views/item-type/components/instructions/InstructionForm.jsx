@@ -61,8 +61,8 @@ const InstructionForm = props => (
         <input
           type="file"
           disabled={props.submitting}
-          value={get(props.values, 'files', '')}
-          onChange={value => props.onChange('files', value)}
+          // value={get(props.values, 'files', '')}
+          onChange={event => props.onChange('files', event.target.files)}
           accept="audio/*"
         />
       </Column>

@@ -1,5 +1,6 @@
 import { action, extendObservable } from 'mobx';
 import orderBy from 'lodash/orderBy';
+import get from 'lodash/get';
 import FetchService from '../../../core/services/FetchService';
 import { englishLevelCourses } from '../../../core/consts';
 
@@ -20,7 +21,7 @@ class StudentAcademicPerformanceHistoryService {
       if (this.fetch.data) {
         const dataWithLevel = this.fetch.data.map(course => ({
           ...course,
-          level: englishLevelCourses.find(englishLevel => englishLevel.label === course.name).value,
+          level: get(englishLevelCourses.find(englishLevel => englishLevel.label === course.name), 'value', null),
         }));
 
         this.history = orderBy(dataWithLevel, 'level', 'desc').map(course => ({
