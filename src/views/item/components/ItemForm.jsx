@@ -317,6 +317,7 @@ const ItemForm = props => (
           values={props.values.item}
           submitting={props.submitting}
           disabled={props.disabled}
+          hasPostPhraseImage={get(props.values.item, 'type.key', '') === 'VOCABULARY_GAME'}
         />
       )}
       {['VOCABULARY'].find(type => type === get(props.values.item, 'type.key', '')) && (

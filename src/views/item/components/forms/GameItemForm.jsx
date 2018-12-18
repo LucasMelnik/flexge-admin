@@ -64,15 +64,31 @@ const GameItemForm = props => (
         />
       </Column>
     </Row>
-    <Audios
-      label="post phrase"
-      audioPath="postPhraseAudio"
-      generatedAudioPath="generatedPostPhraseAudio"
-      values={props.values}
-      disabled={props.disabled}
-      onChange={props.onChange}
-      errors={props.errors}
-    />
+    <Row>
+      <Column size={6}>
+        <Audios
+          label="post phrase"
+          audioPath="postPhraseAudio"
+          generatedAudioPath="generatedPostPhraseAudio"
+          values={props.values}
+          disabled={props.disabled}
+          onChange={props.onChange}
+          errors={props.errors}
+        />
+      </Column>
+      {props.hasPostPhraseImage && (
+        <Column size={4}>
+          <FileInput
+            label="Upload an image to the post phrase"
+            accept="image"
+            disabled={props.disabled}
+            value={get(props.values, 'postPhraseImage', '')}
+            onChange={key => props.onChange('postPhraseImage', key)}
+            errorText={get(props.errors, 'postPhraseImage', '')}
+          />
+        </Column>
+      )}
+    </Row>
     <TranslationInputContainer
       onChange={props.onChange}
       submitting={props.submitting}
@@ -89,6 +105,7 @@ GameItemForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
+  hasPostPhraseImage: PropTypes.bool,
 };
 
 GameItemForm.defaultProps = {
@@ -96,6 +113,7 @@ GameItemForm.defaultProps = {
   errors: {},
   submitting: false,
   disabled: false,
+  hasPostPhraseImage: false,
 };
 
 export default GameItemForm;
