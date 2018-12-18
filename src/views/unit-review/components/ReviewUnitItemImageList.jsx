@@ -39,18 +39,7 @@ const ReviewUnitItemImageList = props => (
         label: 'Image',
         path: 'item.image',
         render: (cell, row) => {
-          if (row.item.image) {
-            return (
-              <img
-                src={`${process.env.REACT_APP_API_URL}/files/${row.item.image}`}
-                alt={`for-item-${row.item.id}`}
-                style={{
-                  width: 'auto',
-                  height: 100,
-                }}
-              />
-            );
-          } else if (row.item.type.key === 'SINGLE_CHOICE_IMAGE') {
+          if (row.item.type.key === 'SINGLE_CHOICE_IMAGE') {
             return (
               <div>
                 {row.item.answers.map(answer => (
@@ -67,6 +56,39 @@ const ReviewUnitItemImageList = props => (
                 ))}
               </div>
             );
+          } else if (['VOCABULARY', 'PHONEME', 'VOCABULARY_GAME'].some(type => type === row.item.type.key)) {
+            return (
+              <div>
+                <img
+                  src={`${process.env.REACT_APP_API_URL}/files/${row.item.image}`}
+                  alt={`for-item-${row.item.id}`}
+                  style={{
+                    width: 'auto',
+                    height: 100,
+                  }}
+                />
+                {' '}
+                <img
+                  src={`${process.env.REACT_APP_API_URL}/files/${row.item.postPhraseImage}`}
+                  alt={`for-item-${row.item.id}-post-phrase`}
+                  style={{
+                    width: 'auto',
+                    height: 100,
+                  }}
+                />
+              </div>
+            );
+          } else if (row.item.image) {
+             return (
+               <img
+                 src={`${process.env.REACT_APP_API_URL}/files/${row.item.image}`}
+                 alt={`for-item-${row.item.id}`}
+                 style={{
+                   width: 'auto',
+                   height: 100,
+                 }}
+               />
+             );
           }
           return 'No image uploaded';
         },
@@ -78,7 +100,12 @@ const ReviewUnitItemImageList = props => (
         render: (cell, row) => {
           if (row.item.image) {
             return (
-              <ImagePreview src={row.item.image} />
+              <div>
+                <ImagePreview src={row.item.image} />
+                {['VOCABULARY', 'PHONEME', 'VOCABULARY_GAME'].some(type => type === row.item.type.key) && (
+                  <ImagePreview src={row.item.postPhraseImage} />
+                )}
+              </div>
             );
           }
         },
@@ -140,6 +167,7 @@ ReviewUnitItemImageList.propTypes = {
       text: PropTypes.string,
       translation: PropTypes.string,
       image: PropTypes.string,
+      postPhraseImage: PropTypes.string,
     }),
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
