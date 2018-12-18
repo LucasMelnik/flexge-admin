@@ -6,6 +6,7 @@ import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
 import FormButtons from '../../../../core/form/FormButtons';
 import LocaleSelect from '../../../../core/form/LocaleSelect';
+import Select from '../../../../core/form/Select';
 
 const InstructionForm = props => (
   <form
@@ -15,7 +16,7 @@ const InstructionForm = props => (
     }}
   >
     <Row>
-      <Column size={9}>
+      <Column size={6}>
         <TextInput
           required
           disabled={props.submitting}
@@ -23,6 +24,26 @@ const InstructionForm = props => (
           value={get(props.values, 'text', '')}
           onChange={value => props.onChange('text', value)}
           errorText={get(props.errors, 'text', null)}
+        />
+      </Column>
+      <Column size={3}>
+        <Select
+          label="Type"
+          required
+          disabled={props.submitting}
+          value={get(props.values, 'type', '')}
+          onChange={value => props.onChange('type', value)}
+          errorText={get(props.errors, 'type', null)}
+          options={[
+            {
+              label: 'Initial',
+              value: 'INITIAL',
+            },
+            {
+              label: 'Between items',
+              value: 'BETWEEN_ITEMS',
+            },
+          ]}
         />
       </Column>
       <Column size={3}>
@@ -40,8 +61,8 @@ const InstructionForm = props => (
         <input
           type="file"
           disabled={props.submitting}
-          value={get(props.values, 'files', '')}
-          onChange={value => props.onChange('files', value)}
+          // value={get(props.values, 'files', '')}
+          onChange={event => props.onChange('files', event.target.files)}
           accept="audio/*"
         />
       </Column>

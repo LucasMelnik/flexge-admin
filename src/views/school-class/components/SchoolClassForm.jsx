@@ -68,20 +68,6 @@ const SchoolClassForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column size={3}>
-        <FetchSelect
-          url={`/evaluation-templates?query[school]=${props.schoolId}`}
-          disabled={props.submitting}
-          label="Evaluation Template"
-          value={get(props.values, 'evaluationTemplate', '')}
-          onChange={teacher => props.onChange('evaluationTemplate', teacher)}
-          errorText={get(props.errors, 'evaluationTemplate', null)}
-          resultTransformer={{
-            text: 'name',
-            value: 'id',
-          }}
-        />
-      </Column>
       <Column size={2}>
         <Select
           required
@@ -120,6 +106,35 @@ const SchoolClassForm = props => (
               value: 4,
             },
           ]}
+        />
+      </Column>
+      <Column size={3}>
+        <FetchSelect
+          required
+          url="/academic-plans"
+          disabled={props.submitting}
+          label="Academic Plan"
+          value={get(props.values, 'academicPlan', '')}
+          onChange={teacher => props.onChange('academicPlan', teacher)}
+          errorText={get(props.errors, 'academicPlan', null)}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
+      <Column size={3}>
+        <FetchSelect
+          url={`/evaluation-templates?query[school]=${props.schoolId}`}
+          disabled={props.submitting}
+          label="Evaluation Template"
+          value={get(props.values, 'evaluationTemplate', '')}
+          onChange={teacher => props.onChange('evaluationTemplate', teacher)}
+          errorText={get(props.errors, 'evaluationTemplate', null)}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
         />
       </Column>
     </Row>
