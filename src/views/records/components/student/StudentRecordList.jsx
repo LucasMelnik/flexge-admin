@@ -83,7 +83,7 @@ const StudentRecordList = props => (
           path: 'course.name',
           sort: true,
           width: '200px',
-          render: (cell, row) => row.initialEnglishLevel != null ? (
+          render: (cell, row) => (row.initialEnglishLevel != null || row.academicPlan.key === 'KIDS') ? (
             <div style={{ display: 'flex' }}>
               <span
                 style={{
