@@ -61,7 +61,6 @@ const LegendInput = props => (
               ];
               return acc;
             }, []);
-          console.log(result)
           props.onChange('subtitles', result);
         }}
         errorText={get(props.errors, 'awsTranscription', '')}
