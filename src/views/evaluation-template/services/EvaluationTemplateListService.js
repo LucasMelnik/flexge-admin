@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
@@ -21,6 +22,7 @@ class EvaluationTemplateListService {
       const school = JSON.parse(localStorage.getItem('school'));
       this.filterForm.setValue('school', school._id);
     }
+    this.filterForm.setValue('year', moment().format('YYYY'));
     this.load();
   });
 

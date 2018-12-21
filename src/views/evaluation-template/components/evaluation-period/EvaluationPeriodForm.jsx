@@ -6,6 +6,7 @@ import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
 import DateInput from '../../../../core/form/DateInput';
 import Button from '../../../../core/form/Button';
+import Select from '../../../../core/form/Select';
 
 const SchoolEvaluationForm = props => (
   <form
@@ -15,6 +16,26 @@ const SchoolEvaluationForm = props => (
     }}
   >
     <Row>
+      <Column size={2}>
+        <Select
+          required
+          label="Period Type"
+          disabled={props.submitting}
+          value={get(props.values, 'type', null)}
+          onChange={value => props.onChange('type', value)}
+          errorText={get(props.errors, 'type', null)}
+          options={[
+            {
+              value: 'RECESS',
+              label: 'Recess',
+            },
+            {
+              value: 'EVALUATION',
+              label: 'Evaluation',
+            },
+          ]}
+        />
+      </Column>
       <Column size={2}>
         <TextInput
           required
@@ -26,28 +47,18 @@ const SchoolEvaluationForm = props => (
         />
       </Column>
       <Column size={2}>
-        <TextInput
-          required
-          disabled={props.submitting}
-          type="number"
-          label="Bonus Weeks"
-          value={get(props.values, 'bonusWeeks', null)}
-          onChange={value => props.onChange('bonusWeeks', value)}
-          errorText={get(props.errors, 'bonusWeeks', null)}
-        />
-      </Column>
-      <Column size={2}>
         <DateInput
           required
-          disabled={props.submitting || !props.allowSelectStart || get(props.values, 'id', null)}
+          disabled={props.submitting || get(props.values, 'id', null)}
           label="Start"
           value={get(props.values, 'start', undefined) ? props.values.start.toDate() : undefined}
           onChange={(value) => {
             props.onChange('start', value);
-            props.onChange('end', value.clone().days(7));
+            if (props.values.type && props.values.type === 'EVALUATION') {
+              props.onChange('end', value.clone().add(14, 'days'));
+            }
           }}
           errorText={get(props.errors, 'start', '')}
-          disabledDate={date => date && (date.day() !== 1)}
         />
       </Column>
       <Column size={2}>
@@ -58,12 +69,15 @@ const SchoolEvaluationForm = props => (
           value={get(props.values, 'end', undefined) ? props.values.end.toDate() : undefined}
           onChange={value => props.onChange('end', value)}
           errorText={get(props.errors, 'end', '')}
-          disabledDate={date => date &&
-            (
-              date.day() !== 0 ||
-              date.valueOf() < props.values.start
-            )
-          }
+          disabledDate={(date) => {
+            if (!date) {
+              return false;
+            }
+            if (props.values.type && props.values.type === 'EVALUATION') {
+              return date.valueOf() < props.values.start.clone().add(14, 'days');
+            }
+            return date.valueOf() < props.values.start;
+          }}
         />
       </Column>
       <Column size={2}>
@@ -83,13 +97,11 @@ const SchoolEvaluationForm = props => (
 
 SchoolEvaluationForm.propTypes = {
   onSubmit: PropTypes.func,
-  onReset: PropTypes.func,
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
-  allowSelectStart: PropTypes.bool.isRequired,
 };
 
 SchoolEvaluationForm.defaultProps = {
@@ -98,7 +110,6 @@ SchoolEvaluationForm.defaultProps = {
   submitting: false,
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
-  onReset: () => false,
 };
 
 export default SchoolEvaluationForm;
