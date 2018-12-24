@@ -1,15 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import round from 'lodash/round';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
-
-const getFinalGrade = (grade, school) => {
-  const hoursGrade = grade.hoursGrade * school.percentHoursRelevanceInGrade;
-  const sqGrade = grade.studyQualityGrade * school.percentStudyQualityRelevanceInGrade;
-
-  return round((hoursGrade + sqGrade) / 100, school.gradeFormat.indexOf('.') > -1 ? 1 : 0);
-};
 
 
 const StudentGradeList = props => (
@@ -18,7 +10,7 @@ const StudentGradeList = props => (
     fetching={props.fetching}
     scroll={{
       x: (props.evaluationPeriods.length * 310) + 250,
-      y: 'calc(100vh - 300px)'
+      y: 'calc(100vh - 300px)',
     }}
     columns={[
       {
@@ -55,7 +47,7 @@ const StudentGradeList = props => (
                       Required: {moment.duration(periodGrade.hoursRequired, 'hours').format('hh:mm', { trim: false })})
                   </small>
                 </div>
-                <div>Final grade: {getFinalGrade(periodGrade, row.schoolClass.school) !== null ? getFinalGrade(periodGrade, row.schoolClass.school) : 'Awaiting SQ Score'}</div>
+                <div>Final grade: {periodGrade.formattedFinalGrade || 'Awaiting SQ Score'}</div>
                 {periodGrade.finalGrade !== null && (
                   <div>
                     <b>Student school grade: {periodGrade.finalGrade !== null ? periodGrade.finalGrade : 'Awaiting SQ Score'}</b>

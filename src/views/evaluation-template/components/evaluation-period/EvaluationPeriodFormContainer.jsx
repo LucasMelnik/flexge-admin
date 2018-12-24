@@ -18,6 +18,7 @@ class EvaluationPeriodFormContainer extends Component {
       <EvaluationPeriodForm
         onSubmit={EvaluationPeriodFormService.handleSubmit}
         onChange={EvaluationPeriodFormService.form.setValue}
+        onReset={EvaluationPeriodFormService.init}
         values={EvaluationPeriodFormService.form.getValues()}
         errors={EvaluationPeriodFormService.form.errors}
         submitting={EvaluationPeriodFormService.submit.fetching}

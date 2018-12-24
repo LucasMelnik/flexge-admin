@@ -22,7 +22,12 @@ const SchoolEvaluationForm = props => (
           label="Period Type"
           disabled={props.submitting}
           value={get(props.values, 'type', null)}
-          onChange={value => props.onChange('type', value)}
+          onChange={(value) => {
+            props.onChange('type', value);
+            if (get(props.values, 'end', false)) {
+              props.onChange('end', undefined);
+            }
+          }}
           errorText={get(props.errors, 'type', null)}
           options={[
             {
@@ -49,7 +54,7 @@ const SchoolEvaluationForm = props => (
       <Column size={2}>
         <DateInput
           required
-          disabled={props.submitting || get(props.values, 'id', null)}
+          disabled={props.submitting}
           label="Start"
           value={get(props.values, 'start', undefined) ? props.values.start.toDate() : undefined}
           onChange={(value) => {
@@ -64,7 +69,7 @@ const SchoolEvaluationForm = props => (
       <Column size={2}>
         <DateInput
           required
-          disabled={props.submitting || !get(props.values, 'start', undefined) || get(props.values, 'id', null)}
+          disabled={props.submitting || !get(props.values, 'type', null) || !get(props.values, 'start', null)}
           label="End"
           value={get(props.values, 'end', undefined) ? props.values.end.toDate() : undefined}
           onChange={value => props.onChange('end', value)}
@@ -80,7 +85,7 @@ const SchoolEvaluationForm = props => (
           }}
         />
       </Column>
-      <Column size={2}>
+      <Column size={3}>
         <div style={{ height: 30.5 }} />
         <Button
           icon="check"
@@ -89,6 +94,15 @@ const SchoolEvaluationForm = props => (
           loading={props.submitting}
           buttonType="submit"
           label={props.values.id ? 'Update Evaluation Period' : 'Add Evaluation Period'}
+        />
+        {' '}
+        <Button
+          icon="reload"
+          type="default"
+          disabled={props.submitting}
+          onClick={props.onReset}
+          buttonType="button"
+          label="Cancel"
         />
       </Column>
     </Row>
@@ -99,6 +113,7 @@ SchoolEvaluationForm.propTypes = {
   onSubmit: PropTypes.func,
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
