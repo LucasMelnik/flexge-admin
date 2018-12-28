@@ -53,7 +53,7 @@ const UserForm = props => (
           disabled={props.submitting}
           label="Email"
           value={get(props.values, 'email', '')}
-          onChange={value => props.onChange('email', value)}
+          onChange={value => props.onChange('email', (value || '').toLowerCase())}
           errorText={get(props.errors, 'email', null)}
         />
       </Column>
