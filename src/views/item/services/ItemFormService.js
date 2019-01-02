@@ -103,6 +103,16 @@ export default class ItemFormService {
           'item.videoStartTime': [isRequired, isValidTime],
           'item.videoEndTime': [isRequired, isValidTime],
         };
+        this.createVideoTimeObserver();
+        break;
+      case 'MUSIC':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.videoLink': [isRequired],
+          'item.videoStartTime': [isRequired, isValidTime],
+          'item.videoEndTime': [isRequired, isValidTime],
+        };
+        this.createVideoTimeObserver();
         break;
       case 'VIDEO_SHORT':
         this.form.validations = {
@@ -418,7 +428,6 @@ export default class ItemFormService {
           });
           this.setValidationsByItemType();
           this.createTextObserver();
-          this.createVideoTimeObserver();
         }
       });
     } else {
@@ -440,7 +449,6 @@ export default class ItemFormService {
       });
       setTimeout(() => {
         this.createTextObserver();
-        this.createVideoTimeObserver();
       }, 250);
     }
     this.form.reset();

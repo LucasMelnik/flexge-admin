@@ -99,16 +99,6 @@ const PhonemeItemForm = props => (
           errors={props.errors}
         />
       </Column>
-      <Column size={4}>
-        <FileInput
-          label="Upload an image to the post phrase"
-          accept="image"
-          disabled={props.disabled}
-          value={get(props.values, 'postPhraseImage', '')}
-          onChange={key => props.onChange('postPhraseImage', key)}
-          errorText={get(props.errors, 'postPhraseImage', '')}
-        />
-      </Column>
     </Row>
     <TranslationContainer
       onChange={props.onChange}
