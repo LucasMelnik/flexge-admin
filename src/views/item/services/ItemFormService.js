@@ -1,4 +1,6 @@
 import { extendObservable, action, observe } from 'mobx';
+import moment from 'moment';
+import 'moment-duration-format';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -34,6 +36,33 @@ export default class ItemFormService {
     };
   }
 
+  createVideoTimeObserver() {
+    if (this.form.getValues().item.type.key !== 'VIDEO' && this.form.getValues().item.type.key !== 'MUSIC') {
+      return;
+    }
+
+    observe(this.form.values.item, 'videoStartTime', () => {
+      const { item } = this.form.getValues();
+
+      if (item.videoStartTime && item.videoEndTime) {
+        const start = moment(item.videoStartTime, 'hhmmss');
+        const end = moment(item.videoEndTime, 'hhmmss');
+
+        this.form.setValue('item.time', end.diff(start, 'seconds'));
+      }
+    });
+    observe(this.form.values.item, 'videoEndTime', () => {
+      const { item } = this.form.getValues();
+
+      if (item.videoStartTime && item.videoEndTime) {
+        const start = moment(item.videoStartTime, 'hhmmss');
+        const end = moment(item.videoEndTime, 'hhmmss');
+
+        this.form.setValue('item.time', end.diff(start, 'seconds'));
+      }
+    });
+  }
+
   createTextObserver() {
     if (!this.form.getValues().item.text || !this.form.getValues().item.answers.length) {
       return;
@@ -41,7 +70,7 @@ export default class ItemFormService {
 
     // function to handle changes on item text and update answers
     observe(this.form.values.item, 'text', () => {
-      const item = this.form.getValues().item;
+      const { item } = this.form.getValues();
       if (['GAP_FILL', 'GAP_FILL_MULTIPLE', 'GAP_FILL_SELECT', 'UNSCRAMBLE_DRAG_AND_DROP','UNSCRAMBLE_SPEECH_RECOGNITION'].find(type => type === item.type.key)) {
         if (item.answers) {
           const slices = item.text.trim().split(' ');
@@ -394,6 +423,7 @@ export default class ItemFormService {
           });
           this.setValidationsByItemType();
           this.createTextObserver();
+          this.createVideoTimeObserver();
         }
       });
     } else {
@@ -407,7 +437,10 @@ export default class ItemFormService {
           },
         },
       });
-      setTimeout(() => { this.createTextObserver(); }, 250);
+      setTimeout(() => {
+        this.createTextObserver();
+        this.createVideoTimeObserver();
+      }, 250);
     }
     this.form.reset();
     this.itemId = itemId;
