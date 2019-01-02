@@ -1,6 +1,7 @@
 import { extendObservable, action, observe } from 'mobx';
 import moment from 'moment';
 import 'moment-duration-format';
+import omit from 'lodash/omit';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -37,13 +38,8 @@ export default class ItemFormService {
   }
 
   createVideoTimeObserver() {
-    if (this.form.getValues().item.type.key !== 'VIDEO' && this.form.getValues().item.type.key !== 'MUSIC') {
-      return;
-    }
-
     observe(this.form.values.item, 'videoStartTime', () => {
       const { item } = this.form.getValues();
-
       if (item.videoStartTime && item.videoEndTime) {
         const start = moment(item.videoStartTime, 'hhmmss');
         const end = moment(item.videoEndTime, 'hhmmss');
@@ -53,7 +49,6 @@ export default class ItemFormService {
     });
     observe(this.form.values.item, 'videoEndTime', () => {
       const { item } = this.form.getValues();
-
       if (item.videoStartTime && item.videoEndTime) {
         const start = moment(item.videoStartTime, 'hhmmss');
         const end = moment(item.videoEndTime, 'hhmmss');
@@ -402,7 +397,7 @@ export default class ItemFormService {
     // this.form.reset();
   });
 
-  handleLoad = action((itemId, defaultGrammar) => {
+  handleLoad = action((itemId, defaultGrammar, copyFrom) => {
     if (itemId) {
       this.fetch.fetch({
         url: `/${this.endpointUrl}/${itemId}`,
@@ -427,9 +422,15 @@ export default class ItemFormService {
         }
       });
     } else {
-      this.form.setInitialValues({
+      this.form.setInitialValues(copyFrom ? {
+        item: {
+          ...omit(copyFrom, 'id'),
+        },
+      } : {
         item: {
           text: '',
+          videoStartTime: '',
+          videoEndTime: '',
           ...defaultGrammar && {
             grammar: {
               id: defaultGrammar,

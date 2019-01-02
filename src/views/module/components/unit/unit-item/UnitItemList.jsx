@@ -6,6 +6,7 @@ import Select from '../../../../../core/form/Select';
 import Button from '../../../../../core/form/Button';
 import Table from '../../../../../core/form/Table';
 import ItemFormContainer from '../../../../item/components/ItemFormContainer';
+import { browserHistory } from 'react-router';
 
 const UnitItemList = props => (
   <Table
@@ -118,6 +119,14 @@ const UnitItemList = props => (
                 />
                 {' '}
                 <Button
+                  icon="copy"
+                  onClick={() => browserHistory.push({
+                    pathname: `/modules/${props.unit.module.id}/units/${props.unit.id}/items/new`,
+                    state: { item: row.item },
+                  })}
+                />
+                {' '}
+                <Button
                   label="+1"
                   onClick={() => props.onAutoReorder(index, 'ADD_LINE')}
                 />
@@ -161,6 +170,9 @@ UnitItemList.propTypes = {
   unit: PropTypes.shape({
     id: PropTypes.string.isRequired,
     createdBy: PropTypes.string.isRequired,
+    module: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
     type: PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
