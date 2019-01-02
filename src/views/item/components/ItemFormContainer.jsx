@@ -16,6 +16,7 @@ class ItemFormContainer extends Component {
     isTestItem: PropTypes.bool,
     showPostPhrase: PropTypes.bool,
     onSaveSuccess: PropTypes.func,
+    copyFrom: PropTypes.object,
   };
 
   static defaultProps = {
@@ -26,13 +27,14 @@ class ItemFormContainer extends Component {
     isTestItem: false,
     showPostPhrase: false,
     order: null,
+    copyFrom: null,
     onSaveSuccess: () => {},
   };
 
   itemFormService = new ItemFormService(this.props.endpointUrl, this.props.order, this.props.onSaveSuccess, this.props.isTestItem);
 
   componentWillMount() {
-    this.itemFormService.handleLoad(this.props.itemId, this.props.defaultGrammar);
+    this.itemFormService.handleLoad(this.props.itemId, this.props.defaultGrammar, this.props.copyFrom);
   }
 
   render() {
