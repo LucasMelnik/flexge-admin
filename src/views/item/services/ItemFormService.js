@@ -467,6 +467,12 @@ export default class ItemFormService {
       body: {
         item: {
           ...this.form.getValue('item'),
+          ...this.form.getValue('item.videoStartTime') && {
+            videoStartTime: this.form.getValue('item.videoStartTime'),
+          },
+          ...this.form.getValue('item.videoEndTime') && {
+            videoEndTime: this.form.getValue('item.videoEndTime'),
+          },
           type: this.form.getValue('item.type').id,
           grammar: this.form.getValue('item.grammar').id,
           reference: this.form.getValue('item.reference') && this.form.getValue('item.reference').length > 0 ? this.form.getValue('item.reference') : null,
