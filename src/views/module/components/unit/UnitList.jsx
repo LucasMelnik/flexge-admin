@@ -46,7 +46,8 @@ const UnitList = props => (
       {
         label: 'Difficulty',
         path: 'difficulty',
-        width: '75px',
+        width: '85px',
+        render: (cell, row) => `${cell} - ${row.scoreToPass}`,
       },
       {
         label: 'Abilities',
