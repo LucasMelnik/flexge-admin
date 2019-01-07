@@ -33,6 +33,20 @@ const StudentAchievementsListFilter = props => (
         />
       </Column>
     )}
+    <Column size={2}>
+      <FetchSelect
+        label="Filter by Type"
+        disabled={props.fetching}
+        value={get(props.values, 'type', '')}
+        errorText={get(props.errors, 'type', '')}
+        onChange={value => props.onChange('type', value)}
+        url="achievements"
+        resultTransformer={{
+          text: 'description',
+          value: 'id',
+        }}
+      />
+    </Column>
     <Column size={1}>
       <MonthInput
         required

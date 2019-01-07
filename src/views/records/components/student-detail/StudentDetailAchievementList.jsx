@@ -17,6 +17,10 @@ const StudentDetailAchievementList = props => (
           <img
             alt="icon"
             src={`${process.env.REACT_APP_API_URL}/files/${achievement.iconByPosition.find(icon => icon.position === row.position).icon}`}
+            style={{
+              height: 60,
+              width: 'auto',
+            }}
           />
         ),
       },
@@ -30,18 +34,22 @@ const StudentDetailAchievementList = props => (
         label: 'Date',
         path: 'achievedAt',
         render: value => moment(value).format('MMMM/YYYY'),
-        width: 110,
+        width: 120,
+      },
+      {
+        label: 'Type',
+        path: 'achievement.description',
       },
       {
         label: '',
         path: 'id',
         render: (value, row) => (
           <span>
-            You were the {get({
+            The student was the {get({
               1: 'First',
               2: 'Second',
               3: 'Third',
-          }, row.position, `${row.position}th`)} of your {{
+          }, row.position, `${row.position}th`)} of his {{
             NATIONAL: 'Country',
             REGIONAL: 'Region',
             SCHOOL: 'School',
