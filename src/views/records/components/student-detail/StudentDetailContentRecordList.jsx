@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 import round from 'lodash/round';
 import moment from 'moment';
 import 'moment-duration-format';
@@ -8,7 +9,6 @@ import LinearProgress from '../../../../core/layout/LinearProgress';
 import Tag from '../../../../core/layout/Tag';
 import Icon from '../../../../core/layout/Icon';
 import Button from '../../../../core/form/Button';
-import {Link} from 'react-router';
 
 const AbilityProgressColumn = (value, label) => value !== undefined && (
   <div
@@ -122,7 +122,7 @@ const StudentDetailContentRecordList = props => (
           ) : (
             row.completedAt ? (
               <Tag color={(row.points || (row.studentMasteryTest && row.score && row.score > row.scoreToPass)) ? 'green' : 'red'}>
-                {value || 0}
+                {value || 0}{row.scoreToPass ? ` / ${row.scoreToPass}` : ''}
               </Tag>
             ) : (
               <span style={{ color: 'red' }} >
@@ -147,13 +147,25 @@ const StudentDetailContentRecordList = props => (
               translatedValue = 'YC';
               break;
             case 'FIRST_REVIEW':
-              translatedValue = 'FR';
+              if (moment(row.startedAt).year() <= 2018) {
+                translatedValue = 'FR';
+              } else {
+                translatedValue = 'RW';
+              }
               break;
             case 'SECOND_REVIEW':
-              translatedValue = 'SR';
+              if (moment(row.startedAt).year() <= 2018) {
+                translatedValue = 'SR';
+              } else {
+                translatedValue = '-';
+              }
               break;
             case 'SIMPLE_REVIEW':
-              translatedValue = 'SI';
+              if (moment(row.startedAt).year() <= 2018) {
+                translatedValue = 'SI';
+              } else {
+                translatedValue = 'RC';
+              }
               break;
             default:
               break;

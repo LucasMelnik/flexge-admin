@@ -53,21 +53,24 @@ class StudentAchievementsListService {
           ...(this.form.getValue('school') && {
             school: this.form.getValue('school'),
           }),
+          ...(this.form.getValue('type') && {
+            type: this.form.getValue('type'),
+          }),
         },
       })
       .then(() => {
         if (this.fetch.data) {
           this.achievements.school = orderBy(
             this.fetch.data.filter(sa => sa.achievement.level === 'SCHOOL'),
-            ['student.schoolClass.school.name', 'position']
+            ['student.schoolClass.school.name', 'achievement.type', 'position']
           );
           this.achievements.regional = orderBy(
             this.fetch.data.filter(sa => sa.achievement.level === 'REGIONAL'),
-            ['student.schoolClass.school.region.name', 'position']
+            ['student.schoolClass.school.region.name', 'achievement.type', 'position']
           );
           this.achievements.national = orderBy(
             this.fetch.data.filter(sa => sa.achievement.level === 'NATIONAL'),
-            ['student.schoolClass.school.company.country.name', 'position']
+            ['student.schoolClass.school.company.country.name', 'achievement.type', 'position']
           );
         } else {
           this.achievements = {

@@ -1,4 +1,5 @@
 import { action, extendObservable } from 'mobx';
+import moment from 'moment';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 
@@ -15,7 +16,10 @@ class ReceivedMessageListService {
         pageSize: 15,
       },
     });
-    this.filterForm.setInitialValues({});
+    this.filterForm.setInitialValues({
+      from: moment().subtract(30, 'days'),
+      to: moment(),
+    });
   }
 
   init = action(() => {

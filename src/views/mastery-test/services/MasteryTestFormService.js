@@ -45,7 +45,7 @@ export default class MasteryTestFormService {
       url: masteryTestId ? `/modules/${moduleId}/mastery-tests/${masteryTestId}` : `/modules/${moduleId}/mastery-tests`,
       body: {
         ...this.form.getValues(),
-        scoreToPass: 85,
+        scoreToPass: 80,
         deadlineTime: 0,
       },
     }).then(() => {
