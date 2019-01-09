@@ -42,6 +42,7 @@ class EvaluationTemplateLinkService {
       url: `/schools/${schoolClass.school.id}/classes/${schoolClass.id}`,
       body: {
         name: schoolClass.name,
+        academicPlan: schoolClass.academicPlan,
         weeklyHoursRequired: schoolClass.weeklyHoursRequired,
         [path]: value,
       },

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import startCase from 'lodash/startCase';
 import Table from '../../../../core/form/Table';
 import Button from '../../../../core/form/Button';
 
@@ -8,6 +9,12 @@ const EvaluationPeriodList = props => (
   <Table
     fetching={props.fetching}
     columns={[
+      {
+        label: 'Period Type',
+        path: 'type',
+        width: '150px',
+        render: value => startCase(value.toLowerCase()),
+      },
       {
         label: 'Period Name',
         path: 'name',
@@ -17,23 +24,20 @@ const EvaluationPeriodList = props => (
         label: 'Start',
         path: 'start',
         sort: true,
+         width: '150px',
         render: value => moment.utc(value).format('DD/MM/YYYY'),
       },
       {
         label: 'End',
         path: 'end',
         sort: true,
+        width: '150px',
         render: value => moment.utc(value).format('DD/MM/YYYY'),
-      },
-      {
-        label: 'Bonus Weeks',
-        path: 'bonusWeeks',
-        sort: true,
       },
       {
         label: 'Actions',
         path: 'action',
-        width: '105px',
+        width: '125px',
         render: (cell, row, index) => (
           <div>
             <Button
@@ -41,7 +45,9 @@ const EvaluationPeriodList = props => (
               onClick={() => props.onEdit(row)}
             />
             {' '}
-            {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && moment().isAfter(moment(row.end)) && (
+            {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') &&
+            moment().isAfter(moment(row.end)) &&
+            row.type === 'EVALUATION' && (
               <Button
                 icon="sync"
                 onClick={() => props.onSyncGrades(row)}
