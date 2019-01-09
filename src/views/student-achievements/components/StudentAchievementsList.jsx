@@ -17,6 +17,10 @@ const StudentAchievementsList = props => (
           <img
             alt="icon"
             src={`${process.env.REACT_APP_API_URL}/files/${achievement.iconByPosition.find(icon => icon.position === row.position).icon}`}
+            style={{
+              height: 60,
+              width: 'auto',
+            }}
           />
         ),
       },
@@ -25,6 +29,10 @@ const StudentAchievementsList = props => (
         path: 'position',
         width: 80,
         align: 'center',
+      },
+      {
+        label: 'Type',
+        path: 'achievement.description',
       },
       {
         label: 'Level',

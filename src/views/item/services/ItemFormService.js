@@ -1,4 +1,7 @@
 import { extendObservable, action, observe } from 'mobx';
+import moment from 'moment';
+import 'moment-duration-format';
+import omit from 'lodash/omit';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -34,6 +37,27 @@ export default class ItemFormService {
     };
   }
 
+  createVideoTimeObserver() {
+    observe(this.form.values.item, 'videoStartTime', () => {
+      const { item } = this.form.getValues();
+      if (item.videoStartTime && item.videoEndTime) {
+        const start = moment(item.videoStartTime, 'hhmmss');
+        const end = moment(item.videoEndTime, 'hhmmss');
+
+        this.form.setValue('item.time', end.diff(start, 'seconds'));
+      }
+    });
+    observe(this.form.values.item, 'videoEndTime', () => {
+      const { item } = this.form.getValues();
+      if (item.videoStartTime && item.videoEndTime) {
+        const start = moment(item.videoStartTime, 'hhmmss');
+        const end = moment(item.videoEndTime, 'hhmmss');
+
+        this.form.setValue('item.time', end.diff(start, 'seconds'));
+      }
+    });
+  }
+
   createTextObserver() {
     if (!this.form.getValues().item.text || !this.form.getValues().item.answers.length) {
       return;
@@ -41,8 +65,8 @@ export default class ItemFormService {
 
     // function to handle changes on item text and update answers
     observe(this.form.values.item, 'text', () => {
-      const item = this.form.getValues().item;
-      if (['GAP_FILL', 'GAP_FILL_MULTIPLE', 'GAP_FILL_SELECT', 'UNSCRAMBLE_DRAG_AND_DROP','UNSCRAMBLE_SPEECH_RECOGNITION'].find(type => type === item.type.key)) {
+      const { item } = this.form.getValues();
+      if (['GAP_FILL', 'GAP_FILL_MULTIPLE', 'GAP_FILL_SELECT', 'UNSCRAMBLE_DRAG_AND_DROP', 'UNSCRAMBLE_SPEECH_RECOGNITION'].find(type => type === item.type.key)) {
         if (item.answers) {
           const slices = item.text.trim().split(' ');
           item.answers = item.answers.reduce((acc, answer) => {
@@ -54,11 +78,10 @@ export default class ItemFormService {
                 ...acc,
                 answer,
               ];
-            } else {
-              return [
-                ...acc,
-              ];
             }
+            return [
+              ...acc,
+            ];
           }, []);
           this.form.setValue('item.answers', item.answers);
           this.form.setValue('item.indexesToRemove', item.answers.filter(slice => slice.index !== undefined));
@@ -79,6 +102,16 @@ export default class ItemFormService {
           'item.videoStartTime': [isRequired, isValidTime],
           'item.videoEndTime': [isRequired, isValidTime],
         };
+        this.createVideoTimeObserver();
+        break;
+      case 'MUSIC':
+        this.form.validations = {
+          ...this.defaultValidations,
+          'item.videoLink': [isRequired],
+          'item.videoStartTime': [isRequired, isValidTime],
+          'item.videoEndTime': [isRequired, isValidTime],
+        };
+        this.createVideoTimeObserver();
         break;
       case 'VIDEO_SHORT':
         this.form.validations = {
@@ -373,7 +406,7 @@ export default class ItemFormService {
     // this.form.reset();
   });
 
-  handleLoad = action((itemId, defaultGrammar) => {
+  handleLoad = action((itemId, defaultGrammar, copyFrom) => {
     if (itemId) {
       this.fetch.fetch({
         url: `/${this.endpointUrl}/${itemId}`,
@@ -397,9 +430,15 @@ export default class ItemFormService {
         }
       });
     } else {
-      this.form.setInitialValues({
+      this.form.setInitialValues(copyFrom ? {
+        item: {
+          ...omit(copyFrom, 'id'),
+        },
+      } : {
         item: {
           text: '',
+          videoStartTime: '',
+          videoEndTime: '',
           ...defaultGrammar && {
             grammar: {
               id: defaultGrammar,
@@ -407,7 +446,9 @@ export default class ItemFormService {
           },
         },
       });
-      setTimeout(() => { this.createTextObserver(); }, 250);
+      setTimeout(() => {
+        this.createTextObserver();
+      }, 250);
     }
     this.form.reset();
     this.itemId = itemId;
@@ -425,6 +466,8 @@ export default class ItemFormService {
       body: {
         item: {
           ...this.form.getValue('item'),
+          videoStartTime: this.form.getValue('item.videoStartTime') ? this.form.getValue('item.videoStartTime') : undefined,
+          videoEndTime: this.form.getValue('item.videoEndTime') ? this.form.getValue('item.videoEndTime') : undefined,
           type: this.form.getValue('item.type').id,
           grammar: this.form.getValue('item.grammar').id,
           reference: this.form.getValue('item.reference') && this.form.getValue('item.reference').length > 0 ? this.form.getValue('item.reference') : null,
