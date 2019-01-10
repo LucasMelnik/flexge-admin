@@ -1,4 +1,4 @@
-import { extendObservable, action, observe } from 'mobx';
+import { extendObservable, action } from 'mobx';
 import moment from 'moment';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
@@ -16,7 +16,7 @@ class EvaluationPeriodFormService {
     });
     this.form.validations = {
       name: [isRequired],
-      bonusWeeks: [isRequired],
+      type: [isRequired],
       start: [isRequired],
       end: [isRequired],
     };
@@ -26,20 +26,6 @@ class EvaluationPeriodFormService {
     this.evaluationTemplateId = evaluationTemplateId;
     this.form.setInitialValues({});
     this.form.reset();
-
-    observe(EvaluationPeriodListService, 'periods', () => {
-      const size = EvaluationPeriodListService.periods.length;
-      if (size) {
-        const lastEvaluation = EvaluationPeriodListService.periods[size - 1];
-        const nextStart = moment(moment.utc(lastEvaluation.end).format('YYYY-MM-DD'), 'YYYY-MM-DD').add(1, 'days');
-        this.form.setValue('start', nextStart);
-        this.form.setValue('end', nextStart.clone().days(7));
-        this.form.setValue('bonusWeeks', lastEvaluation.bonusWeeks);
-      } else {
-        this.form.setInitialValues({});
-        this.form.reset();
-      }
-    });
   });
 
   handleEdit = action((evaluationPeriod) => {
@@ -66,6 +52,8 @@ class EvaluationPeriodFormService {
       },
     }).then(() => {
       if (this.submit.data) {
+        this.form.setInitialValues({});
+        this.form.reset();
         EvaluationPeriodListService.load();
         NotificationService.addNotification(`Evaluation Period ${periodId ? 'updated' : 'created'} successfully.`, 'success');
       }
