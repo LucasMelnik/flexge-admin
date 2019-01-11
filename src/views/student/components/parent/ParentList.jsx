@@ -20,12 +20,16 @@ const ParentList = props => (
           sort: true,
         },
         {
-          label: 'CPF',
-          path: 'cpf',
+          label: 'Contact Type',
+          path: 'contactType',
         },
         {
-          label: 'Sexo',
-          path: 'gender',
+          label: 'Contact Phone',
+          path: 'contactPhone',
+        },
+        {
+          label: 'Observations',
+          path: 'observation',
         },
       ],
       {

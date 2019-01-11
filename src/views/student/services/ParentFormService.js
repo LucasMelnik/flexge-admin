@@ -1,8 +1,8 @@
-import {action, extendObservable} from 'mobx';
+import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
-import {isCPF, isRequired, isValidEmail} from '../../../core/validations';
+import { isRequired, isValidEmail } from '../../../core/validations';
 
 export default class ParentFormService {
   fetch = new FetchService();
@@ -17,7 +17,6 @@ export default class ParentFormService {
     this.form.validations = {
       name: [isRequired],
       email: [isRequired, isValidEmail],
-      cpf: [isCPF],
     };
   }
 
@@ -34,7 +33,6 @@ export default class ParentFormService {
         }
       });
     } else {
-      this.form.validations.password = [isRequired];
       this.form.setInitialValues({});
     }
     this.form.reset();
@@ -53,17 +51,17 @@ export default class ParentFormService {
       body: {
         name: this.form.getValue('name'),
         email: this.form.getValue('email'),
-        ...this.form.getValue('cpf') && {
-          cpf: this.form.getValue('cpf'),
-        },
         ...this.form.getValue('password') && {
           password: this.form.getValue('password'),
         },
-        ...this.form.getValue('gender') && {
-          gender: this.form.getValue('gender'),
+        ...this.form.getValue('contactType') && {
+          contactType: this.form.getValue('contactType'),
         },
-        ...this.form.getValue('birthDate') && {
-          birthDate: this.form.getValue('birthDate'),
+        ...this.form.getValue('contactPhone') && {
+          contactPhone: this.form.getValue('contactPhone'),
+        },
+        ...this.form.getValue('observation') && {
+          observation: this.form.getValue('observation'),
         },
       },
     }).then(() => {
