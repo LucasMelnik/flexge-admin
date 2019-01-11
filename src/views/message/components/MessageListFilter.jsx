@@ -23,7 +23,7 @@ const MessageListFilter = props => (
       <DateInput
         label="To"
         disabled={props.fetching}
-        value={get(props.values, 'to', undefined) ? props.values.from.toDate() : undefined}
+        value={get(props.values, 'to', undefined) ? props.values.to.toDate() : undefined}
         onChange={value => props.onChange('to', value)}
         errorText={get(props.errors, 'to', '')}
       />

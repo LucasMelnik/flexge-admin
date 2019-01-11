@@ -47,6 +47,7 @@ const UnitItemFormScene = props => (
           order={props.itemOrder}
           onSaveSuccess={props.onBack}
           showPostPhrase={props.unit.type.name.toLowerCase() === 'vocabulary'}
+          copyFrom={props.copyFrom}
         />
       ) : (<div />)}
     </Card>
@@ -60,10 +61,12 @@ UnitItemFormScene.propTypes = {
   onBack: PropTypes.func.isRequired,
   itemId: PropTypes.string,
   fetching: PropTypes.bool,
+  copyFrom: PropTypes.object,
 };
 
 UnitItemFormScene.defaultProps = {
   itemId: null,
+  copyFrom: null,
   fetching: false,
 };
 

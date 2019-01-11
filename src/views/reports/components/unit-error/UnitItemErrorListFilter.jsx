@@ -107,6 +107,10 @@ const UnitItemErrorListFilter = props => (
             value: 'NO_NATIVE_ANSWER_AUDIO',
           },
           {
+            label: 'NO_NATIVE_POST_PHRASE_AUDIO',
+            value: 'NO_NATIVE_POST_PHRASE_AUDIO',
+          },
+          {
             label: 'SPEECH_ACE_ERROR',
             value: 'SPEECH_ACE_ERROR',
           },
@@ -117,6 +121,10 @@ const UnitItemErrorListFilter = props => (
           {
             label: 'UNSCRAMBLE_4_CHUNK',
             value: 'UNSCRAMBLE_4_CHUNK',
+          },
+          {
+            label: 'SECOND_REVIEW_ERROR',
+            value: 'SECOND_REVIEW_ERROR',
           },
         ]}
       />

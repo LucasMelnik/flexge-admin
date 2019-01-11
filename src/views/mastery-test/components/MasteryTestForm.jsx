@@ -42,7 +42,7 @@ const MasteryTestForm = props => (
         <TextInput
           label="Score to Pass"
           disabled
-          value="85"
+          value="80"
         />
       </Column>
     </Row>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { browserHistory } from 'react-router';
+import get from 'lodash/get';
 import UnitItemFormScene from './UnitItemFormScene';
 import LoadModuleService from '../../../services/LoadModuleService';
 import LoadUnitService from '../../../services/LoadUnitService';
@@ -15,6 +16,9 @@ class UnitItemsFormSceneContainer extends Component {
       unitId: PropTypes.string.isRequired,
       itemId: PropTypes.string,
       reviewId: PropTypes.string,
+    }).isRequired,
+    location: PropTypes.shape({
+      state: PropTypes.object,
     }).isRequired,
   };
 
@@ -43,6 +47,7 @@ class UnitItemsFormSceneContainer extends Component {
         itemOrder={UnitItemListService.items.length + 1}
         onBack={this.handleBack}
         fetching={this.loadUnitService.fetch.fetching || LoadModuleService.fetch.fetching}
+        copyFrom={get(this.props.location, 'state.item', null)}
       />
     );
   }

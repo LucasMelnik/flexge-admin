@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router';
-import {Tooltip} from 'antd';
+import { Link } from 'react-router';
+import { Tooltip } from 'antd';
 import moment from 'moment';
 import round from 'lodash/round';
 import get from 'lodash/get';
@@ -86,16 +86,16 @@ const StudentDetailDateRecordList = props => (
           label: 'Type',
           path: 'type',
           align: 'center',
-          render: (value) => {
+          render: (value, row) => {
             switch (value) {
               case 'DEFAULT':
                 return 'YC';
               case 'FIRST_REVIEW':
-                return 'FR';
+                return moment(row.startedAt).year() <= 2018 ? 'FR' : 'RW';
               case 'SECOND_REVIEW':
-                return 'SR';
+                return moment(row.startedAt).year() <= 2018 ? 'SR' : '-';
               case 'SIMPLE_REVIEW':
-                return 'SI';
+                return moment(row.startedAt).year() <= 2018 ? 'SI' : 'RC';
               case 'MASTERY_TEST':
                 return 'MT';
               default:

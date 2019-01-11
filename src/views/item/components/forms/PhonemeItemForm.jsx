@@ -7,6 +7,7 @@ import TextInput from '../../../../core/form/TextInput';
 import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
 import Audios from '../inputs/Audios';
 import FileInput from '../../../../core/form/FileInput';
+import TranslationContainer from '../inputs/TranslationInputContainer';
 
 const PhonemeItemForm = props => (
   <div>
@@ -98,17 +99,14 @@ const PhonemeItemForm = props => (
           errors={props.errors}
         />
       </Column>
-      <Column size={4}>
-        <FileInput
-          label="Upload an image to the post phrase"
-          accept="image"
-          disabled={props.disabled}
-          value={get(props.values, 'postPhraseImage', '')}
-          onChange={key => props.onChange('postPhraseImage', key)}
-          errorText={get(props.errors, 'postPhraseImage', '')}
-        />
-      </Column>
     </Row>
+    <TranslationContainer
+      onChange={props.onChange}
+      submitting={props.submitting}
+      values={props.values}
+      errors={props.errors}
+      disabled={props.disabled}
+    />
   </div>
 );
 

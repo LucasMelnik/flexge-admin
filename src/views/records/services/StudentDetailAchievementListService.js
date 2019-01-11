@@ -23,7 +23,7 @@ export default class StudentDetailAchievementListService {
       url: `/records/students/${this.studentId}/achievements`,
     }).then(() => {
       if (this.fetch.data) {
-        this.achievements = orderBy(this.fetch.data, 'achievedAt', 'asc');
+        this.achievements = orderBy(this.fetch.data, ['achievedAt', 'achievement.type'], ['asc', 'asc']);
       } else {
         this.achievements = [];
       }

@@ -6,45 +6,28 @@ import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
 
 const TranslationInput = props => (
-  <div>
-    <Row>
-      <Column size={12}>
-        <TextInput
-          required
-          label="Text"
-          fieldType="textarea"
-          disabled={props.submitting || props.disabled}
-          value={get(props.values, 'text', '')}
-          onChange={value => props.onChange('text', value)}
-          errorText={get(props.errors, 'text', '')}
-        />
-      </Column>
-    </Row>
-    {!props.isTestItem && (
-      <Row>
-        <Column size={6}>
-          <TextInput
-            label="Translation"
-            fieldType="textarea"
-            disabled={props.submitting || props.disabled}
-            value={get(props.values, 'translation', '')}
-            onChange={value => props.onChange('translation', value)}
-            errorText={get(props.errors, 'translation', '')}
-          />
-        </Column>
-        <Column size={6}>
-          <TextInput
-            label="Spanish Translation"
-            fieldType="textarea"
-            disabled={props.submitting || props.disabled}
-            value={get(props.values, 'spanishTranslation', '')}
-            onChange={value => props.onChange('spanishTranslation', value)}
-            errorText={get(props.errors, 'spanishTranslation', '')}
-          />
-        </Column>
-      </Row>
-    )}
-  </div>
+  <Row>
+    <Column size={6}>
+      <TextInput
+        label="Translation"
+        fieldType="textarea"
+        disabled={props.submitting || props.disabled}
+        value={get(props.values, 'translation', '')}
+        onChange={value => props.onChange('translation', value)}
+        errorText={get(props.errors, 'translation', '')}
+      />
+    </Column>
+    <Column size={6}>
+      <TextInput
+        label="Spanish Translation"
+        fieldType="textarea"
+        disabled={props.submitting || props.disabled}
+        value={get(props.values, 'spanishTranslation', '')}
+        onChange={value => props.onChange('spanishTranslation', value)}
+        errorText={get(props.errors, 'spanishTranslation', '')}
+      />
+    </Column>
+  </Row>
 );
 
 TranslationInput.propTypes = {
@@ -53,14 +36,13 @@ TranslationInput.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
-  isTestItem: PropTypes.bool,
 };
 
 TranslationInput.defaultProps = {
   values: {},
   errors: {},
   disabled: false,
-  isTestItem: false,
+  submitting: false,
 };
 
 export default TranslationInput;
