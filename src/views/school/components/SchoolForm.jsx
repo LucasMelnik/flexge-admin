@@ -47,6 +47,7 @@ const SchoolForm = props => (
             label="Company"
             value={get(props.values, 'company', '')}
             onChange={(company, object) => {
+              console.log(object)
               props.onChange('company', company);
               props.onChange('country', get(object, 'country', null));
               props.onChange('locale', get(object, 'country.locale', null));
@@ -102,7 +103,7 @@ const SchoolForm = props => (
       <Column size={2}>
         <FetchSelect
           required
-          url={`states?country=${get(props.values, 'country.id', '')}`}
+          url={`states?country=${get(props.values, 'country.id', false) || props.companyCountry}`}
           disabled={props.submitting || !get(props.values, 'company', false)}
           label="State"
           value={get(props.values, 'state', '')}
