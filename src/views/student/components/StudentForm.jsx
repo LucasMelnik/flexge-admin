@@ -109,7 +109,6 @@ const StudentForm = props => (
           value={get(props.values, 'currentCourse', '')}
           onChange={value => props.onChange('currentCourse', value)}
           errorText={get(props.errors, 'currentCourse', '')}
-          resultFilter={course => course.name.toLowerCase() !== 'adventures'}
           resultTransformer={{
             text: 'name',
             value: 'id',

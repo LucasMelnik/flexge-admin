@@ -5,8 +5,6 @@ import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
 import FormButtons from '../../../../core/form/FormButtons';
-import Select from '../../../../core/form/Select';
-import DateInput from '../../../../core/form/DateInput';
 import MaskInput from '../../../../core/form/MaskInput';
 
 const ParentForm = props => (
@@ -17,7 +15,7 @@ const ParentForm = props => (
     }}
   >
     <Row>
-      <Column size={4}>
+      <Column size={6}>
         <TextInput
           required
           disabled={props.submitting}
@@ -25,18 +23,6 @@ const ParentForm = props => (
           value={get(props.values, 'name', '')}
           onChange={value => props.onChange('name', value)}
           errorText={get(props.errors, 'name', null)}
-        />
-      </Column>
-      <Column size={2}>
-        <MaskInput
-          disabled={props.submitting}
-          label="CPF"
-          value={get(props.values, 'cpf', '')}
-          onChange={value => props.onChange('cpf', value)}
-          errorText={get(props.errors, 'cpf', '')}
-          delimiters={['.', '.', '-']}
-          blocks={[3, 3, 3, 2]}
-          numericOnly
         />
       </Column>
       <Column size={4}>
@@ -51,7 +37,6 @@ const ParentForm = props => (
       </Column>
       <Column size={2}>
         <TextInput
-          required={!props.values.id}
           type="password"
           disabled={props.submitting}
           label="Password"
@@ -63,25 +48,34 @@ const ParentForm = props => (
     </Row>
     <Row>
       <Column size={3}>
-        <Select
-          label="Gender"
+        <TextInput
           disabled={props.submitting}
-          value={get(props.values, 'gender', '')}
-          onChange={value => props.onChange('gender', value)}
-          errorText={get(props.errors, 'gender', null)}
-          options={[{ label: 'Male', value: 'M' }, { label: 'Female', value: 'F' }].map(gender => ({
-            label: gender.label,
-            value: gender.value,
-          }))}
+          placeholder="Father, Mother, Sister"
+          label="Contact Type"
+          value={get(props.values, 'contactType', '')}
+          onChange={value => props.onChange('contactType', value)}
+          errorText={get(props.errors, 'contactType', null)}
         />
       </Column>
       <Column size={3}>
-        <DateInput
+        <MaskInput
+          floatingLabel
+          fullWidth
           disabled={props.submitting}
-          label="Birth Date"
-          value={get(props.values, 'birthDate', null)}
-          onChange={value => props.onChange('birthDate', value)}
-          errorText={get(props.errors, 'birthDate', '')}
+          label="Contact Phone"
+          value={get(props.values, 'contactPhone', '')}
+          onChange={value => props.onChange('contactPhone', value)}
+          errorText={get(props.errors, 'contactPhone', '')}
+          maskType="phone"
+        />
+      </Column>
+      <Column size={6}>
+        <TextInput
+          disabled={props.submitting}
+          label="Observations"
+          value={get(props.values, 'observation', '')}
+          onChange={value => props.onChange('observation', value)}
+          errorText={get(props.errors, 'observation', null)}
         />
       </Column>
     </Row>
