@@ -13,7 +13,7 @@ const ParentForm = props => (
       props.onSubmit();
     }}
   >
-    <p>If you had register the parent before, you can find it  by name or email using the field below.</p>
+    <p>If you have already registered the parent, you can find him by name or email using the field below.</p>
     <Row>
       <Column size={6}>
         <AutoComplete
