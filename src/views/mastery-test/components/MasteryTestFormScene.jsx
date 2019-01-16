@@ -47,7 +47,10 @@ const MasteryTestFormScene = props => (
     </Card>
     <Separator size="md" />
     {(props.module.id && props.masteryTestId) && (
-      <MasteryTestItems masteryTestId={props.masteryTestId} />
+      <MasteryTestItems
+        masteryTestId={props.masteryTestId}
+        academicPlanId={props.module.academicPlan.id}
+      />
     )}
     {(props.module.id && props.masteryTestId) && (
       <ReviewFormControlBar
@@ -64,6 +67,7 @@ MasteryTestFormScene.propTypes = {
   module: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
+    academicPlan: PropTypes.string,
     course: PropTypes.shape({
       name: PropTypes.string,
     }),
