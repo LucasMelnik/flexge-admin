@@ -11,6 +11,7 @@ class MasteryTestItems extends Component {
 
   static propTypes = {
     masteryTestId: PropTypes.string.isRequired,
+    academicPlanId: PropTypes.string.isRequired,
   };
 
   state = {
@@ -66,6 +67,7 @@ class MasteryTestItems extends Component {
           <MasteryTestListItemsContainer masteryTestId={this.props.masteryTestId} />
         ) : (
           <MasteryTestItemFormContainer
+            academicPlanId={this.props.academicPlanId}
             endpointUrl={`/mastery-tests/${this.props.masteryTestId}/items`}
             onSaveSuccess={this.handleChangeToList}
           />

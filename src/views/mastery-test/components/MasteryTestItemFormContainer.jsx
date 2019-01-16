@@ -7,6 +7,7 @@ import ItemFormContainer from '../../item/components/ItemFormContainer';
 class MasteryTestItemFormContainer extends Component {
 
   static propTypes = {
+    academicPlanId: PropTypes.string.isRequired,
     endpointUrl: PropTypes.string.isRequired,
     onSaveSuccess: PropTypes.func.isRequired,
   };
@@ -14,7 +15,7 @@ class MasteryTestItemFormContainer extends Component {
   render() {
     return (
       <ItemFormContainer
-        itemsTypeUrl="/item-types?query[allowedForMasteryTest]=true"
+        itemsTypeUrl={`/item-types?query[allowedForMasteryTest]=true&query[academicPlan]=${this.props.academicPlanId}`}
         endpointUrl={this.props.endpointUrl}
         order={MasteryTestListItemsService.items.length + 1}
         showPostPhrase={false}
