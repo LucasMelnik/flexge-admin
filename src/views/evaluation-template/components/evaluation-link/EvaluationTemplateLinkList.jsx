@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import Table from '../../../../core/form/Table';
 import FetchSelect from '../../../../core/form/FetchSelect';
 import Select from '../../../../core/form/Select';
@@ -67,7 +68,7 @@ const EvaluationTemplateLinkList = props => (
         path: 'evaluationTemplate',
         render: (value, row) => (
           <FetchSelect
-            url={`/evaluation-templates?query[school]=${row.school.id}`}
+            url={`/evaluation-templates?query[school]=${row.school.id}&query[year]=${moment().format('YYYY')}`}
             placeholder="Select the template"
             label=""
             value={value}
