@@ -18,8 +18,8 @@ class ConfigurationFormService {
       numberOfDayBeforeSecondReview: [isRequired],
       percentageToEnableNextModuleGroup: [isRequired],
       percentageToEnableNextUnitGroup: [isRequired],
-      pointsToIncreaseAfterTestFailure: [isRequired],
-      pointsToIncreaseAfterCertificationTestFailure: [isRequired],
+      unitsToFinishAfterTestFailure: [isRequired],
+      unitsToFinishAfterCertificationTestFailure: [isRequired],
       videoUrl: [isRequired],
       scoreToPassOfSpeechRecognition: [isRequired],
     };
