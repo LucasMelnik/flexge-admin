@@ -50,10 +50,10 @@ const ConfigurationForm = props => (
           type="number"
           required
           disabled={props.submitting}
-          label="Points to increase after test failure"
-          value={get(props.values, 'pointsToIncreaseAfterTestFailure', '')}
-          onChange={value => props.onChange('pointsToIncreaseAfterTestFailure', value)}
-          errorText={get(props.errors, 'pointsToIncreaseAfterTestFailure', null)}
+          label="Units to finish after test failure"
+          value={get(props.values, 'unitsToFinishAfterTestFailure', '')}
+          onChange={value => props.onChange('unitsToFinishAfterTestFailure', value)}
+          errorText={get(props.errors, 'unitsToFinishAfterTestFailure', null)}
         />
       </Column>
       <Column size={3}>
@@ -61,10 +61,10 @@ const ConfigurationForm = props => (
           type="number"
           required
           disabled={props.submitting}
-          label="Points to increase after certification test failure"
-          value={get(props.values, 'pointsToIncreaseAfterCertificationTestFailure', '')}
-          onChange={value => props.onChange('pointsToIncreaseAfterCertificationTestFailure', value)}
-          errorText={get(props.errors, 'pointsToIncreaseAfterCertificationTestFailure', null)}
+          label="Units to finish after certification test failure"
+          value={get(props.values, 'unitsToFinishAfterCertificationTestFailure', '')}
+          onChange={value => props.onChange('unitsToFinishAfterCertificationTestFailure', value)}
+          errorText={get(props.errors, 'unitsToFinishAfterCertificationTestFailure', null)}
         />
       </Column>
       <Column size={3}>
