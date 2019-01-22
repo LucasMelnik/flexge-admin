@@ -219,7 +219,7 @@ export default class ItemFormService {
           'item.indexesToRemove': [isRequired, minLength(1)],
           'item.answers': [
             onlyOneCorrectAnswer,
-            minFilteredLength(2, wrongAnswerPredicate, 'Add at least 2 wrong answers'),
+            minFilteredLength(1, wrongAnswerPredicate, 'Add at least 1 wrong answers'),
           ],
         };
         break;
