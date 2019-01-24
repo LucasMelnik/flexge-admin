@@ -80,7 +80,7 @@ const ParentForm = props => (
       </Column>
     </Row>
     <FormButtons
-      confirmLabel={props.values.id ? 'Update Parent' : 'Create Parent'}
+      confirmLabel={props.values.id ? 'Update Parent' : 'Add Parent to Student'}
       isDisabled={props.submitting || !props.isDirty()}
       isSubmitting={props.submitting}
       onReset={props.onReset}

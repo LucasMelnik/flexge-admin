@@ -13,12 +13,11 @@ const ParentForm = props => (
       props.onSubmit();
     }}
   >
-    <p>If you have already registered the parent, you can find him by name or email using the field below.</p>
     <Row>
       <Column size={6}>
         <AutoComplete
           disabled={props.submitting}
-          label="Link Parent"
+          label="Link Parent to this student"
           value={get(props.values, 'parent', get(props.values, 'parentFilter'))}
           errorText={get(props.errors, 'parent', null)}
           labelPath="name"
@@ -32,6 +31,14 @@ const ParentForm = props => (
           fetching={props.fetchingParents}
           placeholder="Find a parent by name or email"
         />
+        <p
+          style={{
+            position: 'relative',
+            top: -25,
+          }}
+        >
+          * If you have already registered the parent, you can find him by name or email using the field above.
+        </p>
       </Column>
       <Column size={2}>
         <div style={{ height: 32 }} />
