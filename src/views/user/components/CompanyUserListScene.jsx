@@ -38,7 +38,7 @@ const CompanyUserListScene = props => (
             baseUrl={`/companies/${company.id}/users`}
             baseQuery={{
               company: company.id,
-              role: { $in: props.roles },
+              role: { $in: (localStorage.role === 'SCHOOL_MANAGER') ? ['TEACHER', 'SCHOOL_MANAGER'] : ['COMPANY_MANAGER', 'TEACHER', 'SCHOOL_MANAGER'] },
             }}
           />
         </Card>
