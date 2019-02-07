@@ -16,22 +16,12 @@ const SentMessageList = props => (
       {
         label: 'Date',
         path: 'sentAt',
-        render: (value, row) => row.children ? moment(value).format('DD/MM/YYYY HH:mm') : '',
+        render: value => moment(value).format('DD/MM/YYYY HH:mm'),
         width: 160,
       },
       {
         label: 'Subject',
         path: 'subject',
-        render: (value, row) => row.children ? value : row.name,
-      },
-      {
-        label: 'Classroom',
-        path: 'schoolClass.name',
-      },
-      {
-        label: 'Status',
-        path: 'readAt',
-        render: (value, row) => row.children ? '' : (row.readAt ? `Read ${moment(row.readAt).format('DD/MM/YYYY HH:mm')}` : 'Not Read'),
       },
       {
         label: 'Actions',
