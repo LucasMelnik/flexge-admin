@@ -12,6 +12,7 @@ class RankingListFilterService {
       services: {},
     });
     this.form.validations = {
+      academicPlan: [isRequired],
       school: localStorage.role === 'ADMIN' ? [(value, all) => !value && !all.country && !all.region && 'Required'] : [isRequired],
       country: localStorage.role === 'ADMIN' ? [(value, all) => !value && !all.school && 'Required'] : [],
       region: localStorage.role === 'ADMIN' ? [(value, all) => !value && !all.school && 'Required'] : [],

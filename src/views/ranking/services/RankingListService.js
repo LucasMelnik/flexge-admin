@@ -27,6 +27,7 @@ export default class RankingListService {
       query: {
         from: useFormMonth ? moment(RankingListFilterService.form.getValue('month'), 'MM').startOf('month').format('YYYY-MM-DD HH:mm:ss') : this.from,
         to: useFormMonth ? moment(RankingListFilterService.form.getValue('month'), 'MM').endOf('month').format('YYYY-MM-DD HH:mm:ss') : this.to,
+        academicPlan: RankingListFilterService.form.getValue('academicPlan'),
         level: this.level,
         ...RankingListFilterService.form.getValue('school') && {
           school: RankingListFilterService.form.getValue('school'),
