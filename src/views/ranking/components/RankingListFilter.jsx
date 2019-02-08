@@ -10,6 +10,20 @@ const RankingListFilter = props => (
   <Row>
     <Column size={3}>
       <FetchSelect
+        label="Academic Plan"
+        placeholder="Select the academic plan"
+        value={get(props.values, 'academicPlan', '')}
+        onChange={name => props.onChange('academicPlan', name)}
+        errorText={get(props.errors, 'academicPlan', '')}
+        url="academic-plans"
+        resultTransformer={{
+          text: 'name',
+          value: 'id',
+        }}
+      />
+    </Column>
+    <Column size={3}>
+      <FetchSelect
         label="School"
         placeholder="Select the school to check the ranking"
         value={get(props.values, 'school', '')}
