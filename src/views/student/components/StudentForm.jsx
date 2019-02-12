@@ -9,6 +9,7 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import Select from '../../../core/form/Select';
 import DateInput from '../../../core/form/DateInput';
 import Switch from '../../../core/form/Switch';
+import LocaleSelect from '../../../core/form/LocaleSelect';
 
 const StudentForm = props => (
   <form
@@ -18,7 +19,7 @@ const StudentForm = props => (
     }}
   >
     <Row>
-      <Column size={4}>
+      <Column size={3}>
         <TextInput
           required
           disabled={props.submitting}
@@ -58,9 +59,18 @@ const StudentForm = props => (
           errorText={get(props.errors, 'password', null)}
         />
       </Column>
+      <Column size={1}>
+        <LocaleSelect
+          required
+          onChange={value => props.onChange('locale', value)}
+          disabled={props.submitting}
+          value={get(props.values, 'locale', '')}
+          errorText={get(props.errors, 'locale', null)}
+        />
+      </Column>
     </Row>
     <Row>
-      <Column size={2}>
+      <Column size={1}>
         <Select
           label="Gender"
           disabled={props.submitting}
@@ -115,8 +125,29 @@ const StudentForm = props => (
           }}
         />
       </Column>
+      {props.values.id && (localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+        <Column size={3}>
+          <FetchSelect
+            url="schools"
+            fullWidth
+            required
+            disabled={props.submitting}
+            label="School"
+            value={get(props.values, 'schoolClass.school.id', '')}
+            onChange={(schoolId) => {
+              props.onChange('schoolClass.school.id', schoolId);
+            }}
+            description={get(props.errors, 'schoolClass.school.id', null)}
+            fieldValidation={get(props.errors, 'schoolClass.school.id', null) && 'error'}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </Column>
+      )}
       {props.values.id && (
-        <Column size={4}>
+        <Column size={localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' ? 2 : 4}>
           <FetchSelect
             url={`schools/${props.values.schoolClass.school.id}/classes`}
             fullWidth
