@@ -87,19 +87,36 @@ const StudentDetailDateRecordList = props => (
           path: 'type',
           align: 'center',
           render: (value, row) => {
-            switch (value) {
-              case 'DEFAULT':
-                return 'YC';
-              case 'FIRST_REVIEW':
-                return moment(row.startedAt).year() <= 2018 ? 'FR' : 'RW';
-              case 'SECOND_REVIEW':
-                return moment(row.startedAt).year() <= 2018 ? 'SR' : '-';
-              case 'SIMPLE_REVIEW':
-                return moment(row.startedAt).year() <= 2018 ? 'SI' : 'RC';
-              case 'MASTERY_TEST':
-                return 'MT';
-              default:
-                return '';
+            if (value === 'MASTERY_TEST') {
+              return 'MT';
+            }
+            if (row.unit && row.unit.module.academicPlan.key === 'KIDS') {
+              switch (value) {
+                case 'DEFAULT':
+                  return 'YC';
+                case 'FIRST_REVIEW':
+                  return 'FR';
+                case 'SECOND_REVIEW':
+                  return 'SR';
+                case 'SIMPLE_REVIEW':
+                  return 'SI';
+                default:
+                  return '';
+              }
+            }
+            if (row.unit && row.unit.module.academicPlan.key === 'FUND_II') {
+              switch (value) {
+                case 'DEFAULT':
+                  return 'YC';
+                case 'FIRST_REVIEW':
+                  return moment(row.startedAt).year() <= 2018 ? 'FR' : 'RW';
+                case 'SECOND_REVIEW':
+                  return moment(row.startedAt).year() <= 2018 ? 'SR' : '-';
+                case 'SIMPLE_REVIEW':
+                  return moment(row.startedAt).year() <= 2018 ? 'SI' : 'RC';
+                default:
+                  return '';
+              }
             }
           },
         },
