@@ -70,7 +70,7 @@ const StudentForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column size={2}>
+      <Column size={1}>
         <Select
           label="Gender"
           disabled={props.submitting}
@@ -125,8 +125,29 @@ const StudentForm = props => (
           }}
         />
       </Column>
+      {props.values.id && (localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+        <Column size={3}>
+          <FetchSelect
+            url="schools"
+            fullWidth
+            required
+            disabled={props.submitting}
+            label="School"
+            value={get(props.values, 'schoolClass.school.id', '')}
+            onChange={(schoolId) => {
+              props.onChange('schoolClass.school.id', schoolId);
+            }}
+            description={get(props.errors, 'schoolClass.school.id', null)}
+            fieldValidation={get(props.errors, 'schoolClass.school.id', null) && 'error'}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </Column>
+      )}
       {props.values.id && (
-        <Column size={4}>
+        <Column size={localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' ? 2 : 4}>
           <FetchSelect
             url={`schools/${props.values.schoolClass.school.id}/classes`}
             fullWidth

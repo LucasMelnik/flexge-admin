@@ -67,6 +67,10 @@ export default class StudentFormService {
       return;
     }
     const studentId = this.form.getValue('id');
+    if (studentId && !this.form.getValue('schoolClass.id')) {
+      NotificationService.addNotification('The school class is required', 'error');
+      return;
+    }
     this.submit.fetch({
       method: studentId ? 'put' : 'post',
       url: studentId ? `/students/${studentId}` : `/schools/${this.schoolId}/classes/${this.classId}/students`,
