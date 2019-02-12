@@ -9,6 +9,7 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import Select from '../../../core/form/Select';
 import DateInput from '../../../core/form/DateInput';
 import Switch from '../../../core/form/Switch';
+import LocaleSelect from '../../../core/form/LocaleSelect';
 
 const StudentForm = props => (
   <form
@@ -18,7 +19,7 @@ const StudentForm = props => (
     }}
   >
     <Row>
-      <Column size={4}>
+      <Column size={3}>
         <TextInput
           required
           disabled={props.submitting}
@@ -56,6 +57,15 @@ const StudentForm = props => (
           value={get(props.values, 'password', '')}
           onChange={value => props.onChange('password', value)}
           errorText={get(props.errors, 'password', null)}
+        />
+      </Column>
+      <Column size={1}>
+        <LocaleSelect
+          required
+          onChange={value => props.onChange('locale', value)}
+          disabled={props.submitting}
+          value={get(props.values, 'locale', '')}
+          errorText={get(props.errors, 'locale', null)}
         />
       </Column>
     </Row>

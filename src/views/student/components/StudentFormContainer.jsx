@@ -11,6 +11,7 @@ class StudentFormContainer extends Component {
     schoolId: PropTypes.string,
     classId: PropTypes.string,
     academicPlanId: PropTypes.string,
+    locale: PropTypes.string,
   };
 
   static defaultProps = {
@@ -18,6 +19,7 @@ class StudentFormContainer extends Component {
     schoolId: null,
     classId: null,
     academicPlanId: null,
+    locale: null,
   };
 
   studentFormService = new StudentFormService();
@@ -27,6 +29,7 @@ class StudentFormContainer extends Component {
       this.props.schoolId,
       this.props.classId,
       this.props.academicPlanId,
+      this.props.locale,
     );
   }
 

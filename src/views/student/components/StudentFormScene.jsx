@@ -81,6 +81,7 @@ const StudentFormScene = props => (
         classId={props.class.id}
         schoolId={props.school.id}
         academicPlanId={props.class.academicPlan}
+        locale={props.locale}
       />
     </Card>
     <Separator size="sm" />
@@ -98,6 +99,7 @@ StudentFormScene.propTypes = {
   company: PropTypes.object,
   school: PropTypes.object,
   class: PropTypes.object,
+  locale: PropTypes.string,
   studentId: PropTypes.string,
 };
 
@@ -107,6 +109,7 @@ StudentFormScene.defaultProps = {
   company: {},
   school: {},
   class: {},
+  locale: null,
 };
 
 export default StudentFormScene;
