@@ -142,33 +142,53 @@ const StudentDetailContentRecordList = props => (
         width: '50px',
         render: (value, row) => {
           let translatedValue = '';
-          switch (value) {
-            case 'DEFAULT':
-              translatedValue = 'YC';
-              break;
-            case 'FIRST_REVIEW':
-              if (moment(row.startedAt).year() <= 2018) {
+          if (row.academicPlan && row.academicPlan.key === 'FUND_II') {
+            switch (value) {
+              case 'DEFAULT':
+                translatedValue = 'YC';
+                break;
+              case 'FIRST_REVIEW':
+                if (moment(row.startedAt).year() <= 2018) {
+                  translatedValue = 'FR';
+                } else {
+                  translatedValue = 'RW';
+                }
+                break;
+              case 'SECOND_REVIEW':
+                if (moment(row.startedAt).year() <= 2018) {
+                  translatedValue = 'SR';
+                } else {
+                  translatedValue = '-';
+                }
+                break;
+              case 'SIMPLE_REVIEW':
+                if (moment(row.startedAt).year() <= 2018) {
+                  translatedValue = 'SI';
+                } else {
+                  translatedValue = 'RC';
+                }
+                break;
+              default:
+                break;
+            }
+          }
+          if (row.academicPlan && row.academicPlan.key === 'KIDS') {
+            switch (value) {
+              case 'DEFAULT':
+                translatedValue = 'YC';
+                break;
+              case 'FIRST_REVIEW':
                 translatedValue = 'FR';
-              } else {
-                translatedValue = 'RW';
-              }
-              break;
-            case 'SECOND_REVIEW':
-              if (moment(row.startedAt).year() <= 2018) {
+                break;
+              case 'SECOND_REVIEW':
                 translatedValue = 'SR';
-              } else {
-                translatedValue = '-';
-              }
-              break;
-            case 'SIMPLE_REVIEW':
-              if (moment(row.startedAt).year() <= 2018) {
+                break;
+              case 'SIMPLE_REVIEW':
                 translatedValue = 'SI';
-              } else {
-                translatedValue = 'RC';
-              }
-              break;
-            default:
-              break;
+                break;
+              default:
+                break;
+            }
           }
           return {
             children: translatedValue,
