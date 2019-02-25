@@ -20,7 +20,7 @@ const SchoolEvaluationForm = props => (
         <Select
           required
           label="Period Type"
-          disabled={props.submitting}
+          disabled={props.submitting || props.values.id}
           value={get(props.values, 'type', null)}
           onChange={(value) => {
             props.onChange('type', value);
@@ -54,7 +54,7 @@ const SchoolEvaluationForm = props => (
       <Column size={2}>
         <DateInput
           required
-          disabled={props.submitting}
+          disabled={props.submitting || props.values.id}
           label="Start"
           value={get(props.values, 'start', undefined) ? props.values.start.toDate() : undefined}
           onChange={(value) => {
@@ -69,7 +69,7 @@ const SchoolEvaluationForm = props => (
       <Column size={2}>
         <DateInput
           required
-          disabled={props.submitting || !get(props.values, 'type', null) || !get(props.values, 'start', null)}
+          disabled={props.submitting || props.values.id || !get(props.values, 'type', null) || !get(props.values, 'start', null)}
           label="End"
           value={get(props.values, 'end', undefined) ? props.values.end.toDate() : undefined}
           onChange={value => props.onChange('end', value)}
