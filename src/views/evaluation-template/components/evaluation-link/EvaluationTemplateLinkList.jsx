@@ -72,7 +72,7 @@ const EvaluationTemplateLinkList = props => (
             placeholder="Select the template"
             label=""
             value={value}
-            onChange={template => props.onChange('evaluationTemplate', template, row)}
+            onChange={template => template && props.onChange('evaluationTemplate', template, row)}
             resultTransformer={{
               text: 'name',
               value: 'id',

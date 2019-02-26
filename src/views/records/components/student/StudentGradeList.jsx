@@ -9,7 +9,7 @@ const StudentGradeList = props => (
     rows={props.students}
     fetching={props.fetching}
     scroll={{
-      x: (props.evaluationPeriods.length * 310) + 250,
+      x: (props.evaluationPeriods.filter(e => e.type === 'EVALUATION').length * 310) + (props.evaluationPeriods.filter(e => e.type === 'RECESS').length * 170) + 250,
       y: 'calc(100vh - 300px)',
     }}
     columns={[
@@ -28,7 +28,10 @@ const StudentGradeList = props => (
           </span>
         ),
         path: `grade_${evaluation.id}`,
-        width: 310,
+        width: {
+          EVALUATION: 310,
+          RECESS: 170,
+        }[evaluation.type],
         render: (cell, row) => {
           const periodGrade = row.grades.find(grade => (grade.evaluationPeriod.id || grade.evaluationPeriod) === evaluation.id);
           if (periodGrade) {
