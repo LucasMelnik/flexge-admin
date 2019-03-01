@@ -55,6 +55,10 @@ const StudentAchievementsList = props => (
         path: 'student.name',
       },
       {
+        label: 'Academic Plan',
+        path: 'student.academicPlan.name',
+      },
+      {
         label: 'Actions',
         path: 'action',
         width: '80px',
