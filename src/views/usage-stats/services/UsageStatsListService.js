@@ -31,18 +31,24 @@ class UsageStatsListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.schools = this.fetch.data.map((school) => {
-          if (school.activeStudentsLastMonth) {
-            const currentCharge = school.activeStudents - school.placementCount;
-            const lastMonthCharge = school.activeStudentsLastMonth - school.placementCountLastMonth;
+        this.schools = this.fetch.data.map(school => ({
+          ...school,
+          activeStudents: school.children.reduce((acc, x) => acc + x.activeStudents, 0),
+          placementCount: school.children.reduce((acc, x) => acc + x.placementCount, 0),
+          studiedHours: school.children.reduce((acc, x) => acc + x.studiedHours, 0),
+          children: school.children.map((plan) => {
+            if (plan.activeStudentsLastMonth) {
+              const currentCharge = plan.activeStudents - plan.placementCount;
+              const lastMonthCharge = plan.activeStudentsLastMonth - plan.placementCountLastMonth;
 
-            return {
-              ...school,
-              chargeVariation: lastMonthCharge && currentCharge ? ((currentCharge - lastMonthCharge) / lastMonthCharge) * 100 : undefined,
-            };
-          }
-          return school;
-        });
+              return {
+                ...plan,
+                chargeVariation: lastMonthCharge && currentCharge ? ((currentCharge - lastMonthCharge) / lastMonthCharge) * 100 : undefined,
+              };
+            }
+            return plan;
+          }),
+        }));
       } else {
         this.schools = [];
       }
