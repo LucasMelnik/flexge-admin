@@ -49,7 +49,7 @@ const ContentList = props => (
           render: value => value.reduce((acc, val, index) => acc.concat(index ? ', ' : '').concat(val.name), ''),
         },
       ],
-      ...(localStorage.role === 'ADMIN' || localStorage.role === 'CONTENT_ADMIN') && [
+      ...(localStorage.role === 'ADMIN' || localStorage.role === 'CONTENT_ADMIN') ? [
         {
           label: 'Actions',
           path: 'action',
@@ -62,7 +62,7 @@ const ContentList = props => (
             />
           ),
         },
-      ],
+      ] : [],
     ]}
     rows={props.modules}
     selectable

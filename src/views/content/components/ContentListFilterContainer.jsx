@@ -7,7 +7,7 @@ import ContentListService from '../services/ContentListService';
 const ContentListFilterContainer = () => (
   <ContentListFilter
     values={ContentListService.form.getValues()}
-    errors={ContentListService.form.submitted && ContentListService.form.errors}
+    errors={ContentListService.form.submitted ? ContentListService.form.errors : {}}
     onChange={ContentListService.form.setValue}
     onSearch={ContentListService.load}
     fetching={ContentListService.fetch.fetching}

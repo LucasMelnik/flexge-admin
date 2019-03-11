@@ -16,7 +16,6 @@ class StudyQualityHigherThanFiveContainer extends Component {
   };
 
   componentWillMount() {
-    alert()
     StudyQualityGroupService.init(this.props.schoolId, this.props.classId);
   }
 
