@@ -11,7 +11,7 @@ const ActiveStudentsByPeriodChart = props => (
   <Card
     title="Active Students Last 30 Days"
   >
-    {!props.loading && (
+    {!props.loading && props.data && (
       <DoughnutChart
         labels={[
           'Active last 7 days',

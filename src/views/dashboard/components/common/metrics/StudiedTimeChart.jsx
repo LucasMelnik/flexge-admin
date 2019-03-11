@@ -11,7 +11,7 @@ const StudiedTimeChart = props => (
   <Card
     title="Studied time last 7 days"
   >
-    {!props.loading && (
+    {!props.loading && props.data && (
       <div>
         <DoughnutChart
           labels={[

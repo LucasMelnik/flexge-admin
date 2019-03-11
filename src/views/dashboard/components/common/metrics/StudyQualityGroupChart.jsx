@@ -9,16 +9,18 @@ const StudyQualityGroupChart = props => (
     title="Students Study Quality Rates"
     loading={props.loading}
   >
-    <DoughnutChart
-      labels={[
-        'Greater than 10',
-        'Between 5.1 and 10',
-        'Between 0.1 and 5',
-        'Between 0 and -5',
-      ]}
-      data={props.data}
-      colors={[DARK_GREEN, GREEN, ORANGE, RED]}
-    />
+    {!props.loading && props.data && (
+      <DoughnutChart
+        labels={[
+          'Greater than 10',
+          'Between 5.1 and 10',
+          'Between 0.1 and 5',
+          'Between 0 and -5',
+        ]}
+        data={props.data}
+        colors={[DARK_GREEN, GREEN, ORANGE, RED]}
+      />
+    )}
   </Card>
 );
 
