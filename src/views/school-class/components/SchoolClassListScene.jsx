@@ -17,7 +17,7 @@ const SchoolClassListScene = props => (
       ]}
     />
     <Card
-      loading={!props.school._id}
+      loading={!props.school}
       title="Classes"
       actions={localStorage.role !== 'TEACHER' &&
         <div>
@@ -33,16 +33,14 @@ const SchoolClassListScene = props => (
       <SchoolClassListFilterContainer />
       <SchoolClassListContainer
         baseUrl=""
-        schoolId={props.school._id}
+        schoolId={props.school}
       />
     </Card>
   </div>
 );
 
 SchoolClassListScene.propTypes = {
-  school: PropTypes.shape({
-    _id: PropTypes.string,
-  }).isRequired,
+  school: PropTypes.string.isRequired,
 };
 
 export default SchoolClassListScene;

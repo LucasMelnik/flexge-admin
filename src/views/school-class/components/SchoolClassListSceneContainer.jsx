@@ -6,7 +6,7 @@ class SchoolClassListSceneContainer extends Component {
   school = {};
 
   componentWillMount() {
-    this.school = JSON.parse(localStorage.getItem('school'));
+    this.school = localStorage.getItem('school');
   }
 
   render() {

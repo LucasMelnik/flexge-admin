@@ -6,8 +6,7 @@ import EmailConfigFilterService from '../services/EmailConfigFilterService';
 class EmailConfigFormSceneContainer extends Component {
 
   componentWillMount() {
-    const school = JSON.parse(localStorage.getItem('school'));
-    EmailConfigFilterService.handleFilterChange(school ? school._id : null);
+    EmailConfigFilterService.handleFilterChange(localStorage.getItem('school'));
   }
 
   render() {

@@ -19,8 +19,7 @@ class EvaluationTemplateListService {
   init = action(() => {
     this.templates = [];
     if (localStorage.role === 'SCHOOL_MANAGER') {
-      const school = JSON.parse(localStorage.getItem('school'));
-      this.filterForm.setValue('school', school._id);
+      this.filterForm.setValue('school', localStorage.getItem('school'));
     }
     this.filterForm.setValue('year', moment().format('YYYY'));
     this.load();

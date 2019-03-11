@@ -31,8 +31,7 @@ class StudentAchievementsListService {
       school: [],
     };
     if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
-      const school = JSON.parse(localStorage.getItem('school'));
-      this.form.setValue('school', school._id);
+      this.form.setValue('school', localStorage.getItem('school'));
     }
   });
 

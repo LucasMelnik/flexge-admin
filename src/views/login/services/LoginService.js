@@ -40,10 +40,10 @@ class LoginService {
         const decodedToken = jwtDecode(this.fetch.data.accessToken);
         localStorage.setItem('id', decodedToken.sub);
         localStorage.setItem('role', decodedToken.role);
-        localStorage.setItem('company', JSON.stringify(decodedToken.company));
+        localStorage.setItem('company', decodedToken.company);
         localStorage.setItem('distributor', decodedToken.distributor);
         if (decodedToken.school) {
-          localStorage.setItem('school', JSON.stringify(decodedToken.school));
+          localStorage.setItem('school', decodedToken.school);
         } else {
           localStorage.removeItem('school');
         }

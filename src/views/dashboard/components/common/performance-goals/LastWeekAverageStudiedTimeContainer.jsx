@@ -6,8 +6,6 @@ import LastWeekAverageStudiedTimeService from '../../../services/LastWeekAverage
 import LastWeekAverageStudiedTimeGauge from '../../../../../core/chart/LastWeekAverageStudiedTimeGauge';
 
 class LastWeekAverageStudiedTimeContainer extends Component {
-  school = JSON.parse(localStorage.getItem('school'));
-
   static propTypes = {
     schoolId: PropTypes.string,
     classId: PropTypes.string,

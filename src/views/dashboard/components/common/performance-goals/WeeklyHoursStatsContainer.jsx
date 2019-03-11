@@ -5,8 +5,6 @@ import WeeklyHoursStatsService from '../../../services/WeeklyHoursStatsService';
 import WeeklyHoursStatsGauge from '../../../../../core/chart/WeeklyHoursStatsGauge';
 
 class WeeklyHoursStatsContainer extends Component {
-  school = JSON.parse(localStorage.getItem('school'));
-
   static propTypes = {
     schoolId: PropTypes.string,
     classId: PropTypes.string,

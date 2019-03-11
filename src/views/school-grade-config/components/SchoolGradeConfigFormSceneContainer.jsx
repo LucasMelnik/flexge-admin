@@ -6,8 +6,7 @@ import SchoolGradeConfigFilterService from '../services/SchoolGradeConfigFilterS
 class SchoolGradeConfigFormSceneContainer extends Component {
 
   componentWillMount() {
-    const school = JSON.parse(localStorage.getItem('school'));
-    SchoolGradeConfigFilterService.handleFilterChange(school ? school._id : null);
+    SchoolGradeConfigFilterService.handleFilterChange(localStorage.getItem('school'));
   }
 
   render() {

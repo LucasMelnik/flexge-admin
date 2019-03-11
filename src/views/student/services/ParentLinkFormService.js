@@ -29,8 +29,7 @@ export default class ParentLinkFormService {
     this.form.reset();
 
     if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
-      const school = JSON.parse(localStorage.getItem('school'));
-      this.schoolId = school._id;
+      this.schoolId = localStorage.getItem('school');
     }
   });
 

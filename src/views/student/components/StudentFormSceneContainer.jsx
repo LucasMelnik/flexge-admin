@@ -31,15 +31,10 @@ class StudentFormSceneContainer extends Component {
       this.studentDetailService.handleLoadClass(this.props.params.schoolId, this.props.params.classId);
     }
     if (localStorage.role === 'SCHOOL_MANAGER' || localStorage.role === 'TEACHER') {
-      this.studentDetailService.handleLoadClass(this.getSchoolFromLocalStorage().id, this.props.params.classId);
+      this.studentDetailService.handleLoadSchool(localStorage.getItem('school'));
+      this.studentDetailService.handleLoadClass(localStorage.getItem('school'), this.props.params.classId);
     }
   }
-
-  getSchoolFromLocalStorage = () => {
-    const school = JSON.parse(localStorage.getItem('school'));
-    school.id = school._id;
-    return school;
-  };
 
   render() {
     return (
@@ -47,7 +42,8 @@ class StudentFormSceneContainer extends Component {
         studentId={this.props.params.studentId}
         company={this.studentDetailService.company}
         distributor={this.studentDetailService.distributor}
-        school={(localStorage.role === 'SCHOOL_MANAGER' || localStorage.role === 'TEACHER') ? this.getSchoolFromLocalStorage() : this.studentDetailService.school}
+        // school={(localStorage.role === 'SCHOOL_MANAGER' || localStorage.role === 'TEACHER') ? this.getSchoolFromLocalStorage() : this.studentDetailService.school}
+        school={this.studentDetailService.school}
         class={this.studentDetailService.class}
         locale={this.studentDetailService.school.locale}
         fetching={
