@@ -28,6 +28,9 @@ class SchoolClassFormSceneContainer extends Component {
     if (this.props.params.schoolId) {
       this.schoolClassDetailService.handleLoadSchool(this.props.params.schoolId);
     }
+    if (localStorage.role === 'SCHOOL_MANAGER' || localStorage.role === 'TEACHER') {
+      this.schoolClassDetailService.handleLoadSchool(localStorage.getItem('school'));
+    }
   }
 
   render() {
@@ -36,7 +39,6 @@ class SchoolClassFormSceneContainer extends Component {
         classId={this.props.params.classId}
         company={this.schoolClassDetailService.company}
         distributor={this.schoolClassDetailService.distributor}
-        // school={localStorage.role === 'SCHOOL_MANAGER' ? this.getSchoolFromLocalStorage() : this.schoolClassDetailService.school}
         school={this.schoolClassDetailService.school}
         fetching={
           this.schoolClassDetailService.fetchDistributor.fetching ||

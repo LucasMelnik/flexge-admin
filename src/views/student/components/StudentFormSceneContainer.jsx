@@ -42,7 +42,6 @@ class StudentFormSceneContainer extends Component {
         studentId={this.props.params.studentId}
         company={this.studentDetailService.company}
         distributor={this.studentDetailService.distributor}
-        // school={(localStorage.role === 'SCHOOL_MANAGER' || localStorage.role === 'TEACHER') ? this.getSchoolFromLocalStorage() : this.studentDetailService.school}
         school={this.studentDetailService.school}
         class={this.studentDetailService.class}
         locale={this.studentDetailService.school.locale}

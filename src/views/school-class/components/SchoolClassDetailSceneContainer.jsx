@@ -45,7 +45,6 @@ class SchoolClassDetailSceneContainer extends Component {
     return (
       <SchoolClassDetailScene
         baseUrl={this.baseUrl}
-        // school={(localStorage.role === 'SCHOOL_MANAGER' || localStorage.role === 'TEACHER') ? this.getSchoolFromLocalStorage() : this.schoolClassDetailService.school}
         school={this.schoolClassDetailService.school}
         company={this.schoolClassDetailService.company}
         distributor={this.schoolClassDetailService.distributor}
