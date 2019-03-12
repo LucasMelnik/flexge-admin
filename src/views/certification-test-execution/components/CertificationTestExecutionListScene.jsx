@@ -18,22 +18,22 @@ const CertificationTestExecutionListScene = () => (
     />
     <Tabs
       tabs={[
-        ...localStorage.role !== 'CERTIFICATION_TEST_PROFESSIONAL' && [{
+        ...localStorage.role !== 'CERTIFICATION_TEST_PROFESSIONAL' ? [{
           content: (
             <Card>
               <CertificationTestExecutionListPendingContainer />
             </Card>
           ),
           title: 'Pending Schedule',
-        }],
-        ...localStorage.role !== 'CERTIFICATION_TEST_PROFESSIONAL' && [{
+        }] : [],
+        ...localStorage.role !== 'CERTIFICATION_TEST_PROFESSIONAL' ? [{
           content: (
             <Card>
               <CertificationTestExecutionListScheduledContainer />
             </Card>
           ),
           title: 'Scheduled',
-        }],
+        }] : [],
         {
           content: (
             <Card>
@@ -42,14 +42,14 @@ const CertificationTestExecutionListScene = () => (
           ),
           title: 'Pending Correction',
         },
-        ...localStorage.role !== 'CERTIFICATION_TEST_PROFESSIONAL' && [{
+        ...localStorage.role !== 'CERTIFICATION_TEST_PROFESSIONAL' ? [{
           content: (
             <Card>
               <CertificationTestExecutionListCompletedContainer />
             </Card>
           ),
           title: 'Completed',
-        }],
+        }] : [],
       ]}
     />
   </div>
