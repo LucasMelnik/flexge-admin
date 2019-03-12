@@ -42,15 +42,8 @@ export default class TextEditor extends Component {
         modules={this.props.options}
         readOnly={this.props.readOnly}
         value={this.props.value}
-        onKeyPress={this.onKeyPress}
         onChange={this.props.onChange}
-      >
-        <div
-          style={{
-            background: this.props.readOnly && '#efefef',
-          }}
-        />
-      </ReactQuill>
+      />
     );
   }
 }
