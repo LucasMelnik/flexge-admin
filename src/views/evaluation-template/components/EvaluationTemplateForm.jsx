@@ -40,7 +40,7 @@ const EvaluationTemplateForm = props => (
               localStorage.role === 'DISTRIBUTOR_MANAGER'
                 ? `?distributor=${localStorage.getItem('distributor')}`
                 : localStorage.role === 'COMPANY_MANAGER'
-                ? `?company=${JSON.parse(localStorage.getItem('company')).id}`
+                ? `?company=${localStorage.getItem('company')}`
                 : ''
               }`}
             errorText={get(props.errors, 'school', null)}

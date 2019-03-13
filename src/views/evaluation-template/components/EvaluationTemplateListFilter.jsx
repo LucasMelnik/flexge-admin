@@ -18,7 +18,7 @@ const EvaluationTemplateListFilter = props => (
           label="Filter by school"
           value={get(props.values, 'school', '')}
           onChange={value => props.onChange('school', value)}
-          url={`schools${localStorage.role === 'COMPANY_MANAGER' ? `?company=${JSON.parse(localStorage.getItem('company')).id}` : ''}`}
+          url={`schools${localStorage.role === 'COMPANY_MANAGER' ? `?company=${localStorage.getItem('company')}` : ''}`}
           resultTransformer={{
             text: 'name',
             value: 'id',
