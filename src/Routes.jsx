@@ -113,6 +113,8 @@ import CountryFormScene from './views/country/components/CountryFormScene';
 import StateListScene from './views/state/components/StateListScene';
 import StateFormScene from './views/state/components/StateFormScene';
 import ConfigurationListScene from './views/configuration/components/ConfigurationListScene';
+import WhitelabelConfigListScene from './views/whitelabel-config/components/WhitelabelConfigListScene';
+import WhitelabelConfigFormScene from './views/whitelabel-config/components/WhitelabelConfigFormScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -264,6 +266,9 @@ const Routes = () => (
       <Route path="finished-courses" component={FinishedStudentCourseListScene} />
       <Route path="contents" component={ContentListScene} />
       <Route path="contents/:contentId/details" component={ContentDetailSceneContainer} />
+      <Route path="whitelabel-configs" component={WhitelabelConfigListScene} />
+      <Route path="whitelabel-configs/new" component={WhitelabelConfigFormScene} />
+      <Route path="whitelabel-configs/:whitelabelConfigId" component={WhitelabelConfigFormScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
