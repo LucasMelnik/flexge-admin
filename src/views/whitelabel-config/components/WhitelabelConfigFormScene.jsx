@@ -6,8 +6,7 @@ import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import WhitelabelConfigFormContainer from './WhitelabelConfigFormContainer';
 import Separator from '../../../core/layout/Separator';
-import WhitelabelConfigCertificateContainer from './WhitelabelConfigCertificateContainer';
-import WhitelabelConfigApplyDomainContainer from './WhitelabelConfigApplyDomainContainer';
+import WhitelabelConfigDistributionContainer from './WhitelabelConfigDistributionContainer';
 
 const WhitelabelConfigFormScene = props => (
   <div>
@@ -36,11 +35,8 @@ const WhitelabelConfigFormScene = props => (
     {props.params.whitelabelConfigId && (
       <React.Fragment>
         <Separator/>
-        <Card
-          title="SSL Certificate"
-          actions={<WhitelabelConfigApplyDomainContainer />}
-        >
-          <WhitelabelConfigCertificateContainer whitelabelConfigId={props.params.whitelabelConfigId} />
+        <Card title="Distributions Config">
+          <WhitelabelConfigDistributionContainer whitelabelConfigId={props.params.whitelabelConfigId} />
         </Card>
       </React.Fragment>
     )}

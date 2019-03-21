@@ -7,7 +7,7 @@ import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
 import FetchSelect from '../../../core/form/FetchSelect';
 import LocalFileInput from '../../../core/form/LocalFileInput';
-import Select from '../../../core/form/Select';
+import ColorInput from '../../../core/form/ColorInput';
 
 const WhitelabelConfigForm = props => (
   <form
@@ -17,7 +17,7 @@ const WhitelabelConfigForm = props => (
     }}
   >
     <Row>
-      <Column size={4}>
+      <Column size={3}>
         <TextInput
           required
           disabled={props.submitting}
@@ -27,7 +27,17 @@ const WhitelabelConfigForm = props => (
           errorText={get(props.errors, 'domain', null)}
         />
       </Column>
-      <Column size={4}>
+      <Column size={3}>
+        <TextInput
+          required
+          disabled={props.submitting}
+          label="Title"
+          value={get(props.values, 'title', '')}
+          onChange={value => props.onChange('title', value)}
+          errorText={get(props.errors, 'title', null)}
+        />
+      </Column>
+      <Column size={3}>
         <FetchSelect
           url="distributors"
           disabled={props.submitting || !!props.values.company}
@@ -41,7 +51,7 @@ const WhitelabelConfigForm = props => (
           }}
         />
       </Column>
-      <Column size={4}>
+      <Column size={3}>
         <FetchSelect
           url="companies"
           disabled={props.submitting || !!props.values.distributor}
@@ -57,45 +67,39 @@ const WhitelabelConfigForm = props => (
       </Column>
     </Row>
     <Row>
-      {!props.values.id && (
-        <Column size={6}>
-          <Select
-            multiple
-            disabled={props.submitting}
-            label="Apps to configure"
-            value={get(props.values, 'cloudfrontDistributions', [])}
-            onChange={value => props.onChange('cloudfrontDistributions', value)}
-            options={[
-              { value: 'ADMIN', label: 'Admin' },
-              { value: 'STUDENT', label: 'Student' },
-              { value: 'KIDS', label: 'Kids' },
-            ]}
-          />
-        </Column>
-      )}
       <Column size={3}>
-        <TextInput
+        <ColorInput
           required
           disabled={props.submitting}
-          label="Title"
-          value={get(props.values, 'title', '')}
-          onChange={value => props.onChange('title', value)}
-          errorText={get(props.errors, 'title', null)}
+          label="Primary Color"
+          value={get(props.values, 'primaryColor', '')}
+          onChange={value => props.onChange('primaryColor', value)}
+          errorText={get(props.errors, 'primaryColor', null)}
         />
       </Column>
       <Column size={3}>
-        <TextInput
+        <ColorInput
           required
           disabled={props.submitting}
-          label="Color"
-          value={get(props.values, 'color', '')}
-          onChange={value => props.onChange('color', value)}
-          errorText={get(props.errors, 'color', null)}
+          label="Secondary Color"
+          value={get(props.values, 'secondaryColor', '')}
+          onChange={value => props.onChange('secondaryColor', value)}
+          errorText={get(props.errors, 'secondaryColor', null)}
+        />
+      </Column>
+      <Column size={3}>
+        <ColorInput
+          required
+          disabled={props.submitting}
+          label="Light Color"
+          value={get(props.values, 'lightColor', '')}
+          onChange={value => props.onChange('lightColor', value)}
+          errorText={get(props.errors, 'lightColor', null)}
         />
       </Column>
     </Row>
     <Row>
-      <Column size={3}>
+      <Column size={2}>
         <LocalFileInput
           disabled={props.submitting}
           label="Logo"
@@ -105,7 +109,7 @@ const WhitelabelConfigForm = props => (
           accept="image"
         />
       </Column>
-      <Column size={3}>
+      <Column size={2}>
         <LocalFileInput
           disabled={props.submitting}
           label="Favicon"
@@ -115,7 +119,7 @@ const WhitelabelConfigForm = props => (
           accept="image"
         />
       </Column>
-      <Column size={3}>
+      <Column size={2}>
         <LocalFileInput
           disabled={props.submitting}
           label="iOS Icon"
@@ -125,13 +129,23 @@ const WhitelabelConfigForm = props => (
           accept="image"
         />
       </Column>
-      <Column size={3}>
+      <Column size={2}>
         <LocalFileInput
           disabled={props.submitting}
           label="Android Icon"
           value={get(props.values, 'androidIconUrl', '')}
           onChange={value => props.onChange('androidIcon', value)}
           errorText={get(props.errors, 'androidIcon', null)}
+          accept="image"
+        />
+      </Column>
+      <Column size={2}>
+        <LocalFileInput
+          disabled={props.submitting}
+          label="Splash Screen"
+          value={get(props.values, 'mobileSplashScreenUrl', '')}
+          onChange={value => props.onChange('mobileSplashScreen', value)}
+          errorText={get(props.errors, 'mobileSplashScreen', null)}
           accept="image"
         />
       </Column>

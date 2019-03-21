@@ -1,9 +1,9 @@
-import get from 'lodash/get';
 import { extendObservable, action } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
+import { browserHistory } from 'react-router';
 
 export default class WhitelabelConfigFormService {
   fetch = new FetchService();
@@ -14,15 +14,19 @@ export default class WhitelabelConfigFormService {
     extendObservable(this, {
       whitelabelConfigId: null,
     });
+    this.form.validations = {
+      domain: [isRequired],
+      title: [isRequired],
+      primaryColor: [isRequired],
+      secondaryColor: [isRequired],
+      lightColor: [isRequired],
+      logo: [isRequired],
+    };
   }
 
   handleLoad = action((whitelabelConfigId) => {
     this.form.reset();
     if (whitelabelConfigId) {
-      this.form.validations = {
-        title: [isRequired],
-        color: [isRequired],
-      };
       this.fetch.fetch({
         url: `/whitelabel-configs/${whitelabelConfigId}`,
       }).then(() => {
@@ -32,13 +36,6 @@ export default class WhitelabelConfigFormService {
       });
     } else {
       this.form.setInitialValues({});
-      this.form.validations = {
-        domain: [isRequired],
-        title: [isRequired],
-        color: [isRequired],
-        logo: [isRequired],
-        cloudfrontDistributions: [isRequired],
-      };
     }
     this.whitelabelConfigId = whitelabelConfigId;
   });
@@ -54,7 +51,9 @@ export default class WhitelabelConfigFormService {
     const formData = new FormData();
     formData.append('domain', this.form.getValue('domain'));
     formData.append('title', this.form.getValue('title'));
-    formData.append('color', this.form.getValue('color'));
+    formData.append('primaryColor', this.form.getValue('primaryColor'));
+    formData.append('secondaryColor', this.form.getValue('secondaryColor'));
+    formData.append('lightColor', this.form.getValue('lightColor'));
     if (this.form.getValue('logo')) {
       formData.append('logoFile', this.form.getValue('logo'));
     }
@@ -67,6 +66,9 @@ export default class WhitelabelConfigFormService {
     if (this.form.getValue('androidIcon')) {
       formData.append('androidIconFile', this.form.getValue('androidIcon'));
     }
+    if (this.form.getValue('mobileSplashScreen')) {
+      formData.append('mobileSplashScreenFile', this.form.getValue('mobileSplashScreen'));
+    }
     if (this.form.getValue('distributor')) {
       formData.append('distributor', this.form.getValue('distributor'));
     }
@@ -74,21 +76,13 @@ export default class WhitelabelConfigFormService {
       formData.append('company', this.form.getValue('company'));
     }
 
-    const distributions = this.form.getValue('cloudfrontDistributions');
-    distributions.forEach((distribution, index) => {
-      formData.append(`cloudfrontDistributions[${index}][app]`, get(distribution, 'app', distribution));
-    });
-
     this.submit.fetch({
       method: whitelabelConfigId ? 'put' : 'post',
       url: whitelabelConfigId ? `/whitelabel-configs/${whitelabelConfigId}` : '/whitelabel-configs',
       body: formData,
     }).then(() => {
       if (this.submit.data) {
-        this.whitelabelConfigId = this.submit.data.id;
-        this.form.reset();
-        this.form.setInitialValues(this.submit.data);
-
+        browserHistory.push(`/whitelabel-configs/${this.submit.data}`);
         NotificationService.addNotification(`Whitelabel configuration ${whitelabelConfigId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
