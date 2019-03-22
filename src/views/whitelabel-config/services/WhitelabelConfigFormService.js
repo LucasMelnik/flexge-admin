@@ -20,7 +20,6 @@ export default class WhitelabelConfigFormService {
       primaryColor: [isRequired],
       secondaryColor: [isRequired],
       lightColor: [isRequired],
-      logo: [isRequired],
     };
   }
 
@@ -36,6 +35,7 @@ export default class WhitelabelConfigFormService {
       });
     } else {
       this.form.setInitialValues({});
+      this.form.validations.logo = [isRequired];
     }
     this.whitelabelConfigId = whitelabelConfigId;
   });
@@ -82,7 +82,7 @@ export default class WhitelabelConfigFormService {
       body: formData,
     }).then(() => {
       if (this.submit.data) {
-        browserHistory.push(`/whitelabel-configs/${this.submit.data}`);
+        browserHistory.push(`/whitelabel-configs/${this.submit.data.id}`);
         NotificationService.addNotification(`Whitelabel configuration ${whitelabelConfigId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {

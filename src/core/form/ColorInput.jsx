@@ -24,7 +24,7 @@ class ColorInput extends Component {
 
   handleChangeComplete = (color) => {
     if (this.props.onChange) {
-      this.props.onChange(color.hex);
+      this.props.onChange(`rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`);
     }
   };
 
