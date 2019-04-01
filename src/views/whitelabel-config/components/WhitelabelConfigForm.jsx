@@ -17,7 +17,7 @@ const WhitelabelConfigForm = props => (
     }}
   >
     <Row>
-      <Column size={3}>
+      <Column size={2}>
         <TextInput
           required
           disabled={props.submitting}
@@ -27,7 +27,7 @@ const WhitelabelConfigForm = props => (
           errorText={get(props.errors, 'domain', null)}
         />
       </Column>
-      <Column size={3}>
+      <Column size={2}>
         <TextInput
           required
           disabled={props.submitting}
@@ -35,6 +35,16 @@ const WhitelabelConfigForm = props => (
           value={get(props.values, 'title', '')}
           onChange={value => props.onChange('title', value)}
           errorText={get(props.errors, 'title', null)}
+        />
+      </Column>
+      <Column size={2}>
+        <TextInput
+          required
+          disabled={props.submitting}
+          label="Support Email"
+          value={get(props.values, 'supportEmail', '')}
+          onChange={value => props.onChange('supportEmail', value)}
+          errorText={get(props.errors, 'supportEmail', null)}
         />
       </Column>
       <Column size={3}>

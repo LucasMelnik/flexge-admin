@@ -17,6 +17,7 @@ export default class WhitelabelConfigFormService {
     this.form.validations = {
       domain: [isRequired],
       title: [isRequired],
+      supportEmail: [isRequired],
       primaryColor: [isRequired],
       secondaryColor: [isRequired],
       lightColor: [isRequired],
