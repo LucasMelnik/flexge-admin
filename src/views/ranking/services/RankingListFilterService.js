@@ -13,11 +13,10 @@ class RankingListFilterService {
     });
     this.form.validations = {
       academicPlan: [isRequired],
-      school: localStorage.role === 'ADMIN' ? [(value, all) => !value && !all.country && !all.region && 'Required'] : [isRequired],
-      country: localStorage.role === 'ADMIN' ? [(value, all) => !value && !all.school && 'Required'] : [],
-      region: localStorage.role === 'ADMIN' ? [(value, all) => !value && !all.school && 'Required'] : [],
+      school: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'].some(role => role === localStorage.role) ? [(value, all) => !value && !all.country && !all.region && 'Required'] : [isRequired],
+      country: ['ADMIN', 'DISTRIBUTOR_MANAGER'].some(role => role === localStorage.role) ? [(value, all) => !value && !all.school && 'Required'] : [],
+      region: ['ADMIN', 'DISTRIBUTOR_MANAGER'].some(role => role === localStorage.role) ? [(value, all) => !value && !all.school && 'Required'] : [],
     };
-
     this.form.setValue('month', moment().format('MM'));
     if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
       this.form.setValue('school', localStorage.getItem('school'));
@@ -28,6 +27,9 @@ class RankingListFilterService {
     this.services = {};
     this.form.setInitialValues({});
     this.form.setValue('month', moment().format('MM'));
+    if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
+      this.form.setValue('school', localStorage.getItem('school'));
+    }
   });
 
   registerService = action((type, service) => {

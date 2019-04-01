@@ -103,6 +103,13 @@ const MainScene = props => (
                 icon: 'arrow-up',
                 key: 'placementtestlevels',
               },
+              {
+                label: 'Whitelabel',
+                link: '/whitelabel-configs',
+                group: 'System Configuration',
+                icon: 'fork',
+                key: 'whitelabelconfig',
+              },
             ],
           },
           {

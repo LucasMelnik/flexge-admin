@@ -3,7 +3,7 @@ jobs:
   checkout:
     working_directory: ~/project
     docker:
-    - image: circleci/node:7.10
+    - image: circleci/node:latest
 
     steps:
     - checkout
@@ -20,7 +20,7 @@ jobs:
   production_build:
     working_directory: ~/project
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:latest
 
     steps:
     - checkout
@@ -37,7 +37,7 @@ jobs:
   staging_build:
     working_directory: ~/project
     docker:
-    - image: circleci/node:7.10
+    - image: circleci/node:latest
 
     steps:
     - checkout
@@ -56,7 +56,7 @@ jobs:
   production_deploy:
     working_directory: ~/project
     docker:
-    - image: circleci/node:7.10
+    - image: circleci/node:latest
     steps:
     - run:
         name: Installing deployment dependencies
@@ -74,7 +74,7 @@ jobs:
   staging_deploy:
     working_directory: ~/project
     docker:
-    - image: circleci/node:7.10
+    - image: circleci/node:latest
     steps:
     - run:
         name: Installing deployment dependencies
