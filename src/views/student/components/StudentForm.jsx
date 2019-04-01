@@ -125,7 +125,7 @@ const StudentForm = props => (
           }}
         />
       </Column>
-      {props.values.id && (localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+      {props.values.id && (localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
         <Column size={3}>
           <FetchSelect
             url="schools"

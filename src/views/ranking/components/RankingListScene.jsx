@@ -17,27 +17,27 @@ const RankingListScene = () => (
         },
       ]}
     />
-    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && ([
-      <Card key="card">
-        <RankingListFilterContainer />
-      </Card>,
-      <Separator key="separator" />,
-    ])}
+    <Card key="card">
+      <RankingListFilterContainer />
+    </Card>
+    <Separator key="separator" />
     <Tabs
       tabs={[
         {
           title: (
             <div
               style={{
-                display: 'flex',
+                width: 200,
                 marginBottom: -25,
               }}
             >
-              <span style={{ marginTop: 5 }}>
+              <span style={{ marginTop: 5, display: 'inline-block' }}>
                 Top of
               </span>
               <ColumnSeparator size="xs" />
-              <MonthRankingFilterContainer />
+              <div style={{ display: 'inline-block', width: '75%' }}>
+                <MonthRankingFilterContainer />
+              </div>
             </div>
            ),
           key: 'monthly',

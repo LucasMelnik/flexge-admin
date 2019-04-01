@@ -22,21 +22,23 @@ const RankingListFilter = props => (
         }}
       />
     </Column>
-    <Column size={3}>
-      <FetchSelect
-        label="School"
-        placeholder="Select the school to check the ranking"
-        value={get(props.values, 'school', '')}
-        onChange={name => props.onChange('school', name)}
-        errorText={get(props.errors, 'school', '')}
-        url="schools"
-        resultTransformer={{
-          text: 'name',
-          value: 'id',
-        }}
-      />
-    </Column>
-    {localStorage.role === 'ADMIN' && (
+    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
+      <Column size={3}>
+        <FetchSelect
+          label="School"
+          placeholder="Select the school to check the ranking"
+          value={get(props.values, 'school', '')}
+          onChange={name => props.onChange('school', name)}
+          errorText={get(props.errors, 'school', '')}
+          url="schools"
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
+    )}
+    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
       <Column size={2}>
         <FetchSelect
           label="Country"
@@ -52,7 +54,7 @@ const RankingListFilter = props => (
         />
       </Column>
     )}
-    {localStorage.role === 'ADMIN' && (
+    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
       <Column size={2}>
         <FetchSelect
           label="Region"
