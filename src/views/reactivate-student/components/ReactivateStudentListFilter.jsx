@@ -53,7 +53,7 @@ const ReactivateStudentListFilter = props => (
         />
       </Column>
       <Column size={2}>
-        <div style={{ height: 31 }} />
+        <div style={{ height: 42 }} />
         <Button
           icon="search"
           label="Search"

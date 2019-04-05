@@ -41,7 +41,7 @@ const ParentForm = props => (
         </p>
       </Column>
       <Column size={2}>
-        <div style={{ height: 32 }} />
+        <div style={{ height: 42 }} />
         <Button
           disabled={props.submitting}
           label="Add Parent to Student"

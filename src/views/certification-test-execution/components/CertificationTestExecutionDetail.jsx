@@ -41,13 +41,13 @@ const CertificationTestExecutionDetail = props => (
       </Column>
       {props.values.failedAt && (
         <Column size={2}>
-          <div style={{ height: 33 }} />
+          <div style={{ height: 42 }} />
           <Tag color="red">Failed - {moment(props.values.failedAt).format('DD/MM/YYYY HH:mm')}</Tag>
         </Column>
       )}
       {props.values.approvedAt && (
         <Column size={2}>
-          <div style={{ height: 33 }} />
+          <div style={{ height: 42 }} />
           <Tag color="green">Approved - {moment(props.values.approvedAt).format('DD/MM/YYYY HH:mm')}</Tag>
         </Column>
       )}
