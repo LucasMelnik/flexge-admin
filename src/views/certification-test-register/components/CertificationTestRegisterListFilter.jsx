@@ -39,7 +39,7 @@ const CertificationTestRegisterListFilter = props => (
         />
       </Column>
       <Column size={2}>
-        <div style={{ height: 33 }} />
+        <div style={{ height: 42 }} />
         <Button
           label="Search"
           icon="search"

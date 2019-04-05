@@ -186,7 +186,7 @@ export default class StudentDetailHeader extends Component {
                   if (type === 'DAYS_STUDIED') {
                     return 'Estudar pelo menos 7 dias a cada 15 dias';
                   } else if (type === 'TIME_STUDIED') {
-                    return 'Estudar pelo menos 4h a cada duas semanas';
+                    return 'Estudar o tempo semanal exigido';
                   } else if (type === 'DAYS_STUDIED_AT_LEAST_30_MINUTES') {
                     return 'Quando estudar, fazer pelo menos 30 minutos';
                   } else if (type === 'SINGLE_CHOICE_AVERAGE_SCORE') {

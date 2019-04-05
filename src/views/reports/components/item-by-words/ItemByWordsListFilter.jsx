@@ -58,7 +58,7 @@ const ItemByWordsListFilter = props => (
         />
       </Column>
       <Column size={2}>
-        <div style={{ height: 32 }} />
+        <div style={{ height: 42 }} />
         <Button
           disabled={props.fetching || !props.values.words}
           icon="search"

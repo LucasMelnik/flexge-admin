@@ -71,7 +71,7 @@ const RankingListFilter = props => (
       </Column>
     )}
     <Column size={2}>
-      <div style={{ height: 32 }} />
+      <div style={{ height: 42 }} />
       <Button
         icon="search"
         label="Search"

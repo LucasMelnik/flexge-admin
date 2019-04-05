@@ -78,7 +78,7 @@ const UnitItemExecutionStatsListFilter = props => (
     <Column size={2}>
       <div
         style={{
-          height: 32,
+          height: 42,
         }}
       />
       <Button

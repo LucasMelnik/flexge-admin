@@ -17,7 +17,7 @@ class WhitelabelService {
   }
 
   load = action(() => {
-    axios.get(`${process.env.REACT_APP_API_URL.split('/api')[0]}/public/whitelabel-config`)
+    axios.get(`${process.env.REACT_APP_API_URL.substring(0, process.env.REACT_APP_API_URL.length - 4)}/public/whitelabel-config`)
       .then(action(({ data }) => {
         this.config.logoUrl = `${process.env.REACT_APP_FILES_URL}/${data.logoUrl}`;
         this.config.primaryColor = data.primaryColor;
