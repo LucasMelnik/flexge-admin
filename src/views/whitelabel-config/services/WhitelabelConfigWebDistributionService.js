@@ -2,7 +2,7 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import NotificationService from '../../../core/services/NotificationService';
 
-class WhitelabelConfigDistributionService {
+class WhitelabelConfigWebDistributionService {
   fetchCertificate = new FetchService();
   fetchDistribution = new FetchService();
   submit = new FetchService();
@@ -58,7 +58,7 @@ class WhitelabelConfigDistributionService {
 
   createDistribution = action((distribution) => {
     this.fetchDistribution.fetch({
-      url: `/whitelabel-configs/${this.whitelabelConfigId}/distributions`,
+      url: `/whitelabel-configs/${this.whitelabelConfigId}/web-distributions`,
       method: 'post',
       body: {
         app: distribution.app,
@@ -75,7 +75,7 @@ class WhitelabelConfigDistributionService {
 
   disableDistribution = action((distribution) => {
     this.fetchDistribution.fetch({
-      url: `/whitelabel-configs/${this.whitelabelConfigId}/distributions/${distribution.app}`,
+      url: `/whitelabel-configs/${this.whitelabelConfigId}/web-distributions/${distribution.app}`,
       method: 'delete',
     }).then(() => {
       if (this.fetchDistribution.data) {
@@ -88,6 +88,6 @@ class WhitelabelConfigDistributionService {
   });
 }
 
-const whitelabelConfigDistributionService = new WhitelabelConfigDistributionService();
-export default whitelabelConfigDistributionService;
+const whitelabelConfigWebDistributionService = new WhitelabelConfigWebDistributionService();
+export default whitelabelConfigWebDistributionService;
 

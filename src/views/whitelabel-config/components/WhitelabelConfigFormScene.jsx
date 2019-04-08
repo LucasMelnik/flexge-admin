@@ -6,7 +6,9 @@ import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import WhitelabelConfigFormContainer from './WhitelabelConfigFormContainer';
 import Separator from '../../../core/layout/Separator';
-import WhitelabelConfigDistributionContainer from './WhitelabelConfigDistributionContainer';
+import WhitelabelConfigWebDistributionContainer from './WhitelabelConfigWebDistributionContainer';
+import WhitelabelConfigMobileDistributionListContainer from './WhitelabelConfigMobileDistributionListContainer';
+import WhitelabelConfigMobileDistributionFormContainer from './WhitelabelConfigMobileDistributionFormContainer';
 
 const WhitelabelConfigFormScene = props => (
   <div>
@@ -35,8 +37,13 @@ const WhitelabelConfigFormScene = props => (
     {props.params.whitelabelConfigId && (
       <React.Fragment>
         <Separator/>
-        <Card title="Distributions Config">
-          <WhitelabelConfigDistributionContainer whitelabelConfigId={props.params.whitelabelConfigId} />
+        <Card title="Web Distributions Config">
+          <WhitelabelConfigWebDistributionContainer whitelabelConfigId={props.params.whitelabelConfigId} />
+        </Card>
+        <Separator/>
+        <Card title="Mobile Distributions Config">
+          <WhitelabelConfigMobileDistributionListContainer whitelabelConfigId={props.params.whitelabelConfigId} />
+          <WhitelabelConfigMobileDistributionFormContainer />
         </Card>
       </React.Fragment>
     )}
