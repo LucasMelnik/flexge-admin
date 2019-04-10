@@ -76,6 +76,9 @@ export default class WhitelabelConfigFormService {
     if (this.form.getValue('company')) {
       formData.append('company', this.form.getValue('company'));
     }
+    if (this.form.getValue('supportEmail')) {
+      formData.append('supportEmail', this.form.getValue('supportEmail'));
+    }
 
     this.submit.fetch({
       method: whitelabelConfigId ? 'put' : 'post',
