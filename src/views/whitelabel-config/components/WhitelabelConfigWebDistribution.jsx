@@ -10,7 +10,7 @@ import Async from '../../../core/layout/Async';
 import Tag from '../../../core/layout/Tag';
 import Button from '../../../core/form/Button';
 
-const WhitelabelConfigDistribution = props => (
+const WhitelabelConfigWebDistribution = props => (
   <Async fetching={props.fetching}>
     <Row>
       <Column size={12}>
@@ -107,7 +107,7 @@ const WhitelabelConfigDistribution = props => (
   </Async>
 );
 
-WhitelabelConfigDistribution.propTypes = {
+WhitelabelConfigWebDistribution.propTypes = {
   fetching: PropTypes.bool,
   certificate: PropTypes.object,
   distributions: PropTypes.arrayOf(PropTypes.object),
@@ -115,10 +115,10 @@ WhitelabelConfigDistribution.propTypes = {
   onDisableDistribution: PropTypes.func.isRequired,
 };
 
-WhitelabelConfigDistribution.defaultProps = {
+WhitelabelConfigWebDistribution.defaultProps = {
   fetching: false,
   certificate: {},
   distributions: [],
 };
 
-export default WhitelabelConfigDistribution;
+export default WhitelabelConfigWebDistribution;

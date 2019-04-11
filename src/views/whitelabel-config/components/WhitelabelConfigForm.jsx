@@ -77,6 +77,28 @@ const WhitelabelConfigForm = props => (
       </Column>
     </Row>
     <Row>
+      <Column size={2}>
+        <LocalFileInput
+          disabled={props.submitting}
+          label="Logo"
+          value={get(props.values, 'logoUrl', '')}
+          onChange={value => props.onChange('logo', value)}
+          errorText={get(props.errors, 'logo', null)}
+          accept="image"
+        />
+      </Column>
+      <Column size={2}>
+        <LocalFileInput
+          disabled={props.submitting}
+          label="Favicon"
+          value={get(props.values, 'favIconUrl', '')}
+          onChange={value => props.onChange('favicon', value)}
+          errorText={get(props.errors, 'favicon', null)}
+          accept="image"
+        />
+      </Column>
+    </Row>
+    <Row>
       <Column size={3}>
         <ColorInput
           required
@@ -105,58 +127,6 @@ const WhitelabelConfigForm = props => (
           value={get(props.values, 'lightColor', '')}
           onChange={value => props.onChange('lightColor', value)}
           errorText={get(props.errors, 'lightColor', null)}
-        />
-      </Column>
-    </Row>
-    <Row>
-      <Column size={2}>
-        <LocalFileInput
-          disabled={props.submitting}
-          label="Logo"
-          value={get(props.values, 'logoUrl', '')}
-          onChange={value => props.onChange('logo', value)}
-          errorText={get(props.errors, 'logo', null)}
-          accept="image"
-        />
-      </Column>
-      <Column size={2}>
-        <LocalFileInput
-          disabled={props.submitting}
-          label="Favicon"
-          value={get(props.values, 'favIconUrl', '')}
-          onChange={value => props.onChange('favicon', value)}
-          errorText={get(props.errors, 'favicon', null)}
-          accept="image"
-        />
-      </Column>
-      <Column size={2}>
-        <LocalFileInput
-          disabled={props.submitting}
-          label="iOS Icon"
-          value={get(props.values, 'iosIconUrl', '')}
-          onChange={value => props.onChange('iosIcon', value)}
-          errorText={get(props.errors, 'iosIcon', null)}
-          accept="image"
-        />
-      </Column>
-      <Column size={2}>
-        <LocalFileInput
-          disabled={props.submitting}
-          label="Android Icon"
-          value={get(props.values, 'androidIconUrl', '')}
-          onChange={value => props.onChange('androidIcon', value)}
-          errorText={get(props.errors, 'androidIcon', null)}
-          accept="image"
-        />
-      </Column>
-      <Column size={2}>
-        <LocalFileInput
-          disabled={props.submitting}
-          label="Splash Screen"
-          value={get(props.values, 'mobileSplashScreenUrl', '')}
-          onChange={value => props.onChange('mobileSplashScreen', value)}
-          errorText={get(props.errors, 'mobileSplashScreen', null)}
-          accept="image"
         />
       </Column>
     </Row>

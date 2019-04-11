@@ -56,38 +56,30 @@ jobs:
   production_deploy:
     working_directory: ~/project
     docker:
-    - image: circleci/node:latest
+      - image: disruptivedev/flexge-cli:latest
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
     steps:
-    - run:
-        name: Installing deployment dependencies
-        command: |
-          sudo apt-get -y -qq update
-          sudo apt-get install python-pip python-dev build-essential
-          sudo pip install awscli --upgrade
     - restore_cache:
         key: build-cache-{{ .Revision }}
     - deploy:
         name: deploy to AWS
-        command: |
-          aws s3 sync --delete build/ s3://admin.flexge.com
+        command: FLEXGE_CLI_USER=${FLEXGE_USER} FLEXGE_CLI_PASSWORD=${FLEXGE_PASSWORD} flexge-cli cloudfront-deploy admin production
 
   staging_deploy:
     working_directory: ~/project
     docker:
-    - image: circleci/node:latest
+      - image: disruptivedev/flexge-cli:latest
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
     steps:
-    - run:
-        name: Installing deployment dependencies
-        command: |
-          sudo apt-get -y -qq update
-          sudo apt-get install python-pip python-dev build-essential
-          sudo pip install awscli --upgrade
     - restore_cache:
         key: build-cache-{{ .Revision }}
     - deploy:
         name: deploy to AWS
-        command: |
-          aws s3 sync --delete build/ s3://staging-admin.flexge.com
+        command: FLEXGE_CLI_USER=${FLEXGE_USER} FLEXGE_CLI_PASSWORD=${FLEXGE_PASSWORD} flexge-cli cloudfront-deploy admin staging
 
 workflows:
   version: 2
