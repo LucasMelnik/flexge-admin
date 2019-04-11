@@ -22,9 +22,19 @@ const ReviewUnitItemImageList = props => (
         path: 'item.text',
         width: '23%',
         render: (cell, row) => (
-          <div>
-            {row.item.type.key === 'TRUE_FALSE_KIDS' && row.item.answers.find(answer => answer.correct).text === 'Not True' ? row.item.postPhrase : (row.item.text ? row.item.text : row.item.title)}
-          </div>
+          <React.Fragment>
+            {['VOCABULARY', 'PHONEME', 'VOCABULARY_GAME', 'MEMORY_GAME', 'CONNECTING_DOTS'].some(type => type === row.item.type.key) ? (
+              <div>
+                {row.item.text}
+                <br />
+                Post Phrase: {row.item.postPhrase}
+              </div>
+            ) : (
+              <div>
+                {(row.item.type.key === 'TRUE_FALSE_KIDS' && row.item.answers.find(answer => answer.correct).text === 'Not True') ? row.item.postPhrase : (row.item.text ? row.item.text : row.item.title)}
+              </div>
+            )}
+          </React.Fragment>
         ),
       },
       {
