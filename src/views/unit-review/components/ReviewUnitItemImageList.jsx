@@ -58,7 +58,7 @@ const ReviewUnitItemImageList = props => (
                 ))}
               </div>
             );
-          } else if (['VOCABULARY', 'PHONEME', 'VOCABULARY_GAME'].some(type => type === row.item.type.key)) {
+          } else if (['VOCABULARY', 'PHONEME', 'VOCABULARY_GAME', 'MEMORY_GAME', 'CONNECTING_DOTS'].some(type => type === row.item.type.key)) {
             return (
               <div>
                 <img
@@ -104,7 +104,7 @@ const ReviewUnitItemImageList = props => (
             return (
               <div>
                 <ImagePreview src={row.item.image} />
-                {['VOCABULARY', 'PHONEME', 'VOCABULARY_GAME'].some(type => type === row.item.type.key) && (
+                {['VOCABULARY', 'PHONEME', 'VOCABULARY_GAME', 'MEMORY_GAME', 'CONNECTING_DOTS'].some(type => type === row.item.type.key) && (
                   <ImagePreview src={row.item.postPhraseImage} />
                 )}
               </div>
