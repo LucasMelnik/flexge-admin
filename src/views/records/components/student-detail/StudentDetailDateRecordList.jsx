@@ -138,26 +138,43 @@ const StudentDetailDateRecordList = props => (
           path: 'score',
           align: 'center',
           render: (value, row) => {
-            if (row.unit && row.completedAt) {
-              return (
-                <Tag color={(value || 0) >= row.unit.scoreToPass ? 'green' : 'red'}>
-                  {value || 0} / {row.unit.scoreToPass}
-                </Tag>
-              );
-            }
-            if (row.masteryTest && row.completedAt) {
-              return (
-                <Tag color={(value || 0) >= row.scoreToPass ? 'green' : 'red'}>
-                  {value || 0} / {row.scoreToPass}
-                </Tag>
-              );
-            }
-            if ((row.unit || row.masteryTest) && !row.completedAt) {
-              return (
-                <span style={{ color: 'red' }}>
-                  Not finished
-                </span>
-              );
+            if (row.unit && row.unit.module.academicPlan.key === 'KIDS') {
+              if (row.unit && row.completedAt) {
+                return (
+                  <Tag color={(row.points || (row.score && row.type === 'SIMPLE_REVIEW')) ? 'green' : 'red'}>
+                    {value || 0}
+                  </Tag>
+                );
+              }
+              if ((row.unit || row.masteryTest) && !row.completedAt) {
+                return (
+                  <span style={{ color: 'red' }}>
+                    Not finished
+                  </span>
+                );
+              }
+            } else if (row.unit && row.unit.module.academicPlan.key === 'FUND_II') {
+              if (row.unit && row.completedAt) {
+                return (
+                  <Tag color={(value || 0) >= row.unit.scoreToPass ? 'green' : 'red'}>
+                    {value || 0} / {row.unit.scoreToPass}
+                  </Tag>
+                );
+              }
+              if (row.masteryTest && row.completedAt) {
+                return (
+                  <Tag color={(value || 0) >= row.scoreToPass ? 'green' : 'red'}>
+                    {value || 0} / {row.scoreToPass}
+                  </Tag>
+                );
+              }
+              if ((row.unit || row.masteryTest) && !row.completedAt) {
+                return (
+                  <span style={{ color: 'red' }}>
+                    Not finished
+                  </span>
+                );
+              }
             }
             return null;
           },
