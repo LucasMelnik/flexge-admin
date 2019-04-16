@@ -156,7 +156,6 @@ const ItemForm = props => (
           showPostPhrase={
             [
               'SINGLE_CHOICE_IMAGE',
-              'SINGLE_CHOICE_KIDS',
             ].find(type => type === get(props.values.item, 'type.key'))
           }
         />
