@@ -223,7 +223,7 @@ const MainScene = props => (
               },
               {
                 group: 'Reports',
-                allowedFor: ['ADMIN', 'AUDIO_CONTENT', 'IMAGE_ADMIN'],
+                allowedFor: ['ADMIN', 'AUDIO_CONTENT', 'IMAGE_ADMIN', 'CONTENT_ADMIN'],
               },
               {
                 group: 'Tests',
@@ -284,7 +284,7 @@ const MainScene = props => (
                 link: '/reports/unit-errors',
                 group: 'Reports',
                 icon: 'exclamation-circle-o',
-                allowedFor: ['ADMIN', 'IMAGE_ADMIN'],
+                allowedFor: ['ADMIN', 'IMAGE_ADMIN', 'CONTENT_ADMIN'],
               },
               {
                 label: 'Items By Words',
@@ -292,7 +292,7 @@ const MainScene = props => (
                 link: '/items-by-words',
                 group: 'Reports',
                 icon: 'file-text',
-                allowedFor: ['ADMIN'],
+                allowedFor: ['ADMIN', 'CONTENT_ADMIN'],
               },
               {
                 label: 'Unit Items Execution Stats',
