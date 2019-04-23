@@ -14,9 +14,19 @@ class WhitelabelContainer extends React.Component {
   render() {
     return (
       <WhitelabelContext.Provider value={this.whitelabelService.config}>
-        <Async fetching={this.whitelabelService.isFetching}>
-          {this.props.children}
-        </Async>
+        <div
+          style={this.whitelabelService.isFetching ? {
+            display: 'flex',
+            flex: 1,
+            height: '100vh',
+            alignItems: 'center',
+            justifyContent: 'center',
+          } : {}}
+        >
+          <Async fetching={this.whitelabelService.isFetching}>
+            {this.props.children}
+          </Async>
+        </div>
       </WhitelabelContext.Provider>
     );
   }
