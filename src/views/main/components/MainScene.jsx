@@ -358,6 +358,12 @@ const MainScene = props => (
                 link: '/records/filters',
                 icon: 'database',
               },
+              // {
+              //   label: 'Kids Certificates',
+              //   key: 'kids-certificates',
+              //   link: '/kids-certificates',
+              //   icon: 'file-done',
+              // },
               {
                 label: 'Student Placement/Mastery Tests',
                 key: 'student-tests',

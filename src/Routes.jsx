@@ -115,6 +115,7 @@ import StateFormScene from './views/state/components/StateFormScene';
 import ConfigurationListScene from './views/configuration/components/ConfigurationListScene';
 import WhitelabelConfigListScene from './views/whitelabel-config/components/WhitelabelConfigListScene';
 import WhitelabelConfigFormScene from './views/whitelabel-config/components/WhitelabelConfigFormScene';
+import KidsCertificatesListScene from './views/kids-certificates/components/KidsCertificatesListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -269,6 +270,7 @@ const Routes = () => (
       <Route path="whitelabel-configs" component={WhitelabelConfigListScene} />
       <Route path="whitelabel-configs/new" component={WhitelabelConfigFormScene} />
       <Route path="whitelabel-configs/:whitelabelConfigId" component={WhitelabelConfigFormScene} />
+      <Route path="kids-certificates" component={KidsCertificatesListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />

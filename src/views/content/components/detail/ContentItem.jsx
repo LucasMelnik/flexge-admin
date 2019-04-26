@@ -6,6 +6,7 @@ import AudioPreview from '../../../../core/layout/AudioPreview';
 import ColumnSeparator from '../../../../core/layout/ColumnSeparator';
 import Tag from '../../../../core/layout/Tag';
 import Icon from '../../../../core/layout/Icon';
+import VideoPreview from '../../../../core/layout/VideoPreview';
 
 const ContentItem = props => (
   <div {...props}>
@@ -24,7 +25,7 @@ const ContentItem = props => (
       Grammar: {get(props.item.grammar, 'name', '-')}
     </p>
     <Separator size="sm" />
-    {!!['PRESENTATION'].find(type => type === props.item.type.key) && (
+    {!!['PRESENTATION', 'TRUE_FALSE_KIDS', 'SINGLE_CHOICE_GAME', 'GAP_FILL_IMAGE', 'GAP_FILL_LETTER'].find(type => type === props.item.type.key) && (
       <div>
         <img
           src={`${process.env.REACT_APP_FILES_URL}/${props.item.image}`}
@@ -37,36 +38,192 @@ const ContentItem = props => (
         <Separator size="md" />
       </div>
     )}
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        maxWidth: '85%',
-        margin: '0 auto',
-      }}
-    >
-      {props.item.type.key !== 'TEXT' && (
-        <AudioPreview src={props.item.audio || props.item.generatedAudio} />
-      )}
-      <ColumnSeparator size="sm" />
-      <div>
-        <p
+    {!!['PHONEME'].find(type => type === props.item.type.key) && (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: 20,
+        }}
+      >
+        <AudioPreview src={props.item.titleAudio || props.item.generatedTitleAudio} />
+        <ColumnSeparator size="md" />
+        <h1
           style={{
-            fontSize: 16,
-            marginBottom: 5,
+            margin: 0,
+            fontSize: 24
           }}
         >
-          {props.item.text}
-        </p>
-        <span><i>{props.item.translation || '-'}</i></span>
+          {props.item.title}
+        </h1>
       </div>
-    </div>
+    )}
+    {!!['VOCABULARY', 'CONNECTING_DOTS', 'PHONEME', 'MEMORY_GAME', 'VOCABULARY_GAME'].find(type => type === props.item.type.key) && (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            maxWidth: '85%',
+            margin: '0 auto',
+          }}
+        >
+          <img
+            src={`${process.env.REACT_APP_FILES_URL}/${props.item.image}`}
+            alt={props.item.text}
+            style={{
+              margin: '0  auto',
+              height: 250,
+            }}
+          />
+          <Separator size="md" />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <AudioPreview src={props.item.audio || props.item.generatedAudio} />
+            <ColumnSeparator size="md" />
+            <div>
+              <p
+                style={{
+                  fontSize: 16,
+                  marginBottom: 5,
+                }}
+              >
+                {props.item.text}
+              </p>
+              <span><i>{props.item.translation || '-'}</i></span>
+            </div>
+          </div>
+        </div>
+        <ColumnSeparator size="md" />
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            maxWidth: '85%',
+            margin: '0 auto',
+          }}
+        >
+          <img
+            src={`${process.env.REACT_APP_FILES_URL}/${props.item.postPhraseImage}`}
+            alt={props.item.text}
+            style={{
+              margin: '0  auto',
+              height: 250,
+            }}
+          />
+          <Separator size="md" />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <AudioPreview src={props.item.postPhraseAudio || props.item.generatedPostPhraseAudio} />
+            <ColumnSeparator size="md" />
+            <div>
+              <p
+                style={{
+                  fontSize: 16,
+                  marginBottom: 5,
+                }}
+              >
+                {props.item.postPhrase}
+              </p>
+              <span><i>{'-'}</i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+    {['VIDEO', 'VIDEO_SHORT', 'MUSIC'].some(type => type === props.item.type.key) && (
+      <VideoPreview
+        id={props.item.id}
+        src={props.item.videoLink}
+        videoStartTime={props.item.videoStartTime}
+        videoEndTime={props.item.videoEndTime}
+      />
+    )}
+    {!['VIDEO', 'MUSIC', 'VOCABULARY', 'CONNECTING_DOTS', 'PHONEME', 'MEMORY_GAME', 'VOCABULARY_GAME'].some(type => type === props.item.type.key) ? (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          maxWidth: '85%',
+          margin: '0 auto',
+        }}
+      >
+        {!['VIDEO_SHORT', 'TEXT', 'SINGLE_CHOICE_GAME'].some(type => type === props.item.type.key) && (
+          <React.Fragment>
+            <AudioPreview src={props.item.audio || props.item.generatedAudio} />
+            <ColumnSeparator size="sm" />
+          </React.Fragment>
+        )}
+        <div>
+          <p
+            style={{
+              fontSize: 16,
+              marginBottom: 5,
+            }}
+          >
+            {props.item.text}
+          </p>
+          <span><i>{props.item.translation || '-'}</i></span>
+        </div>
+      </div>
+    ) : (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          maxWidth: '85%',
+          margin: '0 auto',
+        }}
+      >
+        {get(props.item, 'subtitles', []).map(item => (
+          <p
+            key={item.start}
+            style={{
+              display: 'block',
+              fontSize: 16,
+              marginBottom: 5,
+            }}
+          >
+            {item.text}
+          </p>
+        ))}
+      </div>
+    )}
     <Separator size="md" />
     {!![
       'GAP_FILL_MULTIPLE',
       'GAP_FILL_SELECT',
+      'GAP_FILL_IMAGE',
+      'GAP_FILL_LETTER',
       'GAP_FILL',
       'UNSCRAMBLE_DRAG_AND_DROP',
       'UNSCRAMBLE_SPEECH_RECOGNITION',
@@ -78,7 +235,7 @@ const ContentItem = props => (
       >
         <span>Gaps Preview:</span>
         <div>
-          {props.item.text.split(' ').map((slice, index) => (
+          {(props.item.type.key === 'GAP_FILL_LETTER' ? [...props.item.text] : props.item.text.split(' ')).map((slice, index) => (
             <span>{props.item.answers.find(answer => answer.index === index) ? ' -- ' : slice.concat(' ')}</span>
           ))}
         </div>
@@ -92,11 +249,15 @@ const ContentItem = props => (
         'SINGLE_CHOICE_AUDIO',
         'GAP_FILL_MULTIPLE',
         'GAP_FILL_SELECT',
+        'GAP_FILL_IMAGE',
+        'GAP_FILL_LETTER',
         'GAP_FILL',
         'TRUE_FALSE',
+        'TRUE_FALSE_KIDS',
         'DICTATION',
         'UNSCRAMBLE_DRAG_AND_DROP',
         'UNSCRAMBLE_SPEECH_RECOGNITION',
+        'SINGLE_CHOICE_GAME',
       ].find(type => type === props.item.type.key) && (
         <div
           style={{
