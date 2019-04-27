@@ -6,16 +6,15 @@ import Async from './layout/Async';
 
 class WhitelabelContainer extends React.Component {
 
-  whitelabelService = new WhitelabelService();
   componentDidMount() {
-    this.whitelabelService.load();
+    WhitelabelService.load();
   }
 
   render() {
     return (
-      <WhitelabelContext.Provider value={this.whitelabelService.config}>
+      <WhitelabelContext.Provider value={WhitelabelService.config}>
         <div
-          style={this.whitelabelService.isFetching ? {
+          style={WhitelabelService.isFetching ? {
             display: 'flex',
             flex: 1,
             height: '100vh',
@@ -23,7 +22,7 @@ class WhitelabelContainer extends React.Component {
             justifyContent: 'center',
           } : {}}
         >
-          <Async fetching={this.whitelabelService.isFetching}>
+          <Async fetching={WhitelabelService.isFetching}>
             {this.props.children}
           </Async>
         </div>
