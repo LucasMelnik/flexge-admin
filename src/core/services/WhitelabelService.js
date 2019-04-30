@@ -7,6 +7,7 @@ class WhitelabelService {
   constructor() {
     extendObservable(this, {
       isFetching: true,
+      isWhitelabelDistribution: false,
       config: {
         logoUrl: null,
         primaryColor: '#607d8b',
@@ -34,6 +35,7 @@ class WhitelabelService {
           document.getElementsByTagName('head')[0].appendChild(link);
         }
 
+        this.isWhitelabelDistribution = true;
         this.isFetching = false;
       }))
       .catch(action(() => {
@@ -44,9 +46,11 @@ class WhitelabelService {
 
         window.document.title = 'Flexge';
 
+        this.isWhitelabelDistribution = false;
         this.isFetching = false;
       }));
   });
 }
 
-export default WhitelabelService;
+const whitelabelService = new WhitelabelService();
+export default whitelabelService;

@@ -3,6 +3,7 @@ import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import FinishedStudentCourseList from './FinishedStudentCourseList';
 import FinishedStudentCourseListService from '../../services/FinishedStudentCourseListService';
+import WhitelabelService from '../../../../core/services/WhitelabelService';
 
 class UnitItemErrorRecordListContainer extends Component {
 
@@ -15,6 +16,8 @@ class UnitItemErrorRecordListContainer extends Component {
       <FinishedStudentCourseList
         students={toJS(FinishedStudentCourseListService.students)}
         fetching={FinishedStudentCourseListService.fetch.fetching}
+        onDownload={FinishedStudentCourseListService.handleDownloadCertificate}
+        isWhitelabel={WhitelabelService.isWhitelabelDistribution}
       />
     );
   }
