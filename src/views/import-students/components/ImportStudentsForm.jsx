@@ -117,6 +117,14 @@ export default class ImportStudentsForm extends Component {
                       path: 'teacher',
                     },
                     {
+                      label: 'Academic Plan',
+                      path: 'academicPlan',
+                    },
+                    {
+                      label: 'ID',
+                      path: 'customId',
+                    },
+                    {
                       label: 'Errors',
                       path: 'errors',
                       render: value => value && value.reduce((acc, error, index) => acc.concat(index ? `, ${error}` : error), ''),
