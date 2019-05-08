@@ -188,6 +188,13 @@ const MainScene = props => (
                 group: 'Users',
               },
               {
+                label: 'Import Schools',
+                key: 'import-schools',
+                link: '/import-schools',
+                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
+                group: 'Organizations',
+              },
+              {
                 label: 'Import Students',
                 key: 'import-students',
                 link: '/import-students',
