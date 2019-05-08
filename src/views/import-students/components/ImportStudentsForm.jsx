@@ -58,7 +58,7 @@ export default class ImportStudentsForm extends Component {
             <Column size={4}>
               <div
                 style={{
-                  paddingTop: 30,
+                  paddingTop: 43,
                 }}
               >
                 <Button
@@ -123,6 +123,10 @@ export default class ImportStudentsForm extends Component {
                     {
                       label: 'ID',
                       path: 'customId',
+                    },
+                    {
+                      label: 'Course',
+                      path: 'course',
                     },
                     {
                       label: 'Errors',
