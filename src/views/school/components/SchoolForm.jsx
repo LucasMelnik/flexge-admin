@@ -14,6 +14,7 @@ import FormButtons from '../../../core/form/FormButtons';
 import FileInput from '../../../core/form/FileInput';
 import Switch from '../../../core/form/Switch';
 import LocaleSelect from '../../../core/form/LocaleSelect';
+import { MASTERTEST_DISTRIBUTOR_ID } from '../../../core/consts';
 
 const SchoolForm = props => (
   <form
@@ -47,9 +48,9 @@ const SchoolForm = props => (
             label="Company"
             value={get(props.values, 'company', '')}
             onChange={(company, object) => {
-              console.log(object)
               props.onChange('company', company);
               props.onChange('country', get(object, 'country', null));
+              props.onChange('companyDistributor', get(object, 'distributor', null));
               props.onChange('locale', get(object, 'country.locale', null));
             }}
             errorText={get(props.errors, 'company', null)}
@@ -183,6 +184,18 @@ const SchoolForm = props => (
           />
         </Column>
       )}
+      {get(props, 'values.companyDistributor', props.companyDistributor) === MASTERTEST_DISTRIBUTOR_ID && (
+        <Column size={3}>
+          <TextInput
+            required={true}
+            disabled={props.submitting}
+            label="INEP"
+            value={get(props.values, 'inep', '')}
+            onChange={value => props.onChange('inep', value)}
+            errorText={get(props.errors, 'inep', null)}
+          />
+        </Column>
+      )}
       {get(props.values, 'id', '') && (
         <Column size={4}>
           <FileInput
@@ -215,6 +228,7 @@ SchoolForm.propTypes = {
   disableCompany: PropTypes.bool,
   isDirty: PropTypes.func,
   companyCountry: PropTypes.string,
+  companyDistributor: PropTypes.string,
   states: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
@@ -223,7 +237,8 @@ SchoolForm.defaultProps = {
   errors: {},
   submitting: false,
   disableCompany: false,
-  companyCountry: true,
+  companyCountry: '',
+  companyDistributor: '',
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
   onReset: () => false,

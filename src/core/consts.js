@@ -12,3 +12,5 @@ export const englishLevelCourses = [
   { value: 5, label: 'C1' },
   { value: 6, label: 'C2' },
 ];
+
+export const MASTERTEST_DISTRIBUTOR_ID = '5cd1c5b645becc0013c62eba';

@@ -7,8 +7,9 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import Button from '../../../core/form/Button';
 import Table from '../../../core/form/Table';
 import FormButtons from '../../../core/form/FormButtons';
+import { MASTERTEST_DISTRIBUTOR_ID } from '../../../core/consts';
 
-export default class ImportStudentsForm extends Component {
+export default class ImportSchoolForm extends Component {
   static propTypes = {
     values: PropTypes.object,
     errors: PropTypes.object,
@@ -41,20 +42,20 @@ export default class ImportStudentsForm extends Component {
         <Row>
           <Column size={4}>
             <FetchSelect
-              url="/schools"
+              url="/distributors"
               disabled={this.props.submitting}
-              label="Select a school to import the students"
-              value={get(this.props.values, 'school', '')}
-              onChange={(school) => this.props.onChange('school', school)}
-              description={get(this.props.errors, 'school', null)}
-              fieldValidation={get(this.props.errors, 'school', null) && 'error'}
+              label="Select a distributor to import the schools"
+              value={get(this.props.values, 'distributor', '')}
+              onChange={(school) => this.props.onChange('distributor', school)}
+              description={get(this.props.errors, 'distributor', null)}
+              fieldValidation={get(this.props.errors, 'distributor', null) && 'error'}
               resultTransformer={{
                 text: 'name',
                 value: 'id',
               }}
             />
           </Column>
-          {get(this.props.values, 'school', null) && (
+          {get(this.props.values, 'distributor', null) && (
             <Column size={4}>
               <div
                 style={{
@@ -83,56 +84,62 @@ export default class ImportStudentsForm extends Component {
             </Column>
           )}
         </Row>
-        {get(this.props.values, 'students', null) && (
+        {get(this.props.values, 'schools', null) && (
           <div>
             <Row>
               <Column size={12}>
                 <p>
-                  Check the students below and in case of errors import a fixed spreadsheet.
-                  Students with error will not be created.
+                  Check the schools below and in case of errors import a fixed spreadsheet.
+                  Schools with error will not be created.
                 </p>
               </Column>
               <Column size={12}>
                 <Table
-                  rows={get(this.props.values, 'students', [])}
+                  rows={get(this.props.values, 'schools', [])}
                   columns={[
-                    {
-                      label: 'Name',
-                      path: 'name',
-                    },
-                    {
-                      label: 'Email',
-                      path: 'email',
-                    },
-                    {
-                      label: 'Password',
-                      path: 'rawPassword',
-                    },
-                    {
-                      label: 'School Class',
-                      path: 'schoolClass',
-                    },
-                    {
-                      label: 'Teacher',
-                      path: 'teacher',
-                    },
-                    {
-                      label: 'Academic Plan',
-                      path: 'academicPlan',
-                    },
-                    {
-                      label: 'ID',
-                      path: 'customId',
-                    },
-                    {
-                      label: 'Course',
-                      path: 'course',
-                    },
-                    {
-                      label: 'Errors',
-                      path: 'errors',
-                      render: value => value && value.reduce((acc, error, index) => acc.concat(index ? `, ${error}` : error), ''),
-                    },
+                    ...[
+                      {
+                        label: 'Name',
+                        path: 'name',
+                      },
+                      {
+                        label: 'CompanyID',
+                        path: 'companyId',
+                      },
+                      {
+                        label: 'Region',
+                        path: 'region',
+                      },
+                      {
+                        label: 'State',
+                        path: 'state',
+                      },
+                      {
+                        label: 'City',
+                        path: 'city',
+                      },
+                      {
+                        label: 'Address',
+                        path: 'address',
+                      },
+                      {
+                        label: 'Phone',
+                        path: 'phone',
+                      },
+                    ],
+                    ...(get(this.props.values, 'distributor', '') === MASTERTEST_DISTRIBUTOR_ID ? [
+                      {
+                        label: 'INEP',
+                        path: 'inep',
+                      },
+                    ] : []),
+                    ...[
+                      {
+                        label: 'Errors',
+                        path: 'errors',
+                        render: value => value && value.reduce((acc, error, index) => acc.concat(index ? `, ${error}` : error), ''),
+                      },
+                    ]
                   ]}
                 />
               </Column>

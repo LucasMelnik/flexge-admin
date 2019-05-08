@@ -3,6 +3,7 @@ import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
+import { MASTERTEST_DISTRIBUTOR_ID } from '../../../core/consts';
 
 export default class SchoolFormService {
   fetch = new FetchService();
@@ -40,9 +41,13 @@ export default class SchoolFormService {
             ...this.fetch.data,
             company: this.fetch.data.company.id,
             country: this.fetch.data.company.country,
+            companyDistributor: this.fetch.data.company.distributor,
             modulePointRelevance: this.fetch.data.modulePointRelevance || 1,
           };
           this.form.setInitialValues(data);
+          if (this.fetch.data.company.distributor === MASTERTEST_DISTRIBUTOR_ID) {
+            this.addInepToRequired();
+          }
         }
       });
     } else {
@@ -51,6 +56,10 @@ export default class SchoolFormService {
         modulePointRelevance: 1,
       });
     }
+  });
+
+  addInepToRequired = action(() => {
+    this.form.validations.inep = [isRequired];
   });
 
   handleSubmit = action(() => {
