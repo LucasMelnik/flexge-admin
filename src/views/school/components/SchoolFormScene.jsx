@@ -58,6 +58,7 @@ const SchoolFormScene = props => (
         schoolId={props.schoolId}
         currentCompany={props.currentCompany}
         companyCountry={props.company.country}
+        companyDistributor={props.company.distributor}
       />
     </Card>
   </div>

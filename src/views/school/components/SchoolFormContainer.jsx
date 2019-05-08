@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import SchoolForm from './SchoolForm';
 import SchoolFormService from '../services/SchoolFormService';
+import { MASTERTEST_DISTRIBUTOR_ID } from '../../../core/consts';
 
 class SchoolFormContainer extends Component {
 
@@ -10,17 +11,25 @@ class SchoolFormContainer extends Component {
     schoolId: PropTypes.string,
     currentCompany: PropTypes.string,
     companyCountry: PropTypes.string,
+    companyDistributor: PropTypes.string,
   };
 
   static defaultProps = {
     schoolId: null,
     currentCompany: null,
     companyCountry: null,
+    companyDistributor: null,
   };
 
   schoolFormService = new SchoolFormService();
   componentWillMount() {
     this.schoolFormService.init(this.props.schoolId, this.props.currentCompany);
+  }
+
+  componentDidUpdate() {
+    if (this.props.companyDistributor && this.props.companyDistributor === MASTERTEST_DISTRIBUTOR_ID) {
+      this.schoolFormService.addInepToRequired();
+    }
   }
 
   render() {
@@ -35,6 +44,7 @@ class SchoolFormContainer extends Component {
         isDirty={this.schoolFormService.form.isDirty}
         disableCompany={!!this.props.currentCompany}
         companyCountry={this.props.companyCountry}
+        companyDistributor={this.props.companyDistributor}
       />
     );
   }
