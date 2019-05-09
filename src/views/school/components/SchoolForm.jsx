@@ -76,16 +76,6 @@ const SchoolForm = props => (
     </Row>
     <Row>
       <Column size={2}>
-        <TextInput
-          type="number"
-          disabled={props.submitting}
-          label="Demo Limit"
-          value={get(props.values, 'demoStudentLimit', '')}
-          onChange={value => props.onChange('demoStudentLimit', value)}
-          errorText={get(props.errors, 'demoStudentLimit', null)}
-        />
-      </Column>
-      <Column size={2}>
         <FetchSelect
           url={`regions${props.values.company ? `?query[company]=${get(props.values, 'company', '')}` : ''}`}
           fullWidth
@@ -126,23 +116,48 @@ const SchoolForm = props => (
         />
       </Column>
       <Column size={4}>
-        <TextInput
+        <Select
+          multiple
           disabled={props.submitting}
-          label="City"
-          value={get(props.values, 'city', '')}
-          onChange={value => props.onChange('city', value)}
-          errorText={get(props.errors, 'city', null)}
+          label="Required student info"
+          value={get(props.values, 'requiredStudentFields', [])}
+          onChange={value => props.onChange('requiredStudentFields', value)}
+          options={[
+            { label: 'Email', value: 'email' },
+            { label: 'Name', value: 'name' },
+            { label: 'Birth date', value: 'birthDate' },
+            { label: 'Phone', value: 'contactPhone' },
+          ]}
+        />
+      </Column>
+      <Column size={2}>
+        <TextInput
+          type="number"
+          disabled={props.submitting}
+          label="Demo Limit"
+          value={get(props.values, 'demoStudentLimit', '')}
+          onChange={value => props.onChange('demoStudentLimit', value)}
+          errorText={get(props.errors, 'demoStudentLimit', null)}
         />
       </Column>
     </Row>
     <Row>
-      <Column size={9}>
+      <Column size={6}>
         <TextInput
           disabled={props.submitting}
           label="Address"
           value={get(props.values, 'address', '')}
           onChange={value => props.onChange('address', value)}
           errorText={get(props.errors, 'address', null)}
+        />
+      </Column>
+      <Column size={3}>
+        <TextInput
+          disabled={props.submitting}
+          label="City"
+          value={get(props.values, 'city', '')}
+          onChange={value => props.onChange('city', value)}
+          errorText={get(props.errors, 'city', null)}
         />
       </Column>
       <Column size={3}>

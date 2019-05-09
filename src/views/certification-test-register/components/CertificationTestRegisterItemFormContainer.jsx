@@ -23,7 +23,7 @@ class CertificationTestRegisterItemFormContainer extends Component {
         endpointUrl={`certification-test-course-ability/${this.props.certificationTestId}/items`}
         onSaveSuccess={this.props.onSaveSuccess}
         defaultGrammar={this.certificationTestRegisterFormService.form.getValue('grammar')}
-        timeProperty="defaultTime"
+        timeProperty="defaultMasteryTestTime"
       />
     ) : null;
   }
