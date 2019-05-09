@@ -22,6 +22,7 @@ export default class RankingListService {
   });
 
   load = action((useFormMonth) => {
+    this.rankings = [];
     this.fetch.fetch({
       url: '/reports/ranking',
       query: {
