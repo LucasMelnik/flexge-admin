@@ -15,6 +15,7 @@ class KidsCertificatesListContainer extends Component {
       <KidsCertificatesList
         modules={toJS(KidsCertificateListService.modules)}
         fetching={KidsCertificateListService.fetch.fetching}
+        onDownload={KidsCertificateListService.handleDownloadCertificate}
       />
     );
   }
