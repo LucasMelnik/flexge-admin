@@ -4,6 +4,7 @@ import FormService from '../../../core/services/FormService';
 
 class KidsCertificateListService {
   fetch = new FetchService();
+  download = new FetchService();
   form = new FormService();
 
   constructor() {
@@ -50,6 +51,24 @@ class KidsCertificateListService {
     });
   });
 
+  handleDownloadCertificate = action(studentModule => {
+    this.download
+      .fetch({
+        responseType: 'blob',
+        url: `/students/${studentModule.student}/courses/${studentModule.module.course.id}/modules/${studentModule.module.id}/certificate`,
+      })
+      .then(() => {
+        if (this.download.data) {
+          const link = document.createElement('a');
+          const fileUrl = window.URL.createObjectURL(this.download.data);
+          link.href = fileUrl;
+
+          link.download = 'module_certificate.pdf';
+          link.click();
+          setTimeout(() => window.URL.revokeObjectURL(fileUrl), 500);
+        }
+      });
+  });
 }
 
 const kidsCertificateListService = new KidsCertificateListService();

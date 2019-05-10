@@ -160,6 +160,14 @@ const MainScene = props => (
                 icon: 'profile',
               },
               {
+                label: 'Import Schools',
+                key: 'import-schools',
+                link: '/import-schools',
+                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
+                group: 'Organizations',
+                icon: 'file-excel',
+              },
+              {
                 label: 'Admin Users',
                 key: 'admin-users',
                 link: '/admin-users',
@@ -186,13 +194,6 @@ const MainScene = props => (
                 link: '/students',
                 allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
                 group: 'Users',
-              },
-              {
-                label: 'Import Schools',
-                key: 'import-schools',
-                link: '/import-schools',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
-                group: 'Organizations',
               },
               {
                 label: 'Import Students',
@@ -365,12 +366,12 @@ const MainScene = props => (
                 link: '/records/filters',
                 icon: 'database',
               },
-              // {
-              //   label: 'Kids Certificates',
-              //   key: 'kids-certificates',
-              //   link: '/kids-certificates',
-              //   icon: 'file-done',
-              // },
+              {
+                label: 'Kids Certificates',
+                key: 'kids-certificates',
+                link: '/kids-certificates',
+                icon: 'file-done',
+              },
               {
                 label: 'Student Placement/Mastery Tests',
                 key: 'student-tests',

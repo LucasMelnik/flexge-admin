@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment/moment';
 import Table from '../../../core/form/Table';
+import Button from '../../../core/form/Button';
 
 const KidsCertificatesList = props => (
   <Table
@@ -36,6 +37,19 @@ const KidsCertificatesList = props => (
         label: 'School',
         path: 'schoolClass.school.name',
       },
+      {
+        label: 'Actions',
+        path: 'action',
+        width: '80px',
+        render: (cell, row) => (
+          <div>
+            <Button
+              icon="file-pdf"
+              onClick={() => props.onDownload(row.studentModule)}
+            />
+          </div>
+        ),
+      },
     ]}
     rows={props.modules}
   />
@@ -45,6 +59,7 @@ KidsCertificatesList.propTypes = {
   modules: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
   })).isRequired,
+  onDownload: PropTypes.func.isRequired,
   fetching: PropTypes.bool.isRequired,
 };
 
