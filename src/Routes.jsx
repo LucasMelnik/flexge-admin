@@ -116,7 +116,7 @@ import ConfigurationListScene from './views/configuration/components/Configurati
 import WhitelabelConfigListScene from './views/whitelabel-config/components/WhitelabelConfigListScene';
 import WhitelabelConfigFormScene from './views/whitelabel-config/components/WhitelabelConfigFormScene';
 import KidsCertificatesListScene from './views/kids-certificates/components/KidsCertificatesListScene';
-import ImportSchoolFormScene from './views/import-schools/components/ImportSchoolFormScene';
+import DataImportScene from './views/data-import/components/DataImportScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -250,8 +250,8 @@ const Routes = () => (
       <Route path="evaluation-templates/:evaluationTemplateId" component={EvaluationTemplateFormScene} />
       <Route path="rankings" component={RankingListScene} />
       <Route path="student-achievements" component={StudentAchievementsListScene} />
+      <Route path="data-import" component={DataImportScene} />
       <Route path="import-students" component={ImportStudentsFormScene} />
-      <Route path="import-schools" component={ImportSchoolFormScene} />
       <Route path="reactivate-student" component={ReactivateStudentListScene} />
       <Route path="reactivate-student/:studentId" component={ReactivateStudentFormScene} />
       <Route path="certification-test-register" component={CertificationTestRegisterListScene} />
