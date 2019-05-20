@@ -31,6 +31,13 @@ class DataImportService {
       this.fetch.fetch({
         url: '/data-import',
         method: 'get',
+        query: {
+          query: {
+            ...this.form.getValue('distributor') && {
+              distributor: this.form.getValue('distributor')
+            }
+          }
+        }
       }).then(() => {
         if (this.fetch.data) {
           this.form.setInitialValues(omit(toJS(this.fetch.data), this.dataPaths));
