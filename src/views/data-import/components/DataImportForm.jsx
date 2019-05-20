@@ -92,10 +92,10 @@ export default class DataImportForm extends Component {
             )}
             <p style={{ display: 'inline-block' }}>
               {{
-                PENDING: 'File uploaded, await the file validation.',
+                PENDING: 'File uploaded, validating...',
                 VALIDATING: 'File validation in progress.',
-                VALIDATE_COMPLETED: 'All data are validated. Please check the data and if it has errors upload a new file or cancel, or confirm the import if everything looks fine.',
-                IMPORTING: 'Saving your data.',
+                VALIDATE_COMPLETED: this.props.values.hasErrors ? 'There are some errors in the imported spreadsheet. Please check the tabs below.' : 'Validation has passed! Click on "Confirm import" to start the import.',
+                IMPORTING: 'Saving data...',
                 IMPORT_COMPLETED: 'All data saved.',
               }[this.props.values.status]}
             </p>
