@@ -96,7 +96,7 @@ export default class DataImportForm extends Component {
                 VALIDATING: 'File validation in progress.',
                 VALIDATE_COMPLETED: this.props.values.hasErrors ? 'There are some errors in the imported spreadsheet. Please check the tabs below.' : 'Validation has passed! Click on "Confirm import" to start the import.',
                 IMPORTING: 'Saving data...',
-                IMPORT_COMPLETED: 'All data saved.',
+                IMPORT_COMPLETED: 'Importing finished. Please check the tabs below to confirm if everything is saved.',
               }[this.props.values.status]}
             </p>
           </Column>
