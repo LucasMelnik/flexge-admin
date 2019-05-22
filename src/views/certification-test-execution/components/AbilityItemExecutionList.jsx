@@ -41,7 +41,7 @@ const AbilityItemExecutionList = props => (
           label: 'Actions',
           path: 'actions',
           width: '65px',
-          render: (cell, row) => (props.ability === 'SPEAKING' || props.ability === 'WRITING') ? (
+          render: (cell, row) => localStorage.role === 'CERTIFICATION_TEST_PROFESSIONAL' && (props.ability === 'SPEAKING' || props.ability === 'WRITING') ? (
             <div>
               <Button
                 icon="edit"

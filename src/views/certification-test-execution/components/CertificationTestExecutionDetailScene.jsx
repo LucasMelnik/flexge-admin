@@ -62,10 +62,10 @@ const CertificationTestExecutionDetailScene = props => (
       />
     </Card>
     <Separator />
-    <CertificationTestReviewItemFormDialogContainer />
     <CertificationTestReviewControlBarContainer
       certificationTestId={props.params.certificationTestId}
     />
+    <CertificationTestReviewItemFormDialogContainer />
   </div>
 );
 
