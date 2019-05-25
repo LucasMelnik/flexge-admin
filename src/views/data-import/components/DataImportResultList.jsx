@@ -4,34 +4,23 @@ import keys from 'lodash/keys';
 import omit from 'lodash/omit';
 import head from 'lodash/head';
 import startCase from 'lodash/startCase';
-import Table from '../../../core/form/Table';
-import Card from '../../../core/layout/Card';
+import orderBy from 'lodash/orderBy';
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
-const DataImportResultList = props => (
-  <Card>
-    {props.data.length ? (
-      <Table
-        rowKey={row => row.name}
-        rows={props.data}
-        columns={keys(omit(head(props.data), ['errors', 'children', 'hidden'])).map(key => ({
-          label: startCase(key),
-          path: key,
-          render: (value, row) => ({
-            children: value,
-            props: {
-              style: {
-                backgroundColor: row.children ? 'rgba(238,49,57,0.6)' : '#fff',
-              },
-            },
-          }),
-        }))}
-      />
-    ) : (
-      <p>
-        No data to show.
-      </p>
-    )}
-  </Card>
+const DataImportResultList = props => props.data.length ? (
+  <ReactTable
+    defaultPageSize={50}
+    data={orderBy(props.data, ['errors.length'], 'desc')}
+    columns={keys(omit(head(props.data), ['hidden'])).map(key => ({
+      Header: startCase(key),
+      accessor: key,
+    }))}
+  />
+) : (
+  <p>
+    No data to show.
+  </p>
 );
 
 DataImportResultList.propTypes = {
