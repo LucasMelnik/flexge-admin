@@ -15,11 +15,6 @@ class DataImportService {
 
   constructor() {
     extendObservable(this, {
-      companies: [],
-      schools: [],
-      users: [],
-      students: [],
-      schoolClasses: [],
     });
     this.form.validations = {
       distributor: [isRequired],
@@ -40,20 +35,12 @@ class DataImportService {
         }
       }).then(() => {
         if (this.fetch.data) {
-          this.form.setInitialValues(omit(toJS(this.fetch.data), this.dataPaths));
-          this.dataPaths.forEach(path => {
-            this[path] = get(this.fetch.data, path, []).map(item => {
-              if (item.errors && item.errors.length) {
-                this.form.setValue('hasErrors', true);
-                return {
-                  ...item,
-                  children: item.errors.map(e => ({ name: e })),
-                };
-              }
-              return item;
-            });
+          this.form.setInitialValues({
+            id: this.fetch.data.id,
+            status: this.fetch.data.status,
+            distributor: this.form.getValue('distributor'),
+            hasErrors: this.dataPaths.reduce((acc, path) => get(this.fetch.data, path, []).some(item => item.errors && item.errors.length))
           });
-
           if (['VALIDATE_COMPLETED', 'IMPORT_COMPLETED', 'ERROR'].some(s => s === this.fetch.data.status)) {
             clearInterval(interval);
           }
@@ -75,9 +62,6 @@ class DataImportService {
       this.handleFilter();
     } else {
       this.form.setInitialValues({});
-      this.dataPaths.forEach(path => {
-        this[path] = [];
-      });
     }
   });
 
@@ -95,21 +79,10 @@ class DataImportService {
     }).then(() => {
       if (this.fetch.data) {
         this.form.setInitialValues({
-          ...omit(toJS(this.fetch.data), this.dataPaths),
+          id: this.fetch.data.id,
+          status: this.fetch.data.status,
           distributor: this.form.getValue('distributor'),
-        });
-
-        this.dataPaths.forEach(path => {
-          this[path] = get(this.fetch.data, path, []).map(item => {
-            if (item.errors && item.errors.length) {
-              this.form.setValue('hasErrors', true);
-              return {
-                ...item,
-                children: item.errors.map(e => ({ name: e })),
-              };
-            }
-            return item;
-          });
+          hasErrors: this.dataPaths.reduce((acc, path) => get(this.fetch.data, path, []).some(item => item.errors && item.errors.length))
         });
 
         if (['PENDING', 'VALIDATING', 'IMPORTING'].some(s => s === this.fetch.data.status)) {
@@ -145,9 +118,6 @@ class DataImportService {
     }).then(() => {
       if (this.submit.data) {
         this.form.setInitialValues(omit(toJS(this.submit.data), this.dataPaths));
-        this.dataPaths.forEach(path => {
-          this[path] = [];
-        });
         this.poolResult();
         NotificationService.addNotification(
           'File loaded successfully. Await the data validation.',
@@ -171,7 +141,8 @@ class DataImportService {
     }).then(() => {
       if (this.submit.data) {
         this.form.setInitialValues({
-          ...omit(toJS(this.submit.data), this.dataPaths),
+          id: this.fetch.data.id,
+          distributor: this.form.getValue('distributor'),
           status: 'IMPORTING',
         });
         this.poolResult();
@@ -197,9 +168,6 @@ class DataImportService {
     }).then(() => {
       if (this.submit.data) {
         this.form.setInitialValues({});
-        this.dataPaths.forEach(path => {
-          this[path] = [];
-        });
         NotificationService.addNotification(
           'Data import Removed.',
           'success',

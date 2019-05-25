@@ -14,7 +14,7 @@ class DataImportFormContainer extends Component {
         onChange={DataImportService.form.setValue}
         values={DataImportService.form.getValues()}
         errors={DataImportService.form.errors}
-        submitting={DataImportService.submit.fetching}
+        submitting={DataImportService.submit.fetching || DataImportService.fetch.fetching}
       />
     );
   }
