@@ -49,7 +49,7 @@ class StudentRecordListService {
         }));
 
         this.fetchStudents.fetch({
-          url: `/schools/${this.schoolId}/classes/${this.classId}/students`,
+          url: `/schools/${this.schoolId}/classes/${this.classId}/students?verbose=false`,
         }).then(() => {
           if (this.fetchStudents.data) {
             this.students = [

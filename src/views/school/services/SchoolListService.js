@@ -14,7 +14,8 @@ class SchoolListService {
       visibleSchools: computed(() => (
         this.schools.filter(school => (
           school.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1 ||
-          school.company.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1
+          school.company.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1 ||
+          (school.inep && school.inep.toLowerCase().indexOf(this.filter.toLowerCase()) > -1)
         ))
       )),
     });
