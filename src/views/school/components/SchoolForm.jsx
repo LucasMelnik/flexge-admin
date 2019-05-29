@@ -94,7 +94,7 @@ const SchoolForm = props => (
       <Column size={2}>
         <FetchSelect
           required
-          url={`states?country=${get(props.values, 'country.id', false) || props.companyCountry}`}
+          url={`states?country=${get(props.values, 'country.id', props.values.country) || props.companyCountry}`}
           disabled={props.submitting || !get(props.values, 'company', false)}
           label="State"
           value={get(props.values, 'state', '')}
