@@ -39,9 +39,6 @@ const SchoolClassRecordList = props => (
           return '-';
         },
       },
-      {
-        label: 'Status',
-      },
     ]}
     rows={props.schoolClasses}
     selectable

@@ -170,10 +170,6 @@ const StudentRecordList = props => (
             );
           },
         },
-        {
-          label: 'CT Status',
-          width: '90px',
-        },
       ]}
       rows={props.students}
       selectable
