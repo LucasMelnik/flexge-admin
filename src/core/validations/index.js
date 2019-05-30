@@ -1,3 +1,4 @@
+import inRange from 'lodash/inRange';
 import isEmail from 'validator/lib/isEmail';
 import CPF from 'gerador-validador-cpf/dist/js/CPF';
 
@@ -6,6 +7,8 @@ export const isRequired = value => (value === null || value === undefined || !va
 export const exactLength = exactLengthInformed => value => value && value.length !== exactLengthInformed && `You must have exact ${exactLengthInformed} items`;
 
 export const minLength = minLengthInformed => valueue => valueue && valueue.length < minLengthInformed && `Min. length: ${minLengthInformed}`;
+
+export const betweenValues = (min, max) => value => !inRange(value, min, max + 1) && `Min: ${min} - Max: ${max}`;
 
 export const minFilteredLength = (minLengthInformed, filterPrediction, message) => valueue => (!valueue || valueue.filter(filterPrediction).length < minLengthInformed) && (message || `Min. length: ${minLengthInformed}`);
 

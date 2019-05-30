@@ -7,6 +7,8 @@ import Table from '../../../../core/form/Table';
 const SchoolRecordList = props => (
   <Table
     fetching={props.fetching}
+    pagination={props.pagination}
+    onChange={props.onChange}
     columns={[
       {
         label: 'Company',
@@ -38,9 +40,6 @@ const SchoolRecordList = props => (
           return '-';
         },
       },
-      {
-        label: 'Status',
-      },
     ]}
     rows={props.schools}
     selectable
@@ -56,7 +55,13 @@ SchoolRecordList.propTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
   })).isRequired,
+  pagination: PropTypes.shape({
+    current: PropTypes.number,
+    total: PropTypes.number,
+    pageSize: PropTypes.number,
+  }).isRequired,
   fetching: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
   onSelect: PropTypes.func.isRequired,
 };
 

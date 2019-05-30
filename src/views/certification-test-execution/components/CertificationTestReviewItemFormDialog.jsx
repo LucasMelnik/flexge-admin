@@ -6,7 +6,6 @@ import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import FormButtons from '../../../core/form/FormButtons';
 import TextEditor from '../../../core/form/TextEditor';
-import Select from '../../../core/form/Select';
 import TextInput from '../../../core/form/TextInput';
 import AudioPreview from '../../../core/layout/AudioPreview';
 
@@ -44,28 +43,22 @@ const CertificationTestReviewItemFormDialog = props => (
               label="Answer"
               value={get(props.values, 'answer', '')}
               disabled
+              textAreaRows={10}
             />
           )}
         </Column>
       </Row>
       <Row>
         <Column size={3}>
-          <Select
+          <TextInput
+            type="number"
             disabled={props.submitting}
-            label="Correct"
-            value={get(props.values, 'correct', '')}
-            onChange={value => props.onChange('correct', value)}
-            errorText={get(props.errors, 'correct', '')}
-            options={[
-              {
-                label: 'Correct',
-                value: 'correct',
-              },
-              {
-                label: 'Wrong',
-                value: 'wrong',
-              },
-            ]}
+            label="Score"
+            value={get(props.values, 'reviewerScore', '')}
+            onChange={value => props.onChange('reviewerScore', value)}
+            errorText={get(props.errors, 'reviewerScore', '')}
+            maxNumberValue={100}
+            minNumberValue={0}
           />
         </Column>
       </Row>

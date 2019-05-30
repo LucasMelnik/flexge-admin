@@ -2,7 +2,7 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
-import { isRequired } from '../../../core/validations';
+import { isRequired, betweenValues } from '../../../core/validations';
 
 class CertificationTestScheduleReviewItemService {
   submit = new FetchService();
@@ -14,7 +14,7 @@ class CertificationTestScheduleReviewItemService {
       successCallback: () => false,
     });
     this.form.validations = {
-      correct: [isRequired],
+      reviewerScore: [isRequired, betweenValues(0, 100)],
     };
   }
 
@@ -45,7 +45,7 @@ class CertificationTestScheduleReviewItemService {
       method: 'put',
       url: `/certification-test/${this.form.getValue('certificationTest')}/items/${this.form.getValue('id')}/review`,
       body: {
-        correct: this.form.getValue('correct') === 'correct',
+        reviewerScore: this.form.getValue('reviewerScore'),
         reviewerComment: this.form.getValue('reviewerComment'),
       },
     }).then(() => {

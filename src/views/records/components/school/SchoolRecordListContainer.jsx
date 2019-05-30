@@ -21,6 +21,8 @@ class SchoolRecordListContainer extends Component {
         schools={toJS(SchoolReportListService.schools)}
         fetching={SchoolReportListService.fetch.fetching}
         onSelect={this.handleSelect}
+        pagination={SchoolReportListService.pagination}
+        onChange={SchoolReportListService.load}
       />
     );
   }

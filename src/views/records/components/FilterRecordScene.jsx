@@ -4,6 +4,7 @@ import StudentRecordSelectContainer from './student/StudentRecordSelectContainer
 import SchoolRecordListContainer from './school/SchoolRecordListContainer';
 import Card from '../../../core/layout/Card';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
+import SchoolRecordListFilterContainer from './school/SchoolRecordListFilterContainer';
 
 const FilterRecordScene = () => (
   <div>
@@ -19,6 +20,8 @@ const FilterRecordScene = () => (
     </Card>
     <Separator />
     <Card title="Record by School">
+      <SchoolRecordListFilterContainer />
+      <Separator />
       <SchoolRecordListContainer />
     </Card>
   </div>
