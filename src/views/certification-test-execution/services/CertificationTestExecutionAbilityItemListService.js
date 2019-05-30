@@ -22,7 +22,7 @@ export default class CertificationTestExecutionAbilityItemListService {
         this.items = orderBy(this.fetch.data, 'order', 'asc');
       }
       if ((ability === 'SPEAKING' || ability === 'WRITING') && !this.items.find(item => item.correct === null || item.correct === undefined)) {
-        const score = round((this.items.filter(item => item.correct).length / this.items.length) * 100);
+        const score = round((this.items.reduce((acc, item) => acc + item.reviewerScore, 0) / this.items.length));
         CertificationTestReviewFormService.form.setValue(`${ability.toLowerCase()}Score`, score);
       }
       if (this.fetch.error) {

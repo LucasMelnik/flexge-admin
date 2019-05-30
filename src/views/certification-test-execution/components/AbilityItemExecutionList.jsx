@@ -27,7 +27,15 @@ const AbilityItemExecutionList = props => (
           path: 'correct',
           width: '100px',
           align: 'center',
-          render: cell => cell !== undefined && <Tag color={cell ? 'green' : 'red'}>{cell ? 'Correct' : 'Wrong'}</Tag>,
+          render: (cell, row) => cell !== undefined && (
+            <React.Fragment>
+              {(props.ability === 'SPEAKING' || props.ability === 'WRITING') ? (
+                <Tag color={cell ? 'green' : 'red'}>{row.reviewerScore}</Tag>
+              ) : (
+                <Tag color={cell ? 'green' : 'red'}>{cell ? 'Correct' : 'Wrong'}</Tag>
+              )}
+            </React.Fragment>
+          )
         },
         {
           label: 'Comments',
