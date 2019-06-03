@@ -9,6 +9,21 @@ import MonthInput from '../../../core/form/MonthInput';
 
 const UsageStatsFilter = props => (
   <Row>
+    {(localStorage.role === 'ADMIN') && (
+      <Column size={3}>
+        <FetchSelect
+          label="Filter by Distributor"
+          disabled={props.fetching}
+          value={get(props.values, 'distributor', '')}
+          onChange={value => props.onChange('distributor', value)}
+          url="/distributors"
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
+    )}
     {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
       <Column size={3}>
         <FetchSelect
