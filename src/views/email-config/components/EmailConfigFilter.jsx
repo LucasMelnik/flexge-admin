@@ -4,6 +4,7 @@ import FetchSelect from '../../../core/form/FetchSelect';
 
 const EmailConfigFilter = props => (
   <FetchSelect
+    showSearch
     label="Select the school"
     placeholder="Select the school to config the email frequency"
     value={props.value}

@@ -12,6 +12,7 @@ const UsageStatsFilter = props => (
     {(localStorage.role === 'ADMIN') && (
       <Column size={3}>
         <FetchSelect
+          showSearch
           label="Filter by Distributor"
           disabled={props.fetching}
           value={get(props.values, 'distributor', '')}
@@ -27,6 +28,7 @@ const UsageStatsFilter = props => (
     {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
       <Column size={3}>
         <FetchSelect
+          showSearch
           label="Filter by Company"
           disabled={props.fetching}
           value={get(props.values, 'company', '')}

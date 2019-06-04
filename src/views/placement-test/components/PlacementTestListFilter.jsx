@@ -25,6 +25,7 @@ const PlacementTestListFilter = props => (
       </Column>
       <Column size={6}>
         <FetchSelect
+          showSearch
           url="grammars"
           fullWidth
           disabled={props.fetching}

@@ -42,6 +42,7 @@ const SchoolForm = props => (
       >
         <Column size={4}>
           <FetchSelect
+            showSearch
             url="/companies"
             required
             disabled={props.submitting || props.disableCompany}
@@ -77,7 +78,15 @@ const SchoolForm = props => (
     <Row>
       <Column size={2}>
         <FetchSelect
-          url={`regions${props.values.company ? `?query[company]=${get(props.values, 'company', '')}` : ''}`}
+          showSearch
+          url="/regions"
+          params={{
+            ...get(props.values, 'company', false) && {
+              query: {
+                company: get(props.values, 'company', '')
+              },
+            },
+          }}
           fullWidth
           required
           disabled={props.submitting || !get(props.values, 'company', '')}
@@ -94,7 +103,11 @@ const SchoolForm = props => (
       <Column size={2}>
         <FetchSelect
           required
-          url={`states?country=${get(props.values, 'country.id', props.values.country) || props.companyCountry}`}
+          showSearch
+          url="states"
+          params={{
+            country: get(props.values, 'country.id', props.values.country) || props.companyCountry
+          }}
           disabled={props.submitting || !get(props.values, 'company', false)}
           label="State"
           value={get(props.values, 'state', '')}

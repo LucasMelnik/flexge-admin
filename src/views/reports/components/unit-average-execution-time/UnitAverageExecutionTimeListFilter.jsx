@@ -32,6 +32,7 @@ const UnitAverageExecutionTimeListFilter = props => (
       </Column>
       <Column size={4}>
         <FetchSelect
+          showSearch
           label="Filter by module"
           placeholder="Select the course to allow select the  module"
           url={props.values.course && `/modules?query[course]=${get(props.values, 'course', '')}`}

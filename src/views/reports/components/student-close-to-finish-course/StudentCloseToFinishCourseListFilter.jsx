@@ -17,6 +17,7 @@ const StudentCloseToFinishCourseListFilter = props => (
       {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
         <Column size={3}>
           <FetchSelect
+            showSearch
             url="/schools"
             label="School"
             disabled={props.fetching}
@@ -32,6 +33,7 @@ const StudentCloseToFinishCourseListFilter = props => (
       {get(props.values, 'school', undefined) && (
         <Column size={4}>
           <FetchSelect
+            showSearch
             url={`/schools/${props.values.school}/classes`}
             label="Class rooms"
             disabled={props.fetching}

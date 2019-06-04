@@ -38,6 +38,7 @@ const PlacementTestLevelForm = props => (
       </Column>
       <Column size={3}>
         <FetchSelect
+          showSearch
           url="courses"
           disabled={props.submitting}
           label="Course"

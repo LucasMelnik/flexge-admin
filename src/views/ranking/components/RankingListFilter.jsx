@@ -25,6 +25,7 @@ const RankingListFilter = props => (
     {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
       <Column size={3}>
         <FetchSelect
+          showSearch
           label="School"
           placeholder="Select the school to check the ranking"
           value={get(props.values, 'school', '')}
@@ -41,6 +42,7 @@ const RankingListFilter = props => (
     {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
       <Column size={2}>
         <FetchSelect
+          showSearch
           label="Country"
           placeholder="Select the country to check the national ranking"
           value={get(props.values, 'country', '')}
@@ -57,6 +59,7 @@ const RankingListFilter = props => (
     {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
       <Column size={2}>
         <FetchSelect
+          showSearch
           label="Region"
           placeholder="Select the region to check the regional ranking"
           value={get(props.values, 'region', '')}

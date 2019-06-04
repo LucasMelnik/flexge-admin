@@ -41,6 +41,7 @@ export default class ImportStudentsForm extends Component {
         <Row>
           <Column size={4}>
             <FetchSelect
+              showSearch
               url="/schools"
               disabled={this.props.submitting}
               label="Select a school to import the students"

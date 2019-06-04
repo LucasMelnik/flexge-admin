@@ -128,6 +128,7 @@ const StudentForm = props => (
       {props.values.id && (localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
         <Column size={3}>
           <FetchSelect
+            showSearch
             url="schools"
             fullWidth
             required
@@ -149,6 +150,7 @@ const StudentForm = props => (
       {props.values.id && (
         <Column size={localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' ? 2 : 4}>
           <FetchSelect
+            showSearch
             url={`schools/${props.values.schoolClass.school.id}/classes`}
             fullWidth
             disabled={props.submitting}

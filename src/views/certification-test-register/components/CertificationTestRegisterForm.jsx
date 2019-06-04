@@ -19,6 +19,7 @@ const CertificationTestRegisterForm = props => (
       <Column size={2}>
         <FetchSelect
           required
+          showSearch
           url="courses"
           disabled={props.submitting}
           label="Course"
@@ -66,6 +67,7 @@ const CertificationTestRegisterForm = props => (
       </Column>
       <Column size={4}>
         <FetchSelect
+          showSearch
           url="grammars"
           disabled={props.submitting}
           label="Grammar"

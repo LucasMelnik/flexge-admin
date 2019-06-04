@@ -48,6 +48,7 @@ const PlacementTestForm = props => (
       </Column>
       <Column size={6}>
         <FetchSelect
+          showSearch
           url="grammars"
           required
           disabled={props.submitting}

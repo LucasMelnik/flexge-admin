@@ -14,6 +14,7 @@ const StudentAchievementsListFilter = props => (
       localStorage.role === 'COMPANY_MANAGER') && (
       <Column size={3}>
         <FetchSelect
+          showSearch
           label="Filter by School"
           disabled={props.fetching}
           value={get(props.values, 'school', '')}
@@ -35,6 +36,7 @@ const StudentAchievementsListFilter = props => (
     )}
     <Column size={2}>
       <FetchSelect
+        showSearch
         label="Filter by Type"
         disabled={props.fetching}
         value={get(props.values, 'type', '')}

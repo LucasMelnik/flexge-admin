@@ -4,6 +4,7 @@ import FetchSelect from '../../../core/form/FetchSelect';
 
 const PlacementTestLevelListFilter = props => (
   <FetchSelect
+    showSearch
     url="courses"
     label="Course"
     value={props.course}

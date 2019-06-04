@@ -33,6 +33,7 @@ const MessageForm = props => (
         <Column size={4}>
           <FetchSelect
             required
+            showSearch
             url="schools"
             disabled={props.submitting}
             label="School"

@@ -33,6 +33,7 @@ const EvaluationTemplateForm = props => (
         <Column size={3}>
           <FetchSelect
             required
+            showSearch
             label="School"
             value={get(props.values, 'school', '')}
             onChange={value => props.onChange('school', value)}
