@@ -28,7 +28,7 @@ class UsageStatsFilterService {
       return;
     }
 
-    UsageStatsListService.load(this.form.getValue('month'), this.form.getValue('company'));
+    UsageStatsListService.load(this.form.getValue('month'), this.form.getValue('company'), this.form.getValue('distributor'));
     DemoStudentListService.load(this.form.getValue('month'));
   });
 }

@@ -9,7 +9,7 @@ import ColumnSeparator from '../../../core/layout/ColumnSeparator';
 const UsageStatsList = props => (
   <div>
     <Table
-      rowKey={row => row.children ? row.id : `${row.academicPlan.id}-${row.school}`}
+      rowKey={row => row.academicPlan ? `${row.academicPlan.id}-${row.school}` : row.id}
       fetching={props.fetching}
       columns={[
         {
@@ -17,7 +17,7 @@ const UsageStatsList = props => (
           path: 'name',
           defaultSortOrder: 'asc',
           sort: true,
-          render: (value, row) => row.children ? row.name : row.academicPlan.name,
+          render: (value, row) => row.academicPlan ? row.academicPlan.name : row.name,
         },
         {
           label: 'Active Students',
@@ -25,6 +25,7 @@ const UsageStatsList = props => (
           sort: true,
           width: '150px',
           align: 'center',
+          render: cell => cell || 0,
         },
         {
           label: 'Placement Tests Only',
@@ -32,6 +33,7 @@ const UsageStatsList = props => (
           width: '180px',
           sort: true,
           align: 'center',
+          render: cell => cell || 0,
         },
         {
           label: 'Students to Charge',
@@ -39,7 +41,7 @@ const UsageStatsList = props => (
           width: '180px',
           sort: true,
           align: 'center',
-          render: (value, row) => row.children ? (
+          render: (value, row) => !row.children ? 0 : row.children ? (
             <div>
               {row.activeStudents - row.placementCount}
             </div>

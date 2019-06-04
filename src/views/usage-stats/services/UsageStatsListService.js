@@ -5,11 +5,13 @@ import { isRequired } from '../../../core/validations';
 
 class UsageStatsListService {
   fetch = new FetchService();
+  schoolsFetch = new FetchService();
   form = new FormService();
 
   constructor() {
     extendObservable(this, {
       schools: [],
+      allSchools: [],
     });
     this.form.validations = {
       month: [isRequired],
@@ -18,9 +20,18 @@ class UsageStatsListService {
 
   init = action(() => {
     this.schools = [];
+    this.schoolsFetch.fetch({
+      url: '/schools',
+    }).then(() => {
+      if (this.schoolsFetch.data) {
+        this.allSchools = this.schoolsFetch.data;
+      } else {
+        this.allSchools = [];
+      }
+    })
   });
 
-  load = action((month, company) => {
+  load = action((month, company, distributor) => {
 
     this.fetch.fetch({
       url: `/reports/${month.format('MM-YYYY')}/usage-stats`,
@@ -28,14 +39,14 @@ class UsageStatsListService {
         ...company && {
           company,
         },
+        ...distributor && {
+          distributor,
+        },
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.schools = this.fetch.data.map(school => ({
+        const formattedData = this.fetch.data.map(school => ({
           ...school,
-          activeStudents: school.children.reduce((acc, x) => acc + x.activeStudents, 0),
-          placementCount: school.children.reduce((acc, x) => acc + x.placementCount, 0),
-          studiedHours: school.children.reduce((acc, x) => acc + x.studiedHours, 0),
           children: school.children.map((plan) => {
             if (plan.activeStudentsLastMonth) {
               const currentCharge = plan.activeStudents - plan.placementCount;
@@ -49,6 +60,10 @@ class UsageStatsListService {
             return plan;
           }),
         }));
+        this.schools = [
+          ...formattedData,
+          ...this.allSchools.filter(s => !formattedData.some(x => x.id === s.id) && (!company || s.company.id === company) && (!distributor || s.company.distributor === distributor))
+        ];
       } else {
         this.schools = [];
       }
