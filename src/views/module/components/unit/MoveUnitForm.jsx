@@ -16,6 +16,7 @@ const MoveUnitForm = props => (
     <Row>
       <Column size={2}>
         <FetchSelect
+          showSearch
           url="courses"
           disabled={props.submitting}
           label="Course"
@@ -30,6 +31,7 @@ const MoveUnitForm = props => (
       </Column>
       <Column size={4}>
         <FetchSelect
+          showSearch
           url={props.values.course ? `modules?query[course]=${props.values.course}` : 'modules'}
           disabled={props.submitting || !props.values.course}
           label="Module"

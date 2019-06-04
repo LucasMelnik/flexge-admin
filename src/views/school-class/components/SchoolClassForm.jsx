@@ -31,6 +31,7 @@ const SchoolClassForm = props => (
       <Column size={3}>
         <FetchSelect
           required
+          showSearch
           url={`/teachers?query[school]=${props.schoolId}`}
           disabled={props.submitting}
           label="Teacher"
@@ -125,6 +126,7 @@ const SchoolClassForm = props => (
       </Column>
       <Column size={3}>
         <FetchSelect
+          showSearch
           url={`/evaluation-templates?query[school]=${props.schoolId}`}
           disabled={props.submitting}
           label="Evaluation Template"

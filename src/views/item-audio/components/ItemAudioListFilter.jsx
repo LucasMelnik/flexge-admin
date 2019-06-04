@@ -18,6 +18,7 @@ const ItemAudioListFilter = props => (
       }}
     >
       <FetchSelect
+        showSearch
         label="Filter by Character"
         url="characters"
         disabled={props.fetching}

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import sortBy from 'lodash/sortBy';
 import toLower from 'lodash/toLower';
 import get from 'lodash/get';
-import startsWith from 'lodash/startsWith';
 import Select from './Select';
 import FetchService from '../services/FetchService';
 
@@ -25,7 +24,9 @@ export default class FetchSelect extends Component {
     disabled: PropTypes.bool,
     defaultSelect: PropTypes.bool,
     required: PropTypes.bool,
+    showSearch: PropTypes.bool,
     multiple: PropTypes.bool,
+    params: PropTypes.object,
   };
 
   static defaultProps = {
@@ -36,15 +37,18 @@ export default class FetchSelect extends Component {
     defaultSelect: false,
     required: false,
     multiple: false,
+    showSearch: false,
+    params: {},
     resultFilter: () => true,
   };
 
   state = { data: [] };
 
-  searchService = (url) => {
+  searchService = () => {
     const fetchService = new FetchService();
     fetchService.fetch({
-      url: `/${url}`,
+      url: `/${this.props.url}`,
+      query: this.props.params
     })
       .then(() => {
         if (fetchService.data) {
@@ -64,15 +68,15 @@ export default class FetchSelect extends Component {
       });
   };
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.url !== nextProps.url) {
-      this.searchService(nextProps.url);
+  componentDidMount() {
+    if (this.props.url) {
+      this.searchService();
     }
   }
 
-  componentWillMount() {
-    if (this.props.url !== null) {
-      this.searchService(this.props.url);
+  componentDidUpdate(prevProps) {
+    if (this.props.url !== prevProps.url || JSON.stringify(this.props.params) !== JSON.stringify(prevProps.params)) {
+      this.searchService();
     }
   }
 
@@ -83,6 +87,7 @@ export default class FetchSelect extends Component {
         required={this.props.required}
         value={this.props.value}
         label={this.props.label}
+        showSearch={this.props.showSearch}
         disabled={this.props.disabled}
         errorText={this.props.errorText}
         placeholder={this.props.placeholder}
@@ -91,7 +96,7 @@ export default class FetchSelect extends Component {
           label: get(option, this.props.resultTransformer.text),
           value: get(option, this.props.resultTransformer.value),
         }))}
-        filterOption={(value, option) => startsWith(option.props.children.toLowerCase(), value.toLowerCase())}
+        filterOption={(value, option) => option.props.children.toLowerCase().indexOf(value.toLowerCase()) > -1}
       />
     );
   }

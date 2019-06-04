@@ -31,6 +31,7 @@ const CompanyForm = props => (
       <PermissionValidator allowedFor={['ADMIN']}>
         <Column size={4}>
           <FetchSelect
+            showSearch
             url="/distributors"
             required
             disabled={props.submitting || props.disableDistributor}
@@ -52,7 +53,8 @@ const CompanyForm = props => (
       <Column size={3}>
         <FetchSelect
           required
-          url="countries"
+          showSearch
+          url="/countries"
           disabled={props.submitting}
           label="Country"
           value={get(props.values, 'country', '')}
@@ -67,7 +69,13 @@ const CompanyForm = props => (
       <Column size={3}>
         <FetchSelect
           required
-          url={`states?country=${get(props.values, 'country', '')}`}
+          showSearch
+          url="/states"
+          params={{
+            ...get(props.values, 'country', false) && {
+              country: get(props.values, 'country', '')
+            }
+          }}
           disabled={props.submitting || !get(props.values, 'country', false)}
           label="State"
           value={get(props.values, 'state', '')}

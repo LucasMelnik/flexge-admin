@@ -63,6 +63,7 @@ const ReviewListFilter = props => (
       {get(props.values, 'course', undefined) && (
         <Column size={2}>
           <FetchSelect
+            showSearch
             url={`/modules?query[course]=${get(props.values, 'course', '')}`}
             label="Modules"
             disabled={props.fetching}
@@ -80,6 +81,7 @@ const ReviewListFilter = props => (
       <Row>
         <Column size={3}>
           <FetchSelect
+            showSearch
             url="/users?query[role]=CONTENT_ADMIN"
             label="Unit Creator"
             disabled={props.fetching}
@@ -93,6 +95,7 @@ const ReviewListFilter = props => (
         </Column>
         <Column size={3}>
           <FetchSelect
+            showSearch
             url="/users?query[role]=CONTENT_ADMIN"
             label="Unit Reviewer"
             disabled={props.fetching}

@@ -12,6 +12,7 @@ const SchoolRecordListFilter = props => (
       {['ADMIN', 'DISTRIBUTOR_MANAGER'].some(role => role === localStorage.role) && (
         <Column size={3}>
           <FetchSelect
+            showSearch
             url="/companies"
             label="Company"
             disabled={props.fetching}
@@ -26,7 +27,15 @@ const SchoolRecordListFilter = props => (
       )}
       <Column size={4}>
         <FetchSelect
-          url={`/schools${get(props.values, 'company', false) ? `?query[company]=${get(props.values, 'company', '')}` : ''}`}
+          showSearch
+          url="/schools"
+          params={{
+            ...get(props.values, 'company', false) && {
+              query: {
+                company: get(props.values, 'company', '')
+              },
+            }
+          }}
           label="School"
           disabled={props.fetching}
           value={get(props.values, 'school', '')}

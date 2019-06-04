@@ -68,6 +68,7 @@ const EvaluationTemplateLinkList = props => (
         path: 'evaluationTemplate',
         render: (value, row) => (
           <FetchSelect
+            showSearch
             url={`/evaluation-templates?query[school]=${row.school.id}&query[year]=${moment().format('YYYY')}`}
             placeholder="Select the template"
             label=""

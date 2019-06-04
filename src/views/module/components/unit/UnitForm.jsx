@@ -30,6 +30,7 @@ const UnitForm = props => (
       <Column size={4}>
         <FetchSelect
           required
+          showSearch
           url="modules"
           disabled
           label="Module"
@@ -45,6 +46,7 @@ const UnitForm = props => (
       <Column size={4}>
         <FetchSelect
           required
+          showSearch
           url={props.values.academicPlan ? `unit-types?query[academicPlan]=${props.values.academicPlan}` : null}
           disabled={props.submitting || props.disabled}
           label="Unit Type"

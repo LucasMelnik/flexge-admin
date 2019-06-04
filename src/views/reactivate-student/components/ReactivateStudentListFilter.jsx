@@ -41,6 +41,7 @@ const ReactivateStudentListFilter = props => (
       </Column>
       <Column size={3}>
         <FetchSelect
+          showSearch
           url="/schools"
           label="School"
           disabled={props.fetching}

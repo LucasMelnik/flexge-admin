@@ -103,6 +103,7 @@ const UserForm = props => (
       {(props.type === 'COMPANY') && (
         <Column size={4}>
           <FetchSelect
+            showSearch
             url="companies"
             disabled={(localStorage.role === 'COMPANY_MANAGER' || localStorage.role === 'SCHOOL_MANAGER') || props.submitting}
             label="Company"
@@ -123,6 +124,7 @@ const UserForm = props => (
         <Column size={4}>
           <FetchSelect
             required
+            showSearch
             url={`schools?query[company]=${get(props.values, 'company', '')}`}
             disabled={props.submitting}
             label="School"

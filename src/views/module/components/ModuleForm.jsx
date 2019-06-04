@@ -45,6 +45,7 @@ const ModuleForm = props => (
       <Column size={3}>
         <FetchSelect
           required
+          showSearch
           url="courses"
           disabled={props.submitting}
           label="Course"

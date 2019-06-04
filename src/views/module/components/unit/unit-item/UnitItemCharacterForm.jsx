@@ -28,6 +28,7 @@ const UnitItemCharacterForm = props => (
       {!get(props.values, 'randomCharacters', false) && (
         <Column size={2}>
           <FetchSelect
+            showSearch
             url="characters"
             disabled={props.submitting}
             label="Character"
