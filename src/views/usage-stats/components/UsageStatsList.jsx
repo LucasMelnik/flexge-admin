@@ -93,7 +93,7 @@ const UsageStatsList = props => (
             textAlign: 'center',
           }}
         >
-          {props.schools.reduce((acc, school) => acc + school.activeStudents, 0)}
+          {props.schools.reduce((acc, school) => acc + (school.activeStudents || 0), 0)}
         </span>
         <span
           style={{
@@ -101,7 +101,7 @@ const UsageStatsList = props => (
             textAlign: 'center',
           }}
         >
-          {props.schools.reduce((acc, school) => acc + school.placementCount, 0)}
+          {props.schools.reduce((acc, school) => acc + (school.placementCount || 0), 0)}
         </span>
         <span
           style={{
@@ -109,7 +109,7 @@ const UsageStatsList = props => (
             textAlign: 'center',
           }}
         >
-          {props.schools.reduce((acc, school) => acc + (school.activeStudents - school.placementCount), 0)}
+          {props.schools.reduce((acc, school) => acc + ((school.activeStudents || 0) - (school.placementCount || 0)), 0)}
         </span>
         <span
           style={{
@@ -117,7 +117,7 @@ const UsageStatsList = props => (
             textAlign: 'center',
           }}
         >
-          {formatTimeFromSeconds(props.schools.reduce((acc, school) => acc + school.studiedHours, 0), 'hh:mm')}
+          {formatTimeFromSeconds(props.schools.reduce((acc, school) => acc + (school.studiedHours || 0), 0), 'hh:mm')}
         </span>
       </div>
     )}
