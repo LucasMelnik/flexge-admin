@@ -68,7 +68,7 @@ import AdminUserListScene from './views/user/components/AdminUserListScene';
 import AdminUserFormScene from './views/user/components/AdminUserFormScene';
 import CompanyUserListScene from './views/user/components/CompanyUserListScene';
 import CompanyUserFormScene from './views/user/components/CompanyUserFormScene';
-import DistributorUserListSceneContainer from './views/user/components/DistributorUserListSceneContainer';
+import DistributorUserListScene from './views/user/components/DistributorUserListScene';
 import DistributorUserFormScene from './views/user/components/DistributorUserFormScene';
 import StudentListScene from './views/student/components/StudentListScene';
 import CertificationTestExecutionListScene
@@ -200,9 +200,9 @@ const Routes = () => (
       <Route path="company-users" component={CompanyUserListScene} />
       <Route path="company-users/new" component={CompanyUserFormScene} />
       <Route path="company-users/:userId" component={CompanyUserFormScene} />
-      <Route path="distributor-users" component={DistributorUserListSceneContainer} />
-      <Route path="distributors/:distributorId/users/new" component={DistributorUserFormScene} />
-      <Route path="distributors/:distributorId/users/:userId" component={DistributorUserFormScene} />
+      <Route path="distributor-users" component={DistributorUserListScene} />
+      <Route path="distributors-users/new" component={DistributorUserFormScene} />
+      <Route path="distributors-users/:userId" component={DistributorUserFormScene} />
       <Route path="configurations" component={ConfigurationListScene} />
       <Route path="configurations/new" component={ConfigurationFormScene} />
       <Route path="configurations/:configurationId" component={ConfigurationFormScene} />
