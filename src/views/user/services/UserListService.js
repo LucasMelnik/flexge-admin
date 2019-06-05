@@ -1,11 +1,15 @@
 import { action, extendObservable } from 'mobx';
 import capitalize from 'lodash/capitalize';
+import pickBy from 'lodash/pickBy';
 import FetchService from '../../../core/services/FetchService';
+import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 import NotificationService from '../../../core/services/NotificationService';
+import UserListFilterService from './UserListFilterService';
 
 class UserListService {
   fetch = new FetchService();
+  filterForm = new FormService();
   baseQuery = {};
 
   constructor() {
@@ -17,6 +21,7 @@ class UserListService {
   init = action((baseQuery) => {
     this.users = [];
     this.baseQuery = baseQuery;
+    this.filterForm.setInitialValues({});
     this.load();
   });
 
@@ -24,7 +29,10 @@ class UserListService {
     this.fetch.fetch({
       url: '/users',
       query: {
-        query: this.baseQuery,
+        query: {
+          ...this.baseQuery,
+          ...Object.keys(pickBy(UserListFilterService.form.getValues(), v => !!v)).reduce((acc, key) => Object.assign({}, acc, { [key]: UserListFilterService.form.getValue(key) }), {}),
+        },
       },
     }).then(() => {
       if (this.fetch.data) {

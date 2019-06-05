@@ -36,6 +36,9 @@ export default class UserFormService {
             ...distributorId && {
               distributor: distributorId,
             },
+            ...this.fetch.data.company && {
+              company: this.fetch.data.company.id,
+            },
             ...this.fetch.data.school && {
               school: this.fetch.data.school.id,
             },
@@ -91,11 +94,11 @@ export default class UserFormService {
           user.role === 'AUDIO_CONTENT' ||
           user.role === 'CERTIFICATION_TEST_PROFESSIONAL'
         ) {
-          browserHistory.push(`/admin-users/${user.id}`);
+          browserHistory.replace(`/admin-users/${user.id}`);
         } else if (user.role === 'DISTRIBUTOR_MANAGER') {
-          browserHistory.push(`/distributors/${user.distributor.id}/users/${user.id}`);
+          browserHistory.replace(`/distributors/${user.distributor.id}/users/${user.id}`);
         } else {
-          browserHistory.push(`/companies/${user.company.id}/users/${user.id}`);
+          browserHistory.replace(`/company-users/${user.id}`);
         }
         this.userId = user.id;
         this.form.reset();
