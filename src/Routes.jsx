@@ -66,7 +66,7 @@ import ItemAudioListScene from './views/item-audio/components/ItemAudioListScene
 
 import AdminUserListScene from './views/user/components/AdminUserListScene';
 import AdminUserFormScene from './views/user/components/AdminUserFormScene';
-import CompanyUserListSceneContainer from './views/user/components/CompanyUserListSceneContainer';
+import CompanyUserListScene from './views/user/components/CompanyUserListScene';
 import CompanyUserFormScene from './views/user/components/CompanyUserFormScene';
 import DistributorUserListSceneContainer from './views/user/components/DistributorUserListSceneContainer';
 import DistributorUserFormScene from './views/user/components/DistributorUserFormScene';
@@ -197,9 +197,9 @@ const Routes = () => (
       <Route path="admin-users" component={AdminUserListScene} />
       <Route path="admin-users/new" component={AdminUserFormScene} />
       <Route path="admin-users/:userId" component={AdminUserFormScene} />
-      <Route path="company-users" component={CompanyUserListSceneContainer} />
-      <Route path="companies/:companyId/users/new" component={CompanyUserFormScene} />
-      <Route path="companies/:companyId/users/:userId" component={CompanyUserFormScene} />
+      <Route path="company-users" component={CompanyUserListScene} />
+      <Route path="company-users/new" component={CompanyUserFormScene} />
+      <Route path="company-users/:userId" component={CompanyUserFormScene} />
       <Route path="distributor-users" component={DistributorUserListSceneContainer} />
       <Route path="distributors/:distributorId/users/new" component={DistributorUserFormScene} />
       <Route path="distributors/:distributorId/users/:userId" component={DistributorUserFormScene} />
