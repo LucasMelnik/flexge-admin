@@ -41,18 +41,16 @@ const UsageStatsList = props => (
           width: '180px',
           sort: true,
           align: 'center',
-          render: (value, row) => !row.children ? 0 : row.children ? (
+          render: (value, row) => (
             <div>
-              {row.activeStudents - row.placementCount}
-            </div>
-          ) : (
-            <div>
-              {row.activeStudents - row.placementCount}
-              {!!row.chargeVariation && (<ColumnSeparator />)}
+              {(row.activeStudents || 0) - (row.placementCount || 0)}
               {!!row.chargeVariation && (
-                <Tag color={row.chargeVariation > 0 ? 'green' : 'red'}>
-                  {round(row.chargeVariation, 1)}%
-                </Tag>
+                <React.Fragment>
+                  <ColumnSeparator />
+                  <Tag color={row.chargeVariation > 0 ? 'green' : 'red'}>
+                    {round(row.chargeVariation, 1)}%
+                  </Tag>
+                </React.Fragment>
               )}
             </div>
           ),
