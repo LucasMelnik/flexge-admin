@@ -27,18 +27,22 @@ const StudentDetailDateRecordList = props => (
           label: 'Date',
           path: 'startedAt',
           render: (value, row) => (row.children && row.children.length && <b>{moment(value).format('DD/MM/YYYY')}</b>) || (
-            <Tooltip
-              placement="top"
-              title={row.studentAccess && (row.studentAccess.os === 'ios' || row.studentAccess.os === 'android') ? 'Studied on App' : 'Studied on Computer'}
-            >
-              {row.studentAccess && (row.studentAccess.os === 'ios' || row.studentAccess.os === 'android') ? (
-                <Icon name="mobile" />
-              ) : (
-                <Icon name="desktop" />
+            <React.Fragment>
+              {row.studentAccess && (
+                <Tooltip
+                  placement="top"
+                  title={(row.studentAccess.os === 'ios' || row.studentAccess.os === 'android') ? 'Studied on App' : 'Studied on Computer'}
+                >
+                  {(row.studentAccess.os === 'ios' || row.studentAccess.os === 'android') ? (
+                    <Icon name="mobile" />
+                  ) : (
+                    <Icon name="desktop" />
+                  )}
+                  <ColumnSeparator size="xs" />
+                </Tooltip>
               )}
-              <ColumnSeparator size="xs" />
               {moment(value).format('DD/MM/YYYY HH:mm')}
-            </Tooltip>
+            </React.Fragment>
           ),
         },
         {
