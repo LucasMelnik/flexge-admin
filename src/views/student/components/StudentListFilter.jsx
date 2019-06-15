@@ -6,11 +6,18 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import Button from '../../../core/form/Button';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
-import MaskInput from '../../../core/form/MaskInput';
 
 const StudentListFilter = props => (
   <div>
     <Row>
+      <Column size={1}>
+        <TextInput
+          label="ID"
+          placeholder="Student ID"
+          value={get(props.values, 'cpf', '')}
+          onChange={value => props.onChange('cpf', value)}
+        />
+      </Column>
       <Column size={2}>
         <TextInput
           label="Name"
@@ -18,16 +25,6 @@ const StudentListFilter = props => (
           value={get(props.values, 'name', '')}
           onChange={name => props.onChange('name', name)}
           disabled={props.fetching}
-        />
-      </Column>
-      <Column size={1}>
-        <MaskInput
-          label="CPF"
-          value={get(props.values, 'cpf', '')}
-          onChange={value => props.onChange('cpf', value)}
-          delimiters={['.', '.', '-']}
-          blocks={[3, 3, 3, 2]}
-          numericOnly
         />
       </Column>
       <Column size={2}>
