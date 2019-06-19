@@ -5,6 +5,7 @@ import moment from 'moment';
 import Table from '../../../core/form/Table';
 import ImagePreview from '../../../core/layout/ImagePreview';
 import Button from '../../../core/form/Button';
+import ColumnSeparator from '../../../core/layout/ColumnSeparator';
 
 const CertificationTestExecutionListCompleted = props => (
   <Table
@@ -81,12 +82,23 @@ const CertificationTestExecutionListCompleted = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: '85px',
+        width: '95px',
         render: (cell, row) => (
-          <Button
-            icon="export"
-            onClick={() => browserHistory.push(`/certification-test-executions/${row.id}/details`)}
-          />
+          <React.Fragment>
+            <Button
+              icon="export"
+              onClick={() => browserHistory.push(`/certification-test-executions/${row.id}/details`)}
+            />
+            {row.approvedAt && ['ADMIN', 'DISTRIBUTOR_MANAGER'].some(role => localStorage.role === role) && (
+              <React.Fragment>
+                <ColumnSeparator size="xs" />
+                <Button
+                  icon="file-text"
+                  onClick={() => props.onDownload(row)}
+                />
+              </React.Fragment>
+            )}
+          </React.Fragment>
         ),
       },
     ]}
@@ -97,9 +109,9 @@ const CertificationTestExecutionListCompleted = props => (
 CertificationTestExecutionListCompleted.propTypes = {
   certificationTests: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
+  onDownload: PropTypes.func.isRequired,
 };
 
 export default CertificationTestExecutionListCompleted;

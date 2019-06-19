@@ -16,6 +16,7 @@ class CertificationTestExecutionListCompletedContainer extends Component {
       <CertificationTestExecutionListCompleted
         certificationTests={toJS(this.certificationTestListService.certificationTests)}
         fetching={this.certificationTestListService.fetch.fetching}
+        onDownload={this.certificationTestListService.handleDownloadTemplate}
       />
     );
   }
