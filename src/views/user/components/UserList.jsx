@@ -6,8 +6,9 @@ import Button from '../../../core/form/Button';
 
 const UserList = props => (
   <Table
-    pagination={{ pageSize: 25 }}
+    pagination={props.pagination}
     fetching={props.fetching}
+    onChange={props.onChange}
     columns={[
       ...[
         {

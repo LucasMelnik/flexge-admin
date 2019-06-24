@@ -4,6 +4,7 @@ import FetchService from '../../../core/services/FetchService';
 export default class CertificationTestExecutionListService {
   fetch = new FetchService();
   submit = new FetchService();
+  download = new FetchService();
 
   constructor() {
     extendObservable(this, {
@@ -58,5 +59,24 @@ export default class CertificationTestExecutionListService {
   handleFilterChange = action((value) => {
     this.filter = value;
     this.load();
+  });
+
+  handleDownloadTemplate = action(certificationTest => {
+    this.download
+      .fetch({
+        responseType: 'blob',
+        url: `/certification-test/${certificationTest.id}/certificate-template`,
+      })
+      .then(() => {
+        if (this.download.data) {
+          const link = document.createElement('a');
+          const fileUrl = window.URL.createObjectURL(this.download.data);
+          link.href = fileUrl;
+
+          link.download = 'certificate_template.pdf';
+          link.click();
+          setTimeout(() => window.URL.revokeObjectURL(fileUrl), 500);
+        }
+      });
   });
 }

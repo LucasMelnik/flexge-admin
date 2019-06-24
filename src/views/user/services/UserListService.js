@@ -31,7 +31,17 @@ class UserListService {
       query: {
         query: {
           ...this.baseQuery,
-          ...Object.keys(pickBy(UserListFilterService.form.getValues(), v => !!v)).reduce((acc, key) => Object.assign({}, acc, { [key]: UserListFilterService.form.getValue(key) }), {}),
+          ...Object.keys(pickBy(UserListFilterService.form.getValues(), v => !!v)).reduce((acc, key) => {
+            if (key === 'email') {
+              return Object.assign({}, acc, {
+                [key]: {
+                  $regex: UserListFilterService.form.getValue(key),
+                  $options: 'i',
+                },
+              });
+            }
+            return Object.assign({}, acc, { [key]: UserListFilterService.form.getValue(key) });
+          }, {}),
         },
       },
     }).then(() => {

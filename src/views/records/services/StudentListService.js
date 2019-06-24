@@ -1,4 +1,5 @@
 import { action, extendObservable } from 'mobx';
+import throttle from 'lodash/throttle';
 import FetchService from '../../../core/services/FetchService';
 
 class StudentListService {
@@ -10,10 +11,11 @@ class StudentListService {
     });
   }
 
-  searchStudents = action((search) => {
+  searchStudents = action(throttle((search) => {
     this.fetch.fetch({
-      url: '/students',
+      url: '/autocomplete-students',
       query: {
+        size: 15,
         query: {
           name: {
             $regex: search,
@@ -28,7 +30,7 @@ class StudentListService {
         this.students = [];
       }
     });
-  });
+  }, 2000));
 }
 
 const studentListService = new StudentListService();

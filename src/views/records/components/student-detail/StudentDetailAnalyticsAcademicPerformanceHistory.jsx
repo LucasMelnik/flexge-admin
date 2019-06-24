@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import round from 'lodash/round';
 import Table from '../../../../core/form/Table';
 import LinearProgress from '../../../../core/layout/LinearProgress';
@@ -27,6 +28,20 @@ const StudentDetailAnalyticsAcademicPerformanceHistory = props => (
         path: 'studiedTime',
         align: 'center',
         render: value => formatTimeFromSeconds(value, 'HH:mm'),
+      },
+      {
+        label: 'Start',
+        path: 'startedAt',
+        width: '100px',
+        align: 'center',
+        render: value => moment(value).format('DD/MM/YYYY'),
+      },
+      {
+        label: 'End',
+        path: 'completedAt',
+        width: '100px',
+        align: 'center',
+        render: value => value ? moment(value).format('DD/MM/YYYY') : '-',
       },
       {
         label: 'Average Unit Score',

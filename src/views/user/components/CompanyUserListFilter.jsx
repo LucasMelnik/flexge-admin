@@ -5,6 +5,7 @@ import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import Button from '../../../core/form/Button';
 import FetchSelect from '../../../core/form/FetchSelect';
+import TextInput from '../../../core/form/TextInput';
 
 const CompanyUserListFilter = props => (
   <Row>
@@ -43,6 +44,15 @@ const CompanyUserListFilter = props => (
           text: 'name',
           value: 'id',
         }}
+      />
+    </Column>
+    <Column size={3}>
+      <TextInput
+        label="Email"
+        placeholder="Filter by user email"
+        value={get(props.values, 'email', '')}
+        onChange={email => props.onChange('email', email)}
+        disabled={props.fetching}
       />
     </Column>
     <Column size={2}>

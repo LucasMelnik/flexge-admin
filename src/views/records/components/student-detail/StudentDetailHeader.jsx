@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import get from 'lodash/get';
 import range from 'lodash/range';
 import toInteger from 'lodash/toInteger';
@@ -96,6 +97,7 @@ export default class StudentDetailHeader extends Component {
               <div>
                 <h1 style={{ margin: 0 }}>{this.props.student.name}</h1>
                 <h4 style={{ margin: '-8px 0px 0px 0px' }}><i>{this.props.student.nickname}</i></h4>
+                <small style={{ margin: '-8px 0px 0px 0px' }}><i>Registered at: {moment(this.props.student.createdAt).format('DD/MM/YYYY')}</i></small>
               </div>
             </div>
           </Column>

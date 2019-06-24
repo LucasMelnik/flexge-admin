@@ -29,6 +29,8 @@ class UserListContainer extends Component {
         users={toJS(this.userListService.users)}
         fetching={this.userListService.fetch.fetching}
         onDelete={this.userListService.handleRemove}
+        pagination={toJS(UserListFilterService.pagination)}
+        onChange={UserListFilterService.onPaginationChange}
       />
     );
   }
