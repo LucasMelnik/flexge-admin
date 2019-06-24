@@ -10,12 +10,10 @@ class StudentRecordSelectContainer extends Component {
   state = { value: '' };
 
   handleChange = (value) => {
-    if (value && value.length > 2) {
-      StudentListService.searchStudents(value);
-    }
     this.setState({
       value: value || '',
     });
+    StudentListService.searchStudents(value);
   };
 
   handleSelect = (value, student) => {
