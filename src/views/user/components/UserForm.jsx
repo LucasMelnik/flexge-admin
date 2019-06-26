@@ -125,7 +125,14 @@ const UserForm = props => (
           <FetchSelect
             required
             showSearch
-            url={`schools?query[company]=${get(props.values, 'company', '')}`}
+            url="schools"
+            params={{
+              query: {
+                ...get(props.values, 'company', false) && {
+                  company: get(props.values, 'company', '')
+                },
+              },
+            }}
             disabled={props.submitting}
             label="School"
             value={get(props.values, 'school', '')}

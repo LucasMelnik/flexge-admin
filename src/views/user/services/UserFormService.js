@@ -48,8 +48,8 @@ export default class UserFormService {
       });
     } else {
       this.form.setInitialValues({
-        ...companyId && {
-          company: companyId,
+        ...localStorage.getItem('company') && {
+          company: localStorage.getItem('company'),
         },
         ...distributorId && {
           distributor: distributorId,
