@@ -24,6 +24,13 @@ const StudentCloseToFinishCourseList = props => (
           render: value => formatTimeFromSeconds(value || 0, 'hh:mm'),
         },
         {
+          label: 'Mastery Tests',
+          path: 'totalAvailableMastery',
+          width: '110px',
+          align: 'center',
+          render: (value, row) => `${row.totalApprovedMastery}/${row.totalAvailableMastery}`,
+        },
+        {
           label: 'Course',
           path: 'studentCourse.course.name',
           width: '65px',
