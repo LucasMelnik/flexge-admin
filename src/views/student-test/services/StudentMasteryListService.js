@@ -1,5 +1,6 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class StudentMasteryListService {
   fetch = new FetchService();
@@ -53,6 +54,20 @@ class StudentMasteryListService {
         this.items = this.fetch.data;
       } else {
         this.items = [];
+      }
+    });
+  });
+
+  resetMasteryTest = action((masteryId) => {
+    this.fetch.fetch({
+      url: `/students/${this.studentId}/mastery-tests/${masteryId}/reset`,
+      method: 'put'
+    }).then(() => {
+      if (this.fetch.data) {
+        this.loadMasteries();
+        NotificationService.addNotification('Mastery Test successfully reset', 'success');
+      } else {
+        NotificationService.addNotification('Error to reset Mastery Test', 'error');
       }
     });
   });
