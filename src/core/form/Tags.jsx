@@ -39,6 +39,7 @@ const Tags = props => (
             }}
           />
         )}
+        {props.disabled && (tag.canClick || tag.canLink) && '-'}
       </Tag>
     ))}
   </Form.Item>

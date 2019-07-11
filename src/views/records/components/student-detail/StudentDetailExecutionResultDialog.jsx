@@ -6,11 +6,11 @@ import Table from '../../../../core/form/Table';
 import Button from '../../../../core/form/Button';
 import Tag from '../../../../core/layout/Tag';
 
-const StudentDetailUnitResultDialog = props => (
+const StudentDetailExecutionResultDialog = props => (
   <Dialog
     width="90%"
     isOpen={props.isOpen}
-    title="Unit Execution Details"
+    title="Execution Details"
     onCancel={props.onClose}
     actions={[
       <Button
@@ -32,7 +32,7 @@ const StudentDetailUnitResultDialog = props => (
         },
         {
           label: 'Question/Subject',
-          path: 'unitItem.item.text',
+          path: 'item.text',
         },
         {
           label: 'Attempts',
@@ -57,10 +57,10 @@ const StudentDetailUnitResultDialog = props => (
   </Dialog>
 );
 
-StudentDetailUnitResultDialog.propTypes = {
+StudentDetailExecutionResultDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
-export default StudentDetailUnitResultDialog;
+export default StudentDetailExecutionResultDialog;

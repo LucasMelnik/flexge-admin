@@ -8,6 +8,7 @@ class StudentMasteryListService {
     extendObservable(this, {
       masteries: [],
       executions: [],
+      items: [],
       studentId: '',
     });
   }
@@ -15,6 +16,7 @@ class StudentMasteryListService {
   init = action((studentId) => {
     this.masteries = [];
     this.executions = [];
+    this.items = [];
     this.studentId = studentId;
     this.loadMasteries();
   });
@@ -39,6 +41,18 @@ class StudentMasteryListService {
         this.executions = this.fetch.data;
       } else {
         this.executions = [];
+      }
+    });
+  });
+
+  loadItems = action((masteryId, executionId) => {
+    this.fetch.fetch({
+      url: `/students/${this.studentId}/mastery-tests/${masteryId}/executions/${executionId}/items`,
+    }).then(() => {
+      if (this.fetch.data) {
+        this.items = this.fetch.data;
+      } else {
+        this.items = [];
       }
     });
   });

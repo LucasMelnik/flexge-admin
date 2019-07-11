@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import last from 'lodash/last';
 import Table from '../../../../core/form/Table';
 import ItemFormContainer from '../../../item/components/ItemFormContainer';
 import StatusItem from '../../../../core/layout/StatusItem';
@@ -23,7 +24,8 @@ const StudentMasteryResultItemList = props => (
       },
       {
         label: 'Answer',
-        path: 'answer',
+        path: 'attempts',
+        render: value => last(value).answer
       },
     ]}
     rows={props.items}

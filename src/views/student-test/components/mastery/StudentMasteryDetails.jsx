@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import StudentMasteryListContainer from './StudentMasteryListContainer';
-import StudentMasteryResultListContainer from './StudentMasteryResultListContainer';
 import Button from '../../../../core/form/Button';
 import Separator from '../../../../core/layout/Separator';
-import StudentMasteryResultItemList from './StudentMasteryResultItemList';
+import StudentMasteryListContainer from './StudentMasteryListContainer';
+import StudentMasteryResultListContainer from './StudentMasteryResultListContainer';
+import StudentMasteryResultItemListContainer from './StudentMasteryResultItemListContainer';
 
 export default class StudentMasteryDetails extends Component {
 
@@ -90,11 +90,10 @@ export default class StudentMasteryDetails extends Component {
               />
             </div>
             <Separator />
-            <StudentMasteryResultItemList
+            <StudentMasteryResultItemListContainer
               studentId={this.props.studentId}
               masteryId={this.state.currentMastery.id}
               executionId={this.state.currentExecution.id}
-              items={this.state.currentExecution.items}
             />
           </div>
         }
