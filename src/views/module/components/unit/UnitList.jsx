@@ -136,7 +136,7 @@ const UnitList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: props.allowReorder ? '180px' : '105px',
+        width: props.allowReorder ? '230px' : '125px',
         render: (cell, row, index) => (
           <div>
             {(row.createdBy === localStorage.id || localStorage.role === 'ADMIN') && (
@@ -166,6 +166,19 @@ const UnitList = props => (
                 onClick={() => props.onAutoReorder(index, 'REMOVE_LINE')}
               />
             )}
+            {' '}
+            <form
+              action="http://localhost:8080/public/tasting"
+              target="_blank"
+              method="post"
+              style={{ display: 'inline-block' }}
+            >
+              <input type="hidden" name="unit" value={row.id} />
+              <Button
+                icon="select"
+                buttonType="submit"
+              />
+            </form>
           </div>
         ),
       },
