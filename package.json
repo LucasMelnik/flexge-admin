@@ -5,13 +5,13 @@
   "dependencies": {
     "@vimeo/player": "^2.8.2",
     "antd": "^3.15.0",
-    "axios": "0.16.1",
+    "axios": "0.19.0",
     "chart.js": "^2.7.3",
     "cleave.js": "0.7.21",
     "gerador-validador-cpf": "^3.1.1",
     "jquery": "^3.4.0",
     "jwt-decode": "2.2.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "mobx": "3.1.10",
     "mobx-react": "4.2.1",
     "moment": "^2.24.0",
@@ -32,7 +32,7 @@
     "validator": "7.0.0"
   },
   "devDependencies": {
-    "react-scripts": "3.0.0"
+    "react-scripts": "3.0.1"
   },
   "eslintConfig": {
     "extends": "react-app"
