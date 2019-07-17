@@ -168,7 +168,7 @@ const UnitList = props => (
             )}
             {' '}
             <form
-              action="http://localhost:8080/public/tasting"
+              action={`${process.env.REACT_APP_API_URL.substring(0, process.env.REACT_APP_API_URL.length - 3)}public/tasting`}
               target="_blank"
               method="post"
               style={{ display: 'inline-block' }}
