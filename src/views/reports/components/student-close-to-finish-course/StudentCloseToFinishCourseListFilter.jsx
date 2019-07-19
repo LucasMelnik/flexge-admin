@@ -18,6 +18,7 @@ const StudentCloseToFinishCourseListFilter = props => (
         <Column size={3}>
           <FetchSelect
             showSearch
+            required
             url="/schools"
             label="School"
             disabled={props.fetching}
