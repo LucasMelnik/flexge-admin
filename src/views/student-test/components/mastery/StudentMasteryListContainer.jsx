@@ -22,6 +22,7 @@ class StudentMasteryListContainer extends Component {
         masteries={toJS(StudentMasteryListService.masteries)}
         fetching={StudentMasteryListService.fetch.fetching}
         onSelect={this.props.onSelect}
+        onReset={StudentMasteryListService.resetMasteryTest}
       />
     );
   }

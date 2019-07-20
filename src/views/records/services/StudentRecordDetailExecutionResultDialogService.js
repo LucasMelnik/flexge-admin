@@ -2,7 +2,7 @@ import { action, extendObservable } from 'mobx';
 import orderBy from 'lodash/orderBy';
 import FetchService from '../../../core/services/FetchService';
 
-class StudentRecordDetailUnitResultDialogService {
+class StudentRecordDetailExecutionResultDialogService {
   fetch = new FetchService();
 
   constructor() {
@@ -14,7 +14,7 @@ class StudentRecordDetailUnitResultDialogService {
 
   handleShow = action((unitResultId) => {
     this.fetch.fetch({
-      url: `/results/${unitResultId}/items`,
+      url: `/executions/${unitResultId}/items`,
     }).then(() => {
       if (this.fetch.data) {
         this.items = orderBy(this.fetch.data, 'answeredAt', 'asc');
@@ -31,6 +31,6 @@ class StudentRecordDetailUnitResultDialogService {
   });
 }
 
-const studentRecordDetailUnitResultDialogService = new StudentRecordDetailUnitResultDialogService();
+const studentRecordDetailExecutionResultDialogService = new StudentRecordDetailExecutionResultDialogService();
 
-export default studentRecordDetailUnitResultDialogService;
+export default studentRecordDetailExecutionResultDialogService;

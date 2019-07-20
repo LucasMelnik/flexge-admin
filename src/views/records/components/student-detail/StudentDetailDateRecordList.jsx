@@ -142,7 +142,7 @@ const StudentDetailDateRecordList = props => (
           path: 'score',
           align: 'center',
           render: (value, row) => {
-            if (row.unit && row.unit.module.academicPlan.key === 'KIDS') {
+            if (get(row, 'unit.module.academicPlan.key', '') === 'KIDS') {
               if (row.unit && row.completedAt) {
                 return (
                   <Tag color={(row.points || (row.score && row.type === 'SIMPLE_REVIEW')) ? 'green' : 'red'}>
@@ -157,7 +157,7 @@ const StudentDetailDateRecordList = props => (
                   </span>
                 );
               }
-            } else if (row.unit && row.unit.module.academicPlan.key === 'FUND_II') {
+            } else {
               if (row.unit && row.completedAt) {
                 return (
                   <Tag color={(value || 0) >= row.unit.scoreToPass ? 'green' : 'red'}>
@@ -199,47 +199,26 @@ const StudentDetailDateRecordList = props => (
           label: 'Repeat',
           path: 'repeatCount',
           align: 'center',
-          render: (value, row) => row.children ? (
-            <b>
-              {row.children.filter(c => c.type !== 'MASTERY_TEST').reduce((dateAcc, unit) => (
-                dateAcc + unit.items.reduce((unitAcc, item) => unitAcc + item.repeatCount, 0)
-              ), 0)}
-            </b>
-          ) : get(row, 'items', []).reduce((acc, item) => acc + item.repeatCount, 0),
         },
         {
           label: 'Record',
           path: 'recordCount',
           align: 'center',
-          render: (value, row) => row.children ? (
-            <b>
-              {row.children.filter(c => c.type !== 'MASTERY_TEST').reduce((dateAcc, unit) => (
-                dateAcc + unit.items.reduce((unitAcc, item) => unitAcc + item.recordCount, 0)
-              ), 0)}
-            </b>
-          ) : get(row, 'items', []).reduce((acc, item) => acc + item.recordCount, 0),
         },
         {
           label: 'Listen',
           path: 'listenCount',
           align: 'center',
-          render: (value, row) => row.children ? (
-            <b>
-              {row.children.filter(c => c.type !== 'MASTERY_TEST').reduce((dateAcc, unit) => (
-                dateAcc + unit.items.reduce((unitAcc, item) => unitAcc + item.listenCount, 0)
-              ), 0)}
-            </b>
-          ) : get(row, 'items', []).reduce((acc, item) => acc + item.listenCount, 0),
         },
         {
           label: 'Actions',
           path: 'action',
           width: '75px',
           align: 'center',
-          render: (value, row) => (!row.children && !row.docType && row.type !== 'MASTERY_TEST') && (
+          render: (value, row) => (!row.children && !row.docType) && (
             <Button
               icon="bars"
-              onClick={() => props.onDetailUnitResult(row.id)}
+              onClick={() => props.onDetailExecutionResult(row.id)}
             />
           ),
         },
@@ -263,7 +242,7 @@ StudentDetailDateRecordList.propTypes = {
     }),
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
-  onDetailUnitResult: PropTypes.func.isRequired,
+  onDetailExecutionResult: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onFilter: PropTypes.func.isRequired,
   filterValues: PropTypes.shape({}).isRequired,

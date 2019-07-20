@@ -1,6 +1,7 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
+import { isRequired } from '../../../core/validations';
 
 class StudentCloseToFinishCourseListService {
   fetch = new FetchService();
@@ -11,7 +12,7 @@ class StudentCloseToFinishCourseListService {
       students: [],
     });
     this.form.validations = {
-      school: [],
+      school: [isRequired],
       schoolClass: [],
     };
   }

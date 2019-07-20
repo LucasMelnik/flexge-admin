@@ -126,7 +126,7 @@ const StudentDetailContentRecordList = props => (
                   {value || 0}
                 </Tag>
               ) : (
-                <Tag color={(row.points || (row.studentMasteryTest && row.score && row.score > row.scoreToPass)) ? 'green' : 'red'}>
+                <Tag color={(row.points || (row.studentMasteryTest && row.score && row.score >= row.scoreToPass)) ? 'green' : 'red'}>
                   {value || 0}{row.scoreToPass ? ` / ${row.scoreToPass}` : ''}
                 </Tag>
               )
@@ -279,11 +279,11 @@ const StudentDetailContentRecordList = props => (
         width: '75px',
         align: 'center',
         render: (value, row) => {
-          if (!row.children && !row.docType && !row.studentMasteryTest) {
+          if (!row.children && !row.docType) {
             return (
               <Button
                 icon="bars"
-                onClick={() => props.onDetailUnitResult(row.id)}
+                onClick={() => props.onDetailExecutionResult(row.id)}
               />
             );
           }
@@ -302,7 +302,7 @@ StudentDetailContentRecordList.propTypes = {
     docType: PropTypes.string,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
-  onDetailUnitResult: PropTypes.func.isRequired,
+  onDetailExecutionResult: PropTypes.func.isRequired,
 };
 
 export default StudentDetailContentRecordList;

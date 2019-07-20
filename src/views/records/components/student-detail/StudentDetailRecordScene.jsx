@@ -13,7 +13,7 @@ import StudentDetailAnalyticsStudyQualityChartContainer from './StudentDetailAna
 import StudentDetailAnalyticsAcademicPerformanceHistoryContainer from './StudentDetailAnalyticsAcademicPerformanceHistoryContainer';
 import StudentDetailContentRecordListFilterContainer from './StudentDetailContentRecordListFilterContainer';
 import StudentDetailCurrentPerformancePanelContainer from './StudentDetailCurrentPerformancePanelContainer';
-import StudentDetailUnitResultDialogContainer from './StudentDetailUnitResultDialogContainer';
+import StudentDetailExecutionResultDialogContainer from './StudentDetailExecutionResultDialogContainer';
 import StudentDetailAchievementListContainer from './StudentDetailAchievementListContainer';
 import StudentStudiedGrammarListContainer from '../common/StudentStudiedGrammarListContainer';
 
@@ -106,7 +106,7 @@ const StudentDetailRecordScene = props => (
 
       ]}
     />
-    <StudentDetailUnitResultDialogContainer />
+    <StudentDetailExecutionResultDialogContainer />
   </div>
 );
 
