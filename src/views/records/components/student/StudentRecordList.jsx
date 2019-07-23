@@ -173,7 +173,7 @@ const StudentRecordList = props => (
       ]}
       rows={props.students}
       selectable
-      onSelect={row => (!row.deletedAt && row.initialEnglishLevel >= 0) && props.onSelect(row)}
+      onSelect={row => (!row.deletedAt && (row.academicPlan.key === 'KIDS' || row.initialEnglishLevel >= 0)) && props.onSelect(row)}
     />
   </div>
 );

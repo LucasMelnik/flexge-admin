@@ -63,7 +63,11 @@ const StudentDetailAnalyticsAcademicPerformanceHistory = props => (
         align: 'center',
         render: value => value && (
           <Tag
-            color={value >= 80 ? 'green' : (value < 80 && value >= 70) ? 'orange' : 'red'}
+            color={props.student.academicPlan.key === 'KIDS' ? (
+              value >= 60 ? 'green' : (value < 60 && value >= 50) ? 'orange' : 'red'
+            ) : (
+              value >= 80 ? 'green' : (value < 80 && value >= 70) ? 'orange' : 'red'
+            )}
           >
             {round(value, 2)}
           </Tag>
@@ -86,6 +90,11 @@ const StudentDetailAnalyticsAcademicPerformanceHistory = props => (
 );
 
 StudentDetailAnalyticsAcademicPerformanceHistory.propTypes = {
+  student: PropTypes.shape({
+    academicPlan: PropTypes.shape({
+      key: PropTypes.string
+    })
+  }).isRequired,
   loading: PropTypes.bool.isRequired,
   history: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };

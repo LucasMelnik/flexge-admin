@@ -33,8 +33,8 @@ const StudentDetailAnalyticsAcademicPerformance = props => props.currentPerforma
         noDataText="No data"
         value={props.currentPerformance.averageSpeechRecognitionScore && round(props.currentPerformance.averageSpeechRecognitionScore)}
         max={100}
-        successCondition={value => value >= 80}
-        badCondition={value => value < 70}
+        successCondition={value => value >= (props.student.academicPlan.key === 'KIDS' ? 60 : 80)}
+        badCondition={value => value < (props.student.academicPlan.key === 'KIDS' ? 50 : 70)}
         valueRender={value => `${value}`}
       />
       <ColumnSeparator size="lg" />
@@ -61,6 +61,11 @@ StudentDetailAnalyticsAcademicPerformance.propTypes = {
     averageSpeechRecognitionScore: PropTypes.number,
     averageUnitScore: PropTypes.number,
   }).isRequired,
+  student: PropTypes.shape({
+    academicPlan: PropTypes.shape({
+      key: PropTypes.string
+    })
+  }).isRequired
 };
 
 export default StudentDetailAnalyticsAcademicPerformance;
