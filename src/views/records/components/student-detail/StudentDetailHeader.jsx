@@ -47,16 +47,22 @@ export default class StudentDetailHeader extends Component {
   };
 
   getScoreByRequirement = (item) => {
-    const getScore = divisor => toInteger(((item.firstScore * 2.5) / divisor) +
-      (((item.secondScore || 0) * 1.6) / divisor) +
-      (((item.thirdScore || 0) * 0.9) / divisor));
+    const getScore = divisor => {
+      if (isFinite(item.secondScore) && isFinite(item.thirdScore)) {
+        return toInteger(
+          ((item.firstScore * 2.5) / divisor) +
+          (((item.secondScore || 0) * 1.6) / divisor) +
+          (((item.thirdScore || 0) * 0.9) / divisor),
+        );
+      }
+      return toInteger((item.firstScore / divisor) * 5);
+    };
 
     if (
       [
         'DAYS_STUDIED',
         'DAYS_STUDIED_AT_LEAST_30_MINUTES',
         'UNIT_AVERAGE_SCORE',
-        'REPEAT_USAGE',
         'TIME_STUDIED',
       ].find(type => type === item.requirement)
     ) {
@@ -69,11 +75,8 @@ export default class StudentDetailHeader extends Component {
       ].find(type => type === item.requirement)
     ) {
       return getScore(2);
-    } else if (item.requirement === 'REPEAT_RECORD_LISTEN_RELATION') {
-      return getScore(1);
-    } else if (item.requirement === 'TRANSLATE_USAGE' || item.requirement === 'READING_USAGE') {
-      const score = getScore(-3);
-      return score <= 0 ? 5 : 5 - getScore(-3);
+    } else if (item.requirement === 'REPEAT_USAGE') {
+      return getScore(4);
     }
     return null;
   };
@@ -201,12 +204,6 @@ export default class StudentDetailHeader extends Component {
                     return 'Uso do botão Repetir';
                   } else if (type === 'LISTEN_USAGE') {
                     return 'Uso do botão Escutar';
-                  } else if (type === 'REPEAT_RECORD_LISTEN_RELATION') {
-                    return 'Usar 2x mais o botão Repetir do que o Escutar e Falar';
-                  } else if (type === 'TRANSLATE_USAGE') {
-                    return 'Não usar excessivamente o botão Translate';
-                  } else if (type === 'READING_USAGE') {
-                    return 'Não usar excessivamente o botão Reading';
                   }
                   return '';
                 },
