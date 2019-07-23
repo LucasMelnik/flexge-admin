@@ -5,6 +5,7 @@ import moment from 'moment';
 import get from 'lodash/get';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
+import Tag from '../../../core/layout/Tag';
 
 const SentMessageList = props => (
   <Table
@@ -16,19 +17,20 @@ const SentMessageList = props => (
       {
         label: 'Date',
         path: 'sentAt',
-        render: value => moment(value).format('DD/MM/YYYY HH:mm'),
+        render: (value, row) => row.children ? moment(value).format('DD/MM/YYYY HH:mm') : '',
         width: 160,
       },
       {
         label: 'Subject',
         path: 'subject',
+        render: (value, row) => row.children ? value : row.name,
       },
       {
         label: 'Actions',
         path: 'action',
         width: 80,
         align: 'center',
-        render: (value, row) => (
+        render: (value, row) => row.children ? (
           <Button
             icon="profile"
             onClick={() => Modal.info({
@@ -38,6 +40,10 @@ const SentMessageList = props => (
               okType: 'default',
             })}
           />
+        ) : (
+          <Tag color={row.readAt ? 'green' : 'red'}>
+            {row.readAt ? 'Read' : 'Not read'}
+          </Tag>
         ),
       },
     ]}
