@@ -10,6 +10,7 @@ class UnitListContainer extends Component {
 
   static propTypes = {
     moduleId: PropTypes.string.isRequired,
+    academicPlan: PropTypes.string.isRequired,
   };
 
   componentDidMount() {
@@ -20,6 +21,7 @@ class UnitListContainer extends Component {
     return (
       <UnitList
         units={toJS(UnitListService.units)}
+        academicPlan={this.props.academicPlan}
         fetching={UnitListService.fetch.fetching || UnitListService.reorderSubmitting}
         onDelete={UnitListService.handleRemove}
         onAutoReorder={UnitListService.handleAutoReorder}
