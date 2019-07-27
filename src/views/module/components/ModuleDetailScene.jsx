@@ -67,7 +67,10 @@ const ModuleDetailScene = props => (
     >
       <UnitListFilterContainer />
       {props.module.id && (
-        <UnitListContainer moduleId={props.module.id} />
+        <UnitListContainer
+          moduleId={props.module.id}
+          academicPlan={props.module.academicPlan.key}
+        />
       )}
     </Card>
   </div>
