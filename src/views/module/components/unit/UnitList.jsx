@@ -167,18 +167,20 @@ const UnitList = props => (
               />
             )}
             {' '}
-            <form
-              action={`${process.env.REACT_APP_API_URL.substring(0, process.env.REACT_APP_API_URL.length - 3)}public/tasting`}
-              target="_blank"
-              method="post"
-              style={{ display: 'inline-block' }}
-            >
-              <input type="hidden" name="unit" value={row.id} />
-              <Button
-                icon="select"
-                buttonType="submit"
-              />
-            </form>
+            {['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN'].some(role => localStorage.role === role) && props.academicPlan === 'FUND_II' && (
+              <form
+                action={`${process.env.REACT_APP_API_URL.substring(0, process.env.REACT_APP_API_URL.length - 3)}public/tasting`}
+                target="_blank"
+                method="post"
+                style={{ display: 'inline-block' }}
+              >
+                <input type="hidden" name="unit" value={row.id} />
+                <Button
+                  icon="select"
+                  buttonType="submit"
+                />
+              </form>
+            )}
           </div>
         ),
       },
@@ -200,6 +202,7 @@ UnitList.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
+  academicPlan: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   allowReorder: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
