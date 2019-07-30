@@ -11,8 +11,6 @@ class StudentListService {
   constructor() {
     extendObservable(this, {
       students: [],
-      name: '',
-      email: '',
       schoolId: null,
       classId: null,
       filteredStudents: null,
@@ -33,11 +31,10 @@ class StudentListService {
   }
 
   init = action((schoolId, classId) => {
-    this.name = '';
-    this.email = '';
     this.schoolId = schoolId;
     this.classId = classId;
     this.students = [];
+    this.form.setInitialValues({});
     if (classId) {
       this.load();
     }
