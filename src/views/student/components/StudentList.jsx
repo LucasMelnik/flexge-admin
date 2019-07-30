@@ -8,6 +8,8 @@ import Button from '../../../core/form/Button';
 const StudentList = props => (
   <Table
     fetching={props.fetching}
+    pagination={props.pagination}
+    onChange={props.onChange}
     columns={[
       ...[
         {
@@ -135,6 +137,11 @@ StudentList.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
+  pagination: PropTypes.shape({
+    current: PropTypes.number,
+    total: PropTypes.number,
+    pageSize: PropTypes.number,
+  }).isRequired,
   baseUrl: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   editable: PropTypes.bool.isRequired,
@@ -143,6 +150,7 @@ StudentList.propTypes = {
   onRestore: PropTypes.func.isRequired,
   onSelect: PropTypes.func,
   hasSchoolClass: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 StudentList.defaultProps = {

@@ -14,6 +14,11 @@ class StudentListService {
       schoolId: null,
       classId: null,
       filteredStudents: null,
+      pagination: {
+        current: 1,
+        total: 0,
+        pageSize: 50,
+      },
     });
     this.form.validations = {
       course: [
@@ -42,13 +47,19 @@ class StudentListService {
 
   load = action(() => {
     if (this.schoolId && this.classId) {
+      this.pagination = null;
       this.loadBySchoolAndClass();
     } else {
+      this.pagination = {
+        current: 1,
+        total: 0,
+        pageSize: 50,
+      };
       this.loadAllStudents();
     }
   });
 
-  loadAllStudents = action(() => {
+  loadAllStudents = action((page) => {
     this.form.submitted = true;
     if (this.form.errors) {
       NotificationService.addNotification(
@@ -57,11 +68,17 @@ class StudentListService {
       );
       return;
     }
+    if (page) {
+      this.pagination.current = page.current;
+    }
     this.fetch.fetch({
       url: '/students',
       query: {
         query: {
           onlyRemoved: false,
+          verbose: 'true',
+          page: page ? page.current - 1 : 0,
+          size: this.pagination.pageSize,
           ...this.form.getValue('name') && {
             name: this.form.getValue('name'),
           },
@@ -81,7 +98,8 @@ class StudentListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.students = this.fetch.data;
+        this.students = this.fetch.data.docs;
+        this.pagination.total = this.fetch.data.total;
       } else {
         this.students = [];
       }
@@ -93,17 +111,13 @@ class StudentListService {
       url: `/schools/${this.schoolId}/classes/${this.classId}/students`,
       query: {
         query: {
+          verbose: 'true',
+
           ...this.form.getValue('name') && {
-            name: {
-              $regex: this.form.getValue('name'),
-              $options: 'i',
-            },
+            name: this.form.getValue('name'),
           },
           ...this.form.getValue('email') && {
-            email: {
-              $regex: this.form.getValue('email'),
-              $options: 'i',
-            },
+            email: this.form.getValue('email'),
           },
         },
       },
