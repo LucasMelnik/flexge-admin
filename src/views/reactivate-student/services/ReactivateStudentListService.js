@@ -10,8 +10,6 @@ class ReactivateStudentListService {
   constructor() {
     extendObservable(this, {
       students: [],
-      name: '',
-      email: '',
       schoolId: null,
       filteredStudents: null,
     });
@@ -31,10 +29,9 @@ class ReactivateStudentListService {
   }
 
   init = action((schoolId) => {
-    this.name = '';
-    this.email = '';
     this.schoolId = schoolId;
     this.students = [];
+    this.form.setInitialValues({});
     if (this.schoolId) {
       this.load();
     }
@@ -51,6 +48,7 @@ class ReactivateStudentListService {
       query: {
         query: {
           onlyRemoved: true,
+          verbose: 'false',
           ...this.form.getValue('name') && {
             name: this.form.getValue('name'),
           },
