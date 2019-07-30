@@ -11,14 +11,17 @@ class StudentListService {
   }
 
   searchStudents = action((search) => {
+    if (!search || search.length < 4) {
+      return;
+    }
+
     this.fetch.fetch({
-      url: '/students',
+      url: '/autocomplete-students',
       query: {
+        size: 15,
+        page: 0,
         query: {
-          name: {
-            $regex: search,
-            $options: 'i',
-          },
+          name: search,
         },
       },
     }).then(() => {
