@@ -14,6 +14,7 @@ const StudentListFilter = props => (
         <TextInput
           label="ID"
           placeholder="Student ID"
+          disabled={props.fetching}
           value={get(props.values, 'cpf', '')}
           onChange={value => props.onChange('cpf', value)}
         />
@@ -40,6 +41,7 @@ const StudentListFilter = props => (
         <FetchSelect
           url="/schools"
           label="School"
+          showSearch
           disabled={props.fetching}
           value={get(props.values, 'school', '')}
           onChange={school => props.onChange('school', school)}
@@ -53,7 +55,7 @@ const StudentListFilter = props => (
         <Column size={2}>
           <FetchSelect
             url={`/schools/${props.values.school}/classes`}
-            label="Class rooms"
+            label="Classrooms"
             disabled={props.fetching}
             value={get(props.values, 'schoolClass', '')}
             onChange={school => props.onChange('schoolClass', school)}

@@ -64,18 +64,12 @@ class StudentListService {
       url: '/students',
       query: {
         query: {
-          removedAt: null,
+          onlyRemoved: false,
           ...this.form.getValue('name') && {
-            name: {
-              $regex: this.form.getValue('name'),
-              $options: 'i',
-            },
+            name: this.form.getValue('name'),
           },
           ...this.form.getValue('email') && {
-            email: {
-              $regex: this.form.getValue('email'),
-              $options: 'i',
-            },
+            email: this.form.getValue('email'),
           },
           ...this.form.getValue('cpf') && {
             cpf: this.form.getValue('cpf'),
