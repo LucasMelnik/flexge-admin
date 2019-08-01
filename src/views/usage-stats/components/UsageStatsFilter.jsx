@@ -6,13 +6,35 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import MonthInput from '../../../core/form/MonthInput';
+import RangeDateInput from '../../../core/form/RangeDateInput';
+import Select from '../../../core/form/Select';
 
 const UsageStatsFilter = props => (
   <Row>
+    <Column size={1}>
+      <Select
+        label="Filter Type"
+        required
+        disabled={props.fetching}
+        value={props.filterType}
+        onChange={props.onFilterTypeChange}
+        options={[
+          {
+            label: 'By month',
+            value: 'month'
+          },
+          {
+            label: 'By custom period',
+            value: 'date-range'
+          },
+        ]}
+      />
+    </Column>
     {(localStorage.role === 'ADMIN') && (
       <Column size={3}>
         <FetchSelect
           showSearch
+          required={props.filterType === 'date-range'}
           label="Filter by Distributor"
           disabled={props.fetching}
           value={get(props.values, 'distributor', '')}
@@ -22,6 +44,7 @@ const UsageStatsFilter = props => (
             text: 'name',
             value: 'id',
           }}
+          errorText={get(props.errors, 'distributor', '')}
         />
       </Column>
     )}
@@ -41,16 +64,34 @@ const UsageStatsFilter = props => (
         />
       </Column>
     )}
-    <Column size={1}>
-      <MonthInput
-        required
-        label="Month"
-        disabled={props.fetching}
-        value={get(props.values, 'month', undefined) ? props.values.month.toDate() : undefined}
-        onChange={value => props.onChange('month', value)}
-        errorText={get(props.errors, 'month', '')}
-      />
-    </Column>
+    {props.filterType === 'month' && (
+      <Column size={1}>
+        <MonthInput
+          required
+          label="Month"
+          disabled={props.fetching}
+          value={get(props.values, 'month', undefined) ? props.values.month.toDate() : undefined}
+          onChange={value => props.onChange('month', value)}
+          errorText={get(props.errors, 'month', '')}
+        />
+      </Column>
+    )}
+    {props.filterType === 'date-range' && (
+      <Column size={2}>
+        <RangeDateInput
+          required
+          label="Custom Period"
+          disabled={props.fetching}
+          onChange={(dates) => {
+            props.onChange('from', dates[0]);
+            props.onChange('to', dates[1]);
+          }}
+          placeholder={['From', 'To']}
+          value={[get(props.values, 'from', undefined), get(props.values, 'to', undefined)]}
+          errorText={get(props.errors, 'from', '')}
+        />
+      </Column>
+    )}
     <Column size={2}>
       <div style={{ height: 42 }} />
       <Button
@@ -65,6 +106,8 @@ const UsageStatsFilter = props => (
 UsageStatsFilter.propTypes = {
   values: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
+  filterType: PropTypes.string.isRequired,
+  onFilterTypeChange: PropTypes.func.isRequired,
   fetching: PropTypes.bool,
   onSearch: PropTypes.func,
   errors: PropTypes.object,
