@@ -31,16 +31,20 @@ class UsageStatsListService {
     })
   });
 
-  load = action((month, company, distributor) => {
+  load = action((type, params) => {
 
     this.fetch.fetch({
-      url: `/reports/${month.format('MM-YYYY')}/usage-stats`,
+      url: `/reports/${type}/usage-stats`,
       query: {
-        ...company && {
-          company,
+        ...params,
+        ...params.month && {
+          month: params.month.format('MM-YYYY')
         },
-        ...distributor && {
-          distributor,
+        ...params.from && {
+          from: params.from.format('YYYY-MM-DD')
+        },
+        ...params.to && {
+          to: params.to.format('YYYY-MM-DD')
         },
       },
     }).then(() => {
@@ -48,7 +52,7 @@ class UsageStatsListService {
         const formattedData = this.fetch.data.map(school => ({
           ...school,
           children: school.children.map((plan) => {
-            if (plan.activeStudentsLastMonth) {
+            if (type === 'month' && plan.activeStudentsLastMonth) {
               const currentCharge = plan.activeStudents - plan.placementCount;
               const lastMonthCharge = plan.activeStudentsLastMonth - plan.placementCountLastMonth;
 
@@ -62,7 +66,7 @@ class UsageStatsListService {
         }));
         this.schools = [
           ...formattedData,
-          ...this.allSchools.filter(s => !formattedData.some(x => x.id === s.id) && (!company || s.company.id === company) && (!distributor || s.company.distributor === distributor))
+          ...this.allSchools.filter(s => !formattedData.some(x => x.id === s.id) && (!params.company || s.company.id === params.company) && (!params.distributor || s.company.distributor === params.distributor))
         ];
       } else {
         this.schools = [];

@@ -14,6 +14,9 @@ class UsageStatsFilterContainer extends Component {
     return (
       <UsageStatsFilter
         values={UsageStatsFilterService.form.getValues()}
+        errors={UsageStatsFilterService.form.errors}
+        onFilterTypeChange={UsageStatsFilterService.handleChangeType}
+        filterType={UsageStatsFilterService.filterType}
         onChange={UsageStatsFilterService.form.setValue}
         onSearch={UsageStatsFilterService.handleSearch}
         fetching={UsageStatsListService.fetch.fetching}
