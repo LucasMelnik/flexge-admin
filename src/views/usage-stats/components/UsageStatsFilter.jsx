@@ -8,6 +8,7 @@ import Column from '../../../core/layout/Column';
 import MonthInput from '../../../core/form/MonthInput';
 import RangeDateInput from '../../../core/form/RangeDateInput';
 import Select from '../../../core/form/Select';
+import ColumnSeparator from '../../../core/layout/ColumnSeparator';
 
 const UsageStatsFilter = props => (
   <Row>
@@ -99,6 +100,16 @@ const UsageStatsFilter = props => (
         icon="search"
         onClick={props.onSearch}
       />
+      <ColumnSeparator size="xs" />
+      {props.filterType === 'date-range' && (
+        <Button
+          label="Export data"
+          icon="download"
+          loading={props.downloading}
+          disabled={props.fetching}
+          onClick={props.onExport}
+        />
+      )}
     </Column>
   </Row>
 );
@@ -110,12 +121,16 @@ UsageStatsFilter.propTypes = {
   onFilterTypeChange: PropTypes.func.isRequired,
   fetching: PropTypes.bool,
   onSearch: PropTypes.func,
+  onExport: PropTypes.func,
+  downloading: PropTypes.bool,
   errors: PropTypes.object,
 };
 
 UsageStatsFilter.defaultProps = {
   fetching: false,
+  downloading: false,
   onSearch: null,
+  onExport: null,
   errors: {},
 };
 

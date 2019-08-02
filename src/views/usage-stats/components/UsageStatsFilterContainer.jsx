@@ -19,7 +19,9 @@ class UsageStatsFilterContainer extends Component {
         filterType={UsageStatsFilterService.filterType}
         onChange={UsageStatsFilterService.form.setValue}
         onSearch={UsageStatsFilterService.handleSearch}
+        onExport={UsageStatsFilterService.handleExport}
         fetching={UsageStatsListService.fetch.fetching}
+        downloading={UsageStatsFilterService.download.fetching}
       />
     );
   }
