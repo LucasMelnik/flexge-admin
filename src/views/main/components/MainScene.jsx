@@ -19,6 +19,13 @@ const MainScene = props => (
             key: 'profile',
           },
           {
+            title: 'Documents',
+            icon: 'folder-add',
+            link: '/public-documents',
+            type: 'menu',
+            key: 'all-documents',
+          },
+          {
             title: 'Dashboard',
             icon: 'dashboard',
             link: '/',
@@ -74,6 +81,13 @@ const MainScene = props => (
                 group: 'Admin Register',
                 icon: 'compass',
                 key: 'regions',
+              },
+              {
+                label: 'Documents',
+                link: '/documents',
+                group: 'Admin Register',
+                icon: 'folder-add',
+                key: 'documents',
               },
               {
                 label: 'Achievements',
