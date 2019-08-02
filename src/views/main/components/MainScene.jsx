@@ -76,6 +76,13 @@ const MainScene = props => (
                 key: 'regions',
               },
               {
+                label: 'Documents',
+                link: '/documents',
+                group: 'Admin Register',
+                icon: 'folder-add',
+                key: 'documents',
+              },
+              {
                 label: 'Achievements',
                 link: '/achievements',
                 group: 'System Configuration',
