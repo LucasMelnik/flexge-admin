@@ -1,5 +1,6 @@
 import { action, extendObservable } from 'mobx';
 import FormService from '../../../core/services/FormService';
+import FetchService from '../../../core/services/FetchService';
 import { isRequired } from '../../../core/validations';
 import NotificationService from '../../../core/services/NotificationService';
 import UsageStatsListService from './UsageStatsListService';
@@ -7,6 +8,7 @@ import DemoStudentListService from './DemoStudentListService';
 
 class UsageStatsFilterService {
   form = new FormService();
+  download = new FetchService();
 
   constructor() {
     extendObservable(this, {
@@ -52,6 +54,40 @@ class UsageStatsFilterService {
     } else {
       DemoStudentListService.init();
     }
+  });
+
+  handleExport = action(() => {
+    this.form.submitted = true;
+    if (this.form.errors) {
+      NotificationService.addNotification('Fill the required fields', 'error');
+      return;
+    }
+
+    this.download
+      .fetch({
+        responseType: 'blob',
+        url: `/reports/${this.filterType}/usage-stats/student-export`,
+        query: {
+          ...this.form.getValues(),
+          ...this.form.getValue('from') && {
+            from: this.form.getValue('from').format('YYYY-MM-DD')
+          },
+          ...this.form.getValue('to') && {
+            to: this.form.getValue('to').format('YYYY-MM-DD')
+          },
+        },
+      })
+      .then(() => {
+        if (this.download.data) {
+          const link = document.createElement('a');
+          const fileUrl = window.URL.createObjectURL(this.download.data);
+          link.href = fileUrl;
+
+          link.download = `usage-report-${this.form.getValue('from').format('YYYY-MM-DD')}-${this.form.getValue('to').format('YYYY-MM-DD')}.csv`;
+          link.click();
+          setTimeout(() => window.URL.revokeObjectURL(fileUrl), 500);
+        }
+      });
   });
 }
 
