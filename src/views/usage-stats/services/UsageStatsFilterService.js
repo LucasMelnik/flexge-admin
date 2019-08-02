@@ -11,6 +11,7 @@ class UsageStatsFilterService {
   constructor() {
     extendObservable(this, {
       schools: [],
+      filterType: 'month',
     });
     this.form.validations = {
       month: [isRequired],
@@ -21,6 +22,23 @@ class UsageStatsFilterService {
     this.form.setInitialValues({});
   });
 
+  handleChangeType = action(type => {
+    this.filterType = type;
+    this.form.submitted = false;
+    this.form.setInitialValues({});
+    if (type === 'date-range') {
+      this.form.validations = {
+        from: [isRequired],
+        to: [isRequired],
+        distributor: [isRequired],
+      };
+    } else {
+      this.form.validations = {
+        month: [isRequired],
+      };
+    }
+  });
+
   handleSearch = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
@@ -28,8 +46,12 @@ class UsageStatsFilterService {
       return;
     }
 
-    UsageStatsListService.load(this.form.getValue('month'), this.form.getValue('company'), this.form.getValue('distributor'));
-    DemoStudentListService.load(this.form.getValue('month'));
+    UsageStatsListService.load(this.filterType, this.form.getValues());
+    if (this.filterType === 'month') {
+      DemoStudentListService.load(this.form.getValue('month'));
+    } else {
+      DemoStudentListService.init();
+    }
   });
 }
 
