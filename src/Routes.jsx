@@ -119,6 +119,7 @@ import KidsCertificatesListScene from './views/kids-certificates/components/Kids
 import DataImportScene from './views/data-import/components/DataImportScene';
 import DocumentListScene from './views/document/components/DocumentListScene';
 import DocumentFormScene from './views/document/components/DocumentFormScene';
+import PublicDocumentListScene from './views/document/components/PublicDocumentListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -220,6 +221,7 @@ const Routes = () => (
       <Route path="characters" component={CharacterListScene} />
       <Route path="characters/new" component={CharacterFormScene} />
       <Route path="characters/:characterId" component={CharacterFormScene} />
+      <Route path="public-documents" component={PublicDocumentListScene} />
       <Route path="documents" component={DocumentListScene} />
       <Route path="documents/new" component={DocumentFormScene} />
       <Route path="documents/:documentId" component={DocumentFormScene} />

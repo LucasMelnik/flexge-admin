@@ -19,6 +19,13 @@ const MainScene = props => (
             key: 'profile',
           },
           {
+            title: 'Documents',
+            icon: 'folder-add',
+            link: '/public-documents',
+            type: 'menu',
+            key: 'all-documents',
+          },
+          {
             title: 'Dashboard',
             icon: 'dashboard',
             link: '/',

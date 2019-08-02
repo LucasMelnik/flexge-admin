@@ -18,7 +18,13 @@ const DocumentList = props => (
         label: 'File',
         path: 'fileUrl',
         render: value => (
-          <a href={`${process.env.REACT_APP_FILES_URL}/${value}`} target="_blank">{value}</a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`${process.env.REACT_APP_FILES_URL}/${value}`}
+          >
+            {value}
+          </a>
         ),
       },
       {
