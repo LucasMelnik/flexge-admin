@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { observer } from 'mobx-react';
 import { Menu as AntMenu } from 'antd';
 import { Link } from 'react-router';
 import Icon from './Icon';
+import WhitelabelService from '../services/WhitelabelService';
 
-export default class Menu extends Component {
+class Menu extends Component {
   static propTypes = {
     items: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
@@ -76,7 +78,8 @@ export default class Menu extends Component {
           lineHeight: '64px',
         }}
       >
-        {this.props.items.map((item) => {
+        {this.props.items.filter(item => !item.removeWhenWhitelabel || (item.removeWhenWhitelabel && !WhitelabelService.isWhitelabelDistribution))
+          .map((item) => {
           if (item.type === 'menu') {
             return this.renderMenuItem(item);
           }
@@ -89,3 +92,5 @@ export default class Menu extends Component {
     );
   }
 }
+
+export default observer(Menu);

@@ -3,7 +3,7 @@ import PublicDocumentListContainer from './PublicDocumentListContainer';
 import Card from '../../../core/layout/Card';
 
 const PublicDocumentListScene = () => (
-  <Card title="Pedagogical Resources">
+  <Card title="Educational Resources">
     <PublicDocumentListContainer />
   </Card>
 );
