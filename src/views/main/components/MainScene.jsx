@@ -24,6 +24,7 @@ const MainScene = props => (
             link: '/public-documents',
             type: 'menu',
             key: 'all-documents',
+            removeWhenWhitelabel: true
           },
           {
             title: 'Dashboard',
