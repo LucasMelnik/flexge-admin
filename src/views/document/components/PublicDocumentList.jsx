@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import orderBy from 'lodash/orderBy';
 import Async from '../../../core/layout/Async';
 
 const PublicDocumentList = props => (
   <Async fetching={props.fetching}>
-    {props.documents.map(document => (
+    {orderBy(props.documents, ['order']).map(document => (
       <ul>
         <li>
           <p
