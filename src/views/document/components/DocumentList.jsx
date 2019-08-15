@@ -9,10 +9,14 @@ const DocumentList = props => (
     fetching={props.fetching}
     columns={[
       {
-        label: 'Title',
-        path: 'title',
+        label: 'Order',
+        path: 'order',
         sort: true,
         defaultSortOrder: 'ascend',
+      },
+      {
+        label: 'Title',
+        path: 'title',
       },
       {
         label: 'File',

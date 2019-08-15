@@ -37,6 +37,17 @@ class DocumentForm extends React.Component {
         }}
       >
         <Row>
+          <Column size={1}>
+            <TextInput
+              required
+              type="number"
+              disabled={this.props.submitting}
+              label="Order"
+              value={get(this.props.values, 'order', '')}
+              onChange={value => this.props.onChange('order', value)}
+              errorText={get(this.props.errors, 'order', null)}
+            />
+          </Column>
           <Column size={6}>
             <TextInput
               required
