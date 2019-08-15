@@ -19,6 +19,7 @@ export default class DocumentFormService {
           this.form.setInitialValues(this.fetch.data);
           this.form.validations = {
             title: [isRequired],
+            order: [isRequired],
           };
         }
       });
@@ -26,6 +27,7 @@ export default class DocumentFormService {
       this.form.setInitialValues({});
       this.form.validations = {
         title: [isRequired],
+        order: [isRequired],
         file: [isRequired],
       };
     }
@@ -42,6 +44,7 @@ export default class DocumentFormService {
     const fileData = new FormData();
     fileData.append('file', this.form.getValue('file'));
     fileData.append('title', this.form.getValue('title'));
+    fileData.append('order', this.form.getValue('order'));
 
     this.submit.fetch({
       method: documentId ? 'put' : 'post',
