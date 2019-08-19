@@ -24,7 +24,8 @@ const MainScene = props => (
             link: '/public-documents',
             type: 'menu',
             key: 'all-documents',
-            removeWhenWhitelabel: true
+            removeWhenWhitelabel: true,
+            allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
           },
           {
             title: 'Dashboard',
@@ -32,6 +33,7 @@ const MainScene = props => (
             link: '/',
             type: 'menu',
             key: 'dashboard',
+            allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT', 'CERTIFICATION_TEST_PROFESSIONAL', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
           },
           {
             type: 'submenu',
@@ -132,6 +134,7 @@ const MainScene = props => (
             key: 'basicregister',
             title: 'Basic Register',
             icon: 'folder',
+            allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
             groups: [
               {
                 group: 'Organizations',
@@ -414,24 +417,26 @@ const MainScene = props => (
             key: 'reports',
             title: 'Reports',
             icon: 'filter',
-            allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+            allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER', 'SPEECHACE'],
             items: [
               {
                 label: 'Usage Stats',
                 icon: 'pie-chart',
                 key: 'usage-stats',
                 link: '/usage-stats',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
+                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'SPEECHACE'],
               },
               {
                 label: 'Student Close to Finish Course',
                 link: '/student-close-to-finish-course',
                 key: 'student-close-to-finish-course',
+                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
               },
               {
                 label: 'Finished Courses',
                 link: '/finished-courses',
                 key: 'finished-courses',
+                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
               },
             ],
           },
