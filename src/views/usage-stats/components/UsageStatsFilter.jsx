@@ -31,7 +31,7 @@ const UsageStatsFilter = props => (
         ]}
       />
     </Column>
-    {(localStorage.role === 'ADMIN') && (
+    {(localStorage.role === 'ADMIN' || localStorage.role === 'SPEECHACE') && (
       <Column size={3}>
         <FetchSelect
           showSearch
