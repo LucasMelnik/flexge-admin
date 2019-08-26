@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import trim from 'lodash/trim';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import Button from '../../../../core/form/Button';
@@ -47,7 +48,7 @@ const SpellCheckInput = props => (
                 onChange={(value) => {
                   props.onChange('speechRecognitionDictionary', {
                     ...get(props.values, 'speechRecognitionDictionary', {}),
-                    [word.replace(/[.]/g, '_')]: value,
+                    [word.replace(/[.]/g, '_')]: trim(value),
                   });
                 }}
               />
