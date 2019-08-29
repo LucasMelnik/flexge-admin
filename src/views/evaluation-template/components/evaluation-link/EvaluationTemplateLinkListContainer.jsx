@@ -7,8 +7,10 @@ import EvaluationTemplateLinkService from '../../services/EvaluationTemplateLink
 const EvaluationTemplateLinkListContainer = () => (
   <EvaluationTemplateLinkList
     schoolClasses={toJS(EvaluationTemplateLinkService.schoolClasses)}
+    pagination={toJS(EvaluationTemplateLinkService.pagination)}
     fetching={EvaluationTemplateLinkService.fetch.fetching}
     onChange={EvaluationTemplateLinkService.handleChange}
+    onChangePage={EvaluationTemplateLinkService.load}
   />
 );
 

@@ -83,6 +83,8 @@ const EvaluationTemplateLinkList = props => (
       },
     ]}
     rows={props.schoolClasses}
+    onChange={props.onChangePage}
+    pagination={props.pagination}
   />
 );
 
@@ -92,6 +94,8 @@ EvaluationTemplateLinkList.propTypes = {
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
+  onChangePage: PropTypes.func.isRequired,
+  pagination: PropTypes.shape({}).isRequired,
 };
 
 export default EvaluationTemplateLinkList;

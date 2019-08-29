@@ -39,6 +39,7 @@ const ReactivateStudentForm = props => (
         <Column size={3}>
           <FetchSelect
             showSearch
+            isPaginated
             url={`/schools/${props.values.schoolClass.school.id}/classes`}
             fullWidth
             disabled={props.submitting}

@@ -53,6 +53,7 @@ const UsageStatsFilter = props => (
       <Column size={3}>
         <FetchSelect
           showSearch
+          isPaginated
           label="Filter by Company"
           disabled={props.fetching}
           value={get(props.values, 'company', '')}

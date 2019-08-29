@@ -15,6 +15,7 @@ const StudentAchievementsListFilter = props => (
       <Column size={3}>
         <FetchSelect
           showSearch
+          isPaginated
           label="Filter by School"
           disabled={props.fetching}
           value={get(props.values, 'school', '')}

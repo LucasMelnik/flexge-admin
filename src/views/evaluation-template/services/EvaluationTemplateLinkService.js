@@ -1,37 +1,54 @@
-import { action, extendObservable, observe } from 'mobx';
-import uniqBy from 'lodash/uniqBy';
-import orderBy from 'lodash/orderBy';
+import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
-import EvaluationTemplateListService from './EvaluationTemplateListService';
 import NotificationService from '../../../core/services/NotificationService';
+import FormService from '../../../core/services/FormService';
+import { isRequired } from '../../../core/validations';
 
 class EvaluationTemplateLinkService {
   fetch = new FetchService();
   submit = new FetchService();
+  filterForm = new FormService();
 
   constructor() {
     extendObservable(this, {
       schoolClasses: [],
+      pagination: {
+        current: 1,
+        total: 0,
+        pageSize: 50,
+      },
     });
-
-    observe(EvaluationTemplateListService, 'templates', () => {
-      if (EvaluationTemplateListService.templates.length) {
-        this.schoolClasses = [];
-        const schools = uniqBy(EvaluationTemplateListService.templates.map(template => template.school), 'id');
-        schools.map(school => this.load(school.id));
-      }
-    });
+    this.filterForm.validations = {
+      school: [isRequired]
+    }
   }
 
-  load = action((schoolId) => {
+  init = action(() => {
+    this.schoolClasses = [];
+    this.filterForm.setInitialValues({});
+  });
+
+  load = action((pagination) => {
+    if(this.filterForm.errors) {
+      NotificationService.addNotification('Fill the required fields', 'error');
+    }
+
+    if (pagination) {
+      this.pagination.current = pagination.current;
+    } else {
+      this.pagination.current = 1;
+    }
+
     this.fetch.fetch({
-      url: `/schools/${schoolId}/classes`,
+      url: `/schools/${this.filterForm.getValue('school')}/classes`,
+      query: {
+        page: this.pagination.current,
+        size: this.pagination.pageSize,
+      }
     }).then(() => {
       if (this.fetch.data) {
-        this.schoolClasses = orderBy([
-          ...this.fetch.data,
-          ...this.schoolClasses,
-        ], ['school.name', 'name']);
+        this.schoolClasses = this.fetch.data.docs;
+        this.pagination.total = this.fetch.data.total;
       }
     });
   });

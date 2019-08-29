@@ -42,6 +42,7 @@ export default class ImportStudentsForm extends Component {
           <Column size={4}>
             <FetchSelect
               showSearch
+              isPaginated
               url="/schools"
               disabled={this.props.submitting}
               label="Select a school to import the students"

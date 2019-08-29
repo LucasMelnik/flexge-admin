@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import sortBy from 'lodash/sortBy';
 import toLower from 'lodash/toLower';
 import get from 'lodash/get';
+import debounce from 'lodash/debounce';
 import Select from './Select';
 import FetchService from '../services/FetchService';
 
@@ -26,6 +27,7 @@ export default class FetchSelect extends Component {
     required: PropTypes.bool,
     showSearch: PropTypes.bool,
     multiple: PropTypes.bool,
+    isPaginated: PropTypes.bool,
     params: PropTypes.object,
   };
 
@@ -35,6 +37,7 @@ export default class FetchSelect extends Component {
     errorText: null,
     disabled: false,
     defaultSelect: false,
+    isPaginated: false,
     required: false,
     multiple: false,
     showSearch: false,
@@ -42,17 +45,37 @@ export default class FetchSelect extends Component {
     resultFilter: () => true,
   };
 
-  state = { data: [] };
+  state = { data: [], fetching: false };
 
   searchService = () => {
+    this.setState({
+      fetching: true
+    });
     const fetchService = new FetchService();
     fetchService.fetch({
       url: `/${this.props.url}`,
-      query: this.props.params
+      query: {
+        ...this.props.params,
+        ...this.props.isPaginated && {
+          page: 1,
+          size: 20,
+          ...this.state.filter && {
+            query: {
+              [this.props.resultTransformer.text]: {
+                $regex: this.state.filter,
+                $options: 'i'
+              }
+            }
+          }
+        },
+      }
     })
       .then(() => {
+        this.setState({
+          fetching: false
+        });
         if (fetchService.data) {
-          const data = toJS(fetchService.data);
+          const data = toJS(this.props.isPaginated ? fetchService.data.docs : fetchService.data);
           if (this.props.value && !data.find(item => item[this.props.resultTransformer.value] === this.props.value)) {
             this.props.onChange(null);
           }
@@ -80,6 +103,14 @@ export default class FetchSelect extends Component {
     }
   }
 
+  handleSearch = debounce((text) => {
+    this.setState({
+      filter: text
+    }, () => {
+      this.searchService();
+    });
+  }, 500);
+
   render() {
     return (
       <Select
@@ -97,6 +128,8 @@ export default class FetchSelect extends Component {
           value: get(option, this.props.resultTransformer.value),
         }))}
         filterOption={(value, option) => option.props.children.toLowerCase().indexOf(value.toLowerCase()) > -1}
+        onSearch={this.props.isPaginated ? this.handleSearch : null}
+        loadicng={this.state.fetching}
       />
     );
   }
