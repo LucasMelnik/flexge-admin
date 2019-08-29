@@ -26,9 +26,11 @@ class CompanyListContainer extends Component {
       <CompanyList
         distributorId={this.props.distributorId}
         baseUrl={this.props.baseUrl}
+        pagination={CompanyListService.pagination}
         companies={toJS(CompanyListService.companies)}
         fetching={CompanyListService.fetch.fetching}
         onDelete={CompanyListService.handleRemove}
+        onChange={CompanyListService.load}
       />
     );
   }

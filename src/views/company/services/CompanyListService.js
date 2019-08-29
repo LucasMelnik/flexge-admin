@@ -11,6 +11,11 @@ class CompanyListService {
       distributorId: null,
       companies: [],
       filter: '',
+      pagination: {
+        current: 1,
+        total: 0,
+        pageSize: 50,
+      },
     });
   }
 
@@ -21,10 +26,21 @@ class CompanyListService {
     this.load();
   });
 
-  load = action(() => {
+  load = action((pagination, filters, sort) => {
+    if (pagination) {
+      this.pagination.current = pagination.current;
+    }
+
     this.fetch.fetch({
       url: '/companies',
       query: {
+        page: this.pagination.current,
+        size: this.pagination.pageSize,
+        ...sort && sort.field && {
+          sort: {
+            [sort.field]: sort.order === 'descend' ? 'desc' : 'asc'
+          }
+        },
         query: {
           ...this.filter && {
             name: {
@@ -39,7 +55,8 @@ class CompanyListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.companies = this.fetch.data;
+        this.companies = this.fetch.data.docs;
+        this.pagination.total = this.fetch.data.total;
       } else {
         this.companies = [];
       }

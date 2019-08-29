@@ -12,7 +12,6 @@ const CompanyList = props => (
         label: 'Name',
         path: 'name',
         sort: true,
-        defaultSortOrder: 'ascend',
       },
       {
         label: 'Social Reason',
@@ -43,9 +42,11 @@ const CompanyList = props => (
         },
       },
     ]}
-    rows={props.companies}
     selectable
+    rows={props.companies}
+    pagination={props.pagination}
     onSelect={row => browserHistory.push(`${props.baseUrl}/companies/${row.id}/details`)}
+    onChange={props.onChange}
   />
 );
 
@@ -57,6 +58,8 @@ CompanyList.propTypes = {
   baseUrl: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  pagination: PropTypes.shape({}).isRequired
 };
 
 export default CompanyList;
