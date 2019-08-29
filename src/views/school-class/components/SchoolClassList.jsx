@@ -57,6 +57,8 @@ const SchoolClassList = props => (
     rows={props.classes}
     selectable
     onSelect={row => browserHistory.push(`${props.baseUrl}/classes/${row.id}/details`)}
+    onChange={props.onChange}
+    pagination={props.pagination}
   />
 );
 
@@ -71,6 +73,8 @@ SchoolClassList.propTypes = {
   baseUrl: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  pagination: PropTypes.shape({}).isRequired,
 };
 
 export default SchoolClassList;

@@ -12,13 +12,6 @@ class SchoolListService {
       schools: [],
       filter: '',
       companyId: null,
-      // visibleSchools: computed(() => (
-      //   this.schools.filter(school => (
-      //     school.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1 ||
-      //     school.company.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1 ||
-      //     (school.inep && school.inep.toLowerCase().indexOf(this.filter.toLowerCase()) > -1)
-      //   ))
-      // )),
       pagination: {
         current: 1,
         total: 0,
@@ -52,14 +45,18 @@ class SchoolListService {
       query: {
         ...this.filter && {
           $or: [
-            {name: {
-              $regex: this.filter,
-              $options: 'i'
-            }},
-            {inep: {
-              $regex: this.filter,
-              $options: 'i'
-            }},
+            {
+              name: {
+                $regex: this.filter,
+                $options: 'i'
+              }
+            },
+            {
+              inep: {
+                $regex: this.filter,
+                $options: 'i'
+              }
+            },
           ]
         },
         ...this.companyId && {
