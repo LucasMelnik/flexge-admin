@@ -1,4 +1,5 @@
-import { action, extendObservable, computed } from 'mobx';
+import { action, extendObservable } from 'mobx';
+import debounce from 'lodash/debounce';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 import NotificationService from '../../../core/services/NotificationService';
@@ -11,13 +12,18 @@ class SchoolListService {
       schools: [],
       filter: '',
       companyId: null,
-      visibleSchools: computed(() => (
-        this.schools.filter(school => (
-          school.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1 ||
-          school.company.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1 ||
-          (school.inep && school.inep.toLowerCase().indexOf(this.filter.toLowerCase()) > -1)
-        ))
-      )),
+      // visibleSchools: computed(() => (
+      //   this.schools.filter(school => (
+      //     school.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1 ||
+      //     school.company.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1 ||
+      //     (school.inep && school.inep.toLowerCase().indexOf(this.filter.toLowerCase()) > -1)
+      //   ))
+      // )),
+      pagination: {
+        current: 1,
+        total: 0,
+        pageSize: 50,
+      },
     });
   }
 
@@ -28,9 +34,34 @@ class SchoolListService {
     this.load();
   });
 
-  load = action(() => {
+  load = action((pagination, filters, sort) => {
+    if (pagination) {
+      this.pagination.current = pagination.current;
+    } else {
+      this.pagination.current = 1;
+    }
+
     const query = {
+      page: this.pagination.current,
+      size: this.pagination.pageSize,
+      ...sort && sort.field && {
+        sort: {
+          [sort.field]: sort.order === 'descend' ? 'desc' : 'asc'
+        }
+      },
       query: {
+        ...this.filter && {
+          $or: [
+            {name: {
+              $regex: this.filter,
+              $options: 'i'
+            }},
+            {inep: {
+              $regex: this.filter,
+              $options: 'i'
+            }},
+          ]
+        },
         ...this.companyId && {
           company: this.companyId,
         },
@@ -41,7 +72,8 @@ class SchoolListService {
       query,
     }).then(() => {
       if (this.fetch.data) {
-        this.schools = this.fetch.data;
+        this.schools = this.fetch.data.docs;
+        this.pagination.total = this.fetch.data.total;
       } else {
         this.schools = [];
         this.total = 0;
@@ -49,8 +81,13 @@ class SchoolListService {
     });
   });
 
+  handleDebounceLoad = debounce(action(() => {
+    this.load({ current: 1 })
+  }), 1000);
+
   handleFilterChange = action((value) => {
     this.filter = value;
+    this.handleDebounceLoad();
   });
 
   handleRemove = action((school) => {
