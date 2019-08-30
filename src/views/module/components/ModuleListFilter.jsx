@@ -20,6 +20,7 @@ const ModuleListFilter = props => (
     <Column size={4}>
       <FetchSelect
         showSearch
+        required
         url="/courses"
         disabled={props.fetching}
         label="Course"

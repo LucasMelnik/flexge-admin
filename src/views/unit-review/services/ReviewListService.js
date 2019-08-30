@@ -71,15 +71,14 @@ class ReviewListService {
         },
       },
     }).then(() => {
-      if (this.fetch.data && this.fetch.data.units) {
-        this.myUnitsAndReviews = this.fetch.data.units.map((unit) => {
-          const review = this.fetch.data.reviews.find(item => item.unit === unit.id);
+      if (this.fetch.data) {
+        this.myUnitsAndReviews = this.fetch.data.map(unit => {
           return {
-            unit,
-            review: review || {
+            ...unit,
+            review: unit.review && unit.review.id ? unit.review : {
               status: 'NOT SENT TO REVIEW',
-            },
-          };
+            }
+          }
         });
       }
     });
@@ -111,24 +110,13 @@ class ReviewListService {
         },
       },
     }).then(() => {
-      if (this.fetch.data && this.fetch.data.units) {
-        const units = this.fetch.data.units;
-        const reviews = this.fetch.data.reviews;
-        this.allUnitsAndReviews = units.filter((unit) => {
-          const unitReview = reviews.find(review => review.unit === unit.id);
-          if (!unitReview || unitReview.status === 'DONE' || unitReview.status === 'REVIEWED') {
-            return false;
-          }
-          if (unitReview.createdBy.id === localStorage.id) {
-            return false;
-          }
-          return true;
-        }).map((unit) => {
-          const review = reviews.find(item => item.unit === unit.id);
-          return {
-            unit,
-            review,
-          };
+      if (this.fetch.data) {
+        this.allUnitsAndReviews = this.fetch.data.filter(unit => {
+          return !(!unit.review ||
+            !unit.review.id ||
+            unit.review.status === 'DONE' ||
+            unit.review.status === 'REVIEWED' ||
+            unit.review.createdBy.id === localStorage.id);
         });
       }
     });
