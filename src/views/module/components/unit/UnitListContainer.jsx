@@ -20,7 +20,7 @@ class UnitListContainer extends Component {
   render() {
     return (
       <UnitList
-        units={toJS(UnitListService.units)}
+        units={toJS(UnitListService.visibleUnits)}
         academicPlan={this.props.academicPlan}
         fetching={UnitListService.fetch.fetching || UnitListService.reorderSubmitting}
         onDelete={UnitListService.handleRemove}
