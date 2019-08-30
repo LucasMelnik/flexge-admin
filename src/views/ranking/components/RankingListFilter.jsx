@@ -26,6 +26,7 @@ const RankingListFilter = props => (
       <Column size={3}>
         <FetchSelect
           showSearch
+          isPaginated
           label="School"
           placeholder="Select the school to check the ranking"
           value={get(props.values, 'school', '')}

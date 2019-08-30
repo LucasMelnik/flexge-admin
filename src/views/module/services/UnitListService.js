@@ -1,4 +1,4 @@
-import { action, extendObservable } from 'mobx';
+import { action, extendObservable, computed } from 'mobx';
 import { orderBy } from 'lodash';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
@@ -13,38 +13,37 @@ class UnitListService {
   constructor() {
     extendObservable(this, {
       units: [],
-      filter: '',
       moduleId: null,
       reorderSubmitting: false,
+      visibleUnits: computed(() => this.units.filter(unit => {
+        if (this.form.getValue('onlyWithImages') === 'true') {
+          return unit.type.name.toLowerCase() !== 'review' &&
+            unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => itemType.key === type));
+        }
+        if (this.form.getValue('filter')) {
+          return unit.name.search(new RegExp(this.form.getValue('filter'), 'i')) > -1
+        }
+        return unit;
+      })),
     });
   }
 
   init = action((moduleId) => {
     this.units = [];
     this.moduleId = moduleId;
-    this.filter = '';
+    this.form.setInitialValues({ onlyWithImages: 'false' });
     this.load();
   });
 
   load = action(() => {
     this.fetch.fetch({
       url: `/modules/${this.moduleId}/units`,
-      query: {
-        ...this.form.getValue('filter') && {
-          query: {
-            name: {
-              $regex: this.form.getValue('filter'),
-              $options: 'i',
-            },
-          },
-        },
-      },
     }).then(() => {
       if (this.fetch.data) {
         this.reorderSubmitting = false;
         this.units = orderBy(this.fetch.data, ['group', 'order'], ['asc', 'asc'])
           .map((unit) => {
-            if (!unit.review) {
+            if (!unit.review || !unit.review.id) {
               return {
                 ...unit,
                 review: { status: 'NOT SENT TO REVIEW' },
@@ -52,13 +51,6 @@ class UnitListService {
             }
             return unit;
           })
-          .filter((unit) => {
-            if (this.form.getValue('onlyWithImages')) {
-              return unit.type.name.toLowerCase() !== 'review' &&
-                unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => itemType.key === type));
-            }
-            return true;
-          });
       } else {
         this.units = [];
       }

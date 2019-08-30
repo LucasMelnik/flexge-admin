@@ -7,6 +7,7 @@ import Breadcrumb from '../../../core/layout/Breadcrumb';
 import EvaluationTemplateListContainer from './EvaluationTemplateListContainer';
 import EvaluationTemplateListFilterContainer from './EvaluationTemplateListFilterContainer';
 import EvaluationTemplateLinkListContainer from './evaluation-link/EvaluationTemplateLinkListContainer';
+import EvaluationTemplateLinkListFilterContainer from './evaluation-link/EvaluationTemplateLinkListFilterContainer';
 
 const EvaluationTemplateListScene = () => (
   <div>
@@ -34,6 +35,8 @@ const EvaluationTemplateListScene = () => (
     </Card>
     <Separator />
     <Card title="Classrooms config">
+      <EvaluationTemplateLinkListFilterContainer />
+      <Separator />
       <EvaluationTemplateLinkListContainer />
     </Card>
   </div>

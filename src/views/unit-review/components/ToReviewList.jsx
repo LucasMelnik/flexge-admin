@@ -16,29 +16,29 @@ const ToReviewList = props => (
       columns={[
         {
           label: 'Name',
-          path: 'unit.name',
+          path: 'name',
           sort: true,
         },
         {
           label: 'Course',
-          path: 'unit.module.course.name',
+          path: 'module.course.name',
           width: '80px',
           sort: true,
         },
         {
           label: 'Module',
-          path: 'unit.module.name',
+          path: 'module.name',
           sort: true,
         },
         {
           label: 'Unit Type',
-          path: 'unit.type.name',
+          path: 'type.name',
           width: '105px',
           sort: true,
         },
         {
           label: 'Unit creator',
-          path: 'unit.createdBy.name',
+          path: 'createdBy.name',
           width: '105px',
         },
         {
@@ -85,7 +85,7 @@ const ToReviewList = props => (
           path: 'review.statusImage',
           sort: true,
           render: (cell, row) => {
-            if (row.unit.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))) {
+            if (row.type.itemsType.find(itemType => ['PRESENTATION', 'SINGLE_CHOICE_IMAGE'].find(type => type === itemType.key))) {
               return (
                 <StatusItem
                   color={{
@@ -104,7 +104,7 @@ const ToReviewList = props => (
       ]}
       rows={props.unitsAndReviews}
       selectable
-      onSelect={row => (row.review.status === 'PENDING' || row.review.status === 'REVIEWED') && browserHistory.push(`/modules/${row.unit.module.id}/units/${row.unit.id}/reviews/${row.review.id}`)}
+      onSelect={row => (row.review.status === 'PENDING' || row.review.status === 'REVIEWED') && browserHistory.push(`/modules/${row.module.id}/units/${row.id}/reviews/${row.review.id}`)}
     />
   </div>
 );

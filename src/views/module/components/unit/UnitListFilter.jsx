@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../../../../core/form/TextInput';
-import Button from '../../../../core/form/Button';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import Select from '../../../../core/form/Select';
@@ -10,7 +9,7 @@ const UnitListFilter = props => (
   <Row>
     <Column size={8}>
       <TextInput
-        label="Search units"
+        label="Type to filter the units by name"
         value={props.values.filter}
         onChange={value => props.onChange('filter', value)}
         disabled={props.fetching}
@@ -25,21 +24,13 @@ const UnitListFilter = props => (
         options={[
           {
             label: 'Yes',
-            value: true,
+            value: 'true',
           },
           {
             label: 'No',
-            value: false,
+            value: 'false',
           },
         ]}
-      />
-    </Column>
-    <Column size={2}>
-      <div style={{ height: 34 }} />
-      <Button
-        label="Search"
-        icon="search"
-        onClick={props.onSearch}
       />
     </Column>
   </Row>

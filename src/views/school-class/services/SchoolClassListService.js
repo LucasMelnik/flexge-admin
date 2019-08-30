@@ -2,6 +2,7 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 import NotificationService from '../../../core/services/NotificationService';
+import debounce from 'lodash/debounce';
 
 class SchoolClassListService {
   fetch = new FetchService();
@@ -11,6 +12,11 @@ class SchoolClassListService {
       classes: [],
       schoolId: null,
       filter: '',
+      pagination: {
+        current: 1,
+        total: 0,
+        pageSize: 50,
+      },
     });
   }
 
@@ -19,35 +25,21 @@ class SchoolClassListService {
     this.filter = '';
     this.schoolId = schoolId;
     this.filter = '';
-    if (!schoolId) {
-      this.loadAllClasses();
+    this.loadClassesBySchool();
+  });
+
+  loadClassesBySchool = action((pagination) => {
+    if (pagination) {
+      this.pagination.current = pagination.current;
     } else {
-      this.loadClassesBySchool();
+      this.pagination.current = 1;
     }
-  });
 
-  loadAllClasses = action(() => {
-    this.fetch.fetch({
-      url: '/classes',
-      query: {
-        query: this.filter && {
-          name: {
-            $regex: this.filter,
-            $options: 'i',
-          },
-        },
-      },
-    }).then(() => {
-      if (this.fetch.data) {
-        this.classes = this.fetch.data;
-      }
-    });
-  });
-
-  loadClassesBySchool = action(() => {
     this.fetch.fetch({
       url: `/schools/${this.schoolId}/classes`,
       query: {
+        page: this.pagination.current,
+        size: this.pagination.pageSize,
         query: this.filter && {
           name: {
             $regex: this.filter,
@@ -57,18 +49,19 @@ class SchoolClassListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.classes = this.fetch.data;
+        this.classes = this.fetch.data.docs;
+        this.pagination.total = this.fetch.data.total;
       }
     });
   });
 
+  handleDebounceLoad = debounce(action(() => {
+    this.loadClassesBySchool();
+  }), 1000);
+
   handleFilterChange = action((value) => {
     this.filter = value;
-    if (!this.schoolId) {
-      this.loadAllClasses();
-    } else {
-      this.loadClassesBySchool();
-    }
+    this.handleDebounceLoad();
   });
 
   handleDelete = action((schoolClass) => {

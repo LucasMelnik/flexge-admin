@@ -18,6 +18,7 @@ const StudentCloseToFinishCourseListFilter = props => (
         <Column size={3}>
           <FetchSelect
             showSearch
+            isPaginated
             required
             url="/schools"
             label="School"
@@ -35,6 +36,7 @@ const StudentCloseToFinishCourseListFilter = props => (
         <Column size={4}>
           <FetchSelect
             showSearch
+            isPaginated
             url={`/schools/${props.values.school}/classes`}
             label="Class rooms"
             disabled={props.fetching}

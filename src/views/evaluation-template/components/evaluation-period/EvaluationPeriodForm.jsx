@@ -86,7 +86,7 @@ const SchoolEvaluationForm = props => (
         />
       </Column>
       <Column size={3}>
-        <div style={{ height: 30.5 }} />
+        <div style={{ height: 42 }} />
         <Button
           icon="check"
           type="primary"

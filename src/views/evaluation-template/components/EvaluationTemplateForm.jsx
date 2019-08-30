@@ -34,6 +34,7 @@ const EvaluationTemplateForm = props => (
           <FetchSelect
             required
             showSearch
+            isPaginated
             label="School"
             value={get(props.values, 'school', '')}
             onChange={value => props.onChange('school', value)}

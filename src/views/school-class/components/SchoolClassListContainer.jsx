@@ -22,6 +22,8 @@ class SchoolClassListContainer extends Component {
         classes={toJS(SchoolClassListService.classes)}
         fetching={SchoolClassListService.fetch.fetching}
         onDelete={SchoolClassListService.handleDelete}
+        onChange={SchoolClassListService.loadClassesBySchool}
+        pagination={toJS(SchoolClassListService.pagination)}
         baseUrl={this.props.baseUrl}
       />
     );

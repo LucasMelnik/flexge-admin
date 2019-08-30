@@ -9,9 +9,6 @@ const Select = props => (
     label={props.label}
     help={props.errorText}
     validateStatus={props.errorText && 'error'}
-    // style={{
-    //   minWidth: 200,
-    // }}
   >
     <AntSelect
       allowClear
@@ -25,6 +22,8 @@ const Select = props => (
       onChange={value => props.onChange && props.onChange(value)}
       mode={props.multiple ? 'multiple' : null}
       filterOption={props.filterOption}
+      onSearch={props.onSearch}
+      loading={props.loading}
     >
       {props.options.map(option => (
         <AntSelect.Option
