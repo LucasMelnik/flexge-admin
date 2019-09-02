@@ -106,6 +106,7 @@ const UserForm = props => (
           <FetchSelect
             showSearch
             url="companies"
+            isPaginated
             disabled={(localStorage.role === 'COMPANY_MANAGER' || localStorage.role === 'SCHOOL_MANAGER') || props.submitting}
             label="Company"
             value={get(props.values, 'company', '')}
@@ -126,6 +127,7 @@ const UserForm = props => (
           <FetchSelect
             required
             showSearch
+            isPaginated
             url="schools"
             params={{
               query: {
