@@ -22,9 +22,13 @@ class UsageStatsListService {
     this.schools = [];
     this.schoolsFetch.fetch({
       url: '/schools',
+      query: {
+        page: 1,
+        size: 1000
+      }
     }).then(() => {
       if (this.schoolsFetch.data) {
-        this.allSchools = this.schoolsFetch.data;
+        this.allSchools = this.schoolsFetch.data.docs;
       } else {
         this.allSchools = [];
       }
