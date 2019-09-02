@@ -5,6 +5,7 @@ import FetchSelect from '../../../core/form/FetchSelect';
 const SchoolGradeConfigFilter = props => (
   <FetchSelect
     showSearch
+    isPaginated
     label="Select the school"
     placeholder="Select the school to check the ranking"
     value={props.value}

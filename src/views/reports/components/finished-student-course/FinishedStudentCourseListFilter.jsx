@@ -38,6 +38,7 @@ const FinishedStudentCourseListFilter = props => (
       {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
         <Column size={3}>
           <FetchSelect
+            isPaginated
             showSearch
             url="/schools"
             label="School"
@@ -55,6 +56,7 @@ const FinishedStudentCourseListFilter = props => (
         <Column size={4}>
           <FetchSelect
             showSearch
+            isPaginated
             url={`/schools/${props.values.school}/classes`}
             label="Class rooms"
             disabled={props.fetching}

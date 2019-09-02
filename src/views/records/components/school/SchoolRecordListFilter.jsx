@@ -13,6 +13,7 @@ const SchoolRecordListFilter = props => (
         <Column size={3}>
           <FetchSelect
             showSearch
+            isPaginated
             url="/companies"
             label="Company"
             disabled={props.fetching}
@@ -28,6 +29,7 @@ const SchoolRecordListFilter = props => (
       <Column size={4}>
         <FetchSelect
           showSearch
+          isPaginated
           url="/schools"
           params={{
             ...get(props.values, 'company', false) && {

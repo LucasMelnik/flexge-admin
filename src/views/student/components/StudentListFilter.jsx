@@ -39,6 +39,7 @@ const StudentListFilter = props => (
       </Column>
       <Column size={3}>
         <FetchSelect
+          isPaginated
           url="/schools"
           label="School"
           showSearch
@@ -54,6 +55,8 @@ const StudentListFilter = props => (
       {get(props.values, 'school', undefined) && (
         <Column size={2}>
           <FetchSelect
+            isPaginated
+            showSearch
             url={`/schools/${props.values.school}/classes`}
             label="Classrooms"
             disabled={props.fetching}

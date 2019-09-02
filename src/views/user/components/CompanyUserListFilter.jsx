@@ -12,6 +12,7 @@ const CompanyUserListFilter = props => (
     {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
       <Column size={3}>
         <FetchSelect
+          isPaginated={true}
           showSearch
           label="Filter by Company"
           disabled={props.fetching}
@@ -27,6 +28,7 @@ const CompanyUserListFilter = props => (
     )}
     <Column size={4}>
       <FetchSelect
+        isPaginated={true}
         showSearch
         label="Filter by School"
         disabled={props.fetching}

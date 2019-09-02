@@ -37,6 +37,7 @@ const KidsCertificatesListFilter = props => (
         <Column size={3}>
           <FetchSelect
             showSearch
+            isPaginated
             url="/schools"
             label="School"
             disabled={props.fetching}
@@ -53,6 +54,7 @@ const KidsCertificatesListFilter = props => (
         <Column size={3}>
           <FetchSelect
             showSearch
+            isPaginated
             url={`/schools/${props.values.school}/classes`}
             label="Class rooms"
             disabled={props.fetching}

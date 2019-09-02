@@ -11,9 +11,7 @@ const SchoolList = props => (
       {
         label: 'Company',
         path: 'company.name',
-        sort: true,
         width: 250,
-        defaultSortOrder: 'ascend',
       },
       {
         label: 'School',
@@ -42,6 +40,8 @@ const SchoolList = props => (
     rows={props.schools}
     selectable
     onSelect={row => browserHistory.push(`${props.baseUrl}/schools/${row.id}/details`)}
+    onChange={props.onChange}
+    pagination={props.pagination}
   />
 );
 
@@ -56,6 +56,8 @@ SchoolList.propTypes = {
   baseUrl: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  pagination: PropTypes.shape({}).isRequired,
 };
 
 export default SchoolList;

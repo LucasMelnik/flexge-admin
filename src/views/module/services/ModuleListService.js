@@ -4,6 +4,7 @@ import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 import NotificationService from '../../../core/services/NotificationService';
+import { isRequired } from '../../../core/validations';
 
 class ModuleListService {
   fetch = new FetchService();
@@ -13,6 +14,9 @@ class ModuleListService {
     extendObservable(this, {
       modules: [],
     });
+    this.form.validations = {
+      course: [isRequired]
+    };
   }
 
   init = action(() => {
@@ -20,16 +24,19 @@ class ModuleListService {
   });
 
   load = action(() => {
+    this.form.submitted = true;
+    if (this.form.errors) {
+      NotificationService.addNotification('Fill the required fields', 'error');
+      return;
+    }
+
     this.fetch.fetch({
       url: '/modules',
       query: {
         verbose: true,
         query: {
           ...this.form.getValue('filter') && {
-            name: {
-              $regex: this.form.getValue('filter'),
-              $options: 'i',
-            },
+            name: this.form.getValue('filter'),
           },
           ...this.form.getValue('course') && {
             course: this.form.getValue('course'),
