@@ -54,18 +54,35 @@ const StudentDetailContentRecordList = props => (
         path: 'id',
         render: (value, row) => {
           if (row.docType === 'MODULE') {
-            return <b style={{ fontSize: 14 }}>{row.name}</b>;
+            return (
+              <span>
+                <b style={{ fontSize: 14 }}>{row.name}</b>
+                {' '}
+                <Icon name={row.isAvailable ? 'unlock': 'lock'} />
+              </span>
+            );
           } else if (row.docType === 'UNIT') {
             return (
-              <Link
-                target="_blank"
-                to={`/contents/${row.id}/details`}
-              >
-                <b>{row.name}</b>
-              </Link>
+              <span>
+                <Link
+                  target="_blank"
+                  to={`/contents/${row.id}/details`}
+                >
+                  <b>{row.name}</b>
+                </Link>
+                {' '}
+                <Icon name={row.isAvailable ? 'unlock': 'lock'} />
+              </span>
             );
           } else if (row.docType === 'MASTERY') {
-            return <span><Icon name="file-text" />{' '}<b>Mastery Test for {row.modulePercentageToActive}%</b></span>;
+            return (
+              <span>
+                <Icon name="file-text" />{' '}
+                <b>Mastery Test for {row.modulePercentageToActive}%</b>{' '}
+                {row.availableAt && !row.failedAt && <Icon name="unlock" />}
+                {(row.failedAt || !row.availableAt) && <Icon name="lock" />}
+              </span>
+            );
           }
           return moment(row.startedAt).format('DD/MM/YYYY HH:mm');
         },
