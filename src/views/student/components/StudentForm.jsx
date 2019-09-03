@@ -129,6 +129,7 @@ const StudentForm = props => (
         <Column size={3}>
           <FetchSelect
             showSearch
+            isPaginated
             url="schools"
             fullWidth
             required
@@ -151,6 +152,7 @@ const StudentForm = props => (
         <Column size={localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' ? 2 : 4}>
           <FetchSelect
             showSearch
+            isPaginated
             url={`schools/${props.values.schoolClass.school.id}/classes`}
             fullWidth
             disabled={props.submitting}
