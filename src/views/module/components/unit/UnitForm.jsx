@@ -31,7 +31,7 @@ const UnitForm = props => (
         <FetchSelect
           required
           showSearch
-          url="modules"
+          url="approved-modules"
           disabled
           label="Module"
           value={get(props.values, 'module', '')}
