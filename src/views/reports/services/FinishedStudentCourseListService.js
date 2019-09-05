@@ -10,6 +10,11 @@ class FinishedStudentCourseListService {
   constructor() {
     extendObservable(this, {
       students: [],
+      pagination: {
+        current: 1,
+        total: 0,
+        pageSize: 50,
+      },
     });
     this.form.validations = {
       school: [],
@@ -24,11 +29,19 @@ class FinishedStudentCourseListService {
     }
   });
 
-  load = action(() => {
+  load = action((pagination) => {
+    if (pagination) {
+      this.pagination.current = pagination.current;
+    } else {
+      this.pagination.current = 1;
+    }
+
     this.form.submitted = true;
     this.fetch.fetch({
       url: '/reports/finished-student-course',
       query: {
+        page: this.pagination.current,
+        size: this.pagination.pageSize,
         ...this.form.getValue('school') && {
           school: this.form.getValue('school'),
         },
@@ -44,7 +57,8 @@ class FinishedStudentCourseListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.students = this.fetch.data;
+        this.students = this.fetch.data.docs;
+        this.pagination.total = this.fetch.data.total;
       } else {
         this.students = [];
       }
