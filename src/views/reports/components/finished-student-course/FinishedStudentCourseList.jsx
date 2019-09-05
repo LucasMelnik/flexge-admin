@@ -44,7 +44,7 @@ const FinishedStudentCourseList = props => (
         label: 'Actions',
         path: 'action',
         width: '80px',
-        render: (cell, row) => (!row.studentCourse.course.needCertification || props.isWhitelabel) && (
+        render: (cell, row) => (!['discovery', 'adventures'].some(c => c === row.studentCourse.course.name.toLowerCase()) && (!row.studentCourse.course.needCertification || props.isWhitelabel)) && (
           <div>
             <Button
               icon="file-pdf"
@@ -55,6 +55,8 @@ const FinishedStudentCourseList = props => (
       },
     ]}
     rows={props.students}
+    onChange={props.onChange}
+    pagination={props.pagination}
   />
 );
 
@@ -63,7 +65,9 @@ FinishedStudentCourseList.propTypes = {
     id: PropTypes.string.isRequired,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
+  pagination: PropTypes.shape({}).isRequired,
   isWhitelabel: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
   onDownload: PropTypes.func.isRequired,
 };
 
