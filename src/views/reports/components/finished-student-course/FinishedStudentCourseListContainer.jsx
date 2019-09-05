@@ -15,9 +15,11 @@ class UnitItemErrorRecordListContainer extends Component {
     return (
       <FinishedStudentCourseList
         students={toJS(FinishedStudentCourseListService.students)}
+        pagination={toJS(FinishedStudentCourseListService.pagination)}
         fetching={FinishedStudentCourseListService.fetch.fetching}
         onDownload={FinishedStudentCourseListService.handleDownloadCertificate}
         isWhitelabel={WhitelabelService.isWhitelabelDistribution}
+        onChange={FinishedStudentCourseListService.load}
       />
     );
   }
