@@ -34,6 +34,7 @@ const MessageForm = props => (
           <FetchSelect
             required
             showSearch
+            isPaginated
             url="schools"
             disabled={props.submitting}
             label="School"
@@ -50,6 +51,8 @@ const MessageForm = props => (
       <Column size={4}>
         <FetchSelect
           required
+          isPaginated
+          showSearch
           multiple={get(props.values, 'messageToClassRoom', false)}
           url={`schools/${get(props.values, 'school', undefined)}/classes`}
           disabled={props.submitting || !get(props.values, 'school', undefined)}
