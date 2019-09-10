@@ -11,6 +11,7 @@ class StudentRecordSelectContainer extends Component {
     value: PropTypes.string.isRequired,
     disabled: PropTypes.string.isRequired,
     onSelect: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
   };
 
   handleChange = (value) => {
@@ -22,7 +23,7 @@ class StudentRecordSelectContainer extends Component {
         StudentListService.searchStudents(value);
       }, 500);
     }
-    this.props.onSelect(value);
+    this.props.onChange(value);
   };
 
   render() {
