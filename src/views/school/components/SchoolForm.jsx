@@ -45,6 +45,7 @@ const SchoolForm = props => (
             showSearch
             url="/companies"
             required
+            isPaginated
             disabled={props.submitting || props.disableCompany}
             label="Company"
             value={get(props.values, 'company', '')}

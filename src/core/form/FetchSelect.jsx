@@ -45,7 +45,7 @@ export default class FetchSelect extends Component {
     resultFilter: () => true,
   };
 
-  state = { data: [], fetching: false };
+  state = { data: [], fetching: false, filter: null };
 
   searchService = () => {
     this.setState({
@@ -66,7 +66,7 @@ export default class FetchSelect extends Component {
                 $options: 'i'
               }
             }
-          }
+          },
         },
       }
     })
