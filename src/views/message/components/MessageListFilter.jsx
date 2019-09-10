@@ -40,8 +40,12 @@ const MessageListFilter = props => (
     <Column size={2}>
       <StudentRecordSelectContainer
         disabled={props.fetching}
-        value={get(props.values, 'member', '')}
-        onSelect={value => props.onChange('member', value)}
+        value={get(props.values, 'memberId', get(props.values, 'member', ''))}
+        onSelect={value => props.onChange('memberId', value)}
+        onChange={value => {
+          props.onChange('memberId', undefined);
+          props.onChange('member', value);
+        }}
       />
     </Column>
     <Column size={2}>
