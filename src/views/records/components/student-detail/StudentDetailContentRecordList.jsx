@@ -56,31 +56,31 @@ const StudentDetailContentRecordList = props => (
           if (row.docType === 'MODULE') {
             return (
               <span>
-                <b style={{ fontSize: 14 }}>{row.name}</b>
-                {' '}
                 <Icon name={row.isAvailable ? 'unlock': 'lock'} />
+                {' '}
+                <b style={{ fontSize: 14 }}>{row.name}</b>
               </span>
             );
           } else if (row.docType === 'UNIT') {
             return (
               <span>
+                <Icon name={row.isAvailable ? 'unlock': 'lock'} />
+                {' '}
                 <Link
                   target="_blank"
                   to={`/contents/${row.id}/details`}
                 >
                   <b>{row.name}</b>
                 </Link>
-                {' '}
-                <Icon name={row.isAvailable ? 'unlock': 'lock'} />
               </span>
             );
           } else if (row.docType === 'MASTERY') {
             return (
               <span>
-                <Icon name="file-text" />{' '}
-                <b>Mastery Test for {row.modulePercentageToActive}%</b>{' '}
                 {row.availableAt && !row.failedAt && <Icon name="unlock" />}
                 {(row.failedAt || !row.availableAt) && <Icon name="lock" />}
+                {' '}
+                <b>Mastery Test for {row.modulePercentageToActive}%</b>
               </span>
             );
           }
@@ -165,7 +165,7 @@ const StudentDetailContentRecordList = props => (
         width: '50px',
         render: (value, row) => {
           let translatedValue = '';
-          if (row.academicPlan && row.academicPlan.key === 'FUND_II') {
+          if (props.student.academicPlan && props.student.academicPlan.key === 'FUND_II') {
             switch (value) {
               case 'DEFAULT':
                 translatedValue = 'YC';
@@ -195,7 +195,7 @@ const StudentDetailContentRecordList = props => (
                 break;
             }
           }
-          if (row.academicPlan && row.academicPlan.key === 'KIDS') {
+          if (props.student.academicPlan && props.student.academicPlan.key === 'KIDS') {
             switch (value) {
               case 'DEFAULT':
                 translatedValue = 'YC';
@@ -318,6 +318,7 @@ StudentDetailContentRecordList.propTypes = {
     name: PropTypes.string,
     docType: PropTypes.string,
   })).isRequired,
+  student: PropTypes.shape({}).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDetailExecutionResult: PropTypes.func.isRequired,
 };
