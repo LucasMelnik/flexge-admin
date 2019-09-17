@@ -59,14 +59,21 @@ export default class FetchSelect extends Component {
         ...this.props.isPaginated && {
           page: 1,
           size: 20,
-          ...this.state.filter && {
-            query: {
-              [this.props.resultTransformer.text]: {
-                $regex: this.state.filter,
-                $options: 'i'
+          query: {
+            $or: [
+              {
+                ...this.state.filter && {
+                  [this.props.resultTransformer.text]: {
+                    $regex: this.state.filter,
+                    $options: 'i'
+                  }
+                }
+              },
+              {
+                ...this.props.value && { _id: this.props.value }
               }
-            }
-          },
+            ]
+          }
         },
       }
     })
@@ -76,7 +83,7 @@ export default class FetchSelect extends Component {
         });
         if (fetchService.data) {
           const data = toJS(this.props.isPaginated ? fetchService.data.docs : fetchService.data);
-          if (this.props.value && !data.find(item => item[this.props.resultTransformer.value] === this.props.value)) {
+          if (!this.props.isPaginated && this.props.value && !data.find(item => item[this.props.resultTransformer.value] === this.props.value)) {
             this.props.onChange(null);
           }
           this.setState({
@@ -98,7 +105,7 @@ export default class FetchSelect extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.url !== prevProps.url || JSON.stringify(this.props.params) !== JSON.stringify(prevProps.params)) {
+    if (this.props.url !== prevProps.url || JSON.stringify(this.props.params) !== JSON.stringify(prevProps.params) || prevProps.value !== this.props.value) {
       this.searchService();
     }
   }
