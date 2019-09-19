@@ -105,7 +105,11 @@ export default class FetchSelect extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.url !== prevProps.url || JSON.stringify(this.props.params) !== JSON.stringify(prevProps.params) || prevProps.value !== this.props.value) {
+    if (
+      this.props.url !== prevProps.url ||
+      JSON.stringify(this.props.params) !== JSON.stringify(prevProps.params) ||
+      (this.props.isPaginated && prevProps.value !== this.props.value)
+    ) {
       this.searchService();
     }
   }
