@@ -10,7 +10,7 @@ const StudentDetailContentRecordListFilter = props => (
       <FetchSelect
         label="Select the Course"
         value={props.course}
-        url={`records/students/${props.studentId}/courses`}
+        url={`students/${props.studentId}/courses`}
         onChange={value => props.onFilter(value)}
         resultTransformer={{
           text: 'course.name',
