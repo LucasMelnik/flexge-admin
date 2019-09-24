@@ -142,7 +142,7 @@ export default class StudentDetailHeader extends Component {
               }}
             >
               Course
-              <h2>{this.props.student.currentCourse.name}</h2>
+              <h2>{get(this.props.student, 'currentCourse.name', '-')}</h2>
             </div>
           </Column>
           <Column size={2}>

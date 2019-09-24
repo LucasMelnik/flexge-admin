@@ -15,6 +15,7 @@ import StudentDetailContentRecordListFilterContainer from './StudentDetailConten
 import StudentDetailCurrentPerformancePanelContainer from './StudentDetailCurrentPerformancePanelContainer';
 import StudentDetailExecutionResultDialogContainer from './StudentDetailExecutionResultDialogContainer';
 import StudentDetailAchievementListContainer from './StudentDetailAchievementListContainer';
+import StudentDetailRecordTabContainer from './StudentDetailRecordTabContainer';
 import StudentStudiedGrammarListContainer from '../common/StudentStudiedGrammarListContainer';
 
 const StudentDetailRecordScene = props => (
@@ -43,69 +44,71 @@ const StudentDetailRecordScene = props => (
       <StudentDetailHeaderContainer studentId={props.studentId} />
     </Card>
     <Separator />
-    <Tabs
-      tabs={[
-        {
-          title: 'Analytics',
-          content:
-            (
-              <div>
-                <Card title="Overview">
-                  <StudentDetailAnalyticsOverviewRecordContainer studentId={props.studentId} />
-                </Card>
-                <Separator />
-                <StudentDetailCurrentPerformancePanelContainer studentId={props.studentId} />
-                <Separator />
-                <Card title="History">
-                  <StudentDetailAnalyticsAcademicPerformanceHistoryContainer studentId={props.studentId} />
+    <StudentDetailRecordTabContainer>
+      <Tabs
+        tabs={[
+          {
+            title: 'Analytics',
+            content:
+              (
+                <div>
+                  <Card title="Overview">
+                    <StudentDetailAnalyticsOverviewRecordContainer studentId={props.studentId} />
+                  </Card>
                   <Separator />
-                  <StudentDetailAnalyticsStudiedTimeChartContainer studentId={props.studentId} />
+                  <StudentDetailCurrentPerformancePanelContainer studentId={props.studentId} />
                   <Separator />
-                  <StudentDetailAnalyticsStudyQualityChartContainer studentId={props.studentId} />
+                  <Card title="History">
+                    <StudentDetailAnalyticsAcademicPerformanceHistoryContainer studentId={props.studentId} />
+                    <Separator />
+                    <StudentDetailAnalyticsStudiedTimeChartContainer studentId={props.studentId} />
+                    <Separator />
+                    <StudentDetailAnalyticsStudyQualityChartContainer studentId={props.studentId} />
+                  </Card>
+                </div>
+              ),
+          },
+          {
+            title: 'Content Progress',
+            content:
+              (
+                <Card>
+                  <StudentDetailContentRecordListFilterContainer studentId={props.studentId} />
+                  <Separator size="xs" />
+                  <StudentDetailContentRecordListContainer studentId={props.studentId} />
                 </Card>
-              </div>
-            ),
-        },
-        {
-          title: 'Content Progress',
-          content:
-            (
+              ),
+          },
+          {
+            title: 'Daily Progress',
+            content:
+              (
+                <Card>
+                  <StudentDetailDateRecordListContainer studentId={props.studentId} />
+                </Card>
+              ),
+          },
+          {
+            title: 'Studied Grammars - last 60 days',
+            content: (
               <Card>
-                <StudentDetailContentRecordListFilterContainer studentId={props.studentId} />
-                <Separator size="xs" />
-                <StudentDetailContentRecordListContainer studentId={props.studentId} />
+                <StudentStudiedGrammarListContainer studentId={props.studentId} />
               </Card>
             ),
-        },
-        {
-          title: 'Daily Progress',
-          content:
-            (
-              <Card>
-                <StudentDetailDateRecordListContainer studentId={props.studentId} />
-              </Card>
-            ),
-        },
-        {
-          title: 'Studied Grammars - last 60 days',
-          content: (
-            <Card>
-              <StudentStudiedGrammarListContainer studentId={props.studentId} />
-            </Card>
-          ),
-        },
-        {
-          title: 'Achievements',
-          content:
-           (
-             <Card>
-               <StudentDetailAchievementListContainer studentId={props.studentId} />
-             </Card>
-           ),
-        },
+          },
+          {
+            title: 'Achievements',
+            content:
+             (
+               <Card>
+                 <StudentDetailAchievementListContainer studentId={props.studentId} />
+               </Card>
+             ),
+          },
 
-      ]}
-    />
+        ]}
+      />
+    </StudentDetailRecordTabContainer>
     <StudentDetailExecutionResultDialogContainer />
   </div>
 );
