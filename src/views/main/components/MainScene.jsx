@@ -5,6 +5,8 @@ import Menu from '../../../core/layout/Menu';
 import ConfirmDialogContainer from './ConfirmDialogContainer';
 import Button from '../../../core/form/Button';
 import UnReadeMessageCountContainer from '../../message/components/UnReadeMessageCountContainer';
+import PendingSuspectUsageAlertCountContainer
+  from '../../suspect-usage-alerts/components/PendingSuspectUsageAlertCountContainer';
 
 const MainScene = props => (
   <Layout>
@@ -427,6 +429,13 @@ const MainScene = props => (
                 allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'SPEECHACE'],
               },
               {
+                label: 'Suspect Usage Alerts',
+                icon: 'alert',
+                link: '/suspect-usage-alerts',
+                key: 'suspect-usage-alerts',
+                allowedFor: ['ADMIN'], //'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'
+              },
+              {
                 label: 'Student Close to Finish Course',
                 link: '/student-close-to-finish-course',
                 key: 'student-close-to-finish-course',
@@ -508,6 +517,7 @@ const MainScene = props => (
       }}
     >
       {props.children}
+      <PendingSuspectUsageAlertCountContainer />
       <ConfirmDialogContainer />
     </Layout.Content>
   </Layout>
