@@ -427,6 +427,13 @@ const MainScene = props => (
                 allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'SPEECHACE'],
               },
               {
+                label: 'Suspect Usage Alerts',
+                icon: 'alert',
+                link: '/suspect-usage-alerts',
+                key: 'suspect-usage-alerts',
+                allowedFor: ['ADMIN'], //'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'
+              },
+              {
                 label: 'Student Close to Finish Course',
                 link: '/student-close-to-finish-course',
                 key: 'student-close-to-finish-course',

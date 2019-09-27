@@ -121,6 +121,7 @@ import DocumentListScene from './views/document/components/DocumentListScene';
 import DocumentFormScene from './views/document/components/DocumentFormScene';
 import PublicDocumentListScene from './views/document/components/PublicDocumentListScene';
 import CourseStudentCountListScene from './views/reports/components/course-student-count/CourseStudentCountListScene';
+import SuspectUsageAlertScene from './views/suspect-usage-alerts/components/SuspectUsageAlertScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -282,6 +283,7 @@ const Routes = () => (
       <Route path="whitelabel-configs/:whitelabelConfigId" component={WhitelabelConfigFormScene} />
       <Route path="kids-certificates" component={KidsCertificatesListScene} />
       <Route path="active-students-by-course" component={CourseStudentCountListScene} />
+      <Route path="suspect-usage-alerts" component={SuspectUsageAlertScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
