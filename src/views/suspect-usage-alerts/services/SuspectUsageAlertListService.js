@@ -31,7 +31,7 @@ class SuspectUsageAlertListService {
 
   init = action(() => {
     this.alerts = [];
-    this.form.setInitialValues({ filterType: 'all' });
+    this.form.setInitialValues({ filterType: 'pending' });
     if (localStorage.role === 'SCHOOL_MANAGER') {
       this.form.setValue('school', localStorage.getItem('school'));
     }
@@ -54,7 +54,15 @@ class SuspectUsageAlertListService {
       query: {
         page: this.pagination.current,
         size: this.pagination.pageSize,
-        query: pickBy(this.form.getValues(), x => !!x)
+        query: {
+          ...pickBy(this.form.getValues(), x => !!x),
+          ...this.form.getValue('from') && {
+            from: this.form.getValue('from').format('YYYY-MM-DD')
+          },
+          ...this.form.getValue('to') && {
+            to: this.form.getValue('to').format('YYYY-MM-DD')
+          },
+        }
       },
     }).then(() => {
       if (this.fetch.data) {
@@ -107,7 +115,7 @@ class SuspectUsageAlertListService {
       }
     }).then(() => {
       if (this.submit.data) {
-        NotificationService.addNotification('Alert reviewed successfully.', 'success');
+        NotificationService.addNotification('Alert resolved successfully.', 'success');
         this.isReviewOpen = false;
         this.load();
       }

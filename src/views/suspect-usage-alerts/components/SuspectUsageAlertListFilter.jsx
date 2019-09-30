@@ -6,6 +6,7 @@ import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import Button from '../../../core/form/Button';
 import Select from '../../../core/form/Select';
+import RangeDateInput from '../../../core/form/RangeDateInput';
 
 const SuspectUsageAlertListFilter = props => (
   <form
@@ -32,11 +33,23 @@ const SuspectUsageAlertListFilter = props => (
               value: 'pending'
             },
             {
-              label: 'Only reviewed',
+              label: 'Only resolved',
               value: 'reviewed'
             },
           ]}
           errorText={get(props.errors, 'filterType', '')}
+        />
+      </Column>
+      <Column size={2}>
+        <RangeDateInput
+          label="Studied Period"
+          disabled={props.fetching}
+          onChange={(dates) => {
+            props.onChange('from', dates[0]);
+            props.onChange('to', dates[1]);
+          }}
+          placeholder={['From', 'To']}
+          value={[get(props.values, 'from', undefined), get(props.values, 'to', undefined)]}
         />
       </Column>
       {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
