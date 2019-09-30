@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { Tooltip } from 'antd';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
 import Tag from '../../../core/layout/Tag';
+import { formatTimeFromSeconds } from '../../../core/util';
 
 const SuspectUsageAlertList = props => (
   <Table
     fetching={props.fetching}
     columns={[
       {
-        label: 'Created At',
+        label: 'Studied At',
         path: 'createdAt',
         render: value => moment(value).format('DD/MM/YYYY HH:mm'),
-        width: '150px'
+        width: '140px'
       },
       {
         label: 'Student',
@@ -26,6 +28,12 @@ const SuspectUsageAlertList = props => (
       {
         label: 'School',
         path: 'student.schoolClass.school.name',
+      },
+      {
+        label: 'Studied time',
+        path: 'studiedTime',
+        render: value => formatTimeFromSeconds(value),
+        width: '100px',
       },
       {
         label: 'Repeats',
@@ -119,10 +127,10 @@ const SuspectUsageAlertList = props => (
         )
       },
       {
-        label: 'Reviewed At',
+        label: 'Resolved At',
         path: 'reviewedAt',
-        render: value => moment(value).format('DD/MM/YYYY HH:mm'),
-        width: '150px'
+        render: value => value && moment(value).format('DD/MM/YYYY HH:mm'),
+        width: '140px'
       },
       {
         label: 'Actions',
@@ -131,15 +139,23 @@ const SuspectUsageAlertList = props => (
         render: (cell, row) => {
           return !row.reviewedAt && (
             <div>
-              <Button
-                icon="issues-close"
-                onClick={() => props.onReview(row)}
-              />
+              <Tooltip placement="top" title="Resolve alert">
+                <span>
+                  <Button
+                    icon="issues-close"
+                    onClick={() => props.onReview(row)}
+                  />
+                </span>
+              </Tooltip>
               {' '}
-              <Button
-                icon="delete"
-                onClick={() => props.onDelete(row)}
-              />
+              <Tooltip placement="top" title="Delete alert">
+                <span>
+                  <Button
+                    icon="delete"
+                    onClick={() => props.onDelete(row)}
+                  />
+                </span>
+              </Tooltip>
             </div>
           );
         },
