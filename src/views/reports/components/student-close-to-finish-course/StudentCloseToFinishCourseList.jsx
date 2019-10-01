@@ -50,18 +50,18 @@ const StudentCloseToFinishCourseList = props => (
           path: 'schoolClass.name',
         },
       ],
-      ...localStorage.role !== 'TEACHER' && [
+      ...localStorage.role !== 'TEACHER' ? [
         {
           label: 'Teacher',
           path: 'schoolClass.teacher.name',
         },
-      ],
-      ...(localStorage.role !== 'TEACHER' && localStorage.role !== 'SCHOOL_MANAGER') && [
+      ] : [],
+      ...(localStorage.role !== 'TEACHER' && localStorage.role !== 'SCHOOL_MANAGER') ? [
         {
           label: 'School',
           path: 'schoolClass.school.name',
         },
-      ],
+      ] : [],
       ...[
         {
           label: 'Actions',
