@@ -26,6 +26,9 @@ class EvaluationTemplateLinkService {
   init = action(() => {
     this.schoolClasses = [];
     this.filterForm.setInitialValues({});
+    if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
+      this.filterForm.setValue('school', localStorage.getItem('school'));
+    }
   });
 
   load = action((pagination) => {
