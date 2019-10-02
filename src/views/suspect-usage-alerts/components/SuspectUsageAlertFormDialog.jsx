@@ -18,7 +18,7 @@ const SuspectUsageAlertFormDialog = props => (
   >
     <Alert
       title="What will change?"
-      description="After you review and confirm the system will update the student execution, the studied time will change to 30 seconds and the counts to 1 and the study quality will be recalculated."
+      description="After review and confirmation, the system will update the student's execution. Study time will be updated to 30 seconds, all meters (recordings, listenings, repeats, etc) will be set to 1 count each, and Study Quality will be recalculated."
     />
     <Separator size="xs" />
     <form
