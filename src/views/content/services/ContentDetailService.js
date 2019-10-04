@@ -17,7 +17,10 @@ export default class ContentDetailService {
 
   handleLoad = action((unitId) => {
     this.fetch.fetch({
-      url: `/approved-units?_id=${unitId}`,
+      url: `/approved-units`,
+      query: {
+        _id: unitId
+      }
     }).then(() => {
       const unit = head(this.fetch.data);
       this.fetch.fetch({

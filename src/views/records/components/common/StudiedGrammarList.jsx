@@ -52,7 +52,7 @@ const StudiedGrammarList = props => (
       {
         label: '',
         path: 'item.text',
-        width: '40%',
+        width: '30%',
         render: (value, row) => ({
           children: row.children ? '' : row.item.text,
           props: {
