@@ -41,7 +41,7 @@ const SchoolEvaluationForm = props => (
           ]}
         />
       </Column>
-      <Column size={2}>
+      <Column size={3}>
         <TextInput
           required
           disabled={props.submitting}
@@ -51,7 +51,7 @@ const SchoolEvaluationForm = props => (
           errorText={get(props.errors, 'name', null)}
         />
       </Column>
-      <Column size={2}>
+      <Column size={1.5}>
         <DateInput
           required
           disabled={props.submitting || props.values.id}
@@ -66,7 +66,7 @@ const SchoolEvaluationForm = props => (
           errorText={get(props.errors, 'start', '')}
         />
       </Column>
-      <Column size={2}>
+      <Column size={1.5}>
         <DateInput
           required
           disabled={props.submitting || props.values.id || !get(props.values, 'type', null) || !get(props.values, 'start', null)}
@@ -85,7 +85,7 @@ const SchoolEvaluationForm = props => (
           }}
         />
       </Column>
-      <Column size={3}>
+      <Column size={4}>
         <div style={{ height: 42 }} />
         <Button
           icon="check"

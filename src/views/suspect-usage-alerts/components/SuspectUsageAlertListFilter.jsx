@@ -16,7 +16,7 @@ const SuspectUsageAlertListFilter = props => (
     }}
   >
     <Row>
-      <Column size={1}>
+      <Column size={1.5}>
         <Select
           label="Filter Type"
           required
@@ -40,7 +40,7 @@ const SuspectUsageAlertListFilter = props => (
           errorText={get(props.errors, 'filterType', '')}
         />
       </Column>
-      <Column size={2}>
+      <Column size={2.5}>
         <RangeDateInput
           label="Studied Period"
           disabled={props.fetching}

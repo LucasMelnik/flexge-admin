@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import moment from 'moment';
 import Table from '../../../core/form/Table';
-import ImagePreview from '../../../core/layout/ImagePreview';
 import Button from '../../../core/form/Button';
 import ColumnSeparator from '../../../core/layout/ColumnSeparator';
 
@@ -37,44 +36,43 @@ const CertificationTestExecutionListCompleted = props => (
         sort: true,
       },
       {
-        label: 'Document',
-        path: 'document',
-        render: (cell, row) => <ImagePreview src={row.document} />,
-      },
-      {
         label: 'Corrected At',
         path: 'reviewedAt',
+        width: '100px',
         render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
       },
       {
         label: 'Approved At',
         path: 'approvedAt',
+        width: '100px',
         render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
       },
       {
         label: 'Failed At',
         path: 'failedAt',
+        width: '100px',
         render: cell => cell && moment(cell).format('DD/MM/YYYY HH:mm'),
       },
       {
         label: 'Score',
         path: 'readingScore',
+        width: '65px',
         render: (cell, row) => (
           <div>
             <span>
-              R: {row.readingScore}
+              R: {row.readingScore || '-'}
             </span>
             <br />
             <span>
-              L: {row.listeningScore}
+              L: {row.listeningScore || '-'}
             </span>
             <br />
             <span>
-              W: {row.writingScore}
+              W: {row.writingScore || '-'}
             </span>
             <br />
             <span>
-              S: {row.speakingScore}
+              S: {row.speakingScore || '-'}
             </span>
           </div>
         ),

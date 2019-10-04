@@ -8,8 +8,8 @@ import Separator from '../../../../core/layout/Separator';
 
 const StudentRecordListFilter = props => (
   <Row>
-    <Column size={1}>
-      <Separator size="md" />
+    <Column size={1.5}>
+      <Separator size="lg" />
       <Button
         label="Current Week"
         type={!props.values.isCustomPeriod ? 'primary' : 'default'}
