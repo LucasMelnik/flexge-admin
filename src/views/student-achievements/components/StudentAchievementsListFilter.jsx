@@ -35,7 +35,7 @@ const StudentAchievementsListFilter = props => (
         />
       </Column>
     )}
-    <Column size={2}>
+    <Column size={2.5}>
       <FetchSelect
         showSearch
         label="Filter by Type"
@@ -50,7 +50,7 @@ const StudentAchievementsListFilter = props => (
         }}
       />
     </Column>
-    <Column size={1}>
+    <Column size={1.5}>
       <MonthInput
         required
         label="Month"

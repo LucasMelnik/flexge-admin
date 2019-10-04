@@ -27,7 +27,7 @@ const MainScene = props => (
             type: 'menu',
             key: 'all-documents',
             removeWhenWhitelabel: true,
-            allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+            allowedFor: ['DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
           },
           {
             title: 'Dashboard',

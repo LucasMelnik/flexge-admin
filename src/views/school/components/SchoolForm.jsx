@@ -187,18 +187,6 @@ const SchoolForm = props => (
     </Row>
     <Row>
       {localStorage.role === 'ADMIN' && (
-        <Column size={1}>
-          <Switch
-            label="Allow SR Bonus"
-            titleOff="No"
-            titleOn="Yes"
-            onChange={value => props.onChange('allowSpeechRecognitionBonus', value)}
-            value={get(props.values, 'allowSpeechRecognitionBonus', false)}
-            disabled={props.submitting}
-          />
-        </Column>
-      )}
-      {localStorage.role === 'ADMIN' && (
         <Column size={2}>
           <Select
             disabled={props.submitting}
@@ -234,6 +222,18 @@ const SchoolForm = props => (
             value={get(props.values, 'logoUrl', '')}
             onChange={(key) => props.onChange('logoUrl', key)}
             errorText={get(props.errors, 'logoUrl', '')}
+          />
+        </Column>
+      )}
+      {localStorage.role === 'ADMIN' && (
+        <Column size={1}>
+          <Switch
+            label="Allow SR Bonus"
+            titleOff="No"
+            titleOn="Yes"
+            onChange={value => props.onChange('allowSpeechRecognitionBonus', value)}
+            value={get(props.values, 'allowSpeechRecognitionBonus', false)}
+            disabled={props.submitting}
           />
         </Column>
       )}

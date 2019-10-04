@@ -10,7 +10,7 @@ import StudentRecordSelectContainer from './StudentRecordSelectContainer';
 
 const MessageListFilter = props => (
   <Row>
-    <Column size={1}>
+    <Column size={1.5}>
       <DateInput
         label="From"
         disabled={props.fetching}
@@ -19,7 +19,7 @@ const MessageListFilter = props => (
         errorText={get(props.errors, 'from', '')}
       />
     </Column>
-    <Column size={1}>
+    <Column size={1.5}>
       <DateInput
         label="To"
         disabled={props.fetching}
@@ -28,7 +28,7 @@ const MessageListFilter = props => (
         errorText={get(props.errors, 'to', '')}
       />
     </Column>
-    <Column size={2}>
+    <Column size={3}>
       <TextInput
         label="Subject"
         disabled={props.fetching}
@@ -37,7 +37,7 @@ const MessageListFilter = props => (
         errorText={get(props.errors, 'subject', '')}
       />
     </Column>
-    <Column size={2}>
+    <Column size={3}>
       <StudentRecordSelectContainer
         disabled={props.fetching}
         value={get(props.values, 'memberId', get(props.values, 'member', ''))}

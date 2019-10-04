@@ -12,7 +12,7 @@ import ColumnSeparator from '../../../core/layout/ColumnSeparator';
 
 const UsageStatsFilter = props => (
   <Row>
-    <Column size={1}>
+    <Column size={1.5}>
       <Select
         label="Filter Type"
         required
@@ -32,7 +32,7 @@ const UsageStatsFilter = props => (
       />
     </Column>
     {(localStorage.role === 'ADMIN' || localStorage.role === 'SPEECHACE') && (
-      <Column size={3}>
+      <Column size={2.5}>
         <FetchSelect
           showSearch
           required={props.filterType === 'date-range'}
@@ -67,7 +67,7 @@ const UsageStatsFilter = props => (
       </Column>
     )}
     {props.filterType === 'month' && (
-      <Column size={1}>
+      <Column size={1.5}>
         <MonthInput
           required
           label="Month"
@@ -79,7 +79,7 @@ const UsageStatsFilter = props => (
       </Column>
     )}
     {props.filterType === 'date-range' && (
-      <Column size={2}>
+      <Column size={2.5}>
         <RangeDateInput
           required
           label="Custom Period"
@@ -94,7 +94,7 @@ const UsageStatsFilter = props => (
         />
       </Column>
     )}
-    <Column size={2}>
+    <Column size={2.5}>
       <div style={{ height: 42 }} />
       <Button
         label="Search"

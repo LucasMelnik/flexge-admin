@@ -15,14 +15,8 @@ const ProfileForm = props => (
     }}
   >
     <Row>
-      <Column size={1}>
-        <ImagePicker
-          src={get(props.values, 'profilePicture', '')}
-          onConfirmChanges={blob => props.onChangePicture(blob)}
-        />
-      </Column>
-      <Column size={6}>
-        <div style={{ height: 19 }} />
+      <Column size={8}>
+        <div style={{ height: 6 }} />
         <TextInput
           required
           disabled={props.submitting}
@@ -30,6 +24,12 @@ const ProfileForm = props => (
           value={get(props.values, 'name', '')}
           onChange={value => props.onChange('name', value)}
           errorText={get(props.errors, 'name', null)}
+        />
+      </Column>
+      <Column size={2}>
+        <ImagePicker
+          src={get(props.values, 'profilePicture', '')}
+          onConfirmChanges={blob => props.onChangePicture(blob)}
         />
       </Column>
     </Row>
