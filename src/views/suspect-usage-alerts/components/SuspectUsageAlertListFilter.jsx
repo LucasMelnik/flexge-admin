@@ -7,6 +7,7 @@ import Column from '../../../core/layout/Column';
 import Button from '../../../core/form/Button';
 import Select from '../../../core/form/Select';
 import RangeDateInput from '../../../core/form/RangeDateInput';
+import StudentSelectContainer from './StudentSelectContainer';
 
 const SuspectUsageAlertListFilter = props => (
   <form
@@ -52,8 +53,22 @@ const SuspectUsageAlertListFilter = props => (
           value={[get(props.values, 'from', undefined), get(props.values, 'to', undefined)]}
         />
       </Column>
+      <Column size={2.5}>
+        <StudentSelectContainer
+          disabled={props.fetching}
+          value={get(props.values, 'student', get(props.values, 'studentSearch', ''))}
+          onSelect={value => {
+            props.onChange('student', value);
+            props.onChange('studentSearch', undefined);
+          }}
+          onChange={value => {
+            props.onChange('student', undefined);
+            props.onChange('studentSearch', value);
+          }}
+        />
+      </Column>
       {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
-        <Column size={3}>
+        <Column size={2}>
           <FetchSelect
             isPaginated
             showSearch
@@ -70,7 +85,7 @@ const SuspectUsageAlertListFilter = props => (
         </Column>
       )}
       {!!get(props.values, 'school', undefined) && (
-        <Column size={4}>
+        <Column size={2}>
           <FetchSelect
             showSearch
             isPaginated
@@ -86,7 +101,7 @@ const SuspectUsageAlertListFilter = props => (
           />
         </Column>
       )}
-      <Column size={2}>
+      <Column size={1.5}>
         <div style={{ height: 42 }} />
         <Button
           disabled={props.fetching}
