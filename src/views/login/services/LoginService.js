@@ -5,6 +5,7 @@ import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired, isValidEmail } from '../../../core/validations';
+import WhitelabelService from '../../../core/services/WhitelabelService';
 
 class LoginService {
   fetch = new FetchService();
@@ -32,6 +33,9 @@ class LoginService {
       url: '/auth',
       headers: {
         Authorization: `Basic ${btoa(`${this.form.getValue('email')}:${this.form.getValue('password')}`)}`,
+      },
+      body: {
+        distributor: WhitelabelService.config.distributor
       },
     }).then(() => {
       if (this.fetch.data) {
