@@ -7,7 +7,7 @@ import Column from '../../../core/layout/Column';
 import Button from '../../../core/form/Button';
 import Select from '../../../core/form/Select';
 import RangeDateInput from '../../../core/form/RangeDateInput';
-import StudentRecordSelectContainer from '../../message/components/StudentRecordSelectContainer';
+import StudentSelectContainer from './StudentSelectContainer';
 
 const SuspectUsageAlertListFilter = props => (
   <form
@@ -54,7 +54,7 @@ const SuspectUsageAlertListFilter = props => (
         />
       </Column>
       <Column size={2.5}>
-        <StudentRecordSelectContainer
+        <StudentSelectContainer
           disabled={props.fetching}
           value={get(props.values, 'student', get(props.values, 'studentSearch', ''))}
           onSelect={value => {
