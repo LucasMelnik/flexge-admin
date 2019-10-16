@@ -41,7 +41,7 @@ const CompanyUserFormScene = props => (
 CompanyUserFormScene.propTypes = {
   params: PropTypes.shape({
     userId: PropTypes.string,
-    companyId: PropTypes.string.isRequired,
+    companyId: PropTypes.string,
   }).isRequired,
 };
 
