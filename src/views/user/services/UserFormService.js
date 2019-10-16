@@ -96,7 +96,7 @@ export default class UserFormService {
         ) {
           browserHistory.replace(`/admin-users/${user.id}`);
         } else if (user.role === 'DISTRIBUTOR_MANAGER') {
-          browserHistory.replace(`/distributors/${user.distributor.id}/users/${user.id}`);
+          browserHistory.replace(`/distributors-users/${user.id}`);
         } else {
           browserHistory.replace(`/company-users/${user.id}`);
         }

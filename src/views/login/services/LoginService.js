@@ -44,10 +44,10 @@ class LoginService {
         const decodedToken = jwtDecode(this.fetch.data.accessToken);
         localStorage.setItem('id', decodedToken.sub);
         localStorage.setItem('role', decodedToken.role);
-        if (decodedToken.distributor) {
+        if (decodedToken.distributor && typeof decodedToken.distributor === 'string') {
           localStorage.setItem('distributor', decodedToken.distributor);
         }
-        if (decodedToken.company) {
+        if (decodedToken.company && typeof decodedToken.company === 'string') {
           localStorage.setItem('company', decodedToken.company);
         }
         if (decodedToken.school) {
