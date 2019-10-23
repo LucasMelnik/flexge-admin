@@ -8,6 +8,7 @@ import TranslationInputContainer from '../inputs/TranslationInputContainer';
 import FileInput from '../../../../core/form/FileInput';
 import SpellCheckInputContainer from '../inputs/SpellCheckInputContainer';
 import Audios from '../inputs/Audios';
+import NativeSpeechSlice from '../inputs/NativeSpeechSlice';
 
 const PresentationItemForm = props => (
   <div>
@@ -73,6 +74,12 @@ const PresentationItemForm = props => (
         />
       </Column>
     </Row>
+    <NativeSpeechSlice
+      disabled={props.disabled}
+      submitting={props.submitting}
+      values={props.values}
+      onRefreshNativeSpeechRecognition={props.onRefreshNativeSpeechRecognition}
+    />
     {(props.showPostPhrase && !props.isTestItem) && (
       <Row>
         <Column size={12}>
@@ -101,6 +108,7 @@ const PresentationItemForm = props => (
 PresentationItemForm.propTypes = {
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
+  onRefreshNativeSpeechRecognition: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
