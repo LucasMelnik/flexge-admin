@@ -78,19 +78,7 @@ const ConfigurationForm = props => (
           errorText={get(props.errors, 'scoreToPassOfSpeechRecognition', null)}
         />
       </Column>
-      <Column size={3}>
-        <TextInput
-          required
-          label="Placement Introduction video"
-          disabled={props.submitting}
-          value={get(props.values, 'videoUrl', '')}
-          onChange={(key) => props.onChange('videoUrl', key)}
-          errorText={get(props.errors, 'videoUrl', null)}
-        />
-      </Column>
-    </Row>
-    <Row>
-      <Column size={2}>
+      <Column size={1.5}>
         <TextInput
           type="number"
           disabled={props.submitting}
@@ -101,7 +89,7 @@ const ConfigurationForm = props => (
           errorText={get(props.errors, 'numberOfDayBeforeFirstReview', null)}
         />
       </Column>
-      <Column size={2}>
+      <Column size={1.5}>
         <TextInput
           type="number"
           disabled={props.submitting}
@@ -112,7 +100,37 @@ const ConfigurationForm = props => (
           errorText={get(props.errors, 'numberOfDayBeforeSecondReview', null)}
         />
       </Column>
-      <Column size={4}>
+    </Row>
+    <Row>
+      <Column size={2}>
+        <TextInput
+          required
+          label="Placement Introduction video PT"
+          disabled={props.submitting}
+          value={get(props.values, 'videoUrl.pt', '')}
+          onChange={(key) => props.onChange('videoUrl.pt', key)}
+          errorText={get(props.errors, 'videoUrl.pt', null)}
+        />
+      </Column>
+      <Column size={2}>
+        <TextInput
+          label="Placement Introduction video EN"
+          disabled={props.submitting}
+          value={get(props.values, 'videoUrl.en', '')}
+          onChange={(key) => props.onChange('videoUrl.en', key)}
+          errorText={get(props.errors, 'videoUrl.en', null)}
+        />
+      </Column>
+      <Column size={2}>
+        <TextInput
+          label="Placement Introduction video ES"
+          disabled={props.submitting}
+          value={get(props.values, 'videoUrl.es', '')}
+          onChange={(key) => props.onChange('videoUrl.es', key)}
+          errorText={get(props.errors, 'videoUrl.es', null)}
+        />
+      </Column>
+      <Column size={3}>
         <TextInput
           type="number"
           required
@@ -123,7 +141,7 @@ const ConfigurationForm = props => (
           errorText={get(props.errors, 'percentageToEnableNextModuleGroup', null)}
         />
       </Column>
-      <Column size={4}>
+      <Column size={3}>
         <TextInput
           type="number"
           required
