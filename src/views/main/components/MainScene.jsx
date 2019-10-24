@@ -198,7 +198,7 @@ const MainScene = props => (
                 label: 'Distributor Users',
                 key: 'distributor-users',
                 link: '/distributor-users',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
+                allowedFor: ['ADMIN'],
                 group: 'Users',
               },
               {

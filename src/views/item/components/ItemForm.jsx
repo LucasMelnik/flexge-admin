@@ -213,6 +213,7 @@ const ItemForm = props => (
           disabled={props.disabled}
           isTestItem={props.isTestItem}
           showPostPhrase={props.showPostPhrase}
+          onRefreshNativeSpeechRecognition={props.onRefreshNativeSpeechRecognition}
         />
       )}
       {get(props.values.item, 'type.key', '') === 'PRONUNCIATION' && (
@@ -223,6 +224,7 @@ const ItemForm = props => (
           submitting={props.submitting}
           disabled={props.disabled}
           isTestItem={props.isTestItem}
+          onRefreshNativeSpeechRecognition={props.onRefreshNativeSpeechRecognition}
         />
       )}
       {get(props.values.item, 'type.key', '') === 'SPEECH_PRACTICE' && (
@@ -233,6 +235,7 @@ const ItemForm = props => (
           submitting={props.submitting}
           disabled={props.disabled}
           isTestItem={props.isTestItem}
+          onRefreshNativeSpeechRecognition={props.onRefreshNativeSpeechRecognition}
         />
       )}
       {get(props.values.item, 'type.key', '') === 'TEXT' && (
@@ -376,6 +379,7 @@ const ItemForm = props => (
 
 ItemForm.propTypes = {
   onSubmit: PropTypes.func,
+  onRefreshNativeSpeechRecognition: PropTypes.func,
   setValidationsByItemType: PropTypes.func,
   onReset: PropTypes.func,
   values: PropTypes.object,
@@ -397,6 +401,7 @@ ItemForm.defaultProps = {
   fetching: false,
   isDirty: () => false,
   onSubmit: () => alert('submitted'),
+  onRefreshNativeSpeechRecognition: () => alert('onRefreshNativeSpeechRecognition'),
   setValidationsByItemType: () => false,
   onReset: () => false,
   disabled: false,

@@ -7,6 +7,7 @@ import Column from '../../../../core/layout/Column';
 import TextInput from '../../../../core/form/TextInput';
 import get from 'lodash/get';
 import Row from '../../../../core/layout/Row';
+import NativeSpeechSlice from '../inputs/NativeSpeechSlice';
 
 const SpeechPracticeItemForm = props => (
   <div>
@@ -46,12 +47,19 @@ const SpeechPracticeItemForm = props => (
       onChange={props.onChange}
       errors={props.errors}
     />
+    <NativeSpeechSlice
+      disabled={props.disabled}
+      submitting={props.submitting}
+      values={props.values}
+      onRefreshNativeSpeechRecognition={props.onRefreshNativeSpeechRecognition}
+    />
   </div>
 );
 
 SpeechPracticeItemForm.propTypes = {
   values: PropTypes.object,
   onChange: PropTypes.func.isRequired,
+  onRefreshNativeSpeechRecognition: PropTypes.func.isRequired,
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   disabled: PropTypes.bool,
