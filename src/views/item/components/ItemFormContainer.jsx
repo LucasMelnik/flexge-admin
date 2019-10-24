@@ -41,6 +41,7 @@ class ItemFormContainer extends Component {
     return (
       <ItemForm
         onSubmit={this.itemFormService.handleSubmit}
+        onRefreshNativeSpeechRecognition={this.itemFormService.handleRefreshNativeSpeechRecognition}
         setValidationsByItemType={this.itemFormService.setValidationsByItemType}
         onChange={this.itemFormService.form.setValue}
         onReset={this.itemFormService.form.reset}

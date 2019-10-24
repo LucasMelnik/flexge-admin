@@ -26,6 +26,7 @@ export default class AudioPreview extends Component {
     this.setState({
       playing: false,
     });
+    this.audio.src = `${process.env.REACT_APP_FILES_URL}/${this.props.src}`;
   };
 
   render() {
@@ -46,7 +47,8 @@ export default class AudioPreview extends Component {
           controls={false}
           ref={input => { this.audio = input; }}
           preload="auto"
-          onEnded={() => this.handleAudioEnd() }
+          onEnded={this.handleAudioEnd}
+          onPause={this.handleAudioEnd}
           style={{
             visibility: 'hidden',
             width: 0,

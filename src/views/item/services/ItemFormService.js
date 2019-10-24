@@ -1,4 +1,4 @@
-import { extendObservable, action, observe } from 'mobx';
+import { extendObservable, action, observe, toJS } from 'mobx';
 import moment from 'moment';
 import 'moment-duration-format';
 import omit from 'lodash/omit';
@@ -487,6 +487,28 @@ export default class ItemFormService {
       if (this.submit.error) {
         NotificationService.addNotification(
           `Error ${itemId ? 'updating' : 'creating'} item.`,
+          'error',
+        );
+      }
+    });
+  });
+
+  handleRefreshNativeSpeechRecognition = action(() => {
+    const itemId = this.form.getValue('item.id');
+    this.submit.fetch({
+      method: 'patch',
+      url: `/${this.endpointUrl}/${itemId}/generate-native-sr`,
+    }).then(() => {
+      if (this.submit.data) {
+        this.form.setValue('item.nativeSpeechRecognition', toJS(this.submit.data.nativeSpeechRecognition));
+        NotificationService.addNotification(
+          `Native speech slices ${itemId ? 'updated' : 'created'} successfully.`,
+          'success',
+        );
+      }
+      if (this.submit.error) {
+        NotificationService.addNotification(
+          `Error ${itemId ? 'updating' : 'creating'} native speech slices.`,
           'error',
         );
       }
