@@ -5,7 +5,7 @@ import Row from '../../../../core/layout/Row';
 import Button from '../../../../core/form/Button';
 import Separator from '../../../../core/layout/Separator';
 
-const NativeSpeechSlice = props => props.values.nativeSpeechRecognition && (
+const NativeSpeechSlice = props => props.values.nativeSpeechRecognition ? (
   <Row>
     <div
       style={{
@@ -35,7 +35,7 @@ const NativeSpeechSlice = props => props.values.nativeSpeechRecognition && (
       onClick={props.onRefreshNativeSpeechRecognition}
     />
   </Row>
-);
+) : null;
 
 NativeSpeechSlice.propTypes = {
   onRefreshNativeSpeechRecognition: PropTypes.func.isRequired,
