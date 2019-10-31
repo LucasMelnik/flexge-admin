@@ -339,6 +339,14 @@ const MainScene = props => (
                 allowedFor: ['ADMIN'],
               },
               {
+                label: 'Mastery Items Execution Stats',
+                key: 'mastery-items-execution-stats',
+                link: '/mastery-items-execution-stats',
+                group: 'Reports',
+                icon: 'warning',
+                allowedFor: ['CONTENT_ADMIN', 'ADMIN'],
+              },
+              {
                 label: 'Placement Test',
                 key: 'placement-test',
                 link: '/placement-test',
