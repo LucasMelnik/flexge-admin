@@ -60,7 +60,7 @@ const FormatReviewForm = (props) => (
     </div>
     <TextEditor
       style={{
-        height: props.expanded ? 550 : 220,
+        height: 240,
         transition: 'all 0.5s',
       }}
       placeholder="Comment status format review..."
