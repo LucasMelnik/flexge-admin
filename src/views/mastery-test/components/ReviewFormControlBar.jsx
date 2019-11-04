@@ -26,7 +26,7 @@ export default class ReviewFormControlBar extends Component {
   render() {
     return (
       <div>
-        <div style={{ height: 360 }} />
+        <div style={{ height: 60 }} />
         <div
           style={{
             position: 'fixed',
@@ -36,7 +36,7 @@ export default class ReviewFormControlBar extends Component {
             bottom: 0,
             left: 0,
             right: 0,
-            height: this.state.expanded ? '80%' : 330,
+            height: this.state.expanded ? 360 : 30,
             transition: 'all 1s',
             padding: '20px 10px 10px',
           }}
@@ -57,14 +57,12 @@ export default class ReviewFormControlBar extends Component {
           <Row>
             <Column size={6}>
               <ContentReviewFormContainer
-                expanded={this.state.expanded}
                 masteryTestId={this.props.masteryTestId}
                 moduleId={this.props.moduleId}
               />
             </Column>
             <Column size={6}>
               <FormatReviewFormContainer
-                expanded={this.state.expanded}
                 masteryTestId={this.props.masteryTestId}
                 moduleId={this.props.moduleId}
               />
