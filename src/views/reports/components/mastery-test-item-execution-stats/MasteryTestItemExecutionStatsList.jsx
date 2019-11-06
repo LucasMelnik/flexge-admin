@@ -11,9 +11,9 @@ const MasteryTestItemExecutionStatsList = props => (
         label: 'Module',
         path: 'module.name',
         render: (value, row) => ({
-          children: row.children ? value : row.id,
+          children: row.children !== undefined ? value : row.id,
           props: {
-            colSpan: row.children ? 1 : 2,
+            colSpan: row.children !== undefined ? 1 : 2,
           },
         }),
       },
@@ -21,9 +21,9 @@ const MasteryTestItemExecutionStatsList = props => (
         label: 'Mastery Test',
         path: 'masteryTest.modulePercentageToActive',
         render: (value, row) => ({
-          children: row.children ? `${value}%` : '',
+          children: row.children !== undefined ? `${value}%` : '',
           props: {
-            colSpan: row.children ? 1 : 0,
+            colSpan: row.children !== undefined ? 1 : 0,
           },
         }),
       },
@@ -39,9 +39,9 @@ const MasteryTestItemExecutionStatsList = props => (
         width: '100px',
         sort: true,
         render: (value, row) => ({
-          children: row.children ? value : row.occurrenceCount,
+          children: row.children !== undefined ? value : row.occurrenceCount,
           props: {
-            colSpan: row.children ? 1 : 2,
+            colSpan: row.children !== undefined ? 1 : 2,
           },
         })
       },
@@ -51,9 +51,9 @@ const MasteryTestItemExecutionStatsList = props => (
         width: '100px',
         sort: true,
         render: (value, row) => ({
-          children: row.children ? `${((value / row.count) * 100).toFixed(1)}%` : '',
+          children: row.children !== undefined ? `${((value / row.count) * 100).toFixed(1)}%` : '',
           props: {
-            colSpan: row.children ? 1 : 0,
+            colSpan: row.children !== undefined ? 1 : 0,
           },
         }),
       },
@@ -62,7 +62,7 @@ const MasteryTestItemExecutionStatsList = props => (
         path: 'action',
         width: '75px',
         align: 'center',
-        render: (value, row) => (!!row.children) && (
+        render: (value, row) => (row.children !== undefined) && (
           <Link
             target="_blank"
             to={`/modules/${row.module.id}/mastery-tests/${row.masteryTest.id}`}
