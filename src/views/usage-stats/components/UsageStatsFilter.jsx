@@ -35,7 +35,7 @@ const UsageStatsFilter = props => (
       <Column size={2.5}>
         <FetchSelect
           showSearch
-          required={props.filterType === 'date-range'}
+          required
           label="Filter by Distributor"
           disabled={props.fetching}
           value={get(props.values, 'distributor', '')}
