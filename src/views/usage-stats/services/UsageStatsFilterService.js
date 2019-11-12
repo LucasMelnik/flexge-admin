@@ -22,6 +22,9 @@ class UsageStatsFilterService {
 
   init = action(() => {
     this.form.setInitialValues({});
+    if (localStorage.getItem('role') === 'ADMIN') {
+      this.form.validations.distributor = [isRequired];
+    }
   });
 
   handleChangeType = action(type => {
@@ -37,6 +40,7 @@ class UsageStatsFilterService {
     } else {
       this.form.validations = {
         month: [isRequired],
+        distributor: [isRequired],
       };
     }
   });
@@ -50,7 +54,7 @@ class UsageStatsFilterService {
 
     UsageStatsListService.load(this.filterType, this.form.getValues());
     if (this.filterType === 'month') {
-      DemoStudentListService.load(this.form.getValue('month'));
+      DemoStudentListService.load(this.form.getValue('month'), this.form.getValue('distributor'));
     } else {
       DemoStudentListService.init();
     }

@@ -14,9 +14,9 @@ class DemoStudentListService {
     this.students = [];
   });
 
-  load = action((month) => {
+  load = action((month, distributor) => {
     this.fetch.fetch({
-      url: `/reports/${month.format('MM-YYYY')}/demo-students`,
+      url: `/reports/${month.format('MM-YYYY')}/demo-students?distributor=${distributor}`,
     }).then(() => {
       if (this.fetch.data) {
         this.students = this.fetch.data;
