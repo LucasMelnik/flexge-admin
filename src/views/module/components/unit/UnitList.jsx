@@ -169,7 +169,7 @@ const UnitList = props => (
             {' '}
             {['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN'].some(role => localStorage.role === role) && props.academicPlan === 'FUND_II' && (
               <form
-                action={`${process.env.REACT_APP_API_URL.substring(0, process.env.REACT_APP_API_URL.length - 3)}public/tasting`}
+                action={`${process.env.REACT_APP_STUDENT_API_URL}public/tasting`}
                 target="_blank"
                 method="post"
                 style={{ display: 'inline-block' }}
