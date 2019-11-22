@@ -43,6 +43,34 @@ const InstructionForm = props => (
               label: 'Between items',
               value: 'BETWEEN_ITEMS',
             },
+            {
+              label: 'Repeat button',
+              value: 'REPEAT',
+            },
+            {
+              label: 'Record button',
+              value: 'RECORD',
+            },
+            {
+              label: 'Listen button',
+              value: 'LISTEN',
+            },
+            {
+              label: 'Read button',
+              value: 'READ',
+            },
+            {
+              label: 'Translate button',
+              value: 'TRANSLATE',
+            },
+            {
+              label: 'Next button',
+              value: 'NEXT',
+            },
+            {
+              label: 'Speech Recognition Result',
+              value: 'SPEECH_RECOGNITION_RESULT',
+            },
           ]}
         />
       </Column>
