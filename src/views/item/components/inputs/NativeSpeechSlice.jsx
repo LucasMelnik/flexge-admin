@@ -5,28 +5,30 @@ import Row from '../../../../core/layout/Row';
 import Button from '../../../../core/form/Button';
 import Separator from '../../../../core/layout/Separator';
 
-const NativeSpeechSlice = props => props.values.nativeSpeechRecognition ? (
+const NativeSpeechSlice = props => (
   <Row>
-    <div
-      style={{
-        display: 'flex',
-      }}
-    >
-      {props.values.nativeSpeechRecognition.wordScoreList.map(item => (
-        <div
-          key={item.audioStartTime}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            margin: '0px 10px 0px 0px'
-          }}
-        >
-          <small>{item.word}</small>
-          <AudioPreview src={`${props.values.audio}#t=${(item.audioStartTime / 100)},${item.audioEndTime / 100 - 0.05}`} />
-        </div>
-      ))}
-    </div>
+    {props.values.nativeSpeechRecognition && (
+      <div
+        style={{
+          display: 'flex',
+        }}
+      >
+        {props.values.nativeSpeechRecognition.wordScoreList.map(item => (
+          <div
+            key={item.audioStartTime}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              margin: '0px 10px 0px 0px'
+            }}
+          >
+            <small>{item.word}</small>
+            <AudioPreview src={`${props.values.audio}#t=${(item.audioStartTime / 100)},${item.audioEndTime / 100 - 0.05}`} />
+          </div>
+        ))}
+      </div>
+    )}
     <Separator size="xs"/>
     <Button
       icon="reload"
@@ -35,7 +37,7 @@ const NativeSpeechSlice = props => props.values.nativeSpeechRecognition ? (
       onClick={props.onRefreshNativeSpeechRecognition}
     />
   </Row>
-) : null;
+);
 
 NativeSpeechSlice.propTypes = {
   onRefreshNativeSpeechRecognition: PropTypes.func.isRequired,
