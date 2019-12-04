@@ -106,6 +106,64 @@ const ReviewUnitItemImageList = props => (
         },
       },
       {
+        label: 'Image for App',
+        path: 'item.image',
+        render: (cell, row) => {
+          if (row.item.type.key === 'SINGLE_CHOICE_IMAGE') {
+            return (
+              <div>
+                {row.item.answers.map(answer => (
+                  <img
+                    key={`for-item-answer-${answer.id}`}
+                    src={`${process.env.REACT_APP_FILES_URL}/items/${row.item.id}/images/${answer.id}.png}`}
+                    alt={`for-item-answer-${answer.id}`}
+                    style={{
+                      width: 'auto',
+                      height: 50,
+                      display: 'inline-block',
+                    }}
+                  />
+                ))}
+              </div>
+            );
+          } else if (['VOCABULARY', 'PHONEME', 'VOCABULARY_GAME', 'MEMORY_GAME', 'CONNECTING_DOTS'].some(type => type === row.item.type.key)) {
+            return (
+              <div>
+                <img
+                  src={`${process.env.REACT_APP_FILES_URL}/items/${row.item.id}/images/lg.png`}
+                  alt={`for-item-${row.item.id}`}
+                  style={{
+                    width: 'auto',
+                    height: 100,
+                  }}
+                />
+                {' '}
+                <img
+                  src={`${process.env.REACT_APP_FILES_URL}/items/${row.item.id}/images/post-phrase-lg.png`}
+                  alt={`for-item-${row.item.id}-post-phrase`}
+                  style={{
+                    width: 'auto',
+                    height: 100,
+                  }}
+                />
+              </div>
+            );
+          } else if (row.item.image) {
+            return (
+              <img
+                src={`${process.env.REACT_APP_FILES_URL}/items/${row.item.id}/images/lg.png`}
+                alt={`for-item-${row.item.id}`}
+                style={{
+                  width: 'auto',
+                  height: 100,
+                }}
+              />
+            );
+          }
+          return 'No image uploaded';
+        },
+      },
+      {
         label: 'Actions',
         path: 'action',
         width: '75',
