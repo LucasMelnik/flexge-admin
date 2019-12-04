@@ -114,8 +114,8 @@ const ReviewUnitItemImageList = props => (
               <div>
                 {row.item.answers.map(answer => (
                   <img
-                    key={`for-item-answer-${answer.id}`}
-                    src={`${process.env.REACT_APP_FILES_URL}/items/${row.item.id}/images/${answer.id}.png}`}
+                    key={`${process.env.REACT_APP_FILES_URL}/items/${row.item.id}/images/${answer.id}.png`}
+                    src={`${process.env.REACT_APP_FILES_URL}/items/${row.item.id}/images/${answer.id}.png`}
                     alt={`for-item-answer-${answer.id}`}
                     style={{
                       width: 'auto',
@@ -131,7 +131,7 @@ const ReviewUnitItemImageList = props => (
               <div>
                 <img
                   src={`${process.env.REACT_APP_FILES_URL}/items/${row.item.id}/images/lg.png`}
-                  alt={`for-item-${row.item.id}`}
+                  alt={`${process.env.REACT_APP_FILES_URL}/items/${row.item.id}/images/lg.png`}
                   style={{
                     width: 'auto',
                     height: 100,
@@ -140,7 +140,7 @@ const ReviewUnitItemImageList = props => (
                 {' '}
                 <img
                   src={`${process.env.REACT_APP_FILES_URL}/items/${row.item.id}/images/post-phrase-lg.png`}
-                  alt={`for-item-${row.item.id}-post-phrase`}
+                  alt={`${process.env.REACT_APP_FILES_URL}/items/${row.item.id}/images/post-phrase-lg.png`}
                   style={{
                     width: 'auto',
                     height: 100,
@@ -152,7 +152,7 @@ const ReviewUnitItemImageList = props => (
             return (
               <img
                 src={`${process.env.REACT_APP_FILES_URL}/items/${row.item.id}/images/lg.png`}
-                alt={`for-item-${row.item.id}`}
+                alt={`${process.env.REACT_APP_FILES_URL}/items/${row.item.id}/images/lg.png`}
                 style={{
                   width: 'auto',
                   height: 100,
