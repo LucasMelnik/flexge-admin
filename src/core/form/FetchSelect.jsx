@@ -15,6 +15,7 @@ export default class FetchSelect extends Component {
     label: PropTypes.string.isRequired,
     resultTransformer: PropTypes.shape({
       text: PropTypes.string.isRequired,
+      textFunc: PropTypes.func,
       value: PropTypes.string,
     }).isRequired,
     resultFilter: PropTypes.func,
@@ -135,7 +136,7 @@ export default class FetchSelect extends Component {
         placeholder={this.props.placeholder}
         onChange={value => this.props.onChange(value, this.state.data.find(item => item[this.props.resultTransformer.value] === value))}
         options={this.state.data.map(option => ({
-          label: get(option, this.props.resultTransformer.text),
+          label: this.props.resultTransformer.textFunc ? this.props.resultTransformer.textFunc(option) : get(option, this.props.resultTransformer.text),
           value: get(option, this.props.resultTransformer.value),
         }))}
         filterOption={(value, option) => option.props.children.toLowerCase().indexOf(value.toLowerCase()) > -1}
