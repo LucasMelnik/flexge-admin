@@ -79,6 +79,7 @@ const MessageForm = props => (
             errorText={get(props.errors, 'students', '')}
             resultTransformer={{
               text: 'name',
+              textFunc: item => `${item.name} - ${item.email}`,
               value: 'id',
             }}
           />
