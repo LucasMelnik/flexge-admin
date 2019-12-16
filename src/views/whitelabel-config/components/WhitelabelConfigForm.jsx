@@ -64,6 +64,8 @@ const WhitelabelConfigForm = props => (
       <Column size={3}>
         <FetchSelect
           url="companies"
+          isPaginated={true}
+          showSearch={true}
           disabled={props.submitting || !!props.values.distributor}
           label="Company"
           value={get(props.values, 'company', '')}
