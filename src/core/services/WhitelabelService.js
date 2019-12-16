@@ -11,6 +11,7 @@ class WhitelabelService {
       config: {
         logoUrl: null,
         distributor: null,
+        company: null,
         primaryColor: '#607d8b',
         secondaryColor: '#cfd8dc',
         lightColor: '#ededed',
@@ -26,6 +27,7 @@ class WhitelabelService {
         this.config.secondaryColor = data.secondaryColor;
         this.config.lightColor = data.lightColor;
         this.config.distributor = data.distributor;
+        this.config.company = data.company;
 
         window.document.title = data.title || '';
 
@@ -43,6 +45,7 @@ class WhitelabelService {
       .catch(action(() => {
         this.config.logoUrl = FlexgeLogo;
         this.config.distributor = null;
+        this.config.company = null;
         this.config.primaryColor = '#009688';
         this.config.secondaryColor = '#0bb5a0';
         this.config.lightColor = 'rgba(15, 177, 162, .3)';

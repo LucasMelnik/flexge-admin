@@ -35,7 +35,8 @@ class LoginService {
         Authorization: `Basic ${btoa(`${this.form.getValue('email')}:${this.form.getValue('password')}`)}`,
       },
       body: {
-        distributor: WhitelabelService.config.distributor
+        distributor: WhitelabelService.config.distributor,
+        company: WhitelabelService.config.company
       },
     }).then(() => {
       if (this.fetch.data) {
