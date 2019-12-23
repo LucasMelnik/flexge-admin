@@ -6,6 +6,7 @@ const StudentRecordSelect = props => (
   <AutoComplete
     label="Student"
     labelPath="name"
+    accessoryLabelPath="email"
     value={props.value}
     disabled={props.disabled}
     onSelect={props.onSelect}

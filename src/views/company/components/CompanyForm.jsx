@@ -9,6 +9,7 @@ import FormButtons from '../../../core/form/FormButtons';
 import MaskInput from '../../../core/form/MaskInput';
 import FetchSelect from '../../../core/form/FetchSelect';
 import PermissionValidator from '../../../core/layout/PermissionValidator';
+import Switch from '../../../core/form/Switch';
 
 const CompanyForm = props => (
   <form
@@ -232,7 +233,17 @@ const CompanyForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column size={8}>
+      <Column size={2}>
+        <Switch
+          label="Is Certification Test disabled?"
+          titleOff="No"
+          titleOn="Yes"
+          onChange={value => props.onChange('isCertificationTestDisabled', value)}
+          value={get(props.values, 'isCertificationTestDisabled', false)}
+          disabled={props.submitting}
+        />
+      </Column>
+      <Column size={6}>
         <TextInput
           disabled={props.submitting}
           label="Subscriber Name"
