@@ -15,6 +15,7 @@ export default class AutoComplete extends Component {
     label: PropTypes.string,
     errorText: PropTypes.string,
     labelPath: PropTypes.string.isRequired,
+    accessoryLabelPath: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -28,6 +29,7 @@ export default class AutoComplete extends Component {
   renderOptions = item => (
     <AntAutoComplete.Option key={item.id}>
       {item[this.props.labelPath]}
+      {this.props.accessoryLabelPath && ` - ${item[this.props.accessoryLabelPath]}`}
     </AntAutoComplete.Option>
   );
 

@@ -57,7 +57,11 @@ export default class ProfileFormService {
         NotificationService.addNotification('Profile updated', 'success');
       }
       if (this.submit.error) {
-        NotificationService.addNotification('Error to update the profile', 'error');
+        if (this.submit.error.indexOf('E11000') > -1) {
+          NotificationService.addNotification('We already have this email. Try to use a different one.', 'error');
+        } else {
+          NotificationService.addNotification('Error to update the profile', 'error');
+        }
       }
     });
   });
