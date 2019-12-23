@@ -13,15 +13,16 @@ export default class MessageFormService {
   constructor() {
     extendObservable(this, {});
     this.form.validations = {
+      type: [isRequired],
       subject: [isRequired],
       text: [isRequired],
       school: (localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') ? [isRequired] : [],
       schoolClasses: [isRequired],
-      students: [(value, all) => !value && !all.messageToClassRoom && 'Required'],
+      students: [(value, all) => !value && all.type !== 'TO_CLASSROOM' && 'Required'],
     };
 
     this.form.setInitialValues({
-      messageToClassRoom: false,
+      type: 'TO_ONE_STUDENT',
     });
 
     if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
@@ -32,6 +33,7 @@ export default class MessageFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
+      console.log(this.form.errors)
       NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
@@ -42,11 +44,11 @@ export default class MessageFormService {
       body: {
         text: this.form.getValue('text'),
         subject: this.form.getValue('subject'),
-        ...!this.form.getValue('messageToClassRoom') && {
+        ...this.form.getValue('type') !== 'TO_CLASSROOM' && {
           students: this.form.getValue('students'),
         },
         schoolClasses: this.form.getValue('schoolClasses'),
-        type: this.form.getValue('messageToClassRoom') ? 'TO_CLASSROOM' : 'TO_STUDENTS',
+        type: this.form.getValue('type') === 'TO_ONE_STUDENT' ? 'TO_STUDENTS' : this.form.getValue('type'),
       },
     }).then(() => {
       if (this.submit.data) {
