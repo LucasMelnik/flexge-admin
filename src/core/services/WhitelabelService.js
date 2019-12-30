@@ -46,7 +46,7 @@ class WhitelabelService {
         this.config.logoUrl = FlexgeLogo;
         this.config.distributor = null;
         this.config.company = null;
-        this.config.primaryColor = '#009688';
+        this.config.primaryColor = '#00786A';
         this.config.secondaryColor = '#0bb5a0';
         this.config.lightColor = 'rgba(15, 177, 162, .3)';
 
