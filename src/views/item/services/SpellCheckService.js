@@ -11,7 +11,12 @@ export default class SpellCheckService {
     });
   }
 
-  handleSubmit = action((text) => {
+  handleSubmit = action((text, dictionary) => {
+    if (dictionary) {
+      Object.keys(dictionary).forEach(word => {
+        text = text.replace(word, dictionary[word])
+      });
+    }
     this.submit.fetch({
       method: 'post',
       url: '/speech-recognition/validate',
