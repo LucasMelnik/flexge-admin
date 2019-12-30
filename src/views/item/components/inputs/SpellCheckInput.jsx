@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import trim from 'lodash/trim';
+import uniq from 'lodash/uniq';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import Button from '../../../../core/form/Button';
@@ -16,7 +17,7 @@ const SpellCheckInput = props => (
           disabled={props.submitting || props.disabled || !get(props.values, props.textPath, undefined)}
           label="Spell Check"
           loading={props.spellChecking}
-          onClick={() => props.onSpellCheck(get(props.values, props.textPath, undefined))}
+          onClick={() => props.onSpellCheck(get(props.values, props.textPath, undefined), get(props.values, 'speechRecognitionDictionary', undefined))}
         />
         <span
           style={{
@@ -30,10 +31,10 @@ const SpellCheckInput = props => (
         <Separator />
       </Column>
     </Row>
-    {props.spellCheckStatus === 'ERROR' && (
+    {(props.spellCheckStatus === 'ERROR' || !!props.values.speechRecognitionDictionary) && (
       <Row>
         <Column size={12}>
-          {props.wrongWords.map(word => (
+          {uniq([...props.wrongWords, ...Object.keys(props.values.speechRecognitionDictionary)]).map(word => (
             <span
               key={word.replace(/[.]/g, '_')}
               style={{
