@@ -44,7 +44,7 @@ const FinishedStudentCourseList = props => (
         label: 'Actions',
         path: 'action',
         width: '80px',
-        render: (cell, row) => (!['discovery', 'adventures'].some(c => c === row.studentCourse.course.name.toLowerCase()) && (!row.studentCourse.course.needCertification || props.isWhitelabel)) && (
+        render: (cell, row) => row.isPrintCertificateAllowed && (
           <div>
             <Button
               icon="file-pdf"
