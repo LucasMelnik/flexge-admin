@@ -58,6 +58,9 @@ export default class WhitelabelConfigFormService {
     if (this.form.getValue('logo')) {
       formData.append('logoFile', this.form.getValue('logo'));
     }
+    if (this.form.getValue('whiteLogo')) {
+      formData.append('whiteLogoFile', this.form.getValue('whiteLogo'));
+    }
     if (this.form.getValue('favicon')) {
       formData.append('favIconFile', this.form.getValue('favicon'));
     }
