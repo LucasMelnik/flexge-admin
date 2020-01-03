@@ -50,6 +50,7 @@ const WhitelabelConfigForm = props => (
       <Column size={3}>
         <FetchSelect
           url="distributors"
+          required={true}
           disabled={props.submitting || !!props.values.company}
           label="Distributor"
           value={get(props.values, 'distributor', '')}
@@ -64,6 +65,7 @@ const WhitelabelConfigForm = props => (
       <Column size={3}>
         <FetchSelect
           url="companies"
+          required={true}
           isPaginated={true}
           showSearch={true}
           disabled={props.submitting || !!props.values.distributor}
@@ -86,6 +88,16 @@ const WhitelabelConfigForm = props => (
           value={get(props.values, 'logoUrl', '')}
           onChange={value => props.onChange('logo', value)}
           errorText={get(props.errors, 'logo', null)}
+          accept="image"
+        />
+      </Column>
+      <Column size={2}>
+        <LocalFileInput
+          disabled={props.submitting}
+          label="White Logo"
+          value={get(props.values, 'whiteLogoUrl', '')}
+          onChange={value => props.onChange('whiteLogo', value)}
+          errorText={get(props.errors, 'whiteLogo', null)}
           accept="image"
         />
       </Column>
