@@ -154,7 +154,7 @@ const StudentRecordList = props => (
               const now = moment();
               const lastStudy = moment(row.lastStudy);
               const diff = moment.duration(lastStudy.diff(now));
-              if (diff.days() < -10) {
+              if (now.diff(lastStudy, 'days', true) >= 10) {
                 return (
                   <Tag color="red">
                     {diff.humanize(true)}
