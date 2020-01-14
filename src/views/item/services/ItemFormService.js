@@ -471,7 +471,7 @@ export default class ItemFormService {
           type: this.form.getValue('item.type').id,
           grammar: this.form.getValue('item.grammar').id,
           reference: this.form.getValue('item.reference') && this.form.getValue('item.reference').length > 0 ? this.form.getValue('item.reference') : null,
-          text: this.form.getValue('item.text') && this.form.getValue('item.text').length > 0 ? this.form.getValue('item.text').trim() : undefined,
+          text: this.form.getValue('item.text') && this.form.getValue('item.text').length > 0 ? this.form.getValue('item.text').trim().replace(new RegExp(String.fromCharCode(8217), 'g'), String.fromCharCode(39)) : undefined,
         },
         order: this.form.getValue('order') || this.order,
         group: this.form.getValue('group') || 1,
