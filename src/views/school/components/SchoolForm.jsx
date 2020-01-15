@@ -38,6 +38,7 @@ const SchoolForm = props => (
         allowedFor={[
           'ADMIN',
           'DISTRIBUTOR_MANAGER',
+          'COMPANY_MANAGER'
         ]}
       >
         <Column size={4}>

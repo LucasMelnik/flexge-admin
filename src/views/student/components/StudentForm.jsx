@@ -83,7 +83,7 @@ const StudentForm = props => (
           }))}
         />
       </Column>
-      <Column size={2}>
+      <Column size={1.5}>
         <DateInput
           disabled={props.submitting}
           label="Birth Date"
@@ -92,7 +92,7 @@ const StudentForm = props => (
           errorText={get(props.errors, 'birthDate', '')}
         />
       </Column>
-      <Column size={2}>
+      <Column size={1.5}>
         <FetchSelect
           url="academic-plans"
           fullWidth
@@ -110,7 +110,7 @@ const StudentForm = props => (
           }}
         />
       </Column>
-      <Column size={2}>
+      <Column size={1.5}>
         <FetchSelect
           url={`academic-plans/${get(props.values, 'academicPlan', null)}/courses`}
           fullWidth
@@ -126,7 +126,7 @@ const StudentForm = props => (
         />
       </Column>
       {props.values.id && (localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
-        <Column size={3}>
+        <Column size={2.5}>
           <FetchSelect
             showSearch
             isPaginated
@@ -138,6 +138,7 @@ const StudentForm = props => (
             value={get(props.values, 'schoolClass.school.id', '')}
             onChange={(schoolId) => {
               props.onChange('schoolClass.school.id', schoolId);
+              props.onChange('schoolClass.id', undefined);
             }}
             description={get(props.errors, 'schoolClass.school.id', null)}
             fieldValidation={get(props.errors, 'schoolClass.school.id', null) && 'error'}
@@ -153,6 +154,9 @@ const StudentForm = props => (
           <FetchSelect
             showSearch
             isPaginated
+            params={{
+              school: get(props.values, 'schoolClass.school.id', '')
+            }}
             url={`schools/${props.values.schoolClass.school.id}/classes`}
             fullWidth
             disabled={props.submitting}
