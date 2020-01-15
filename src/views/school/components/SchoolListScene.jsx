@@ -17,7 +17,7 @@ const SchoolListScene = () => (
     />
     <Card
       title="Schools"
-      actions={(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+      actions={(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
         <Button
           type="primary"
           label="New school"

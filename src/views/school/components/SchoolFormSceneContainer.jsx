@@ -30,7 +30,7 @@ class SchoolFormSceneContainer extends Component {
     return (
       <SchoolFormScene
         schoolId={this.props.params.schoolId}
-        currentCompany={this.props.params.companyId}
+        currentCompany={this.props.params.companyId || (localStorage.role === 'COMPANY_MANAGER' && localStorage.company)}
         company={this.schoolDetailService.company}
         distributor={this.schoolDetailService.distributor}
         fetching={
