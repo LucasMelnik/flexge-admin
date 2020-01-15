@@ -56,7 +56,7 @@ export default class FetchSelect extends Component {
     fetchService.fetch({
       url: `/${this.props.url}`,
       query: {
-        ...this.props.params,
+        ...!this.props.isPaginated && this.props.params,
         ...this.props.isPaginated && {
           page: 1,
           size: 20,
@@ -72,7 +72,10 @@ export default class FetchSelect extends Component {
               },
               {
                 ...this.props.value && { _id: this.props.value }
-              }
+              },
+              this.props.params && {
+                ...this.props.params
+              },
             ]
           }
         },
