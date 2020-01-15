@@ -51,10 +51,22 @@ export default class SchoolFormService {
         }
       });
     } else {
-      this.form.setInitialValues({
-        company: this.companyId,
-        modulePointRelevance: 1,
+      this.fetch.fetch({
+        url: `/companies/${this.companyId}`,
+      }).then(() => {
+        if (this.fetch.data) {
+          this.form.setInitialValues({
+            company: this.fetch.data.id,
+            modulePointRelevance: 1,
+            country: this.fetch.data.country,
+            locale: this.fetch.data.country.locale,
+          });
+          if (this.fetch.data.distributor === MASTERTEST_DISTRIBUTOR_ID) {
+            this.addInepToRequired();
+          }
+        }
       });
+
     }
   });
 
