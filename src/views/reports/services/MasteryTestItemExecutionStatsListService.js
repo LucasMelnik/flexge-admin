@@ -37,6 +37,12 @@ class MasteryTestItemExecutionStatsListService {
       url: `/reports/courses/${this.form.getValue('course')}/mastery-test-execution-stats`,
       query: {
         ...this.form.getValues(),
+        ...this.form.getValue('from') && {
+          from: this.form.getValue('from').format('YYYY-MM-DD')
+        },
+        ...this.form.getValue('to') && {
+          to: this.form.getValue('to').format('YYYY-MM-DD')
+        },
       },
     }).then(() => {
       if (this.fetch.data) {
