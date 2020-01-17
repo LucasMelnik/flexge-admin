@@ -5,6 +5,7 @@ import FetchSelect from '../../../../core/form/FetchSelect';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import Button from '../../../../core/form/Button';
+import RangeDateInput from '../../../../core/form/RangeDateInput';
 
 const MasteryTestItemExecutionStatsListFilter = props => (
   <Row>
@@ -60,6 +61,20 @@ const MasteryTestItemExecutionStatsListFilter = props => (
         />
       </Column>
     )}
+    <Column size={2.5}>
+      <RangeDateInput
+        required
+        label="Execution Period"
+        disabled={props.fetching}
+        onChange={(dates) => {
+          props.onChange('from', dates[0]);
+          props.onChange('to', dates[1]);
+        }}
+        placeholder={['From', 'To']}
+        value={[get(props.values, 'from', undefined), get(props.values, 'to', undefined)]}
+        errorText={get(props.errors, 'from', '')}
+      />
+    </Column>
     <Column size={2}>
       <div
         style={{
