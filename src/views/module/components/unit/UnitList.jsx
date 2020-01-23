@@ -167,7 +167,7 @@ const UnitList = props => (
               />
             )}
             {' '}
-            {['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN'].some(role => localStorage.role === role) && props.academicPlan === 'FUND_II' && (
+            {['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN'].some(role => localStorage.role === role) && (
               <form
                 action={`${process.env.REACT_APP_STUDENT_API_URL}/public/tasting`}
                 target="_blank"
@@ -175,6 +175,7 @@ const UnitList = props => (
                 style={{ display: 'inline-block' }}
               >
                 <input type="hidden" name="unit" value={row.id} />
+                <input type="hidden" name="type" value={props.academicPlan} />
                 <Button
                   icon="select"
                   buttonType="submit"
