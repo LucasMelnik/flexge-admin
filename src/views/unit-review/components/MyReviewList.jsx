@@ -146,7 +146,7 @@ const MyReviewList = props => (
               return (
                 <Button
                   icon="export"
-                  onClick={() => props.onSendToReview(row.unit)}
+                  onClick={() => props.onSendToReview(row)}
                 />
               );
             } else if (
