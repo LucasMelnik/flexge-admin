@@ -61,15 +61,13 @@ export default class FetchSelect extends Component {
           page: 1,
           size: 20,
           query: {
+            ...this.state.filter && {
+              [this.props.resultTransformer.text]: {
+                $regex: this.state.filter,
+                $options: 'i'
+              }
+            },
             $or: [
-              {
-                ...this.state.filter && {
-                  [this.props.resultTransformer.text]: {
-                    $regex: this.state.filter,
-                    $options: 'i'
-                  }
-                }
-              },
               {
                 ...this.props.value && { _id: this.props.value }
               },
