@@ -130,10 +130,8 @@ const UserForm = props => (
             isPaginated
             url="schools"
             params={{
-              query: {
-                ...get(props.values, 'company', false) && {
-                  company: get(props.values, 'company', '')
-                },
+              ...get(props.values, 'company', false) && {
+                company: get(props.values, 'company', '')
               },
             }}
             disabled={props.submitting}
