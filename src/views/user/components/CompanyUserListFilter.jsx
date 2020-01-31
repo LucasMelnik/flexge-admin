@@ -37,9 +37,7 @@ const CompanyUserListFilter = props => (
         url="/schools"
         params={{
           ...get(props.values, 'company', false) && {
-            query: {
-              company: get(props.values, 'company', ''),
-            }
+            company: get(props.values, 'company', ''),
           }
         }}
         resultTransformer={{
