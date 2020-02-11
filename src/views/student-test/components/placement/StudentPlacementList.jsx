@@ -20,6 +20,11 @@ const StudentPlacementList = props => (
       {
         label: 'Reached Level',
         path: 'reachedLevel.level',
+        render: (cell, row) => (
+          <span>
+            {cell} - {row.reachedLevel.course.name}
+          </span>
+        )
       },
       {
         label: 'Stop Reason',
