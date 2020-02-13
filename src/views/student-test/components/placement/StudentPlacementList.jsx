@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import get from 'lodash/get';
 import Table from '../../../../core/form/Table';
 import Button from '../../../../core/form/Button';
 import StudentPlacementItemList from './StudentPlacementItemList';
@@ -22,7 +23,7 @@ const StudentPlacementList = props => (
         path: 'reachedLevel.level',
         render: (cell, row) => (
           <span>
-            {cell} - {row.reachedLevel.course.name}
+            {cell} - {get(row.reachedLevel, 'course.name', '')}
           </span>
         )
       },
