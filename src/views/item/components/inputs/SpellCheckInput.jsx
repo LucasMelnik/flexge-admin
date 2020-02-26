@@ -34,7 +34,7 @@ const SpellCheckInput = props => (
     {(props.spellCheckStatus === 'ERROR' || !!props.values.speechRecognitionDictionary) && (
       <Row>
         <Column size={12}>
-          {uniq([...props.wrongWords, ...Object.keys(props.values.speechRecognitionDictionary)]).map(word => (
+          {uniq([...props.wrongWords, ...Object.keys(get(props.values, 'speechRecognitionDictionary', {}))]).map(word => (
             <span
               key={word.replace(/[.]/g, '_')}
               style={{
