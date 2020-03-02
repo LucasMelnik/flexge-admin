@@ -33,7 +33,6 @@ export default class MessageFormService {
   handleSubmit = action(() => {
     this.form.submitted = true;
     if (this.form.errors) {
-      console.log(this.form.errors)
       NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
