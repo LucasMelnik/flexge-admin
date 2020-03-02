@@ -27,7 +27,7 @@ const MessageForm = props => (
           value={get(props.values, 'type', false)}
           onChange={value => {
             props.onChange('type', value);
-            props.onChange('school', null);
+            props.onChange('school', (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') ? localStorage.getItem('school') : null);
             props.onChange('schoolClasses', null);
             props.onChange('students', null);
           }}
@@ -121,7 +121,7 @@ const MessageForm = props => (
             onChange={value => {
               props.onChange('studentId', undefined);
               props.onChange('students', undefined);
-              props.onChange('school', undefined);
+              props.onChange('school', (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') ? localStorage.getItem('school') : null);
               props.onChange('schoolClasses', undefined);
               props.onChange('student', value);
             }}
