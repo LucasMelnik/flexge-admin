@@ -51,22 +51,27 @@ export default class SchoolFormService {
         }
       });
     } else {
-      this.fetch.fetch({
-        url: `/companies/${this.companyId}`,
-      }).then(() => {
-        if (this.fetch.data) {
-          this.form.setInitialValues({
-            company: this.fetch.data.id,
-            modulePointRelevance: 1,
-            country: this.fetch.data.country,
-            locale: this.fetch.data.country.locale,
-          });
-          if (this.fetch.data.distributor === MASTERTEST_DISTRIBUTOR_ID) {
-            this.addInepToRequired();
+      if (this.companyId) {
+        this.fetch.fetch({
+          url: `/companies/${this.companyId}`,
+        }).then(() => {
+          if (this.fetch.data) {
+            this.form.setInitialValues({
+              company: this.fetch.data.id,
+              modulePointRelevance: 1,
+              country: this.fetch.data.country,
+              locale: this.fetch.data.country.locale,
+            });
+            if (this.fetch.data.distributor === MASTERTEST_DISTRIBUTOR_ID) {
+              this.addInepToRequired();
+            }
           }
-        }
-      });
-
+        });
+      } else {
+        this.form.setInitialValues({
+          modulePointRelevance: 1,
+        });
+      }
     }
   });
 
