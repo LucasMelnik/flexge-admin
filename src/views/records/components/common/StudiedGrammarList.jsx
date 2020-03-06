@@ -56,7 +56,20 @@ const StudiedGrammarList = props => (
         render: (value, row) => ({
           children: row.children ? '' : row.item.text,
           props: {
-            colSpan: row.children ? 0 : 4,
+            colSpan: row.children ? 0 : 5,
+          },
+        }),
+      },
+      {
+        label: 'Students',
+        path: 'students',
+        width: 150,
+        sort: true,
+        align: 'center',
+        render: (value, row) => ({
+          children: row.children ? row.students : '',
+          props: {
+            colSpan: row.children ? 1 : 0,
           },
         }),
       },
