@@ -17,6 +17,7 @@ export default class CountryFormService {
       name: [isRequired],
       timezone: [isRequired],
       locale: [isRequired],
+      code: [isRequired],
     };
   }
 
