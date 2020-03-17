@@ -18,7 +18,7 @@ const CountryForm = props => (
     }}
   >
     <Row>
-      <Column size={6}>
+      <Column size={5}>
         <TextInput
           required
           disabled={props.submitting}
@@ -43,7 +43,17 @@ const CountryForm = props => (
           }))}
         />
       </Column>
-      <Column size={2}>
+      <Column size={1.5}>
+        <TextInput
+          required
+          disabled={props.submitting}
+          label="Code"
+          value={get(props.values, 'code', '')}
+          onChange={value => props.onChange('code', value)}
+          errorText={get(props.errors, 'code', null)}
+        />
+      </Column>
+      <Column size={1.5}>
         <LocaleSelect
           required
           disabled={props.submitting}
