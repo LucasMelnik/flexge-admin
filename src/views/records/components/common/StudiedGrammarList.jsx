@@ -101,22 +101,22 @@ const StudiedGrammarList = props => (
       },
       {
         label: '% Error',
-        path: 'errorCountPercentage',
+        path: 'errorPercentage',
         align: 'center',
         sort: true,
         width: 100,
         render: (value, row) => {
           let content = null;
           if (row.children) {
-            const percentage = round((row.errorCount / row.total) * 100, 2);
-            if (percentage >= 25) {
+            value = round(value, 2 );
+            if (value >= 25) {
               content = (
                 <Tag color="red">
-                  {percentage}%
+                  {value}%
                 </Tag>
               );
             }
-            return `${percentage}%`;
+            content = `${value}%`;
           }
           return {
             children: content,
