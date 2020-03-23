@@ -323,6 +323,14 @@ const MainScene = props => (
                 allowedFor: ['ADMIN', 'CONTENT_ADMIN'],
               },
               {
+                label: 'Items By Word Count Limit',
+                key: 'items-by-word-count-limit',
+                link: '/items-by-word-count-limit',
+                group: 'Reports',
+                icon: 'file-text',
+                allowedFor: ['ADMIN', 'CONTENT_ADMIN'],
+              },
+              {
                 label: 'Unit Items Execution Stats',
                 key: 'unit-items-execution-stats',
                 link: '/unit-items-execution-stats',
