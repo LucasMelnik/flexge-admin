@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '../../../../core/form/Table';
 import Button from '../../../../core/form/Button';
-import { browserHistory } from 'react-router';
+import { Link } from 'react-router';
+import round from 'lodash/round';
 
 const ItemByWordCountLimitList = props => (
   <Table
@@ -12,25 +13,31 @@ const ItemByWordCountLimitList = props => (
     pagination={props.pagination}
     columns={[
       {
-        label: 'Module',
+        label: 'Module - Unit',
         path: 'name',
         width: '20%',
+        render: (value, row) => (
+          <span>
+            {value}
+            <br/>
+            <b>({row.unit.order}) {row.unit.name}</b>
+          </span>
+        )
       },
       {
-        label: 'Unit',
-        path: 'unit.name',
-        width: '25%',
-      },
-      {
-        label: 'Order',
+        label: 'Item Order',
         path: 'unitItem.order',
         width: '50px',
       },
       {
-        label: 'Group',
+        label: 'Item Group',
         path: 'unitItem.group',
         width: '70px',
         render: value => ['', 'Default', 'First Review', 'Second Review'][value]
+      },
+      {
+        label: 'Type',
+        path: 'item.type.name',
       },
       {
         label: 'Text',
@@ -42,15 +49,22 @@ const ItemByWordCountLimitList = props => (
         width: '70px',
       },
       {
+        label: 'Attempt Error %',
+        path: 'item.executionStats.errorPercentage',
+        width: '50px',
+        render: value => round(value, 2)
+      },
+      {
         label: 'Actions',
         path: 'action',
         width: '80px',
         align: 'center',
         render: (cell, row) => (
-          <Button
-            icon="edit"
-            onClick={() => browserHistory.push(`/modules/${row.id}/units/${row.unit.id}/items`)}
-          />
+          <Link to={`/modules/${row.id}/units/${row.unit.id}/items`} target="_blank">
+            <Button
+              icon="edit"
+            />
+          </Link>
         ),
       },
     ]}
