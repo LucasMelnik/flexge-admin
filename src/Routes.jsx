@@ -124,6 +124,8 @@ import CourseStudentCountListScene from './views/reports/components/course-stude
 import SuspectUsageAlertScene from './views/suspect-usage-alerts/components/SuspectUsageAlertScene';
 import MasteryTestItemExecutionStatsListScene
   from './views/reports/components/mastery-test-item-execution-stats/MasteryTestItemExecutionStatsListScene';
+import ItemByWordCountLimitListScene
+  from './views/reports/components/item-by-word-count-limit/ItemByWordCountLimitListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -287,6 +289,7 @@ const Routes = () => (
       <Route path="active-students-by-course" component={CourseStudentCountListScene} />
       <Route path="suspect-usage-alerts" component={SuspectUsageAlertScene} />
       <Route path="mastery-items-execution-stats" component={MasteryTestItemExecutionStatsListScene} />
+      <Route path="items-by-word-count-limit" component={ItemByWordCountLimitListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
