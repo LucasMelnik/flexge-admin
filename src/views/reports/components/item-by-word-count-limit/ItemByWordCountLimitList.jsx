@@ -49,6 +49,11 @@ const ItemByWordCountLimitList = props => (
         width: '70px',
       },
       {
+        label: 'Attempt Count',
+        path: 'item.executionStats.attemptCount',
+        width: '50px',
+      },
+      {
         label: 'Attempt Error %',
         path: 'item.executionStats.errorPercentage',
         width: '50px',
