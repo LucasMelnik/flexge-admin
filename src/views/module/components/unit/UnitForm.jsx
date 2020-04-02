@@ -96,7 +96,7 @@ const UnitForm = props => (
             value,
             label: value.toString(),
           }))}
-          disabled={props.submitting || props.disabled}
+          disabled={true}
           label="Score to pass"
           value={get(props.values, 'scoreToPass', '')}
           onChange={value => props.onChange('scoreToPass', value)}
