@@ -16,7 +16,7 @@ const CourseList = props => (
       },
       {
         label: 'Description',
-        path: 'description',
+        path: 'description.pt',
       },
       {
         label: 'Actions',
