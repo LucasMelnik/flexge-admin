@@ -36,15 +36,36 @@ const CourseForm = props => (
         />
       </Column>
     </Row>
+    <p>Description</p>
     <Row>
       <Column size={12}>
         <TextInput
           required
           disabled={props.submitting}
-          label="Description"
-          value={get(props.values, 'description', '')}
-          onChange={value => props.onChange('description', value)}
-          errorText={get(props.errors, 'description', null)}
+          label="Portuguese"
+          value={get(props.values, 'description.pt', '')}
+          onChange={value => props.onChange('description.pt', value)}
+          errorText={get(props.errors, 'description.pt', null)}
+        />
+      </Column>
+      <Column size={12}>
+        <TextInput
+          required
+          disabled={props.submitting}
+          label="Spanish"
+          value={get(props.values, 'description.es', '')}
+          onChange={value => props.onChange('description.es', value)}
+          errorText={get(props.errors, 'description.es', null)}
+        />
+      </Column>
+      <Column size={12}>
+        <TextInput
+          required
+          disabled={props.submitting}
+          label="English"
+          value={get(props.values, 'description.en', '')}
+          onChange={value => props.onChange('description.en', value)}
+          errorText={get(props.errors, 'description.en', null)}
         />
       </Column>
     </Row>
