@@ -85,7 +85,7 @@ export default class FetchSelect extends Component {
         });
         if (fetchService.data) {
           const data = toJS(this.props.isPaginated ? fetchService.data.docs : fetchService.data);
-          if (!this.props.isPaginated && this.props.value && !data.find(item => item[this.props.resultTransformer.value] === this.props.value)) {
+          if (!this.props.isPaginated && !this.props.multiple && this.props.value && !data.find(item => item[this.props.resultTransformer.value] === this.props.value)) {
             this.props.onChange(null);
           }
           this.setState({
@@ -142,7 +142,7 @@ export default class FetchSelect extends Component {
         }))}
         filterOption={(value, option) => option.props.children.toLowerCase().indexOf(value.toLowerCase()) > -1}
         onSearch={this.props.isPaginated ? this.handleSearch : null}
-        loadicng={this.state.fetching}
+        loading={this.state.fetching}
       />
     );
   }
