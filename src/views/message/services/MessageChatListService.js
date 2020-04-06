@@ -1,7 +1,7 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
-class MessageChatListService {
+export default class MessageChatListService {
   fetch = new FetchService();
   markRead = new FetchService();
 
@@ -17,6 +17,10 @@ class MessageChatListService {
     this.messageChannelId = messageChannelId;
     this.connectWebSocket();
     this.load();
+
+    window.addEventListener('message-sent', (() => {
+      this.load();
+    }));
   });
 
   load = action(() => {
@@ -55,7 +59,3 @@ class MessageChatListService {
     };
   });
 }
-
-const messageChatListService = new MessageChatListService();
-
-export default messageChatListService;
