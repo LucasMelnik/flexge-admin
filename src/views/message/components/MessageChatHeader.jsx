@@ -8,7 +8,7 @@ const MessageChatHeader = props => (
   <div
     style={{
       padding: 10,
-      border: '1px solid #ececec',
+      borderBottom: '1px solid #dedede',
       borderTopLeftRadius: 3,
       borderTopRightRadius: 3,
     }}
@@ -27,7 +27,7 @@ const MessageChatHeader = props => (
           to={`/records/schools/${head(props.messageChannel.members).schoolClass.school}/classes/${head(props.messageChannel.members).schoolClass.id}/students/${head(props.messageChannel.members).id}/detail`}
           target="_blank"
         >
-          - Check student records
+          {' '}- Check student records
         </Link>
         <br />
         <span>
@@ -36,7 +36,7 @@ const MessageChatHeader = props => (
             to={`/records/schools/${head(props.messageChannel.members).schoolClass.school}/classes/${head(props.messageChannel.members).schoolClass.id}/students`}
             target="_blank"
           >
-            - Check classroom records
+            {' '}- Check classroom records
           </Link>
         </span>
       </div>
@@ -54,7 +54,7 @@ const MessageChatHeader = props => (
           to={`/records/schools/${props.messageChannel.owner.schoolClass.school}/classes/${props.messageChannel.owner.schoolClass.id}/students/${props.messageChannel.owner.id}/detail`}
           target="_blank"
         >
-          - Check student records
+          {' '} - Check student records
         </Link>
         <br />
         <span>
@@ -63,7 +63,7 @@ const MessageChatHeader = props => (
             to={`/records/schools/${props.messageChannel.owner.schoolClass.school}/classes/${props.messageChannel.owner.schoolClass.id}/students`}
             target="_blank"
           >
-            - Check classroom records
+            {' '} - Check classroom records
           </Link>
         </span>
       </div>

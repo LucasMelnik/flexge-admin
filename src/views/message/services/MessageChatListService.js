@@ -15,6 +15,7 @@ class MessageChatListService {
   init = action((messageChannelId) => {
     this.messages = [];
     this.messageChannelId = messageChannelId;
+    this.connectWebSocket();
     this.load();
   });
 
@@ -35,6 +36,23 @@ class MessageChatListService {
         this.messages = [];
       }
     });
+  });
+
+  connectWebSocket = action(() => {
+    const socketConnection = new WebSocket(`${process.env.REACT_APP_WS_URL}?user=${localStorage.getItem('id')}`);
+    socketConnection.onmessage = (event) => {
+      const notification = JSON.parse(event.data);
+      if (
+        notification.type === 'MESSAGE_REPLY' &&
+        notification.content.messageChannel === this.messageChannelId
+      ) {
+        this.load();
+      }
+    };
+    socketConnection.onclose = () => {
+    };
+    socketConnection.onerror = () => {
+    };
   });
 }
 

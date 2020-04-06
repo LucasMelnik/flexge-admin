@@ -33,6 +33,9 @@ const MessageChatScene = props => (
           onClick={() => browserHistory.push('/messages')}
         />
       )}
+      style={{
+        padding: 0,
+      }}
     >
       {props.messageChannel.id && [
         <MessageChatHeader

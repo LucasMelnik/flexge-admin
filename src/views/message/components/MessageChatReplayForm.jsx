@@ -39,10 +39,10 @@ class MessageChatReplayForm extends React.Component {
           style={{
             display: 'flex',
             backgroundColor: '#cecece7a',
-            border: '1px solid #ececec',
+            borderTop: '1px solid #dedede',
             borderBottomLeftRadius: 3,
             borderBottomRightRadius: 3,
-            height: 50,
+            height: 60,
             padding: 10,
           }}
         >
