@@ -1,7 +1,7 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 
-class MessageChatListService {
+export default class MessageChatListService {
   fetch = new FetchService();
   markRead = new FetchService();
 
@@ -15,7 +15,12 @@ class MessageChatListService {
   init = action((messageChannelId) => {
     this.messages = [];
     this.messageChannelId = messageChannelId;
+    this.connectWebSocket();
     this.load();
+
+    window.addEventListener('message-sent', (() => {
+      this.load();
+    }));
   });
 
   load = action(() => {
@@ -36,8 +41,21 @@ class MessageChatListService {
       }
     });
   });
+
+  connectWebSocket = action(() => {
+    const socketConnection = new WebSocket(`${process.env.REACT_APP_WS_URL}?user=${localStorage.getItem('id')}`);
+    socketConnection.onmessage = (event) => {
+      const notification = JSON.parse(event.data);
+      if (
+        notification.type === 'MESSAGE_REPLY' &&
+        notification.content.messageChannel === this.messageChannelId
+      ) {
+        this.load();
+      }
+    };
+    socketConnection.onclose = () => {
+    };
+    socketConnection.onerror = () => {
+    };
+  });
 }
-
-const messageChatListService = new MessageChatListService();
-
-export default messageChatListService;

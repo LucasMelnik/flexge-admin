@@ -10,14 +10,15 @@ class MessageChatListContainer extends Component {
     messageChannelId: PropTypes.string.isRequired,
   };
 
+  messageChatListService = new MessageChatListService();
   componentWillMount() {
-    MessageChatListService.init(this.props.messageChannelId);
+    this.messageChatListService.init(this.props.messageChannelId);
   }
 
   render() {
     return (
       <MessageChatList
-        messages={toJS(MessageChatListService.messages)}
+        messages={toJS(this.messageChatListService.messages)}
       />
     );
   }
