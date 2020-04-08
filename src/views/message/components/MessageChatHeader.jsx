@@ -66,6 +66,10 @@ const MessageChatHeader = props => (
             {' '} - Check classroom records
           </Link>
         </span>
+        <br/>
+        <span>
+          Trello link: <Link to={props.messageChannel.trelloLink} target="_blank">{props.messageChannel.trelloLink}</Link>
+        </span>
       </div>
     )}
     <span>Subject: {props.messageChannel.subject}</span>
