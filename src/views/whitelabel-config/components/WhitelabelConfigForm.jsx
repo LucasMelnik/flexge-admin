@@ -104,6 +104,16 @@ const WhitelabelConfigForm = props => (
       <Column size={2}>
         <LocalFileInput
           disabled={props.submitting}
+          label="Kids Logo"
+          value={get(props.values, 'kidsLogoUrl', '')}
+          onChange={value => props.onChange('kidsLogo', value)}
+          errorText={get(props.errors, 'kidsLogo', null)}
+          accept="image"
+        />
+      </Column>
+      <Column size={2}>
+        <LocalFileInput
+          disabled={props.submitting}
           label="Favicon"
           value={get(props.values, 'favIconUrl', '')}
           onChange={value => props.onChange('favicon', value)}
