@@ -5,9 +5,10 @@ import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
-import Switch from '../../../core/form/Switch';
+import FetchSelect from '../../../core/form/FetchSelect';
+import Select from '../../../core/form/Select';
 
-const CourseForm = props => (
+const UnitTypeForm = props => (
   <form
     onSubmit={(event) => {
       event.preventDefault();
@@ -25,14 +26,53 @@ const CourseForm = props => (
           errorText={get(props.errors, 'name', null)}
         />
       </Column>
+      <Column size={1.5}>
+        <FetchSelect
+          url="academic-plans"
+          fullWidth
+          disabled={props.submitting || !!(props.values.id && props.values.currentCourse)}
+          label="Academic Plan"
+          value={get(props.values, 'academicPlan', '')}
+          onChange={(value) => {
+            props.onChange('academicPlan', value);
+            props.onChange('currentCourse', null);
+          }}
+          errorText={get(props.errors, 'academicPlan', '')}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
       <Column size={3}>
-        <Switch
-          label="Does the course need a Certification Test?"
-          titleOff="No"
-          titleOn="Yes"
-          value={get(props.values, 'needCertification', false)}
-          onChange={value => props.onChange('needCertification', value)}
-          errorText={get(props.errors, 'needCertification', null)}
+        <Select
+          multiple
+          disabled={props.submitting || !!props.values.id}
+          label="Abilities"
+          value={get(props.values, 'abilities', [])}
+          onChange={value => props.onChange('abilities', value)}
+          options={[
+            { value: 'READING', label: 'Reading' },
+            { value: 'WRITING', label: 'Writing' },
+            { value: 'SPEAKING', label: 'Speaking' },
+            { value: 'LISTENING', label: 'Listening' },
+          ]}
+        />
+      </Column>
+      <Column size={4.5}>
+        <FetchSelect
+          multiple
+          required
+          url={`item-types`}
+          disabled={props.submitting}
+          label="Items Type"
+          value={get(props.values, 'itemsType', '')}
+          onChange={value => props.onChange('itemsType', value)}
+          errorText={get(props.errors, 'itemsType', '')}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
         />
       </Column>
     </Row>
@@ -70,7 +110,7 @@ const CourseForm = props => (
       </Column>
     </Row>
     <FormButtons
-      confirmLabel={props.values.id ? 'Update Course' : 'Create Course'}
+      confirmLabel={props.values.id ? 'Update Unit Type' : 'Create Unit Type'}
       isDisabled={props.submitting || !props.isDirty()}
       isSubmitting={props.submitting}
       onReset={props.onReset}
@@ -78,7 +118,7 @@ const CourseForm = props => (
   </form>
 );
 
-CourseForm.propTypes = {
+UnitTypeForm.propTypes = {
   onSubmit: PropTypes.func,
   onReset: PropTypes.func,
   values: PropTypes.object,
@@ -88,7 +128,7 @@ CourseForm.propTypes = {
   isDirty: PropTypes.func,
 };
 
-CourseForm.defaultProps = {
+UnitTypeForm.defaultProps = {
   values: {},
   errors: {},
   submitting: false,
@@ -97,4 +137,4 @@ CourseForm.defaultProps = {
   onReset: () => false,
 };
 
-export default CourseForm;
+export default UnitTypeForm;

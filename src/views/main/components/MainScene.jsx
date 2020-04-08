@@ -116,6 +116,13 @@ const MainScene = props => (
                 key: 'itemtypes',
               },
               {
+                label: 'Unit types',
+                link: '/unit-types',
+                group: 'System Configuration',
+                icon: 'layout',
+                key: 'unittypes',
+              },
+              {
                 label: 'Placement test level',
                 link: '/placement-test-levels',
                 group: 'System Configuration',

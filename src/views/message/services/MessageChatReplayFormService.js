@@ -3,7 +3,6 @@ import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
-import MessageChatListService from './MessageChatListService';
 
 export default class MessageChatReplayFormService {
   submit = new FetchService();
@@ -38,7 +37,7 @@ export default class MessageChatReplayFormService {
     }).then(() => {
       if (this.submit.data) {
         this.form.reset();
-        MessageChatListService.load(true);
+        window.dispatchEvent(new Event('message-sent'));
       }
       if (this.submit.error) {
         NotificationService.addNotification('Erro to send the message', 'error');

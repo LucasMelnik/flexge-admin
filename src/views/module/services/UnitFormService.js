@@ -43,6 +43,7 @@ export default class UnitFormService {
       this.form.setInitialValues({
         module: moduleId,
         academicPlan: academicPlanId,
+        scoreToPass: 80
       });
     }
     this.unitId = unitId;

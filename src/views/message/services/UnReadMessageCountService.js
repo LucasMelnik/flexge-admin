@@ -1,5 +1,6 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
+import NotificationService from '../../../core/services/NotificationService';
 
 class UnReadMessageCountService {
   fetch = new FetchService();
@@ -13,6 +14,7 @@ class UnReadMessageCountService {
   init = action(() => {
     this.total = 0;
     this.load();
+    this.connectWebSocket();
   });
 
   load = action(() => {
@@ -25,6 +27,24 @@ class UnReadMessageCountService {
         this.total = 0;
       }
     });
+  });
+
+  connectWebSocket = action(() => {
+    const socketConnection = new WebSocket(`${process.env.REACT_APP_WS_URL}?user=${localStorage.getItem('id')}`);
+    socketConnection.onmessage = (event) => {
+      const notification = JSON.parse(event.data);
+      if (notification.type === 'NEW_CHANNEL') {
+        NotificationService.addNotification('You have a new message.', 'info');
+        this.load();
+      }
+      if (notification.type === 'MESSAGE_REPLY') {
+        NotificationService.addNotification('You have a new reply.', 'info');
+      }
+    };
+    socketConnection.onclose = () => {
+    };
+    socketConnection.onerror = () => {
+    };
   });
 }
 

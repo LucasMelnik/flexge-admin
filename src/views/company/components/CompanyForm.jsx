@@ -203,7 +203,7 @@ const CompanyForm = props => (
           maskType="numeral"
         />
       </Column>
-      <Column size={2}>
+      <Column size={1.5}>
         <DateInput
           disabled={props.submitting}
           label="Contract Starts in"
@@ -212,7 +212,7 @@ const CompanyForm = props => (
           errorText={get(props.errors, 'contractStart', '')}
         />
       </Column>
-      <Column size={2}>
+      <Column size={1.5}>
         <DateInput
           disabled={props.submitting}
           label="Contract Ends in"
@@ -221,7 +221,7 @@ const CompanyForm = props => (
           errorText={get(props.errors, 'contractEnd', '')}
         />
       </Column>
-      <Column size={2}>
+      <Column size={1.5}>
         <TextInput
           type="number"
           disabled={props.submitting}
@@ -229,6 +229,16 @@ const CompanyForm = props => (
           value={get(props.values, 'demoStudentLimit', '')}
           onChange={value => props.onChange('demoStudentLimit', value)}
           errorText={get(props.errors, 'demoStudentLimit', null)}
+        />
+      </Column>
+      <Column size={1.5}>
+        <TextInput
+          type="number"
+          disabled={props.submitting}
+          label="Login Limit"
+          value={get(props.values, 'studentLoginLimit', '')}
+          onChange={value => props.onChange('studentLoginLimit', value)}
+          errorText={get(props.errors, 'studentLoginLimit', null)}
         />
       </Column>
     </Row>

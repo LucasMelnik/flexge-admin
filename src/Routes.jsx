@@ -126,6 +126,8 @@ import MasteryTestItemExecutionStatsListScene
   from './views/reports/components/mastery-test-item-execution-stats/MasteryTestItemExecutionStatsListScene';
 import ItemByWordCountLimitListScene
   from './views/reports/components/item-by-word-count-limit/ItemByWordCountLimitListScene';
+import UnitTypeListScene from './views/unit-type/components/UnitTypeListScene';
+import UnitTypeFormScene from './views/unit-type/components/UnitTypeFormScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -290,6 +292,9 @@ const Routes = () => (
       <Route path="suspect-usage-alerts" component={SuspectUsageAlertScene} />
       <Route path="mastery-items-execution-stats" component={MasteryTestItemExecutionStatsListScene} />
       <Route path="items-by-word-count-limit" component={ItemByWordCountLimitListScene} />
+      <Route path="unit-types" component={UnitTypeListScene} />
+      <Route path="unit-types/new" component={UnitTypeFormScene} />
+      <Route path="unit-types/:typeId" component={UnitTypeFormScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
