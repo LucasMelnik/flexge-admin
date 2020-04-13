@@ -30,6 +30,7 @@ export default class FetchSelect extends Component {
     multiple: PropTypes.bool,
     isPaginated: PropTypes.bool,
     params: PropTypes.object,
+    sortCondition: PropTypes.func,
   };
 
   static defaultProps = {
@@ -44,6 +45,7 @@ export default class FetchSelect extends Component {
     showSearch: false,
     params: {},
     resultFilter: () => true,
+    sortCondition: null,
   };
 
   state = { data: [], fetching: false, filter: null };
@@ -89,7 +91,7 @@ export default class FetchSelect extends Component {
             this.props.onChange(null);
           }
           this.setState({
-            data: sortBy(data.filter(this.props.resultFilter), item => toLower(item[this.props.resultTransformer.text])),
+            data: sortBy(data.filter(this.props.resultFilter), this.props.sortCondition || (item => toLower(item[this.props.resultTransformer.text]))),
           }, () => {
             if (this.props.defaultSelect) {
               const firstData = this.state.data[0];

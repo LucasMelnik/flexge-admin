@@ -44,8 +44,10 @@ const ItemByWordCountLimitListFilter = props => (
             props.onChange('module', value);
             props.onChange('unit', null);
           }}
+          sortCondition={item => item.order}
           resultTransformer={{
             text: 'name',
+            textFunc: x => `(Order: ${x.order}) - ${x.name}`,
             value: 'id',
           }}
         />
