@@ -59,7 +59,7 @@ const CertificationTestRegisterForm = props => (
           value={get(props.values, 'order', '')}
           onChange={value => props.onChange('order', value)}
           errorText={get(props.errors, 'order', '')}
-          options={range(1, 21).map(value => ({
+          options={range(1, 26).map(value => ({
             value,
             label: value.toString(),
           }))}
