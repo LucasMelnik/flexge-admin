@@ -7,7 +7,7 @@ import ItemByWordCountLimitListFilterContainer from './ItemByWordCountLimitListF
 const ItemByWordCountLimitListScene = () => (
   <div>
     <Card title="Items by word count limit">
-      <p>Report item types: PRESENTATION, PRONUNCIATION, SPEECH_PRACTICE, GAP_FILL, UNSCRAMBLE_SPEECH_RECOGNITION </p>
+      <p>Report item types: PRESENTATION, SPEECH_PRACTICE </p>
       <ItemByWordCountLimitListFilterContainer />
     </Card>
     <Separator />
