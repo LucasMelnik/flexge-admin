@@ -14,14 +14,21 @@ class DataImportResultContainer extends Component {
     data: {},
   };
 
-  componentDidMount() {
+  loadData = () => {
+    if (!this.props.distributorId) {
+      this.setState({
+        loading: false,
+        data: {},
+      });
+      return;
+    }
     this.setState({
       loading: true,
       data: {},
     });
     axios.request({
       method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/data-import?distributor=${this.props.distributorId}`,
+      url: `${process.env.REACT_APP_API_URL}/data-import?query[distributor]=${this.props.distributorId}`,
       headers: {
         ...localStorage.accessToken && { Authorization: `Bearer ${localStorage.accessToken}` },
       },
@@ -36,6 +43,16 @@ class DataImportResultContainer extends Component {
         data: {},
       });
     });
+  }
+
+  componentDidMount() {
+    this.loadData();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.distributorId !== this.props.distributorId) {
+      this.loadData();
+    }
   }
 
   render() {
