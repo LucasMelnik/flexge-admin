@@ -17,7 +17,7 @@ class StudentListService {
       pagination: {
         current: 1,
         total: 0,
-        pageSize: 50,
+        pageSize: 250,
       },
     });
     this.form.validations = {
@@ -46,15 +46,14 @@ class StudentListService {
   });
 
   load = action(() => {
+    this.pagination = {
+      current: 1,
+      total: 0,
+      pageSize: 50,
+    };
     if (this.schoolId && this.classId) {
-      this.pagination = null;
       this.loadBySchoolAndClass();
     } else {
-      this.pagination = {
-        current: 1,
-        total: 0,
-        pageSize: 50,
-      };
       this.loadAllStudents();
     }
   });
@@ -77,7 +76,7 @@ class StudentListService {
         query: {
           onlyRemoved: false,
           verbose: 'true',
-          page: page ? page.current - 1 : 0,
+          page: this.pagination.current - 1,
           size: this.pagination.pageSize,
           ...this.form.getValue('name') && {
             name: this.form.getValue('name'),
@@ -106,13 +105,17 @@ class StudentListService {
     });
   });
 
-  loadBySchoolAndClass = action(() => {
+  loadBySchoolAndClass = action((page) => {
+    if (page) {
+      this.pagination.current = page.current;
+    }
     this.fetch.fetch({
       url: `/schools/${this.schoolId}/classes/${this.classId}/students`,
       query: {
         query: {
           verbose: 'true',
-
+          page: this.pagination.current - 1,
+          size: this.pagination.pageSize,
           ...this.form.getValue('name') && {
             name: this.form.getValue('name'),
           },
@@ -128,6 +131,14 @@ class StudentListService {
         this.students = [];
       }
     });
+  });
+
+  loadOnChange = action((page) => {
+    if (this.schoolId && this.classId) {
+      this.loadBySchoolAndClass(page);
+    } else {
+      this.loadAllStudents(page);
+    }
   });
 
   handleFilterChange = action((value) => {

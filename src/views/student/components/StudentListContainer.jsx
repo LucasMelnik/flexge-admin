@@ -38,7 +38,7 @@ class StudentListContainer extends Component {
         onRemove={StudentListService.handleRemove}
         onRestore={StudentListService.handleRestore}
         pagination={StudentListService.pagination}
-        onChange={StudentListService.loadAllStudents}
+        onChange={StudentListService.loadOnChange}
         editable={this.props.editable}
         onSelect={this.props.onSelect}
         baseUrl={this.props.baseUrl}
