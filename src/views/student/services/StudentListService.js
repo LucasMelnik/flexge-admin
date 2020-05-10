@@ -49,7 +49,7 @@ class StudentListService {
     this.pagination = {
       current: 1,
       total: 0,
-      pageSize: 50,
+      pageSize: 250,
     };
     if (this.schoolId && this.classId) {
       this.loadBySchoolAndClass();
@@ -112,10 +112,10 @@ class StudentListService {
     this.fetch.fetch({
       url: `/schools/${this.schoolId}/classes/${this.classId}/students`,
       query: {
+        page: this.pagination.current - 1,
+        size: this.pagination.pageSize,
         query: {
           verbose: 'true',
-          page: this.pagination.current - 1,
-          size: this.pagination.pageSize,
           ...this.form.getValue('name') && {
             name: this.form.getValue('name'),
           },
@@ -126,7 +126,8 @@ class StudentListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.students = this.fetch.data;
+        this.students = this.fetch.data.docs;
+        this.pagination.total = this.fetch.data.total;
       } else {
         this.students = [];
       }
