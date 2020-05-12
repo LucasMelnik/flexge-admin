@@ -13,6 +13,11 @@ class StudentRecordListService {
       schoolId: null,
       classId: null,
       students: [],
+      pagination: {
+        current: 1,
+        total: 0,
+        pageSize: 100,
+      }
     });
   }
 
@@ -20,6 +25,11 @@ class StudentRecordListService {
     this.students = [];
     this.schoolId = schoolId;
     this.classId = classId;
+    this.pagination = {
+      current: 1,
+      total: 0,
+      pageSize: 100,
+    };
     this.form.setInitialValues({
       isCustomPeriod: false,
       studiedTime: [],
@@ -27,10 +37,17 @@ class StudentRecordListService {
     this.load();
   });
 
-  load = action(() => {
+  filter = action(() => this.load({ current: 1 }));
+
+  load = action((page) => {
+    if (page) {
+      this.pagination.current = page.current;
+    }
     this.fetch.fetch({
       url: `/records/schools/${this.schoolId}/school-classes/${this.classId}/students`,
       query: {
+        page: this.pagination.current - 1,
+        size: this.pagination.pageSize,
         ...this.form.getValue('isCustomPeriod') && {
           studiedTimeFrom: this.form.getValue('studiedTime')[0].toDate(),
           studiedTimeTo: this.form.getValue('studiedTime')[1].toDate(),
@@ -38,7 +55,8 @@ class StudentRecordListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        const students = this.fetch.data.map(student => ({
+        this.pagination.total = this.fetch.data.total;
+        this.students = this.fetch.data.docs.map(student => ({
           ...student,
           coursePercentage: round(
             (
@@ -47,17 +65,6 @@ class StudentRecordListService {
             , 2,
           ),
         }));
-
-        this.fetchStudents.fetch({
-          url: `/schools/${this.schoolId}/classes/${this.classId}/students?verbose=false`,
-        }).then(() => {
-          if (this.fetchStudents.data) {
-            this.students = [
-              ...students,
-              ...this.fetchStudents.data.filter(student => !students.find(s => s.id === student.id)),
-            ];
-          }
-        });
       } else {
         this.students = [];
       }

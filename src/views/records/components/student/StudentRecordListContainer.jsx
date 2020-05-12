@@ -25,8 +25,10 @@ class StudentRecordListContainer extends Component {
           StudentRecordListService.fetch.fetching ||
           StudentRecordListService.fetchStudents.fetching
         }
+        pagination={toJS(StudentRecordListService.pagination)}
+        onPageChange={StudentRecordListService.load}
         onSelect={this.handleSelect}
-        onFilter={StudentRecordListService.load}
+        onFilter={StudentRecordListService.filter}
         onChange={StudentRecordListService.form.setValue}
         filterValues={StudentRecordListService.form.getValues()}
       />

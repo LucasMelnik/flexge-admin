@@ -39,7 +39,10 @@ const UsageStatsFilter = props => (
           label="Filter by Distributor"
           disabled={props.fetching}
           value={get(props.values, 'distributor', '')}
-          onChange={value => props.onChange('distributor', value)}
+          onChange={value => {
+            props.onChange('distributor', value);
+            props.onChange('company', null);
+          }}
           url="/distributors"
           resultTransformer={{
             text: 'name',
@@ -55,10 +58,13 @@ const UsageStatsFilter = props => (
           showSearch
           isPaginated
           label="Filter by Company"
-          disabled={props.fetching}
+          disabled={props.fetching || !props.values.distributor}
           value={get(props.values, 'company', '')}
           onChange={value => props.onChange('company', value)}
-          url={`companies${localStorage.role === 'DISTRIBUTOR_MANAGER' ? `?distributor=${localStorage.getItem('distributor')}` : ''}`}
+          url={`companies`}
+          params={props.values.distributor ? {
+            distributor: get(props.values, 'distributor', null)
+          } : undefined}
           resultTransformer={{
             text: 'name',
             value: 'id',

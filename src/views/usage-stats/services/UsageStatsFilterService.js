@@ -25,6 +25,9 @@ class UsageStatsFilterService {
     if (localStorage.getItem('role') === 'ADMIN') {
       this.form.validations.distributor = [isRequired];
     }
+    if (localStorage.getItem('role') === 'DISTRIBUTOR_MANAGER') {
+      this.form.setValue('distributor', localStorage.getItem('distributor'));
+    }
   });
 
   handleChangeType = action(type => {
