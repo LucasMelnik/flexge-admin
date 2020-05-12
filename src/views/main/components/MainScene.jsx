@@ -474,7 +474,7 @@ const MainScene = props => (
                 label: 'Active Students by Course',
                 link: '/active-students-by-course',
                 key: 'active-students-by-course',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
+                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
               },
             ],
           },

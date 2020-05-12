@@ -18,7 +18,7 @@ class CourseStudentCountListService {
 
   init = action(() => {
     this.courses = [];
-    if (localStorage.role === 'SCHOOL_MANAGER') {
+    if (localStorage.role === 'SCHOOL_MANAGER' || localStorage.role === 'TEACHER') {
       this.form.setValue('school', localStorage.getItem('school'));
     }
   });
