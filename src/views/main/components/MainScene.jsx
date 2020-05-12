@@ -14,6 +14,14 @@ const MainScene = props => (
       <Menu
         items={[
           {
+            title: 'Dashboard',
+            icon: 'dashboard',
+            link: '/',
+            type: 'menu',
+            key: 'dashboard',
+            allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT', 'CERTIFICATION_TEST_PROFESSIONAL', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+          },
+          {
             title: 'Profile',
             icon: 'idcard',
             link: '/profile',
@@ -28,14 +36,6 @@ const MainScene = props => (
             key: 'all-documents',
             removeWhenWhitelabel: true,
             allowedFor: ['DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
-          },
-          {
-            title: 'Dashboard',
-            icon: 'dashboard',
-            link: '/',
-            type: 'menu',
-            key: 'dashboard',
-            allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT', 'CERTIFICATION_TEST_PROFESSIONAL', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
           },
           {
             type: 'submenu',

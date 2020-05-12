@@ -39,7 +39,7 @@ class StudentListService {
     this.schoolId = schoolId;
     this.classId = classId;
     this.students = [];
-    this.form.setInitialValues({});
+    this.form.setInitialValues({ deleted: 'all' });
     if (classId) {
       this.load();
     }
@@ -78,6 +78,9 @@ class StudentListService {
           verbose: 'true',
           page: this.pagination.current - 1,
           size: this.pagination.pageSize,
+          ...this.form.getValue('deleted') && this.form.getValue('deleted') !== 'all' && {
+            deleted: this.form.getValue('deleted'),
+          },
           ...this.form.getValue('name') && {
             name: this.form.getValue('name'),
           },
@@ -116,11 +119,17 @@ class StudentListService {
         size: this.pagination.pageSize,
         query: {
           verbose: 'true',
+          ...this.form.getValue('deleted') && this.form.getValue('deleted') !== 'all' && {
+            deleted: this.form.getValue('deleted'),
+          },
           ...this.form.getValue('name') && {
             name: this.form.getValue('name'),
           },
           ...this.form.getValue('email') && {
             email: this.form.getValue('email'),
+          },
+          ...this.form.getValue('cpf') && {
+            cpf: this.form.getValue('cpf'),
           },
         },
       },

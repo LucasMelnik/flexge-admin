@@ -19,6 +19,8 @@ const StudentRecordList = props => (
     />
     <Table
       fetching={props.fetching}
+      pagination={props.pagination}
+      onChange={props.onPageChange}
       columns={[
         {
           label: 'Name',
@@ -188,6 +190,8 @@ StudentRecordList.propTypes = {
     totalStudiedTime: PropTypes.number,
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
+  pagination: PropTypes.object.isRequired,
+  onPageChange: PropTypes.func.isRequired,
   onSelect: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onFilter: PropTypes.func.isRequired,

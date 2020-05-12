@@ -5,6 +5,7 @@ import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import StudentListContainer from '../../student/components/StudentListContainer';
 import Button from '../../../core/form/Button';
+import StudentListFilterContainer from '../../student/components/StudentListFilterContainer';
 
 const SchoolClassDetailScene = props => (
   <div>
@@ -58,6 +59,7 @@ const SchoolClassDetailScene = props => (
         </div>
       }
     >
+      <StudentListFilterContainer allowedFilters={['status', 'id', 'name', 'email']} />
       <StudentListContainer
         editable
         baseUrl={props.baseUrl}
