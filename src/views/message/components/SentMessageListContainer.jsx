@@ -15,7 +15,7 @@ class SentMessageListContainer extends Component {
       <SentMessageList
         messages={toJS(SentMessageListService.messages)}
         fetching={SentMessageListService.fetch.fetching}
-        pagination={SentMessageListService.pagination}
+        pagination={toJS(SentMessageListService.pagination)}
         onChange={SentMessageListService.load}
       />
     );

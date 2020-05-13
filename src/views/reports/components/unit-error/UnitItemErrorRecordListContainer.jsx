@@ -15,7 +15,7 @@ class UnitItemErrorRecordListContainer extends Component {
       <UnitItemErrorRecordList
         items={toJS(UnitItemErrorReportListService.items)}
         fetching={UnitItemErrorReportListService.fetch.fetching}
-        pagination={UnitItemErrorReportListService.pagination}
+        pagination={toJS(UnitItemErrorReportListService.pagination)}
         onChange={UnitItemErrorReportListService.load}
       />
     );
