@@ -37,7 +37,7 @@ class StudentListContainer extends Component {
         onDisable={StudentListService.handleDisable}
         onRemove={StudentListService.handleRemove}
         onRestore={StudentListService.handleRestore}
-        pagination={StudentListService.pagination}
+        pagination={toJS(StudentListService.pagination)}
         onChange={StudentListService.loadOnChange}
         editable={this.props.editable}
         onSelect={this.props.onSelect}

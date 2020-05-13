@@ -16,7 +16,7 @@ class ItemAudioListContainer extends Component {
       <ItemAudioList
         items={toJS(ItemAudioListService.items)}
         fetching={ItemAudioListService.fetch.fetching}
-        pagination={ItemAudioListService.pagination}
+        pagination={toJS(ItemAudioListService.pagination)}
         onChange={ItemAudioListService.load}
         onAudioUpload={ItemAudioListService.handleAudioUpload}
         onChangeStatus={ItemAudioStatusService.init}
