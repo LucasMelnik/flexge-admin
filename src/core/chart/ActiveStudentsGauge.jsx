@@ -4,10 +4,10 @@ import CircularProgress from '../layout/CircularProgress';
 
 const ActiveStudentsGauge = props => (
   <CircularProgress
-    title="Active Students"
+    title="Students studying on the last 30 days"
     tooltip="Students which studied at least once on last 30 days"
     fetching={props.fetching}
-    noDataText="No Active Students Found"
+    noDataText="No Study Found"
     value={props.value}
     max={100}
     successCondition={value => value > 85}
