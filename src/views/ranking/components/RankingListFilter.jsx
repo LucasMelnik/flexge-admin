@@ -8,7 +8,7 @@ import Button from '../../../core/form/Button';
 
 const RankingListFilter = props => (
   <Row>
-    <Column size={3}>
+    <Column size={1.5}>
       <FetchSelect
         label="Academic Plan"
         placeholder="Select the academic plan"
@@ -66,7 +66,7 @@ const RankingListFilter = props => (
           value={get(props.values, 'region', '')}
           onChange={name => props.onChange('region', name)}
           errorText={get(props.errors, 'region', '')}
-          url={`regions?country=${get(props.values, 'country', null)}`}
+          url={`regions?query[country]=${get(props.values, 'country', null)}`}
           resultTransformer={{
             text: 'name',
             value: 'id',
