@@ -136,7 +136,7 @@ const UnitList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: props.allowReorder ? '230px' : '125px',
+        width: props.allowReorder ? '280px' : '175px',
         render: (cell, row, index) => (
           <div>
             {(row.createdBy === localStorage.id || localStorage.role === 'ADMIN') && (
@@ -182,6 +182,14 @@ const UnitList = props => (
                 />
               </form>
             )}
+            {' '}
+            {['ADMIN', 'CONTENT_ADMIN'].some(role => localStorage.role === role) && (
+              <Button
+                icon="cloud-upload"
+                buttonType="button"
+                onClick={() => props.onCopyToProduction(row.id)}
+              />
+            )}
           </div>
         ),
       },
@@ -207,6 +215,7 @@ UnitList.propTypes = {
   fetching: PropTypes.bool.isRequired,
   allowReorder: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onCopyToProduction: PropTypes.func.isRequired,
   onAutoReorder: PropTypes.func.isRequired,
 };
 
