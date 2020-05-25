@@ -24,6 +24,7 @@ class UnitListContainer extends Component {
         academicPlan={this.props.academicPlan}
         fetching={UnitListService.fetch.fetching || UnitListService.reorderSubmitting}
         onDelete={UnitListService.handleRemove}
+        onCopyToProduction={UnitListService.handleCopyToProduction}
         onAutoReorder={UnitListService.handleAutoReorder}
         allowReorder={LoadModuleService.module.createdBy.id === localStorage.id || localStorage.role === 'ADMIN'}
       />

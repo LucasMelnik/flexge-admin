@@ -1,9 +1,10 @@
-import { action, extendObservable, computed } from 'mobx';
+import { action, extendObservable, computed, toJS } from 'mobx';
 import { orderBy } from 'lodash';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import ConfirmationDialogService from '../../../core/services/ConfirmationDialogService';
 import NotificationService from '../../../core/services/NotificationService';
+import axios from 'axios';
 
 class UnitListService {
   fetch = new FetchService();
@@ -111,6 +112,62 @@ class UnitListService {
 
     Promise.all(reorderPromises)
       .then(() => this.load());
+  });
+
+  handleCopyToProduction = action((unitId) => {
+    this.fetch.fetch({
+      url: `/units/${unitId}/items`,
+    }).then(() => {
+      if (this.fetch.data) {
+        const unitItems = toJS(this.fetch.data).map(unitItem => {
+          unitItem.item.type = unitItem.item.type.id;
+          unitItem.item.grammar = unitItem.item.grammar.id;
+          if (unitItem.item.audio) {
+            unitItem.item.audioFrom = `staging-flexge-files/${unitItem.item.audio}`
+          }
+          if (unitItem.item.image) {
+            unitItem.item.imageFrom = `staging-flexge-files/${unitItem.item.image}`
+          }
+          if (unitItem.item.postPhraseAudio) {
+            unitItem.item.postPhraseAudioFrom = `staging-flexge-files/${unitItem.item.postPhraseAudio}`
+          }
+          if (unitItem.item.postPhraseImage) {
+            unitItem.item.postPhraseImageFrom = `staging-flexge-files/${unitItem.item.postPhraseImage}`
+          }
+          if (unitItem.item.titleAudio) {
+            unitItem.item.titleAudioFrom = `staging-flexge-files/${unitItem.item.titleAudio}`
+          }
+          if (unitItem.item.answers && unitItem.item.answers.length) {
+            unitItem.item.answers = unitItem.item.answers.map(async (answer) => {
+              if (answer.audio) {
+                answer.audioFrom = `staging-flexge-files/${answer.audio}`
+              }
+              if (answer.image) {
+                answer.imageFrom = `staging-flexge-files/${answer.image}`
+              }
+              return answer
+            });
+          }
+          return unitItem;
+        });
+
+        axios.request({
+          method: 'put',
+          url: `https://api.flexge.com/public/units/${unitId}/copy-items`,
+          headers: {
+            Authorization: `Bearer ${localStorage.accessToken}`,
+          },
+          data: {
+            id: unitId,
+            unitItems
+          }
+        }).then(() => {
+          NotificationService.addNotification('Unit sent to production.', 'success');
+        }).catch(() => {
+          NotificationService.addNotification('Error to send unit to production', 'error');
+        });
+      }
+    })
   });
 }
 
