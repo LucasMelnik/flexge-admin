@@ -93,6 +93,29 @@ const StudentForm = props => (
         />
       </Column>
       <Column size={1.5}>
+        <TextInput
+          disabled
+          label="Phone"
+          value={get(props.values, 'contactPhone', '')}
+          onChange={value => props.onChange('contactPhone', value)}
+          errorText={get(props.errors, 'contactPhone', null)}
+        />
+      </Column>
+      {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+        <Column size={2}>
+          <Switch
+            label="Student Demo"
+            titleOff="No"
+            titleOn="Yes"
+            onChange={value => props.onChange('demoStudent', value)}
+            value={get(props.values, 'demoStudent', false)}
+            disabled={props.submitting}
+          />
+        </Column>
+      )}
+    </Row>
+    <Row>
+      <Column size={1.5}>
         <FetchSelect
           url="academic-plans"
           fullWidth
@@ -171,20 +194,6 @@ const StudentForm = props => (
               text: 'name',
               value: 'id',
             }}
-          />
-        </Column>
-      )}
-    </Row>
-    <Row>
-      {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
-        <Column size={2}>
-          <Switch
-            label="Student Demo"
-            titleOff="No"
-            titleOn="Yes"
-            onChange={value => props.onChange('demoStudent', value)}
-            value={get(props.values, 'demoStudent', false)}
-            disabled={props.submitting}
           />
         </Column>
       )}
