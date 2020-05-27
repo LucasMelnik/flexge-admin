@@ -8,15 +8,17 @@ class WeeklyHoursStatsContainer extends Component {
   static propTypes = {
     schoolId: PropTypes.string,
     classId: PropTypes.string,
+    query: PropTypes.object,
   };
 
   static defaultProps = {
     schoolId: null,
     classId: null,
+    query: null
   };
 
   componentWillMount() {
-    WeeklyHoursStatsService.init(this.props.schoolId, this.props.classId);
+    WeeklyHoursStatsService.init(this.props.schoolId, this.props.classId, this.props.query);
   }
 
   getValue = (value) => {

@@ -9,7 +9,7 @@ class AverageEnglishLevelContainer extends Component {
   averageEnglishLevelService = new AverageEnglishLevelService();
 
   componentDidMount() {
-    this.averageEnglishLevelService.load();
+    this.averageEnglishLevelService.load(this.props.query);
   }
 
   render() {

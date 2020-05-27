@@ -10,10 +10,11 @@ class AverageEnglishLevelService {
     });
   }
 
-  load = action(() => {
+  load = action((query) => {
     this.data = null;
     this.fetch.fetch({
       url: '/reports/average-english-level',
+      query,
     }).then(() => {
       if (this.fetch.data) {
         this.data = this.fetch.data.averageEnglishLevel;

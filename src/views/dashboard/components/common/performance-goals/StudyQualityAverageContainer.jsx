@@ -8,15 +8,17 @@ class StudyQualityAverageContainer extends Component {
   static propTypes = {
     schoolId: PropTypes.string,
     classId: PropTypes.string,
+    query: PropTypes.object,
   };
 
   static defaultProps = {
     schoolId: null,
     classId: null,
+    query: null,
   };
 
   componentWillMount() {
-    AverageStudyQualityService.init(this.props.schoolId, this.props.classId);
+    AverageStudyQualityService.init(this.props.schoolId, this.props.classId, this.props.query);
   }
 
   getValue = (value) => {
@@ -27,7 +29,7 @@ class StudyQualityAverageContainer extends Component {
   }
 
   render() {
-    const average = localStorage.getItem('COMPANY_MANAGER') ?
+    const average = localStorage.role !== 'TEACHER' ?
       AverageStudyQualityService.allSchoolsAverage :
       AverageStudyQualityService.averageByClass;
     return (

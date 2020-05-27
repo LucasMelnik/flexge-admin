@@ -46,15 +46,16 @@ class WeeklyHoursStatsService {
 
   validateResponse = () => this.data.length > 0;
 
-  init= action((schoolId, classId) => {
+  init= action((schoolId, classId, query) => {
     this.schoolId = schoolId;
     this.classId = classId;
-    this.load();
+    this.load(query);
   });
 
-  load = action(() => {
+  load = action((query) => {
     this.fetch.fetch({
       url: '/reports/weekly-hours-stats',
+      query
     }).then(() => {
       if (this.fetch.data) {
         this.data = this.fetch.data;
