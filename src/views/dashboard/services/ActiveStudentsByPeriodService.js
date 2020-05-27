@@ -119,16 +119,17 @@ class ActiveStudentsByPeriodService {
     return true;
   }
 
-  init = action((schoolId, classId) => {
+  init = action((schoolId, classId, query) => {
     this.schoolId = schoolId;
     this.classId = classId;
-    this.load();
+    this.load(query);
   });
 
-  load = action(() => {
+  load = action((query) => {
     this.data = [];
     this.fetch.fetch({
       url: '/reports/active-students-by-week',
+      query
     }).then(() => {
       if (this.fetch.data) {
         this.data = this.fetch.data;

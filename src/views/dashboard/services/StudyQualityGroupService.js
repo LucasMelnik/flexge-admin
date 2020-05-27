@@ -77,17 +77,18 @@ class StudyQualityGroupService {
     });
   }
 
-  init= action((schoolId, classId) => {
+  init= action((schoolId, classId, query) => {
     this.schoolId = schoolId;
     this.classId = classId;
-    this.load();
+    this.load(query);
   });
 
   validateResponse = () => Object.keys(this.data).length > 0;
 
-  load = action(() => {
+  load = action((query) => {
     this.fetch.fetch({
       url: '/reports/study-quality-groups',
+      query
     }).then(() => {
       if (this.fetch.data) {
         this.data = this.fetch.data;

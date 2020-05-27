@@ -29,10 +29,10 @@ class LastWeekAverageStudiedTimeService {
     });
   }
 
-  init = action((schoolId, classId) => {
+  init = action((schoolId, classId, query) => {
     this.schoolId = schoolId;
     this.classId = classId;
-    this.load();
+    this.load(query);
   });
 
   validateResponse = () => {
@@ -47,14 +47,11 @@ class LastWeekAverageStudiedTimeService {
     return true;
   }
 
-  load = action((from, to) => {
+  load = action((query) => {
     this.data = [];
     this.fetch.fetch({
       url: '/reports/last-week-average-studied-time',
-      query: {
-        from,
-        to,
-      },
+      query,
     }).then(() => {
       this.data = this.fetch.data;
     });

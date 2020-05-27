@@ -18,10 +18,11 @@ class SemiannualAverageEnglishLevelService {
 
   validateResponse = () => this.data.length > 0;
 
-  load = action(() => {
+  load = action((query) => {
     this.data = [];
     this.fetch.fetch({
       url: '/reports/semiannual-average-english-level',
+      query
     }).then(() => {
       if (this.fetch.data) {
         this.data = this.fetch.data;

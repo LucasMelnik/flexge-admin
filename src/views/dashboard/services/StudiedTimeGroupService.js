@@ -63,9 +63,10 @@ class StudiedTimeGroupService {
     this.load();
   });
 
-  load = action(() => {
+  load = action((query) => {
     this.fetch.fetch({
       url: '/reports/studied-time-groups',
+      query
     }).then(() => {
       if (this.fetch.data) {
         this.data = this.fetch.data;
