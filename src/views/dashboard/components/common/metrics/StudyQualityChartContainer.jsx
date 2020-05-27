@@ -12,13 +12,13 @@ class StudyQualityChartContainer extends Component {
   };
 
   render() {
-    const labels = localStorage.role === 'COMPANY_MANAGER' ?
+    const labels = ['ADMIN', 'DISTRIBUTOR', 'COMPANY_MANAGER'].some(role => role === localStorage.role) ?
       AverageStudyQualityService.data.map(school => school.name) :
       AverageStudyQualityService.data.reduce((acc, school) => ([
         ...acc,
         ...school.classes.map(schoolClass => schoolClass.className),
       ]), []);
-    const values = localStorage.role === 'COMPANY_MANAGER' ?
+    const values = ['ADMIN', 'DISTRIBUTOR', 'COMPANY_MANAGER'].some(role => role === localStorage.role) ?
       AverageStudyQualityService.data.map(school => Number(school.schoolAverageScore.toFixed(1))) :
       AverageStudyQualityService.data.reduce((acc, school) => ([
         ...acc,

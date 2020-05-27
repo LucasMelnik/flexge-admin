@@ -10,7 +10,7 @@ class AverageStudyQualityByPeriodService {
     });
   }
 
-  load = action((from, to) => {
+  load = action((from, to, query) => {
     this.data = [];
     this.fetch.fetch({
       url: '/reports/average-study-quality-by-period',
@@ -18,6 +18,7 @@ class AverageStudyQualityByPeriodService {
         from,
         to,
         level: 'week',
+        ...query
       },
     }).then(() => {
       if (this.fetch.data) {

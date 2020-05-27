@@ -8,6 +8,7 @@ class ActiveStudentsContainer extends Component {
   static propTypes = {
     schoolId: PropTypes.string,
     classId: PropTypes.string,
+    query: PropTypes.object,
   };
 
   static defaultProps = {
@@ -16,7 +17,7 @@ class ActiveStudentsContainer extends Component {
   };
 
   componentWillMount() {
-    ActiveStudentsByPeriodService.init(this.props.schoolId, this.props.classId);
+    ActiveStudentsByPeriodService.init(this.props.schoolId, this.props.classId, this.props.query);
   }
 
   getValue = (value) => {

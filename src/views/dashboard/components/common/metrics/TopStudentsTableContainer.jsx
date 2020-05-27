@@ -15,7 +15,7 @@ class TopStudentsTableContainer extends Component {
   topStudentsByPeriodService = new TopStudentsByPeriodService();
 
   componentWillMount() {
-    this.topStudentsByPeriodService.load(this.props.from, this.props.to);
+    this.topStudentsByPeriodService.load(this.props.from, this.props.to, this.props.query);
   }
 
   render() {

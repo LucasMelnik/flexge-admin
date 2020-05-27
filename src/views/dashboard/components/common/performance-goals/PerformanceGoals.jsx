@@ -36,36 +36,42 @@ const PerformanceGoals = props => (
       <StudyQualityAverageContainer
         classId={props.classId}
         schoolId={props.schoolId}
+        query={props.query}
       />
     </PerformanceGoalWrapper>
     <PerformanceGoalWrapper>
       <StudyQualityHigherThanFiveContainer
         classId={props.classId}
         schoolId={props.schoolId}
+        query={props.query}
       />
     </PerformanceGoalWrapper>
     <PerformanceGoalWrapper>
       <ActiveStudentsContainer
         classId={props.classId}
         schoolId={props.schoolId}
+        query={props.query}
       />
     </PerformanceGoalWrapper>
     <PerformanceGoalWrapper>
       <ActiveStudentsLastSevenDaysContainer
         classId={props.classId}
         schoolId={props.schoolId}
+        query={props.query}
       />
     </PerformanceGoalWrapper>
     <PerformanceGoalWrapper>
       <WeeklyHoursStatsContainer
         classId={props.classId}
         schoolId={props.schoolId}
+        query={props.query}
       />
     </PerformanceGoalWrapper>
     <PerformanceGoalWrapper>
       <LastWeekAverageStudiedTimeContainer
         classId={props.classId}
         schoolId={props.schoolId}
+        query={props.query}
       />
     </PerformanceGoalWrapper>
   </div>
@@ -74,11 +80,13 @@ const PerformanceGoals = props => (
 PerformanceGoals.propTypes = {
   classId: PropTypes.string,
   schoolId: PropTypes.string,
+  query: PropTypes.object,
 };
 
 PerformanceGoals.defaultProps = {
   classId: null,
   schoolId: null,
+  query: null,
 };
 
 export default PerformanceGoals;
