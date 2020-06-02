@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import PaymentForm from './UnitTypeForm';
-import PaymentFormService from '../services/UnitTypeFormService';
+import PaymentForm from './PaymentForm';
+import PaymentFormService from '../services/PaymentFormService';
 
 class PaymentFormContainer extends Component {
 
   static propTypes = {
-    typeId: PropTypes.string,
+    paymentId: PropTypes.string,
   };
 
   static defaultProps = {
-    typeId: null,
+    paymentId: null,
   };
 
-  unitTypeFormService = new PaymentFormService();
+  paymentFormService = new PaymentFormService();
   componentWillMount() {
-    this.unitTypeFormService.handleLoad(this.props.typeId);
+    this.paymentFormService.handleLoad(this.props.paymentId);
   }
 
   render() {
     return (
       <PaymentForm
-        onSubmit={this.unitTypeFormService.handleSubmit}
-        onChange={this.unitTypeFormService.form.setValue}
-        onReset={this.unitTypeFormService.form.reset}
-        values={this.unitTypeFormService.form.getValues()}
-        errors={this.unitTypeFormService.form.errors}
-        submitting={this.unitTypeFormService.fetch.fetching}
-        isDirty={this.unitTypeFormService.form.isDirty}
+        onSubmit={this.paymentFormService.handleSubmit}
+        onChange={this.paymentFormService.form.setValue}
+        onReset={this.paymentFormService.form.reset}
+        values={this.paymentFormService.form.getValues()}
+        errors={this.paymentFormService.form.errors}
+        submitting={this.paymentFormService.fetch.fetching}
+        isDirty={this.paymentFormService.form.isDirty}
       />
     );
   }

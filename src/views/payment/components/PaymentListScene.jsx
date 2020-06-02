@@ -23,7 +23,6 @@ const PaymentListScene = () => (
           type="primary"
           label="New payments"
           icon="plus"
-          disabled={true}
           onClick={() => browserHistory.push('/payments/new')}
         />
       }

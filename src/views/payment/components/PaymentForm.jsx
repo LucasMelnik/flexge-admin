@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
-import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
 import FetchSelect from '../../../core/form/FetchSelect';
 import Select from '../../../core/form/Select';
@@ -17,100 +16,78 @@ const PaymentForm = props => (
   >
     <Row>
       <Column size={3}>
-        <TextInput
+        <FetchSelect
           required
+          showSearch
+          isPaginated
+          url="schools"
           disabled={props.submitting}
-          label="Name"
-          value={get(props.values, 'name', '')}
-          onChange={value => props.onChange('name', value)}
-          errorText={get(props.errors, 'name', null)}
+          label="School"
+          value={get(props.values, 'school', '')}
+          onChange={school => props.onChange('school', school)}
+          errorText={get(props.errors, 'school', '')}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
+      <Column size={2}>
+        <FetchSelect
+          required
+          isPaginated
+          showSearch
+          url={`schools/${get(props.values, 'school', undefined)}/classes`}
+          disabled={props.submitting || !get(props.values, 'school', undefined)}
+          label="Classroom"
+          value={get(props.values, 'schoolClass', '')}
+          onChange={value => props.onChange('schoolClass', value)}
+          errorText={get(props.errors, 'schoolClasses', '')}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
+      <Column size={2.5}>
+        <FetchSelect
+          required
+          url={`schools/${get(props.values, 'school', undefined)}/classes/${get(props.values, 'schoolClass', undefined)}/students`}
+          disabled={props.submitting || !get(props.values, 'school', undefined) || !get(props.values, 'schoolClass', undefined)}
+          label="Students"
+          params={{
+            query: {
+              onlyRemoved: false,
+            }
+          }}
+          value={get(props.values, 'student', '')}
+          onChange={students => props.onChange('student', students)}
+          errorText={get(props.errors, 'student', '')}
+          resultTransformer={{
+            text: 'name',
+            textFunc: item => `${item.name} - ${item.email}`,
+            value: 'id',
+          }}
         />
       </Column>
       <Column size={1.5}>
-        <FetchSelect
-          url="academic-plans"
-          fullWidth
-          disabled={props.submitting || !!(props.values.id && props.values.currentCourse)}
-          label="Academic Plan"
-          value={get(props.values, 'academicPlan', '')}
-          onChange={(value) => {
-            props.onChange('academicPlan', value);
-            props.onChange('currentCourse', null);
-          }}
-          errorText={get(props.errors, 'academicPlan', '')}
-          resultTransformer={{
-            text: 'name',
-            value: 'id',
-          }}
-        />
-      </Column>
-      <Column size={3}>
         <Select
-          multiple
-          disabled={props.submitting || !!props.values.id}
-          label="Abilities"
-          value={get(props.values, 'abilities', [])}
-          onChange={value => props.onChange('abilities', value)}
+          required
+          disabled={props.submitting}
+          label="Plan"
+          value={get(props.values, 'type', [])}
+          onChange={value => props.onChange('type', value)}
           options={[
-            { value: 'READING', label: 'Reading' },
-            { value: 'WRITING', label: 'Writing' },
-            { value: 'SPEAKING', label: 'Speaking' },
-            { value: 'LISTENING', label: 'Listening' },
+            { value: 'MONTHLY', label: 'Monthly' },
+            { value: 'QUARTERLY', label: 'Quarterly' },
+            { value: 'SEMIANNUALLY', label: 'Semiannually' },
+            { value: 'KROTON-DEMO', label: 'Kroton' },
           ]}
-        />
-      </Column>
-      <Column size={4.5}>
-        <FetchSelect
-          multiple
-          required
-          url={`item-types`}
-          disabled={props.submitting}
-          label="Items Type"
-          value={get(props.values, 'itemsType', '')}
-          onChange={value => props.onChange('itemsType', value)}
-          errorText={get(props.errors, 'itemsType', '')}
-          resultTransformer={{
-            text: 'name',
-            value: 'id',
-          }}
-        />
-      </Column>
-    </Row>
-    <p>Description</p>
-    <Row>
-      <Column size={12}>
-        <TextInput
-          required
-          disabled={props.submitting}
-          label="Portuguese"
-          value={get(props.values, 'description.pt', '')}
-          onChange={value => props.onChange('description.pt', value)}
-          errorText={get(props.errors, 'description.pt', null)}
-        />
-      </Column>
-      <Column size={12}>
-        <TextInput
-          required
-          disabled={props.submitting}
-          label="Spanish"
-          value={get(props.values, 'description.es', '')}
-          onChange={value => props.onChange('description.es', value)}
-          errorText={get(props.errors, 'description.es', null)}
-        />
-      </Column>
-      <Column size={12}>
-        <TextInput
-          required
-          disabled={props.submitting}
-          label="English"
-          value={get(props.values, 'description.en', '')}
-          onChange={value => props.onChange('description.en', value)}
-          errorText={get(props.errors, 'description.en', null)}
         />
       </Column>
     </Row>
     <FormButtons
-      confirmLabel={props.values.id ? 'Update Unit Type' : 'Create Unit Type'}
+      confirmLabel={props.values.id ? 'Update Payment' : 'Create Payment'}
       isDisabled={props.submitting || !props.isDirty()}
       isSubmitting={props.submitting}
       onReset={props.onReset}

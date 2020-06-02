@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
-import UnitTypeFormContainer from './UnitTypeFormContainer';
+import PaymentFormContainer from './PaymentFormContainer';
 import Button from '../../../core/form/Button';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
@@ -11,12 +11,12 @@ const PaymentFormScene = props => (
     <Breadcrumb
       crumbs={[
         {
-          text: `${props.params.typeId ? 'Edit Unit Type' : 'Create Unit Type'}`,
+          text: `${props.params.paymentId ? 'Edit Payment' : 'Create Payment'}`,
         },
       ]}
     />
     <Card
-      title={props.params.typeId ? 'Edit Unit Type' : 'Create Unit Type'}
+      title={props.params.paymentId ? 'Edit Payment' : 'Create Payment'}
       actions={
         (
           <Button
@@ -28,14 +28,14 @@ const PaymentFormScene = props => (
         )
       }
     >
-      <UnitTypeFormContainer typeId={props.params.typeId} />
+      <PaymentFormContainer paymentId={props.params.paymentId} />
     </Card>
   </div>
 );
 
 PaymentFormScene.propTypes = {
   params: PropTypes.shape({
-    typeId: PropTypes.string,
+    paymentId: PropTypes.string,
   }),
 };
 
