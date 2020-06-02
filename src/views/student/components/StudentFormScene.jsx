@@ -10,6 +10,7 @@ import ColumnSeparator from '../../../core/layout/ColumnSeparator';
 import StudentSendWelcomeEmailButtonContainer from './StudentSendWelcomeEmailButtonContainer';
 import Separator from '../../../core/layout/Separator';
 import ParentScene from './parent/ParentScene';
+import PaymentListContainer from '../../payment/components/PaymentListContainer';
 
 const StudentFormScene = props => (
   <div>
@@ -86,9 +87,17 @@ const StudentFormScene = props => (
     </Card>
     <Separator size="sm" />
     {props.studentId && (
-      <ParentScene
-        studentId={props.studentId}
-      />
+      <React.Fragment>
+        <ParentScene
+          studentId={props.studentId}
+        />
+        <Separator />
+        {localStorage.role === 'ADMIN' && (
+          <Card title="Payments">
+            <PaymentListContainer studentId={props.studentId} />
+          </Card>
+        )}
+      </React.Fragment>
     )}
   </div>
 );

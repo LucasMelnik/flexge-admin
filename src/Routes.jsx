@@ -128,6 +128,7 @@ import ItemByWordCountLimitListScene
   from './views/reports/components/item-by-word-count-limit/ItemByWordCountLimitListScene';
 import UnitTypeListScene from './views/unit-type/components/UnitTypeListScene';
 import UnitTypeFormScene from './views/unit-type/components/UnitTypeFormScene';
+import PaymentListScene from './views/payment/components/PaymentListScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -295,6 +296,7 @@ const Routes = () => (
       <Route path="unit-types" component={UnitTypeListScene} />
       <Route path="unit-types/new" component={UnitTypeFormScene} />
       <Route path="unit-types/:typeId" component={UnitTypeFormScene} />
+      <Route path="payments" component={PaymentListScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
