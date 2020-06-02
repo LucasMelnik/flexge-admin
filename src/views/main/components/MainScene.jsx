@@ -507,6 +507,14 @@ const MainScene = props => (
           },
           {
             type: 'menu',
+            title: 'Payments',
+            link: '/payments',
+            icon: 'dollar',
+            key: 'payments',
+            allowedFor: ['ADMIN']
+          },
+          {
+            type: 'menu',
             key: 'messages',
             link: '/messages',
             icon: 'message',
