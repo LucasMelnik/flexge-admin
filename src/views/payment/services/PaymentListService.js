@@ -1,4 +1,5 @@
 import { action, extendObservable } from 'mobx';
+import omit from 'lodash/omit';
 import pickBy from 'lodash/pickBy';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
@@ -52,7 +53,13 @@ class PaymentListService {
           }
         },
         query: {
-          ...pickBy(this.form.getValues(), x => !!x)
+          ...omit(pickBy(this.form.getValues(), x => !!x), ['from', 'to']),
+          ...this.form.getValue('from') && this.form.getValue('to') && {
+            $and: [
+              { createdAt: { $gte: this.form.getValue('from').startOf('day').format() } },
+              { createdAt: { $lte: this.form.getValue('to').endOf('day').format() } },
+            ]
+          }
         }
       }
     }).then(() => {
