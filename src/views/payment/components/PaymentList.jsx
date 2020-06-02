@@ -30,6 +30,10 @@ const PaymentList = props => (
         path: 'student.name',
       },
       {
+        label: 'Student Email',
+        path: 'student.email',
+      },
+      {
         label: 'Plan',
         path: 'type',
         width: '150px',

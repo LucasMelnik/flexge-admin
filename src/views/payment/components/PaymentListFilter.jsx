@@ -6,6 +6,7 @@ import Column from '../../../core/layout/Column';
 import Select from '../../../core/form/Select';
 import Button from '../../../core/form/Button';
 import StudentRecordSelectContainer from '../../message/components/StudentRecordSelectContainer';
+import RangeDateInput from '../../../core/form/RangeDateInput';
 
 const PaymentListFilter = props => (
   <form
@@ -15,16 +16,17 @@ const PaymentListFilter = props => (
     }}
   >
     <Row>
-      <Column size={3}>
-        <StudentRecordSelectContainer
-          disabled={props.submitting}
-          value={get(props.values, 'student', '')}
-          onSelect={(student) => {
-            props.onChange('student', student);
+      <Column size={2}>
+        <RangeDateInput
+          label="Creation Period"
+          disabled={props.fetching}
+          onChange={(dates) => {
+            props.onChange('from', dates[0]);
+            props.onChange('to', dates[1]);
           }}
-          onChange={value => {
-            props.onChange('student', value);
-          }}
+          placeholder={['Created From', 'Created To']}
+          value={[get(props.values, 'from', undefined), get(props.values, 'to', undefined)]}
+          errorText={get(props.errors, 'from', '')}
         />
       </Column>
       <Column size={1.5}>
@@ -54,6 +56,18 @@ const PaymentListFilter = props => (
             { value: 'CANCELLED', label: 'Cancelled' },
             { value: 'EXPIRED', label: 'Expired' },
           ]}
+        />
+      </Column>
+      <Column size={3}>
+        <StudentRecordSelectContainer
+          disabled={props.submitting}
+          value={get(props.values, 'student', '')}
+          onSelect={(student) => {
+            props.onChange('student', student);
+          }}
+          onChange={value => {
+            props.onChange('student', value);
+          }}
         />
       </Column>
       <Column size={1}>
