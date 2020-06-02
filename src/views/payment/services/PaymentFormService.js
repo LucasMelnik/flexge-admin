@@ -3,6 +3,7 @@ import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
+import { browserHistory } from 'react-router';
 
 export default class PaymentFormService {
   fetch = new FetchService();
@@ -14,13 +15,8 @@ export default class PaymentFormService {
       typeId: null,
     });
     this.form.validations = {
-      name: [isRequired],
-      'description.pt': [isRequired],
-      'description.en': [isRequired],
-      'description.es': [isRequired],
-      abilities: [isRequired],
-      itemsType: [isRequired],
-      academicPlan: [isRequired],
+      student: [isRequired],
+      type: [isRequired],
     };
   }
 
@@ -28,7 +24,7 @@ export default class PaymentFormService {
     this.form.reset();
     if (typeId) {
       this.fetch.fetch({
-        url: `/unit-types/${typeId}`,
+        url: `/payments/${typeId}`,
       }).then(() => {
         if (this.fetch.data) {
           this.form.setInitialValues({
@@ -50,20 +46,20 @@ export default class PaymentFormService {
     const typeId = this.form.getValue('id');
     this.submit.fetch({
       method: typeId ? 'put' : 'post',
-      url: typeId ? `/unit-types/${typeId}` : '/unit-types',
+      url: typeId ? `/payments/${typeId}` : '/payments',
       body: {
         ...this.form.getValues(),
       },
     }).then(() => {
       if (this.submit.data) {
-        const unitType = this.submit.data;
         this.form.reset();
-        this.form.setInitialValues(unitType);
+        this.form.setInitialValues({});
+        browserHistory.goBack();
 
-        NotificationService.addNotification(`Unit Type ${typeId ? 'updated' : 'created'} successfully.`, 'success');
+        NotificationService.addNotification(`Payment ${typeId ? 'updated' : 'created'} successfully.`, 'success');
       }
       if (this.submit.error) {
-        NotificationService.addNotification(`Error ${typeId ? 'updating' : 'creating'} unit type.`, 'error');
+        NotificationService.addNotification(`Error ${typeId ? 'updating' : 'creating'} payment.`, 'error');
       }
     });
   });
