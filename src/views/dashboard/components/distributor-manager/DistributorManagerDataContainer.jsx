@@ -19,6 +19,10 @@ import HistoryCharts from './HistoryCharts';
 import DistributorManagerDashboardFilterService from '../../services/DistributorManagerDashboardFilterService';
 
 class DistributorManagerDataContainer extends Component {
+  componentDidMount() {
+    DistributorManagerDashboardFilterService.init();
+  }
+
   componentDidUpdate() {
     if (!DistributorManagerDashboardFilterService.form.getValue('company')) {
       return null;

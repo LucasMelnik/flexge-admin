@@ -5,8 +5,8 @@ import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import Select from '../../../core/form/Select';
 import Button from '../../../core/form/Button';
-import StudentRecordSelectContainer from '../../message/components/StudentRecordSelectContainer';
 import RangeDateInput from '../../../core/form/RangeDateInput';
+import StudentAutoCompleteContainer from '../../../core/form/StudentAutoCompleteContainer';
 
 const PaymentListFilter = props => (
   <form
@@ -59,7 +59,7 @@ const PaymentListFilter = props => (
         />
       </Column>
       <Column size={3}>
-        <StudentRecordSelectContainer
+        <StudentAutoCompleteContainer
           disabled={props.submitting}
           value={get(props.values, 'student', '')}
           onSelect={(student) => {

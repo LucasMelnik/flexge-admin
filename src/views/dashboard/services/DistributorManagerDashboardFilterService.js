@@ -1,5 +1,5 @@
 import FormService from '../../../core/services/FormService';
-import { extendObservable } from 'mobx';
+import { extendObservable, action } from 'mobx';
 import { isRequired } from '../../../core/validations';
 
 class DistributorManagerDashboardFilterService {
@@ -11,12 +11,14 @@ class DistributorManagerDashboardFilterService {
       distributor: [isRequired],
       company: [isRequired],
     };
+  }
 
+  init = action(() => {
     this.form.setInitialValues({});
     if (localStorage.role === 'DISTRIBUTOR_MANAGER') {
       this.form.setValue('distributor', localStorage.distributor);
     }
-  }
+  });
 }
 
 const distributorManagerDashboardFilterService = new DistributorManagerDashboardFilterService();

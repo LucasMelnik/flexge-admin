@@ -11,6 +11,7 @@ export default class AutoComplete extends Component {
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
     fetching: PropTypes.bool,
+    required: PropTypes.bool,
     placeholder: PropTypes.string,
     label: PropTypes.string,
     errorText: PropTypes.string,
@@ -22,6 +23,7 @@ export default class AutoComplete extends Component {
     placeholder: '',
     label: '',
     errorText: null,
+    required: false,
     disabled: false,
     fetching: false,
   };
@@ -42,6 +44,7 @@ export default class AutoComplete extends Component {
     return (
       <Form.Item
         colon={false}
+        required={this.props.required}
         label={this.props.label}
         help={this.props.errorText}
         hasFeedback={this.props.fetching}
