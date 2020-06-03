@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AutoComplete from '../../../core/form/AutoComplete';
+import AutoComplete from './AutoComplete';
 
-const StudentRecordSelect = props => (
+const StudentAutoComplete = props => (
   <AutoComplete
     label="Student"
     labelPath="name"
     accessoryLabelPath="email"
     value={props.value}
     disabled={props.disabled}
+    required={props.required}
     onSelect={props.onSelect}
     onChange={props.onChange}
     dataSource={props.dataSource}
   />
 );
 
-StudentRecordSelect.propTypes = {
+StudentAutoComplete.propTypes = {
   value: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
   onSelect: PropTypes.func.isRequired,
@@ -23,4 +24,4 @@ StudentRecordSelect.propTypes = {
   dataSource: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
-export default StudentRecordSelect;
+export default StudentAutoComplete;

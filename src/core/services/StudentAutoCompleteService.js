@@ -1,7 +1,7 @@
 import { action, extendObservable } from 'mobx';
-import FetchService from '../../../core/services/FetchService';
+import FetchService from './FetchService';
 
-class StudentListService {
+class StudentAutoCompleteService {
   fetch = new FetchService();
 
   constructor() {
@@ -21,7 +21,7 @@ class StudentListService {
         size: 15,
         page: 0,
         query: {
-          name: search,
+          criteria: search,
         },
       },
     }).then(() => {
@@ -34,6 +34,4 @@ class StudentListService {
   });
 }
 
-const studentListService = new StudentListService();
-
-export default studentListService;
+export default StudentAutoCompleteService;

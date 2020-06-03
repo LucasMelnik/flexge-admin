@@ -9,7 +9,7 @@ import TextInput from '../../../core/form/TextInput';
 import FetchSelect from '../../../core/form/FetchSelect';
 import Separator from '../../../core/layout/Separator';
 import Select from '../../../core/form/Select';
-import StudentRecordSelectContainer from './StudentRecordSelectContainer';
+import StudentAutoCompleteContainer from '../../../core/form/StudentAutoCompleteContainer';
 
 const MessageForm = props => (
   <form
@@ -109,7 +109,7 @@ const MessageForm = props => (
       )}
       {get(props.values, 'type', '') === 'TO_ONE_STUDENT' && (
         <Column size={4}>
-          <StudentRecordSelectContainer
+          <StudentAutoCompleteContainer
             disabled={props.submitting}
             value={get(props.values, 'student', '')}
             onSelect={(student, fullObject) => {
