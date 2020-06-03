@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { toJS } from 'mobx';
-import StudentListService from '../services/StudentListService';
-import StudentSelect from './StudentSelect';
+import StudentAutoCompleteService from '../services/StudentAutoCompleteService';
+import StudentAutoComplete from './StudentAutoComplete';
 
-class StudentSelectContainer extends Component {
+class StudentAutoCompleteContainer extends Component {
 
   static propTypes = {
     value: PropTypes.string.isRequired,
@@ -14,13 +14,15 @@ class StudentSelectContainer extends Component {
     onChange: PropTypes.func.isRequired,
   };
 
+  studentAutoCompleteService = new StudentAutoCompleteService();
+
   handleChange = (value) => {
     if (value && value.length > 2) {
       if (this.searchTimeout) {
         clearTimeout(this.searchTimeout);
       }
       this.searchTimeout = setTimeout(() => {
-        StudentListService.searchStudents(value);
+        this.studentAutoCompleteService.searchStudents(value);
       }, 500);
     }
     this.props.onChange(value);
@@ -28,15 +30,16 @@ class StudentSelectContainer extends Component {
 
   render() {
     return (
-      <StudentSelect
-        dataSource={toJS(StudentListService.students)}
+      <StudentAutoComplete
+        dataSource={toJS(this.studentAutoCompleteService.students)}
         onChange={this.handleChange}
         onSelect={this.props.onSelect}
         value={this.props.value}
         disabled={this.props.disabled}
+        required={this.props.required}
       />
     );
   }
 }
 
-export default observer(StudentSelectContainer);
+export default observer(StudentAutoCompleteContainer);

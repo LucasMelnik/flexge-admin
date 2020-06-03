@@ -6,7 +6,7 @@ import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import DateInput from '../../../core/form/DateInput';
 import TextInput from '../../../core/form/TextInput';
-import StudentRecordSelectContainer from './StudentRecordSelectContainer';
+import StudentAutoCompleteContainer from '../../../core/form/StudentAutoCompleteContainer';
 
 const MessageListFilter = props => (
   <Row>
@@ -38,7 +38,7 @@ const MessageListFilter = props => (
       />
     </Column>
     <Column size={3}>
-      <StudentRecordSelectContainer
+      <StudentAutoCompleteContainer
         disabled={props.fetching}
         value={get(props.values, 'memberId', get(props.values, 'member', ''))}
         onSelect={value => props.onChange('memberId', value)}

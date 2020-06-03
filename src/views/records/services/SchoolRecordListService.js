@@ -20,7 +20,9 @@ class SchoolRecordListService {
   init = action(() => {
     this.schools = [];
     this.form.setInitialValues({});
-    this.load();
+    if (localStorage.role !== 'ADMIN') {
+      this.load();
+    }
   });
 
   load = action((page) => {

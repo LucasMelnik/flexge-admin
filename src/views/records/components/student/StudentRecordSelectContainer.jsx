@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { toJS } from 'mobx';
 import { browserHistory } from 'react-router';
-import StudentListService from '../../services/StudentListService';
-import StudentRecordSelect from './StudentRecordSelect';
+import StudentAutoCompleteContainer from '../../../../core/form/StudentAutoCompleteContainer';
 
 class StudentRecordSelectContainer extends Component {
 
@@ -13,7 +11,6 @@ class StudentRecordSelectContainer extends Component {
     this.setState({
       value: value || '',
     });
-    StudentListService.searchStudents(value);
   };
 
   handleSelect = (value, student) => {
@@ -22,10 +19,9 @@ class StudentRecordSelectContainer extends Component {
 
   render() {
     return (
-      <StudentRecordSelect
-        dataSource={toJS(StudentListService.students)}
-        onChange={this.handleChange}
+      <StudentAutoCompleteContainer
         onSelect={this.handleSelect}
+        onChange={this.handleChange}
         value={this.state.value}
       />
     );
