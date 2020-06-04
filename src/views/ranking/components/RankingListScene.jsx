@@ -45,13 +45,16 @@ const RankingListScene = () => (
         },
         {
           title: 'Top of Semester',
+          key: 'semester',
           content: <RankingListPanelContainer type="semester" />,
         },
         {
           title: 'Top of Year',
+          key: 'year',
           content: <RankingListPanelContainer type="year" />,
         },
         {
+          key: 'all',
           title: 'Top of All time',
           content: <RankingListPanelContainer type="all" />,
         },

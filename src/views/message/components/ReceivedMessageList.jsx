@@ -5,6 +5,7 @@ import moment from 'moment';
 import get from 'lodash/get';
 import Table from '../../../core/form/Table';
 import Tag from '../../../core/layout/Tag';
+import Button from '../../../core/form/Button';
 
 const ReceivedMessageList = props => (
   <Table
@@ -17,7 +18,7 @@ const ReceivedMessageList = props => (
         label: 'Received At',
         path: 'sentAt',
         render: value => moment(value).format('DD/MM/YYYY HH:mm'),
-        width: 130,
+        width: 150,
       },
       {
         label: 'Subject',
@@ -40,6 +41,17 @@ const ReceivedMessageList = props => (
         width: 120,
         align: 'center',
         render: value => <Tag color={value ? 'green' : 'red'}>{value ? 'Read' : 'Not Read'}</Tag>,
+      },
+      {
+        label: 'Actions',
+        path: 'action',
+        width: 80,
+        align: 'center',
+        render: (value, row) => (
+          <a href={`${window.location.origin}/messages/${row.id}/chat`} target="_blank" rel="noopener noreferrer">
+            <Button icon="export" />
+          </a>
+        )
       },
     ]}
     rows={props.messages}
