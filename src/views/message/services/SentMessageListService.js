@@ -2,6 +2,8 @@ import { action, extendObservable } from 'mobx';
 import moment from 'moment';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
+import { browserHistory} from 'react-router';
+import qs from 'qs';
 
 class SentMessageListService {
   fetch = new FetchService();
@@ -23,8 +25,13 @@ class SentMessageListService {
   }
 
   init = action(() => {
+    const params = qs.parse(window.location.search.substring(1));
+    if (params.page) {
+      this.pagination.current = parseInt(params.page);
+    }
+
     this.messages = [];
-    this.load();
+    this.load(this.pagination);
   });
 
   load = action((page) => {
@@ -58,6 +65,10 @@ class SentMessageListService {
       if (this.fetch.data) {
         this.messages = this.fetch.data.docs;
         this.pagination.total = this.fetch.data.total;
+
+        const params = qs.parse(window.location.search.substring(1));
+        params.page = this.pagination.current;
+        browserHistory.replace(`${window.location.pathname}?${qs.stringify(params)}`);
       } else {
         this.messages = [];
       }

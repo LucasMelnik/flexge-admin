@@ -46,6 +46,7 @@ export default class ReviewFormControlBar extends Component {
           </div>
          ),
         title: 'Format Review',
+        key: 'format',
       });
       tabs.push({
         content: (
@@ -58,6 +59,7 @@ export default class ReviewFormControlBar extends Component {
            </div>
          ),
         title: 'Content Review',
+        key: 'content'
       });
     }
 
@@ -74,6 +76,7 @@ export default class ReviewFormControlBar extends Component {
              </div>
            ),
           title: 'Image Review',
+          key: 'image'
         }
       );
     }

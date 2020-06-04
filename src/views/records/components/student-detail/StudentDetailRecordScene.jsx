@@ -48,6 +48,7 @@ const StudentDetailRecordScene = props => (
       <Tabs
         tabs={[
           {
+            key: 'analytics',
             title: 'Analytics',
             content:
               (
@@ -69,6 +70,7 @@ const StudentDetailRecordScene = props => (
               ),
           },
           {
+            key: 'content',
             title: 'Content Progress',
             content:
               (
@@ -80,6 +82,7 @@ const StudentDetailRecordScene = props => (
               ),
           },
           {
+            key: 'daily',
             title: 'Daily Progress',
             content:
               (
@@ -89,6 +92,7 @@ const StudentDetailRecordScene = props => (
               ),
           },
           {
+            key: 'grammars',
             title: 'Studied Grammars - last 60 days',
             content: (
               <Card>
@@ -97,6 +101,7 @@ const StudentDetailRecordScene = props => (
             ),
           },
           {
+            key: 'achievements',
             title: 'Achievements',
             content:
              (

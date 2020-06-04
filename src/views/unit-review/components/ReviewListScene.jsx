@@ -20,6 +20,7 @@ const ReviewListScene = props => (
           </Card>
         ),
         title: 'My units',
+        key: 'my'
       },
       {
         content: (
@@ -31,6 +32,7 @@ const ReviewListScene = props => (
           </Card>
         ),
         title: 'Units Pending Review',
+        key: 'pending-review'
       },
     ]}
   />

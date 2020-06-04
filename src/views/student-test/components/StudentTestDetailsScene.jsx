@@ -22,6 +22,7 @@ const StudentTestDetailsScene = props => (
     <Tabs
       tabs={[
         {
+          key: 'placement',
           title: 'Placement Tests',
           content: (
             <Card>
@@ -30,6 +31,7 @@ const StudentTestDetailsScene = props => (
                    ),
         },
         {
+          key: 'mastery',
           title: 'Mastery Tests',
           content: (
             <Card>

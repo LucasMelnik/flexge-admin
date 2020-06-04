@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import $ from 'jquery';
 import Button from '../../../core/form/Button';
-import TextInput from '../../../core/form/TextInput';
 import ColumnSeparator from '../../../core/layout/ColumnSeparator';
+import TextEditor from '../../../core/form/TextEditor';
 
 class MessageChatReplayForm extends React.Component {
   static propTypes = {
@@ -42,7 +42,6 @@ class MessageChatReplayForm extends React.Component {
             borderTop: '1px solid #dedede',
             borderBottomLeftRadius: 3,
             borderBottomRightRadius: 3,
-            height: 60,
             padding: 10,
           }}
         >
@@ -50,22 +49,20 @@ class MessageChatReplayForm extends React.Component {
             style={{
               display: 'inline-block',
               width: 'calc(100% - 80px)',
+              backgroundColor: '#fff',
             }}
           >
-            <TextInput
+            <TextEditor
               ref={(input) => { this.input = input; }}
-              style={{
-                borderRadius: 7,
-                border: 'none',
-                outline: 'none',
-                padding: '0px 10px',
-              }}
-              label=""
-              placeholder="Type the reply"
-              disabled={this.props.submitting}
+              placeholder="Type the reply..."
+              isRequired
               value={get(this.props.values, 'text', '')}
               onChange={value => this.props.onChange('text', value)}
-              errorText={get(this.props.errors, 'text', null)}
+              options={{
+                toolbar: [
+                  ['bold', 'italic', 'underline'],
+                ],
+              }}
             />
           </div>
           <ColumnSeparator size="xs" />

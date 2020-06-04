@@ -25,7 +25,7 @@ const MessageFormScene = () => (
           icon="arrow-left"
           label="Back"
           type="default"
-          onClick={() => browserHistory.push('/messages')}
+          onClick={() => browserHistory.goBack()}
         />
       )}
     >

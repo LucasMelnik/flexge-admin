@@ -25,6 +25,7 @@ const CertificationTestExecutionListScene = () => (
             </Card>
           ),
           title: 'Pending Schedule',
+          key: 'pending',
         }] : [],
         ...localStorage.role !== 'CERTIFICATION_TEST_PROFESSIONAL' ? [{
           content: (
@@ -33,6 +34,7 @@ const CertificationTestExecutionListScene = () => (
             </Card>
           ),
           title: 'Scheduled',
+          key: 'scheduled'
         }] : [],
         {
           content: (
@@ -41,6 +43,7 @@ const CertificationTestExecutionListScene = () => (
             </Card>
           ),
           title: 'Pending Correction',
+          key: 'pending-correction'
         },
         ...localStorage.role !== 'CERTIFICATION_TEST_PROFESSIONAL' ? [{
           content: (
@@ -49,6 +52,7 @@ const CertificationTestExecutionListScene = () => (
             </Card>
           ),
           title: 'Completed',
+          key: 'completed'
         }] : [],
       ]}
     />

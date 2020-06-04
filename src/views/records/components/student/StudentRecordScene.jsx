@@ -31,6 +31,7 @@ const StudentRecordScene = props => (
     <Tabs
       tabs={[
         {
+          key: 'analytics',
           title: 'Analytics',
           content: (
             <div>
@@ -54,6 +55,7 @@ const StudentRecordScene = props => (
           ),
         },
         {
+          key: 'records',
           title: 'Students Records',
           content: (
             <Card
@@ -67,6 +69,7 @@ const StudentRecordScene = props => (
           ),
         },
         {
+          key: 'grades',
           title: 'Students Grades',
           content: (
             <Card
@@ -80,6 +83,7 @@ const StudentRecordScene = props => (
           ),
         },
         {
+          key: 'grammars',
           title: 'Studied Grammars - last 60 days',
           content: (
             <Card

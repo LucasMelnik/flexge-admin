@@ -10,7 +10,7 @@ const Button = props => (
     htmlType={props.buttonType}
     onClick={props.onClick}
     icon={props.icon}
-    shape={props.rounded ? 'circle' : null}
+    shape={props.rounded ? 'round' : null}
     loading={props.loading}
     size={{
       sm: 'small',
