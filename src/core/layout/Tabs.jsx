@@ -20,32 +20,25 @@ export default class Tabs extends React.Component {
     actions: null,
   };
 
-  state = {
-    activeTab: '',
-  };
-
   componentDidMount() {
     const params = qs.parse(window.location.search.substring(1));
-
-    this.setState({
-      activeTab: params.activeTab || this.props.tabs[0].key
-    }, () => {
-      browserHistory.replace(`${window.location.pathname}?${qs.stringify(this.state)}`);
-    });
+    if (!params || !params.activeTab) {
+      params.activeTab = this.props.tabs[0].key;
+      browserHistory.replace(`${window.location.pathname}?${qs.stringify(params)}`);
+    }
   }
 
   handleTabChange = (tab) => {
-    this.setState({
-      activeTab: tab
-    },() => {
-      browserHistory.replace(`${window.location.pathname}?${qs.stringify(this.state)}`);
-    });
+    const params = qs.parse(window.location.search.substring(1));
+    params.activeTab = tab;
+    browserHistory.replace(`${window.location.pathname}?${qs.stringify(params)}`);
   }
 
   render() {
+    const params = qs.parse(window.location.search.substring(1));
     return (
       <AntTabs
-        activeKey={this.state.activeTab}
+        activeKey={params.activeTab}
         tabBarExtraContent={this.props.actions}
         onChange={this.handleTabChange}
       >
