@@ -32,6 +32,7 @@ const MessageListScene = () => (
         )}
         tabs={[
           {
+            key: 'sent-tab',
             title: 'Sent',
             content: (
               <div>
@@ -43,6 +44,7 @@ const MessageListScene = () => (
              ),
           },
           {
+            key: 'received-tab',
             title: (
               <UnReadeMessageCountContainer>
                 Received
