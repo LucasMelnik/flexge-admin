@@ -30,15 +30,25 @@ export default class MessageChatListService {
       if (this.fetch.data) {
         this.messages = this.fetch.data;
 
-        this.fetch.data.filter(message => !message.readAt && message.sender.id !== localStorage.getItem('id')).map((message) => {
-          return this.markRead.fetch({
-            url: `/message-channels/${message.messageChannel}/messages/${message.id}/read`,
-            method: 'patch',
-          });
-        });
+        if (['TEACHER', 'SCHOOL_MANAGER', 'COMPANY_MANAGER'].some(r => r === localStorage.role)) {
+          this.markAsRead();
+        }
       } else {
         this.messages = [];
       }
+    });
+  });
+
+  markAsRead = action(() => {
+    this.messages = this.messages.map((message) => {
+      if (!message.readAt && message.sender.id !== localStorage.getItem('id')) {
+        this.markRead.fetch({
+          url: `/message-channels/${message.messageChannel}/messages/${message.id}/read`,
+          method: 'patch',
+        });
+        message.readAt = new Date();
+      }
+      return message;
     });
   });
 

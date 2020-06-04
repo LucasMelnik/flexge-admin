@@ -19,6 +19,7 @@ class MessageChatListContainer extends Component {
     return (
       <MessageChatList
         messages={toJS(this.messageChatListService.messages)}
+        onMarkAsRead={this.messageChatListService.markAsRead}
       />
     );
   }
