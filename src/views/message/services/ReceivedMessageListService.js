@@ -4,6 +4,7 @@ import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import { browserHistory} from 'react-router';
 import qs from 'qs';
+import NotificationService from '../../../core/services/NotificationService';
 
 class ReceivedMessageListService {
   fetch = new FetchService();
@@ -12,6 +13,7 @@ class ReceivedMessageListService {
   constructor() {
     extendObservable(this, {
       messages: [],
+      selectedMessages: [],
       pagination: {
         current: 1,
         total: 0,
@@ -75,6 +77,34 @@ class ReceivedMessageListService {
           this.messages = [];
         }
       });
+  });
+
+  handleSelectMessage = action((selectedRows) => { this.selectedMessages = selectedRows });
+
+  handleGroupMessages = action(() => {
+    this.fetch
+      .fetch({
+        method: 'post',
+        url: '/received-messages/group',
+        body: {
+          messages: this.selectedMessages
+        }
+      })
+      .then(() => {
+        if (this.fetch.data) {
+          this.load();
+          this.selectedMessages = [];
+          NotificationService.addNotification(
+            'Message successfully grouped.',
+            'success',
+          );
+        } else {
+          NotificationService.addNotification(
+            this.fetch.error,
+            'error',
+          );
+        }
+      })
   });
 }
 
