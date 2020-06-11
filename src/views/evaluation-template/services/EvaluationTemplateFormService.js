@@ -4,6 +4,7 @@ import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
+import { Roles } from '../../../core/util';
 
 export default class EvaluationTemplateFormService {
   fetch = new FetchService();
@@ -15,7 +16,7 @@ export default class EvaluationTemplateFormService {
     this.form.validations = {
       name: [isRequired],
       year: [isRequired],
-      school: (localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') ? [isRequired] : [],
+      school: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER].some(r => r === localStorage.role) ? [isRequired] : [],
     };
   }
 
@@ -31,7 +32,7 @@ export default class EvaluationTemplateFormService {
       });
     } else {
       this.form.setInitialValues({});
-      if (localStorage.role === 'SCHOOL_MANAGER') {
+      if (localStorage.role === Roles.SCHOOL_MANAGER) {
         this.form.setValue('school', localStorage.getItem('school'));
       }
     }

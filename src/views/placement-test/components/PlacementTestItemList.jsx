@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatTimeFromSeconds } from '../../../core/util';
+import { formatTimeFromSeconds, Roles } from '../../../core/util';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
 import ItemFormContainer from '../../item/components/ItemFormContainer';
@@ -57,8 +57,8 @@ const PlacementTestItemList = props => (
       return (
         <div>
           {(
-            localStorage.role === 'ADMIN' ||
-            (localStorage.role === 'CONTENT_ADMIN' && review.status && review.status !== 'APPROVED')
+            [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) ||
+            (localStorage.role === Roles.CONTENT_ADMIN && review.status && review.status !== 'APPROVED')
           ) && (
             <div>
               <ReviewFormContainer

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Button from '../../../core/form/Button';
 import TextEditor from '../../../core/form/TextEditor';
+import { Roles } from '../../../core/util';
 
 const ImageReviewForm = (props) => (
   <div>
@@ -16,7 +17,7 @@ const ImageReviewForm = (props) => (
     >
       Revisão de Imagens ({props.values.statusImage && props.values.statusImage.replace('_', ' ')})
       <div>
-        {localStorage.role === 'ADMIN' && (
+        {[Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) && (
           <div>
             <Button
               label="Image Approved"
@@ -38,7 +39,7 @@ const ImageReviewForm = (props) => (
             />
           </div>
         )}
-        {(localStorage.role === 'IMAGE_ADMIN' &&
+        {(localStorage.role === Roles.IMAGE_ADMIN &&
           (!props.values.statusImage || props.values.statusImage === 'NOT_APPROVED' || props.values.statusImage === 'NOT_SEND_TO_REVIEW')) && (
           <div>
             <Button
@@ -62,7 +63,7 @@ const ImageReviewForm = (props) => (
       }}
       placeholder="Comment status image review..."
       isRequired
-      readOnly={localStorage.role !== 'ADMIN' && props.values.statusImage === 'APPROVED'}
+      readOnly={[Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) && props.values.statusImage === 'APPROVED'}
       value={get(props.values, 'commentsImage', '')}
       onChange={value => props.onChange('commentsImage', value)}
     />

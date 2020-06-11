@@ -9,6 +9,8 @@ import FormButtons from '../../../core/form/FormButtons';
 import Switch from '../../../core/form/Switch';
 import DateInput from '../../../core/form/DateInput';
 import Select from '../../../core/form/Select';
+import { Roles } from '../../../core/util';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const SchoolClassForm = props => (
   <form
@@ -140,7 +142,7 @@ const SchoolClassForm = props => (
         />
       </Column>
     </Row>
-    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+    <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER]}>
       <Row>
         <Column size={2}>
           <Switch
@@ -163,7 +165,7 @@ const SchoolClassForm = props => (
           />
         </Column>
       </Row>
-    )}
+    </PermissionValidator>
     <FormButtons
       confirmLabel={props.values.id ? 'Update School Class' : 'Create School Class'}
       isDisabled={props.submitting || !props.isDirty()}

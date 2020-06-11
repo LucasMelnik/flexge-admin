@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Button from '../../../core/form/Button';
 import TextEditor from '../../../core/form/TextEditor';
+import { Roles } from '../../../core/util';
 
 const FormatReviewForm = props => (
   <div>
@@ -16,7 +17,7 @@ const FormatReviewForm = props => (
     >
       <p>Revisão de Placement ({props.values.status === 'PENDING' && 'Awaiting Approval'})</p>
       <div>
-        {localStorage.role === 'ADMIN' && (
+        {[Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) && (
           <div>
             <Button
               label="Approved"

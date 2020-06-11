@@ -2,6 +2,7 @@ import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
+import { Roles } from '../../../core/util';
 
 class ReviewListService {
   fetch = new FetchService();
@@ -60,13 +61,13 @@ class ReviewListService {
         status: this.formMyReviews.getValue('status'),
         statusImage: this.formMyReviews.getValue('statusImage'),
         statusFormat: this.formMyReviews.getValue('statusFormat'),
-        ...(localStorage.role !== 'ADMIN' && localStorage.role !== 'IMAGE_ADMIN') && {
+        ...(![Roles.ADMIN, Roles.SUPPORT, Roles.IMAGE_ADMIN].some(r => r === localStorage.role)) && {
           createdBy: localStorage.id,
         },
-        ...(localStorage.role === 'ADMIN' && this.formMyReviews.getValue('createdBy')) && {
+        ...([Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) && this.formMyReviews.getValue('createdBy')) && {
           unitCreatedBy: this.formMyReviews.getValue('createdBy'),
         },
-        ...(localStorage.role === 'ADMIN' && this.formMyReviews.getValue('reviewedBy')) && {
+        ...([Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) && this.formMyReviews.getValue('reviewedBy')) && {
           reviewedBy: this.formMyReviews.getValue('reviewedBy'),
         },
       },
@@ -102,10 +103,10 @@ class ReviewListService {
         module: this.formMyReviews.getValue('module'),
         status: this.formAllReviews.getValue('status'),
         statusFormat: this.formAllReviews.getValue('statusFormat'),
-        ...(localStorage.role === 'ADMIN' && this.formAllReviews.getValue('createdBy')) && {
+        ...([Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) && this.formAllReviews.getValue('createdBy')) && {
           unitCreatedBy: this.formAllReviews.getValue('createdBy'),
         },
-        ...(localStorage.role === 'ADMIN' && this.formMyReviews.getValue('reviewedBy')) && {
+        ...([Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) && this.formMyReviews.getValue('reviewedBy')) && {
           reviewedBy: this.formMyReviews.getValue('reviewedBy'),
         },
       },

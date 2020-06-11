@@ -2,23 +2,24 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import AverageStudyQualityService from '../../../services/AverageStudyQualityService';
 import StudyQualityChart from './StudyQualityChart';
+import { Roles } from '../../../../../core/util';
 
 class StudyQualityChartContainer extends Component {
   getTitle = () => {
-    if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
+    if (localStorage.role === Roles.TEACHER || localStorage.role === Roles.SCHOOL_MANAGER) {
       return 'Study Quality by Classes';
     }
     return 'Study Quality by Schools';
   };
 
   render() {
-    const labels = ['ADMIN', 'DISTRIBUTOR', 'COMPANY_MANAGER'].some(role => role === localStorage.role) ?
+    const labels = [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER].some(role => role === localStorage.role) ?
       AverageStudyQualityService.data.map(school => school.name) :
       AverageStudyQualityService.data.reduce((acc, school) => ([
         ...acc,
         ...school.classes.map(schoolClass => schoolClass.className),
       ]), []);
-    const values = ['ADMIN', 'DISTRIBUTOR', 'COMPANY_MANAGER'].some(role => role === localStorage.role) ?
+    const values = [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER].some(role => role === localStorage.role) ?
       AverageStudyQualityService.data.map(school => Number(school.schoolAverageScore.toFixed(1))) :
       AverageStudyQualityService.data.reduce((acc, school) => ([
         ...acc,

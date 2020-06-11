@@ -6,10 +6,12 @@ import Column from '../../../core/layout/Column';
 import Button from '../../../core/form/Button';
 import FetchSelect from '../../../core/form/FetchSelect';
 import TextInput from '../../../core/form/TextInput';
+import { Roles } from '../../../core/util';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const DistributorUserListFilter = props => (
   <Row>
-    {(localStorage.role === 'ADMIN') && (
+    <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT]}>
       <Column size={3}>
         <FetchSelect
           showSearch
@@ -24,7 +26,7 @@ const DistributorUserListFilter = props => (
           }}
         />
       </Column>
-    )}
+    </PermissionValidator>
     <Column size={4}>
       <TextInput
         label="Email"

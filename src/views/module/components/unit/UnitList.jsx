@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import replace from 'lodash/replace';
 import { browserHistory } from 'react-router';
-import { formatTimeFromSeconds } from '../../../../core/util';
+import { formatTimeFromSeconds, Roles } from '../../../../core/util';
 import Table from '../../../../core/form/Table';
 import Button from '../../../../core/form/Button';
 import StatusItem from '../../../../core/layout/StatusItem';
@@ -139,14 +139,14 @@ const UnitList = props => (
         width: props.allowReorder ? '280px' : '175px',
         render: (cell, row, index) => (
           <div>
-            {(row.createdBy === localStorage.id || localStorage.role === 'ADMIN') && (
+            {(row.createdBy === localStorage.id || localStorage.role === Roles.ADMIN) && (
               <Button
                 icon="delete"
                 onClick={() => props.onDelete(row)}
               />
             )}
             {' '}
-            {(row.createdBy === localStorage.id || localStorage.role === 'ADMIN') && (
+            {(row.createdBy === localStorage.id || [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role)) && (
               <Button
                 icon="edit"
                 onClick={() => browserHistory.push(`/modules/${row.module}/units/${row.id}`)}
@@ -167,7 +167,7 @@ const UnitList = props => (
               />
             )}
             {' '}
-            {['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN'].some(role => localStorage.role === role) && (
+            {[Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN, Roles.IMAGE_ADMIN].some(r => r === localStorage.role) && (
               <form
                 action={`${process.env.REACT_APP_STUDENT_API_URL}/public/tasting`}
                 target="_blank"
@@ -184,7 +184,7 @@ const UnitList = props => (
               </form>
             )}
             {' '}
-            {['ADMIN', 'CONTENT_ADMIN'].some(role => localStorage.role === role) && (
+            {[Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN].some(r => r === localStorage.role) && (
               <Button
                 icon="cloud-upload"
                 buttonType="button"

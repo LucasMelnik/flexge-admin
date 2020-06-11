@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Button from '../../../core/form/Button';
 import TextEditor from '../../../core/form/TextEditor';
+import { Roles } from '../../../core/util';
 
 const ContentReviewForm = props => (
   <div>
@@ -20,7 +21,7 @@ const ContentReviewForm = props => (
           marginTop: props.values.status === 'DONE' && 36,
         }}
       >
-        {(props.values.status === 'PENDING' && (props.values.createdBy !== localStorage.id || localStorage.role === 'ADMIN')) && (
+        {(props.values.status === 'PENDING' && (props.values.createdBy !== localStorage.id || [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role))) && (
           <div>
             <Button
               icon="message"
@@ -39,7 +40,7 @@ const ContentReviewForm = props => (
             />
           </div>
         )}
-        {(props.values.status === 'PENDING' && (props.values.createdBy === localStorage.id || localStorage.role !== 'ADMIN')) && (
+        {(props.values.status === 'PENDING' && (props.values.createdBy === localStorage.id || ![Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role))) && (
           <Button
             icon="message"
             type="primary"
@@ -48,7 +49,7 @@ const ContentReviewForm = props => (
             disabled={props.values.statusFormat !== 'APPROVED'}
           />
         )}
-        {(props.values.status === 'REVIEWED' && (props.values.createdBy === localStorage.id || localStorage.role === 'ADMIN')) && (
+        {(props.values.status === 'REVIEWED' && (props.values.createdBy === localStorage.id || [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role))) && (
           <Button
             icon="message"
             type="primary"

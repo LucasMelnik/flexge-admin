@@ -32,9 +32,10 @@ import GapFillLetterItemForm from './forms/GapFillLetterItemForm';
 import PhonemeItemForm from './forms/PhonemeItemForm';
 import VocabularyItemForm from './forms/VocabularyItemForm';
 import SingleChoiceGameItemForm from './forms/SingleChoiceGameItemForm';
+import { Roles } from '../../../core/util';
 
 const needCharacter = itemType =>
-  localStorage.getItem('role') === 'ADMIN' &&
+  [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) &&
   !['VIDEO', 'VIDEO_SHORT', 'VIDEO_TEXT_AREA', 'TEXT'].find(type => type === itemType);
 
 const ItemForm = props => (

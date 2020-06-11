@@ -10,6 +10,8 @@ import Select from '../../../core/form/Select';
 import DateInput from '../../../core/form/DateInput';
 import Switch from '../../../core/form/Switch';
 import LocaleSelect from '../../../core/form/LocaleSelect';
+import { Roles } from '../../../core/util';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const StudentForm = props => (
   <form
@@ -101,7 +103,7 @@ const StudentForm = props => (
           errorText={get(props.errors, 'contactPhone', null)}
         />
       </Column>
-      {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+      <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER]}>
         <Column size={2}>
           <Switch
             label="Student Demo"
@@ -112,7 +114,7 @@ const StudentForm = props => (
             disabled={props.submitting}
           />
         </Column>
-      )}
+      </PermissionValidator>
     </Row>
     <Row>
       <Column size={1.5}>
@@ -148,7 +150,7 @@ const StudentForm = props => (
           }}
         />
       </Column>
-      {props.values.id && (localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
+      <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}>
         <Column size={2.5}>
           <FetchSelect
             showSearch
@@ -171,9 +173,9 @@ const StudentForm = props => (
             }}
           />
         </Column>
-      )}
+      </PermissionValidator>
       {props.values.id && (
-        <Column size={localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' ? 2 : 4}>
+        <Column size={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER].some(r => r === localStorage.role) ? 2 : 4}>
           <FetchSelect
             showSearch
             isPaginated

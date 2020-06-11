@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
+import { Roles } from '../../../core/util';
 
 const EvaluationTemplateList = props => (
   <Table
     fetching={props.fetching}
     columns={[
-      ...(localStorage.role === 'ADMIN' || localStorage.role === 'COMPANY_MANAGER') ? [
+      ...(localStorage.role === Roles.ADMIN || localStorage.role === Roles.SUPPORT || localStorage.role === Roles.DISTRIBUTOR_MANAGER || localStorage.role === Roles.COMPANY_MANAGER) ? [
         {
           label: 'School',
           path: 'school.name',

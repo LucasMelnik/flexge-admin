@@ -15,6 +15,7 @@ import FileInput from '../../../core/form/FileInput';
 import Switch from '../../../core/form/Switch';
 import LocaleSelect from '../../../core/form/LocaleSelect';
 import { MASTERTEST_DISTRIBUTOR_ID } from '../../../core/consts';
+import { Roles } from '../../../core/util';
 
 const SchoolForm = props => (
   <form
@@ -34,13 +35,7 @@ const SchoolForm = props => (
           errorText={get(props.errors, 'name', null)}
         />
       </Column>
-      <PermissionValidator
-        allowedFor={[
-          'ADMIN',
-          'DISTRIBUTOR_MANAGER',
-          'COMPANY_MANAGER'
-        ]}
-      >
+      <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}>
         <Column size={4}>
           <FetchSelect
             showSearch
@@ -187,7 +182,7 @@ const SchoolForm = props => (
       </Column>
     </Row>
     <Row>
-      {localStorage.role === 'ADMIN' && (
+      <PermissionValidator allowedFor={[Roles.ADMIN]}>
         <Column size={2}>
           <Select
             disabled={props.submitting}
@@ -201,7 +196,7 @@ const SchoolForm = props => (
             }))}
           />
         </Column>
-      )}
+      </PermissionValidator>
       {get(props, 'values.companyDistributor', props.companyDistributor) === MASTERTEST_DISTRIBUTOR_ID && (
         <Column size={3}>
           <TextInput
@@ -226,7 +221,7 @@ const SchoolForm = props => (
           />
         </Column>
       )}
-      {localStorage.role === 'ADMIN' && (
+      <PermissionValidator allowedFor={[Roles.ADMIN]}>
         <Column size={1}>
           <Switch
             label="Allow SR Bonus"
@@ -237,7 +232,7 @@ const SchoolForm = props => (
             disabled={props.submitting}
           />
         </Column>
-      )}
+      </PermissionValidator>
     </Row>
     <FormButtons
       confirmLabel={props.values.id ? 'Update School' : 'Create School'}

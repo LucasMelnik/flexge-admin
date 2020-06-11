@@ -4,6 +4,7 @@ import Button from '../../../../../core/form/Button';
 import ItemFormContainer from '../../../../item/components/ItemFormContainer';
 import Card from '../../../../../core/layout/Card';
 import Breadcrumb from '../../../../../core/layout/Breadcrumb';
+import { Roles } from '../../../../../core/util';
 
 const UnitItemFormScene = props => (
   <div>
@@ -41,7 +42,7 @@ const UnitItemFormScene = props => (
       {props.unit.id ? (
         <ItemFormContainer
           itemId={props.itemId}
-          disabled={localStorage.role === 'ADMIN' ? false : props.unit.createdBy !== localStorage.id}
+          disabled={[Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) ? false : props.unit.createdBy !== localStorage.id}
           itemsTypeUrl={`unit-types/${props.unit.type.id}/item-types`}
           endpointUrl={`units/${props.unit.id}/items`}
           order={props.itemOrder}

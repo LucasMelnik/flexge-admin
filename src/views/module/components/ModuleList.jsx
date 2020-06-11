@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import Button from '../../../core/form/Button';
 import Table from '../../../core/form/Table';
 import ImagePreview from '../../../core/layout/ImagePreview';
+import { Roles } from '../../../core/util';
 
 const ModuleList = props => (
   <Table
@@ -146,14 +147,14 @@ const ModuleList = props => (
         render: (cell, row) => ({
           children: (
             <div>
-              {(localStorage.role === 'ADMIN' || row.createdBy.id === localStorage.id) && (
+              {([Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) || row.createdBy.id === localStorage.id) && (
               <Button
                 icon="delete"
                 onClick={() => props.onDelete(row)}
               />
                         )}
               {' '}
-              {(localStorage.role === 'ADMIN' || row.createdBy.id === localStorage.id) && (
+              {([Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) || row.createdBy.id === localStorage.id) && (
               <Button
                 icon="edit"
                 onClick={() => browserHistory.push(`/modules/${row.id}`)}

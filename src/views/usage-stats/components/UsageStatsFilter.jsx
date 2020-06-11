@@ -9,6 +9,8 @@ import MonthInput from '../../../core/form/MonthInput';
 import RangeDateInput from '../../../core/form/RangeDateInput';
 import Select from '../../../core/form/Select';
 import ColumnSeparator from '../../../core/layout/ColumnSeparator';
+import { Roles } from '../../../core/util';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const UsageStatsFilter = props => (
   <Row>
@@ -31,7 +33,7 @@ const UsageStatsFilter = props => (
         ]}
       />
     </Column>
-    {(localStorage.role === 'ADMIN' || localStorage.role === 'SPEECHACE') && (
+    <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.SPEECHACE]}>
       <Column size={2.5}>
         <FetchSelect
           showSearch
@@ -51,8 +53,8 @@ const UsageStatsFilter = props => (
           errorText={get(props.errors, 'distributor', '')}
         />
       </Column>
-    )}
-    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+    </PermissionValidator>
+    <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER]}>
       <Column size={3}>
         <FetchSelect
           showSearch
@@ -71,7 +73,7 @@ const UsageStatsFilter = props => (
           }}
         />
       </Column>
-    )}
+    </PermissionValidator>
     {props.filterType === 'month' && (
       <Column size={1.5}>
         <MonthInput

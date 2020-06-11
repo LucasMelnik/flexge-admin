@@ -4,10 +4,12 @@ import get from 'lodash/get';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import FetchSelect from '../../../../core/form/FetchSelect';
+import PermissionValidator from '../../../../core/layout/PermissionValidator';
+import { Roles } from '../../../../core/util';
 
 const DistributorManagerDashboardFilter = props => (
   <Row>
-    {(localStorage.role === 'ADMIN') && (
+    <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT]}>
       <Column size={2.5}>
         <FetchSelect
           showSearch
@@ -26,7 +28,7 @@ const DistributorManagerDashboardFilter = props => (
           errorText={get(props.errors, 'distributor', '')}
         />
       </Column>
-    )}
+    </PermissionValidator>
     <Column size={3}>
       <FetchSelect
         showSearch
