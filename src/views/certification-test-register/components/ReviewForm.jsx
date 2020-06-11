@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Button from '../../../core/form/Button';
 import TextEditor from '../../../core/form/TextEditor';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
+import { Roles } from '../../../core/util';
 
 const ReviewForm = props => (
   <div>
@@ -16,29 +18,27 @@ const ReviewForm = props => (
     >
       <p>Revisão de Certification ({props.values.status === 'PENDING' && 'Awaiting Approval'})</p>
       <div>
-        {localStorage.role === 'ADMIN' && (
-          <div>
-            <Button
-              label="Approved"
-              icon="smile-o"
-              type="primary"
-              onClick={() => {
-                props.onChange('status', 'APPROVED');
-                props.onSaveStatus();
-              }}
-            />
-            {' '}
-            <Button
-              label="Not Approved"
-              icon="frown-o"
-              onClick={() => {
-                props.onChange('status', 'NOT_APPROVED');
-                props.onSaveStatus();
-              }}
-            />
-          </div>
-        )}
-        {(localStorage.role === 'CONTENT_ADMIN' && props.values.status === 'NOT_APPROVED') && (
+        <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT]}>
+          <Button
+            label="Approved"
+            icon="smile-o"
+            type="primary"
+            onClick={() => {
+              props.onChange('status', 'APPROVED');
+              props.onSaveStatus();
+            }}
+          />
+          {' '}
+          <Button
+            label="Not Approved"
+            icon="frown-o"
+            onClick={() => {
+              props.onChange('status', 'NOT_APPROVED');
+              props.onSaveStatus();
+            }}
+          />
+        </PermissionValidator>
+        {(localStorage.role === Roles.CONTENT_ADMIN && props.values.status === 'NOT_APPROVED') && (
           <div>
             <Button
               label="Send to review"
@@ -56,7 +56,7 @@ const ReviewForm = props => (
     <TextEditor
       placeholder="Comment review..."
       isRequired
-      readOnly={props.values.status === 'PENDING' && localStorage.role === 'CONTENT_ADMIN'}
+      readOnly={props.values.status === 'PENDING' && localStorage.role === Roles.CONTENT_ADMIN}
       value={get(props.values, 'comments', '')}
       onChange={value => props.onChange('comments', value)}
     />

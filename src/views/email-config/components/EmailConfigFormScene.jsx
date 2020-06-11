@@ -5,6 +5,8 @@ import Separator from '../../../core/layout/Separator';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import EmailConfigFormContainer from './EmailConfigFormContainer';
 import EmailConfigFilterContainer from './EmailConfigFilterContainer';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
+import { Roles } from '../../../core/util';
 
 const EmailConfigFormScene = props => (
   <div>
@@ -15,12 +17,16 @@ const EmailConfigFormScene = props => (
         },
       ]}
     />
-    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && ([
-      <Card key="filter">
-        <EmailConfigFilterContainer />
-      </Card>,
-      <Separator key="separator" />,
-    ])}
+    <PermissionValidator
+      allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}
+    >
+      <div>
+        <Card key="filter">
+          <EmailConfigFilterContainer />
+        </Card>
+        <Separator key="separator" />
+      </div>
+    </PermissionValidator>
     {props.schoolId && (
       <Card title="Email Configuration">
         <EmailConfigFormContainer schoolId={props.schoolId} />

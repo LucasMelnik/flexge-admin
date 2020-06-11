@@ -7,6 +7,7 @@ import Separator from '../../../core/layout/Separator';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
 import StatusItem from '../../../core/layout/StatusItem';
+import { Roles } from '../../../core/util';
 
 const typeWithImage =  [
   'PRESENTATION',
@@ -140,9 +141,9 @@ const MyReviewList = props => (
         {
           label: 'Actions',
           path: 'action',
-          width: localStorage.role === 'ADMIN' ? '100px' : '70px',
+          width: [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) ? '100px' : '70px',
           render: (cell, row) => {
-            if (localStorage.role === 'CONTENT_ADMIN' && !row.review.id) {
+            if (localStorage.role === Roles.CONTENT_ADMIN && !row.review.id) {
               return (
                 <Button
                   icon="export"
@@ -150,7 +151,7 @@ const MyReviewList = props => (
                 />
               );
             } else if (
-              localStorage.role === 'ADMIN' &&
+              [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) &&
               row.review.status === 'DONE' &&
               row.review.statusFormat === 'APPROVED' &&
               row.review.finalStatus !== 'APPROVED'
@@ -175,7 +176,7 @@ const MyReviewList = props => (
       ]}
       rows={props.unitsAndReviews}
       selectable
-      onSelect={row => (row.review.statusFormat === 'NOT_APPROVED' || row.review.status === 'REVIEWED' || row.review.status === 'PENDING' || row.review.status === 'DONE' || localStorage.role === 'ADMIN') && row.review.id && browserHistory.push(`/modules/${row.module.id}/units/${row.id}/reviews/${row.review.id}`)}
+      onSelect={row => (row.review.statusFormat === 'NOT_APPROVED' || row.review.status === 'REVIEWED' || row.review.status === 'PENDING' || row.review.status === 'DONE' || [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role)) && row.review.id && browserHistory.push(`/modules/${row.module.id}/units/${row.id}/reviews/${row.review.id}`)}
     />
   </div>
 );

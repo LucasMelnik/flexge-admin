@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Button from '../../../core/form/Button';
 import TextEditor from '../../../core/form/TextEditor';
+import { Roles } from '../../../core/util';
 
 const ContentReviewForm = props => (
   <div>
@@ -21,7 +22,7 @@ const ContentReviewForm = props => (
           marginTop: props.values.review && props.values.review.statusContent === 'DONE' && 36,
         }}
       >
-        {((props.values.review && props.values.review.statusContent === 'PENDING') || localStorage.role === 'ADMIN') && (
+        {((props.values.review && props.values.review.statusContent === 'PENDING') || [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role)) && (
           <div>
             <Button
               icon="close-circle-o"
@@ -39,7 +40,7 @@ const ContentReviewForm = props => (
             />
           </div>
         )}
-        {(props.values.review && props.values.review.statusContent === 'NOT_APPROVED' && (props.values.createdBy === localStorage.id || localStorage.role === 'ADMIN')) && (
+        {(props.values.review && props.values.review.statusContent === 'NOT_APPROVED' && (props.values.createdBy === localStorage.id || [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role))) && (
           <Button
             icon="message"
             type="primary"

@@ -3,6 +3,7 @@ import moment from 'moment';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
+import { Roles } from '../../../core/util';
 
 class RankingListFilterService {
   form = new FormService();
@@ -13,12 +14,12 @@ class RankingListFilterService {
     });
     this.form.validations = {
       academicPlan: [isRequired],
-      school: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'].some(role => role === localStorage.role) ? [(value, all) => !value && !all.country && !all.region && 'Required'] : [isRequired],
-      country: ['ADMIN', 'DISTRIBUTOR_MANAGER'].some(role => role === localStorage.role) ? [(value, all) => !value && !all.school && 'Required'] : [],
-      region: ['ADMIN', 'DISTRIBUTOR_MANAGER'].some(role => role === localStorage.role) ? [(value, all) => !value && !all.school && 'Required'] : [],
+      school: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER].some(r => r === localStorage.role) ? [(value, all) => !value && !all.country && !all.region && 'Required'] : [isRequired],
+      country: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER].some(r => r === localStorage.role) ? [(value, all) => !value && !all.school && 'Required'] : [],
+      region: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER].some(r => r === localStorage.role) ? [(value, all) => !value && !all.school && 'Required'] : [],
     };
     this.form.setValue('month', moment().format('MM'));
-    if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
+    if ([Roles.TEACHER, Roles.SCHOOL_MANAGER].some(r => r === localStorage.role)) {
       this.form.setValue('school', localStorage.getItem('school'));
     }
   }
@@ -27,7 +28,7 @@ class RankingListFilterService {
     this.services = {};
     this.form.setInitialValues({});
     this.form.setValue('month', moment().format('MM'));
-    if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
+    if ([Roles.TEACHER, Roles.SCHOOL_MANAGER].some(r => r === localStorage.role)) {
       this.form.setValue('school', localStorage.getItem('school'));
     }
   });
@@ -38,7 +39,7 @@ class RankingListFilterService {
     }
     this.services[type].push(service);
 
-    if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
+    if ([Roles.TEACHER, Roles.SCHOOL_MANAGER].some(r => r === localStorage.role)) {
       service.load();
     }
   });

@@ -4,24 +4,26 @@ import TeacherDashboardContainer from './teacher/TeacherDashboardContainer';
 import SchoolManagerDashboardContainer from './school-manager/SchoolManagerDashboardContainer';
 import CompanyManagerDashboardContainer from './company-manager/CompanyManagerDashboardContainer';
 import DistributorManagerDashboard from './distributor-manager/DistributorManagerDashboard';
+import { Roles } from '../../../core/util';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const DashboardScene = () => (
   <div style={{ padding: 20, paddingTop: 0 }}>
-    {(localStorage.role === 'CONTENT_ADMIN') && (
+    <PermissionValidator allowedFor={[Roles.CONTENT_ADMIN]}>
       <AdminDashboard />
-    )}
-    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+    </PermissionValidator>
+    <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER]}>
       <DistributorManagerDashboard />
-    )}
-    {(localStorage.role === 'TEACHER') && (
+    </PermissionValidator>
+    <PermissionValidator allowedFor={[Roles.TEACHER]}>
       <TeacherDashboardContainer />
-    )}
-    {(localStorage.role === 'SCHOOL_MANAGER') && (
+    </PermissionValidator>
+    <PermissionValidator allowedFor={[Roles.SCHOOL_MANAGER]}>
       <SchoolManagerDashboardContainer />
-    )}
-    {(localStorage.role === 'COMPANY_MANAGER') && (
+    </PermissionValidator>
+    <PermissionValidator allowedFor={[Roles.COMPANY_MANAGER]}>
       <CompanyManagerDashboardContainer />
-    )}
+    </PermissionValidator>
   </div>
 );
 

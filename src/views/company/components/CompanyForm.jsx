@@ -10,6 +10,7 @@ import MaskInput from '../../../core/form/MaskInput';
 import FetchSelect from '../../../core/form/FetchSelect';
 import PermissionValidator from '../../../core/layout/PermissionValidator';
 import Switch from '../../../core/form/Switch';
+import { Roles } from '../../../core/util';
 
 const CompanyForm = props => (
   <form
@@ -19,7 +20,7 @@ const CompanyForm = props => (
     }}
   >
     <Row>
-      <Column size={localStorage.role === 'ADMIN' ? 8 : 12}>
+      <Column size={localStorage.role === Roles.ADMIN ? 8 : 12}>
         <TextInput
           disabled={props.submitting}
           label="Company Name"
@@ -29,7 +30,7 @@ const CompanyForm = props => (
           required
         />
       </Column>
-      <PermissionValidator allowedFor={['ADMIN']}>
+      <PermissionValidator allowedFor={[Roles.ADMIN]}>
         <Column size={4}>
           <FetchSelect
             showSearch

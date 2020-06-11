@@ -4,6 +4,7 @@ import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
 import NotificationService from '../../../core/services/NotificationService';
 import { isRequired } from '../../../core/validations';
+import { Roles } from '../../../core/util';
 
 export default class MessageFormService {
   fetch = new FetchService();
@@ -16,7 +17,7 @@ export default class MessageFormService {
       type: [isRequired],
       subject: [isRequired],
       text: [isRequired],
-      school: (localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') ? [isRequired] : [],
+      school: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER].some(r => r === localStorage.role) ? [isRequired] : [],
       schoolClasses: [isRequired],
       students: [(value, all) => !value && all.type !== 'TO_CLASSROOM' && 'Required'],
     };
@@ -25,7 +26,7 @@ export default class MessageFormService {
       type: 'TO_ONE_STUDENT',
     });
 
-    if (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') {
+    if ([Roles.SCHOOL_MANAGER, Roles.TEACHER].some(r => r === localStorage.role)) {
       this.form.setValue('school', localStorage.getItem('school'));
     }
   }
@@ -55,7 +56,7 @@ export default class MessageFormService {
         browserHistory.push('/messages');
       }
       if (this.submit.error) {
-        NotificationService.addNotification('Erro to send the message', 'error');
+        NotificationService.addNotification('Error to send the message', 'error');
       }
     });
   });

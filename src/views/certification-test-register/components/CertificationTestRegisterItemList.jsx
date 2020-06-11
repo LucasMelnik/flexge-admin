@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatTimeFromSeconds } from '../../../core/util';
+import { formatTimeFromSeconds, Roles } from '../../../core/util';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
 import ItemFormContainer from '../../item/components/ItemFormContainer';
@@ -57,8 +57,9 @@ const CertificationTestRegisterItemList = props => (
       return (
         <div>
           {(
-            localStorage.role === 'ADMIN' ||
-            (localStorage.role === 'CONTENT_ADMIN' && review.status && review.status !== 'APPROVED')
+            localStorage.role === Roles.ADMIN ||
+            localStorage.role === Roles.SUPPORT ||
+            (localStorage.role === Roles.CONTENT_ADMIN && review.status && review.status !== 'APPROVED')
           ) && (
             <div>
               <ReviewFormContainer

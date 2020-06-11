@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import range from 'lodash/range';
-import { formatTimeFromSeconds } from '../../../../../core/util';
+import { formatTimeFromSeconds, Roles } from '../../../../../core/util';
 import Select from '../../../../../core/form/Select';
 import Button from '../../../../../core/form/Button';
 import Table from '../../../../../core/form/Table';
@@ -18,7 +18,7 @@ const UnitItemList = props => (
         width: '75px',
         sort: true,
         render: (cell, row) => {
-          if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
+          if ((props.unit.createdBy === localStorage.id || [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role)) && !props.disabled) {
             return (
               <Select
                 label="Order"
@@ -40,7 +40,7 @@ const UnitItemList = props => (
         path: 'group',
         width: '130px',
         render: (cell, row) => {
-          if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
+          if ((props.unit.createdBy === localStorage.id || [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role)) && !props.disabled) {
             return (
               <Select
                 label="Group"
@@ -110,7 +110,7 @@ const UnitItemList = props => (
         path: 'action',
         width: props.disabled ? '0px' : '150px',
         render: (cell, row, index) => {
-          if ((props.unit.createdBy === localStorage.id || localStorage.role === 'ADMIN') && !props.disabled) {
+          if ((props.unit.createdBy === localStorage.id || [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role)) && !props.disabled) {
             return (
               <div>
                 <Button

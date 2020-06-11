@@ -5,6 +5,8 @@ import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import SchoolListFilterContainer from './SchoolListFilterContainer';
 import SchoolListContainer from './SchoolListContainer';
+import { Roles } from '../../../core/util';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const SchoolListScene = () => (
   <div>
@@ -17,13 +19,15 @@ const SchoolListScene = () => (
     />
     <Card
       title="Schools"
-      actions={(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
-        <Button
-          type="primary"
-          label="New school"
-          icon="plus"
-          onClick={() => browserHistory.push('/schools/new')}
-        />
+      actions={(
+        <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}>
+          <Button
+            type="primary"
+            label="New school"
+            icon="plus"
+            onClick={() => browserHistory.push('/schools/new')}
+          />
+        </PermissionValidator>
       )}
     >
       <SchoolListFilterContainer />

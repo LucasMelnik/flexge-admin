@@ -6,12 +6,12 @@ import Column from '../../../core/layout/Column';
 import FetchSelect from '../../../core/form/FetchSelect';
 import MonthInput from '../../../core/form/MonthInput';
 import Button from '../../../core/form/Button';
+import { Roles } from '../../../core/util';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const StudentAchievementsListFilter = props => (
   <Row>
-    {(localStorage.role === 'ADMIN' ||
-      localStorage.role === 'DISTRIBUTOR_MANAGER' ||
-      localStorage.role === 'COMPANY_MANAGER') && (
+    <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}>
       <Column size={3}>
         <FetchSelect
           showSearch
@@ -22,9 +22,9 @@ const StudentAchievementsListFilter = props => (
           errorText={get(props.errors, 'school', '')}
           onChange={value => props.onChange('school', value)}
           url={`schools${
-            localStorage.role === 'DISTRIBUTOR_MANAGER'
+            localStorage.role === Roles.DISTRIBUTOR_MANAGER
               ? `?distributor=${localStorage.getItem('distributor')}`
-              : localStorage.role === 'COMPANY_MANAGER'
+              : localStorage.role === Roles.COMPANY_MANAGER
                 ? `?company=${localStorage.getItem('company')}`
                 : ''
           }`}
@@ -34,7 +34,7 @@ const StudentAchievementsListFilter = props => (
           }}
         />
       </Column>
-    )}
+    </PermissionValidator>
     <Column size={2.5}>
       <FetchSelect
         showSearch

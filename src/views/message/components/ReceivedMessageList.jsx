@@ -6,9 +6,10 @@ import Table from '../../../core/form/Table';
 import Tag from '../../../core/layout/Tag';
 import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
+import { Roles } from '../../../core/util';
 
 const ReceivedMessageList = props => {
-  const canGroupMessages = localStorage.role === 'ADMIN' || localStorage.role === 'SUPPORT';
+  const canGroupMessages = [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role);
   return (
     <div>
       {canGroupMessages && (

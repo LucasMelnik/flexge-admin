@@ -7,6 +7,7 @@ import Select from '../../../core/form/Select';
 import FetchSelect from '../../../core/form/FetchSelect';
 import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
+import { Roles } from '../../../core/util';
 
 const getRolesByType = (props) => {
   if (props.type === 'ADMIN') {
@@ -17,6 +18,7 @@ const getRolesByType = (props) => {
       { value: 'AUDIO_CONTENT', label: 'Content Audio' },
       { value: 'CERTIFICATION_TEST_PROFESSIONAL', label: 'CT Professional' },
       { value: 'SPEECHACE', label: 'Speechace' },
+      { value: 'SUPPORT', label: 'Support' },
     ];
   } else if (props.type === 'COMPANY') {
     return [
@@ -89,7 +91,7 @@ const UserForm = props => (
         <Column size={4}>
           <FetchSelect
             url="distributors"
-            disabled={localStorage.role !== 'ADMIN' || props.submitting}
+            disabled={[Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) || props.submitting}
             label="Distributor"
             value={get(props.values, 'distributor', '')}
             onChange={school => props.onChange('distributor', school)}
@@ -107,7 +109,7 @@ const UserForm = props => (
             showSearch
             url="companies"
             isPaginated
-            disabled={(localStorage.role === 'COMPANY_MANAGER' || localStorage.role === 'SCHOOL_MANAGER') || props.submitting}
+            disabled={[Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER].some(r => r === localStorage.role) || props.submitting}
             label="Company"
             value={get(props.values, 'company', '')}
             onChange={school => props.onChange('company', school)}

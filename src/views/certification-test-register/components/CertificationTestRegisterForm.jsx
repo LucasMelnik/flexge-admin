@@ -7,6 +7,7 @@ import Column from '../../../core/layout/Column';
 import Select from '../../../core/form/Select';
 import FormButtons from '../../../core/form/FormButtons';
 import FetchSelect from '../../../core/form/FetchSelect';
+import { Roles } from '../../../core/util';
 
 const CertificationTestRegisterForm = props => (
   <form
@@ -84,7 +85,7 @@ const CertificationTestRegisterForm = props => (
       <Column size={2}>
         <Select
           placeholder="Select..."
-          disabled={props.submitting || localStorage.role !== 'ADMIN'}
+          disabled={props.submitting || ![Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role)}
           label="Items to Show"
           value={get(props.values, 'itemsToShow', '')}
           onChange={value => props.onChange('itemsToShow', value)}

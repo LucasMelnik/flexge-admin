@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Button from '../../../core/form/Button';
 import TextEditor from '../../../core/form/TextEditor';
+import { Roles } from '../../../core/util';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const FormatReviewForm = (props) => (
   <div>
@@ -18,10 +20,10 @@ const FormatReviewForm = (props) => (
       Revisão de Formato
       <div
         style={{
-          marginTop: (localStorage.role === 'CONTENT_ADMIN' && get(props.values, 'review.statusFormat', '') === 'APPROVED') && 36,
+          marginTop: (localStorage.role === Roles.CONTENT_ADMIN && get(props.values, 'review.statusFormat', '') === 'APPROVED') && 36,
         }}
       >
-        {localStorage.role === 'ADMIN' && (
+        <PermissionValidator allowedFor={[Roles.ADMIN]}>
           <div>
             <Button
               label="Format Approved"
@@ -42,8 +44,8 @@ const FormatReviewForm = (props) => (
               }}
             />
           </div>
-        )}
-        {(localStorage.role === 'CONTENT_ADMIN' && get(props.values, 'review.statusFormat', '') === 'NOT_APPROVED') && (
+        </PermissionValidator>
+        {(localStorage.role === Roles.CONTENT_ADMIN && get(props.values, 'review.statusFormat', '') === 'NOT_APPROVED') && (
           <div>
             <Button
               label="Send to format review"
@@ -65,7 +67,7 @@ const FormatReviewForm = (props) => (
       }}
       placeholder="Comment status format review..."
       isRequired
-      readOnly={localStorage.role !== 'ADMIN' && props.values.createdBy !== localStorage.id}
+      readOnly={![Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) && props.values.createdBy !== localStorage.id}
       value={get(props.values, 'review.formatComments', '')}
       onChange={value => props.onChange('review.formatComments', value)}
     />

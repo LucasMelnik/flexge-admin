@@ -10,6 +10,8 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import Separator from '../../../core/layout/Separator';
 import Select from '../../../core/form/Select';
 import StudentAutoCompleteContainer from '../../../core/form/StudentAutoCompleteContainer';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
+import { Roles } from '../../../core/util';
 
 const MessageForm = props => (
   <form
@@ -27,7 +29,7 @@ const MessageForm = props => (
           value={get(props.values, 'type', false)}
           onChange={value => {
             props.onChange('type', value);
-            props.onChange('school', (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') ? localStorage.getItem('school') : null);
+            props.onChange('school', ([Roles.SCHOOL_MANAGER, Roles.TEACHER].some(r => r === localStorage.role)) ? localStorage.getItem('school') : null);
             props.onChange('schoolClasses', null);
             props.onChange('students', null);
           }}
@@ -42,7 +44,7 @@ const MessageForm = props => (
     <Row>
       {get(props.values, 'type', '') !== 'TO_ONE_STUDENT' && (
         <div>
-          {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
+          <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}>
             <Column size={4}>
               <FetchSelect
                 required
@@ -64,7 +66,7 @@ const MessageForm = props => (
                 }}
               />
             </Column>
-          )}
+          </PermissionValidator>
           <Column size={4}>
             <FetchSelect
               required
@@ -121,7 +123,7 @@ const MessageForm = props => (
             onChange={value => {
               props.onChange('studentId', undefined);
               props.onChange('students', undefined);
-              props.onChange('school', (localStorage.role === 'TEACHER' || localStorage.role === 'SCHOOL_MANAGER') ? localStorage.getItem('school') : null);
+              props.onChange('school', ([Roles.SCHOOL_MANAGER, Roles.TEACHER].some(r => r === localStorage.role)) ? localStorage.getItem('school') : null);
               props.onChange('schoolClasses', undefined);
               props.onChange('student', value);
             }}

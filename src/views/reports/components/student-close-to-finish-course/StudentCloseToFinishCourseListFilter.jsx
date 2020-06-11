@@ -5,6 +5,8 @@ import FetchSelect from '../../../../core/form/FetchSelect';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
 import Button from '../../../../core/form/Button';
+import { Roles } from '../../../../core/util';
+import PermissionValidator from '../../../../core/layout/PermissionValidator';
 
 const StudentCloseToFinishCourseListFilter = props => (
   <form
@@ -14,7 +16,7 @@ const StudentCloseToFinishCourseListFilter = props => (
     }}
   >
     <Row>
-      {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
+      <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}>
         <Column size={3}>
           <FetchSelect
             showSearch
@@ -31,7 +33,7 @@ const StudentCloseToFinishCourseListFilter = props => (
             }}
           />
         </Column>
-      )}
+      </PermissionValidator>
       {get(props.values, 'school', undefined) && (
         <Column size={4}>
           <FetchSelect

@@ -4,6 +4,7 @@ import upperFirst from 'lodash/upperFirst';
 import { browserHistory } from 'react-router';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
+import { Roles } from '../../../core/util';
 
 const ContentList = props => (
   <Table
@@ -49,7 +50,7 @@ const ContentList = props => (
           render: value => value.reduce((acc, val, index) => acc.concat(index ? ', ' : '').concat(val.name), ''),
         },
       ],
-      ...(localStorage.role === 'ADMIN' || localStorage.role === 'CONTENT_ADMIN') ? [
+      ...(localStorage.role === Roles.ADMIN || localStorage.role === Roles.SUPPORT || localStorage.role === Roles.CONTENT_ADMIN) ? [
         {
           label: 'Actions',
           path: 'action',

@@ -6,6 +6,8 @@ import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import Button from '../../../core/form/Button';
 import DateInput from '../../../core/form/DateInput';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
+import { Roles } from '../../../core/util';
 
 const KidsCertificatesListFilter = props => (
   <form
@@ -33,7 +35,7 @@ const KidsCertificatesListFilter = props => (
           onChange={value => props.onChange('to', value)}
         />
       </Column>
-      {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
+      <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}>
         <Column size={3}>
           <FetchSelect
             showSearch
@@ -49,7 +51,7 @@ const KidsCertificatesListFilter = props => (
             }}
           />
         </Column>
-      )}
+      </PermissionValidator>
       {get(props.values, 'school', undefined) && (
         <Column size={3}>
           <FetchSelect

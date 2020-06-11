@@ -8,6 +8,7 @@ import Card from '../../../../core/layout/Card';
 import Breadcrumb from '../../../../core/layout/Breadcrumb';
 import MoveUnitFormContainer from './MoveUnitFormContainer';
 import Separator from '../../../../core/layout/Separator';
+import { Roles } from '../../../../core/util';
 
 const UnitFormScene = props => (
   <div>
@@ -44,7 +45,7 @@ const UnitFormScene = props => (
         academicPlanId={get(props.module, 'academicPlan.id', '')}
       />
     </Card>
-    {(localStorage.role === 'ADMIN' && props.unitId) && (
+    {(localStorage.role === Roles.ADMIN && props.unitId) && (
       <div>
         <Separator />
         <Card title="Move Unit to other Course/Module">

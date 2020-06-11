@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import UnitList from './UnitList';
 import UnitListService from '../../services/UnitListService';
 import LoadModuleService from '../../services/LoadModuleService';
+import { Roles } from '../../../../core/util';
 
 class UnitListContainer extends Component {
 
@@ -26,7 +27,7 @@ class UnitListContainer extends Component {
         onDelete={UnitListService.handleRemove}
         onCopyToProduction={UnitListService.handleCopyToProduction}
         onAutoReorder={UnitListService.handleAutoReorder}
-        allowReorder={LoadModuleService.module.createdBy.id === localStorage.id || localStorage.role === 'ADMIN'}
+        allowReorder={LoadModuleService.module.createdBy.id === localStorage.id || [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role)}
       />
     );
   }
