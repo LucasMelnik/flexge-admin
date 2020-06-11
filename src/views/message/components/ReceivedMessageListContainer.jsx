@@ -20,6 +20,7 @@ class ReceivedMessageListContainer extends Component {
         selectedRows={toJS(ReceivedMessageListService.selectedMessages)}
         onSelectRows={ReceivedMessageListService.handleSelectMessage}
         onGroupMessages={ReceivedMessageListService.handleGroupMessages}
+        onAssign={ReceivedMessageListService.handleAssignMessage}
       />
     );
   }

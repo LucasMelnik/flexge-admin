@@ -9,6 +9,7 @@ const ReceivedMessageListFilterContainer = () => (
     onChange={ReceivedMessageListService.filterForm.setValue}
     onSearch={ReceivedMessageListService.load}
     fetching={ReceivedMessageListService.fetch.fetching}
+    showStatusFilter={true}
   />
 );
 

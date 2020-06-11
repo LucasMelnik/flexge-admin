@@ -56,17 +56,30 @@ const ReceivedMessageList = props => {
             path: 'readAt',
             width: 120,
             align: 'center',
-            render: value => <Tag color={value ? 'green' : 'red'}>{value ? 'Read' : 'Not Read'}</Tag>,
+            render: (value, row) => (
+              <Tag color={row.members.length ? (value ? 'green' : 'red') : 'none'}>
+                {row.members.length ? (value ? 'Read' : 'Not Read') : 'Open'}
+              </Tag>
+            ),
           },
           {
             label: 'Actions',
             path: 'action',
-            width: 80,
+            width: localStorage.role === Roles.SUPPORT ? 100 : 70,
             align: 'center',
             render: (value, row) => (
-              <a href={`${window.location.origin}/messages/${row.id}/chat`} target="_blank" rel="noopener noreferrer">
-                <Button icon="export" />
-              </a>
+              <div>
+                <a href={`${window.location.origin}/messages/${row.id}/chat`} target="_blank" rel="noopener noreferrer">
+                  <Button icon="export" />
+                </a>
+                {' '}
+                {localStorage.role === Roles.SUPPORT && !row.members.length && (
+                  <Button
+                    icon="user-add"
+                    onClick={() => props.onAssign(row)}
+                  />
+                )}
+              </div>
             )
           },
         ]}
@@ -96,6 +109,7 @@ ReceivedMessageList.propTypes = {
   selectedRows: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSelectRows: PropTypes.func.isRequired,
   onGroupMessages: PropTypes.func.isRequired,
+  onAssign: PropTypes.func.isRequired,
 };
 
 export default ReceivedMessageList;

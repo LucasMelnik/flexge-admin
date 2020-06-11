@@ -23,6 +23,7 @@ class ReceivedMessageListService {
     this.filterForm.setInitialValues({
       from: moment().subtract(30, 'days'),
       to: moment(),
+      status: 'null',
     });
   }
 
@@ -62,6 +63,9 @@ class ReceivedMessageListService {
             ...(this.filterForm.getValue('memberId') && {
               sender: this.filterForm.getValue('memberId'),
             }),
+            ...(this.filterForm.getValue('status') && this.filterForm.getValue('status') !== 'null' && {
+              status: this.filterForm.getValue('status'),
+            }),
           },
         },
       })
@@ -96,6 +100,36 @@ class ReceivedMessageListService {
           this.selectedMessages = [];
           NotificationService.addNotification(
             'Message successfully grouped.',
+            'success',
+          );
+        } else {
+          NotificationService.addNotification(
+            this.fetch.error,
+            'error',
+          );
+        }
+      })
+  });
+
+  handleAssignMessage = action((message) => {
+    this.fetch
+      .fetch({
+        method: 'patch',
+        url: `/message-channels/${message.id}/assign-to-me`,
+      })
+      .then(() => {
+        if (this.fetch.data) {
+          this.messages = this.messages.map(m => {
+            if (m.id === message.id) {
+              return {
+                ...m,
+                members: [localStorage.role.id]
+              };
+            }
+            return m;
+          });
+          NotificationService.addNotification(
+            'Message successfully assigned.',
             'success',
           );
         } else {
