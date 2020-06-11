@@ -10,6 +10,7 @@ import Async from '../../../core/layout/Async';
 import ReviewUnitItemsScene from './ReviewUnitItemScene';
 import ReviewFormControlBar from './ReviewFormControlBar';
 import ReviewUnitItemImageScene from './ReviewUnitItemImageScene';
+import { Roles } from '../../../core/util';
 
 const ReviewFormScene = props => {
   const isUnitWithImage = props.unit &&
@@ -67,7 +68,7 @@ const ReviewFormScene = props => {
             moduleId={props.module.id}
             reviewId={props.review.id}
             disabled={(props.review.statusFormat === 'PENDING' || props.review.statusFormat === 'PENDING_REVIEW') ||
-            (localStorage.role !== 'ADMIN' && props.unit.createdBy !== localStorage.id)}
+            (![Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) && props.unit.createdBy !== localStorage.id)}
           />
         </Async>
       </Card>
@@ -78,7 +79,7 @@ const ReviewFormScene = props => {
         fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
         moduleId={props.module.id}
       />
-      {((localStorage.role === 'IMAGE_ADMIN' || localStorage.role === 'ADMIN') && isUnitWithImage) && (
+      {([Roles.ADMIN, Roles.SUPPORT, Roles.IMAGE_ADMIN].some(r => r === localStorage.role) && isUnitWithImage) && (
         <div>
           <Separator size="md" />
           <ReviewUnitItemImageScene
@@ -89,14 +90,13 @@ const ReviewFormScene = props => {
         </div>
       )}
       {
-        (localStorage.role === 'ADMIN' ||
-        localStorage.role === 'CONTENT_ADMIN' ||
+        ([Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN].some(r => r === localStorage.role) ||
         (localStorage.role === 'IMAGE_ADMIN' && isUnitWithImage)) && (
           <ReviewFormControlBar
             reviewId={props.review.id}
             unitId={props.unit.id}
             fetching={props.fetching || !props.unit.id || !props.review.id || !props.module.id}
-            imageReview={(localStorage.role === 'IMAGE_ADMIN' || localStorage.role === 'ADMIN') && isUnitWithImage}
+            imageReview={[Roles.ADMIN, Roles.SUPPORT, Roles.IMAGE_ADMIN].some(r => r === localStorage.role) && isUnitWithImage}
           />
         )}
     </div>

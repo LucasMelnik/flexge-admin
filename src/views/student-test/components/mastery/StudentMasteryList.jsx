@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
 import Button from '../../../../core/form/Button';
+import { Roles } from '../../../../core/util';
 
 const StudentMasteryList = props => (
   <Table
@@ -37,7 +38,7 @@ const StudentMasteryList = props => (
           render: (cell) => cell ? moment(cell).format('DD/MM/YYYY hh:mm:ss') : 'N/A',
         }
       ],
-      ...(['ADMIN', 'DISTRIBUTOR_MANAGER'].some(role => role === localStorage.role) ? [
+      ...([Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER].some(r => r === localStorage.role) ? [
         {
           label: 'Actions',
           path: 'action',

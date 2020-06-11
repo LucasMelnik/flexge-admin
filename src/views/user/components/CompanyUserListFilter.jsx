@@ -6,10 +6,11 @@ import Column from '../../../core/layout/Column';
 import Button from '../../../core/form/Button';
 import FetchSelect from '../../../core/form/FetchSelect';
 import TextInput from '../../../core/form/TextInput';
+import { Roles } from '../../../core/util';
 
 const CompanyUserListFilter = props => (
   <Row>
-    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+    {[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER].some(r => r === localStorage.role) && (
       <Column size={3}>
         <FetchSelect
           isPaginated={true}

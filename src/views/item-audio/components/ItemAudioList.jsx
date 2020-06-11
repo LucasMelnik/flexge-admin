@@ -6,6 +6,8 @@ import AudioPreview from '../../../core/layout/AudioPreview';
 import StatusItem from '../../../core/layout/StatusItem';
 import Button from '../../../core/form/Button';
 import UploadButton from '../../../core/form/UploadButton';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
+import { Roles } from '../../../core/util';
 
 const ItemAudioList = props => (
   <Table
@@ -63,7 +65,7 @@ const ItemAudioList = props => (
             }}
           >
             {(
-              localStorage.getItem('role') === 'AUDIO_CONTENT' &&
+              localStorage.getItem('role') === Roles.AUDIO_CONTENT &&
               (record.itemTypeKey !== 'SINGLE_CHOICE_GAME' || !(record.itemTypeKey === 'SINGLE_CHOICE_GAME' && record.children)) &&
               (!record.statusAudio || record.statusAudio === 'PENDING' || record.statusAudio === 'NOT_APPROVED')
             ) && (
@@ -72,7 +74,7 @@ const ItemAudioList = props => (
                 onChange={key => props.onAudioUpload(key, record)}
               />
             )}
-            {(localStorage.getItem('role') === 'ADMIN') && (
+            <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT]}>
               <div>
                 {(record.itemTypeKey !== 'SINGLE_CHOICE_GAME' || !(record.itemTypeKey === 'SINGLE_CHOICE_GAME' && record.children)) && (
                   <UploadButton
@@ -120,7 +122,7 @@ const ItemAudioList = props => (
                   </Link>
                 )}
               </div>
-            )}
+            </PermissionValidator>
           </div>
         ),
       },

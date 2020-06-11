@@ -5,6 +5,7 @@ import Menu from '../../../core/layout/Menu';
 import ConfirmDialogContainer from './ConfirmDialogContainer';
 import Button from '../../../core/form/Button';
 import UnReadeMessageCountContainer from '../../message/components/UnReadeMessageCountContainer';
+import { Roles } from '../../../core/util';
 // import PendingSuspectUsageAlertCountContainer
 //   from '../../suspect-usage-alerts/components/PendingSuspectUsageAlertCountContainer';
 
@@ -19,7 +20,7 @@ const MainScene = props => (
             link: '/',
             type: 'menu',
             key: 'dashboard',
-            allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT', 'CERTIFICATION_TEST_PROFESSIONAL', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+            allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN, Roles.IMAGE_ADMIN, Roles.AUDIO_CONTENT, Roles.CERTIFICATION_TEST_PROFESSIONAL, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER, Roles.TEACHER],
           },
           {
             title: 'Profile',
@@ -35,14 +36,14 @@ const MainScene = props => (
             type: 'menu',
             key: 'all-documents',
             removeWhenWhitelabel: true,
-            allowedFor: ['DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+            allowedFor: [Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER, Roles.TEACHER],
           },
           {
             type: 'submenu',
             key: 'admin',
             title: 'Admin',
             icon: 'user',
-            allowedFor: ['ADMIN'],
+            allowedFor: [Roles.ADMIN, Roles.SUPPORT],
             groups: [
               {
                 group: 'Admin Register',
@@ -143,11 +144,11 @@ const MainScene = props => (
             key: 'basicregister',
             title: 'Basic Register',
             icon: 'folder',
-            allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+            allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER, Roles.TEACHER],
             groups: [
               {
                 group: 'Organizations',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER, Roles.TEACHER],
               },
               {
                 group: 'Users',
@@ -158,7 +159,7 @@ const MainScene = props => (
                 label: 'Distributors',
                 key: 'distributors',
                 link: '/distributors',
-                allowedFor: ['ADMIN'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT],
                 group: 'Organizations',
                 icon: 'share-alt',
               },
@@ -166,7 +167,7 @@ const MainScene = props => (
                 label: 'Companies',
                 key: 'companies',
                 link: '/companies',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER],
                 group: 'Organizations',
                 icon: 'bank',
               },
@@ -174,7 +175,7 @@ const MainScene = props => (
                 label: 'Schools',
                 key: 'schools',
                 link: '/schools',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER],
                 group: 'Organizations',
                 icon: 'contacts',
               },
@@ -182,7 +183,7 @@ const MainScene = props => (
                 label: 'Classes',
                 key: 'classes',
                 link: '/classes',
-                allowedFor: ['SCHOOL_MANAGER', 'TEACHER'],
+                allowedFor: [Roles.SCHOOL_MANAGER, Roles.TEACHER],
                 group: 'Organizations',
                 icon: 'profile',
               },
@@ -190,7 +191,7 @@ const MainScene = props => (
                 label: 'Data Import',
                 key: 'data-import',
                 link: '/data-import',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER],
                 group: 'Organizations',
                 icon: 'file-excel',
               },
@@ -198,42 +199,42 @@ const MainScene = props => (
                 label: 'Admin Users',
                 key: 'admin-users',
                 link: '/admin-users',
-                allowedFor: ['ADMIN'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT],
                 group: 'Users',
               },
               {
                 label: 'Distributor Users',
                 key: 'distributor-users',
                 link: '/distributor-users',
-                allowedFor: ['ADMIN'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT],
                 group: 'Users',
               },
               {
                 label: 'Company Users',
                 key: 'company-users',
                 link: '/company-users',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER],
                 group: 'Users',
               },
               {
                 label: 'Students',
                 key: 'students',
                 link: '/students',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER, Roles.TEACHER],
                 group: 'Users',
               },
               {
                 label: 'Import Students',
                 key: 'import-students',
                 link: '/import-students',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER],
                 group: 'Users',
               },
               {
                 label: 'Students to Reactivate',
                 key: 'reactivate-student',
                 link: '/reactivate-student',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER],
                 group: 'Users',
               },
             ],
@@ -244,25 +245,25 @@ const MainScene = props => (
             link: '/contents',
             type: 'menu',
             key: 'contents',
-            allowedFor: ['DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+            allowedFor: [Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER, Roles.TEACHER],
           },
           {
             type: 'submenu',
             key: 'content',
             title: 'Content',
             icon: 'book',
-            allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
+            allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN, Roles.IMAGE_ADMIN, Roles.AUDIO_CONTENT],
             groups: [
               {
                 group: 'Content',
               },
               {
                 group: 'Reports',
-                allowedFor: ['ADMIN', 'AUDIO_CONTENT', 'IMAGE_ADMIN', 'CONTENT_ADMIN'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.AUDIO_CONTENT, Roles.IMAGE_ADMIN, Roles.CONTENT_ADMIN],
               },
               {
                 group: 'Tests',
-                allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN, Roles.IMAGE_ADMIN, Roles.AUDIO_CONTENT],
               },
             ],
             items: [
@@ -279,7 +280,7 @@ const MainScene = props => (
                 key: 'item-audios',
                 group: 'Content',
                 icon: 'sound',
-                allowedFor: ['AUDIO_CONTENT', 'ADMIN'],
+                allowedFor: [Roles.AUDIO_CONTENT, Roles.ADMIN, Roles.SUPPORT],
               },
               {
                 label: 'Modules',
@@ -287,7 +288,7 @@ const MainScene = props => (
                 link: '/modules',
                 group: 'Content',
                 icon: 'book',
-                allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN, Roles.IMAGE_ADMIN, Roles.AUDIO_CONTENT],
               },
               {
                 label: 'Review',
@@ -295,7 +296,7 @@ const MainScene = props => (
                 link: '/reviews',
                 group: 'Content',
                 icon: 'eye-o',
-                allowedFor: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN, Roles.IMAGE_ADMIN, Roles.AUDIO_CONTENT],
               },
               {
                 label: 'Approved Images Records',
@@ -303,7 +304,7 @@ const MainScene = props => (
                 link: '/reports/unit-images',
                 group: 'Reports',
                 icon: 'picture',
-                allowedFor: ['ADMIN'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT],
               },
               {
                 label: 'Placement Item History',
@@ -311,7 +312,7 @@ const MainScene = props => (
                 link: '/placement-test-items-history',
                 group: 'Reports',
                 icon: 'info-circle-o',
-                allowedFor: ['CONTENT_ADMIN', 'ADMIN'],
+                allowedFor: [Roles.CONTENT_ADMIN, Roles.ADMIN, Roles.SUPPORT],
               },
               {
                 label: 'Unit Items Errors',
@@ -319,7 +320,7 @@ const MainScene = props => (
                 link: '/reports/unit-errors',
                 group: 'Reports',
                 icon: 'exclamation-circle-o',
-                allowedFor: ['ADMIN', 'IMAGE_ADMIN', 'CONTENT_ADMIN'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.IMAGE_ADMIN, Roles.CONTENT_ADMIN],
               },
               {
                 label: 'Items By Words',
@@ -327,7 +328,7 @@ const MainScene = props => (
                 link: '/items-by-words',
                 group: 'Reports',
                 icon: 'file-text',
-                allowedFor: ['ADMIN', 'CONTENT_ADMIN'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN],
               },
               {
                 label: 'Items By Word Count Limit',
@@ -335,7 +336,7 @@ const MainScene = props => (
                 link: '/items-by-word-count-limit',
                 group: 'Reports',
                 icon: 'file-text',
-                allowedFor: ['ADMIN', 'CONTENT_ADMIN'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN],
               },
               {
                 label: 'Unit Items Execution Stats',
@@ -343,7 +344,7 @@ const MainScene = props => (
                 link: '/unit-items-execution-stats',
                 group: 'Reports',
                 icon: 'warning',
-                allowedFor: ['CONTENT_ADMIN', 'ADMIN'],
+                allowedFor: [Roles.CONTENT_ADMIN, Roles.ADMIN, Roles.SUPPORT],
               },
               {
                 label: 'Unit Average Execution Time',
@@ -351,7 +352,7 @@ const MainScene = props => (
                 link: '/unit-average-execution-time',
                 group: 'Reports',
                 icon: 'hourglass',
-                allowedFor: ['ADMIN'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT],
               },
               {
                 label: 'Mastery Items Execution Stats',
@@ -359,7 +360,7 @@ const MainScene = props => (
                 link: '/mastery-items-execution-stats',
                 group: 'Reports',
                 icon: 'warning',
-                allowedFor: ['CONTENT_ADMIN', 'ADMIN'],
+                allowedFor: [Roles.CONTENT_ADMIN, Roles.ADMIN, Roles.SUPPORT],
               },
               {
                 label: 'Placement Test',
@@ -389,7 +390,7 @@ const MainScene = props => (
             key: 'academic',
             title: 'Academic',
             icon: 'folder-open',
-            allowedFor: ['TEACHER', 'SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER', 'CERTIFICATION_TEST_PROFESSIONAL'],
+            allowedFor: [Roles.TEACHER, Roles.SCHOOL_MANAGER, Roles.COMPANY_MANAGER, Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.CERTIFICATION_TEST_PROFESSIONAL],
             items: [
               {
                 label: 'Achievements',
@@ -427,7 +428,7 @@ const MainScene = props => (
             key: 'ranking',
             title: 'Ranking',
             icon: 'trophy',
-            allowedFor: ['TEACHER', 'SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER'],
+            allowedFor: [Roles.TEACHER, Roles.SCHOOL_MANAGER, Roles.COMPANY_MANAGER, Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER],
             items: [
               {
                 label: 'Students',
@@ -442,39 +443,39 @@ const MainScene = props => (
             key: 'reports',
             title: 'Reports',
             icon: 'filter',
-            allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER', 'SPEECHACE'],
+            allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER, Roles.TEACHER, Roles.SPEECHACE],
             items: [
               {
                 label: 'Usage Stats',
                 icon: 'pie-chart',
                 key: 'usage-stats',
                 link: '/usage-stats',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'SPEECHACE'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER, Roles.SPEECHACE],
               },
               {
                 label: 'Suspect Usage Alerts',
                 icon: 'alert',
                 link: '/suspect-usage-alerts',
                 key: 'suspect-usage-alerts',
-                allowedFor: ['ADMIN'], //'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT],
               },
               {
                 label: 'Student Close to Finish Course',
                 link: '/student-close-to-finish-course',
                 key: 'student-close-to-finish-course',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER, Roles.TEACHER],
               },
               {
                 label: 'Finished Courses',
                 link: '/finished-courses',
                 key: 'finished-courses',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER, Roles.TEACHER],
               },
               {
                 label: 'Active Students by Course',
                 link: '/active-students-by-course',
                 key: 'active-students-by-course',
-                allowedFor: ['ADMIN', 'DISTRIBUTOR_MANAGER', 'COMPANY_MANAGER', 'SCHOOL_MANAGER', 'TEACHER'],
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER, Roles.SCHOOL_MANAGER, Roles.TEACHER],
               },
             ],
           },
@@ -483,7 +484,7 @@ const MainScene = props => (
             key: 'config',
             title: 'Config',
             icon: 'setting',
-            allowedFor: ['SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER'],
+            allowedFor: [Roles.SCHOOL_MANAGER, Roles.COMPANY_MANAGER, Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER],
             items: [
               {
                 label: 'Emails',
@@ -511,14 +512,14 @@ const MainScene = props => (
             link: '/payments',
             icon: 'dollar',
             key: 'payments',
-            allowedFor: ['ADMIN']
+            allowedFor: [Roles.ADMIN, Roles.SUPPORT]
           },
           {
             type: 'menu',
             key: 'messages',
             link: '/messages',
             icon: 'message',
-            allowedFor: ['TEACHER', 'SCHOOL_MANAGER', 'COMPANY_MANAGER', 'ADMIN', 'DISTRIBUTOR_MANAGER'],
+            allowedFor: [Roles.TEACHER, Roles.SCHOOL_MANAGER, Roles.COMPANY_MANAGER, Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER],
             title: (
               <UnReadeMessageCountContainer>
                 <span style={{ color: 'hsla(0,0%,100%,.65)' }}>Messages</span>

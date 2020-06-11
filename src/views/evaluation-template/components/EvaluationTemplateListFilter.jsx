@@ -9,10 +9,12 @@ import Column from '../../../core/layout/Column';
 import Select from '../../../core/form/Select';
 import FetchSelect from '../../../core/form/FetchSelect';
 import Button from '../../../core/form/Button';
+import { Roles } from '../../../core/util';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const EvaluationTemplateListFilter = props => (
   <Row>
-    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
+    <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}>
       <Column size={3}>
         <FetchSelect
           showSearch
@@ -20,14 +22,14 @@ const EvaluationTemplateListFilter = props => (
           label="Filter by school"
           value={get(props.values, 'school', '')}
           onChange={value => props.onChange('school', value)}
-          url={`schools${localStorage.role === 'COMPANY_MANAGER' ? `?company=${localStorage.getItem('company')}` : ''}`}
+          url={`schools${localStorage.role === Roles.COMPANY_MANAGER ? `?company=${localStorage.getItem('company')}` : ''}`}
           resultTransformer={{
             text: 'name',
             value: 'id',
           }}
         />
       </Column>
-    )}
+    </PermissionValidator>
     <Column size={1}>
       <Select
         label="Filter by Year"

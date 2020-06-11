@@ -11,6 +11,7 @@ import StudentSendWelcomeEmailButtonContainer from './StudentSendWelcomeEmailBut
 import Separator from '../../../core/layout/Separator';
 import ParentScene from './parent/ParentScene';
 import PaymentListContainer from '../../payment/components/PaymentListContainer';
+import { Roles } from '../../../core/util';
 
 const StudentFormScene = props => (
   <div>
@@ -59,7 +60,7 @@ const StudentFormScene = props => (
       actions={
         (
           <div>
-            {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && props.studentId && ([
+            {[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER].some(r => r === localStorage.role) && props.studentId && ([
               <StudentResetButtonContainer studentId={props.studentId} key="reset-student" />,
               <ColumnSeparator key="separator-pt" size="xs" />,
             ])}
@@ -92,7 +93,7 @@ const StudentFormScene = props => (
           studentId={props.studentId}
         />
         <Separator />
-        {localStorage.role === 'ADMIN' && (
+        {[Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) && (
           <Card title="Payments">
             <PaymentListContainer studentId={props.studentId} />
           </Card>

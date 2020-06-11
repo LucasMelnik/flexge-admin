@@ -4,6 +4,7 @@ import moment from 'moment';
 import startCase from 'lodash/startCase';
 import Table from '../../../../core/form/Table';
 import Button from '../../../../core/form/Button';
+import { Roles } from '../../../../core/util';
 
 const EvaluationPeriodList = props => (
   <Table
@@ -45,7 +46,7 @@ const EvaluationPeriodList = props => (
               onClick={() => props.onEdit(row)}
             />
             {' '}
-            {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') &&
+            {(localStorage.role === Roles.ADMIN || localStorage.role === Roles.SUPPORT || localStorage.role === Roles.DISTRIBUTOR_MANAGER) &&
             moment().isAfter(moment(row.end)) &&
             row.type === 'EVALUATION' && (
               <Button

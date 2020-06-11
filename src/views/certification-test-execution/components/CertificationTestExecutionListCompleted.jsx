@@ -5,6 +5,8 @@ import moment from 'moment';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
 import ColumnSeparator from '../../../core/layout/ColumnSeparator';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
+import { Roles } from '../../../core/util';
 
 const CertificationTestExecutionListCompleted = props => (
   <Table
@@ -87,15 +89,17 @@ const CertificationTestExecutionListCompleted = props => (
               icon="export"
               onClick={() => browserHistory.push(`/certification-test-executions/${row.id}/details`)}
             />
-            {row.approvedAt && ['ADMIN', 'DISTRIBUTOR_MANAGER'].some(role => localStorage.role === role) && (
-              <React.Fragment>
-                <ColumnSeparator size="xs" />
-                <Button
-                  icon="file-text"
-                  onClick={() => props.onDownload(row)}
-                />
-              </React.Fragment>
-            )}
+            <PermissionValidator allowedFor={[Roles.ADMIN, Roles.DISTRIBUTOR_MANAGER]}>
+              {row.approvedAt && (
+                <React.Fragment>
+                  <ColumnSeparator size="xs" />
+                  <Button
+                    icon="file-text"
+                    onClick={() => props.onDownload(row)}
+                  />
+                </React.Fragment>
+              )}
+            </PermissionValidator>
           </React.Fragment>
         ),
       },

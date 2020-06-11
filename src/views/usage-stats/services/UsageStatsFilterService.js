@@ -5,6 +5,7 @@ import { isRequired } from '../../../core/validations';
 import NotificationService from '../../../core/services/NotificationService';
 import UsageStatsListService from './UsageStatsListService';
 import DemoStudentListService from './DemoStudentListService';
+import { Roles } from '../../../core/util';
 
 class UsageStatsFilterService {
   form = new FormService();
@@ -22,10 +23,10 @@ class UsageStatsFilterService {
 
   init = action(() => {
     this.form.setInitialValues({});
-    if (localStorage.getItem('role') === 'ADMIN') {
+    if (localStorage.getItem('role') === Roles.ADMIN) {
       this.form.validations.distributor = [isRequired];
     }
-    if (localStorage.getItem('role') === 'DISTRIBUTOR_MANAGER') {
+    if (localStorage.getItem('role') === Roles.DISTRIBUTOR_MANAGER) {
       this.form.setValue('distributor', localStorage.getItem('distributor'));
     }
   });

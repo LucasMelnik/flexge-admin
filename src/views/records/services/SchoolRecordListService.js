@@ -1,6 +1,7 @@
 import { action, extendObservable } from 'mobx';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
+import { Roles } from '../../../core/util';
 
 class SchoolRecordListService {
   fetch = new FetchService();
@@ -20,7 +21,7 @@ class SchoolRecordListService {
   init = action(() => {
     this.schools = [];
     this.form.setInitialValues({});
-    if (localStorage.role !== 'ADMIN') {
+    if (![Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role)) {
       this.load();
     }
   });

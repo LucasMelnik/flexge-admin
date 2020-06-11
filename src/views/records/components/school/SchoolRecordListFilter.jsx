@@ -5,11 +5,13 @@ import FetchSelect from '../../../../core/form/FetchSelect';
 import Button from '../../../../core/form/Button';
 import Row from '../../../../core/layout/Row';
 import Column from '../../../../core/layout/Column';
+import { Roles } from '../../../../core/util';
+import PermissionValidator from '../../../../core/layout/PermissionValidator';
 
 const SchoolRecordListFilter = props => (
   <div>
     <Row>
-      {['ADMIN', 'DISTRIBUTOR_MANAGER'].some(role => role === localStorage.role) && (
+      <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER]}>
         <Column size={3}>
           <FetchSelect
             showSearch
@@ -25,7 +27,7 @@ const SchoolRecordListFilter = props => (
             }}
           />
         </Column>
-      )}
+      </PermissionValidator>
       <Column size={4}>
         <FetchSelect
           showSearch

@@ -8,6 +8,8 @@ import Button from '../../../core/form/Button';
 import Select from '../../../core/form/Select';
 import RangeDateInput from '../../../core/form/RangeDateInput';
 import StudentAutoCompleteContainer from '../../../core/form/StudentAutoCompleteContainer';
+import { Roles } from '../../../core/util';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const SuspectUsageAlertListFilter = props => (
   <form
@@ -67,7 +69,7 @@ const SuspectUsageAlertListFilter = props => (
           }}
         />
       </Column>
-      {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
+      <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}>
         <Column size={2}>
           <FetchSelect
             isPaginated
@@ -83,7 +85,7 @@ const SuspectUsageAlertListFilter = props => (
             }}
           />
         </Column>
-      )}
+      </PermissionValidator>
       {!!get(props.values, 'school', undefined) && (
         <Column size={2}>
           <FetchSelect

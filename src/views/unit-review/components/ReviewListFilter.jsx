@@ -7,6 +7,7 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import PermissionValidator from '../../../core/layout/PermissionValidator';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
+import { Roles } from '../../../core/util';
 
 const ReviewListFilter = props => (
   <div>
@@ -77,7 +78,7 @@ const ReviewListFilter = props => (
         </Column>
       )}
     </Row>
-    <PermissionValidator allowedFor={['ADMIN']}>
+    <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT]}>
       <Row>
         <Column size={3}>
           <FetchSelect

@@ -17,6 +17,10 @@ class ReceivedMessageListContainer extends Component {
         fetching={ReceivedMessageListService.fetch.fetching}
         pagination={toJS(ReceivedMessageListService.pagination)}
         onChange={ReceivedMessageListService.load}
+        selectedRows={toJS(ReceivedMessageListService.selectedMessages)}
+        onSelectRows={ReceivedMessageListService.handleSelectMessage}
+        onGroupMessages={ReceivedMessageListService.handleGroupMessages}
+        onAssign={ReceivedMessageListService.handleAssignMessage}
       />
     );
   }

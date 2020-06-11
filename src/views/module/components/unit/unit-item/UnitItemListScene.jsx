@@ -7,6 +7,8 @@ import Card from '../../../../../core/layout/Card';
 import Breadcrumb from '../../../../../core/layout/Breadcrumb';
 import Separator from '../../../../../core/layout/Separator';
 import UnitItemCharacterFormContainer from './UnitItemCharacterFormContainer';
+import { Roles } from '../../../../../core/util';
+import PermissionValidator from '../../../../../core/layout/PermissionValidator';
 
 const UnitItemListScene = props => (
   <div>
@@ -41,7 +43,7 @@ const UnitItemListScene = props => (
             onClick={() => browserHistory.push(`/modules/${props.module.id}/details`)}
           />
           {' '}
-          {(localStorage.role === 'ADMIN' || props.unit.createdBy === localStorage.id) && (
+          {([Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) || props.unit.createdBy === localStorage.id) && (
             <Button
               icon="plus"
               type="primary"
@@ -59,11 +61,11 @@ const UnitItemListScene = props => (
       ) : (<div />)}
     </Card>
     <Separator />
-    {localStorage.role === 'ADMIN' && (
+    <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT]}>
       <Card title="Set items Character">
         <UnitItemCharacterFormContainer />
       </Card>
-    )}
+    </PermissionValidator>
   </div>
 );
 

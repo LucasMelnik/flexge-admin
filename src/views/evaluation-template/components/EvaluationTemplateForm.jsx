@@ -10,6 +10,8 @@ import TextInput from '../../../core/form/TextInput';
 import FormButtons from '../../../core/form/FormButtons';
 import Select from '../../../core/form/Select';
 import FetchSelect from '../../../core/form/FetchSelect';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
+import { Roles } from '../../../core/util';
 
 const EvaluationTemplateForm = props => (
   <form
@@ -29,7 +31,7 @@ const EvaluationTemplateForm = props => (
           errorText={get(props.errors, 'name', null)}
         />
       </Column>
-      {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && (
+      <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}>
         <Column size={3}>
           <FetchSelect
             required
@@ -52,7 +54,7 @@ const EvaluationTemplateForm = props => (
             }}
           />
         </Column>
-      )}
+      </PermissionValidator>
       <Column size={1}>
         <Select
           required

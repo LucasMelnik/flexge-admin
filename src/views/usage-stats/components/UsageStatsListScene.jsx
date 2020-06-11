@@ -5,6 +5,7 @@ import Separator from '../../../core/layout/Separator';
 import UsageStatsListContainer from './UsageStatsListContainer';
 import UsageStatsFilterContainer from './UsageStatsFilterContainer';
 import DemoStudentListContainer from './DemoStudentListContainer';
+import { Roles } from '../../../core/util';
 
 const UsageStatsListScene = () => (
   <div>
@@ -22,7 +23,7 @@ const UsageStatsListScene = () => (
       <UsageStatsListContainer />
     </Card>
     <Separator />
-    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER') && (
+    {[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER].some(r => r === localStorage.role) && (
       <Card title="Demo Students">
         <DemoStudentListContainer />
       </Card>

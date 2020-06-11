@@ -5,6 +5,8 @@ import Card from '../../../core/layout/Card';
 import Separator from '../../../core/layout/Separator';
 import SchoolGradeConfigFormContainer from './SchoolGradeConfigFormContainer';
 import SchoolGradeConfigFilterContainer from './SchoolGradeConfigFilterContainer';
+import { Roles } from '../../../core/util';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
 
 const SchoolGradeConfigFormScene = props => (
   <div>
@@ -15,12 +17,14 @@ const SchoolGradeConfigFormScene = props => (
         },
       ]}
     />
-    {(localStorage.role === 'ADMIN' || localStorage.role === 'DISTRIBUTOR_MANAGER' || localStorage.role === 'COMPANY_MANAGER') && ([
-      <Card key="card">
-        <SchoolGradeConfigFilterContainer />
-      </Card>,
-      <Separator key="separator" />,
-    ])}
+    <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}>
+      <React.Fragment>
+        <Card key="card">
+          <SchoolGradeConfigFilterContainer />
+        </Card>
+        <Separator key="separator" />
+      </React.Fragment>
+    </PermissionValidator>
     {props.schoolId && (
       <Card title="Grade Configuration">
         <SchoolGradeConfigFormContainer schoolId={props.schoolId} />

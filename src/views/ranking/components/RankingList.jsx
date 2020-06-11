@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import Table from '../../../core/form/Table';
+import { Roles } from '../../../core/util';
 
 const RankingList = props => (
   <Table
@@ -93,7 +94,7 @@ const RankingList = props => (
           ),
         },
       ],
-      ...localStorage.role === 'ADMIN' ? [
+      ...[Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) ? [
         {
           label: 'Course',
           path: 'studentCourse.course.name',

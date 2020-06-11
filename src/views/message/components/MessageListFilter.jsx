@@ -7,6 +7,7 @@ import Column from '../../../core/layout/Column';
 import DateInput from '../../../core/form/DateInput';
 import TextInput from '../../../core/form/TextInput';
 import StudentAutoCompleteContainer from '../../../core/form/StudentAutoCompleteContainer';
+import Select from '../../../core/form/Select';
 
 const MessageListFilter = props => (
   <Row>
@@ -28,7 +29,32 @@ const MessageListFilter = props => (
         errorText={get(props.errors, 'to', '')}
       />
     </Column>
-    <Column size={3}>
+    {props.showStatusFilter && (
+      <Column size={1}>
+        <Select
+          label="Status"
+          disabled={props.fetching}
+          value={get(props.values, 'status', '')}
+          onChange={value => props.onChange('status', value)}
+          errorText={get(props.errors, 'status', '')}
+          options={[
+            {
+              label: 'All',
+              value: 'null',
+            },
+            {
+              label: 'Not Read',
+              value: 'UNREAD',
+            },
+            {
+              label: 'Read',
+              value: 'READ',
+            }
+          ]}
+        />
+      </Column>
+    )}
+    <Column size={2}>
       <TextInput
         label="Subject"
         disabled={props.fetching}
@@ -62,11 +88,13 @@ MessageListFilter.propTypes = {
   fetching: PropTypes.bool,
   onSearch: PropTypes.func,
   errors: PropTypes.object,
+  showStatusFilter: PropTypes.bool,
 };
 
 MessageListFilter.defaultProps = {
   filterByStudent: false,
   fetching: false,
+  showStatusFilter: false,
   onSearch: null,
   errors: {},
 };

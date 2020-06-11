@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatTimeFromSeconds } from '../../../../../core/util';
+import { formatTimeFromSeconds, Roles } from '../../../../../core/util';
 import Button from '../../../../../core/form/Button';
 import ItemFormContainer from '../../../../item/components/ItemFormContainer';
 import Table from '../../../../../core/form/Table';
@@ -38,7 +38,7 @@ const AllUnitItemList = props => (
         path: 'action',
         width: '70px',
         render: (cell, row) => {
-          if (localStorage.role === 'ADMIN' || props.unit.createdBy === localStorage.id) {
+          if (localStorage.role === Roles.ADMIN || props.unit.createdBy === localStorage.id) {
             return (
               <Button
                 icon="plus"

@@ -7,6 +7,8 @@ import Card from '../../../core/layout/Card';
 import Separator from '../../../core/layout/Separator';
 import CompanyFormContainer from './CompanyFormContainer';
 import CompanyApiKeyFormContainer from './CompanyApiKeyFormContainer';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
+import { Roles } from '../../../core/util';
 
 const CompanyFormScene = props => (
   <div>
@@ -51,17 +53,15 @@ const CompanyFormScene = props => (
         currentDistributor={props.currentDistributor}
       />
     </Card>
-    {props.companyId && localStorage.role === 'ADMIN' && (
-      <div>
-        <Separator size="sm" />
-        <Card
-          title="Api Key"
-          loading={props.fetching}
-        >
-          <CompanyApiKeyFormContainer companyId={props.companyId} />
-        </Card>
-      </div>
-    )}
+    <PermissionValidator allowedFor={[Roles.ADMIN]}>
+      <Separator size="sm" />
+      <Card
+        title="Api Key"
+        loading={props.fetching}
+      >
+        <CompanyApiKeyFormContainer companyId={props.companyId} />
+      </Card>
+    </PermissionValidator>
   </div>
 );
 
