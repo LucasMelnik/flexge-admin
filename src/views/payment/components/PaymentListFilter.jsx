@@ -19,7 +19,7 @@ const PaymentListFilter = props => (
       <Column size={2}>
         <RangeDateInput
           label="Creation Period"
-          disabled={props.fetching}
+          disabled={props.submitting}
           onChange={(dates) => {
             props.onChange('from', dates[0]);
             props.onChange('to', dates[1]);
@@ -61,12 +61,11 @@ const PaymentListFilter = props => (
       <Column size={3}>
         <StudentAutoCompleteContainer
           disabled={props.submitting}
-          value={get(props.values, 'student', '')}
-          onSelect={(student) => {
-            props.onChange('student', student);
-          }}
+          value={get(props.values, 'student', get(props.values, 'studentSearch', ''))}
+          onSelect={(student) => props.onChange('student', student)}
           onChange={value => {
-            props.onChange('student', value);
+            props.onChange('studentSearch', value)
+            props.onChange('student', undefined);
           }}
         />
       </Column>

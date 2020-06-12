@@ -49,21 +49,25 @@ export default class MaskInput extends Component {
       blocks: this.props.blocks,
       numeralPositiveOnly: this.props.numeralPositiveOnly,
       phoneRegionCode: 'BR',
+      onValueChanged: this.handleChange,
     };
     maskOptions[this.props.maskType] = true;
 
     this.maskedField = new Cleave($(ReactDOM.findDOMNode(this.textInput)).find('input'), maskOptions);
+
     this.maskedField.setRawValue(this.props.value);
     this.setState({
       maskedValue: this.maskedField.getFormattedValue(),
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.maskedField.setRawValue(nextProps.value);
-    this.setState({
-      maskedValue: this.maskedField.getFormattedValue(),
-    });
+  componentWillReceiveProps(nextProps, nextState) {
+    if (this.maskedField) {
+      this.maskedField.setRawValue(nextProps.value);
+      this.setState({
+        maskedValue: this.maskedField.getFormattedValue(),
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -71,7 +75,15 @@ export default class MaskInput extends Component {
   }
 
   handleChange = () => {
-    this.props.onChange(this.maskedField.getRawValue(), this.maskedField.getFormattedValue());
+    if (this.maskedField.getFormattedValue() === this.state.maskedValue) {
+      return;
+    }
+
+    this.setState({
+      maskedValue: this.maskedField.getFormattedValue(),
+    }, () => {
+      this.props.onChange(this.maskedField.getRawValue(), this.maskedField.getFormattedValue());
+    });
   };
 
   render() {
@@ -80,7 +92,7 @@ export default class MaskInput extends Component {
         required={this.props.required}
         label={this.props.label}
         value={this.state.maskedValue}
-        onChange={this.handleChange}
+        // onChange={this.handleChange}
         disabled={this.props.disabled}
         placeholder={this.props.placeholder}
         errorText={this.props.errorText}

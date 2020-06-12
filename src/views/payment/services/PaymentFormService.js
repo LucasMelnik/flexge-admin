@@ -17,6 +17,8 @@ export default class PaymentFormService {
     this.form.validations = {
       student: [isRequired],
       type: [isRequired],
+      dueAt: [isRequired],
+      price: [isRequired],
     };
   }
 
@@ -43,6 +45,7 @@ export default class PaymentFormService {
       NotificationService.addNotification('Fill the required fields', 'error');
       return;
     }
+
     const typeId = this.form.getValue('id');
     this.submit.fetch({
       method: typeId ? 'put' : 'post',
