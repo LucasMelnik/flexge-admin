@@ -13,6 +13,7 @@ const StudentAutoComplete = props => (
     onSelect={props.onSelect}
     onChange={props.onChange}
     dataSource={props.dataSource}
+    errorText={props.errorText}
   />
 );
 
@@ -21,6 +22,7 @@ StudentAutoComplete.propTypes = {
   disabled: PropTypes.bool.isRequired,
   onSelect: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  errorText: PropTypes.string,
   dataSource: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 

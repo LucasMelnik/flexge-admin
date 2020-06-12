@@ -7,7 +7,7 @@
     "antd": "^3.15.0",
     "axios": "0.19.0",
     "chart.js": "^2.7.3",
-    "cleave.js": "0.7.21",
+    "cleave.js": "^1.6.0",
     "gerador-validador-cpf": "^3.1.1",
     "jquery": "^3.4.0",
     "jwt-decode": "2.2.0",
