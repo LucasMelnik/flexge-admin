@@ -46,8 +46,8 @@ const PaymentList = props => (
       {
         label: 'Price',
         path: 'price',
-        width: '150px',
-        render: value => numeral(value).format('$0,0.00')
+        width: '170px',
+        render: (value, row) => `${numeral(value - (row.discount || 0)).format('$0,0.00')} ${row.discount ? `(-${numeral(row.discount).format('$0,0.00')})` : ''}`
       },
       {
         label: 'Actions',
@@ -67,7 +67,9 @@ const PaymentList = props => (
                     <br/>
                     <b>Plan</b>: {row.type}
                     <br/>
-                    <b>Price</b>: {row.price}
+                    <b>Price</b>: {numeral(row.price).format('$0,0.00')}
+                    <br/>
+                    <b>Discount</b>: {numeral(row.discount || 0).format('$0,0.00')}
                     <br/>
                     <b>Created at</b>: {moment(row.createdAt).format('DD/MM/YYYY')}
                     <br/>
@@ -75,7 +77,7 @@ const PaymentList = props => (
                     <br/>
                     <br/>
                     <br/>
-                    Link: <a href={row.ebanxPaymentLink} rel="noopener noreferrer" target="_blank">{row.ebanxPaymentLink}</a>
+                    Link: <a href={row.link} rel="noopener noreferrer" target="_blank">{row.link}</a>
                   </div>
                 )
               })}

@@ -12,6 +12,7 @@ class StudentAutoCompleteContainer extends Component {
     disabled: PropTypes.string.isRequired,
     onSelect: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
+    errorText: PropTypes.string,
   };
 
   studentAutoCompleteService = new StudentAutoCompleteService();
@@ -37,6 +38,7 @@ class StudentAutoCompleteContainer extends Component {
         value={this.props.value}
         disabled={this.props.disabled}
         required={this.props.required}
+        errorText={this.props.errorText}
       />
     );
   }
