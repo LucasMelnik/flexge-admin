@@ -7,6 +7,7 @@ import Tag from '../../../core/layout/Tag';
 import Button from '../../../core/form/Button';
 import Separator from '../../../core/layout/Separator';
 import { Roles } from '../../../core/util';
+import Icon from '../../../core/layout/Icon';
 
 const ReceivedMessageList = props => {
   const canGroupMessages = [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role);
@@ -37,13 +38,30 @@ const ReceivedMessageList = props => {
             width: 150,
           },
           {
-            label: 'Subject',
-            path: 'subject',
-            width: 250,
+            label: '',
+            path: 'studentAccess',
+            width: 30,
+            render: value => !!value ?
+                (value.os === 'ios' || value.os === 'android') ? (
+                  <Icon name="mobile" />
+                ) : (
+                  <Icon name="desktop" />
+                )
+              : '-'
+          },
+          {
+            label: 'School',
+            path: 'sender.schoolClass.school.name',
+            width: 200,
           },
           {
             label: 'Student',
             path: 'sender.name',
+            width: 250,
+          },
+          {
+            label: 'Subject',
+            path: 'subject',
             width: 250,
           },
           {
