@@ -89,8 +89,8 @@ const CertificationTestExecutionListCompleted = props => (
               icon="export"
               onClick={() => browserHistory.push(`/certification-test-executions/${row.id}/details`)}
             />
-            <PermissionValidator allowedFor={[Roles.ADMIN, Roles.DISTRIBUTOR_MANAGER]}>
-              {row.approvedAt && (
+            {row.approvedAt && (
+              <PermissionValidator allowedFor={[Roles.ADMIN, Roles.DISTRIBUTOR_MANAGER]}>
                 <React.Fragment>
                   <ColumnSeparator size="xs" />
                   <Button
@@ -98,8 +98,8 @@ const CertificationTestExecutionListCompleted = props => (
                     onClick={() => props.onDownload(row)}
                   />
                 </React.Fragment>
-              )}
-            </PermissionValidator>
+              </PermissionValidator>
+            )}
           </React.Fragment>
         ),
       },
