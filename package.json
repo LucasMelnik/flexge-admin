@@ -9,6 +9,7 @@
     "chart.js": "^2.7.3",
     "cleave.js": "^1.6.0",
     "gerador-validador-cpf": "^3.1.1",
+    "howler": "^2.2.0",
     "jquery": "^3.4.0",
     "jwt-decode": "2.2.0",
     "lodash": "^4.17.14",
