@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Howl } from 'howler';
-import AudioPreview from '../../../../core/layout/AudioPreview';
 import Row from '../../../../core/layout/Row';
 import Button from '../../../../core/form/Button';
 import Separator from '../../../../core/layout/Separator';
