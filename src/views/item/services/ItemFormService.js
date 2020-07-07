@@ -469,7 +469,7 @@ export default class ItemFormService {
           videoStartTime: this.form.getValue('item.videoStartTime') ? this.form.getValue('item.videoStartTime') : undefined,
           videoEndTime: this.form.getValue('item.videoEndTime') ? this.form.getValue('item.videoEndTime') : undefined,
           type: this.form.getValue('item.type').id,
-          grammar: this.form.getValue('item.grammar').id,
+          grammar: this.form.getValue('item.grammar') ? this.form.getValue('item.grammar').id : undefined,
           reference: this.form.getValue('item.reference') && this.form.getValue('item.reference').length > 0 ? this.form.getValue('item.reference') : null,
           text: this.form.getValue('item.text') && this.form.getValue('item.text').length > 0 ? this.form.getValue('item.text').trim().replace(new RegExp(String.fromCharCode(8217), 'g'), String.fromCharCode(39)) : undefined,
         },
