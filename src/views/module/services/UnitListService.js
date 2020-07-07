@@ -121,7 +121,6 @@ class UnitListService {
       if (this.fetch.data) {
         const unitItems = toJS(this.fetch.data).map(unitItem => {
           unitItem.item.type = unitItem.item.type.id;
-          unitItem.item.grammar = unitItem.item.grammar.id;
           if (unitItem.item.grammar && unitItem.item.grammar.id) {
             unitItem.item.grammar = unitItem.item.grammar.id
           } else {
