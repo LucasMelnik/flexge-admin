@@ -142,7 +142,7 @@ class UnitListService {
             unitItem.item.titleAudioFrom = `staging-flexge-files/${unitItem.item.titleAudio}`
           }
           if (unitItem.item.answers && unitItem.item.answers.length) {
-            unitItem.item.answers = unitItem.item.answers.map(async (answer) => {
+            unitItem.item.answers = unitItem.item.answers.map(answer => {
               if (answer.audio) {
                 answer.audioFrom = `staging-flexge-files/${answer.audio}`
               }
