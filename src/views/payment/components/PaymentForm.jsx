@@ -41,9 +41,9 @@ const PaymentForm = props => (
           onChange={value => {
             props.onChange('type', value);
             props.onChange('price', {
-              MONTHLY: 39.90,
-              QUARTERLY: 31.90,
-              SEMIANNUALLY: 25.90,
+              MONTHLY: 59.90,
+              QUARTERLY: 44.90,
+              SEMIANNUALLY: 29.90,
               'KROTON-DEMO': 20.00,
             }[value]);
           }}
