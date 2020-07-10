@@ -299,6 +299,14 @@ const MainScene = props => (
                 allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN, Roles.IMAGE_ADMIN, Roles.AUDIO_CONTENT],
               },
               {
+                label: 'Upload Content CSV',
+                key: 'upload-content',
+                link: '/upload-content',
+                group: 'Content',
+                icon: 'cloud-upload',
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN],
+              },
+              {
                 label: 'Approved Images Records',
                 key: 'reports-unit-images',
                 link: '/reports/unit-images',

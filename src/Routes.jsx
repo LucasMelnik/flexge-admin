@@ -130,6 +130,7 @@ import UnitTypeListScene from './views/unit-type/components/UnitTypeListScene';
 import UnitTypeFormScene from './views/unit-type/components/UnitTypeFormScene';
 import PaymentListScene from './views/payment/components/PaymentListScene';
 import PaymentFormScene from './views/payment/components/PaymentFormScene';
+import UploadContentScene from './views/upload-content/components/UploadContentScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -299,6 +300,7 @@ const Routes = () => (
       <Route path="unit-types/:typeId" component={UnitTypeFormScene} />
       <Route path="payments" component={PaymentListScene} />
       <Route path="payments/new" component={PaymentFormScene} />
+      <Route path="upload-content" component={UploadContentScene} />
       <Route path="*" component={NotFoundScene} />
     </Route>
     <Route path="*" component={NotFoundScene} />
