@@ -9,6 +9,7 @@ import MasteryTestListContainer from '../../mastery-test/components/MasteryTestL
 import UnitListContainer from './unit/UnitListContainer';
 import UnitListFilterContainer from './unit/UnitListFilterContainer';
 import Alert from '../../../core/layout/Alert';
+import DownloadContent from './DownloadContent';
 
 const ModuleDetailScene = props => (
   <div>
@@ -56,13 +57,19 @@ const ModuleDetailScene = props => (
     <Card
       title="Units"
       loading={props.fetching}
-      actions={localStorage.role === 'CONTENT_ADMIN' && (
-        <Button
-          type="primary"
-          icon="plus"
-          onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
-          label="New Unit"
-        />
+      actions={(
+        <div>
+          <DownloadContent moduleId={props.module.id} />
+          {' '}
+          {localStorage.role === 'CONTENT_ADMIN' && (
+            <Button
+              type="primary"
+              icon="plus"
+              onClick={() => browserHistory.push(`/modules/${props.module.id}/units/new`)}
+              label="New Unit"
+            />
+          )}
+        </div>
       )}
     >
       <UnitListFilterContainer />

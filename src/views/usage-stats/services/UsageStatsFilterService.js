@@ -47,6 +47,9 @@ class UsageStatsFilterService {
         distributor: [isRequired],
       };
     }
+    if (localStorage.getItem('role') === Roles.DISTRIBUTOR_MANAGER) {
+      this.form.setValue('distributor', localStorage.getItem('distributor'));
+    }
   });
 
   handleSearch = action(() => {
