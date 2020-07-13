@@ -110,6 +110,13 @@ const MainScene = props => (
                 key: 'configuration',
               },
               {
+                label: 'Systems Localization',
+                link: '/localization',
+                group: 'System Configuration',
+                icon: 'font-size',
+                key: 'localization',
+              },
+              {
                 label: 'Item types',
                 link: '/item-types',
                 group: 'System Configuration',
@@ -297,6 +304,14 @@ const MainScene = props => (
                 group: 'Content',
                 icon: 'eye-o',
                 allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN, Roles.IMAGE_ADMIN, Roles.AUDIO_CONTENT],
+              },
+              {
+                label: 'Upload Content CSV',
+                key: 'upload-content',
+                link: '/upload-content',
+                group: 'Content',
+                icon: 'cloud-upload',
+                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.CONTENT_ADMIN],
               },
               {
                 label: 'Approved Images Records',
