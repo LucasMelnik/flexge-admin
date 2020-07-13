@@ -110,6 +110,13 @@ const MainScene = props => (
                 key: 'configuration',
               },
               {
+                label: 'Systems Localization',
+                link: '/localization',
+                group: 'System Configuration',
+                icon: 'font-size',
+                key: 'localization',
+              },
+              {
                 label: 'Item types',
                 link: '/item-types',
                 group: 'System Configuration',
