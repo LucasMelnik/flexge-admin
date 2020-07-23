@@ -13,15 +13,17 @@ class NativeSpeechSlice extends React.PureComponent {
   }), {});
 
   componentDidMount() {
-    this.sound = new Howl({
-      src: [`${process.env.REACT_APP_FILES_URL}/${this.props.values.audio}`],
-      autoplay: false,
-      preload: true,
-      loop: false,
-      html5: true,
-      volume: 1,
-      sprite: this.generateSpeechRecognitionSprites(this.props.values.nativeSpeechRecognition.wordScoreList),
-    });
+    if (this.props.values.nativeSpeechRecognition && this.props.values.nativeSpeechRecognition.wordScoreList) {
+      this.sound = new Howl({
+        src: [`${process.env.REACT_APP_FILES_URL}/${this.props.values.audio}`],
+        autoplay: false,
+        preload: true,
+        loop: false,
+        html5: true,
+        volume: 1,
+        sprite: this.generateSpeechRecognitionSprites(this.props.values.nativeSpeechRecognition.wordScoreList),
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -31,7 +33,7 @@ class NativeSpeechSlice extends React.PureComponent {
   }
 
   togglePlay = (index) => {
-    if (!this.sound.playing(`sprite_${index}`)) {
+    if (this.sound && !this.sound.playing(`sprite_${index}`)) {
       this.sound.play(`sprite_${index}`);
     }
   };
