@@ -18,7 +18,7 @@ const LocalizationListFilter = props => (
           },
           {
             label: 'Push Notifications',
-            value: 'PUSH_NOTIFICATION',
+            value: 'PUSH_NOTIFICATIONS',
           }
         ]}
         disabled={props.fetching}
