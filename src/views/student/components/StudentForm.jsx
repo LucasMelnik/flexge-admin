@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import moment from 'moment';
 import Row from '../../../core/layout/Row';
 import Column from '../../../core/layout/Column';
 import TextInput from '../../../core/form/TextInput';
@@ -104,14 +105,33 @@ const StudentForm = props => (
         />
       </Column>
       <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER]}>
-        <Column size={2}>
+        <Column size={1}>
           <Switch
             label="Student Demo"
             titleOff="No"
             titleOn="Yes"
-            onChange={value => props.onChange('demoStudent', value)}
+            onChange={value => {
+              props.onChange('demoStudent', value);
+              if (!value) {
+                props.onChange('demoExpiresAt', null);
+              } else {
+                props.onChange('demoExpiresAt', moment().add(10, 'days'));
+              }
+            }}
             value={get(props.values, 'demoStudent', false)}
             disabled={props.submitting}
+          />
+        </Column>
+      </PermissionValidator>
+      <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER]}>
+        <Column size={1.5}>
+          <DateInput
+            disabled={props.submitting || !props.values.demoStudent}
+            required={props.values.demoStudent}
+            label="Demo Access Expire Date"
+            value={get(props.values, 'demoExpiresAt', null)}
+            onChange={value => props.onChange('demoExpiresAt', value)}
+            errorText={get(props.errors, 'demoExpiresAt', '')}
           />
         </Column>
       </PermissionValidator>
