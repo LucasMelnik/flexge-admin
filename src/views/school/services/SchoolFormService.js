@@ -21,6 +21,7 @@ export default class SchoolFormService {
       state: [isRequired],
       modulePointRelevance: [isRequired],
       locale: [isRequired],
+      allowLevelSelection: [isRequired],
     };
   }
 
@@ -43,6 +44,7 @@ export default class SchoolFormService {
             country: this.fetch.data.company.country,
             companyDistributor: this.fetch.data.company.distributor,
             modulePointRelevance: this.fetch.data.modulePointRelevance || 1,
+            allowLevelSelection: this.fetch.data.allowLevelSelection || false,
           };
           this.form.setInitialValues(data);
           if (this.fetch.data.company.distributor === MASTERTEST_DISTRIBUTOR_ID) {
@@ -61,6 +63,7 @@ export default class SchoolFormService {
               modulePointRelevance: 1,
               country: this.fetch.data.country,
               locale: this.fetch.data.country.locale,
+              allowLevelSelection: false,
             });
             if (this.fetch.data.distributor === MASTERTEST_DISTRIBUTOR_ID) {
               this.addInepToRequired();
@@ -70,6 +73,7 @@ export default class SchoolFormService {
       } else {
         this.form.setInitialValues({
           modulePointRelevance: 1,
+          allowLevelSelection: false
         });
       }
     }
