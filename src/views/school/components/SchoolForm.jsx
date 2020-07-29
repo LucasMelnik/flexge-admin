@@ -233,6 +233,18 @@ const SchoolForm = props => (
           />
         </Column>
       </PermissionValidator>
+      <PermissionValidator allowedFor={[Roles.ADMIN]}>
+        <Column size={1}>
+          <Switch
+            label="Allow Level Selection"
+            titleOff="No"
+            titleOn="Yes"
+            onChange={value => props.onChange('allowLevelSelection', value)}
+            value={get(props.values, 'allowLevelSelection', false)}
+            disabled={props.submitting}
+          />
+        </Column>
+      </PermissionValidator>
     </Row>
     <FormButtons
       confirmLabel={props.values.id ? 'Update School' : 'Create School'}
