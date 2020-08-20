@@ -3,6 +3,8 @@ import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
 import LocalizationListContainer from './LocalizationListContainer';
 import LocalizationListFilterContainer from './LocalizationListFilterContainer';
+import { browserHistory } from 'react-router';
+import Button from '../../../core/form/Button';
 
 const LocalizationListScene = () => (
   <div>
@@ -15,6 +17,14 @@ const LocalizationListScene = () => (
     />
     <Card
       title="Localizations"
+      actions={
+        <Button
+          type="primary"
+          label="New item"
+          icon="plus"
+          onClick={() => browserHistory.push('/localization/new')}
+        />
+      }
     >
       <LocalizationListFilterContainer />
       <LocalizationListContainer />
