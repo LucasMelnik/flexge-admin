@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import omit from 'lodash/omit';
 import trim from 'lodash/trim';
 import uniq from 'lodash/uniq';
 import Row from '../../../../core/layout/Row';
@@ -40,6 +41,7 @@ const SpellCheckInput = props => (
               style={{
                 display: 'inline-block',
                 marginRight: 10,
+                position: 'relative'
               }}
             >
               <TextInput
@@ -53,6 +55,22 @@ const SpellCheckInput = props => (
                   });
                 }}
               />
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 7,
+                  right: 0
+                }}
+              >
+                <Button
+                  size="sm"
+                  rounded
+                  icon="close"
+                  onClick={() => {
+                    props.onChange('speechRecognitionDictionary', omit(props.values.speechRecognitionDictionary, [word.replace(/[.]/g, '_')]));
+                  }}
+                />
+              </div>
             </span>
           ))}
         </Column>
