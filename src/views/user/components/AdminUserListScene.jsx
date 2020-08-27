@@ -28,7 +28,7 @@ const AdminUserListScene = () => (
       <UserListContainer
         baseUrl="/admin-users"
         baseQuery={{
-          role: { $in: ['ADMIN', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT', 'CERTIFICATION_TEST_PROFESSIONAL'] },
+          role: {$in: ['ADMIN', 'SUPPORT', 'CONTENT_ADMIN', 'IMAGE_ADMIN', 'AUDIO_CONTENT', 'CERTIFICATION_TEST_PROFESSIONAL']},
         }}
       />
     </Card>
