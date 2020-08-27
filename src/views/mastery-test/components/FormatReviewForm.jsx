@@ -23,7 +23,7 @@ const FormatReviewForm = (props) => (
           marginTop: (localStorage.role === Roles.CONTENT_ADMIN && get(props.values, 'review.statusFormat', '') === 'APPROVED') && 36,
         }}
       >
-        <PermissionValidator allowedFor={[Roles.ADMIN]}>
+        <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT]}>
           <div>
             <Button
               label="Format Approved"
