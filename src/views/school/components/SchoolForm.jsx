@@ -210,16 +210,28 @@ const SchoolForm = props => (
         </Column>
       )}
       {get(props.values, 'id', '') && (
-        <Column size={4}>
-          <FileInput
-            label="Upload a logo to the school"
-            accept="image"
-            disabled={props.submitting}
-            value={get(props.values, 'logoUrl', '')}
-            onChange={(key) => props.onChange('logoUrl', key)}
-            errorText={get(props.errors, 'logoUrl', '')}
-          />
-        </Column>
+        <React.Fragment>
+          <Column size={1.5}>
+            <FileInput
+              label="Upload a logo to the school"
+              accept="image"
+              disabled={props.submitting}
+              value={get(props.values, 'logoUrl', '')}
+              onChange={(key) => props.onChange('logoUrl', key)}
+              errorText={get(props.errors, 'logoUrl', '')}
+            />
+          </Column>
+          <Column size={1.5}>
+            <FileInput
+              label="Upload a white logo version"
+              accept="image"
+              disabled={props.submitting}
+              value={get(props.values, 'whiteLogoUrl', '')}
+              onChange={(key) => props.onChange('whiteLogoUrl', key)}
+              errorText={get(props.errors, 'whiteLogoUrl', '')}
+            />
+          </Column>
+        </React.Fragment>
       )}
       <PermissionValidator allowedFor={[Roles.ADMIN]}>
         <Column size={1}>
