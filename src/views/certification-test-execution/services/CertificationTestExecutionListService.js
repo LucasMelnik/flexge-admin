@@ -73,7 +73,7 @@ export default class CertificationTestExecutionListService {
           const fileUrl = window.URL.createObjectURL(this.download.data);
           link.href = fileUrl;
 
-          link.download = 'certificate_template.pdf';
+          link.download = 'certificate_test_certificate.pdf';
           link.click();
           setTimeout(() => window.URL.revokeObjectURL(fileUrl), 500);
         }
