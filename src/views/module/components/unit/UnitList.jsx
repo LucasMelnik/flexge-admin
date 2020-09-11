@@ -176,7 +176,8 @@ const UnitList = props => (
               >
                 <input type="hidden" name="unit" value={row.id} />
                 <input type="hidden" name="type" value={props.academicPlan} />
-                <input type="hidden" name="locale" value="pt-br" />
+                <input type="hidden" name="locale" value="pt-br"/>
+                <input type="hidden" name="disableInstructions" value="true"/>
                 <Button
                   icon="select"
                   buttonType="submit"
