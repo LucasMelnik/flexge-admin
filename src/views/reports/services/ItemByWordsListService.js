@@ -14,7 +14,6 @@ class ItemByWordsListService {
     });
     this.form.validations = {
       course: [isRequired],
-      module: [isRequired],
       words: [isRequired],
     };
   }
@@ -30,9 +29,10 @@ class ItemByWordsListService {
       return;
     }
     this.fetch.fetch({
-      url: `/reports/courses/${this.form.getValue('course')}/modules/${this.form.getValue('module')}/items-by-words`,
+      url: `/reports/courses/${this.form.getValue('course')}/items-by-words`,
       query: {
         words: this.form.getValue('words'),
+        module: this.form.getValue('module')
       },
     }).then(() => {
       if (this.fetch.data) {

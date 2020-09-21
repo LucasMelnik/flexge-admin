@@ -9,6 +9,7 @@ const ItemByWordsListFilterContainer = () => (
     onChange={ItemByWordsListService.form.setValue}
     onSubmit={ItemByWordsListService.load}
     fetching={ItemByWordsListService.fetch.fetching}
+    errors={ItemByWordsListService.form.errors}
   />
 );
 

@@ -19,6 +19,8 @@ const ItemByWordsListFilter = props => (
         <FetchSelect
           url="/courses"
           label="Select the course"
+          required
+          errorText={get(props.errors, 'course', null)}
           disabled={props.fetching}
           value={get(props.values, 'course')}
           onChange={(value) => {
@@ -48,20 +50,23 @@ const ItemByWordsListFilter = props => (
             text: 'name',
             value: 'id',
           }}
+          errorText={get(props.errors, 'module', null)}
         />
       </Column>
       <Column size={3}>
         <TextInput
           label="Words"
-          disabled={props.fetching || !props.values.module}
+          required
+          disabled={props.fetching}
           value={get(props.values, 'words', '')}
           onChange={value => props.onChange('words', value)}
+          errorText={get(props.errors, 'words', null)}
         />
       </Column>
       <Column size={2}>
         <div style={{ height: 42 }} />
         <Button
-          disabled={props.fetching || !props.values.words}
+          disabled={props.fetching}
           icon="search"
           buttonType="submit"
           label="Search"
