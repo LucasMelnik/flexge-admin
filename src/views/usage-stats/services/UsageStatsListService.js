@@ -53,21 +53,35 @@ class UsageStatsListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        const formattedData = this.fetch.data.map(school => ({
-          ...school,
-          children: school.children.map((plan) => {
-            if (type === 'month' && plan.activeStudentsLastMonth) {
-              const currentCharge = plan.activeStudents - plan.placementCount;
-              const lastMonthCharge = plan.activeStudentsLastMonth - plan.placementCountLastMonth;
-
-              return {
-                ...plan,
-                chargeVariation: lastMonthCharge && currentCharge ? ((currentCharge - lastMonthCharge) / lastMonthCharge) * 100 : undefined,
-              };
+        const formattedData = this.fetch.data.map(school => {
+          if (type === 'month') {
+            let currentCharge;
+            let lastMonthCharge;
+            if (school.activeStudentsLastMonth) {
+              currentCharge = school.activeStudents - school.placementCount;
+              lastMonthCharge = school.activeStudentsLastMonth - school.placementCountLastMonth;
             }
-            return plan;
-          }),
-        }));
+
+            return {
+              ...school,
+              chargeVariation: lastMonthCharge && currentCharge ? ((currentCharge - lastMonthCharge) / lastMonthCharge) * 100 : undefined,
+              children: school.children.map((plan) => {
+                let currentPlanCharge;
+                let lastMonthPlanCharge;
+                if (plan.activeStudentsLastMonth) {
+                  currentPlanCharge = plan.activeStudents - plan.placementCount;
+                  lastMonthPlanCharge = plan.activeStudentsLastMonth - plan.placementCountLastMonth;
+                }
+
+                return {
+                  ...plan,
+                  chargeVariation: lastMonthPlanCharge && currentPlanCharge ? ((currentPlanCharge - lastMonthPlanCharge) / lastMonthPlanCharge) * 100 : undefined,
+                };
+              })
+            };
+          }
+          return school;
+        });
         this.schools = [
           ...formattedData,
           ...this.allSchools.filter(s => !formattedData.some(x => x.id === s.id) && (!params.company || s.company.id === params.company) && (!params.distributor || s.company.distributor === params.distributor))
