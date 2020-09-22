@@ -17,7 +17,14 @@ const UsageStatsList = props => (
           path: 'name',
           defaultSortOrder: 'asc',
           sort: true,
-          render: (value, row) => row.academicPlan ? row.academicPlan.name : row.name,
+          render: (value, row) => ({
+            children: row.academicPlan ? row.academicPlan.name : row.name,
+            props: {
+              style: {
+                backgroundColor: row.academicPlan ? '#fff' : '#eee',
+              },
+            }
+          })
         },
         {
           label: 'Active Students',
@@ -25,7 +32,14 @@ const UsageStatsList = props => (
           sort: true,
           width: '150px',
           align: 'center',
-          render: cell => cell || 0,
+          render: (cell, row) => ({
+            children: cell || 0,
+            props: {
+              style: {
+                backgroundColor: row.academicPlan ? '#fff' : '#eee',
+              },
+            }
+          })
         },
         {
           label: 'Placement Tests Only',
@@ -33,27 +47,41 @@ const UsageStatsList = props => (
           width: '180px',
           sort: true,
           align: 'center',
-          render: cell => cell || 0,
+          render: (cell, row) => ({
+            children: cell || 0,
+            props: {
+              style: {
+                backgroundColor: row.academicPlan ? '#fff' : '#eee',
+              },
+            }
+          })
         },
         {
           label: 'Students to Charge',
-          path: 'charge',
+          path: 'chargeVariation',
           width: '180px',
           sort: true,
           align: 'center',
-          render: (value, row) => (
-            <div>
-              {(row.activeStudents || 0) - (row.placementCount || 0)}
-              {!!row.chargeVariation && (
-                <React.Fragment>
-                  <ColumnSeparator />
-                  <Tag color={row.chargeVariation > 0 ? 'green' : 'red'}>
-                    {round(row.chargeVariation, 1)}%
-                  </Tag>
-                </React.Fragment>
-              )}
-            </div>
-          ),
+          render: (value, row) => ({
+            children: (
+              <div>
+                {(row.activeStudents || 0) - (row.placementCount || 0)}
+                {!!row.chargeVariation && (
+                  <React.Fragment>
+                    <ColumnSeparator/>
+                    <Tag color={row.chargeVariation > 0 ? 'green' : 'red'}>
+                      {round(row.chargeVariation, 1)}%
+                    </Tag>
+                  </React.Fragment>
+                )}
+              </div>
+            ),
+            props: {
+              style: {
+                backgroundColor: row.academicPlan ? '#fff' : '#eee',
+              },
+            }
+          }),
         },
         {
           label: 'Studied Time',
@@ -61,7 +89,14 @@ const UsageStatsList = props => (
           width: '150px',
           sort: true,
           align: 'center',
-          render: value => formatTimeFromSeconds(value, 'hh:mm'),
+          render: (value, row) => ({
+            children: formatTimeFromSeconds(value, 'hh:mm'),
+            props: {
+              style: {
+                backgroundColor: row.academicPlan ? '#fff' : '#eee',
+              },
+            }
+          })
         },
       ]}
       rows={props.schools}
