@@ -14,7 +14,7 @@ class RankingListFilterService {
     });
     this.form.validations = {
       academicPlan: [isRequired],
-      school: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER].some(r => r === localStorage.role) ? [(value, all) => !value && !all.country && !all.region && 'Required'] : [isRequired],
+      school: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER].some(r => r === localStorage.role) ? [(value, all) => !value && !all.country && !all.region && 'Required'] : [],
       country: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER].some(r => r === localStorage.role) ? [(value, all) => !value && !all.school && 'Required'] : [],
       region: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER].some(r => r === localStorage.role) ? [(value, all) => !value && !all.school && 'Required'] : [],
     };
