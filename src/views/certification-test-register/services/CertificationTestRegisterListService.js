@@ -33,7 +33,26 @@ class CertificationTestRegisterListService {
       },
     }).then(() => {
       if (this.fetch.data) {
-        this.registers = orderBy(this.fetch.data, ['course.name', 'ability', 'order'], ['asc', 'asc', 'asc']);
+        this.registers = orderBy(this.fetch.data, ['course.name', 'ability', 'order'], ['asc', 'asc', 'asc']).reduce((acc, item) => {
+          const group = acc.find(x => item.course.name === x.course.name && item.ability === x.ability);
+          if (!group) {
+            return [
+              ...acc,
+              {
+                course: item.course,
+                ability: item.ability,
+                items: item.items,
+                itemsToShow: item.itemsToShow,
+                children: [item],
+              }
+            ];
+          }
+
+          group.itemsToShow += item.itemsToShow;
+          group.items = group.items.concat(...item.items);
+          group.children.push(item);
+          return acc;
+        }, []);
       } else {
         this.registers = [];
       }
