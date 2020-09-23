@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
+import Tag from '../../../core/layout/Tag';
 
 const CertificationTestRegisterList = props => (
   <div>
     <Table
+      showTableCount={false}
       fetching={props.fetching}
       columns={[
         {
@@ -16,15 +18,15 @@ const CertificationTestRegisterList = props => (
           sort: true,
         },
         {
-          label: 'Order',
-          path: 'order',
-          width: '85px',
-          sort: true,
-        },
-        {
           label: 'Ability',
           path: 'ability',
           width: '95px',
+          sort: true,
+        },
+        {
+          label: 'Order',
+          path: 'order',
+          width: '85px',
           sort: true,
         },
         {
@@ -34,18 +36,23 @@ const CertificationTestRegisterList = props => (
         {
           label: 'Status',
           path: 'reviews',
-          width: '150px',
+          width: '170px',
+          align: 'center',
           render: (cell, row) => {
-            if (!row.reviews || !row.reviews.length) {
-              return 'No Reviews';
+            if (row.children) {
+              return '';
             }
-            if (row.reviews.find(review => review.status === 'PENDING')) {
-              return 'Pending';
-            }
-            if (row.reviews.find(review => review.status === 'NOT_APPROVED')) {
-              return 'Not Approved';
-            }
-            return 'Approved';
+            const itemsReview = (row.reviews || []).filter(review => row.items.some(item => review.forItem === item));
+            return (
+              <span>
+                <Tag
+                  color={itemsReview.filter(x => x.status === 'APPROVED').length ? 'green' : null}>A: {itemsReview.filter(x => x.status === 'APPROVED').length}</Tag>
+                <Tag
+                  color={itemsReview.filter(x => x.status === 'PENDING').length ? 'orange' : null}>P: {itemsReview.filter(x => x.status === 'PENDING').length}</Tag>
+                <Tag
+                  color={itemsReview.filter(x => x.status === 'NOT_APPROVED').length ? 'red' : null}>R: {itemsReview.filter(x => x.status === 'NOT_APPROVED').length}</Tag>
+              </span>
+            );
           },
         },
         {
@@ -69,7 +76,23 @@ const CertificationTestRegisterList = props => (
           path: 'action',
           width: '105px',
           render: (cell, row) => {
-            return (
+            return row.children ? (
+              <form
+                action={`${process.env.REACT_APP_STUDENT_API_URL}/public/tasting`}
+                target="_blank"
+                method="post"
+                style={{display: 'inline-block'}}
+              >
+                <input type="hidden" name="function" value="certification"/>
+                <input type="hidden" name="locale" value="pt-br"/>
+                <input type="hidden" name="course" value={row.course.id}/>
+                <input type="hidden" name="ability" value={row.ability}/>
+                <Button
+                  icon="select"
+                  buttonType="submit"
+                />
+              </form>
+            ) : (
               <div>
                 <Button
                   icon="delete"
@@ -87,9 +110,12 @@ const CertificationTestRegisterList = props => (
       ]}
       rows={props.registers}
     />
+    <small>{props.registers.reduce((acc, test) => acc + (test.children.length || 0), 0)} registers found.</small>
+    <br/>
     <small>{props.registers.reduce((acc, test) => acc + (test.items.length || 0), 0)} item{props.registers.reduce((acc, test) => acc + (test.items.length || 0), 0) > 1 && 's'} found.</small>
-    <br />
-    <small>{props.registers.reduce((acc, test) => acc + (test.itemsToShow || 0), 0)} item{props.registers.reduce((acc, test) => acc + (test.itemsToShow || 0), 0) > 1 && 's'} to show.</small>
+    <br/>
+    <small>{props.registers.reduce((acc, test) => acc + (test.itemsToShow || 0), 0)} item{props.registers.reduce((acc, test) => acc + (test.itemsToShow || 0), 0) > 1 && 's'} to
+      show.</small>
   </div>
 );
 

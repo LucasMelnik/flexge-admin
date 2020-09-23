@@ -70,7 +70,7 @@ const MasteryTestList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: '105px',
+        width: '125px',
         render: (cell, row) => {
           return (
             <div>
@@ -83,6 +83,23 @@ const MasteryTestList = props => (
                 icon="edit"
                 onClick={() => browserHistory.push(`/modules/${row.module.id}/mastery-tests/${row.id}`)}
               />
+              {' '}
+              <form
+                action={`${process.env.REACT_APP_STUDENT_API_URL}/public/tasting`}
+                target="_blank"
+                method="post"
+                style={{display: 'inline-block'}}
+              >
+                <input type="hidden" name="function" value="mastery"/>
+                <input type="hidden" name="locale" value="pt-br"/>
+                <input type="hidden" name="course" value={row.module.course}/>
+                <input type="hidden" name="module" value={row.module.id}/>
+                <input type="hidden" name="masteryTest" value={row.id}/>
+                <Button
+                  icon="select"
+                  buttonType="submit"
+                />
+              </form>
             </div>
           );
         },
