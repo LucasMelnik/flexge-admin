@@ -17,6 +17,10 @@ const LocalizationListFilter = props => (
             value: 'STUDENT',
           },
           {
+            label: 'Kids',
+            value: 'KIDS',
+          },
+          {
             label: 'Push Notifications',
             value: 'PUSH_NOTIFICATIONS',
           }

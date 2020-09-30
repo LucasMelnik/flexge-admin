@@ -61,7 +61,6 @@ const LocalizationForm = props => (
     <Row>
       <Column size={12}>
         <TextInput
-          required
           disabled={props.submitting}
           label="English"
           value={get(props.values, 'english', '')}
@@ -73,7 +72,6 @@ const LocalizationForm = props => (
     <Row>
       <Column size={12}>
         <TextInput
-          required
           disabled={props.submitting}
           label="Spanish"
           value={get(props.values, 'spanish', '')}
