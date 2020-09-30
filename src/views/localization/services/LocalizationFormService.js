@@ -18,8 +18,6 @@ export default class LocalizationFormService {
       key: [isRequired],
       type: [isRequired],
       portuguese: [isRequired],
-      english: [isRequired],
-      spanish: [isRequired],
     };
   }
 
