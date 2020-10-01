@@ -11,7 +11,8 @@ class LoadModuleContentStatsService {
       stats: {
         byGrammar: [],
         byGrammarGroups: [],
-        byType: []
+        byType: [],
+        byTypeGroups: [],
       },
       grammarColors: [],
       itemTypeColors: []
@@ -62,7 +63,11 @@ class LoadModuleContentStatsService {
         const data = toJS(this.fetch.data);
         const groups = uniq(data.grammars.map(x => x.id.group)).sort();
 
-        this.grammarColors = data.grammars.map((x, index) => ({id: x.grammar.id, color: colors[index]}));
+        this.grammarColors = data.grammars.map((x, index) => ({
+          id: x.grammar.id,
+          name: x.grammar.name,
+          color: colors[index]
+        }));
         this.itemTypeColors = data.itemTypes.map((x, index) => ({id: x.type.id, color: reverse(colors)[index]}));
         this.stats = {
           byGrammar: this.getTopData(this.groupDataByField(data.grammars, 'grammar')),
@@ -70,7 +75,11 @@ class LoadModuleContentStatsService {
             group,
             data: this.getTopData(this.groupDataByField(data.grammars.filter(x => x.id.group === group), 'grammar'))
           })),
-          byType: this.groupDataByField(data.itemTypes, 'type')
+          byType: this.groupDataByField(data.itemTypes, 'type'),
+          byTypeGroups: groups.map(group => ({
+            group,
+            data: this.groupDataByField(data.itemTypes.filter(x => x.id.group === group), 'type')
+          })),
         };
       }
     }));

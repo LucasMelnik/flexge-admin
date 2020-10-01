@@ -28,10 +28,11 @@ const ModuleContentStats = props => {
             >
               <ContentChart
                 title={`Group ${item.group}`}
-                legendPosition="left"
+                legendPosition="null"
                 labels={item.data.map(g => g.name)}
                 colors={item.data.map(g => get(props.grammarColors.find(x => g.id === x.id), 'color', ''))}
                 data={item.data.map(g => g.count)}
+                others={item.data.find(x => x.id === 'others')}
               />
             </Column>
           ))}
@@ -45,6 +46,24 @@ const ModuleContentStats = props => {
           colors={props.stats.byType.map(g => get(props.itemTypeColors.find(x => g.id === x.id), 'color', ''))}
           data={props.stats.byType.map(g => g.count)}
         />
+        <Separator size="sm"/>
+        <Row>
+          {props.stats.byTypeGroups.map(item => (
+            <Column
+              key={item.group}
+              size={12 / props.stats.byTypeGroups.length}
+            >
+              <ContentChart
+                title={`Group ${item.group}`}
+                legendPosition="null"
+                labels={item.data.map(g => g.name)}
+                colors={item.data.map(g => get(props.itemTypeColors.find(x => g.id === x.id), 'color', ''))}
+                data={item.data.map(g => g.count)}
+                others={item.data.find(x => x.id === 'others')}
+              />
+            </Column>
+          ))}
+        </Row>
       </Column>
     </Row>
   );
