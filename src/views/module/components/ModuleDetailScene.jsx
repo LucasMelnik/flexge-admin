@@ -10,6 +10,7 @@ import UnitListContainer from './unit/UnitListContainer';
 import UnitListFilterContainer from './unit/UnitListFilterContainer';
 import Alert from '../../../core/layout/Alert';
 import DownloadContent from './DownloadContent';
+import ModuleContentStatsContainer from './ModuleContentStatsContainer';
 
 const ModuleDetailScene = props => (
   <div>
@@ -32,9 +33,18 @@ const ModuleDetailScene = props => (
           title="Educational Goal"
           description={props.module.educationGoal}
         />
-        <Separator />
+        <Separator/>
       </div>
     )}
+    <Card
+      title="Reports"
+      loading={props.fetching}
+    >
+      {props.module.id ? (
+        <ModuleContentStatsContainer moduleId={props.module.id}/>
+      ) : (<div/>)}
+    </Card>
+    <Separator size="md"/>
     <Card
       title="Mastery test"
       loading={props.fetching}
