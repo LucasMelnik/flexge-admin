@@ -135,6 +135,8 @@ import LocalizationListScene from './views/localization/components/LocalizationL
 import LocalizationFormScene from './views/localization/components/LocalizationFormScene';
 import GrammarFormScene from './views/grammar/components/GrammarFormScene';
 import GrammarListScene from './views/grammar/components/GrammarListScene';
+import FunctionOfLanguageListScene from './views/function-of-language/components/FunctionOfLanguageListScene';
+import FunctionOfLanguageFormScene from './views/function-of-language/components/FunctionOfLanguageFormScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -246,6 +248,9 @@ const Routes = () => (
       <Route path="grammars" component={GrammarListScene}/>
       <Route path="grammars/new" component={GrammarFormScene}/>
       <Route path="grammars/:grammarId" component={GrammarFormScene}/>
+      <Route path="functions-of-language" component={FunctionOfLanguageListScene}/>
+      <Route path="functions-of-language/new" component={FunctionOfLanguageFormScene}/>
+      <Route path="functions-of-language/:functionId" component={FunctionOfLanguageFormScene}/>
       <Route path="states" component={StateListScene}/>
       <Route path="states/new" component={StateFormScene}/>
       <Route path="states/:stateId" component={StateFormScene}/>
