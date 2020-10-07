@@ -275,6 +275,20 @@ const MainScene = props => (
             ],
             items: [
               {
+                label: 'Grammars',
+                link: '/grammars',
+                key: 'grammars',
+                group: 'Content',
+                icon: 'tag',
+              },
+              {
+                label: 'Functions of Language',
+                link: '/functions-of-language',
+                key: 'functionsoflanguage',
+                group: 'Content',
+                icon: 'tags',
+              },
+              {
                 label: 'Search Content',
                 link: '/contents',
                 key: 'contents',

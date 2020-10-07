@@ -15,25 +15,34 @@ const MasteryTestList = props => (
         label: 'Mastery Test',
         path: 'index',
         sort: true,
+        width: '130px',
       },
       {
         label: 'Percentage to Activate',
         path: 'modulePercentageToActive',
         sort: true,
+        width: '180px',
       },
       {
         label: 'Deadline Time',
         path: 'deadlineTime',
+        width: '110px',
         render: (cell, row) => formatTimeFromSeconds(row.deadlineTime),
       },
       {
         label: 'Score to Pass',
         path: 'scoreToPass',
+        width: '110px',
       },
       {
         label: 'Items Count',
         path: 'itemsCount',
         width: '105px',
+      },
+      {
+        label: 'Grammars',
+        path: 'grammars',
+        render: value => !value || !value.length ? 'No grammars found' : value.reduce((aac, g, index) => aac.concat(index ? ', ' : '').concat(`${g.name} (${g.count} items)`), '')
       },
       {
         label: 'Status Format',
