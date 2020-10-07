@@ -22,6 +22,7 @@ export default class ItemFormService {
   defaultValidations = {
     'item.type': [isRequired],
     'item.time': [isRequired],
+    'item.grammar': [isRequired],
   };
 
   constructor(endpointUrl, order, onSaveSuccess, isTestItem) {

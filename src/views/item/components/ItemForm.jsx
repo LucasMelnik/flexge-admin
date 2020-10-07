@@ -82,6 +82,7 @@ const ItemForm = props => (
         <Column size={needCharacter(get(props.values.item, 'type.key')) ? 3 : 6}>
           <FetchSelect
             showSearch
+            required
             url="grammars"
             disabled={props.submitting || props.disabled || !!props.defaultGrammar}
             label="Grammar"
