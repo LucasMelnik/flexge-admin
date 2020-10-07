@@ -133,6 +133,10 @@ import PaymentFormScene from './views/payment/components/PaymentFormScene';
 import UploadContentScene from './views/upload-content/components/UploadContentScene';
 import LocalizationListScene from './views/localization/components/LocalizationListScene';
 import LocalizationFormScene from './views/localization/components/LocalizationFormScene';
+import GrammarFormScene from './views/grammar/components/GrammarFormScene';
+import GrammarListScene from './views/grammar/components/GrammarListScene';
+import FunctionOfLanguageListScene from './views/function-of-language/components/FunctionOfLanguageListScene';
+import FunctionOfLanguageFormScene from './views/function-of-language/components/FunctionOfLanguageFormScene';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -231,26 +235,32 @@ const Routes = () => (
       <Route path="courses" component={CourseListScene} />
       <Route path="courses/new" component={CourseFormScene} />
       <Route path="courses/:courseId" component={CourseFormScene} />
-      <Route path="characters" component={CharacterListScene} />
-      <Route path="characters/new" component={CharacterFormScene} />
-      <Route path="characters/:characterId" component={CharacterFormScene} />
-      <Route path="public-documents" component={PublicDocumentListScene} />
-      <Route path="documents" component={DocumentListScene} />
-      <Route path="documents/new" component={DocumentFormScene} />
-      <Route path="documents/:documentId" component={DocumentFormScene} />
-      <Route path="countries" component={CountryListScene} />
-      <Route path="countries/new" component={CountryFormScene} />
-      <Route path="countries/:countryId" component={CountryFormScene} />
-      <Route path="states" component={StateListScene} />
-      <Route path="states/new" component={StateFormScene} />
-      <Route path="states/:stateId" component={StateFormScene} />
-      <Route path="regions" component={RegionListScene} />
-      <Route path="regions/new" component={RegionFormScene} />
-      <Route path="regions/:regionId" component={RegionFormScene} />
-      <Route path="placement-test-items-history" component={PlacementTestItemsListScene} />
-      <Route path="student-tests" component={StudentTestListScene} />
-      <Route path="student-tests/:studentId" component={StudentTestDetailsScene} />
-      <Route path="records/filters" component={FilterRecordScene} />
+      <Route path="characters" component={CharacterListScene}/>
+      <Route path="characters/new" component={CharacterFormScene}/>
+      <Route path="characters/:characterId" component={CharacterFormScene}/>
+      <Route path="public-documents" component={PublicDocumentListScene}/>
+      <Route path="documents" component={DocumentListScene}/>
+      <Route path="documents/new" component={DocumentFormScene}/>
+      <Route path="documents/:documentId" component={DocumentFormScene}/>
+      <Route path="countries" component={CountryListScene}/>
+      <Route path="countries/new" component={CountryFormScene}/>
+      <Route path="countries/:countryId" component={CountryFormScene}/>
+      <Route path="grammars" component={GrammarListScene}/>
+      <Route path="grammars/new" component={GrammarFormScene}/>
+      <Route path="grammars/:grammarId" component={GrammarFormScene}/>
+      <Route path="functions-of-language" component={FunctionOfLanguageListScene}/>
+      <Route path="functions-of-language/new" component={FunctionOfLanguageFormScene}/>
+      <Route path="functions-of-language/:functionId" component={FunctionOfLanguageFormScene}/>
+      <Route path="states" component={StateListScene}/>
+      <Route path="states/new" component={StateFormScene}/>
+      <Route path="states/:stateId" component={StateFormScene}/>
+      <Route path="regions" component={RegionListScene}/>
+      <Route path="regions/new" component={RegionFormScene}/>
+      <Route path="regions/:regionId" component={RegionFormScene}/>
+      <Route path="placement-test-items-history" component={PlacementTestItemsListScene}/>
+      <Route path="student-tests" component={StudentTestListScene}/>
+      <Route path="student-tests/:studentId" component={StudentTestDetailsScene}/>
+      <Route path="records/filters" component={FilterRecordScene}/>
       <Route path="records/schools/:schoolId/classes" component={SchoolClassRecordSceneContainer} />
       <Route path="records/schools/:schoolId/classes/:classId/students" component={StudentRecordSceneContainer} />
       <Route path="records/schools/:schoolId/classes/:classId/students/:studentId/detail" component={StudentDetailRecordSceneContainer} />

@@ -42,7 +42,7 @@ const MasteryTestList = props => (
       {
         label: 'Grammars',
         path: 'grammars',
-        render: value => !value || !value.length ? 'No grammars found' : value.reduce((aac, g, index) => aac.concat(index ? ', ' : '').concat(g.name), '')
+        render: value => !value || !value.length ? 'No grammars found' : value.reduce((aac, g, index) => aac.concat(index ? ', ' : '').concat(`${g.name} (${g.count} items)`), '')
       },
       {
         label: 'Status Format',
