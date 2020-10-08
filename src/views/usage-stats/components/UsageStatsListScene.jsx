@@ -6,6 +6,8 @@ import UsageStatsListContainer from './UsageStatsListContainer';
 import UsageStatsFilterContainer from './UsageStatsFilterContainer';
 import DemoStudentListContainer from './DemoStudentListContainer';
 import { Roles } from '../../../core/util';
+import PermissionValidator from '../../../core/layout/PermissionValidator';
+import ActiveStudentsByMonthChartContainer from './ActiveStudentsByMonthChartContainer';
 
 const UsageStatsListScene = () => (
   <div>
@@ -19,15 +21,19 @@ const UsageStatsListScene = () => (
     <Card
       title="Usage Stats"
     >
-      <UsageStatsFilterContainer />
-      <UsageStatsListContainer />
+      <UsageStatsFilterContainer/>
+      <UsageStatsListContainer/>
     </Card>
-    <Separator />
+    <Separator/>
     {[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER].some(r => r === localStorage.role) && (
       <Card title="Demo Students">
-        <DemoStudentListContainer />
+        <DemoStudentListContainer/>
       </Card>
     )}
+    <Separator/>
+    <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT]}>
+      <ActiveStudentsByMonthChartContainer/>
+    </PermissionValidator>
   </div>
 );
 

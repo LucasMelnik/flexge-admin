@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { toJS } from 'mobx';
 import ActiveStudentsByMonthChart from './ActiveStudentsByMonthChart';
-import ActiveStudentsByMonthService from '../../../services/ActiveStudentsByMonthService';
+import ActiveStudentsByMonthService from '../services/ActiveStudentsByMonthService';
 
 class ActiveStudentsByMonthChartContainer extends React.PureComponent {
 
