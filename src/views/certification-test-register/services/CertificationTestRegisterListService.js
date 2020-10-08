@@ -42,13 +42,13 @@ class CertificationTestRegisterListService {
                 course: item.course,
                 ability: item.ability,
                 items: item.items,
-                itemsToShow: item.itemsToShow,
+                itemsToShow: item.itemsToShow || 0,
                 children: [item],
               }
             ];
           }
 
-          group.itemsToShow += item.itemsToShow;
+          group.itemsToShow += (item.itemsToShow || 0);
           group.items = group.items.concat(...item.items);
           group.children.push(item);
           return acc;
