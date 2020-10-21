@@ -91,7 +91,7 @@ const UserForm = props => (
         <Column size={4}>
           <FetchSelect
             url="distributors"
-            disabled={[Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role) || props.submitting}
+            disabled={props.submitting}
             label="Distributor"
             value={get(props.values, 'distributor', '')}
             onChange={school => props.onChange('distributor', school)}
