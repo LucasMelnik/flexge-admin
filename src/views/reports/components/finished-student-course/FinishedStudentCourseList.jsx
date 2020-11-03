@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import Table from '../../../../core/form/Table';
-import { formatTimeFromSeconds } from '../../../../core/util';
+import { formatTimeFromSeconds, Roles } from '../../../../core/util';
 import Button from '../../../../core/form/Button';
 
 const FinishedStudentCourseList = props => (
@@ -44,7 +44,7 @@ const FinishedStudentCourseList = props => (
         label: 'Actions',
         path: 'action',
         width: '80px',
-        render: (cell, row) => row.isPrintCertificateAllowed && (
+        render: (cell, row) => (localStorage.getItem('role') === Roles.ADMIN || row.isPrintCertificateAllowed) && (
           <div>
             <Button
               icon="file-pdf"
