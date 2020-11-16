@@ -152,7 +152,19 @@ const SchoolForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column size={6}>
+      <Column size={2}>
+        <MaskInput
+          disabled={props.submitting}
+          label="CNPJ"
+          value={get(props.values, 'cnpj', '')}
+          onChange={value => props.onChange('cnpj', value)}
+          errorText={get(props.errors, 'cnpj', '')}
+          delimiters={['.', '.', '/', '-']}
+          blocks={[2, 3, 3, 4, 2]}
+          numericOnly
+        />
+      </Column>
+      <Column size={5}>
         <TextInput
           disabled={props.submitting}
           label="Address"
@@ -161,7 +173,7 @@ const SchoolForm = props => (
           errorText={get(props.errors, 'address', null)}
         />
       </Column>
-      <Column size={3}>
+      <Column size={2.5}>
         <TextInput
           disabled={props.submitting}
           label="City"
@@ -170,7 +182,7 @@ const SchoolForm = props => (
           errorText={get(props.errors, 'city', null)}
         />
       </Column>
-      <Column size={3}>
+      <Column size={2.5}>
         <MaskInput
           disabled={props.submitting}
           label="Phone"

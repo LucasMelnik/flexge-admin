@@ -9,15 +9,14 @@ const FunctionOfLanguageList = props => (
     fetching={props.fetching}
     columns={[
       {
-        label: 'Name',
-        path: 'name',
+        label: 'Title',
+        path: 'title',
         sort: true,
         defaultSortOrder: 'ascend',
       },
       {
-        label: 'Grammars',
-        path: 'grammars',
-        render: cell => cell.reduce((acc, grammar, index) => acc.concat(index ? ', ' : ' ').concat(grammar.name), '')
+        label: 'Grammar',
+        path: 'grammar.name',
       },
       {
         label: 'Actions',

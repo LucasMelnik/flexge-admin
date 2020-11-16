@@ -15,27 +15,26 @@ const FunctionOfLanguageForm = props => (
     }}
   >
     <Row>
-      <Column size={5}>
+      <Column size={7}>
         <TextInput
           required
           disabled={props.submitting}
-          label="Name"
-          value={get(props.values, 'name', '')}
-          onChange={value => props.onChange('name', value)}
-          errorText={get(props.errors, 'name', null)}
+          label="Title"
+          value={get(props.values, 'title', '')}
+          onChange={value => props.onChange('title', value)}
+          errorText={get(props.errors, 'title', null)}
         />
       </Column>
-      <Column size={7}>
+      <Column size={5}>
         <FetchSelect
           required
-          multiple
           url="grammars"
           fullWidth
           disabled={props.submitting}
-          label="Grammars"
-          value={get(props.values, 'grammars', '')}
-          onChange={(value) => props.onChange('grammars', value)}
-          errorText={get(props.errors, 'grammars', '')}
+          label="Grammar"
+          value={get(props.values, 'grammar', '')}
+          onChange={(value) => props.onChange('grammar', value)}
+          errorText={get(props.errors, 'grammar', '')}
           resultTransformer={{
             text: 'name',
             value: 'id',
@@ -47,10 +46,19 @@ const FunctionOfLanguageForm = props => (
       <Column size={12}>
         <TextInput
           disabled={props.submitting}
-          label="Description"
-          value={get(props.values, 'description', '')}
-          onChange={value => props.onChange('description', value)}
-          errorText={get(props.errors, 'description', null)}
+          label="Spanish Title"
+          value={get(props.values, 'spanishTitle', '')}
+          onChange={value => props.onChange('spanishTitle', value)}
+          errorText={get(props.errors, 'spanishTitle', null)}
+        />
+      </Column>
+      <Column size={12}>
+        <TextInput
+          disabled={props.submitting}
+          label="Portuguese Title "
+          value={get(props.values, 'portugueseTitle', '')}
+          onChange={value => props.onChange('portugueseTitle', value)}
+          errorText={get(props.errors, 'portugueseTitle', null)}
         />
       </Column>
     </Row>
