@@ -14,8 +14,8 @@ export default class FunctionOfLanguageFormService {
       functionId: null,
     });
     this.form.validations = {
-      name: [isRequired],
-      grammars: [isRequired],
+      title: [isRequired],
+      grammar: [isRequired],
     };
   }
 
