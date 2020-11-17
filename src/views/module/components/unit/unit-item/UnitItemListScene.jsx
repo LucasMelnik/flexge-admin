@@ -9,6 +9,7 @@ import Separator from '../../../../../core/layout/Separator';
 import UnitItemCharacterFormContainer from './UnitItemCharacterFormContainer';
 import { Roles } from '../../../../../core/util';
 import PermissionValidator from '../../../../../core/layout/PermissionValidator';
+import UnitFunctionOfLanguageFormContainer from './UnitFunctionOfLanguageFormContainer';
 
 const UnitItemListScene = props => (
   <div>
@@ -32,6 +33,12 @@ const UnitItemListScene = props => (
         },
       ]}
     />
+    <Card title="Function of Language">
+      {props.unit.id && props.module.id && (
+        <UnitFunctionOfLanguageFormContainer unitId={props.unit.id} moduleId={props.module.id}/>
+      )}
+    </Card>
+    <Separator/>
     <Card
       title="Items"
       loading={props.fetching}
