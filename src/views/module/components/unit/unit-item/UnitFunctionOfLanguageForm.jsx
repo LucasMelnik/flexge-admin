@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import uniq from 'lodash/uniq';
 import Row from '../../../../../core/layout/Row';
 import Column from '../../../../../core/layout/Column';
 import FormButtons from '../../../../../core/form/FormButtons';
@@ -21,7 +22,7 @@ const UnitFunctionOfLanguageForm = props => (
           url="functions-of-language"
           params={{
             query: {
-              grammar: {$in: props.items.map(ui => ui.item.grammar.id)}
+              grammar: {$in: uniq(props.items.filter(ui => ui.item.grammar && ui.item.grammar.id).map(ui => ui.item.grammar.id))}
             }
           }}
           disabled={props.submitting || !props.values.id}

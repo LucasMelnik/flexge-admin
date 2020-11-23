@@ -28,6 +28,7 @@ const FunctionOfLanguageForm = props => (
       <Column size={5}>
         <FetchSelect
           required
+          showSearch
           url="grammars"
           fullWidth
           disabled={props.submitting}
