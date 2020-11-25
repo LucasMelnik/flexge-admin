@@ -97,7 +97,7 @@ const StudentForm = props => (
       </Column>
       <Column size={1.5}>
         <TextInput
-          disabled
+          disabled={props.submitting}
           label="Phone"
           value={get(props.values, 'contactPhone', '')}
           onChange={value => props.onChange('contactPhone', value)}
