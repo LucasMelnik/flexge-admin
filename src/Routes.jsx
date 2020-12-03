@@ -137,6 +137,8 @@ import GrammarFormScene from './views/grammar/components/GrammarFormScene';
 import GrammarListScene from './views/grammar/components/GrammarListScene';
 import FunctionOfLanguageListScene from './views/function-of-language/components/FunctionOfLanguageListScene';
 import FunctionOfLanguageFormScene from './views/function-of-language/components/FunctionOfLanguageFormScene';
+import ContentVideoListScene from './views/content-video/components/ContentVideoListScene';
+import ContentVideoFormSceneContainer from './views/content-video/components/ContentVideoFormSceneContainer';
 
 function authRequired(nextState, replace) {
   if (!localStorage.accessToken) {
@@ -305,19 +307,22 @@ const Routes = () => (
       <Route path="kids-certificates" component={KidsCertificatesListScene} />
       <Route path="active-students-by-course" component={CourseStudentCountListScene} />
       <Route path="suspect-usage-alerts" component={SuspectUsageAlertScene} />
-      <Route path="mastery-items-execution-stats" component={MasteryTestItemExecutionStatsListScene} />
-      <Route path="items-by-word-count-limit" component={ItemByWordCountLimitListScene} />
-      <Route path="unit-types" component={UnitTypeListScene} />
-      <Route path="unit-types/new" component={UnitTypeFormScene} />
-      <Route path="unit-types/:typeId" component={UnitTypeFormScene} />
-      <Route path="payments" component={PaymentListScene} />
-      <Route path="payments/new" component={PaymentFormScene} />
-      <Route path="upload-content" component={UploadContentScene} />
-      <Route path="localization" component={LocalizationListScene} />
-      <Route path="localization/new" component={LocalizationFormScene} />
-      <Route path="*" component={NotFoundScene} />
+      <Route path="mastery-items-execution-stats" component={MasteryTestItemExecutionStatsListScene}/>
+      <Route path="items-by-word-count-limit" component={ItemByWordCountLimitListScene}/>
+      <Route path="unit-types" component={UnitTypeListScene}/>
+      <Route path="unit-types/new" component={UnitTypeFormScene}/>
+      <Route path="unit-types/:typeId" component={UnitTypeFormScene}/>
+      <Route path="payments" component={PaymentListScene}/>
+      <Route path="payments/new" component={PaymentFormScene}/>
+      <Route path="upload-content" component={UploadContentScene}/>
+      <Route path="localization" component={LocalizationListScene}/>
+      <Route path="localization/new" component={LocalizationFormScene}/>
+      <Route path="content-videos" component={ContentVideoListScene}/>
+      <Route path="content-videos/new" component={ContentVideoFormSceneContainer}/>
+      <Route path="content-videos/:contentVideoId" component={ContentVideoFormSceneContainer}/>
+      <Route path="*" component={NotFoundScene}/>
     </Route>
-    <Route path="*" component={NotFoundScene} />
+    <Route path="*" component={NotFoundScene}/>
   </Router>
 );
 
