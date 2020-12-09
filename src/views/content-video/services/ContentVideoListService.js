@@ -6,6 +6,7 @@ import FormService from '../../../core/services/FormService';
 
 class ContentVideoListService {
   fetch = new FetchService();
+  submit = new FetchService();
   form = new FormService();
 
   constructor() {
@@ -53,6 +54,30 @@ class ContentVideoListService {
           }
         });
       });
+  });
+
+  handleReview = action((unitId, status) => {
+    this.submit.fetch({
+      method: 'patch',
+      url: `/content-videos/${unitId}/review`,
+      body: {
+        status,
+      },
+    }).then((res) => {
+      if (res) {
+        this.load();
+        NotificationService.addNotification(
+          'Status changed successfully.',
+          'success',
+        );
+      }
+      if (this.submit.error) {
+        NotificationService.addNotification(
+          'Error changing status review.',
+          'error',
+        );
+      }
+    });
   });
 }
 

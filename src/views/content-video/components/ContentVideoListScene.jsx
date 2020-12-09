@@ -5,6 +5,7 @@ import Card from '../../../core/layout/Card';
 import Button from '../../../core/form/Button';
 import ContentVideoListFilterContainer from './ContentVideoListFilterContainer';
 import ContentVideoListContainer from './ContentVideoListContainer';
+import ContentVideoUploadDialogContainer from './ContentVideoUploadDialogContainer';
 
 const ContentVideoListScene = () => (
   <div>
@@ -29,6 +30,7 @@ const ContentVideoListScene = () => (
       <ContentVideoListFilterContainer/>
       <ContentVideoListContainer/>
     </Card>
+    <ContentVideoUploadDialogContainer/>
   </div>
 );
 

@@ -18,6 +18,7 @@ const ContentVideoList = props => (
       {
         label: 'Course',
         path: 'module.course.name',
+        width: '100px',
       },
       {
         label: 'Module',
@@ -36,9 +37,16 @@ const ContentVideoList = props => (
         }[value])
       },
       {
+        label: 'Video',
+        path: 'unitItem.item.videoLink',
+        width: '180px',
+        render: value => <a href={value} target="_blank" rel="noopener noreferrer">{value}</a>
+      },
+      {
         label: 'Status',
         path: 'review.finalStatus',
-        width: '180px',
+        width: '100px',
+        align: 'center',
         render: value => (
           <StatusItem
             color={{
@@ -53,7 +61,8 @@ const ContentVideoList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: '105px',
+        width: '125px',
+        align: 'center',
         render: (cell, row) => {
           return (
             <div>
@@ -61,11 +70,20 @@ const ContentVideoList = props => (
                 icon="delete"
                 onClick={() => props.onDelete(row)}
               />
-              {' '}
-              <Button
-                icon="edit"
-                onClick={() => browserHistory.push(`/content-videos/${row.id}`)}
-              />
+              {row.review.finalStatus !== 'APPROVED' && (
+                <React.Fragment>
+                  {' '}
+                  <Button
+                    icon="like"
+                    onClick={() => props.onReview(row.id, 'APPROVED')}
+                  />
+                  {' '}
+                  <Button
+                    icon="dislike"
+                    onClick={() => props.onReview(row.id, 'NOT_APPROVED')}
+                  />
+                </React.Fragment>
+              )}
             </div>
           );
         },
@@ -82,6 +100,7 @@ ContentVideoList.propTypes = {
   })).isRequired,
   fetching: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onReview: PropTypes.func.isRequired,
 };
 
 export default ContentVideoList;

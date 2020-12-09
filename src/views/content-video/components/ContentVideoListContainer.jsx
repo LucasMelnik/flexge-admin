@@ -16,6 +16,7 @@ class ContentVideoListContainer extends Component {
         contentVideos={toJS(ContentVideoListService.contentVideos)}
         fetching={ContentVideoListService.fetch.fetching}
         onDelete={ContentVideoListService.handleRemove}
+        onReview={ContentVideoListService.handleReview}
       />
     );
   }

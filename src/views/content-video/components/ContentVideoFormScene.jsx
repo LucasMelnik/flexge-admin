@@ -5,6 +5,7 @@ import ContentVideoFormContainer from './ContentVideoFormContainer';
 import Button from '../../../core/form/Button';
 import Breadcrumb from '../../../core/layout/Breadcrumb';
 import Card from '../../../core/layout/Card';
+import ContentVideoUploadDialogContainer from './ContentVideoUploadDialogContainer';
 
 const ContentVideoFormScene = props => (
   <div>
@@ -30,6 +31,7 @@ const ContentVideoFormScene = props => (
     >
       <ContentVideoFormContainer contentVideoId={props.contentVideoId}/>
     </Card>
+    <ContentVideoUploadDialogContainer/>
   </div>
 );
 

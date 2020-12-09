@@ -9,6 +9,7 @@ import FetchSelect from '../../../core/form/FetchSelect';
 import Select from '../../../core/form/Select';
 import { Roles } from '../../../core/util';
 import PermissionValidator from '../../../core/layout/PermissionValidator';
+import LocalFileInput from '../../../core/form/LocalFileInput';
 
 const ContentVideoForm = props => (
   <form
@@ -116,6 +117,20 @@ const ContentVideoForm = props => (
           errorText={get(props.errors, 'group', '')}
         />
       </Column>
+      {!props.values.videoId && (
+        <Column size={3.5}>
+          <LocalFileInput
+            label="Video"
+            accept="video"
+            value={get(props.values, 'video', null)}
+            onChange={(value) => {
+              props.onChange('videoFileSize', value.size);
+              props.onChange('video', value);
+            }}
+            errorText={get(props.errors, 'video', null)}
+          />
+        </Column>
+      )}
     </Row>
     <FormButtons
       confirmLabel={props.values.id ? 'Update Content Video' : 'Create Content Video'}
