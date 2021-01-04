@@ -63,7 +63,7 @@ const TrueFalseItemForm = props => (
         <Column size={12}>
           <TextInput
             label="Post Phrase"
-            disabled={props.submitting}
+            disabled={props.submitting || props.disabled}
             value={get(props.values, 'postPhrase', '')}
             onChange={value => props.onChange('postPhrase', value)}
             description={get(props.errors, 'postPhrase', '')}
