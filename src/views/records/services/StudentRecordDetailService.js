@@ -1,5 +1,6 @@
 import { action, extendObservable, toJS } from 'mobx';
 import round from 'lodash/round';
+import orderBy from 'lodash/orderBy';
 import moment from 'moment';
 import FetchService from '../../../core/services/FetchService';
 import FormService from '../../../core/services/FormService';
@@ -45,6 +46,7 @@ class StudentRecordDetailService {
           listeningProgress: round((module.children.reduce((acc, unit) => acc + (unit.conqueredListeningPoints || 0), 0) / module.listeningPoints) * 100),
           speakingProgress: round((module.children.reduce((acc, unit) => acc + (unit.conqueredSpeakingPoints || 0), 0) / module.speakingPoints) * 100),
           writingProgress: round((module.children.reduce((acc, unit) => acc + (unit.conqueredWritingPoints || 0), 0) / module.writingPoints) * 100),
+          children: orderBy(module.children, ['group', 'order'], ['asc', 'asc'])
         }));
       } else {
         this.contentsDetail = [];
