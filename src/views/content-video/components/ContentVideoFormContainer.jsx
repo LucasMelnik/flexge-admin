@@ -30,6 +30,8 @@ class ContentVideoFormContainer extends Component {
         errors={this.contentVideoFormService.form.errors}
         submitting={this.contentVideoFormService.submit.fetching}
         isDirty={this.contentVideoFormService.form.isDirty}
+        availableModuleGroups={this.contentVideoFormService.availableGroups}
+        onReloadGroups={this.contentVideoFormService.handleLoadAvailableGroups}
       />
     );
   }

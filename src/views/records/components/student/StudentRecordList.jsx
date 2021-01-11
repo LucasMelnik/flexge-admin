@@ -147,7 +147,7 @@ const StudentRecordList = props => (
           render: value => value ? moment.duration(value, 'seconds').format('hh:mm', { trim: false }) : 'N/A',
         },
         {
-          label: 'Last Studied',
+          label: 'Last Access',
           path: 'lastStudy',
           sort: true,
           width: '120px',
