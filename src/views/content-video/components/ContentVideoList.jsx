@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Table from '../../../core/form/Table';
 import Button from '../../../core/form/Button';
 import StatusItem from '../../../core/layout/StatusItem';
+import { browserHistory } from 'react-router';
 
 const ContentVideoList = props => (
   <Table
@@ -60,11 +61,16 @@ const ContentVideoList = props => (
       {
         label: 'Actions',
         path: 'action',
-        width: '125px',
+        width: '165px',
         align: 'center',
         render: (cell, row) => {
           return (
             <div>
+              <Button
+                icon="edit"
+                onClick={() => browserHistory.push(`/content-videos/${row.id}`)}
+              />
+              {' '}
               <Button
                 icon="delete"
                 onClick={() => props.onDelete(row)}

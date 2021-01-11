@@ -77,7 +77,11 @@ const ContentVideoForm = props => (
           params={{course: props.values.course}}
           disabled={props.submitting || !props.values.course}
           value={get(props.values, 'module', '')}
-          onChange={module => props.onChange('module', module)}
+          onChange={module => {
+            props.onChange('module', module);
+            props.onChange('group', null);
+            props.onReloadGroups(module);
+          }}
           errorText={get(props.errors, 'module', '')}
           resultTransformer={{
             text: 'name',
@@ -88,29 +92,8 @@ const ContentVideoForm = props => (
       <Column size={2}>
         <Select
           required
-          options={[
-            {
-              value: 'A',
-              label: 'Phase 1'
-            },
-            {
-              value: 'B',
-              label: 'Phase 2'
-            },
-            {
-              value: 'C',
-              label: 'Phase 3'
-            },
-            {
-              value: 'D',
-              label: 'Phase 4'
-            },
-            {
-              value: 'NO_GROUP',
-              label: 'End of Module'
-            },
-          ]}
-          disabled={props.submitting}
+          options={props.availableModuleGroups}
+          disabled={props.submitting || !props.values.course || !props.values.module}
           label="Position"
           value={get(props.values, 'group', '')}
           onChange={value => props.onChange('group', value)}
@@ -149,6 +132,8 @@ ContentVideoForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
+  onReloadGroups: PropTypes.func,
+  availableModuleGroups: PropTypes.array,
 };
 
 ContentVideoForm.defaultProps = {
