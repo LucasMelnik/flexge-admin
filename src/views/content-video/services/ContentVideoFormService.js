@@ -31,6 +31,7 @@ export default class ContentVideoFormService {
         url: `/content-videos/${contentVideoId}`,
       }).then(() => {
         if (this.fetch.data) {
+          this.handleLoadAvailableGroups(this.fetch.data.module.id);
           this.form.setInitialValues({
             id: this.fetch.data.id,
             name: this.fetch.data.name,
