@@ -31,7 +31,6 @@ export default class ContentVideoFormService {
         url: `/content-videos/${contentVideoId}`,
       }).then(() => {
         if (this.fetch.data) {
-          this.handleLoadAvailableGroups(this.fetch.data.module.id);
           this.form.setInitialValues({
             id: this.fetch.data.id,
             name: this.fetch.data.name,
@@ -41,6 +40,7 @@ export default class ContentVideoFormService {
             group: this.fetch.data.group,
             videoId: this.fetch.data.unitItem.item.vimeoVideoId
           });
+          this.handleLoadAvailableGroups(this.fetch.data.module.id);
         }
       });
     } else {
