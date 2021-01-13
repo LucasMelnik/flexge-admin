@@ -47,7 +47,7 @@ const ItemTypeList = props => (
         width: '150px',
       },
       {
-        label: 'Mastery Time',
+        label: 'Certification/Mastery Test Time',
         path: 'defaultMasteryTestTime',
         width: '150px',
       },

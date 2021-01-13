@@ -113,7 +113,7 @@ const ItemTypeForm = props => (
         <TextInput
           required
           type="number"
-          label="Mastery Time"
+          label="Certification/Mastery Test Time"
           disabled={props.submitting}
           value={get(props.values, 'defaultMasteryTestTime', '')}
           onChange={value => props.onChange('defaultMasteryTestTime', value)}
