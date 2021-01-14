@@ -112,10 +112,11 @@ const StudentForm = props => (
             titleOn="Yes"
             onChange={value => {
               props.onChange('demoStudent', value);
-              if (!value) {
-                props.onChange('demoExpiresAt', null);
-              } else {
-                props.onChange('demoExpiresAt', moment().add(10, 'days'));
+              if (value && !get(props.values, 'accessStartsAt', false)) {
+                props.onChange('accessStartsAt', moment());
+              }
+              if (value && !get(props.values, 'accessEndsAt', false)) {
+                props.onChange('accessEndsAt', moment().add(10, 'days'));
               }
             }}
             value={get(props.values, 'demoStudent', false)}
@@ -123,18 +124,26 @@ const StudentForm = props => (
           />
         </Column>
       </PermissionValidator>
-      <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER]}>
-        <Column size={1.5}>
-          <DateInput
-            disabled={props.submitting || !props.values.demoStudent}
-            required={props.values.demoStudent}
-            label="Demo Access Expire Date"
-            value={get(props.values, 'demoExpiresAt', null)}
-            onChange={value => props.onChange('demoExpiresAt', value)}
-            errorText={get(props.errors, 'demoExpiresAt', '')}
-          />
-        </Column>
-      </PermissionValidator>
+      <Column size={1.5}>
+        <DateInput
+          disabled={props.submitting}
+          required={props.values.demoStudent}
+          label="Access Period Start"
+          value={get(props.values, 'accessStartsAt', null)}
+          onChange={value => props.onChange('accessStartsAt', value)}
+          errorText={get(props.errors, 'accessStartsAt', '')}
+        />
+      </Column>
+      <Column size={1.5}>
+        <DateInput
+          disabled={props.submitting}
+          required={props.values.demoStudent}
+          label="Access Period End"
+          value={get(props.values, 'accessEndsAt', null)}
+          onChange={value => props.onChange('accessEndsAt', value)}
+          errorText={get(props.errors, 'accessEndsAt', '')}
+        />
+      </Column>
     </Row>
     <Row>
       <Column size={1.5}>
