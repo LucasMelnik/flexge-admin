@@ -51,7 +51,7 @@ const ContentVideoList = props => (
           <StatusItem
             color={{
               PENDING: '#ef8c3b',
-              REVIEWED: '#1188FF',
+              NOT_APPROVED: '#FF5233',
               APPROVED: '#009687',
             }[value]}
             text={value}

@@ -21,7 +21,8 @@ export default class StudentFormService {
       academicPlan: [isRequired],
       locale: [isRequired],
       email: [isRequired, isValidEmail],
-      demoExpiresAt: [(value, form) => form.demoStudent ? isRequired(value) : null]
+      accessStartsAt: [(value, form) => form.demoStudent ? isRequired(value) : null],
+      accessEndsAt: [(value, form) => form.demoStudent ? isRequired(value) : null]
     };
   }
 
