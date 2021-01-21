@@ -194,14 +194,14 @@ const MainScene = props => (
                 group: 'Organizations',
                 icon: 'profile',
               },
-              {
-                label: 'Content Videos',
-                key: 'content-videos',
-                link: '/content-videos',
-                allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER],
-                group: 'Organizations',
-                icon: 'video-camera',
-              },
+              // {
+              //   label: 'Content Videos',
+              //   key: 'content-videos',
+              //   link: '/content-videos',
+              //   allowedFor: [Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER],
+              //   group: 'Organizations',
+              //   icon: 'video-camera',
+              // },
               {
                 label: 'Data Import',
                 key: 'data-import',
