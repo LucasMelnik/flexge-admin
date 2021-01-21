@@ -69,7 +69,7 @@ class ReviewUnitItemScene extends Component {
         <Async fetching={this.props.fetching}>
           {this.state.actualScene === 'LIST' ? (
             <UnitItemListContainer
-              disabled={((this.props.review.status === 'PENDING' && this.props.review.statusFormat !== 'NOT_APPROVED') || ![Roles.ADMIN, Roles.SUPPORT, Roles.IMAGE_ADMIN].some(r => r === localStorage.role))}
+              disabled={((this.props.review.status === 'PENDING' && this.props.review.statusFormat !== 'NOT_APPROVED') || [Roles.ADMIN, Roles.SUPPORT].some(r => r === localStorage.role))}
               unit={this.props.unit}
             />
           ) : (

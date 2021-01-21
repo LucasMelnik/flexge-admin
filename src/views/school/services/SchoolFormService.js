@@ -19,7 +19,6 @@ export default class SchoolFormService {
       company: [isRequired],
       region: [isRequired],
       state: [isRequired],
-      modulePointRelevance: [isRequired],
       locale: [isRequired],
       allowLevelSelection: [isRequired],
     };
@@ -43,7 +42,6 @@ export default class SchoolFormService {
             company: this.fetch.data.company.id,
             country: this.fetch.data.company.country,
             companyDistributor: this.fetch.data.company.distributor,
-            modulePointRelevance: this.fetch.data.modulePointRelevance || 1,
             allowLevelSelection: this.fetch.data.allowLevelSelection || false,
           };
           this.form.setInitialValues(data);
@@ -60,7 +58,6 @@ export default class SchoolFormService {
           if (this.fetch.data) {
             this.form.setInitialValues({
               company: this.fetch.data.id,
-              modulePointRelevance: 1,
               country: this.fetch.data.country,
               locale: this.fetch.data.country.locale,
               allowLevelSelection: false,
@@ -72,7 +69,6 @@ export default class SchoolFormService {
         });
       } else {
         this.form.setInitialValues({
-          modulePointRelevance: 1,
           allowLevelSelection: false
         });
       }

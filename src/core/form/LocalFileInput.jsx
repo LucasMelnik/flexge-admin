@@ -16,6 +16,7 @@ export default class LocalFileInput extends Component {
     accept: PropTypes.oneOf([
       'audio',
       'image',
+      'video',
     ]),
   };
 
@@ -53,10 +54,13 @@ export default class LocalFileInput extends Component {
           )}
           {' '}
           {(this.props.accept === 'audio' && hasValue) && (
-            <AudioPreview src={this.props.value} />
+            <AudioPreview src={this.props.value}/>
           )}
           {(this.props.accept === 'image' && hasValue) && (
-            <ImagePreview src={this.props.value} />
+            <ImagePreview src={this.props.value}/>
+          )}
+          {(this.props.accept === 'video' && hasValue) && (
+            <span>{this.props.value.name}</span>
           )}
         </div>
         <input
@@ -67,7 +71,9 @@ export default class LocalFileInput extends Component {
             height: 0,
           }}
           onChange={this.handleChange}
-          ref={input => { this.fileInput = input; }}
+          ref={input => {
+            this.fileInput = input;
+          }}
           accept={`${this.props.accept}/*`}
         />
       </Form.Item>
