@@ -1,4 +1,13 @@
-version: 2
+version: 2.1
+
+executors:
+  flexge-cli-executor:
+    docker:
+      - image: disruptivedev/flexge-cli:latest
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+
 jobs:
   checkout:
     working_directory: ~/project
@@ -29,6 +38,14 @@ jobs:
     - run:
         name: build
         command: npm run build
+        environment:
+          - REACT_APP_ENVIRONMENT: production
+          - REACT_APP_API_URL: $PROD_ADMIN_API_URL
+          - REACT_APP_WS_URL: $PROD_WS_URL
+          - REACT_APP_STUDENT_API_URL: $PROD_STUDENT_API_URL
+          - REACT_APP_FILES_URL: $PROD_ASSETS_URL
+          - REACT_APP_BLOCK_FOR_PROD: true
+          - REACT_APP_GA_ID: UA-114140453-2
     - save_cache:
         key: build-cache-{{ .Revision }}
         paths:
@@ -45,9 +62,13 @@ jobs:
         key: dependency-cache-{{ checksum "package-lock.json" }}
     - run:
         name: build
-        command: |
-          rm -f .env.production
-          npm run build
+        command: npm run build
+        environment:
+          - REACT_APP_ENVIRONMENT: staging
+          - REACT_APP_API_URL: $STAGING_ADMIN_API_URL
+          - REACT_APP_WS_URL: $STAGING_WS_URL
+          - REACT_APP_STUDENT_API_URL: $STAGING_STUDENT_API_URL
+          - REACT_APP_FILES_URL: $STAGING_ASSETS_URL
     - save_cache:
         key: build-cache-{{ .Revision }}
         paths:
@@ -55,31 +76,23 @@ jobs:
 
   production_deploy:
     working_directory: ~/project
-    docker:
-      - image: disruptivedev/flexge-cli:latest
-        auth:
-          username: $DOCKERHUB_USER
-          password: $DOCKERHUB_PASSWORD
+    executor: flexge-cli-executor
     steps:
     - restore_cache:
         key: build-cache-{{ .Revision }}
     - deploy:
         name: deploy to AWS
-        command: FLEXGE_CLI_USER=${FLEXGE_USER} FLEXGE_CLI_PASSWORD=${FLEXGE_PASSWORD} flexge-cli cloudfront-deploy admin production
+        command: flexge-cli cloudfront-deploy admin production
 
   staging_deploy:
     working_directory: ~/project
-    docker:
-      - image: disruptivedev/flexge-cli:latest
-        auth:
-          username: $DOCKERHUB_USER
-          password: $DOCKERHUB_PASSWORD
+    executor: flexge-cli-executor
     steps:
     - restore_cache:
         key: build-cache-{{ .Revision }}
     - deploy:
         name: deploy to AWS
-        command: FLEXGE_CLI_USER=${FLEXGE_USER} FLEXGE_CLI_PASSWORD=${FLEXGE_PASSWORD} flexge-cli cloudfront-deploy admin staging
+        command: flexge-cli cloudfront-deploy admin staging
 
 workflows:
   version: 2
@@ -87,11 +100,13 @@ workflows:
   build:
     jobs:
     - checkout:
+        context: default-envs
         filters:
           branches:
             only:
               - master
     - production_build:
+        context: default-envs
         requires:
           - checkout
         filters:
@@ -99,6 +114,7 @@ workflows:
             only:
               - master
     - production_deploy:
+        context: default-envs
         requires:
           - production_build
         filters:
@@ -109,11 +125,13 @@ workflows:
   staging_build:
     jobs:
     - checkout:
+        context: default-envs
         filters:
           branches:
             only:
               - staging
     - staging_build:
+        context: default-envs
         requires:
           - checkout
         filters:
@@ -121,6 +139,7 @@ workflows:
             only:
               - staging
     - staging_deploy:
+        context: default-envs
         requires:
           - staging_build
         filters:
