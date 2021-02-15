@@ -140,6 +140,28 @@ class ReceivedMessageListService {
         }
       })
   });
+
+  handleDelete = action((message) => {
+    this.fetch
+      .fetch({
+        method: 'delete',
+        url: `/message-channels/${message.id}`,
+      })
+      .then(() => {
+        if (this.fetch.data) {
+          this.load();
+          NotificationService.addNotification(
+            'Message successfully deleted.',
+            'success',
+          );
+        } else {
+          NotificationService.addNotification(
+            this.fetch.error,
+            'error',
+          );
+        }
+      })
+  });
 }
 
 const receivedMessageListService = new ReceivedMessageListService();
