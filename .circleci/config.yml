@@ -65,8 +65,8 @@ jobs:
           command: npm run build
           environment:
             REACT_APP_ENVIRONMENT: staging
-            REACT_APP_API_URL: $STAGING_ADMIN_API_URL
-            REACT_APP_WS_URL: $STAGING_WS_URL
+            REACT_APP_API_URL: ${STAGING_ADMIN_API_URL}
+            REACT_APP_WS_URL: STAGING_WS_URL
             REACT_APP_STUDENT_API_URL: $STAGING_STUDENT_API_URL
             REACT_APP_FILES_URL: $STAGING_ASSETS_URL
       - save_cache:
