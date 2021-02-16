@@ -61,6 +61,14 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
+          name: test
+          command: |
+            echo ${STAGING_ADMIN_API_URL}
+            echo ${STAGING_WS_URL}
+            echo ${REACT_APP_API_URL}
+          environment:
+            REACT_APP_API_URL: $STAGING_ADMIN_API_URL
+      - run:
           name: build
           command: |
             REACT_APP_ENVIRONMENT=staging
