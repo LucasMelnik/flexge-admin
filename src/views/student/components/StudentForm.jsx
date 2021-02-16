@@ -146,63 +146,69 @@ const StudentForm = props => (
       </Column>
     </Row>
     <Row>
-      <Column size={1.5}>
-        <FetchSelect
-          url="academic-plans"
-          fullWidth
-          disabled={props.submitting || !!(props.values.id && props.values.currentCourse)}
-          label="Academic Plan"
-          value={get(props.values, 'academicPlan', '')}
-          onChange={(value) => {
-            props.onChange('academicPlan', value);
-            props.onChange('currentCourse', null);
-          }}
-          errorText={get(props.errors, 'academicPlan', '')}
-          resultTransformer={{
-            text: 'name',
-            value: 'id',
-          }}
-        />
-      </Column>
-      <Column size={1.5}>
-        <FetchSelect
-          url={`academic-plans/${get(props.values, 'academicPlan', null)}/courses`}
-          fullWidth
-          disabled={props.submitting || !get(props.values, 'academicPlan', null) || !!(props.values.id && props.values.currentCourse)}
-          label="Current course"
-          value={get(props.values, 'currentCourse', '')}
-          onChange={value => props.onChange('currentCourse', value)}
-          errorText={get(props.errors, 'currentCourse', '')}
-          resultTransformer={{
-            text: 'name',
-            value: 'id',
-          }}
-        />
-      </Column>
-      <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}>
-        <Column size={2.5}>
+      {!props.values.currentCourse && (
+        <Column size={1.5}>
           <FetchSelect
-            showSearch
-            isPaginated
-            url="schools"
+            url="academic-plans"
             fullWidth
-            required
             disabled={props.submitting}
-            label="School"
-            value={get(props.values, 'schoolClass.school.id', '')}
-            onChange={(schoolId) => {
-              props.onChange('schoolClass.school.id', schoolId);
-              props.onChange('schoolClass.id', undefined);
+            label="Academic Plan"
+            value={get(props.values, 'academicPlan', '')}
+            onChange={(value) => {
+              props.onChange('academicPlan', value);
+              props.onChange('currentCourse', null);
             }}
-            description={get(props.errors, 'schoolClass.school.id', null)}
-            fieldValidation={get(props.errors, 'schoolClass.school.id', null) && 'error'}
+            errorText={get(props.errors, 'academicPlan', '')}
             resultTransformer={{
               text: 'name',
               value: 'id',
             }}
           />
         </Column>
-      </PermissionValidator>
+      )}
+      {!props.values.currentCourse && (
+        <Column size={1.5}>
+          <FetchSelect
+            url={`academic-plans/${get(props.values, 'academicPlan', null)}/courses`}
+            fullWidth
+            disabled={props.submitting || !get(props.values, 'academicPlan', null)}
+            label="Current course"
+            value={get(props.values, 'currentCourse', '')}
+            onChange={value => props.onChange('currentCourse', value)}
+            errorText={get(props.errors, 'currentCourse', '')}
+            resultTransformer={{
+              text: 'name',
+              value: 'id',
+            }}
+          />
+        </Column>
+      )}
+      {props.values.id && (
+        <PermissionValidator allowedFor={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER, Roles.COMPANY_MANAGER]}>
+          <Column size={2.5}>
+            <FetchSelect
+              showSearch
+              isPaginated
+              url="schools"
+              fullWidth
+              required
+              disabled={props.submitting}
+              label="School"
+              value={get(props.values, 'schoolClass.school.id', '')}
+              onChange={(schoolId) => {
+                props.onChange('schoolClass.school.id', schoolId);
+                props.onChange('schoolClass.id', undefined);
+              }}
+              description={get(props.errors, 'schoolClass.school.id', null)}
+              fieldValidation={get(props.errors, 'schoolClass.school.id', null) && 'error'}
+              resultTransformer={{
+                text: 'name',
+                value: 'id',
+              }}
+            />
+          </Column>
+        </PermissionValidator>
+      )}
       {props.values.id && (
         <Column size={[Roles.ADMIN, Roles.SUPPORT, Roles.DISTRIBUTOR_MANAGER].some(r => r === localStorage.role) ? 2 : 4}>
           <FetchSelect

@@ -12,6 +12,7 @@ import Separator from '../../../core/layout/Separator';
 import ParentScene from './parent/ParentScene';
 import PaymentListContainer from '../../payment/components/PaymentListContainer';
 import { Roles } from '../../../core/util';
+import ChangeCourseFormContainer from './ChangeCourseFormContainer';
 
 const StudentFormScene = props => (
   <div>
@@ -89,6 +90,10 @@ const StudentFormScene = props => (
     <Separator size="sm" />
     {props.studentId && (
       <React.Fragment>
+        <Card title="Change Current Course">
+          <ChangeCourseFormContainer studentId={props.studentId} />
+        </Card>
+        <Separator />
         <ParentScene
           studentId={props.studentId}
         />
