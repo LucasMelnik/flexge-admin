@@ -62,13 +62,7 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: build
-          command: |
-            REACT_APP_ENVIRONMENT=staging &&
-            REACT_APP_API_URL=${STAGING_ADMIN_API_URL} &&
-            REACT_APP_WS_URL=${STAGING_WS_URL} &&
-            REACT_APP_STUDENT_API_URL=${STAGING_STUDENT_API_URL} &&
-            REACT_APP_FILES_URL=${STAGING_ASSETS_URL} &&
-            npm run build
+          command: REACT_APP_API_URL=${STAGING_ADMIN_API_URL} npm run build
       - save_cache:
           key: build-cache-{{ .Revision }}
           paths:
