@@ -37,15 +37,7 @@ jobs:
         key: dependency-cache-{{ checksum "package-lock.json" }}
     - run:
         name: build
-        command: npm run build
-        environment:
-          - REACT_APP_ENVIRONMENT: production
-          - REACT_APP_API_URL: $PROD_ADMIN_API_URL
-          - REACT_APP_WS_URL: $PROD_WS_URL
-          - REACT_APP_STUDENT_API_URL: $PROD_STUDENT_API_URL
-          - REACT_APP_FILES_URL: $PROD_ASSETS_URL
-          - REACT_APP_BLOCK_FOR_PROD: true
-          - REACT_APP_GA_ID: UA-114140453-2
+        command: REACT_APP_ENVIRONMENT=production REACT_APP_API_URL=${PROD_ADMIN_API_URL} REACT_APP_WS_URL=${PROD_WS_URL} REACT_APP_STUDENT_API_URL=${PROD_STUDENT_API_URL} REACT_APP_FILES_URL=${PROD_ASSETS_URL} REACT_APP_BLOCK_FOR_PROD=true REACT_APP_GA_ID="UA-114140453-2" npm run build
     - save_cache:
         key: build-cache-{{ .Revision }}
         paths:
@@ -57,22 +49,16 @@ jobs:
     - image: circleci/node:latest
 
     steps:
-    - checkout
-    - restore_cache:
-        key: dependency-cache-{{ checksum "package-lock.json" }}
-    - run:
-        name: build
-        command: npm run build
-        environment:
-          - REACT_APP_ENVIRONMENT: staging
-          - REACT_APP_API_URL: $STAGING_ADMIN_API_URL
-          - REACT_APP_WS_URL: $STAGING_WS_URL
-          - REACT_APP_STUDENT_API_URL: $STAGING_STUDENT_API_URL
-          - REACT_APP_FILES_URL: $STAGING_ASSETS_URL
-    - save_cache:
-        key: build-cache-{{ .Revision }}
-        paths:
-          - build
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: build
+          command: REACT_APP_ENVIRONMENT=staging REACT_APP_API_URL=${STAGING_ADMIN_API_URL} REACT_APP_WS_URL=${STAGING_WS_URL} REACT_APP_STUDENT_API_URL=${STAGING_STUDENT_API_URL} REACT_APP_FILES_URL=${STAGING_ASSETS_URL} npm run build
+      - save_cache:
+          key: build-cache-{{ .Revision }}
+          paths:
+            - build
 
   production_deploy:
     working_directory: ~/project
@@ -102,13 +88,15 @@ workflows:
   build:
     jobs:
     - checkout:
-        context: default-envs
+        context:
+          - default-envs
         filters:
           branches:
             only:
               - master
     - production_build:
-        context: default-envs
+        context:
+          - default-envs
         requires:
           - checkout
         filters:
@@ -116,7 +104,8 @@ workflows:
             only:
               - master
     - production_deploy:
-        context: default-envs
+        context:
+          - default-envs
         requires:
           - production_build
         filters:
@@ -127,13 +116,15 @@ workflows:
   staging_build:
     jobs:
     - checkout:
-        context: default-envs
+        context:
+          - default-envs
         filters:
           branches:
             only:
               - staging
     - staging_build:
-        context: default-envs
+        context:
+          - default-envs
         requires:
           - checkout
         filters:
@@ -141,7 +132,8 @@ workflows:
             only:
               - staging
     - staging_deploy:
-        context: default-envs
+        context:
+          - default-envs
         requires:
           - staging_build
         filters:
