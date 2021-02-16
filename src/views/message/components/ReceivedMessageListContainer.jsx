@@ -21,6 +21,7 @@ class ReceivedMessageListContainer extends Component {
         onSelectRows={ReceivedMessageListService.handleSelectMessage}
         onGroupMessages={ReceivedMessageListService.handleGroupMessages}
         onAssign={ReceivedMessageListService.handleAssignMessage}
+        onDelete={ReceivedMessageListService.handleDelete}
       />
     );
   }

@@ -285,7 +285,7 @@ const Routes = () => (
       <Route path="data-import" component={DataImportScene} />
       <Route path="import-students" component={ImportStudentsFormScene} />
       <Route path="reactivate-student" component={ReactivateStudentListScene} />
-      <Route path="reactivate-student/:studentId" component={ReactivateStudentFormScene} />
+      <Route path="schools/:schoolId/reactivate-student/:studentId" component={ReactivateStudentFormScene} />
       <Route path="certification-test-register" component={CertificationTestRegisterListScene} />
       <Route path="certification-test-register/new" component={CertificationTestRegisterFormScene} />
       <Route path="certification-test-register/:certificationTestId" component={CertificationTestRegisterFormScene} />

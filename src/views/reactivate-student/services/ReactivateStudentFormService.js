@@ -16,6 +16,7 @@ export default class ReactivateStudentForm {
     });
     this.form.validations = {
       name: [isRequired],
+      schoolClass: [isRequired],
       email: [isRequired, isValidEmail],
     };
   }
@@ -29,6 +30,7 @@ export default class ReactivateStudentForm {
         if (this.fetch.data) {
           const data = {
             ...this.fetch.data,
+            schoolClass: null,
           };
           this.form.setInitialValues(data);
         }

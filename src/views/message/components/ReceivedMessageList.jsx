@@ -97,6 +97,13 @@ const ReceivedMessageList = props => {
                     onClick={() => props.onAssign(row)}
                   />
                 )}
+                {' '}
+                {canGroupMessages && (
+                  <Button
+                    icon="delete"
+                    onClick={() => props.onDelete(row)}
+                  />
+                )}
               </div>
             )
           },
@@ -128,6 +135,7 @@ ReceivedMessageList.propTypes = {
   onSelectRows: PropTypes.func.isRequired,
   onGroupMessages: PropTypes.func.isRequired,
   onAssign: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default ReceivedMessageList;
