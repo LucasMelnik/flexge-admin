@@ -35,28 +35,29 @@ const ReactivateStudentForm = props => (
           errorText={get(props.errors, 'email', null)}
         />
       </Column>
-      {props.values.schoolClass && (
-        <Column size={3}>
-          <FetchSelect
-            showSearch
-            isPaginated
-            url={`/schools/${props.values.schoolClass.school.id}/classes`}
-            fullWidth
-            disabled={props.submitting}
-            label="School Class"
-            value={get(props.values, 'schoolClass.id', '')}
-            onChange={(schoolClassId) => {
+      <Column size={3}>
+        <FetchSelect
+          showSearch
+          isPaginated
+          url={`/schools/${props.schoolId}/classes`}
+          fullWidth
+          disabled={props.submitting}
+          label="School Class"
+          value={get(props.values, 'schoolClass.id', '')}
+          onChange={(schoolClassId) => {
+            if (schoolClassId) {
               props.onChange('schoolClass.id', schoolClassId);
-            }}
-            description={get(props.errors, 'schoolClass', null)}
-            fieldValidation={get(props.errors, 'schoolClass', null) && 'error'}
-            resultTransformer={{
-              text: 'name',
-              value: 'id',
-            }}
-          />
-        </Column>
-      )}
+            } else {
+              props.onChange('schoolClass', null);
+            }
+          }}
+          errorText={get(props.errors, 'schoolClass', null)}
+          resultTransformer={{
+            text: 'name',
+            value: 'id',
+          }}
+        />
+      </Column>
     </Row>
     <FormButtons
       confirmLabel="Reactivate Student"
@@ -75,6 +76,7 @@ ReactivateStudentForm.propTypes = {
   errors: PropTypes.object,
   submitting: PropTypes.bool,
   isDirty: PropTypes.func,
+  schoolId: PropTypes.string.isRequired,
 };
 
 ReactivateStudentForm.defaultProps = {

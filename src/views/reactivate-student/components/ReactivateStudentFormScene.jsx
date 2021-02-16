@@ -30,6 +30,7 @@ const ReactivateStudentFormScene = props => (
     >
       <ReactivateStudentFormContainer
         studentId={props.params.studentId}
+        schoolId={props.params.schoolId}
       />
     </Card>
   </div>

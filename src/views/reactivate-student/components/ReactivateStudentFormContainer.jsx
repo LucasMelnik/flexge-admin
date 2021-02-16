@@ -8,10 +8,12 @@ class ReactivateStudentFormContainer extends Component {
 
   static propTypes = {
     studentId: PropTypes.string,
+    schoolId: PropTypes.string,
   };
 
   static defaultProps = {
     studentId: null,
+    schoolId: null,
   };
 
   reactivateStudentFormService = new ReactivateStudentFormService();
@@ -29,6 +31,7 @@ class ReactivateStudentFormContainer extends Component {
         errors={this.reactivateStudentFormService.form.errors}
         submitting={this.reactivateStudentFormService.submit.fetching}
         isDirty={this.reactivateStudentFormService.form.isDirty}
+        schoolId={this.props.schoolId}
       />
     );
   }

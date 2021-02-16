@@ -41,7 +41,7 @@ const ReactivateStudentList = props => (
           <div>
             <Button
               icon="edit"
-              onClick={() => browserHistory.push(`reactivate-student/${row.id}`)}
+              onClick={() => browserHistory.push(`schools/${row.schoolClass.school.id}/reactivate-student/${row.id}`)}
             />
           </div>
         ),
