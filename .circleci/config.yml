@@ -78,21 +78,23 @@ jobs:
     working_directory: ~/project
     executor: flexge-cli-executor
     steps:
-    - restore_cache:
-        key: build-cache-{{ .Revision }}
-    - deploy:
-        name: deploy to AWS
-        command: flexge-cli cloudfront-deploy admin production
+      - checkout
+      - restore_cache:
+          key: build-cache-{{ .Revision }}
+      - deploy:
+          name: deploy to AWS
+          command: flexge-cli cloudfront-deploy admin production
 
   staging_deploy:
     working_directory: ~/project
     executor: flexge-cli-executor
     steps:
-    - restore_cache:
-        key: build-cache-{{ .Revision }}
-    - deploy:
-        name: deploy to AWS
-        command: flexge-cli cloudfront-deploy admin staging
+      - checkout
+      - restore_cache:
+          key: build-cache-{{ .Revision }}
+      - deploy:
+          name: deploy to AWS
+          command: flexge-cli cloudfront-deploy admin staging
 
 workflows:
   version: 2
