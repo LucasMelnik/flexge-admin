@@ -102,13 +102,15 @@ workflows:
   build:
     jobs:
     - checkout:
-        context: default-envs
+        context:
+          - default-envs
         filters:
           branches:
             only:
               - master
     - production_build:
-        context: default-envs
+        context:
+          - default-envs
         requires:
           - checkout
         filters:
@@ -116,7 +118,8 @@ workflows:
             only:
               - master
     - production_deploy:
-        context: default-envs
+        context:
+          - default-envs
         requires:
           - production_build
         filters:
@@ -127,13 +130,15 @@ workflows:
   staging_build:
     jobs:
     - checkout:
-        context: default-envs
+        context:
+          - default-envs
         filters:
           branches:
             only:
               - staging
     - staging_build:
-        context: default-envs
+        context:
+          - default-envs
         requires:
           - checkout
         filters:
@@ -141,7 +146,8 @@ workflows:
             only:
               - staging
     - staging_deploy:
-        context: default-envs
+        context:
+          - default-envs
         requires:
           - staging_build
         filters:
