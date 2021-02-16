@@ -39,13 +39,13 @@ jobs:
         name: build
         command: npm run build
         environment:
-          - REACT_APP_ENVIRONMENT: production
-          - REACT_APP_API_URL: ${PROD_ADMIN_API_URL}
-          - REACT_APP_WS_URL: ${PROD_WS_URL}
-          - REACT_APP_STUDENT_API_URL: ${PROD_STUDENT_API_URL}
-          - REACT_APP_FILES_URL: ${PROD_ASSETS_URL}
-          - REACT_APP_BLOCK_FOR_PROD: true
-          - REACT_APP_GA_ID: UA-114140453-2
+          REACT_APP_ENVIRONMENT: production
+          REACT_APP_API_URL: $PROD_ADMIN_API_URL
+          REACT_APP_WS_URL: $PROD_WS_URL
+          REACT_APP_STUDENT_API_URL: $PROD_STUDENT_API_URL
+          REACT_APP_FILES_URL: $PROD_ASSETS_URL
+          REACT_APP_BLOCK_FOR_PROD: true
+          REACT_APP_GA_ID: UA-114140453-2
     - save_cache:
         key: build-cache-{{ .Revision }}
         paths:
@@ -57,22 +57,22 @@ jobs:
     - image: circleci/node:latest
 
     steps:
-    - checkout
-    - restore_cache:
-        key: dependency-cache-{{ checksum "package-lock.json" }}
-    - run:
-        name: build
-        command: npm run build
-        environment:
-          - REACT_APP_ENVIRONMENT: staging
-          - REACT_APP_API_URL: ${STAGING_ADMIN_API_URL}
-          - REACT_APP_WS_URL: ${STAGING_WS_URL}
-          - REACT_APP_STUDENT_API_URL: ${STAGING_STUDENT_API_URL}
-          - REACT_APP_FILES_URL: ${STAGING_ASSETS_URL}
-    - save_cache:
-        key: build-cache-{{ .Revision }}
-        paths:
-          - build
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: build
+          command: npm run build
+          environment:
+            REACT_APP_ENVIRONMENT: staging
+            REACT_APP_API_URL: $STAGING_ADMIN_API_URL
+            REACT_APP_WS_URL: $STAGING_WS_URL
+            REACT_APP_STUDENT_API_URL: $STAGING_STUDENT_API_URL
+            REACT_APP_FILES_URL: $STAGING_ASSETS_URL
+      - save_cache:
+          key: build-cache-{{ .Revision }}
+          paths:
+            - build
 
   production_deploy:
     working_directory: ~/project
