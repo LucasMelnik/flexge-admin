@@ -42,6 +42,7 @@ const UnitFormScene = props => (
       <UnitFormContainer
         unitId={props.unitId}
         moduleId={props.module.id}
+        courseId={props.module.course.id}
         academicPlanId={get(props.module, 'academicPlan.id', '')}
       />
     </Card>
