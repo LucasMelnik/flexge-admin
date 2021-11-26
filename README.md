@@ -10,3 +10,4 @@
 - REACT_APP_BLOCK_FOR_PROD: block menus in production
 - REACT_APP_GA_ID: google analitycs id
 
+# flexge-admin
